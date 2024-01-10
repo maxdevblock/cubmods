@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from .general import (
     logis, dissimilarity,
     aic, bic, luni, lsat,
-    freq, choices
+    freq, choices, lsatcov
 )
 from .cube import (
     betar,
@@ -159,6 +159,10 @@ def mle(sample, m, W,
     diss = dissimilarity(f/n, theoric)
     loglikuni = luni(m=m, n=n)
     logliksat = lsat(m=m, n=n, f=f)
+    logliksatcov = lsatcov(
+        sample=sample,
+        covars=[W]
+    )
     muloglik = l/n
     dev = 2*(logliksat-l)
     
@@ -195,6 +199,7 @@ def mle(sample, m, W,
         AIC=AIC, BIC=BIC,
         loglike=l,
         logliksat=logliksat,
+        logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         muloglik=muloglik,
         diss=diss, dev=dev,

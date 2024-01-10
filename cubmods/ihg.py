@@ -44,7 +44,7 @@ def draw(m, theta, n, seed=None):
         size=n,
         replace=True,
         p=theoric
-        )
+    )
     f = freq(m=m, sample=rv)
     diss = dissimilarity(f/n, theoric)
     pars = np.array([theta])

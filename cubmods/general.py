@@ -102,10 +102,22 @@ def luni(m, n):
     loglikuni = -(n*np.log(m))
     return loglikuni
 
+#TODO: remove unused argument m and modify in all modules
 def lsat(m, f, n):
     # loglik of saturated model
     logliksat = -(n*np.log(n)) + np.sum((f[f!=0])*np.log(f[f!=0]))
     return logliksat
+
+def lsatcov(sample, covars):
+    df = pd.DataFrame({"ord":sample}).join(
+        covars)
+    #TODO: solve overlapping cols if same cov for more pars
+    cov = list(df.columns[1:])
+    logliksatcov = np.sum(
+        np.log(
+        df.value_counts().div(
+        df[cov].value_counts())))
+    return logliksatcov
 
 def kkk(sample, m):
     #' @title Sequence of combinatorial coefficients

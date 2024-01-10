@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 from statsmodels.tools.numdiff import approx_hess
 from .general import (
     logis, colsof, choices, freq,
-    aic, bic, lsat, luni, dissimilarity
+    aic, bic, lsat, luni, dissimilarity,
+    lsatcov
 )
 from .cush2 import pmf as pmf_cush2
 from .smry import CUBres
@@ -108,6 +109,10 @@ def mle(sample, m, sh1, sh2,
         omega1=omega1, omega2=omega2,
         sh1=sh1, sh2=sh2, X1=X1, X2=X2)
     logliksat = lsat(m=m, n=n, f=f)
+    logliksatcov = lsatcov(
+        sample=sample,
+        covars=[X1, X2]
+    )
     loglikuni = luni(m=m, n=n)
     dev = 2*(logliksat-l)
     theoric = pmf(m=m, sh1=sh1, sh2=sh2,
@@ -131,6 +136,7 @@ def mle(sample, m, sh1, sh2,
         muloglik=muloglik,
         loglikuni=loglikuni,
         logliksat=logliksat,
+        logliksatcov=logliksatcov,
         dev=dev, AIC=AIC, BIC=BIC,
         sample=sample, f=f, varmat=varmat,
         diss=diss,

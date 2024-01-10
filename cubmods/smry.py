@@ -12,7 +12,7 @@ def as_txt(
     e_types, est_names,
     estimates, stderrs, wald, pval,
     loglike, muloglik, loglikuni,
-    logliksat, dev,
+    logliksat, logliksatcov, dev,
     diss, AIC, BIC, rho,
     seconds, time_exe,
     # unused for Class compatibility
@@ -76,6 +76,7 @@ def as_txt(
         smry += f"Dissimilarity = {diss:.4f}\n"
     ls = "  "
     l_ = None
+    c_ = None
     if (
         kwargs["V"] is not None or
         kwargs["W"] is not None or
@@ -85,11 +86,18 @@ def as_txt(
         ):
         ls = "* "
         l_ = "* Saturated model without covariates\n"
-    smry += f"Loglike(sat){ls}= {logliksat:.3f}\n"
+    if logliksatcov is not None:
+        c_ = "^ not valid for continuous covariates\n"
+        smry += f"Logl(satcov)^ = {logliksatcov:.3f}\n"
+    
+    warn = " (!)" if logliksat<loglike else ""
+    smry += f"Loglike(sat){ls}= {logliksat:.3f}{warn}\n"
     smry += f"Loglike(MOD)  = {loglike:.3f}\n"
     smry += f"Loglike(uni)  = {loglikuni:.3f}\n"
     smry += f"Mean-loglike  = {muloglik:.3f}\n"
-    smry += f"Deviance{ls}    = {dev:.3f}\n"
+    smry += f"Deviance{ls}    = {dev:.3f}{warn}\n"
+    if c_ is not None:
+        smry += c_
     if l_ is not None:
         smry += l_
     if rho is not None:
@@ -114,6 +122,7 @@ class CUBres(object):
         dev, AIC, BIC,
         seconds, time_exe,
         # optional parameters
+        logliksatcov=None,
         niter=None, maxiter=None, tol=None,
         Y=None, W=None, X=None,
         V=None, Z=None, sh=None,
@@ -137,6 +146,7 @@ class CUBres(object):
         self.muloglik = muloglik
         self.loglikuni = loglikuni
         self.logliksat = logliksat
+        self.logliksatcov = logliksatcov
         self.dev = dev
         self.AIC = AIC
         self.BIC = BIC
@@ -190,14 +200,14 @@ class CUBsample(object):
         self.theoric = theoric
         self.m = m
         self.sh = sh
-        self.pars = pars
-        self.par_names = par_names
+        self.pars = np.array(pars)
+        self.par_names = np.array(par_names)
         self.V = V
         self.W = W
         self.X = X
         self.Y = Y
         self.Z = Z
-        self.p = pars.size
+        self.p = self.pars.size
         self.rv = rv
         self.n  = rv.size
         self.seed = seed

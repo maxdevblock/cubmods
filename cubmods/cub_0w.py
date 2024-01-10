@@ -3,7 +3,7 @@
 import datetime as dt
 import pickle
 import numpy as np
-#import pandas as pd
+import pandas as pd
 #from scipy.special import binom
 from scipy.optimize import minimize
 import scipy.stats as sps
@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 from .general import (
     choices, freq, dissimilarity,
     chisquared, conf_ell, bitgamma,
-    logis, hadprod, luni, lsat
+    logis, hadprod, luni, lsat,
+    lsatcov
 )
 from . import cub
 from .smry import CUBres, CUBsample
@@ -406,6 +407,23 @@ def mle(sample, m, W, #TODO
     loglikuni = luni(n=n, m=m)
     # loglik of saturated model
     logliksat = lsat(n=n, f=f, m=m)
+    #TODO: TEST LOGLIK SAT FOR COVARIATES
+    #      see https://stackoverflow.com/questions/77791392/proportion-of-each-unique-value-of-a-chosen-column-for-each-unique-combination-o#77791442
+    #df = pd.merge(
+    #    pd.DataFrame({"ord":sample}),
+    #    W,
+    #    left_index=True, right_index=True
+    #)
+    #df = pd.DataFrame({"ord":sample}).join(W)
+    #cov = list(W.columns)
+    #logliksatcov = np.sum(
+    #    np.log(
+    #    df.value_counts().div(
+    #    df[cov].value_counts())))
+    logliksatcov = lsatcov(
+        sample=sample,
+        covars=[W]
+    )
     # loglik of shiftet binomial
     # xibin = (m-sample.mean())/(m-1)
     # loglikbin = loglik(m, 1, xibin, f)
@@ -418,7 +436,7 @@ def mle(sample, m, W, #TODO
     # ICOMP metrics
     npars = q
     trvarmat = np.sum(np.diag(varmat))
-    ICOMP = -2*l + npars*np.log(trvarmat/npars) - np.log(np.linalg.det(varmat))
+    #ICOMP = -2*l + npars*np.log(trvarmat/npars) - np.log(np.linalg.det(varmat))
     # coefficient of correlation
     # rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])
     theoric = pmf(m=m, pi=pi, gamma=gamma, W=W)
@@ -453,6 +471,7 @@ def mle(sample, m, W, #TODO
             loglike=l, muloglik=muloglik,
             loglikuni=loglikuni,
             logliksat=logliksat,
+            logliksatcov=logliksatcov,
             # loglikbin=loglikbin,
             # Ebin=Ebin, Ecub=Ecub, Ecub0=Ecub0,
             theoric=theoric,

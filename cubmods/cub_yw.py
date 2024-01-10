@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from .general import (
     logis, bitgamma, freq, choices,
     hadprod, aic, bic, dissimilarity,
-    luni, lsat
+    luni, lsat, lsatcov
 )
 from .cub import (
     init_theta, pmf as pmf_cub
@@ -216,6 +216,10 @@ def mle(sample, m, Y, W,
     diss = dissimilarity(f/n, theoric)
     loglikuni = luni(m=m, n=n)
     logliksat = lsat(m=m, f=f, n=n)
+    logliksatcov = lsatcov(
+        sample=sample,
+        covars=[Y, W]
+    )
     dev = 2*(logliksat-l)
     
     beta_names = np.concatenate([
@@ -251,6 +255,7 @@ def mle(sample, m, Y, W,
         pval=pval, loglike=l,
         muloglik=muloglik,
         logliksat=logliksat,
+        logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         AIC=AIC, BIC=BIC,
         seconds=(end-start).total_seconds(),

@@ -12,7 +12,7 @@ from .cub_0w import init_gamma
 from .general import (
     logis, choices, colsof, hadprod,
     addones, lsat, luni, aic, bic,
-    freq, dissimilarity
+    freq, dissimilarity, lsatcov
 )
 from .smry import CUBres, CUBsample
 
@@ -160,6 +160,7 @@ def varcov(m, sample, beta, gamma, alpha,
     p = colsof(Y)
     q = colsof(W)
     v = colsof(Z)
+    #npars = beta.size+gamma.size+alpha.size
     pi = logis(Y, beta)
     xi = logis(W, gamma)
     phi = 1/(1/logis(Z, alpha)-1)
@@ -321,7 +322,7 @@ def varcov(m, sample, beta, gamma, alpha,
             infalal[i-npi-nxi,:]
         ]
     #print("inf"); print(matinf)
-    varmat = np.ndarray(shape=(3,3))
+    varmat = np.ndarray(shape=(npars,npars))
     varmat[:] = np.nan
     if np.any(np.isnan(matinf)):
         print("WARNING: NAs produced in information matrix")
@@ -428,7 +429,10 @@ def mle(m, sample, Y, W, Z,
     pval = 2*(sps.norm().sf(abs(wald)))
     muloglik = l/n
     logliksat = lsat(m=m, f=f, n=n)
-    #logliksat = -n*m*np.log(n)
+    logliksatcov = lsatcov(
+        sample=sample,
+        covars=[Y,W,Z]
+    )
     loglikuni = luni(m=m, n=n)
     AIC = aic(l=l, p=estimates.size)
     BIC = bic(l=l, p=estimates.size, n=n)
@@ -452,6 +456,7 @@ def mle(m, sample, Y, W, Z,
         AIC=AIC, BIC=BIC,
         loglike=l, muloglik=muloglik,
         logliksat=logliksat,
+        logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         dev=dev,
         theoric=theoric, diss=diss,

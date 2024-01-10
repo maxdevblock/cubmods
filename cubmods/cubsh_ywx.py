@@ -14,13 +14,14 @@ from .cub_0w import (
 from .general import (
     choices, freq, logis, colsof,
     addones, hadprod, aic, bic,
-    lsat, luni, dissimilarity
+    lsat, luni, dissimilarity,
+    lsatcov
 )
 from .cubsh import (
     pmf as pmf_cubsh,
     pidelta_to_pi1pi2
 )
-from .smry import CUBres
+from .smry import CUBres, CUBsample
 
 def pmf(m, sh, beta, gamma, omega,
     Y, W, X):
@@ -44,6 +45,49 @@ def pmfi(m, sh, beta, gamma, omega,
             xi=xi[i]
         )
     return p
+
+def draw(m, n, sh, beta, gamma, omega,
+    Y, W, X, seed=None):
+    """
+    generate random sample from CUB model
+    """
+    #np.random.seed(seed)
+    assert n == W.shape[0]
+    rv = np.repeat(np.nan, n)
+    theoric_i = pmfi(m=m, sh=sh, beta=beta,
+        gamma=gamma, omega=omega,
+        Y=Y, W=W, X=X)
+    #print("n", n)
+    for i in range(n):
+        np.random.seed(seed*i)
+        rv[i] = np.random.choice(
+            choices(m=m),
+            size=1,
+            replace=True,
+            p=theoric_i[i]
+        )
+    f = freq(m=m, sample=rv)
+    theoric = theoric_i.mean(axis=0)
+    diss = dissimilarity(f/n, theoric)
+    pars = np.concatenate((
+        beta, gamma, omega
+    ))
+    par_names = np.concatenate((
+        ["constant"],
+        Y.columns,
+        ["constant"],
+        W.columns,
+        ["constant"],
+        X.columns,
+    ))
+    sample = CUBsample(
+        model="CUBSH(YWX)",
+        rv=rv.astype(int), m=m,
+        pars=pars, par_names=par_names,
+        seed=seed, W=W, diss=diss,
+        theoric=theoric
+    )
+    return sample
 
 def init_theta(m, sample, p, s, W):
     f = freq(m=m, sample=sample)
@@ -233,6 +277,10 @@ def mle(m, sample, sh, Y, W, X,
     loglikuni = luni(m=m, n=n)
     f = freq(sample=sample, m=m)
     logliksat = lsat(m=m, n=n, f=f)
+    #logliksatcov = lsatcov(
+    #    sample=sample,
+    #    covars=[Y,W,X]
+    #)
     dev = 2*(logliksat-l)
     theoric = pmf(m, sh, beta, gamma, omega,
         Y, W, X)
@@ -256,7 +304,7 @@ def mle(m, sample, sh, Y, W, X,
     end = dt.datetime.now()
     
     return CUBresCUBSHYWX(
-        model="CUBSH YWX",
+        model="CUBSH(YWX)",
         m=m, n=n, sh=sh, sample=sample,
         f=f, theoric=theoric,
         niter=niter, maxiter=maxiter,
@@ -267,6 +315,7 @@ def mle(m, sample, sh, Y, W, X,
         wald=wald, pval=pval,
         loglike=l, muloglik=muloglik,
         logliksat=logliksat,
+        #logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         diss=diss, varmat=varmat,
         dev=dev, AIC=AIC, BIC=BIC,

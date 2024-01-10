@@ -236,7 +236,7 @@ def mle(sample, m, Y, #TODO
             # rho=rho,
             sample=sample, f=f,
             varmat=varmat,
-            diss=diss,
+            diss=diss, Y=Y
             # pi_gen=pi_gen, xi_gen=xi_gen
         )
     return res

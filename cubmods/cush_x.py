@@ -8,10 +8,11 @@ from statsmodels.tools.numdiff import approx_hess
 import matplotlib.pyplot as plt
 from .general import (
     logis, freq, dissimilarity,
-    aic, bic, lsat, luni, choices
+    aic, bic, lsat, luni, choices,
+    lsatcov
 )
 from .cush import pmf as pmf_cush
-from .smry import CUBres
+from .smry import CUBres, CUBsample
 
 def pmf(m, sh, omega, X):
     p = pmfi(m, sh, omega, X)
@@ -34,84 +35,36 @@ def proba(m, sample, X, omega, sh):
     p = delta*(D-1/m)+1/m
     return p
 
-class CUSHsample(object): #TODO: armonizzare
-    def __init__(self, rv, m, omega, n, X, sh, seed=None):
-        self.m = m
-        self.omega = omega
-        self.rv = rv
-        self.n  = n
-        self.X = X
-        self.sh = sh
-        self.seed = seed
-
-    def __str__(self):
-        return f"CUBsample(m={self.m}, sh={self.sh}, omega={self.omega}, n={self.n})"
-
-    def summary(self):
-        diss = dissimilarity(
-            freq(self.rv, self.m)/self.n,
-            pmf(m=self.m, sh=self.sh, omega=self.omega, X=self.X)
-        )
-        smry = "=======================================================================\n"
-        smry += "=====>>> CUB  model    <<<=====   Generated random sample\n"
-        smry += "=======================================================================\n"
-        smry += f"m={self.m}  Sample size={self.n}  sh={self.sh}  omega={self.omega}  seed={self.seed}\n"
-        smry += "=======================================================================\n"
-        smry += "Shelter Effect"
-        #smry += f"(1-pi) = {1-self.pi:.6f}\n"
-        #smry += "Feeling\n"
-        #smry += f"(1-xi) = {1-self.xi:.6f}\n"
-        smry += "=======================================================================\n"
-        smry += f"Mean      = {np.mean(self.rv):.6f}\n"
-        smry += f"Variance  = {np.var(self.rv, ddof=1):.6f}\n"
-        smry += f"Std. Dev. = {np.std(self.rv, ddof=1):.6f}\n"
-        smry += f"-----------------------------------------------------------------------\n"
-        smry += f"Dissimilarity =  {diss:.7f}\n"
-        smry += "======================================================================="
-        return smry
-
-    def plot(self, figsize=(7, 5)):
-        fig, ax = plt.subplots(figsize=figsize)
-        R = choices(self.m)
-        f = freq(self.rv, self.m)
-        ax.scatter(R, f/self.rv.size, facecolor="None",
-            edgecolor="k", s=200, label="generated")
-        p = pmf(m=self.m, sh=self.sh, omega=self.omega, X=self.X)
-        ax.stem(R, p, linefmt="--r",
-            markerfmt="none", label="theoric")
-        ax.set_xticks(R)
-        ax.set_ylim((0, ax.get_ylim()[1]))
-        ax.set_xlabel("Options")
-        ax.set_ylabel("Probability mass")
-        ax.set_title(self)
-        ax.legend(loc="upper left",
-            bbox_to_anchor=(1,1))
-        return fig
-
-    def save(self, fname):
-        """
-        Save a CUBsample object to file
-        """
-        filename = f"{fname}.cub.sample"
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
-        print(f"Sample saved to {filename}")
-
 def draw(m, sh, omega, X, seed=None):
     n = X.shape[0]
     R = choices(m)
     p = pmfi(m, sh, omega, X)
     rv = np.repeat(np.nan, n)
     for i in range(n):
-        np.random.seed(seed)
+        np.random.seed(seed*i)
         rv[i] = np.random.choice(
             R,
             size=1, replace=True,
             p=p[i]
         )
-    return CUSHsample(
-        m=m, sh=sh, omega=omega, X=X,
-        rv=rv, n=n, seed=seed
+    theoric = p.mean(axis=0)
+    f = freq(m=m, sample=rv)
+    diss = dissimilarity(f/n, theoric)
+    par_names = np.concatenate((
+        ["constant"],
+        X.columns
+    ))
+    
+    return CUBsample(
+        model="CUSH(X)",
+        m=m, sh=sh,
+        pars=omega,
+        par_names=par_names,
+        theoric=theoric,
+        diss=diss,
+        X=X,
+        rv=rv,
+        seed=seed
     )
 
 def loglik(m, sample, X, omega, sh):
@@ -169,6 +122,10 @@ def mle(m, sample, X, sh, gen_pars=None):
     BIC = bic(l=l, p=omega.size, n=n)
     loglikuni = luni(m=m, n=n)
     logliksat = lsat(m=m, f=f, n=n)
+    logliksatcov = lsatcov(
+        sample=sample,
+        covars=[X]
+    )
     dev = 2*(logliksat-l)
     theoric = pmf(m=m, omega=omega, X=X, sh=sh)
     diss = dissimilarity(f/n, theoric)
@@ -191,6 +148,7 @@ def mle(m, sample, X, sh, gen_pars=None):
         muloglik=muloglik,
         loglikuni=loglikuni,
         logliksat=logliksat,
+        logliksatcov=logliksatcov,
         dev=dev, AIC=AIC, BIC=BIC,
         sample=sample, f=f, varmat=varmat,
         X=X, diss=diss,

@@ -6,22 +6,58 @@ import matplotlib.pyplot as plt
 from statsmodels.tools.numdiff import approx_hess
 from .general import (
     logis, freq, choices, aic, bic,
-    lsat, luni, dissimilarity
+    lsat, luni, dissimilarity,
+    lsatcov
 )
 from .ihg import pmf as pmf_ihg
-from .smry import CUBres
+from .smry import CUBres, CUBsample
 
-def pmf(m, V, nu):
-    """
-    Test pmf
-    """
+def pmfi(m, V, nu):
     n = V.shape[0]
     p_i = np.ndarray(shape=(n,m))
     theta = logis(V, nu)
     for i in range(n):
         p_i[i] = pmf_ihg(m=m, theta=theta[i])
-    p = p_i.mean(axis=0)
+    return p_i
+
+def pmf(m, V, nu):
+    """
+    Test pmf
+    """
+    p = pmfi(m, V, nu).mean(axis=0)
     return p
+
+def draw(m, nu, V, seed=None):
+    n = V.shape[0]
+    R = choices(m)
+    p = pmfi(m, V, nu)
+    rv = np.repeat(np.nan, n)
+    for i in range(n):
+        np.random.seed(seed)
+        rv[i] = np.random.choice(
+            R,
+            size=1, replace=True,
+            p=p[i]
+        )
+    theoric = p.mean(axis=0)
+    f = freq(m=m, sample=rv)
+    diss = dissimilarity(f/n, theoric)
+    par_names = np.concatenate((
+        ["constant"],
+        V.columns
+    ))
+    
+    return CUBsample(
+        model="IHG(V)",
+        m=m,
+        pars=nu,
+        par_names=par_names,
+        theoric=theoric,
+        diss=diss,
+        V=V,
+        rv=rv,
+        seed=seed
+    )
 
 def probi(m, sample, V, nu):
     n = sample.size
@@ -83,6 +119,10 @@ def mle(m, sample, V, gen_pars=None):
     l = loglik(m=m, sample=sample, nu=nu,
         V=V)
     logliksat = lsat(m=m, n=n, f=f)
+    logliksatcov = lsatcov(
+        sample=sample,
+        covars=[V]
+    )
     loglikuni = luni(m=m, n=n)
     muloglik = l/n
     dev = 2*(logliksat-l)
@@ -114,6 +154,7 @@ def mle(m, sample, V, gen_pars=None):
         wald=wald, loglike=l,
         muloglik=muloglik,
         logliksat=logliksat,
+        logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         dev=dev, AIC=AIC, BIC=BIC,
         diss=diss, sample=sample,
