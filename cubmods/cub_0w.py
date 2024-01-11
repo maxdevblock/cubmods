@@ -244,7 +244,9 @@ def draw(m, n, pi, gamma, W, seed=None): #TODO
         gamma=gamma, W=W)
     #print("n", n)
     for i in range(n):
-        np.random.seed(seed*i)
+        #TODO: if seed is not None
+        if seed is not None:
+            np.random.seed(seed*i)
         rv[i] = np.random.choice(
             choices(m=m),
             size=1,

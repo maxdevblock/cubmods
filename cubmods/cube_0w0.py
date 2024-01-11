@@ -53,7 +53,8 @@ def draw(m, n, pi, gamma, phi, W, seed=None):
         gamma=gamma, phi=phi, W=W)
     #print("n", n)
     for i in range(n):
-        np.random.seed(seed*i)
+        if seed is not None:
+            np.random.seed(seed*i)
         rv[i] = np.random.choice(
             choices(m=m),
             size=1,

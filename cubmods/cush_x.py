@@ -41,7 +41,8 @@ def draw(m, sh, omega, X, seed=None):
     p = pmfi(m, sh, omega, X)
     rv = np.repeat(np.nan, n)
     for i in range(n):
-        np.random.seed(seed*i)
+        if seed is not None:
+            np.random.seed(seed*i)
         rv[i] = np.random.choice(
             R,
             size=1, replace=True,

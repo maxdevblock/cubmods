@@ -33,7 +33,8 @@ def draw(m, nu, V, seed=None):
     p = pmfi(m, V, nu)
     rv = np.repeat(np.nan, n)
     for i in range(n):
-        np.random.seed(seed)
+        if seed is not None:
+            np.random.seed(seed)
         rv[i] = np.random.choice(
             R,
             size=1, replace=True,

@@ -59,7 +59,8 @@ def draw(m, n, sh, beta, gamma, omega,
         Y=Y, W=W, X=X)
     #print("n", n)
     for i in range(n):
-        np.random.seed(seed*i)
+        if seed is not None:
+            np.random.seed(seed*i)
         rv[i] = np.random.choice(
             choices(m=m),
             size=1,

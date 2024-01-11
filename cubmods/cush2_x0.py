@@ -10,9 +10,9 @@ from .general import (
     lsatcov
 )
 from .cush2 import pmf as pmf_cush2
-from .smry import CUBres
+from .smry import CUBres, CUBsample
 
-def pmf(m, sh1, sh2,
+def pmfi(m, sh1, sh2,
     omega1, delta2,
     X1):
     delta1 = logis(X1, omega1)
@@ -22,9 +22,48 @@ def pmf(m, sh1, sh2,
         p_i[i] = pmf_cush2(m=m, c1=sh1,
             c2=sh2, d1=delta1[i],
             d2=delta2)
+    return p_i
+
+def pmf(m, sh1, sh2,
+    omega1, delta2,
+    X1):
+    p_i = pmfi(m, sh1, sh2, omega1, delta2,
+        X1)
     p = p_i.mean(axis=0)
     return p
-    
+
+def draw(m, sh1, sh2, omega1, delta2, X1,
+    seed=None): #TODO: test draw
+    n = X1.shape[0]
+    rv = np.repeat(np.nan, n)
+    theoric_i = pmfi(m, sh1, sh2, omega1,
+        delta2, X1)
+    for i in range(n):
+        if seed is not None:
+            np.random.seed(seed*i)
+        rv[i] = np.random.choice(
+            choices(m),
+            size=1,
+            replace=True,
+            p=theoric_i[i]
+        )
+    f = freq(m=m, sample=rv)
+    theoric = theoric_i.mean(axis=0)
+    diss = dissimilarity(f/n, theoric)
+    pars = np.concatenate((
+        omega1, [delta2]
+    ))
+    par_names = np.concatenate((
+        ["constant"], X1.columns,
+        ["delta2"]
+    ))
+    return CUBsample(
+        model="CUSH2(X1,0)",
+        rv=rv.astype(int), m=m,
+        pars=pars, par_names=par_names,
+        seed=seed, X=X1, diss=diss,
+        theoric=theoric, sh=[sh1, sh2]
+    )
 
 def loglik(sample, m, sh1, sh2,
     omega1, delta2,
