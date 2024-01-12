@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 from .general import (
     logis, bitgamma, freq, choices,
     hadprod, aic, bic, dissimilarity,
-    luni, lsat, lsatcov
+    luni, lsat, lsatcov, aic, bic,
+    addones, colsof
 )
 from .cub import (
     init_theta, pmf as pmf_cub
@@ -101,8 +102,8 @@ def varcov(m, sample, Y, W, beta, gamma):
     ff = eitilde-qitilde
     gg = ai*qitilde
     hh = (m-1)*qistar*fitilde-(ai**2)*qitilde
-    YY = np.c_[np.ones(Y.shape[0]), Y]
-    WW = np.c_[np.ones(W.shape[0]), W]
+    YY = addones(Y)
+    WW = addones(W)
     i11 = YY.T @ hadprod(YY, ff)
     i12 = YY.T @ hadprod(WW, gg)
     i22 = WW.T @ hadprod(WW, hh)
@@ -146,11 +147,11 @@ def mle(sample, m, Y, W,
     #TODO: use this?
     aver = np.mean(sample)
     # add a column of 1
-    YY = np.c_[np.ones(Y.shape[0]), Y]
-    WW = np.c_[np.ones(W.shape[0]), W]
+    YY = addones(Y)
+    WW = addones(W)
     # number of covariates
-    q = WW.shape[1] - 1
-    p = YY.shape[1] - 1
+    q = colsof(W)
+    p = colsof(Y)
     # init
     pi, _ = init_theta(f=f, m=m)
     beta0 = np.log(pi/(1-pi))
@@ -216,7 +217,7 @@ def mle(sample, m, Y, W,
     theoric = pmf(m, beta, gamma, Y, W)
     diss = dissimilarity(f/n, theoric)
     loglikuni = luni(m=m, n=n)
-    logliksat = lsat(m=m, f=f, n=n)
+    logliksat = lsat(f=f, n=n)
     logliksatcov = lsatcov(
         sample=sample,
         covars=[Y, W]

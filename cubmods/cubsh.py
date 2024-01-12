@@ -45,7 +45,8 @@ from .general import (
     choices, freq, probbit, dissimilarity,
     #conf_ell,
     #chisquared,
-    InvalidCategoriesError
+    InvalidCategoriesError,
+    lsat, luni, aic, bic,
 )
 from . import cub
 from .smry import CUBres, CUBsample
@@ -460,7 +461,7 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
     pvalpi = np.round(2*abs(sps.norm.sf(waldpi)), 20)
 
     trvarmat = np.sum(np.diag(varmat))
-    ICOMP = -2*l + 3*np.log(trvarmat/3) - np.log(np.linalg.det(varmat))
+    #ICOMP = -2*l + 3*np.log(trvarmat/3) - np.log(np.linalg.det(varmat))
 
     stime = np.array([pi1, pi2, xi])
     errstd = np.sqrt(np.diag(varmat))
@@ -496,11 +497,12 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
 
     theoric = pmf(m=m, sh=sh, pi1=pi1, pi2=pi2, xi=xi)
     diss = dissimilarity(f/n, theoric)
-    loglikuni = -n*np.log(m)
+    loglikuni = luni(m=m, n=n)
     #xisb = (m-aver)/(m-1) #TODO: unused?
     #llsb = cub.loglik(m, 1, xisb, f) #TODO: unused?
-    nonzero = np.nonzero(f)
-    logliksat = -n*np.log(n) + np.sum(f[nonzero]*np.log(f[nonzero]))
+    #TODO: use nonzero in lsat?
+    #nonzero = np.nonzero(f)
+    logliksat = lsat(f=f, n=n)
     # mean loglikelihood
     muloglik = l/n
     # deviance from saturated model
@@ -514,11 +516,11 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
     #ll2 = (l-llunif)/(logsat-llunif)
     # FF2 is the overall fraction of correct responses, as predicted by the estimated model
     #FF2 = 1-dissim
-    AIC = -2*l+2*3
-    BIC = -2*l+np.log(n)*3
+    AIC = aic(l=l, p=3)
+    BIC = bic(l=l, p=3, n=n)
     #TODO: compute Corr(pi,xi)
     # rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])
-    rho = None
+    #rho = None
 
     return CUBresCUBSH(
         model="CUBSH",
@@ -533,7 +535,7 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
         loglike=l, loglikuni=loglikuni,
         logliksat=logliksat,
         muloglik=muloglik, dev=dev,
-        AIC=AIC, BIC=BIC, 
+        AIC=AIC, BIC=BIC,
         seconds=durata, time_exe=start,
         sample=sample, f=f, varmat=varmat,
         diss=diss,
@@ -589,6 +591,12 @@ class CUBresCUBSH(CUBres):
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
+
+        # change all spines
+        for axis in ['left','bottom']:
+            ax.spines[axis].set_linewidth(4)
+        # increase tick width
+            ax.tick_params(width=4)
 
         if ax is None:
             if saveas is not None:

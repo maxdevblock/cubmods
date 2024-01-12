@@ -43,7 +43,7 @@ from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from .general import (
     choices, freq, dissimilarity,
-    conf_ell,
+    conf_ell, luni, lsat, aic, bic
     #InvalidCategoriesError,
     #chisquared,
 )
@@ -439,15 +439,15 @@ def mle(sample, m,
     # p-value
     pval = 2*(sps.norm().sf(abs(wald)))
     # Akaike Information Criterion
-    AIC = -2*l + 2*(3)
+    AIC = aic(l=l, p=3)
     # Bayesian Information Criterion
-    BIC = -2*l + np.log(n)*(3)
+    BIC = bic(l=l, p=3, n=n)
     # mean loglikelihood
     muloglik = l/n
     # loglik of null model (uniform)
-    loglikuni = -(n*np.log(m))
+    loglikuni = luni(m=m, n=n)
     # loglik of saturated model
-    logliksat = -(n*np.log(n)) + np.sum((f[f!=0])*np.log(f[f!=0]))
+    logliksat = lsat(f=f, n=n)
     # # loglik of shiftet binomial
     # xibin = (m-sample.mean())/(m-1)
     # loglikbin = loglik(m, 1, xibin, f)
@@ -460,10 +460,10 @@ def mle(sample, m,
     # ICOMP metrics
     npars = 3
     trvarmat = np.sum(np.diag(varmat))
-    ICOMP = -2*l + npars*np.log(trvarmat/npars) - np.log(np.linalg.det(varmat))
+    #ICOMP = -2*l + npars*np.log(trvarmat/npars) - np.log(np.linalg.det(varmat))
     #TODO: add rho
     # coefficient of correlation
-    rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])
+    #rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])
     theoric = pmf(m=m, pi=pi, xi=xi, phi=phi)
     diss = dissimilarity(f/n, theoric)
     estimates = np.concatenate((
@@ -478,21 +478,21 @@ def mle(sample, m,
     # results object
     res = CUBresCUBE(
             model="CUBE",
-            m=m, n=n, niter=niter, 
+            m=m, n=n, niter=niter,
             maxiter=maxiter, tol=tol,
             theoric=theoric,
             est_names=est_names,
             e_types=e_types,
             estimates=estimates,
-            stderrs=stderrs, 
+            stderrs=stderrs,
             pval=pval, wald=wald,
-            loglike=l, muloglik=muloglik, 
+            loglike=l, muloglik=muloglik,
             loglikuni=loglikuni,
             logliksat=logliksat,
             #loglikbin=loglikbin,
             #Ebin=Ebin, Ecub=Ecub, Ecub0=Ecub0,
             dev=dev, AIC=AIC, BIC=BIC,
-            #ICOMP=ICOMP, 
+            #ICOMP=ICOMP,
             seconds=(end-start).total_seconds(),
             # precalc=precalc, # test optimize time
             # optimiz=optimiz, # test optimize time
@@ -553,6 +553,12 @@ class CUBresCUBE(CUBres):
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
+
+        # change all spines
+        for axis in ['left','bottom']:
+            ax.spines[axis].set_linewidth(4)
+        # increase tick width
+            ax.tick_params(width=4)
 
         if ax is None:
             if saveas is not None:

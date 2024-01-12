@@ -99,7 +99,7 @@ def mle(m, sample, gen_pars=None):
     AIC = aic(l=l, p=1)
     BIC = bic(l=l, p=1, n=n)
     loglikuni = luni(m=m, n=n)
-    logliksat = lsat(m=m, n=n, f=f)
+    logliksat = lsat(n=n, f=f)
     dev = 2*(logliksat-l)
     theoric = pmf(m=m, theta=theta)
     diss = dissimilarity(f/n, theoric)

@@ -4,6 +4,13 @@ from .gem import from_formula
 from.general import NotImplementedModelError
 
 def pos_kwargs(pos):
+    """
+         1
+       8   2
+     7   @   3
+       6   4
+         5
+    """
     if pos == 1:
         return dict(ha="center", va="bottom")
     if pos == 2:
@@ -20,6 +27,8 @@ def pos_kwargs(pos):
         return dict(ha="right", va="center")
     if pos == 8:
         return dict(ha="right", va="bottom")
+    # default if not allowed pos value
+    return dict(ha="center", va="bottom")
 
 def multi(ords, ms,
     model="cub",
@@ -100,6 +109,11 @@ def multi(ords, ms,
         ax.set_xticks(np.arange(0, 1.1, .1))
         ax.set_yticks(np.arange(0, 1.1, .1))
         ax.set_aspect("equal")
+        # change all spines
+        for axis in ['left','bottom']:
+            ax.spines[axis].set_linewidth(4)
+        # increase tick width
+            ax.tick_params(width=4)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
         return fig, ax

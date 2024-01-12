@@ -12,7 +12,7 @@ from .general import (
     choices, freq, dissimilarity,
     chisquared, conf_ell, bitgamma,
     logis, hadprod, luni, lsat,
-    lsatcov
+    lsatcov, addones, colsof, aic, bic
 )
 from . import cub
 from .smry import CUBres, CUBsample
@@ -199,12 +199,12 @@ def varcov(sample, m, pi, gamma, W):
     ai = (sample-1) - (m-1)*(1-fi)
     g01 = (ai*qi*qistar)/pi
     hh = (m-1)*qistar*fitilde - (ai**2)*qitilde
-    WW = np.c_[np.ones(W.shape[0]), W]
+    WW = addones(W)
     i11 = np.sum((1-qi)**2 / pi**2)
     i12 = g01.T @ WW
     i22 = WW.T @ hadprod(WW, hh) #TODO: check if this is Hadarmad or not
     # Information matrix
-    nparam = WW.shape[1] - 1 + 2
+    nparam = colsof(W) + 1
     matinf = np.ndarray(shape=(nparam, nparam))
     matinf[:] = np.nan
     matinf[0,:] = np.concatenate([[i11], i12]).T #TODO: check dimensions
@@ -331,9 +331,9 @@ def mle(sample, m, W, #TODO
     #TODO: use this?
     aver = np.mean(sample)
     # add a column of 1
-    WW = np.c_[np.ones(W.shape[0]), W]
+    WW = addones(W)
     # number of covariates
-    q = WW.shape[1] - 1
+    q = colsof(W)
     # initialize gamma parameter
     gammajj = init_gamma(sample=sample, m=m, W=W)
     # initialize (pi, xi)
@@ -382,9 +382,9 @@ def mle(sample, m, W, #TODO
     end = dt.datetime.now()
 
     # Akaike Information Criterion
-    AIC = -2*l + 2*(q+2)
+    AIC = aic(l=l, p=q+2)
     # Bayesian Information Criterion
-    BIC = -2*l + np.log(n)*(q+2)
+    BIC = bic(l=l, p=q+2, n=n)
 
     #print(pi)
     #print(gamma)
@@ -408,7 +408,7 @@ def mle(sample, m, W, #TODO
     # loglik of null model (uniform)
     loglikuni = luni(n=n, m=m)
     # loglik of saturated model
-    logliksat = lsat(n=n, f=f, m=m)
+    logliksat = lsat(f=f, n=n)
     #TODO: TEST LOGLIK SAT FOR COVARIATES
     #      see https://stackoverflow.com/questions/77791392/proportion-of-each-unique-value-of-a-chosen-column-for-each-unique-combination-o#77791442
     #df = pd.merge(
@@ -436,8 +436,8 @@ def mle(sample, m, W, #TODO
     # deviance from saturated model
     dev = 2*(logliksat-l)
     # ICOMP metrics
-    npars = q
-    trvarmat = np.sum(np.diag(varmat))
+    #npars = q
+    #trvarmat = np.sum(np.diag(varmat))
     #ICOMP = -2*l + npars*np.log(trvarmat/npars) - np.log(np.linalg.det(varmat))
     # coefficient of correlation
     # rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])

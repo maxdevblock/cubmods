@@ -103,7 +103,7 @@ def luni(m, n):
     return loglikuni
 
 #TODO: remove unused argument m and modify in all modules
-def lsat(m, f, n):
+def lsat(f, n):
     # loglik of saturated model
     logliksat = -(n*np.log(n)) + np.sum((f[f!=0])*np.log(f[f!=0]))
     return logliksat

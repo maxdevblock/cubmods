@@ -120,7 +120,7 @@ def mle(sample, m, c1, c2, gen_pars=None):
         "Shelter effects", None
     ])
     loglikuni = luni(m=m, n=n)
-    logliksat = lsat(m=m, n=n, f=f)
+    logliksat = lsat(n=n, f=f)
     l = loglik(sample=sample, m=m,
         c1=c1, c2=c2)
     AIC = aic(l=l, p=2)

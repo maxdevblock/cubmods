@@ -154,7 +154,7 @@ def mle(sample, m, sh1, sh2,
         delta2=delta2, X1=X1)
     AIC = aic(l=l, p=estimates.size)
     BIC = bic(l=l, p=estimates.size, n=n)
-    logliksat = lsat(m=m, n=n, f=f)
+    logliksat = lsat(n=n, f=f)
     logliksatcov = lsatcov(
         sample=sample,
         covars=[X1]

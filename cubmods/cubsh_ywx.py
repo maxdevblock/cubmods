@@ -277,7 +277,7 @@ def mle(m, sample, sh, Y, W, X,
     BIC = bic(l=l, p=wald.size, n=n)
     loglikuni = luni(m=m, n=n)
     f = freq(sample=sample, m=m)
-    logliksat = lsat(m=m, n=n, f=f)
+    logliksat = lsat(n=n, f=f)
     #logliksatcov = lsatcov(
     #    sample=sample,
     #    covars=[Y,W,X]

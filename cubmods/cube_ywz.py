@@ -340,12 +340,12 @@ def mle(m, sample, Y, W, Z,
     start = dt.datetime.now()
     f = freq(m=m, sample=sample)
     n = sample.size
-    YY = np.c_[np.ones(Y.shape[0]), Y]
-    WW = np.c_[np.ones(W.shape[0]), W]
-    ZZ = np.c_[np.ones(Z.shape[0]), Z]
-    p = YY.shape[1] - 1
-    q = WW.shape[1] - 1
-    v = ZZ.shape[1] - 1
+    YY = addones(Y)
+    WW = addones(W)
+    ZZ = addones(Z)
+    p = colsof(Y)
+    q = colsof(W)
+    v = colsof(Z)
     
     beta, gamma, alpha = init_theta(
         m=m, sample=sample, Y=Y, W=W, Z=Z,
@@ -429,7 +429,7 @@ def mle(m, sample, Y, W, Z,
     wald = estimates/stderrs
     pval = 2*(sps.norm().sf(abs(wald)))
     muloglik = l/n
-    logliksat = lsat(m=m, f=f, n=n)
+    logliksat = lsat(f=f, n=n)
     logliksatcov = lsatcov(
         sample=sample,
         covars=[Y,W,Z]

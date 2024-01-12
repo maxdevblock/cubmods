@@ -46,6 +46,7 @@ from .general import (
     InvalidCategoriesError,
     ParameterOurOfBoundsError,
     InvalidSampleSizeError,
+    lsat, luni, aic, bic,
     #chisquared,
 )
 from .smry import CUBres, CUBsample
@@ -335,18 +336,19 @@ def mle(sample, m,
     # p-value
     pval = 2*(sps.norm().sf(abs(wald)))
     # Akaike Information Criterion
-    AIC = -2*l + 2*(2)
+    AIC = aic(l=l, p=2)
     # Bayesian Information Criterion
-    BIC = -2*l + np.log(n)*(2)
+    BIC = bic(l=l, p=2, n=n)
     # mean loglikelihood
     muloglik = l/n
     # loglik of null model (uniform)
-    loglikuni = -(n*np.log(m))
+    loglikuni = luni(m=m, n=n)
     # loglik of saturated model
-    logliksat = -(n*np.log(n)) + np.sum((f[f!=0])*np.log(f[f!=0]))
+    logliksat = lsat(f=f, n=n)
     # loglik of shiftet binomial
-    xibin = (m-sample.mean())/(m-1)
-    loglikbin = loglik(m, 1, xibin, f)
+    #xibin = (m-sample.mean())/(m-1)
+    #TODO: compute loglikbin too?
+    #loglikbin = loglik(m, 1, xibin, f)
     # Explicative powers
     #Ebin = (loglikbin-loglikuni)/(logliksat-loglikuni)
     #Ecub = (l-loglikbin)/(logliksat-loglikuni)
@@ -354,8 +356,8 @@ def mle(sample, m,
     # deviance from saturated model
     dev = 2*(logliksat-l)
     # ICOMP metrics
-    npars = 2
-    trvarmat = np.sum(np.diag(varmat))
+    #npars = 2
+    #trvarmat = np.sum(np.diag(varmat))
     #ICOMP = -2*l + npars*np.log(trvarmat/npars) - np.log(np.linalg.det(varmat))
     # coefficient of correlation
     rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])
@@ -386,7 +388,7 @@ def mle(sample, m,
             #loglikbin=loglikbin,
             #Ebin=Ebin, Ecub=Ecub, Ecub0=Ecub0,
             dev=dev, AIC=AIC, BIC=BIC,
-            #ICOMP=ICOMP, 
+            #ICOMP=ICOMP,
             seconds=(end-start).total_seconds(),
             time_exe=start,
             rho=rho,
@@ -482,9 +484,15 @@ class CUBresCUB00(CUBres):
             ax.scatter(1-self.gen_pars['pi'], 1-self.gen_pars['xi'],
                 facecolor="None",
                 edgecolor="r", s=200, label="generating")
-
-        alpha = 1 - ci
-        z = abs(sps.norm().ppf(alpha/2))
+        
+        # change all spines
+        for axis in ['left','bottom']:
+            ax.spines[axis].set_linewidth(4)
+        # increase tick width
+            ax.tick_params(width=4)
+        
+        #alpha = 1 - ci
+        #z = abs(sps.norm().ppf(alpha/2))
         # # Horizontal CI
         # ax.plot(
         #     [1-(self.pi-z*self.stderrs[0]),

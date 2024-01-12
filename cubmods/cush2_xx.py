@@ -148,7 +148,7 @@ def mle(sample, m, sh1, sh2,
     l = loglik(m=m, sample=sample,
         omega1=omega1, omega2=omega2,
         sh1=sh1, sh2=sh2, X1=X1, X2=X2)
-    logliksat = lsat(m=m, n=n, f=f)
+    logliksat = lsat(n=n, f=f)
     logliksatcov = lsatcov(
         sample=sample,
         covars=[X1, X2]

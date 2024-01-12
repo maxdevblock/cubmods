@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from .general import (
     logis, freq, dissimilarity,
     aic, bic, lsat, luni, choices,
-    lsatcov
+    lsatcov, addones, colsof,
 )
 from .cush import pmf as pmf_cush
 from .smry import CUBres, CUBsample
@@ -87,8 +87,8 @@ def mle(m, sample, X, sh, gen_pars=None):
     f = freq(sample=sample, m=m)
     fc = f[sh-1]/n
     delta = max([.01, (m*fc-1)/(m-1)])
-    XX = np.c_[np.ones(X.shape[0]), X]
-    x = XX.shape[1] - 1
+    XX = addones(X)
+    x = colsof(X)
     om0 = np.log(delta/(1-delta))
     omi = np.concatenate((
         [om0], np.repeat(.1, x)
@@ -122,7 +122,7 @@ def mle(m, sample, X, sh, gen_pars=None):
     AIC = aic(l=l, p=omega.size)
     BIC = bic(l=l, p=omega.size, n=n)
     loglikuni = luni(m=m, n=n)
-    logliksat = lsat(m=m, f=f, n=n)
+    logliksat = lsat(f=f, n=n)
     logliksatcov = lsatcov(
         sample=sample,
         covars=[X]

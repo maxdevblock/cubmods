@@ -167,7 +167,7 @@ def mle(sample, m, sh,
     #xisb = (m-aver)/(m-1)
     #llsb = cub.loglik(m=m, pi=1, xi=xisb, f=f)
     #nonzero = np.nonzero(f)[0]
-    logliksat = lsat(m=m, n=n, f=f)
+    logliksat = lsat(n=n, f=f)
     # mean loglikelihood
     muloglik = l/n
     dev = 2*(logliksat-l)

@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 from .general import (
     logis, bitxi, probbit, choices,
     freq, hadprod, lsat, luni,
-    dissimilarity
+    dissimilarity, aic, bic,
+    colsof, addones
 )
 from .cub import (
     init_theta, pmf as cub_pmf
@@ -91,12 +92,12 @@ def varcov(m, sample, Y, beta, xi):
     qitilde = qistar*(1-qistar)
     ff = eitilde-qitilde
     g10 = vvi*qitilde
-    YY = np.c_[np.ones(Y.shape[0]), Y]
+    YY = addones(Y)
     i11 = YY.T @ hadprod(YY,ff) # ALTERNATIVE  YY*ff does not work
     i12 = -YY.T @ g10
     i22 = np.sum(ui*qistar-(vvi**2)*qitilde)
     # Information matrix
-    nparam = YY.shape[1] - 1 + 2
+    nparam = colsof(Y) + 1
     matinf = np.ndarray(shape=(nparam, nparam))
     matinf[:] = np.nan
     for i in range(nparam-1):
@@ -140,7 +141,7 @@ def mle(sample, m, Y, #TODO
     # add a column of 1
     YY = np.c_[np.ones(Y.shape[0]), Y]
     # number of covariates
-    p = YY.shape[1] - 1
+    p = colsof(Y)
     # init params
     pi, xijj = init_theta(f, m)
     beta0 = np.log(pi/(1-pi))
@@ -201,12 +202,12 @@ def mle(sample, m, Y, #TODO
         ["Feeling"]
     ))
     # Akaike Information Criterion
-    AIC = -2*l + 2*(p+2)
+    AIC = aic(l=l, p=p+2)
     # Bayesian Information Criterion
-    BIC = -2*l + np.log(n)*(p+2)
+    BIC = bic(l=l, p=p+2, n=n)
     # test
     loglikuni = luni(m=m,n=n)
-    logliksat = lsat(m=m,n=n,f=f)
+    logliksat = lsat(n=n,f=f)
     dev = 2*(logliksat-l)
     theoric = pmf(m=m, beta=beta, xi=xi, Y=Y)
     diss = dissimilarity(f/n, theoric)
@@ -216,7 +217,7 @@ def mle(sample, m, Y, #TODO
     
     res = CUBresCUBY0(
             model="CUB(Y0)",
-            m=m, n=n, niter=niter, 
+            m=m, n=n, niter=niter,
             maxiter=maxiter, tol=tol,
             theoric=theoric,
             estimates=estimates,
@@ -229,10 +230,10 @@ def mle(sample, m, Y, #TODO
             logliksat=logliksat,
             # loglikbin=loglikbin,
             # Ebin=Ebin, Ecub=Ecub, Ecub0=Ecub0,
-            dev=dev, 
+            dev=dev,
             AIC=AIC, BIC=BIC,
-            #ICOMP=ICOMP, 
-            seconds=(end-start).total_seconds(), 
+            #ICOMP=ICOMP,
+            seconds=(end-start).total_seconds(),
             time_exe=start,
             # rho=rho,
             sample=sample, f=f,

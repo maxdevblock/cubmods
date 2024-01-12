@@ -7,7 +7,7 @@ from statsmodels.tools.numdiff import approx_hess
 from .general import (
     logis, freq, choices, aic, bic,
     lsat, luni, dissimilarity,
-    lsatcov
+    lsatcov, addones, colsof,
 )
 from .ihg import pmf as pmf_ihg
 from .smry import CUBres, CUBsample
@@ -34,7 +34,7 @@ def draw(m, nu, V, seed=None):
     rv = np.repeat(np.nan, n)
     for i in range(n):
         if seed is not None:
-            np.random.seed(seed)
+            np.random.seed(seed*i)
         rv[i] = np.random.choice(
             R,
             size=1, replace=True,
@@ -89,8 +89,8 @@ def mle(m, sample, V, gen_pars=None):
     f = freq(m=m, sample=sample)
     n = sample.size
     theta0 = init_theta(m, f)
-    VV = np.c_[np.ones(V.shape[0]), V]
-    v = VV.shape[1] - 1
+    VV = addones(V)
+    v = colsof(V)
     nu0 = np.log(theta0/(1-theta0))
     nuini = np.concatenate((
         [nu0], np.repeat(.1, v)
@@ -119,7 +119,7 @@ def mle(m, sample, V, gen_pars=None):
     pval = 2*(sps.norm().sf(abs(wald)))
     l = loglik(m=m, sample=sample, nu=nu,
         V=V)
-    logliksat = lsat(m=m, n=n, f=f)
+    logliksat = lsat(n=n, f=f)
     logliksatcov = lsatcov(
         sample=sample,
         covars=[V]
