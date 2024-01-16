@@ -204,7 +204,7 @@ def varcov(sample, m, pi, gamma, W):
     i12 = g01.T @ WW
     i22 = WW.T @ hadprod(WW, hh) #TODO: check if this is Hadarmad or not
     # Information matrix
-    nparam = colsof(W) + 1
+    nparam = colsof(WW) + 1
     matinf = np.ndarray(shape=(nparam, nparam))
     matinf[:] = np.nan
     matinf[0,:] = np.concatenate([[i11], i12]).T #TODO: check dimensions
@@ -422,10 +422,10 @@ def mle(sample, m, W, #TODO
     #    np.log(
     #    df.value_counts().div(
     #    df[cov].value_counts())))
-    logliksatcov = lsatcov(
-        sample=sample,
-        covars=[W]
-    )
+    #logliksatcov = lsatcov(
+    #    sample=sample,
+    #    covars=[W]
+    #)
     # loglik of shiftet binomial
     # xibin = (m-sample.mean())/(m-1)
     # loglikbin = loglik(m, 1, xibin, f)
@@ -473,7 +473,7 @@ def mle(sample, m, W, #TODO
             loglike=l, muloglik=muloglik,
             loglikuni=loglikuni,
             logliksat=logliksat,
-            logliksatcov=logliksatcov,
+            #logliksatcov=logliksatcov,
             # loglikbin=loglikbin,
             # Ebin=Ebin, Ecub=Ecub, Ecub0=Ecub0,
             theoric=theoric,

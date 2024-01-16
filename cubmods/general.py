@@ -199,7 +199,9 @@ def hadprod(Amat, xvett):
         dprod[i,:] = Amat[i,:] * xvett[i]
     return dprod
 
-def conf_ell(vcov, mux, muy, ci, ax, showaxis=True):
+def conf_ell(vcov, mux, muy, ci,
+    ax, showaxis=True, color="b",
+    alpha=.25):
     """
     plot confidence ellipse of estimated
     CUB parameters of ci% on ax
@@ -211,7 +213,7 @@ def conf_ell(vcov, mux, muy, ci, ax, showaxis=True):
     rady = np.sqrt(1-rho)
     ell = Ellipse(
         (0,0), 2*radx, 2*rady,
-        color="b", alpha=.25,
+        color=color, alpha=alpha,
         label=f"CR {ci:.0%}"
     )
     scale_x = np.sqrt(vcov[0, 0]) * nstd
@@ -243,19 +245,19 @@ def load_object(fname):
     print(f"Object `{obj}` loaded from {fname}")
     return obj
 
-#TODO: test in GEM
 def formula_parser(formula):
     if '~' not in formula:
-        print("ERR: ~ missing")
+        raise Exception("ERR: ~ missing")
     if formula.count("|") != 2:
-        print("ERR: | must be 2")
+        raise Exception("ERR: | must be 2")
     regex = "^([a-zA-Z0-9_()]{1,})~"
     regex += "([a-zA-Z0-9_+()]{1,})\|"
     regex += "([a-zA-Z0-9_+()]{1,})\|"
     regex += "([a-zA-Z0-9_+()]{1,})$"
     if not re.match(regex, formula):
-        print("ERR: wrong formula")
-        return None
+        raise Exception("ERR: wrong formula")
+        #print("ERR: wrong formula")
+        #return None
     # split y from X
     yX = formula.split('~')
     # define y
@@ -271,11 +273,68 @@ def formula_parser(formula):
         x = x.split("+")
         XX.append(x)
     return y, XX
+
+def unique(l):
+    """
+    unique column names in
+    covar 3d list
+    """
+    a = []
+    for i in l:
+        if i is None:
+            a.append(i)
+            continue
+        for j in i:
+            a.append(j)
+    u = list(set(a))
+    return u
+
+def dummies2(df, DD):
+    """
     
+    """
+    # new covars
+    XX = []
+    # unique columns
+    colnames = unique(DD)
+    # create dummy vars if any
+    for c in colnames:
+        if c is None:
+            continue
+        if c[:2]=="C(" and c[-1]==")":
+            c = c[2:-1]
+            # int to avoid floats
+            if is_float_dtype(df[c]):
+                df[c] = df[c].astype(int)
+            df = pd.get_dummies(
+                df, columns=[c],
+                drop_first=True,
+                prefix=f"C.{c}"
+            )
+    # define new covar names
+    for D in DD:
+        if D is None:
+            XX.append(None)
+            continue
+        X = []
+        for d in D:
+            if d[:2]=="C(" and d[-1]==")":
+                c = d[2:-1]
+                # dummy names
+                f = [f"C.{c}_" in i for i in df.columns]
+                dums = df.columns[f]
+                for dum in dums:
+                    X.append(dum)
+            else:
+                X.append(d)
+        XX.append(X)
+                
+    return df, XX
+
 def dummies(df, DD):
     # new covars
     XX = []
-    for D in DD:
+    for j,D in enumerate(DD):
         if D is None:
             XX.append(None)
             continue

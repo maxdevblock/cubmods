@@ -97,7 +97,7 @@ def varcov(m, sample, Y, beta, xi):
     i12 = -YY.T @ g10
     i22 = np.sum(ui*qistar-(vvi**2)*qitilde)
     # Information matrix
-    nparam = colsof(Y) + 1
+    nparam = colsof(YY) + 1
     matinf = np.ndarray(shape=(nparam, nparam))
     matinf[:] = np.nan
     for i in range(nparam-1):

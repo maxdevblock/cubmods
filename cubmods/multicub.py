@@ -1,7 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from .gem import from_formula
-from.general import NotImplementedModelError
+from.general import (
+    NotImplementedModelError,
+    conf_ell
+)
 
 def pos_kwargs(pos):
     """
@@ -36,6 +39,11 @@ def multi(ords, ms,
     labels=None, shs=None,
     plot=True, print_res=False,
     pos=None, #position of phi/delta
+    xlim=(0,1), ylim=(0,1),
+    equal=True, #equal axes
+    #conf ellipses params
+    confell=True,
+    alpha=.2, ci=.95,
     figsize=(7,7)):
     """
     ords: DataFrame
@@ -100,15 +108,24 @@ def multi(ords, ms,
                 ax.text(1-pi, 1-xi,
                 "\n"fr" $\delta={delta:.2f}$ ""\n",
                 **posi, color=f"C{i}")
+            if model == "cub" and shs is None and confell:
+                conf_ell(vcov=est.varmat,
+                    mux=1-pi, muy=1-xi,
+                    ax=ax,
+                    color=f"C{i}",
+                    alpha=alpha, ci=ci)
         ax.set_title(title)
         ax.set_xlabel(r"Uncertainty $(1-\pi)$")
         ax.set_ylabel(r"Preference $(1-\xi)$")
         ax.grid(True)
-        ax.set_xlim((0,1))
-        ax.set_ylim((0,1))
-        ax.set_xticks(np.arange(0, 1.1, .1))
-        ax.set_yticks(np.arange(0, 1.1, .1))
-        ax.set_aspect("equal")
+        ax.set_xlim(xlim)
+        ax.set_ylim(ylim)
+        if xlim == (0,1):
+            ax.set_xticks(np.arange(0, 1.1, .1))
+        if ylim == (0,1):
+            ax.set_yticks(np.arange(0, 1.1, .1))
+        if equal:
+            ax.set_aspect("equal")
         # change all spines
         for axis in ['left','bottom']:
             ax.spines[axis].set_linewidth(4)

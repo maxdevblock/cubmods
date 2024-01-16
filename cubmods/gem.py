@@ -50,7 +50,7 @@ from . import (
     ihg, ihg_v
     )
 from .general import (
-    formula_parser, dummies,
+    formula_parser, dummies2,
     UnknownModelError,
     NotImplementedModelError,
     NoShelterError
@@ -75,8 +75,7 @@ def from_formula(
     df.dropna(inplace=True)
     sample = df[ordinal]
     n = sample.size
-    df, covars = dummies(df=df,
-                 DD=covars)
+    df, covars = dummies2(df=df, DD=covars)
     #TODO: other warnings?
     if n < 200:
         warnings.warn("Sample size less than 200")
