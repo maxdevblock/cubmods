@@ -37,6 +37,7 @@ import scipy.stats as sps
 from scipy.special import binom
 from matplotlib.patches import Ellipse
 from matplotlib import transforms
+#from .cub import loglik as lcub
 
 #TODO anytime a function is called, use explicit kwargs!!!
 def choices(m):
@@ -108,6 +109,16 @@ def lsat(f, n):
     logliksat = -(n*np.log(n)) + np.sum((f[f!=0])*np.log(f[f!=0]))
     return logliksat
 
+#TODO: add loglikbin to all models and smry
+def lbin(sample, m, f):
+    avg = sample.mean()
+    xi = (m-avg)/(m-1)
+    R = choices(m)
+    p = binom(m-1, R-1) * (1-xi)**(R-1) * xi**(m-R)
+    l = np.sum(f*np.log(p))
+    return l
+
+#TODO: is lsatcov useful?
 def lsatcov(sample, covars):
     df = pd.DataFrame({"ord":sample}).join(
         covars)

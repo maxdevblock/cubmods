@@ -1,6 +1,7 @@
 #import datetime as dt
 import pickle
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from .general import (
     choices, freq
@@ -178,6 +179,18 @@ class CUBres(object):
         return as_txt(
             **self.__dict__
         )
+        
+    def as_df(self):
+        df = pd.DataFrame({
+            "iperpar": self.e_types,
+            "par": self.est_names,
+            "estimate": self.estimates,
+            "se": self.stderrs,
+            "wald": self.wald,
+            "pvalue": self.pval
+        })
+        df.ffill(inplace=True)
+        return df
     
     def save(self, fname):
         """
@@ -244,8 +257,9 @@ class CUBsample(object):
         smry += "======================================================================="
         return smry
 
-    def plot(self, figsize=(7, 5)):
-        fig, ax = plt.subplots(figsize=figsize)
+    def plot(self, figsize=(7, 5), ax=None):
+        if ax is None:
+            fig, ax = plt.subplots(figsize=figsize)
         R = choices(self.m)
         f = freq(self.rv, self.m)
         ax.scatter(R, f/self.rv.size, facecolor="None",
@@ -260,7 +274,7 @@ class CUBsample(object):
         ax.set_title(self)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
-        return fig
+        return ax
 
     def save(self, fname):
         """
