@@ -202,7 +202,8 @@ def init_theta(f, m):
     F = f/f.sum()
     xi = 1 + (.5 - (np.argmax(F)+1))/m
     ppp = probbit(m, xi)
-    pi = np.sqrt( (np.sum(F**2)-1/m) / (np.sum(ppp**2)-1/m) )
+    pi = np.sqrt( (np.sum(F**2)-1/m) / 
+        (np.sum(ppp**2)-1/m) )
     pi = min([pi, .99])
     return pi, xi
 

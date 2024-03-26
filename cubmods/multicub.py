@@ -44,7 +44,8 @@ def multi(ords, ms,
     #conf ellipses params
     confell=True,
     alpha=.2, ci=.95,
-    figsize=(7,7)):
+    figsize=(7,7),
+    ax=None):
     """
     ords: DataFrame
     ms:   list of m
@@ -85,9 +86,10 @@ def multi(ords, ms,
             title = f"MULTICUB. Model {model.upper()}"
             if shs is not None and model == "cub":
                 title += "SH"
-        fig, ax = plt.subplots(
-            figsize=figsize,
-        )
+        if ax is None:
+            fig, ax = plt.subplots(
+                figsize=figsize,
+            )
         for i, est in enumerate(ests):
             pi = est.estimates[0]
             xi = est.estimates[1]
@@ -133,4 +135,4 @@ def multi(ords, ms,
             ax.tick_params(width=4)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
-        return fig, ax
+        return ax

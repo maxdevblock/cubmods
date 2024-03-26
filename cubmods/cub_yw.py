@@ -93,7 +93,7 @@ def varcov(m, sample, Y, W, beta, gamma):
     qi = 1/(m*prob(m=m, sample=sample,
         Y=Y, W=W, beta=beta, gamma=gamma))
     ei = logis(Y, beta)
-    eitilde = qi*(1-ei)
+    eitilde = ei*(1-ei)
     qistar = 1-(1-ei)*qi
     qitilde = qistar*(1-qistar)
     fi = logis(W, gamma)
@@ -161,17 +161,21 @@ def mle(sample, m, Y, W,
     ))
     rank = pd.Series(sample).rank(method="dense")
     rank = rank.astype(int).values
-    gammajj = init_gamma(sample=rank, 
+    gammajj = init_gamma(
+        sample=rank,
+        #sample=sample,
         m=m, W=W)
-    l = loglik(m=m, sample=sample, 
-        Y=Y, W=W, 
+    l = loglik(m=m, sample=sample,
+        Y=Y, W=W,
         beta=betajj, gamma=gammajj)
     # start EM
     niter = 1
     while niter < maxiter:
         lold = l
         vettn = bitgamma(
-            sample=rank, m=m,
+            #sample=sample,
+            sample=rank,
+            m=m,
             W=W, gamma=gammajj
         )#[sample-1]
         aai = -1 + 1/logis(Y=Y, param=betajj)
