@@ -119,14 +119,14 @@ def mle(m, sample, V, gen_pars=None):
     pval = 2*(sps.norm().sf(abs(wald)))
     l = loglik(m=m, sample=sample, nu=nu,
         V=V)
-    logliksat = lsat(n=n, f=f)
-    logliksatcov = lsatcov(
-        sample=sample,
-        covars=[V]
-    )
+    #logliksat = lsat(n=n, f=f)
+    #logliksatcov = lsatcov(
+    #    sample=sample,
+    #    covars=[V]
+    #)
     loglikuni = luni(m=m, n=n)
     muloglik = l/n
-    dev = 2*(logliksat-l)
+    #dev = 2*(logliksat-l)
     AIC = aic(l=l, p=estimates.size)
     BIC = bic(l=l, p=estimates.size, n=n)
     theoric = pmf(m=m, nu=nu, V=V)
@@ -154,10 +154,11 @@ def mle(m, sample, V, gen_pars=None):
         pval=pval,
         wald=wald, loglike=l,
         muloglik=muloglik,
-        logliksat=logliksat,
-        logliksatcov=logliksatcov,
+        #logliksat=logliksat,
+        #logliksatcov=logliksatcov,
         loglikuni=loglikuni,
-        dev=dev, AIC=AIC, BIC=BIC,
+        #dev=dev,
+        AIC=AIC, BIC=BIC,
         diss=diss, sample=sample,
         f=f, varmat=varmat,
         seconds=(end-start).total_seconds(),

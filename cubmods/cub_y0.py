@@ -207,8 +207,8 @@ def mle(sample, m, Y, #TODO
     BIC = bic(l=l, p=p+2, n=n)
     # test
     loglikuni = luni(m=m,n=n)
-    logliksat = lsat(n=n,f=f)
-    dev = 2*(logliksat-l)
+    #logliksat = lsat(n=n,f=f)
+    #dev = 2*(logliksat-l)
     theoric = pmf(m=m, beta=beta, xi=xi, Y=Y)
     diss = dissimilarity(f/n, theoric)
     estimates = np.concatenate((
@@ -227,10 +227,10 @@ def mle(sample, m, Y, #TODO
             pval=pval, wald=wald,
             loglike=l, muloglik=muloglik,
             loglikuni=loglikuni,
-            logliksat=logliksat,
+            #logliksat=logliksat,
             # loglikbin=loglikbin,
             # Ebin=Ebin, Ecub=Ecub, Ecub0=Ecub0,
-            dev=dev,
+            #dev=dev,
             AIC=AIC, BIC=BIC,
             #ICOMP=ICOMP,
             seconds=(end-start).total_seconds(),

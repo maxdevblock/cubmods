@@ -429,18 +429,19 @@ def mle(m, sample, Y, W, Z,
     wald = estimates/stderrs
     pval = 2*(sps.norm().sf(abs(wald)))
     muloglik = l/n
-    logliksat = lsat(f=f, n=n)
-    logliksatcov = lsatcov(
-        sample=sample,
-        covars=[Y,W,Z]
-    )
+    #TODO: remove logliksat
+    #logliksat = lsat(f=f, n=n)
+    #logliksatcov = lsatcov(
+    #        sample=sample,
+    #        covars=[Y,W,Z]
+    #    )
     loglikuni = luni(m=m, n=n)
     AIC = aic(l=l, p=estimates.size)
     BIC = bic(l=l, p=estimates.size, n=n)
     theoric = pmf(m, beta, gamma,
         alpha, Y, W, Z)
     diss = dissimilarity(f/n, theoric)
-    dev = 2*(logliksat-l)
+    #dev = 2*(logliksat-l)
     end = dt.datetime.now()
     
     return CUBresCUBEYWZ(
@@ -456,10 +457,11 @@ def mle(m, sample, Y, W, Z,
         wald=wald, pval=pval,
         AIC=AIC, BIC=BIC,
         loglike=l, muloglik=muloglik,
-        logliksat=logliksat,
-        logliksatcov=logliksatcov,
+        #TODO: remove logliksat
+        #logliksat=logliksat,
+        #logliksatcov=logliksatcov,
         loglikuni=loglikuni,
-        dev=dev,
+        #dev=dev,
         theoric=theoric, diss=diss,
         seconds=(end-start).total_seconds(),
         time_exe=start, Y=Y, W=W, Z=Z

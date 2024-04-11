@@ -86,17 +86,20 @@ def as_txt(
         kwargs["Z"] is not None
         ):
         ls = "* "
-        l_ = "* Saturated model without covariates\n"
+        if logliksat is not None:
+            l_ = "* Saturated model without covariates\n"
     if logliksatcov is not None:
         c_ = "^ not valid for continuous covariates\n"
         smry += f"Logl(satcov)^ = {logliksatcov:.3f}\n"
-    
-    warn = " (!)" if logliksat<loglike else ""
-    smry += f"Loglike(sat){ls}= {logliksat:.3f}{warn}\n"
+    warn = ""
+    if logliksat is not None:
+        warn = " (!)" if logliksat<loglike else ""
+        smry += f"Loglike(sat){ls}= {logliksat:.3f}{warn}\n"
     smry += f"Loglike(MOD)  = {loglike:.3f}\n"
     smry += f"Loglike(uni)  = {loglikuni:.3f}\n"
     smry += f"Mean-loglike  = {muloglik:.3f}\n"
-    smry += f"Deviance{ls}    = {dev:.3f}{warn}\n"
+    if dev is not None:
+        smry += f"Deviance{ls}    = {dev:.3f}{warn}\n"
     if c_ is not None:
         smry += c_
     if l_ is not None:
@@ -119,10 +122,11 @@ class CUBres(object):
         est_names, estimates, e_types,
         varmat, stderrs, pval, wald,
         loglike, muloglik,
-        loglikuni, logliksat,
-        dev, AIC, BIC,
+        loglikuni,
+        AIC, BIC,
         seconds, time_exe,
         # optional parameters
+        logliksat=None, dev=None,
         logliksatcov=None,
         niter=None, maxiter=None, tol=None,
         Y=None, W=None, X=None,

@@ -401,7 +401,7 @@ class NotImplementedModelError(Exception):
     def __init__(self, model, formula):
         self.formula = formula
         self.model = model
-        self.msg = f"Not 8mplemented model {self.model} with formula {self.formula}"
+        self.msg = f"Not implemented model {self.model} with formula {self.formula}"
         super().__init__(self.msg)
 
 class NoShelterError(Exception):

@@ -221,12 +221,12 @@ def mle(sample, m, Y, W,
     theoric = pmf(m, beta, gamma, Y, W)
     diss = dissimilarity(f/n, theoric)
     loglikuni = luni(m=m, n=n)
-    logliksat = lsat(f=f, n=n)
+    #logliksat = lsat(f=f, n=n)
     #logliksatcov = lsatcov(
     #    sample=sample,
     #    covars=[Y, W]
     #)
-    dev = 2*(logliksat-l)
+    #dev = 2*(logliksat-l)
     
     beta_names = np.concatenate([
         ["constant"],
@@ -260,7 +260,7 @@ def mle(sample, m, Y, W,
         stderrs=stderrs, wald=wald,
         pval=pval, loglike=l,
         muloglik=muloglik,
-        logliksat=logliksat,
+        #logliksat=logliksat,
         #logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         AIC=AIC, BIC=BIC,
@@ -268,7 +268,8 @@ def mle(sample, m, Y, W,
         time_exe=start,
         sample=sample, f=f,
         varmat=varmat, Y=Y, W=W,
-        diss=diss, dev=dev
+        diss=diss,
+        #dev=dev
     )
 
 class CUBresCUBYW(CUBres):

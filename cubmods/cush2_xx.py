@@ -148,13 +148,13 @@ def mle(sample, m, sh1, sh2,
     l = loglik(m=m, sample=sample,
         omega1=omega1, omega2=omega2,
         sh1=sh1, sh2=sh2, X1=X1, X2=X2)
-    logliksat = lsat(n=n, f=f)
-    logliksatcov = lsatcov(
-        sample=sample,
-        covars=[X1, X2]
-    )
+    #logliksat = lsat(n=n, f=f)
+    #logliksatcov = lsatcov(
+    #    sample=sample,
+    #    covars=[X1, X2]
+    #)
     loglikuni = luni(m=m, n=n)
-    dev = 2*(logliksat-l)
+    #dev = 2*(logliksat-l)
     theoric = pmf(m=m, sh1=sh1, sh2=sh2,
         omega1=omega1, omega2=omega2,
         X1=X1, X2=X2)
@@ -175,9 +175,10 @@ def mle(sample, m, sh1, sh2,
         wald=wald, loglike=l,
         muloglik=muloglik,
         loglikuni=loglikuni,
-        logliksat=logliksat,
-        logliksatcov=logliksatcov,
-        dev=dev, AIC=AIC, BIC=BIC,
+        #logliksat=logliksat,
+        #logliksatcov=logliksatcov,
+        #dev=dev,
+        AIC=AIC, BIC=BIC,
         sample=sample, f=f, varmat=varmat,
         diss=diss,
         seconds=(end-start).total_seconds(),

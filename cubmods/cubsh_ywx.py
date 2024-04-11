@@ -277,12 +277,12 @@ def mle(m, sample, sh, Y, W, X,
     BIC = bic(l=l, p=wald.size, n=n)
     loglikuni = luni(m=m, n=n)
     f = freq(sample=sample, m=m)
-    logliksat = lsat(n=n, f=f)
+    #logliksat = lsat(n=n, f=f)
     #logliksatcov = lsatcov(
     #    sample=sample,
     #    covars=[Y,W,X]
     #)
-    dev = 2*(logliksat-l)
+    #dev = 2*(logliksat-l)
     theoric = pmf(m, sh, beta, gamma, omega,
         Y, W, X)
     diss = dissimilarity(f/n, theoric)
@@ -315,11 +315,12 @@ def mle(m, sample, sh, Y, W, X,
         estimates=estimates,
         wald=wald, pval=pval,
         loglike=l, muloglik=muloglik,
-        logliksat=logliksat,
+        #logliksat=logliksat,
         #logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         diss=diss, varmat=varmat,
-        dev=dev, AIC=AIC, BIC=BIC,
+        #dev=dev,
+        AIC=AIC, BIC=BIC,
         seconds=(end-start).total_seconds(),
         time_exe=start
     )

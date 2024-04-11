@@ -28,7 +28,6 @@ References:
 
 List of TODO:
     * implement best shelter search
-    * implement 2cush model
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

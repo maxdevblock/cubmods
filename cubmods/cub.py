@@ -488,9 +488,9 @@ class CUBresCUB00(CUBres):
         
         # change all spines
         for axis in ['left','bottom']:
-            ax.spines[axis].set_linewidth(4)
-        # increase tick width
-            ax.tick_params(width=4)
+            ax.spines[axis].set_linewidth(2)
+            # increase tick width
+            ax.tick_params(width=2)
         
         #alpha = 1 - ci
         #z = abs(sps.norm().ppf(alpha/2))

@@ -122,12 +122,12 @@ def mle(m, sample, X, sh, gen_pars=None):
     AIC = aic(l=l, p=omega.size)
     BIC = bic(l=l, p=omega.size, n=n)
     loglikuni = luni(m=m, n=n)
-    logliksat = lsat(f=f, n=n)
-    logliksatcov = lsatcov(
-        sample=sample,
-        covars=[X]
-    )
-    dev = 2*(logliksat-l)
+    #logliksat = lsat(f=f, n=n)
+    #logliksatcov = lsatcov(
+    #    sample=sample,
+    #    covars=[X]
+    #)
+    #dev = 2*(logliksat-l)
     theoric = pmf(m=m, omega=omega, X=X, sh=sh)
     diss = dissimilarity(f/n, theoric)
     omega_names = np.concatenate([
@@ -148,9 +148,10 @@ def mle(m, sample, X, sh, gen_pars=None):
         wald=wald, loglike=l,
         muloglik=muloglik,
         loglikuni=loglikuni,
-        logliksat=logliksat,
-        logliksatcov=logliksatcov,
-        dev=dev, AIC=AIC, BIC=BIC,
+        #logliksat=logliksat,
+        #logliksatcov=logliksatcov,
+        #dev=dev,
+        AIC=AIC, BIC=BIC,
         sample=sample, f=f, varmat=varmat,
         X=X, diss=diss,
         seconds=(end-start).total_seconds(),

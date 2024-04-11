@@ -408,7 +408,7 @@ def mle(sample, m, W, #TODO
     # loglik of null model (uniform)
     loglikuni = luni(n=n, m=m)
     # loglik of saturated model
-    logliksat = lsat(f=f, n=n)
+    #logliksat = lsat(f=f, n=n)
     #TODO: TEST LOGLIK SAT FOR COVARIATES
     #      see https://stackoverflow.com/questions/77791392/proportion-of-each-unique-value-of-a-chosen-column-for-each-unique-combination-o#77791442
     #df = pd.merge(
@@ -434,7 +434,7 @@ def mle(sample, m, W, #TODO
     # Ecub = (l-loglikbin)/(logliksat-loglikuni)
     # Ecub0 = (l-loglikuni)/(logliksat-loglikuni)
     # deviance from saturated model
-    dev = 2*(logliksat-l)
+    #dev = 2*(logliksat-l)
     # ICOMP metrics
     #npars = q
     #trvarmat = np.sum(np.diag(varmat))
@@ -472,12 +472,12 @@ def mle(sample, m, W, #TODO
             pval=pval, wald=wald,
             loglike=l, muloglik=muloglik,
             loglikuni=loglikuni,
-            logliksat=logliksat,
+            #logliksat=logliksat,
             #logliksatcov=logliksatcov,
             # loglikbin=loglikbin,
             # Ebin=Ebin, Ecub=Ecub, Ecub0=Ecub0,
             theoric=theoric,
-            dev=dev,
+            #dev=dev,
             AIC=AIC, BIC=BIC,
             seconds=(end-start).total_seconds(),
             time_exe=start,

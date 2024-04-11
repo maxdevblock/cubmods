@@ -554,12 +554,6 @@ class CUBresCUBE(CUBres):
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
 
-        # change all spines
-        for axis in ['left','bottom']:
-            ax.spines[axis].set_linewidth(4)
-        # increase tick width
-            ax.tick_params(width=4)
-
         if ax is None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')
@@ -592,6 +586,12 @@ class CUBresCUBE(CUBres):
 
         ax.set_xlabel(r"$(1-\pi)$  uncertainty")
         ax.set_ylabel(r"$(1-\xi)$  preference")
+
+        # change all spines
+        for axis in ['left','bottom']:
+            ax.spines[axis].set_linewidth(2)
+            # increase tick width
+            ax.tick_params(width=2)
 
         ax.plot(1-pi, 1-xi,
             ".b", ms=20, alpha=.5,

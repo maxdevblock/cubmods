@@ -221,11 +221,12 @@ class CUBresCUSH(CUBres):
         delta = self.estimates[0]
         title = fr"$n={self.n}$    "
         title += fr"estim($\delta={delta:.3f}$)"
+        title += f"\nDissim(est,obs)={self.diss:.4f}"
         X2 = None
 
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         ax[0].set_xticks(R)
-        ax[0].set_xlabel("Options")
+        ax[0].set_xlabel("Ordinal")
         ax[0].set_ylabel("Probability mass")
         ax[1].set_xlim((0,1))
         #ax[1].set_ylim((0,1))
@@ -237,6 +238,13 @@ class CUBresCUSH(CUBres):
         #ax[1].set_ylabel(r"$(1-\xi)$  preference")
         ax[2].set_xlabel(r"$\delta$  shelter effect")
         #ax[2].set_ylabel(r"$(1-\xi)$  preference")
+
+        # change all spines
+        for axis in ['bottom']:
+            for i in [1,2]:
+                ax[i].spines[axis].set_linewidth(2)
+                # increase tick width
+                ax[i].tick_params(width=2)
 
         #p = pmf(m=self.m, sh=self.sh, delta=delta)
         ax[0].plot(R, self.theoric, ".--b",
