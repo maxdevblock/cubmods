@@ -43,7 +43,8 @@ from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from .general import (
     choices, freq, dissimilarity,
-    conf_ell, luni, lsat, aic, bic
+    conf_ell, luni, lsat, aic, bic,
+    plot_ellipsoid
     #InvalidCategoriesError,
     #chisquared,
 )
@@ -568,6 +569,7 @@ class CUBresCUBE(CUBres):
         ci=.95,
         equal=True,
         magnified=False,
+        confell=False,
         ax=None,
         saveas=None
         ):
@@ -606,15 +608,13 @@ class CUBresCUBE(CUBres):
             ax.scatter(1-pi_gen, 1-xi_gen,
                 facecolor="None",
                 edgecolor="r", s=200, label="generating")
-
-        alpha = 1 - ci
-        z = abs(sps.norm().ppf(alpha/2))
-        # Confidence Ellipse
-        conf_ell(
-            self.varmat,
-            1-pi, 1-xi,
-            ci, ax
-        )
+        if confell:
+            # Confidence Ellipse
+            conf_ell(
+                self.varmat,
+                1-pi, 1-xi,
+                ci, ax
+            )
 
         if not magnified:
             ax.set_xlim((0,1))
@@ -655,10 +655,32 @@ class CUBresCUBE(CUBres):
         else:
             return ax
 
+    def plot3d(self, ax, ci=.95,
+        magnified=False):
+        pi = self.estimates[0]
+        xi = self.estimates[1]
+        ph = self.estimates[2]
+        V = self.varmat
+        #print()
+        #print("VARCOV(pxf)")
+        #print(V)
+        #espxf = np.sqrt(
+        #            np.diag(V))
+        #print()
+        #print("ES(pxf)")
+        #print(espxf)
+        plot_ellipsoid(V=V,
+            E=(1-pi,1-xi,ph), ax=ax,
+            zlabel=r"Overdispersion $\phi$",
+            magnified=magnified, ci=ci
+        )
+
 
     def plot(self,
         ci=.95,
         saveas=None,
+        confell=False,
+        test3=True,
         figsize=(7, 15)
         ):
         """
@@ -666,11 +688,24 @@ class CUBresCUBE(CUBres):
         """
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         self.plot_ordinal(ax=ax[0])
-        self.plot_confell(ci=ci, ax=ax[1])
-        self.plot_confell(
-            ci=ci, ax=ax[2],
-            magnified=True, equal=False)
-        plt.subplots_adjust(hspace=.25)
+        if test3:
+            ax[1].remove()
+            ax[2].remove()
+            ax[1] = fig.add_subplot(3,1,2,
+                projection='3d')
+            ax[2] = fig.add_subplot(3,1,3,
+                projection='3d')
+            self.plot3d(ax=ax[1], ci=ci)
+            self.plot3d(ax=ax[2], ci=ci,
+                magnified=True)
+        else:
+            self.plot_confell(ci=ci,
+            ax=ax[1], confell=confell)
+            self.plot_confell(
+                ci=ci, ax=ax[2],
+                confell=confell,
+                magnified=True, equal=False)
+            plt.subplots_adjust(hspace=.25)
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')
         return fig, ax

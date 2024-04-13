@@ -35,6 +35,7 @@ import pandas as pd
 from pandas.api.types import is_float_dtype
 import scipy.stats as sps
 from scipy.special import binom
+from scipy.linalg import sqrtm
 from matplotlib.patches import Ellipse
 from matplotlib import transforms
 #from .cub import loglik as lcub
@@ -217,7 +218,8 @@ def conf_ell(vcov, mux, muy, ci,
     plot confidence ellipse of estimated
     CUB parameters of ci% on ax
     """
-    nstd = sps.norm().ppf((1-ci)/2)
+    nstd = np.sqrt(sps.chi2.isf(1-ci, df=2))
+    #nstd = sps.norm().ppf((1-ci)/2)
     rho = vcov[0,1]/np.sqrt(vcov[0,0]*vcov[1,1])
     # beta1 = vcov[0,1] / vcov[0,0]
     radx = np.sqrt(1+rho)
@@ -444,3 +446,168 @@ class InvalidSampleSizeError(Exception):
         self.n = n
         self.msg = f"Sample size must be strictly > 0, given {self.n}"
         super().__init__(self.msg)
+
+#########################################
+# TEST TRIVARIATE CONFIDENCE ELLIPSPOID
+# WITH BIVARIATE MARGINAL PROJECTIONS
+
+#########################################
+
+def get_minor(A, i, j):
+    """Solution by PaulDong"""
+    return np.delete(
+        np.delete(A, i, axis=0), j, axis=1)
+
+def conf_border(Sigma, mx, my, ax, conf=.95,
+    plane="z", xyz0=(0,0,0)):
+    """Solution by
+    https://gist.github.com/randolf-scholz"""
+    n = Sigma.shape[0]
+    s = 1000
+    # the 2d confidemce region, projection
+    # of a 3d confidence region at ci%,
+    # has got area = sqrt(ci^3)%
+    r = np.sqrt(sps.chi2.isf(
+        1-np.cbrt(conf)**2, df=n))
+    T = np.linspace(0, 2*np.pi, num=s)
+    circle = r * np.vstack(
+        [np.cos(T), np.sin(T)])
+    x, y = sqrtm(Sigma) @ circle
+    x += mx
+    y += my
+    if plane == "z":
+        ax.plot(x,y,np.repeat(xyz0[2],s),"b")
+        ax.plot(mx,my,xyz0[2],"ob")
+    if plane == "y":
+        ax.plot(x,np.repeat(xyz0[1],s),y,"b")
+        ax.plot(mx,xyz0[1],my,"ob")
+    if plane == "x":
+        ax.plot(np.repeat(xyz0[0],s),
+            x,y,"b",
+            label=fr"CR {conf**(2/3):.2%} $\in\mathbb{{R}}^2$")
+        ax.plot(xyz0[0],mx,my,"ob")
+
+def get_cov_ellipsoid(cov,
+    mu=np.zeros((3)), ci=.95):
+    """
+    Return the 3d points representing the covariance matrix
+    cov centred at mu and scaled by the factor nstd.
+
+    Plot on your favourite 3d axis. 
+    Example 1:  ax.plot_wireframe(X,Y,Z,alpha=0.1)
+    Example 2:  ax.plot_surface(X,Y,Z,alpha=0.1)
+    """
+    assert cov.shape==(3,3)
+    r = np.sqrt(sps.chi2.isf(1-ci, df=3))
+    #nstd = sps.norm().ppf((1-ci)/2)
+
+    # Find and sort eigenvalues to correspond to the covariance matrix
+    eigvals, eigvecs = np.linalg.eigh(cov)
+    idx = np.sum(cov,axis=0).argsort()
+    eigvals_temp = eigvals[idx]
+    idx = eigvals_temp.argsort()
+    eigvals = eigvals[idx]
+    eigvecs = eigvecs[:,idx]
+
+    # Set of all spherical angles to draw our ellipsoid
+    n_points = 100
+    theta = np.linspace(0, 2*np.pi, n_points)
+    phi = np.linspace(0, np.pi, n_points)
+
+    # Width, height and depth of ellipsoid
+    rx, ry, rz = r * np.sqrt(eigvals)
+
+    # Get the xyz points for plotting
+    # Cartesian coordinates that correspond to the spherical angles:
+    X = rx * np.outer(np.cos(theta), np.sin(phi))
+    Y = ry * np.outer(np.sin(theta), np.sin(phi))
+    Z = rz * np.outer(np.ones_like(theta), np.cos(phi))
+
+    # Rotate ellipsoid for off axis alignment
+    old_shape = X.shape
+    # Flatten to vectorise rotation
+    X,Y,Z = X.flatten(), Y.flatten(), Z.flatten()
+    X,Y,Z = np.matmul(eigvecs, np.array([X,Y,Z]))
+    X,Y,Z = X.reshape(old_shape), Y.reshape(old_shape), Z.reshape(old_shape)
+   
+    # Add in offsets for the mean
+    X = X + mu[0]
+    Y = Y + mu[1]
+    Z = Z + mu[2]
+    
+    return X,Y,Z
+
+def plot_ellipsoid(V, E, ax, zlabel,
+    ci=.95, magnified=False):
+    """
+    3d confidence ellipsoid
+    """
+    X,Y,Z = get_cov_ellipsoid(V, E, ci=ci)
+    
+    ax.scatter(*E, c='k', )
+    ax.plot_wireframe(X,Y,Z, color='k',
+        alpha=0.25,
+        zorder=np.inf,
+        label=fr"CR {ci:.0%} $\in\mathbb{{R}}^3$")
+    #ax.plot_surface(X, Y, Z,
+    #    edgecolor='k',
+    #    lw=0.5,
+    #    rstride=15, cstride=10,
+    #                alpha=0.1)
+    if not magnified:
+        ax.set(
+        zlim=[0,1], xlim=[0,1], ylim=[0,1])
+    else:
+        ax.margins(.2)
+    xlim = ax.get_xlim()
+    ylim = ax.get_ylim()
+    zlim = ax.get_zlim()
+    ax.plot(
+        [E[0], E[0]],
+        [E[1], E[1]],
+        [E[2], zlim[0]],
+        "r--"
+    )
+    ax.plot(
+        [E[0], xlim[0]],
+        [E[1], E[1]],
+        [E[2], E[2]],
+        "r--"
+    )
+    ax.plot(
+        [E[0], E[0]],
+        [E[1], ylim[1]],
+        [E[2], E[2]],
+        "r--"
+    )
+    #print(dir(ax.transData))
+    #print(V.round(7))
+    #print(E)
+    minors = [2,   1,   0    ]
+    planes = ["z", "y", "x"  ]
+    #zs = [zlim[0], ylim[1], xlim[0]]
+    for m, p in zip(minors, planes):
+        minor = get_minor(V, m, m)
+        print(f"Plane: {p}")
+        print(minor)
+        #if minor[0,1] != minor[1,0]:
+        #    minor[[1,0],:] = minor[[0,1],:]
+        mus = np.delete(E, m)
+        #print(minor)
+        print(mus)
+        conf_border(minor, *mus, plane=p,
+            ax=ax, conf=ci,
+            xyz0=(
+                xlim[0], ylim[1], zlim[0]
+            ))
+    ax.set(
+        xlim=xlim, ylim=ylim, zlim=zlim,
+        #zlim=[0,1], xlim=[0,1], ylim=[0,1],
+        xlabel=r"Uncertainty $(1-\pi)$",
+        ylabel=r"Feeling $(1-\xi)$",
+        zlabel=zlabel
+    )
+    ax.legend(loc="center right",
+        bbox_to_anchor=(0,.5),
+        frameon=0
+    )

@@ -43,7 +43,7 @@ import scipy.stats as sps
 import matplotlib.pyplot as plt
 from .general import (
     choices, freq, probbit, dissimilarity,
-    #conf_ell,
+    conf_ell, plot_ellipsoid,
     #chisquared,
     InvalidCategoriesError,
     lsat, luni, aic, bic,
@@ -184,6 +184,44 @@ def loglik(m, sh, pi1, pi2, xi, f):
     #TODO: check log invalid value from mle
     l = (f*np.log(L)).sum()
     return l
+
+def varcov_pxd(m, sh, pi, xi, de, n):
+    bb = probbit(m, xi)
+    dd = np.repeat(0, m)
+    dd[sh-1] = 1
+    cp = cub.pmf(m=m, pi=pi, xi=xi)
+    pr = pmf_delta(m, sh, pi, xi, de)
+    R = choices(m)
+    
+    d_dpi = (1-de)*(bb - 1/m)
+    d_dde = dd - cp
+    d_dxi = pi*(1-de)*binom(m-1,R-1)*(
+        (1-xi)**(R-2) * xi**(m-R-1) *
+        (xi*(1-m) + m - R)
+    )
+    i11 = n*(d_dpi**2 / pr).sum()
+    i22 = n*(d_dxi**2 / pr).sum()
+    i33 = n*(d_dde**2 / pr).sum()
+    i12 = n*(d_dpi*d_dxi / pr).sum()
+    i21 = i12
+    i13 = n*(d_dpi*d_dde / pr).sum()
+    i31 = i13
+    i23 = n*(d_dde*d_dxi / pr).sum()
+    i32 = i23
+    
+    I = np.array([
+        [i11, i12, i13],
+        [i21, i22, i23],
+        [i31, i32, i33],
+    ])
+    
+    if np.any(np.isnan(I)):
+        return None
+    if np.linalg.det(I) <= 0:
+        return None
+    V = np.linalg.inv(I)
+    #Vpx = V[:2,:2]
+    return V
 
 def varcov(m, sh, pi1, pi2, xi, n):
     """
@@ -607,7 +645,8 @@ class CUBresCUBSH(CUBres):
         equal=True,
         magnified=False,
         ax=None,
-        saveas=None
+        saveas=None,
+        confell=False, debug=False
         ):
         if ax is None:
             fig, ax = plt.subplots(
@@ -659,13 +698,27 @@ class CUBresCUBSH(CUBres):
         #    1-(self.xi+z*self.stderrs[1])],
         #    "b", lw=1
         #)
-        #TODO: from SIGMA{pi1,pi2,delta} to SIGMA{pi,xi}
+        
         # Confidence Ellipse
-        # conf_ell(
-        #     self.varmat,
-        #     1-self.pi, 1-self.xi,
-        #     ci, ax
-        # )
+        if confell:
+            Vpxd = varcov_pxd(
+                self.m, self.sh, pi, xi, 
+                delta, self.n)
+            if debug:
+                print()
+                print("VARCOV(pxd)")
+                print(Vpxd)
+                espxd = np.sqrt(
+                    np.diag(Vpxd))
+                print()
+                print("ES(pxd)")
+                print(espxd)
+            
+            conf_ell(
+                 Vpxd[:2,:2],
+                 1-pi, 1-xi,
+                 ci, ax
+            )
 
         if not magnified:
             ax.set_xlim((0,1))
@@ -704,9 +757,35 @@ class CUBresCUBSH(CUBres):
         else:
             return ax
 
+    def plot3d(self, ax, ci=.95,
+        magnified=False):
+        pi = self.estimates[3]
+        xi = self.estimates[4]
+        de = self.estimates[5]
+        V = varcov_pxd(
+            self.m, self.sh, pi, xi,
+            de, self.n)
+        #print()
+        #print("VARCOV(pxd)")
+        #print(V)
+        #espxd = np.sqrt(
+        #            np.diag(V))
+        #print()
+        #print("ES(pxd)")
+        #print(espxd)
+        plot_ellipsoid(V=V,
+            E=(1-pi,1-xi,de), ax=ax,
+            zlabel=r"Shelter Choice $\delta$",
+            magnified=magnified, ci=ci
+        )
+        
+
     def plot(self,
         ci=.95,
         saveas=None,
+        confell=False,
+        debug=False,
+        test3=True,
         figsize=(7, 15)
         ):
         """
@@ -714,14 +793,26 @@ class CUBresCUBSH(CUBres):
         """
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         self.plot_ordinal(ax=ax[0])
-        self.plot_confell(ci=ci, ax=ax[1])
-        pi1 = self.estimates[0]
-        pi2 = self.estimates[1]
-        # self.plot_confell(
-        #     ci=ci, ax=ax[2],
-        #     magnified=True, equal=False)
-        plot_simplex([(pi1, pi2)], ax=ax[2])
-        plt.subplots_adjust(hspace=.25)
+        if test3:
+            ax[1].remove()
+            ax[2].remove()
+            ax[1] = fig.add_subplot(3,1,2,
+                projection='3d')
+            ax[2] = fig.add_subplot(3,1,3,
+                projection='3d')
+            self.plot3d(ax=ax[1], ci=ci)
+            self.plot3d(ax=ax[2], ci=ci,
+                magnified=True)
+        else:
+            self.plot_confell(ci=ci, ax=ax[1],
+                confell=confell, debug=debug)
+            pi1 = self.estimates[0]
+            pi2 = self.estimates[1]
+            # self.plot_confell(
+            #     ci=ci, ax=ax[2],
+            #     magnified=True, equal=False)
+            plot_simplex([(pi1, pi2)], ax=ax[2])
+            plt.subplots_adjust(hspace=.25)
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')
         return fig, ax
