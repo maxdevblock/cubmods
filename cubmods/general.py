@@ -467,8 +467,9 @@ def conf_border(Sigma, mx, my, ax, conf=.95,
     # the 2d confidemce region, projection
     # of a 3d confidence region at ci%,
     # has got area = sqrt(ci^3)%
-    r = np.sqrt(sps.chi2.isf(
-        1-np.cbrt(conf)**2, df=n))
+    r = np.sqrt(sps.chi2.isf(1-conf, df=2))
+    #r = np.sqrt(sps.chi2.isf(
+    #    1-np.cbrt(conf)**2, df=n))
     T = np.linspace(0, 2*np.pi, num=s)
     circle = r * np.vstack(
         [np.cos(T), np.sin(T)])
@@ -484,7 +485,7 @@ def conf_border(Sigma, mx, my, ax, conf=.95,
     if plane == "x":
         ax.plot(np.repeat(xyz0[0],s),
             x,y,"b",
-            label=fr"CR {conf**(2/3):.2%} $\in\mathbb{{R}}^2$")
+            label=fr"CR {conf:.1%} $\in\mathbb{{R}}^2$")
         ax.plot(xyz0[0],mx,my,"ob")
 
 def get_cov_ellipsoid(cov,
@@ -588,15 +589,19 @@ def plot_ellipsoid(V, E, ax, zlabel,
     #zs = [zlim[0], ylim[1], xlim[0]]
     for m, p in zip(minors, planes):
         minor = get_minor(V, m, m)
-        print(f"Plane: {p}")
-        print(minor)
+        #print(f"Plane: {p}")
+        #print(minor)
         #if minor[0,1] != minor[1,0]:
         #    minor[[1,0],:] = minor[[0,1],:]
         mus = np.delete(E, m)
         #print(minor)
-        print(mus)
+        #print(mus)
+        ci2 = sps.chi2.cdf(
+            sps.chi2.isf(1-ci, df=3),
+            df=2
+        )
         conf_border(minor, *mus, plane=p,
-            ax=ax, conf=ci,
+            ax=ax, conf=ci2,
             xyz0=(
                 xlim[0], ylim[1], zlim[0]
             ))
