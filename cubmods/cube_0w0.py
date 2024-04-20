@@ -49,6 +49,10 @@ def draw(m, n, pi, gamma, phi, W, seed=None):
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
+    if seed == 0:
+        print("Seed cannot be zero. "
+        "Modified to 1.")
+        seed = 1
     rv = np.repeat(np.nan, n)
     theoric_i = pmfi(m=m, pi=pi,
         gamma=gamma, phi=phi, W=W)

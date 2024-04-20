@@ -29,6 +29,10 @@ def pmf(m, V, nu):
 
 def draw(m, nu, V, seed=None):
     n = V.shape[0]
+    if seed == 0:
+        print("Seed cannot be zero. "
+        "Modified to 1.")
+        seed = 1
     R = choices(m)
     p = pmfi(m, V, nu)
     rv = np.repeat(np.nan, n)

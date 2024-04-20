@@ -37,6 +37,10 @@ def proba(m, sample, X, omega, sh):
 
 def draw(m, sh, omega, X, seed=None):
     n = X.shape[0]
+    if seed == 0:
+        print("Seed cannot be zero. "
+        "Modified to 1.")
+        seed = 1
     R = choices(m)
     p = pmfi(m, sh, omega, X)
     rv = np.repeat(np.nan, n)

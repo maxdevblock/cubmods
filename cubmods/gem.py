@@ -59,7 +59,7 @@ def from_formula(
     formula,      # the formula to apply
     df,           # DataFrame of sample and covariates
     m=None,       # if None takes max(sample)
-    model=None,   # "cub", "cube", "cush", "cush2"
+    model="cub",  # "cub", "cube", "cush", "cush2"
     sh=None,      # used for cubsh and cush only
     gen_pars=None,# dict of known generating params
     options={}    # "maxiter" and/or "tol"

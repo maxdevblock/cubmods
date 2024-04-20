@@ -35,6 +35,10 @@ def pmf(m, sh1, sh2,
 def draw(m, sh1, sh2, omega1, delta2, X1,
     seed=None): #TODO: test draw
     n = X1.shape[0]
+    if seed == 0:
+        print("Seed cannot be zero. "
+        "Modified to 1.")
+        seed = 1
     rv = np.repeat(np.nan, n)
     theoric_i = pmfi(m, sh1, sh2, omega1,
         delta2, X1)
@@ -154,13 +158,13 @@ def mle(sample, m, sh1, sh2,
         delta2=delta2, X1=X1)
     AIC = aic(l=l, p=estimates.size)
     BIC = bic(l=l, p=estimates.size, n=n)
-    logliksat = lsat(n=n, f=f)
-    logliksatcov = lsatcov(
-        sample=sample,
-        covars=[X1]
-    )
+    #logliksat = lsat(n=n, f=f)
+    #logliksatcov = lsatcov(
+    #    sample=sample,
+    #    covars=[X1]
+    #)
     loglikuni = luni(m=m, n=n)
-    dev = 2*(logliksat-l)
+    #dev = 2*(logliksat-l)
     muloglik = l/n
     end = dt.datetime.now()
     
@@ -175,9 +179,10 @@ def mle(sample, m, sh1, sh2,
         wald=wald, loglike=l,
         muloglik=muloglik,
         loglikuni=loglikuni,
-        logliksat=logliksat,
-        logliksatcov=logliksatcov,
-        dev=dev, AIC=AIC, BIC=BIC,
+        #logliksat=logliksat,
+        #logliksatcov=logliksatcov,
+        #dev=dev,
+        AIC=AIC, BIC=BIC,
         sample=sample, f=f, varmat=varmat,
         diss=diss,
         seconds=(end-start).total_seconds(),

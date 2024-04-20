@@ -791,7 +791,9 @@ class CUBresCUBSH(CUBres):
         """
         plot CUBSH model fitted from a sample
         """
-        fig, ax = plt.subplots(3, 1, figsize=figsize)
+        fig, ax = plt.subplots(3, 1,
+            figsize=figsize,
+            constrained_layout=True)
         self.plot_ordinal(ax=ax[0])
         if test3:
             ax[1].remove()

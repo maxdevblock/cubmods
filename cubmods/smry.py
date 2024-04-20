@@ -280,6 +280,13 @@ class CUBsample(object):
             bbox_to_anchor=(1,1))
         return ax
 
+    def as_dataframe(self,
+        varname="ordinal"):
+        df = pd.DataFrame({
+            varname: self.rv
+        })
+        return df
+
     def save(self, fname):
         """
         Save a CUBsample object to file

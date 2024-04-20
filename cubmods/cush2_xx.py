@@ -35,6 +35,10 @@ def pmf(m, sh1, sh2,
 def draw(m, sh1, sh2, omega1, omega2, X1,
     X2, seed=None): #TODO: test draw
     n = X1.shape[0]
+    if seed == 0:
+        print("Seed cannot be zero. "
+        "Modified to 1.")
+        seed = 1
     rv = np.repeat(np.nan, n)
     theoric_i = pmfi(m, sh1, sh2, omega1,
         omega2, X1, X2)

@@ -32,16 +32,17 @@ def pmf(m, c1, c2, d1, d2):
     #        p[i-1] = (1-d1-d2)/m
     return p
 
-def draw(m, sh, delta1, delta2, n, seed=None):
+def draw(m, sh1, sh2,
+    delta1, delta2, n, seed=None):
     """
     generate random sample from CUB model
     """
-    if sh is None:
-        raise NoShelterError(model="cush2")
-    c1 = sh[0]; c2 = sh[1]
+    #if sh is None:
+    #    raise NoShelterError(model="cush2")
+    #c1 = sh[0]; c2 = sh[1]
     if delta1+delta2 > 1:
         raise Exception("delta1+delta2>1")
-    theoric = pmf(m, c1, c2, delta1, delta2)
+    theoric = pmf(m, sh1, sh2, delta1, delta2)
     np.random.seed(seed)
     rv = np.random.choice(
         choices(m=m),
@@ -57,7 +58,8 @@ def draw(m, sh, delta1, delta2, n, seed=None):
     sample = CUBsample(
         model="2CUSH",
         rv=rv, m=m,
-        sh=sh, pars=pars,
+        sh=np.array([sh1, sh2]),
+        pars=pars,
         par_names=par_names,
         seed=seed, theoric=theoric,
         diss=diss
