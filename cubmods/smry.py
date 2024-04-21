@@ -261,7 +261,8 @@ class CUBsample(object):
         smry += "======================================================================="
         return smry
 
-    def plot(self, figsize=(7, 5), ax=None):
+    def plot(self, figsize=(7, 5),
+        ax=None, saveas=None):
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
         R = choices(self.m)
@@ -278,7 +279,11 @@ class CUBsample(object):
         ax.set_title(self)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
-        return ax
+        if saveas is not None:
+            fig.savefig(saveas,
+                bbox_inches='tight')
+        else:
+            return fig, ax
 
     def as_dataframe(self,
         varname="ordinal"):
