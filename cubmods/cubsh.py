@@ -499,7 +499,7 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
     waldpi = pi/espi
     pvalpi = np.round(2*abs(sps.norm.sf(waldpi)), 20)
 
-    trvarmat = np.sum(np.diag(varmat))
+    #trvarmat = np.sum(np.diag(varmat))
     #ICOMP = -2*l + 3*np.log(trvarmat/3) - np.log(np.linalg.det(varmat))
 
     stime = np.array([pi1, pi2, xi])

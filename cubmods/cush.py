@@ -40,17 +40,18 @@ List of TODOs:
 @Contacts:    cub@maxpierini.it
 """
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
-import pickle
+#import pickle
 import datetime as dt
 import numpy as np
 import scipy.stats as sps
 import matplotlib.pyplot as plt
 from .general import (
     choices, freq, dissimilarity,
-    chisquared, lsat, luni, aic, bic,
+    #chisquared,
+    lsat, luni, aic, bic,
     NoShelterError
 )
-from . import cub
+#from . import cub
 from .smry import CUBres, CUBsample
 
 #TODO anytime a function is called, use explicit kwargs!!!
@@ -144,7 +145,7 @@ def mle(sample, m, sh,
     start = dt.datetime.now()
     f = freq(sample=sample, m=m)
     n = sample.size
-    aver = np.mean(sample)
+    #aver = np.mean(sample)
     fc = f[sh-1]/n
     deltaest = np.max([.01, (m*fc-1)/(m-1)])
     #TODO: check stderr
@@ -224,7 +225,7 @@ class CUBresCUSH(CUBres):
         title = fr"$n={self.n}$    "
         title += fr"estim($\delta={delta:.3f}$)"
         title += f"\nDissim(est,obs)={self.diss:.4f}"
-        X2 = None
+        #X2 = None
 
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         ax[0].set_xticks(R)

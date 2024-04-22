@@ -196,7 +196,7 @@ class CUBresIHG(CUBres):
             ax.set_xlim([0,1])
             ax.set_xticks(np.arange(
                 0,10.1)/10)
-        ax.set_xlabel(fr"$\theta$ paramter")
+        ax.set_xlabel(r"$\theta$ parameter")
     
     def plot_ordinal(self,
         figsize=(7, 5),
@@ -254,8 +254,8 @@ class CUBresIHG(CUBres):
         """
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         self.plot_ordinal(ax=ax[0])
-        self.plot_estim(ax=ax[1])
-        self.plot_estim(ax=ax[2],
+        self.plot_estim(ax=ax[1], ci=ci)
+        self.plot_estim(ax=ax[2], ci=ci,
             magnified=True)
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')

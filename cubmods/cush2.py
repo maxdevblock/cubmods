@@ -36,7 +36,7 @@ List of TODOs:
 
 import datetime as dt
 import numpy as np
-import pandas as pd
+#import pandas as pd
 import scipy.stats as sps
 #from scipy.optimize import minimize
 #import seaborn as sns
@@ -44,7 +44,7 @@ import matplotlib.pyplot as plt
 from .general import (
     conf_ell, freq, dissimilarity,
     choices, aic, bic, luni, lsat,
-    NoShelterError
+    #NoShelterError
 )
 from .smry import CUBres, CUBsample
 
@@ -216,27 +216,27 @@ def effe(d, sample, m, c1, c2):
     return -l
 
 class CUBresCUSH2(CUBres):
-    
+
     def plot_par_space(self,
         figsize=(7, 5),
         ax=None, ci=.95,
         saveas=None):
-        #TODO: add parameter space plot
+
         estd1, estd2 = self.estimates
         c1, c2 = self.sh
-        
+
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
             )
-        
+
         if self.gen_pars is not None:
             d1 = self.gen_pars["delta1"]
             d2 = self.gen_pars["delta2"]
             ax.plot(d1, d2, "xr",
                 label="generating",
                 zorder=np.inf)
-        
+
         ax.plot(estd1, estd2, "o", label="estimated")
         #ax.axhline(1-estd1-estd2, color="C1", ls="--", zorder=-1,
         #            label=r"$1-\hat\delta_1-\hat\delta_2$")
