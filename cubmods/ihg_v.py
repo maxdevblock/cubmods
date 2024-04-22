@@ -97,7 +97,7 @@ def draw(m, nu, V, seed=None):
         theoric=theoric,
         diss=diss,
         V=V,
-        rv=rv,
+        rv=rv.astype(int),
         seed=seed
     )
 
