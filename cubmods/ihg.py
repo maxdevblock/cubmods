@@ -23,8 +23,7 @@ References:
     * TODO: add references
 
 List of TODOs:
-    * TODO: add generating PMF in plot_ordinal
-    * TODO: add generating theta in plot_estimates
+    *
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -160,7 +159,7 @@ def mle(m, sample, gen_pars=None):
         diss=diss, sample=sample,
         f=f, varmat=varmat,
         seconds=(end-start).total_seconds(),
-        time_exe=start
+        time_exe=start, gen_pars=gen_pars
     )
 
 class CUBresIHG(CUBres):
@@ -185,6 +184,10 @@ class CUBresIHG(CUBres):
                 [0, 0],
                 "b", lw=1
             )
+        if self.gen_pars is not None:
+            ax.scatter(self.gen_pars['theta'], 0,
+                facecolor="None",
+                edgecolor="r", s=200, label="generator")
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
         ax.set_yticks([])
@@ -206,7 +209,15 @@ class CUBresIHG(CUBres):
             )
         title = f"{self.model} model    "
         title += f"$n={self.n}$\n"
+        title += fr"Estim($\theta={self.estimates[0]:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
+        if self.gen_pars is not None:
+            title += "\n"
+            title += fr"Gener($\theta={self.gen_pars['theta']:.3f}$)"
+            p_gen = pmf(m=self.m, theta=self.gen_pars['theta'])
+            R = choices(m=self.m)
+            ax.stem(R, p_gen, linefmt="--r",
+                markerfmt="none", label="generating")
         ax.set_title(title)
 
         R = choices(self.m)
