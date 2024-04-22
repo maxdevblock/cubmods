@@ -27,10 +27,7 @@ References:
       DOI: 10.1007/s11135-016-0393-3
 
 List of TODOs:
-    * TODO: split plot in plot_ordinal + plot_estimate
     * TODO: check gini & laakso
-    * TODO: plot_estim (theoric -> Gener) in title + MODEL
-    * TODO: add grid in plot_estimates
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -207,11 +204,100 @@ def mle(sample, m, sh,
 
 class CUBresCUSH(CUBres):
 
-    #TODO add options to plot:
-    #     * bars (default)
-    #     * confidence ellipse
-    #     * magnified confidence ellipse
-    def plot(self,
+    def plot_ordinal(self, figsize=(7, 7), ax=None, saveas=None):
+        if ax is None:
+            fig, ax = plt.subplots(
+                figsize=figsize
+            )
+        R = choices(self.m)
+        #print(R, self.f, self.n)
+        delta = self.estimates[0]
+        title = f"{self.model} model ($c={self.sh}$)   "
+        title += f"$n={self.n}$\n"
+        title += fr"Estim($\delta={delta:.3f}$)"
+        title += f"    Dissim(est,obs)={self.diss:.4f}"
+        if self.gen_pars is not None:
+            delta_gen = self.gen_pars["delta"]
+            title += "\n"
+            title += fr"Gener($\delta={delta_gen:.3f}$)"
+            p_gen = pmf(m=self.m, sh=self.sh, delta=delta_gen)
+            ax.stem(R, p_gen, linefmt="--r",
+                markerfmt="none", label="generator")
+        ax.scatter(R, self.f/self.n,
+            facecolor="None",
+            edgecolor="k", s=200, label="observed")
+        ax.plot(R, self.theoric, ".--b",
+            label="estimated", ms=10)
+        ax.set_xticks(R)
+        ax.set_xlabel("Ordinal")
+        ax.set_ylabel("Probability mass")
+        ax.set_title(title)
+        ax.legend(loc="upper left",
+            bbox_to_anchor=(1,1))
+        ax.set_ylim((0, ax.get_ylim()[1]))
+        
+        if ax is None:
+            if saveas is not None:
+                fig.savefig(saveas, bbox_inches='tight')
+            else:
+                return fig, ax
+        else:
+            return ax
+    
+    def plot_estim(self, ci=.95, ax=None,
+        magnified=False, figsize=(7, 7), saveas=None):
+        if ax is None:
+            fig, ax = plt.subplots(
+                figsize=figsize
+            )
+        delta = self.estimates[0]
+        ax.set_xlabel(fr"$\delta$  shelter effect (c={self.sh})")
+        ax.plot(delta, 0,
+            ".b",ms=20, alpha=.5,
+            label="estimated")
+        if self.gen_pars is not None:
+            delta_gen = self.gen_pars["delta"]
+            ax.scatter(delta_gen, 0,
+                facecolor="None",
+                edgecolor="r", s=200, label="generator")
+        ax.set_yticks([])
+        if not magnified:
+            ax.set_xlim((0,1))
+            ticks = np.arange(0, 1.1, .1)
+            ax.set_xticks(ticks)
+        if ci is not None:
+            alpha = 1-ci
+            z = abs(sps.norm().ppf(alpha/2))
+            ax.plot(
+                [delta-z*self.stderrs, delta+z*self.stderrs],
+                [0, 0],
+                "b", lw=1,
+                label=f"CI {ci:.0%}"
+            )
+        ax.grid(True)
+        ax.legend(loc="upper left",
+            bbox_to_anchor=(1,1))
+        
+        if ax is None:
+            if saveas is not None:
+                fig.savefig(saveas, bbox_inches='tight')
+            else:
+                return fig, ax
+        else:
+            return ax
+
+    def plot(self, ci=.95, saveas=None, figsize=(7, 15)):
+        fig, ax = plt.subplots(3, 1, figsize=figsize)
+        self.plot_ordinal(ax=ax[0])
+        self.plot_estim(ax=ax[1], ci=ci)
+        self.plot_estim(ax=ax[2], ci=ci,
+            magnified=True)
+        if saveas is not None:
+            fig.savefig(saveas, bbox_inches='tight')
+        return fig, ax
+        
+    # DEPRECATED
+    def old_plot(self,
         ci=.95,
         saveas=None,
         figsize=(7, 15)
@@ -222,9 +308,10 @@ class CUBresCUSH(CUBres):
         R = choices(self.m)
         #print(R, self.f, self.n)
         delta = self.estimates[0]
-        title = fr"$n={self.n}$    "
-        title += fr"estim($\delta={delta:.3f}$)"
-        title += f"\nDissim(est,obs)={self.diss:.4f}"
+        title = f"{self.model} model    "
+        title += f"$n={self.n}$\n"
+        title += fr"Estim($\delta={delta:.3f}$)"
+        title += f"    Dissim(est,obs)={self.diss:.4f}"
         #X2 = None
 
         fig, ax = plt.subplots(3, 1, figsize=figsize)
@@ -314,5 +401,3 @@ class CUBresCUSH(CUBres):
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')
         return fig
-
-#TODO: pearson, X2, relares, FF2, LL2, II2, AIC, BIC, ICOMP in general?
