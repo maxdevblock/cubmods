@@ -274,7 +274,7 @@ class CUBsample(object):
             markerfmt="none", label="generator")
         ax.set_xticks(R)
         ax.set_ylim((0, ax.get_ylim()[1]))
-        ax.set_xlabel("Options")
+        ax.set_xlabel("Ordinal")
         ax.set_ylabel("Probability mass")
         ax.set_title(self)
         ax.legend(loc="upper left",

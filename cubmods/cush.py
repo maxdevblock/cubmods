@@ -209,7 +209,7 @@ class CUBresCUSH(CUBres):
     #     * confidence ellipse
     #     * magnified confidence ellipse
     def plot(self,
-        ci=.99,
+        ci=.95,
         saveas=None,
         figsize=(7, 15)
         ):

@@ -149,7 +149,8 @@ def mle(sample, m, c1, c2, gen_pars=None):
         sample=sample, f=f, varmat=varmat,
         diss=diss,
         seconds=(end-start).total_seconds(),
-        time_exe=start
+        time_exe=start,
+        gen_pars=gen_pars
     )
 
 def loglik(sample, m, c1, c2):
@@ -180,6 +181,57 @@ def effe(d, sample, m, c1, c2):
 
 class CUBresCUSH2(CUBres):
     
+    def plot_par_space(self,
+        figsize=(7, 5),
+        ax=None, ci=.95,
+        saveas=None):
+        #TODO: add parameter space plot
+        estd1, estd2 = self.estimates
+        c1, c2 = self.sh
+        
+        if ax is None:
+            fig, ax = plt.subplots(
+                figsize=figsize
+            )
+        
+        if self.gen_pars is not None:
+            d1 = self.gen_pars["delta1"]
+            d2 = self.gen_pars["delta2"]
+            ax.plot(d1, d2, "xr",
+                label="generating",
+                zorder=np.inf)
+        
+        ax.plot(estd1, estd2, "o", label="estimated")
+        #ax.axhline(1-estd1-estd2, color="C1", ls="--", zorder=-1,
+        #            label=r"$1-\hat\delta_1-\hat\delta_2$")
+        #ax.axvline(1-estd1-estd2, color="C1", ls="--", zorder=-1)
+        ax.fill_between([0,1], [1,0], [1,1], color="w", zorder=2)
+        ax.spines[['top', 'right']].set_visible(False)
+        ax.axline([0,1], slope=-1, color="k", lw=.75)
+        conf_ell(self.varmat, estd1, estd2, ci, ax)
+        ax.set_xlabel(fr"$\hat\delta_1$   for $c_1={c1}$")
+        ax.set_xlim(0,1)
+        ax.set_ylabel(fr"$\hat\delta_2$   for $c_2={c2}$")
+        ax.set_ylim(0,1)
+        ax.set_aspect("equal")
+        ax.set_xticks(np.arange(0,10.1,1)/10)
+        ax.set_yticks(np.arange(0,10.1,1)/10)
+        # change all spines
+        for axis in ['left','bottom']:
+            ax.spines[axis].set_linewidth(2)
+            # increase tick width
+            ax.tick_params(width=2)
+        ax.grid(True)
+        ax.legend(loc="upper right")
+        ax.set_title("2-CUSH model parameter space")
+        if ax is None:
+            if saveas is not None:
+                fig.savefig(saveas, bbox_inches='tight')
+            else:
+                return fig, ax
+        else:
+            return ax
+    
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None,
@@ -189,9 +241,14 @@ class CUBresCUSH2(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        estd1, estd2 = self.estimates
         title = f"{self.model} model    "
         title += f"$n={self.n}$\n"
+        title += fr"Estim($\delta_1={estd1:.3f}$ , $\delta_2={estd2:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
+        if self.gen_pars is not None:
+            title += "\n"
+            title += fr"Gener($\delta_1={self.gen_pars['delta1']:.3f}$ , $\delta_2={self.gen_pars['delta2']:.3f}$)"
         ax.set_title(title)
 
         R = choices(self.m)
@@ -221,13 +278,17 @@ class CUBresCUSH2(CUBres):
     def plot(self,
         ci=.95,
         saveas=None,
-        figsize=(7, 5)
+        figsize=(7, 11)
         ):
         """
         plot CUB model fitted from a sample
         """
-        fig, ax = plt.subplots(1, 1, figsize=figsize)
-        self.plot_ordinal(ax=ax)
+        fig, ax = plt.subplots(2, 1,
+            figsize=figsize)
+        self.plot_ordinal(ax=ax[0])
+        self.plot_par_space(ax=ax[1],
+            ci=ci)
+        plt.subplots_adjust(hspace=.25)
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')
         return fig, ax

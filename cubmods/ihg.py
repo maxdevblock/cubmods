@@ -129,6 +129,36 @@ def mle(m, sample, gen_pars=None):
 
 class CUBresIHG(CUBres):
     
+    def plot_estim(self, ci=.95, ax=None,
+        magnified=False):
+        theta = self.estimates
+        se = self.stderrs
+        # change all spines
+        for axis in ['bottom']:
+            ax.spines[axis].set_linewidth(2)
+            # increase tick width
+            ax.tick_params(width=2)
+        ax.plot(theta, 0, ".b",
+            ms=20, alpha=.5,
+            label="estimated")
+        if ci is not None:
+            alpha = 1-ci
+            z = abs(sps.norm().ppf(alpha/2))
+            ax.plot(
+                [theta-z*se, theta+z*se],
+                [0, 0],
+                "b", lw=1
+            )
+        ax.legend(loc="upper left",
+            bbox_to_anchor=(1,1))
+        ax.set_yticks([])
+        ax.grid(True)
+        if not magnified:
+            ax.set_xlim([0,1])
+            ax.set_xticks(np.arange(
+                0,10.1)/10)
+        ax.set_xlabel(fr"$\theta$ paramter")
+    
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None,
@@ -170,13 +200,16 @@ class CUBresIHG(CUBres):
     def plot(self,
         ci=.95,
         saveas=None,
-        figsize=(7, 5)
+        figsize=(7, 15)
         ):
         """
         plot CUB model fitted from a sample
         """
-        fig, ax = plt.subplots(1, 1, figsize=figsize)
-        self.plot_ordinal(ax=ax)
+        fig, ax = plt.subplots(3, 1, figsize=figsize)
+        self.plot_ordinal(ax=ax[0])
+        self.plot_estim(ax=ax[1])
+        self.plot_estim(ax=ax[2],
+            magnified=True)
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')
         return fig, ax
