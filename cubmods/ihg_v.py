@@ -41,8 +41,10 @@ import matplotlib.pyplot as plt
 from statsmodels.tools.numdiff import approx_hess
 from .general import (
     logis, freq, choices, aic, bic,
-    lsat, luni, dissimilarity,
-    lsatcov, addones, colsof,
+    #lsat, 
+    luni, dissimilarity,
+    #lsatcov, 
+    addones, colsof,
 )
 from .ihg import pmf as pmf_ihg
 from .smry import CUBres, CUBsample
@@ -128,7 +130,7 @@ def mle(m, sample, V, gen_pars=None):
     f = freq(m=m, sample=sample)
     n = sample.size
     theta0 = init_theta(m, f)
-    VV = addones(V)
+    #VV = addones(V)
     v = colsof(V)
     nu0 = np.log(theta0/(1-theta0))
     nuini = np.concatenate((
@@ -201,7 +203,7 @@ def mle(m, sample, V, gen_pars=None):
         diss=diss, sample=sample,
         f=f, varmat=varmat,
         seconds=(end-start).total_seconds(),
-        time_exe=start
+        time_exe=start, gen_pars=gen_pars
     )
 
 class CUBresIHGV(CUBres):
@@ -245,7 +247,7 @@ class CUBresIHGV(CUBres):
             return ax
 
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):
