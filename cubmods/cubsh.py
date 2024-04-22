@@ -24,8 +24,8 @@ References:
     * TODO: add references
 
 List of TODOs:
+    * TODO: fix 3d plots legend
     * TODO: too long title in CUBsample.plot()
-    * TODO: Fix title in mle.plot() (+ Gener)
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -35,7 +35,7 @@ List of TODOs:
 @Contacts:    cub@maxpierini.it
 """
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
-import pickle
+#import pickle
 import datetime as dt
 import numpy as np
 #import pandas as pd
@@ -601,6 +601,13 @@ class CUBresCUBSH(CUBres):
         title += f"$n={self.n}$\n"
         title += fr"Estim($\pi={pi:.3f}$ , $\xi={xi:.3f}$ , $\delta={delta:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
+        if self.gen_pars is not None:
+            genpi1 = self.gen_pars['pi1']
+            genpi2 = self.gen_pars['pi2']
+            genpi, gendelta = pi1pi2_to_pidelta(genpi1, genpi2)
+            title += "\n"
+            title += fr"Gener($\pi={genpi:.3f}$ , $\xi={self.gen_pars['xi']:.3f}$ , "
+            title += fr"$\delta={gendelta:.3f}$)"
         #TODO: add diss_gen
         # if self.diss_gen is not None:
         #     title += "\n"
