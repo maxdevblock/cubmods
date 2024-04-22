@@ -27,6 +27,7 @@ References:
       DOI: 10.1007/s11135-016-0393-3
 
 List of TODOs:
+    * TODO: split plot in plot_ordinal + plot_estimate
     * TODO: check gini & laakso
     * TODO: plot_estim (theoric -> Gener) in title + MODEL
     * TODO: add grid in plot_estimates

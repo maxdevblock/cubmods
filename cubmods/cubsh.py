@@ -632,7 +632,7 @@ class CUBresCUBSH(CUBres):
             xi_gen = self.gen_pars['xi']
             p_gen = pmf(m=self.m, pi1=pi1_gen, pi2=pi2_gen, xi=xi_gen, sh=self.sh)
             ax.stem(R, p_gen, linefmt="--r",
-            markerfmt="none", label="generating")
+                markerfmt="none", label="generating")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",

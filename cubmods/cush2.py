@@ -278,13 +278,18 @@ class CUBresCUSH2(CUBres):
                 figsize=figsize
             )
         estd1, estd2 = self.estimates
-        title = f"{self.model} model    "
-        title += f"$n={self.n}$\n"
+        title = f"{self.model} model "
+        title += fr"($c_1={self.sh[0]}$ , $c_2={self.sh[1]}$)"
+        title += f"    $n={self.n}$\n"
         title += fr"Estim($\delta_1={estd1:.3f}$ , $\delta_2={estd2:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
         if self.gen_pars is not None:
             title += "\n"
             title += fr"Gener($\delta_1={self.gen_pars['delta1']:.3f}$ , $\delta_2={self.gen_pars['delta2']:.3f}$)"
+            p_gen = pmf(c1=self.sh[0], c2=self.sh[1], d1=estd1, d2=estd2, m=self.m)
+            R = choices(m=self.m)
+            ax.stem(R, p_gen, linefmt="--r",
+                markerfmt="none", label="generating")
         ax.set_title(title)
 
         R = choices(self.m)
