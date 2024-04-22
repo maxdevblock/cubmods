@@ -1,4 +1,31 @@
-#TODO: implement
+"""
+CUB models in Python.
+Module for CUB (Combination of Uniform
+and Binomial) with covariates.
+
+Description:
+    This module contains methods and classes
+    for CUB_YW model family.
+    It is based upon the works of Domenico
+    Piccolo et Al. and CUB package in R.
+
+Example:
+    TODO: add example
+
+References:
+    * TODO: add references
+
+List of TODOs:
+    * 
+
+@Author:      Massimo Pierini
+@Institution: Universitas Mercatorum
+@Affiliation: Graduand in Statistics & Big Data (L41)
+@Date:        2023-24
+@Credit:      Domenico Piccolo, Rosaria Simone
+@Contacts:    cub@maxpierini.it
+"""
+
 import pickle
 import datetime as dt
 import numpy as np

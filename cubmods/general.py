@@ -16,7 +16,7 @@ Example:
 References:
     * TODO: add references
 
-List of TODO:
+List of TODOs:
     * 
 
 @Author:      Massimo Pierini

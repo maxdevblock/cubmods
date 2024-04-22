@@ -1,3 +1,34 @@
+"""
+CUB models in Python.
+Module for MULTICUB and MULTICUBE.
+
+Description:
+    This module contains methods and classes
+    for MULTICUB and MULTICUBE tool.
+    It is based upon the works of Domenico
+    Piccolo et Al. and CUB package in R.
+
+Example:
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods import multicub
+
+    TODO: add MULTICUB example
+
+References:
+    * TODO: add references
+
+List of TODOs:
+    * TODO: confidence in title or one only in legend
+
+@Author:      Massimo Pierini
+@Institution: Universitas Mercatorum
+@Affiliation: Graduand in Statistics & Big Data (L41)
+@Date:        2023-24
+@Credit:      Domenico Piccolo, Rosaria Simone
+@Contacts:    cub@maxpierini.it
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from .gem import from_formula

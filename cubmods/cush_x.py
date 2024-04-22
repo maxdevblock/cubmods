@@ -1,4 +1,33 @@
-#TODO: implement
+"""
+CUB models in Python.
+Module for CUSH (Combination of Uniform
+and Shelter effect) with covariates.
+
+Description:
+    This module contains methods and classes
+    for CUSH model family.
+    It is based upon the works of Domenico
+    Piccolo et Al. and CUB package in R.
+
+Example:
+    TODO: add example
+
+References:
+    * Capecchi, S., & Piccolo, D. (2017).
+      Dealing with heterogeneity in ordinal responses.
+      Quality & Quantity, 51, 2375-2393.
+      DOI: 10.1007/s11135-016-0393-3
+
+List of TODOs:
+    * TODO: check gini & laakso
+
+@Author:      Massimo Pierini
+@Institution: Universitas Mercatorum
+@Affiliation: Graduand in Statistics & Big Data (L41)
+@Date:        2023-24
+@Credit:      Domenico Piccolo, Rosaria Simone
+@Contacts:    cub@maxpierini.it
+"""
 import datetime as dt
 import pickle
 import numpy as np

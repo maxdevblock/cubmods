@@ -26,8 +26,8 @@ Example:
 References:
     * TODO: add references
 
-List of TODO:
-    * implement best shelter search
+List of TODOs:
+    * TODO: implement best shelter search
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

@@ -1,3 +1,38 @@
+"""
+CUB models in Python.
+Module for IHG (Inverse HyperGeometric) with covariates.
+
+Description:
+    This module contains methods and classes
+    for IHG model family.
+    It is based upon the works of Domenico
+    Piccolo et Al. and CUB package in R.
+
+Example:
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods import ihg
+
+    samp = pd.read_csv("ordinal.csv")
+    fit = ihg.mle(samp.rv, m=7)
+    print(fit.summary())
+    fit.plot()
+    plt.show()
+
+References:
+    * TODO: add references
+
+List of TODOs:
+    * 
+
+@Author:      Massimo Pierini
+@Institution: Universitas Mercatorum
+@Affiliation: Graduand in Statistics & Big Data (L41)
+@Date:        2023-24
+@Credit:      Domenico Piccolo, Rosaria Simone
+@Contacts:    cub@maxpierini.it
+"""
+
 import datetime as dt
 import numpy as np
 from scipy.optimize import minimize

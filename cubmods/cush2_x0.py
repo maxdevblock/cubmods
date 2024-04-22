@@ -1,3 +1,39 @@
+"""
+CUB models in Python.
+Module for 2-CUSH (Combination of Uniform
+and 2 Shelter Choices) with covariates.
+
+Description:
+    This module contains methods and classes
+    for 2-CUSH model family.
+    It is based upon the works of Domenico
+    Piccolo et Al. and CUB package in R.
+
+Example:
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods import cush2
+
+    samp = pd.read_csv("ordinal.csv")
+    fit = cush2.mle(samp.rv, m=7)
+    print(fit.summary())
+    fit.plot()
+    plt.show()
+
+References:
+    * TODO: add references
+
+List of TODOs:
+    * 
+
+@Author:      Massimo Pierini
+@Institution: Universitas Mercatorum
+@Affiliation: Graduand in Statistics & Big Data (L41)
+@Date:        2023-24
+@Credit:      Domenico Piccolo, Rosaria Simone
+@Contacts:    cub@maxpierini.it
+"""
+
 import datetime as dt
 import numpy as np
 from scipy.optimize import minimize

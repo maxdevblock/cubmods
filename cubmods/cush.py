@@ -26,9 +26,8 @@ References:
       Quality & Quantity, 51, 2375-2393.
       DOI: 10.1007/s11135-016-0393-3
 
-List of TODO:
-    * Explicative power?
-    * check gini & laakso
+List of TODOs:
+    * TODO: check gini & laakso
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

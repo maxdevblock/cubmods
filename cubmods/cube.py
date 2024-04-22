@@ -12,7 +12,7 @@ Description:
 Example:
     import pandas as pd
     import matplotlib.pyplot as plt
-    from cubmods import cush
+    from cubmods import cube
 
     samp = pd.read_csv("ordinal.csv")
     fit = cube.mle(samp.rv, m=7)
@@ -23,7 +23,7 @@ Example:
 References:
     * TODO: add references
 
-List of TODO:
+List of TODOs:
     * 
 
 @Author:      Massimo Pierini

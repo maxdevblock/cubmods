@@ -1,3 +1,9 @@
+"""
+TEST module for k-CUSH family.
+TODO: k-CUSH theory and implementation
+WARNING: DO NOT USE
+"""
+
 import numpy as np
 from scipy.optimize import minimize
 from .general import (
