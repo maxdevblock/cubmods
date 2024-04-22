@@ -23,7 +23,8 @@ References:
     * TODO: add references
 
 List of TODOs:
-    * 
+    * TODO: add generating PMF in plot_ordinal
+    * TODO: add generating theta in plot_estimates
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

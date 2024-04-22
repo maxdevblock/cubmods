@@ -28,6 +28,8 @@ References:
 
 List of TODOs:
     * TODO: check gini & laakso
+    * TODO: plot_estim (theoric -> Gener) in title + MODEL
+    * TODO: add grid in plot_estimates
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

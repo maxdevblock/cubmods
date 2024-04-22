@@ -24,7 +24,7 @@ References:
     * TODO: add references
 
 List of TODOs:
-    * 
+    * TODO: add generating PMF in plot_ordinal
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

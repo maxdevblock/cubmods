@@ -24,7 +24,8 @@ References:
     * TODO: add references
 
 List of TODOs:
-    * 
+    * TODO: too long title in CUBsample.plot()
+    * TODO: Fix title in mle.plot() (+ Gener)
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

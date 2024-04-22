@@ -24,7 +24,7 @@ References:
     * TODO: add references
 
 List of TODOs:
-    * 
+    * TODO: adjust 3d plots legend
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -526,6 +526,10 @@ class CUBresCUBE(CUBres):
         title += fr"Estim($\pi={pi:.3f}$ , $\xi={xi:.3f}$ , $\phi={phi:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.3f}"
         #TODO: add dissimilarity from generating model
+        if self.gen_pars is not None:
+            title += f"\n"
+            title += fr"Gener($\pi={self.gen_pars['pi']:.3f}$ , $\xi={self.gen_pars['xi']:.3f}$ , "
+            title += fr"$\phi={self.gen_pars['phi']:.3f}$)"
         # if self.diss_gen is not None:
         #     title += "\n"
         #     title += fr"Gener($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
