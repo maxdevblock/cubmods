@@ -13,7 +13,7 @@ Example:
     TODO: add example
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
     * 
@@ -240,7 +240,7 @@ def varcov(m, sample, beta, gamma, alpha,
     
     sam = sample - 1
     for i in range(n):
-        #TODO: occhio agli indici...!
+        #occhio agli indici...!
         #print(f"i:{i}, sam[i]:{sam[i]}")
         #print(f"mats1:{mats1.shape}")
         #print(f"S1:{S1.shape}")
@@ -267,7 +267,7 @@ def varcov(m, sample, beta, gamma, alpha,
             math3[sam[i],i]
         H4[i] = math4[:m-sample[i]+1,i].sum()-\
             math4[m-sample[i],i]
-    #TODO: fino (m-1) ???
+    #fino (m-1) ???
     S5 = mats5[:m-1].sum(axis=0)
     H5 = math5[:m-1].sum(axis=0)
     #print("S1"); print(S1)
@@ -396,7 +396,7 @@ def mle(m, sample, Y, W, Z,
         phi = 1/(
             1/logis(Y=Z, param=alpha)-1)
         betabin = betabinomial(m=m,
-            #TODO: rank o sample?
+            #rank o sample?
             sample=rank,
             #sample=sample,
             xi=xi, phi=phi)

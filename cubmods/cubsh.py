@@ -21,11 +21,11 @@ Example:
     plt.show()
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
-    * TODO: fix 3d plots legend
-    * TODO: too long title in CUBsample.plot()
+    TODO: fix 3d plots legend
+    TODO: too long title in CUBsample.plot()
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -52,7 +52,6 @@ from .general import (
 from . import cub
 from .smry import CUBres, CUBsample
 
-#TODO anytime a function is called, use explicit kwargs!!!
 ###################################################################
 # FUNCTIONS
 ###################################################################
@@ -142,14 +141,14 @@ def std_delta(m, pi, xi, delta):
     s = np.sqrt(var_delta(m, pi, xi, delta))
     return s
 
-#TODO: is it ok???
+#TODO: skew
 def skew(pi, xi):
     """
     skewness normalized eta index
     """
-    return pi*(1/2-xi)
+    return None #pi*(1/2-xi)
 
-#TODO: test
+#TODO: test mean_diff
 def mean_diff(m, sh, pi1, pi2, xi):
     R = choices(m)
     S = choices(m)
@@ -159,7 +158,7 @@ def mean_diff(m, sh, pi1, pi2, xi):
             mu += abs(r-s)*proba(m,sh,pi1,pi2,xi,r)*proba(m,sh,pi1,pi2,xi,s)
     return mu
 
-#TODO: test
+#TODO: test median
 def median(m, sh, pi1, pi2, xi):
     R = choices(m)
     cp = cmf(m, sh, pi1, pi2, xi)
@@ -168,14 +167,14 @@ def median(m, sh, pi1, pi2, xi):
         M = R.max()
     return M
 
-#TODO: test
+#TODO: test gini
 def gini(m, sh, pi1, pi2, xi):
     ssum = 0
     for r in choices(m):
         ssum += proba(m, sh, pi1, pi2, xi, r)**2
     return m*(1-ssum)/(m-1)
 
-#TODO: test
+#TODO: test laakso
 def laakso(m, sh, pi1, pi2, xi):
     g = gini(m, sh, pi1, pi2, xi)
     return g/(m - (m-1)*g)
@@ -250,7 +249,7 @@ def varcov(m, sh, pi1, pi2, xi, n):
     d1x = np.sum(c4*atilde)
     d2x = np.sum(c4*btilde)
 
-    #TODO: infmat in R style
+    #TODO: infmat in R style?
     infmat = np.ndarray(shape=(3,3))
     infmat[0,0] = d11
     infmat[1,1] = d22
@@ -447,8 +446,6 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
     R = choices(m)
     f = freq(sample=sample, m=m)
     n = sample.size
-    #aver = np.mean(sample) #TODO: unused aver?
-    #varcamp = np.mean(sample**2)-aver**2 #TODO: unused?
     dd = (R==sh).astype(int)
     pi1, pi2, xi = init_theta(f=f, m=m, sh=sh)
     l = loglik(m=m, sh=sh, pi1=pi1, pi2=pi2, xi=xi, f=f)
@@ -461,7 +458,6 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
         denom = tau1+tau2+(1-pi1-pi2)*dd
         tau1 /= denom
         tau2 /= denom
-        #TODO: unused tau3...?
         #tau3 = 1-tau1-tau2
         numaver = np.sum(R*f*tau1)
         denaver = np.sum(f*tau1)
@@ -537,8 +533,8 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
     theoric = pmf(m=m, sh=sh, pi1=pi1, pi2=pi2, xi=xi)
     diss = dissimilarity(f/n, theoric)
     loglikuni = luni(m=m, n=n)
-    #xisb = (m-aver)/(m-1) #TODO: unused?
-    #llsb = cub.loglik(m, 1, xisb, f) #TODO: unused?
+    #xisb = (m-aver)/(m-1)
+    #llsb = cub.loglik(m, 1, xisb, f)
     #TODO: use nonzero in lsat?
     #nonzero = np.nonzero(f)
     logliksat = lsat(f=f, n=n)
@@ -547,9 +543,9 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
     # deviance from saturated model
     dev = 2*(logliksat-l)
 
-    #pearson = (f-n*theorpr)/np.sqrt(n*theorpr) #TODO: unused?
-    #X2 = np.sum(pearson**2) #TODO: unused?
-    #relares = (f/n-theorpr)/theorpr #TODO: unused?
+    #pearson = (f-n*theorpr)/np.sqrt(n*theorpr)
+    #X2 = np.sum(pearson**2)
+    #relares = (f/n-theorpr)/theorpr
 
     #LL2 = 1/(1+np.mean((f/(n*theoric)-1)**2))
     #ll2 = (l-llunif)/(logsat-llunif)
@@ -557,9 +553,6 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
     #FF2 = 1-dissim
     AIC = aic(l=l, p=3)
     BIC = bic(l=l, p=3, n=n)
-    #TODO: compute Corr(pi,xi)
-    # rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])
-    #rho = None
 
     return CUBresCUBSH(
         model="CUBSH",
@@ -663,8 +656,7 @@ class CUBresCUBSH(CUBres):
 
         if equal:
             ax.set_aspect("equal")
-        #TODO: compute Corr(pi,xi)
-        # ax.set_title(f"Corr(pi,xi)= {self.rho}")
+
         pi = self.estimates[3]
         xi = self.estimates[4]
         delta = self.estimates[5]
@@ -685,27 +677,7 @@ class CUBresCUBSH(CUBres):
             ha="left", va="bottom")
         if self.gen_pars is not None:
             pass
-            #TODO: add gen_pars
-            #ax.scatter(1-self.pi_gen, 1-self.xi_gen,
-            #    facecolor="None",
-            #    edgecolor="r", s=200, label="generating")
-
-        #alpha = 1 - ci
-        #z = abs(sps.norm().ppf(alpha/2))
-        # Horizontal CI
-        #ax.plot(
-        #    [1-(self.pi-z*self.espi),
-        #    1-(self.pi+z*self.espi)],
-        #    [1-self.xi, 1-self.xi],
-        #    "b", lw=1
-        #)
-        # Vertical CI
-        #ax.plot(
-        #    [1-self.pi, 1-self.pi],
-        #    [1-(self.xi-z*self.stderrs[1]),
-        #    1-(self.xi+z*self.stderrs[1])],
-        #    "b", lw=1
-        #)
+            #TODO: add gen_pars?
         
         # Confidence Ellipse
         if confell:

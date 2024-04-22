@@ -21,10 +21,10 @@ Example:
     plt.show()
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
-    * TODO: add generating PMF in plot_ordinal
+    TODO: add generating PMF in plot_ordinal
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

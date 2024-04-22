@@ -21,7 +21,7 @@ Example:
     plt.show()
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
     * 
@@ -51,7 +51,6 @@ from .general import (
 )
 from .smry import CUBres, CUBsample
 
-#TODO anytime a function is called, use explicit kwargs!!!
 ###################################################################
 # FUNCTIONS
 ###################################################################
@@ -179,7 +178,7 @@ def varcov(m, pi, xi, ordinal):
     # infmat[1,1] = np.sum(dpr_dxi**2/pr)
     # infmat[0,1] = np.sum(dpr_dpi*dpr_dxi/pr)
     # infmat[1,0] = infmat[0,1]
-    #TODO: create matrix from array in R style
+    #TODO: create matrix from array in R style?
     #      matinf <- matrix(c(i11,i12,i12,i22), nrow=2, byrow=T)
     infmat[0,0] = i11
     infmat[1,1] = i22
@@ -253,9 +252,7 @@ def draw(m, pi, xi, n, seed=None):
 def mle(sample, m,
     gen_pars=None,
     maxiter=500,
-    tol=1e-4,
-    #ci=.99
-    ): #TODO: use ci for conf int in summary?
+    tol=1e-4,):
     """
     fit a sample to a CUB model
     with m preference choices.
@@ -363,6 +360,7 @@ def mle(sample, m,
     # coefficient of correlation
     rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])
     theoric = pmf(m=m, pi=pi, xi=xi)
+    #TODO: add dissimilarity from generating model
     diss = dissimilarity(f/n, theoric)
     estimates = [pi, xi]
     est_names = ["pi", "xi"]
@@ -404,12 +402,8 @@ def mle(sample, m,
 
 class CUBresCUB00(CUBres):
 
-    #TODO: add to cube, cush and cubsh
-    def plot_ordinal(self,
-        figsize=(7, 5),
-        ax=None,
-        saveas=None
-        ):
+    def plot_ordinal(self, figsize=(7, 5),
+        ax=None,saveas=None):
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -454,15 +448,10 @@ class CUBresCUB00(CUBres):
         else:
             return ax
 
-    #TODO: add to cube, cush and cubsh???
-    def plot_confell(self,
-        figsize=(7, 5),
-        ci=.95,
-        equal=True,
-        magnified=False,
-        ax=None,
-        saveas=None
-        ):
+    def plot_confell(self, figsize=(7, 5),
+        ci=.95, equal=True,
+        magnified=False, ax=None,
+        saveas=None):
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize

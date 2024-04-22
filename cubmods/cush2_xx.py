@@ -21,7 +21,7 @@ Example:
     plt.show()
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
     * 

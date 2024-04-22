@@ -24,10 +24,10 @@ Example:
     plt.show()
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
-    * TODO: implement best shelter search
+    TODO: implement best shelter search
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

@@ -27,7 +27,7 @@ References:
       DOI: 10.1007/s11135-016-0393-3
 
 List of TODOs:
-    * TODO: check gini & laakso
+    TODO: check gini & laakso
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -51,7 +51,6 @@ from .general import (
 #from . import cub
 from .smry import CUBres, CUBsample
 
-#TODO anytime a function is called, use explicit kwargs!!!
 ###################################################################
 # FUNCTIONS
 ###################################################################
@@ -145,7 +144,6 @@ def mle(sample, m, sh,
     #aver = np.mean(sample)
     fc = f[sh-1]/n
     deltaest = np.max([.01, (m*fc-1)/(m-1)])
-    #TODO: check stderr
     esdelta = np.sqrt(
         (1-deltaest)*(1+(m-1)*deltaest)/
         (n*(m-1))
@@ -163,7 +161,6 @@ def mle(sample, m, sh,
     BIC = bic(l=l, n=n, p=1)
     #ICOMP = -2*l
     loglikuni = luni(m=m, n=n)
-    #TODO: what is xisb?
     #xisb = (m-aver)/(m-1)
     #llsb = cub.loglik(m=m, pi=1, xi=xisb, f=f)
     #nonzero = np.nonzero(f)[0]

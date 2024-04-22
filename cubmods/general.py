@@ -14,7 +14,7 @@ Example:
     R = choices(m=m)
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
     * 
@@ -40,7 +40,6 @@ from matplotlib.patches import Ellipse
 from matplotlib import transforms
 #from .cub import loglik as lcub
 
-#TODO anytime a function is called, use explicit kwargs!!!
 def choices(m):
     """
     preference choices of CUB model
@@ -104,13 +103,12 @@ def luni(m, n):
     loglikuni = -(n*np.log(m))
     return loglikuni
 
-#TODO: remove unused argument m and modify in all modules
 def lsat(f, n):
     # loglik of saturated model
     logliksat = -(n*np.log(n)) + np.sum((f[f!=0])*np.log(f[f!=0]))
     return logliksat
 
-#TODO: add loglikbin to all models and smry
+#TODO: add loglikbin to all models and smry ???
 def lbin(sample, m, f):
     avg = sample.mean()
     xi = (m-avg)/(m-1)
@@ -428,7 +426,7 @@ class ShelterGreaterThanM(Exception):
         super().__init__(self.msg)
 
 #TODO: add in all draw
-class ParameterOurOfBoundsError(Exception):
+class ParameterOutOfBoundsError(Exception):
     """
     if m is not suitable for model
     """

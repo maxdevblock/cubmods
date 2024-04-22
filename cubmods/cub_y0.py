@@ -13,7 +13,7 @@ Example:
     TODO: add example
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
     * 

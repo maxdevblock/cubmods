@@ -16,10 +16,10 @@ Example:
     TODO: add MULTICUB example
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
-    * TODO: confidence in title or one only in legend
+    TODO: confidence in title or one only in legend
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

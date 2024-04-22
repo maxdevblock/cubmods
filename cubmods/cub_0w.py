@@ -13,7 +13,7 @@ Example:
     TODO: add example
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
     * 
@@ -27,7 +27,6 @@ List of TODOs:
 """
 
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
-#TODO: go on with implementation
 import datetime as dt
 import numpy as np
 #import pandas as pd
@@ -110,66 +109,53 @@ def prob(sample, m, pi, gamma, W):
     p = pi*(bitgamma(sample=sample, m=m, W=W, gamma=gamma)-1/m) + 1/m
     return p
 
-def proba(m, pi, xi, r): #TODO
+def proba(m, pi, xi, r): #TODO proba
     """
     probability Pr(R=r) of CUB model
     """
     return None
 
-def cmf(sample, m, pi, gamma, W): #TODO: test
+def cmf(sample, m, pi, gamma, W): #TODO: test cmf
     """
     CMF of CUB model
     """
     return prob(sample, m, pi, gamma, W).cumsum()
 
-def mean(m, pi, xi): #TODO
+def mean(m, pi, xi): #TODO mean
     """
     mean of CUB model
     """
     return None
 
-def var(m, pi, xi): #TODO
+def var(m, pi, xi): #TODO var
     """
     variance of CUB model
     """
     return None
 
-def std(m, pi, xi): #TODO
+def std(m, pi, xi): #TODO std
     """
     standard deviation of CUB model
     """
     return None
 
-def skew(pi, xi): #TODO
+def skew(pi, xi): #TODO skew
     """
     skewness normalized eta index
     """
     return None
 
-def mean_diff(m, pi, xi): #TODO
+def mean_diff(m, pi, xi): #TODO mean_diff
     return None
     
-def median(m, pi, xi): #TODO
+def median(m, pi, xi): #TODO median
     return None
     
-def gini(m, pi, xi): #TODO
+def gini(m, pi, xi): #TODO gini
     return None
     
-def laakso(m, pi, xi): #TODO
+def laakso(m, pi, xi): #TODO laakso
     return None
-
-def rvs(m, pi, gamma, W): #TODO
-    """
-    generate random sample from CUB model
-    """
-    n = W.shape[0]
-    rv = np.random.choice(
-        choices(m=m),
-        size=n,
-        replace=True,
-        p=pmf(m, pi, gamma, W)
-        )
-    return rv
 
 def loglik(sample, m, pi, gamma, W):
     #' @title Log-likelihood function of a CUB model with covariates for the feeling component
@@ -231,18 +217,18 @@ def varcov(sample, m, pi, gamma, W):
     WW = addones(W)
     i11 = np.sum((1-qi)**2 / pi**2)
     i12 = g01.T @ WW
-    i22 = WW.T @ hadprod(WW, hh) #TODO: check if this is Hadarmad or not
+    i22 = WW.T @ hadprod(WW, hh)
     # Information matrix
     nparam = colsof(WW) + 1
     matinf = np.ndarray(shape=(nparam, nparam))
     matinf[:] = np.nan
-    matinf[0,:] = np.concatenate([[i11], i12]).T #TODO: check dimensions
+    matinf[0,:] = np.concatenate([[i11], i12]).T
 
     varmat = np.ndarray(shape=(nparam, nparam))
     varmat[:] = np.nan
     for i in range(1, nparam):
         matinf[i,:] = np.concatenate([
-            [i12[i-1]], i22[i-1,:]]).T #TODO: check dimensions
+            [i12[i-1]], i22[i-1,:]]).T
     if np.any(np.isnan(matinf)):
         print("WARNING: NAs produced in information matrix")
     elif np.linalg.det(matinf) <= 0:
@@ -251,10 +237,9 @@ def varcov(sample, m, pi, gamma, W):
         varmat = np.linalg.inv(matinf)
     return varmat
 
-def init_gamma(sample, m, W): #TODO test
+def init_gamma(sample, m, W):
     WW = np.c_[np.ones(W.shape[0]), W]
     ni = np.log((m-sample+.5)/(sample-.5))
-    #TODO: .solve or .inv ????
     gamma = np.linalg.inv(WW.T @ WW) @ (WW.T @ ni)
     return gamma
 
@@ -262,7 +247,7 @@ def init_gamma(sample, m, W): #TODO test
 # RANDOM SAMPLE
 ###################################################################
 
-def draw(m, n, pi, gamma, W, seed=None): #TODO
+def draw(m, n, pi, gamma, W, seed=None):
     """
     generate random sample from CUB model
     """
@@ -275,9 +260,7 @@ def draw(m, n, pi, gamma, W, seed=None): #TODO
     rv = np.repeat(np.nan, n)
     theoric_i = pmfi(m=m, pi=pi,
         gamma=gamma, W=W)
-    #print("n", n)
     for i in range(n):
-        #TODO: if seed is not None
         if seed is not None:
             np.random.seed(seed*i)
         rv[i] = np.random.choice(
@@ -522,7 +505,7 @@ def mle(sample, m, W,
         )
     return res
 
-class CUBresCUB0W(CUBres): #TODO
+class CUBresCUB0W(CUBres):
 
     def plot_ordinal(self,
         figsize=(7, 5),

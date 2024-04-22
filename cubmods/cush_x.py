@@ -19,7 +19,7 @@ References:
       DOI: 10.1007/s11135-016-0393-3
 
 List of TODOs:
-    * TODO: check gini & laakso
+    TODO: check gini & laakso
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum

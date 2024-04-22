@@ -21,10 +21,10 @@ Example:
     plt.show()
 
 References:
-    * TODO: add references
+    TODO: add references
 
 List of TODOs:
-    * TODO: adjust 3d plots legend
+    TODO: adjust 3d plots legend
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -51,12 +51,10 @@ from .general import (
 from . import cub
 from .smry import CUBres, CUBsample
 
-#TODO anytime a function is called, use explicit kwargs!!!
 ###################################################################
 # FUNCTIONS
 ###################################################################
 
-# TODO: use for what?
 def proba(m, pi, xi, phi, r):
     """
     probability Pr(R=r) of CUBE model
@@ -69,7 +67,6 @@ def proba(m, pi, xi, phi, r):
     p = pi*pBe + (1-pi)/m
     return p
 
-# TODO: use in proba?
 def betar(m, xi, phi):
     """
     pmf of BetaBin component
@@ -84,7 +81,6 @@ def betar(m, xi, phi):
         pBe[r] = pBe[r-1] * ((m-r)/r) * ((1-xi+(r-1)*phi)/(xi+(m-r-1)*phi))
     return pBe
 
-# TODO: test
 def pmf(m, pi, xi, phi):
     """
     PMF of CUBE model
@@ -99,7 +95,6 @@ def cmf(m, pi, xi, phi):
     """
     return pmf(m, pi, xi, phi).cumsum()
 
-# TODO: test
 def mean(m, pi, xi, phi):
     """
     mean of CUBE model
@@ -107,7 +102,6 @@ def mean(m, pi, xi, phi):
     _ = phi # CUBE mean does not depend on phi
     return (m+1)/2 + pi*(m-1)*(1/2-xi)
 
-# TODO: test
 def var(m, pi, xi, phi):
     """
     variance of CUBE model
@@ -120,7 +114,7 @@ def var(m, pi, xi, phi):
     v = cub.var(m,pi,xi) + pi*xi*(1-xi)*(m-1)*(m-2)*phi/(1+phi)
     return v
 
-# TODO: check this...!!!!
+# TODO: check skew
 def skew(pi, xi, phi):
     """
     skewness normalized eta index
@@ -128,7 +122,7 @@ def skew(pi, xi, phi):
     _ = phi #TODO: use phi or not?
     return pi*(1/2 - xi)
 
-# TODO: test
+# TODO: test mean_diff
 def mean_diff(m, pi, xi, phi):
     R = choices(m)
     S = choices(m)
@@ -138,7 +132,7 @@ def mean_diff(m, pi, xi, phi):
             mu += abs(r-s)*proba(m,pi,xi,phi,r)*proba(m,pi,xi,phi,s)
     return mu
     
-# TODO: test
+# TODO: test meadian
 def median(m, pi, xi, phi):
     R = choices(m)
     cp = cmf(m, pi, xi, phi)
@@ -147,38 +141,23 @@ def median(m, pi, xi, phi):
         M = R.max()
     return M
 
-# TODO: test
+# TODO: test gini
 def gini(m, pi, xi, phi):
     ssum = 0
     for r in choices(m):
         ssum += proba(m, pi, xi, phi, r)**2
     return m*(1-ssum)/(m-1)
 
-# TODO: test
+# TODO: test laakso
 def laakso(m, pi, xi, phi):
     g = gini(m, pi, xi, phi)
     return g/(m - (m-1)*g)
 
-# TODO: test
-def rvs(m, pi, xi, phi, n):
-    """
-    generate random sample from CUB model
-    """
-    rv = np.random.choice(
-        choices(m=m),
-        size=n,
-        replace=True,
-        p=pmf(m, pi, xi, phi)
-        )
-    return rv
-
-# TODO: test
 def loglik(m, pi, xi, phi, f):
     L = pmf(m, pi, xi, phi)
     l = (f*np.log(L)).sum()
     return l
 
-# TODO: implement
 def varcov(m, pi, xi, phi, sample):
     """
     compute asymptotic variance-covariance
@@ -334,9 +313,7 @@ def effecube(params, tau, f, m):
 def mle(sample, m,
     gen_pars=None,
     maxiter=1000, 
-    tol=1e-6,
-    #ci=.99 #TODO: use for conf int?
-    ):
+    tol=1e-6):
     """
     fit a sample to a CUBE model
     with m preference choices.
@@ -379,7 +356,6 @@ def mle(sample, m,
         pi = np.sum(f*tau)/n
         #params = (xi, phi)
         #TODO: upper lower maxiter?
-        # ttb.append(dt.datetime.now()) # test optimize time
         optim = minimize(
             effecube, x0=[xi, phi], args=(tau, f, m),
              method="L-BFGS-B",
@@ -460,11 +436,8 @@ def mle(sample, m,
     dev = 2*(logliksat-l)
     # ICOMP metrics
     npars = 3
-    trvarmat = np.sum(np.diag(varmat))
+    #trvarmat = np.sum(np.diag(varmat))
     #ICOMP = -2*l + npars*np.log(trvarmat/npars) - np.log(np.linalg.det(varmat))
-    #TODO: add rho
-    # coefficient of correlation
-    #rho = varmat[0,1]/np.sqrt(varmat[0,0]*varmat[1,1])
     theoric = pmf(m=m, pi=pi, xi=xi, phi=phi)
     diss = dissimilarity(f/n, theoric)
     estimates = np.concatenate((
@@ -567,7 +540,7 @@ class CUBresCUBE(CUBres):
         else:
             return ax
 
-    #TODO: add option to show displacement from CUB model
+    #TODO: add option to show displacement from CUB model?
     def plot_confell(self,
         figsize=(7, 5),
         ci=.95,
