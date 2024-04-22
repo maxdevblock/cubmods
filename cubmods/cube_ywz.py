@@ -38,8 +38,11 @@ from .cube import (
 from .cub_0w import init_gamma
 from .general import (
     logis, choices, colsof, hadprod,
-    addones, lsat, luni, aic, bic,
-    freq, dissimilarity, lsatcov
+    addones, 
+    #lsat, 
+    luni, aic, bic,
+    freq, dissimilarity, 
+    #lsatcov
 )
 from .smry import CUBres, CUBsample
 
@@ -110,7 +113,7 @@ def draw(m, n, beta, gamma, alpha,
     )
     return sample
 
-def init_theta(m, sample, Y, W, Z, q, p, v):
+def init_theta(m, sample, W, p, v):
     gamma = init_gamma(sample=sample, 
         m=m, W=W)
     pi, _, _ = ini_cube(sample=sample, m=m)
@@ -189,9 +192,9 @@ def auxmat(m, xi, phi, a,b,c,d,e):
 def varcov(m, sample, beta, gamma, alpha,
     Y, W, Z):
     n = sample.size
-    p = colsof(Y)
-    q = colsof(W)
-    v = colsof(Z)
+    # p = colsof(Y)
+    # q = colsof(W)
+    # v = colsof(Z)
     #npars = beta.size+gamma.size+alpha.size
     pi = logis(Y, beta)
     xi = logis(W, gamma)
@@ -223,7 +226,7 @@ def varcov(m, sample, beta, gamma, alpha,
     #    precision=5, suppress=True):
     #    print("mats5"); print(mats5)
     
-    #TODO: in R è m ma dev'essere n!
+    #TODO: in R è m ma dev'essere n! Come mai? Controllare!
     S1 = np.repeat(np.nan, n)
     S2 = np.repeat(np.nan, n)
     S3 = np.repeat(np.nan, n)
@@ -372,16 +375,14 @@ def mle(m, sample, Y, W, Z,
     f = freq(m=m, sample=sample)
     n = sample.size
     YY = addones(Y)
-    WW = addones(W)
-    ZZ = addones(Z)
+    # WW = addones(W)
+    # ZZ = addones(Z)
     p = colsof(Y)
     q = colsof(W)
     v = colsof(Z)
     
     beta, gamma, alpha = init_theta(
-        m=m, sample=sample, Y=Y, W=W, Z=Z,
-        q=q, p=p, v=v
-    )
+        m=m, sample=sample, W=W, p=p, v=v)
     #print(f"beta:{beta}")
     #print(f"alpha:{alpha}")
     #print(f"gamma:{gamma}")
@@ -460,7 +461,6 @@ def mle(m, sample, Y, W, Z,
     wald = estimates/stderrs
     pval = 2*(sps.norm().sf(abs(wald)))
     muloglik = l/n
-    #TODO: remove logliksat
     #logliksat = lsat(f=f, n=n)
     #logliksatcov = lsatcov(
     #        sample=sample,
@@ -488,14 +488,14 @@ def mle(m, sample, Y, W, Z,
         wald=wald, pval=pval,
         AIC=AIC, BIC=BIC,
         loglike=l, muloglik=muloglik,
-        #TODO: remove logliksat
         #logliksat=logliksat,
         #logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         #dev=dev,
         theoric=theoric, diss=diss,
         seconds=(end-start).total_seconds(),
-        time_exe=start, Y=Y, W=W, Z=Z
+        time_exe=start, Y=Y, W=W, Z=Z,
+        gen_pars=gen_pars
     )
 
 class CUBresCUBEYWZ(CUBres):
@@ -534,15 +534,15 @@ class CUBresCUBEYWZ(CUBres):
             facecolor="None",
             edgecolor="k", s=200,
             label="observed")
-        if self.gen_pars is not None:
-            pi_gen = self.gen_pars["pi"]
-            gamma_gen = self.gen_pars["gamma"]
-            phi_gen = self.gen_pars["phi"]
-            p_gen = pmf(m=self.m, pi=pi_gen,
-                gamma=gamma_gen, phi=phi_gen,
-                W=self.W)
-            ax.stem(R, p_gen, linefmt="--r",
-            markerfmt="none", label="generating")
+        # if self.gen_pars is not None:
+        #     pi_gen = self.gen_pars["pi"]
+        #     gamma_gen = self.gen_pars["gamma"]
+        #     phi_gen = self.gen_pars["phi"]
+        #     p_gen = pmf(m=self.m, pi=pi_gen,
+        #         gamma=gamma_gen, phi=phi_gen,
+        #         W=self.W)
+        #     ax.stem(R, p_gen, linefmt="--r",
+        #     markerfmt="none", label="generating")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
@@ -557,7 +557,7 @@ class CUBresCUBEYWZ(CUBres):
             return ax
     
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):

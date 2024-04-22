@@ -239,7 +239,7 @@ def mle(sample, m, W,
         varmat=varmat,
         seconds=(end-start).total_seconds(),
         time_exe=start,
-        W=W
+        W=W, gen_pars=gen_pars
     )
 
 class CUBresCUBE0W0(CUBres):
@@ -301,7 +301,7 @@ class CUBresCUBE0W0(CUBres):
             return ax
     
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):

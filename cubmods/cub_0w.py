@@ -29,18 +29,19 @@ List of TODOs:
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
 #TODO: go on with implementation
 import datetime as dt
-import pickle
 import numpy as np
-import pandas as pd
+#import pandas as pd
 #from scipy.special import binom
 from scipy.optimize import minimize
 import scipy.stats as sps
 import matplotlib.pyplot as plt
 from .general import (
     choices, freq, dissimilarity,
-    chisquared, conf_ell, bitgamma,
-    logis, hadprod, luni, lsat,
-    lsatcov, addones, colsof, aic, bic
+    #chisquared, conf_ell,
+    bitgamma,
+    logis, hadprod, luni, #lsat,
+    #lsatcov,
+    addones, colsof, aic, bic
 )
 from . import cub
 from .smry import CUBres, CUBsample
@@ -170,7 +171,7 @@ def rvs(m, pi, gamma, W): #TODO
         )
     return rv
 
-def loglik(sample, m, pi, gamma, W): #TODO: test
+def loglik(sample, m, pi, gamma, W):
     #' @title Log-likelihood function of a CUB model with covariates for the feeling component
     #' @description Compute the log-likelihood function of a CUB model fitting ordinal data, with \eqn{q} 
     #' covariates for explaining the feeling component.
@@ -334,11 +335,10 @@ def effe01(gamma, esterno01, m): #TODO test
     )
     return r
 
-def mle(sample, m, W, #TODO
+def mle(sample, m, W,
     gen_pars=None,
     maxiter=500,
-    tol=1e-4,
-    ci=.99):
+    tol=1e-4):
     """
     fit a sample to a CUB model
     with m preference choices.
@@ -355,13 +355,12 @@ def mle(sample, m, W, #TODO
     # cast sample to numpy array
     sample = np.array(sample)
     # model preference choices
-    R = choices(m)
+    #R = choices(m)
     # observed absolute frequecies
     f = freq(sample, m)
     # sample size
     n = sample.size
-    #TODO: use this?
-    aver = np.mean(sample)
+    #aver = np.mean(sample)
     # add a column of 1
     WW = addones(W)
     # number of covariates
@@ -518,6 +517,7 @@ def mle(sample, m, W, #TODO
             varmat=varmat,
             W=W,
             diss=diss,
+            gen_pars=gen_pars
             # pi_gen=pi_gen, xi_gen=xi_gen
         )
     return res
@@ -563,7 +563,7 @@ class CUBresCUB0W(CUBres): #TODO
             return ax
 
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):
@@ -575,12 +575,3 @@ class CUBresCUB0W(CUBres): #TODO
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')
         return fig, ax
-
-    def save(self, fname):
-        """
-        Save a CUBresult object to file
-        """
-        filename = f"{fname}.cub.fit"
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
-        print(f"Fitting saved to {filename}")

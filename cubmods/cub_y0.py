@@ -33,7 +33,9 @@ from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from .general import (
     logis, bitxi, probbit, choices,
-    freq, hadprod, lsat, luni,
+    freq, hadprod, 
+    #lsat, 
+    luni,
     dissimilarity, aic, bic,
     colsof, addones
 )
@@ -70,7 +72,7 @@ def loglik(m, sample, Y, beta, xi):
     l = np.sum(np.log(eta*(pn-1/m)+1/m))
     return l
 
-def draw(m, n, beta, xi, Y, seed=None): #TODO
+def draw(m, n, beta, xi, Y, seed=None):
     """
     generate random sample from CUB model
     """
@@ -152,23 +154,21 @@ def effe10(beta, esterno10):
     )
     return r
 
-def mle(sample, m, Y, #TODO
+def mle(sample, m, Y,
     gen_pars=None,
     maxiter=500,
-    tol=1e-4,
-    ci=.99):
+    tol=1e-4):
     # start datetime
     start = dt.datetime.now()
     # cast sample to numpy array
     sample = np.array(sample)
     # model preference choices
-    R = choices(m)
+    #R = choices(m)
     # observed absolute frequecies
     f = freq(sample, m)
     # sample size
     n = sample.size
-    #TODO: use this?
-    aver = np.mean(sample)
+    #aver = np.mean(sample)
     # add a column of 1
     YY = np.c_[np.ones(Y.shape[0]), Y]
     # number of covariates
@@ -269,7 +269,8 @@ def mle(sample, m, Y, #TODO
             # rho=rho,
             sample=sample, f=f,
             varmat=varmat,
-            diss=diss, Y=Y
+            diss=diss, Y=Y,
+            gen_pars=gen_pars
             # pi_gen=pi_gen, xi_gen=xi_gen
         )
     return res
@@ -315,7 +316,7 @@ class CUBresCUBY0(CUBres):
             return ax
 
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):
@@ -327,13 +328,4 @@ class CUBresCUBY0(CUBres):
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')
         return fig, ax
-
-    def save(self, fname):
-        """
-        Save a CUBresult object to file
-        """
-        filename = f"{fname}.cub.fit"
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
-        print(f"Fitting saved to {filename}")
     

@@ -26,7 +26,6 @@ List of TODOs:
 @Contacts:    cub@maxpierini.it
 """
 
-import pickle
 import datetime as dt
 import numpy as np
 import pandas as pd
@@ -36,7 +35,8 @@ import matplotlib.pyplot as plt
 from .general import (
     logis, bitgamma, freq, choices,
     hadprod, aic, bic, dissimilarity,
-    luni, lsat, lsatcov, aic, bic,
+    luni, 
+    #lsat, lsatcov, 
     addones, colsof
 )
 from .cub import (
@@ -163,20 +163,18 @@ def varcov(m, sample, Y, W, beta, gamma):
 def mle(sample, m, Y, W,
     gen_pars=None,
     maxiter=500,
-    tol=1e-4,
-    ci=.99):
+    tol=1e-4):
     # start datetime
     start = dt.datetime.now()
     # cast sample to numpy array
     sample = np.array(sample)
     # model preference choices
-    R = choices(m)
+    #R = choices(m)
     # observed absolute frequecies
     f = freq(sample, m)
     # sample size
     n = sample.size
-    #TODO: use this?
-    aver = np.mean(sample)
+    #aver = np.mean(sample)
     # add a column of 1
     YY = addones(Y)
     WW = addones(W)
@@ -300,6 +298,7 @@ def mle(sample, m, Y, W,
         sample=sample, f=f,
         varmat=varmat, Y=Y, W=W,
         diss=diss,
+        gen_pars=gen_pars
         #dev=dev
     )
 
@@ -344,7 +343,7 @@ class CUBresCUBYW(CUBres):
             return ax
 
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):
@@ -356,12 +355,3 @@ class CUBresCUBYW(CUBres):
         if saveas is not None:
             fig.savefig(saveas, bbox_inches='tight')
         return fig, ax
-
-    def save(self, fname):
-        """
-        Save a CUBresult object to file
-        """
-        filename = f"{fname}.cub.fit"
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
-        print(f"Fitting saved to {filename}")
