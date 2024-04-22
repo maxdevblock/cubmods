@@ -212,7 +212,8 @@ def hadprod(Amat, xvett):
     return dprod
 
 def conf_ell(vcov, mux, muy, ci,
-    ax, showaxis=True, color="b",
+    ax, #showaxis=True, 
+    color="b",
     alpha=.25):
     """
     plot confidence ellipse of estimated
@@ -236,7 +237,7 @@ def conf_ell(vcov, mux, muy, ci,
         .scale(scale_x, scale_y) \
         .translate(mux, muy)
     ell.set_transform(transf + ax.transData)
-    elt = ax.add_patch(ell)
+    ax.add_patch(ell)
     # ang = elt.get_angle()
     # ax.axline([mux, muy], slope=ang)
     # if showaxis:
@@ -462,7 +463,7 @@ def conf_border(Sigma, mx, my, ax, conf=.95,
     plane="z", xyz0=(0,0,0)):
     """Solution by
     https://gist.github.com/randolf-scholz"""
-    n = Sigma.shape[0]
+    #n = Sigma.shape[0]
     s = 1000
     # the 2d confidemce region, projection
     # of a 3d confidence region at ci%,

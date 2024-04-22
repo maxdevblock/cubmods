@@ -41,8 +41,9 @@ from .cub_0w import (
 from .general import (
     choices, freq, logis, colsof,
     addones, hadprod, aic, bic,
-    lsat, luni, dissimilarity,
-    lsatcov
+    #lsat, 
+    luni, dissimilarity,
+    #lsatcov
 )
 from .cubsh import (
     pmf as pmf_cubsh,
@@ -269,7 +270,7 @@ def mle(m, sample, sh, Y, W, X,
         
         ttau1 = num1/den
         ttau2 = num2/den
-        ttau3 = 1 - ttau1 - ttau2
+        #ttau3 = 1 - ttau1 - ttau2
         
         dati1 = [ttau1,ttau2,X,Y]
         dati2 = [ttau2,sample,W]
@@ -353,7 +354,7 @@ def mle(m, sample, sh, Y, W, X,
         #dev=dev,
         AIC=AIC, BIC=BIC,
         seconds=(end-start).total_seconds(),
-        time_exe=start
+        time_exe=start, gen_pars=gen_pars
     )
     
 class CUBresCUBSHYWX(CUBres):
@@ -391,15 +392,15 @@ class CUBresCUBSHYWX(CUBres):
             facecolor="None",
             edgecolor="k", s=200,
             label="observed")
-        if self.gen_pars is not None:
-            pi_gen = self.gen_pars["pi"]
-            gamma_gen = self.gen_pars["gamma"]
-            phi_gen = self.gen_pars["phi"]
-            p_gen = pmf(m=self.m, pi=pi_gen,
-                gamma=gamma_gen, phi=phi_gen,
-                W=self.W)
-            ax.stem(R, p_gen, linefmt="--r",
-            markerfmt="none", label="generating")
+        # if self.gen_pars is not None:
+        #     pi_gen = self.gen_pars["pi"]
+        #     gamma_gen = self.gen_pars["gamma"]
+        #     phi_gen = self.gen_pars["phi"]
+        #     p_gen = pmf(m=self.m, pi=pi_gen,
+        #         gamma=gamma_gen, phi=phi_gen,
+        #         W=self.W)
+        #     ax.stem(R, p_gen, linefmt="--r",
+        #     markerfmt="none", label="generating")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
@@ -414,7 +415,7 @@ class CUBresCUBSHYWX(CUBres):
             return ax
     
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):

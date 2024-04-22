@@ -62,7 +62,7 @@ def as_txt(
     pars = np.asarray(estimates)
     pars = np.round(pars, 3)
     #print(pars)
-    lpars = len(max(pars.astype(str), key=len))
+    #lpars = len(max(pars.astype(str), key=len))
     space1 = lparnames+2
     #print(space1)
     ses = np.asarray(stderrs)
@@ -75,7 +75,7 @@ def as_txt(
     space3 = max([4, lwalds])+2-4
     pvals = np.asarray(pval)
     pvals = np.round(pvals, 4)
-    lpvals = len(max(pvals.astype(str), key=len))
+    #lpvals = len(max(pvals.astype(str), key=len))
     space4 = 2
     
     sep = "=======================================================================\n"

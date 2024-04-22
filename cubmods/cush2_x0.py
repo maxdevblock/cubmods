@@ -41,9 +41,11 @@ import scipy.stats as sps
 import matplotlib.pyplot as plt
 from statsmodels.tools.numdiff import approx_hess
 from .general import (
-    logis, colsof, aic, bic, lsat, luni,
+    logis, colsof, aic, bic, 
+    #lsat, 
+    luni,
     freq, dissimilarity, choices,
-    lsatcov
+    #lsatcov
 )
 from .cush2 import pmf as pmf_cush2
 from .smry import CUBres, CUBsample
@@ -129,8 +131,7 @@ def effe(pars, sample, m,
 
 #TODO: constraint (1-d1-d2)<1 ?
 def mle(sample, m, sh1, sh2,
-    X1, gen_pars=None,
-    maxiter=None, tol=None):
+    X1, gen_pars=None):
     start = dt.datetime.now()
     w1 = colsof(X1)
     n = sample.size
@@ -222,7 +223,7 @@ def mle(sample, m, sh1, sh2,
         sample=sample, f=f, varmat=varmat,
         diss=diss,
         seconds=(end-start).total_seconds(),
-        time_exe=start
+        time_exe=start, gen_pars=gen_pars
     )
 
 class CUBresCUSH2X0(CUBres):
@@ -266,7 +267,7 @@ class CUBresCUSH2X0(CUBres):
             return ax
 
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):

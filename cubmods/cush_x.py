@@ -29,7 +29,7 @@ List of TODOs:
 @Contacts:    cub@maxpierini.it
 """
 import datetime as dt
-import pickle
+#import pickle
 import numpy as np
 from scipy.optimize import minimize
 import scipy.stats as sps
@@ -37,8 +37,11 @@ from statsmodels.tools.numdiff import approx_hess
 import matplotlib.pyplot as plt
 from .general import (
     logis, freq, dissimilarity,
-    aic, bic, lsat, luni, choices,
-    lsatcov, addones, colsof,
+    aic, bic, 
+    #lsat, 
+    luni, choices,
+    #lsatcov, 
+    addones, colsof,
 )
 from .cush import pmf as pmf_cush
 from .smry import CUBres, CUBsample
@@ -188,7 +191,7 @@ def mle(m, sample, X, sh, gen_pars=None):
         sample=sample, f=f, varmat=varmat,
         X=X, diss=diss,
         seconds=(end-start).total_seconds(),
-        time_exe=start
+        time_exe=start, gen_pars=gen_pars
     )
 
 class CUBresCUSHX(CUBres):
@@ -232,7 +235,7 @@ class CUBresCUSHX(CUBres):
             return ax
 
     def plot(self,
-        ci=.95,
+        #ci=.95,
         saveas=None,
         figsize=(7, 5)
         ):
