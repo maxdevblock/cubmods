@@ -100,7 +100,7 @@ def draw(m, sh, omega, X, seed=None):
         theoric=theoric,
         diss=diss,
         X=X,
-        rv=rv,
+        rv=rv.astype(int),
         seed=seed
     )
 
