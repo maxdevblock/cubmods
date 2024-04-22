@@ -191,13 +191,13 @@ def mle(sample, m, W,
     f = freq(sample=sample, m=m)
     diss = dissimilarity(f/n, theoric)
     loglikuni = luni(m=m, n=n)
-    logliksat = lsat(n=n, f=f)
-    logliksatcov = lsatcov(
-        sample=sample,
-        covars=[W]
-    )
+    # logliksat = lsat(n=n, f=f)
+    # logliksatcov = lsatcov(
+    #     sample=sample,
+    #     covars=[W]
+    # )
     muloglik = l/n
-    dev = 2*(logliksat-l)
+    # dev = 2*(logliksat-l)
     
     estimates = pars
     wald = estimates/stderrs
@@ -231,11 +231,12 @@ def mle(sample, m, W,
         theoric=theoric,
         AIC=AIC, BIC=BIC,
         loglike=l,
-        logliksat=logliksat,
-        logliksatcov=logliksatcov,
+        # logliksat=logliksat,
+        # logliksatcov=logliksatcov,
         loglikuni=loglikuni,
         muloglik=muloglik,
-        diss=diss, dev=dev,
+        diss=diss,
+        # dev=dev,
         varmat=varmat,
         seconds=(end-start).total_seconds(),
         time_exe=start,
@@ -256,7 +257,8 @@ class CUBresCUBE0W0(CUBres):
         #pi = self.estimates[0]
         #xi = self.estimates[1]
         #phi = self.estimates[2]
-        title = f"{self.model} model    "
+        title = "MARGINAL PROBABILITY MASS\n"
+        title += f"{self.model} model    "
         title += f"$n={self.n}$\n"
         #title += fr"Estim($\pi={pi:.3f}$ , $\xi={xi:.3f}$ , $\phi={phi:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.3f}"

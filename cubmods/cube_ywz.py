@@ -512,7 +512,8 @@ class CUBresCUBEYWZ(CUBres):
         #pi = self.estimates[0]
         #xi = self.estimates[1]
         #phi = self.estimates[2]
-        title = f"{self.model} model    "
+        title = "MARGINAL PROBABILITY MASS\n"
+        title += f"{self.model} model    "
         title += f"$n={self.n}$\n"
         #title += fr"Estim($\pi={pi:.3f}$ , $\xi={xi:.3f}$ , $\phi={phi:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.3f}"

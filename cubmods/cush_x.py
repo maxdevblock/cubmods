@@ -140,7 +140,7 @@ def mle(m, sample, X, sh, gen_pars=None):
     l = loglik(m=m, sample=sample, X=X,
         omega=omega, sh=sh)
     muloglik = l/n
-    infmat = approx_hess(omi, effe,
+    infmat = approx_hess(omega, effe,
         args=(esterno, m, sh))
     varmat = np.ndarray(shape=(omega.size,omega.size))
     varmat[:] = np.nan
@@ -205,7 +205,8 @@ class CUBresCUSHX(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
-        title = f"{self.model} model    "
+        title = "MARGINAL PROBABILITY MASS\n"
+        title += f"{self.model} model    "
         title += f"$n={self.n}$\n"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
         ax.set_title(title)

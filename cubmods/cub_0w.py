@@ -516,7 +516,8 @@ class CUBresCUB0W(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
-        title = f"{self.model} model    "
+        title = "MARGINAL PROBABILITY MASS\n"
+        title += f"{self.model} model    "
         title += f"$n={self.n}$\n"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
         ax.set_title(title)

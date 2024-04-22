@@ -44,7 +44,7 @@ from .general import (
     choices, freq, dissimilarity,
     conf_ell, probbit,
     InvalidCategoriesError,
-    ParameterOurOfBoundsError,
+    ParameterOutOfBoundsError,
     InvalidSampleSizeError,
     lsat, luni, aic, bic,
     #chisquared,
@@ -218,9 +218,9 @@ def draw(m, pi, xi, n, seed=None):
         print("ERR: Number of ordered categories should be at least 4")
         raise InvalidCategoriesError(m=m, model="cub")
     if xi < 0 or xi > 1:
-        raise ParameterOurOfBoundsError("xi", xi)
+        raise ParameterOutOfBoundsError("xi", xi)
     if pi < 0 or pi > 1:
-        raise ParameterOurOfBoundsError("pi", pi)
+        raise ParameterOutOfBoundsError("pi", pi)
     if n <= 0:
         raise InvalidSampleSizeError(n)
 
