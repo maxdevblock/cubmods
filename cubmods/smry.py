@@ -1,4 +1,4 @@
-"""
+r"""
 CUB models in Python.
 Module for summary tools.
 
@@ -37,6 +37,17 @@ References:
 List of TODOs:
 ==============
   TODO: Correlation su, --- invece di === come nella tesi
+  TODO: loglik invece di loglike
+  TODO: Corr(\pi,\xi) invece di Corr(pi, xi) nei plot
+  TODO: Feeling invece di Preference nei grafici
+  TODO: barre invece di pallini (aggiungere opzione)
+  TODO: controllare NAs (e dirlo)
+  TODO: bounds opzionali il CUBE mle (anche CUBSH?)
+  TODO: 2 decimali nei 3d plot?
+  TODO: stessa unità di misura nei 3d plot magnified?
+  TODO: titolo con covariate AVERAGE ESTIMATED PROBABILITY
+  TODO: dissim in multicub plot (aggiungere opzione)
+  TODO: grandezza punti phi in multicube
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
