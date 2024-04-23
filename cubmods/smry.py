@@ -48,6 +48,7 @@ List of TODOs:
   *TODO: titolo con covariate AVERAGE ESTIMATED PROBABILITY
   TODO: dissim in multicub plot (aggiungere opzione)
   TODO: grandezza punti phi in multicube
+  TODO: stessi decimali nel summary
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -62,7 +63,6 @@ import pickle
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 from .general import (
     choices, freq
 )

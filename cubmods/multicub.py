@@ -32,7 +32,6 @@ References:
   
 List of TODOs:
 ==============
-  TODO: confidence in title or one only in legend
   TODO: check multicub (cube) posi before assign
 
 @Author:      Massimo Pierini
@@ -131,6 +130,8 @@ def multi(ords, ms,
             title = f"MULTICUB. Model {model.upper()}"
             if shs is not None and model == "cub":
                 title += "SH"
+            if confell:
+                title += f"    CR {ci:.0%}"
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize,
@@ -159,7 +160,7 @@ def multi(ords, ms,
             if model == "cub" and shs is None and confell:
                 conf_ell(vcov=est.varmat,
                     mux=1-pi, muy=1-xi,
-                    ax=ax,
+                    ax=ax, label=False,
                     color=f"C{i}",
                     alpha=alpha, ci=ci)
         ax.set_title(title)

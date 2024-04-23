@@ -222,7 +222,7 @@ def hadprod(Amat, xvett):
 
 def conf_ell(vcov, mux, muy, ci,
     ax, #showaxis=True, 
-    color="b",
+    color="b", label=True,
     alpha=.25):
     """
     plot confidence ellipse of estimated
@@ -237,7 +237,7 @@ def conf_ell(vcov, mux, muy, ci,
     ell = Ellipse(
         (0,0), 2*radx, 2*rady,
         color=color, alpha=alpha,
-        label=f"CR {ci:.0%}"
+        label=f"CR {ci:.0%}" if label else None
     )
     scale_x = np.sqrt(vcov[0, 0]) * nstd
     scale_y = np.sqrt(vcov[1, 1]) * nstd

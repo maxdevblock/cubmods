@@ -85,7 +85,7 @@ def pmf(m, sh1, sh2,
     return p
 
 def draw(m, sh1, sh2, omega1, omega2, X1,
-    X2, seed=None): #TODO: test draw
+    X2, seed=None):
     n = X1.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
