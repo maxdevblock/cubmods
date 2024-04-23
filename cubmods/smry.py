@@ -40,7 +40,7 @@ List of TODOs:
   *TODO: loglik invece di loglike
   *TODO: Corr(\pi,\xi) invece di Corr(pi, xi) nei plot
   *TODO: Feeling invece di Preference nei grafici
-  TODO: barre invece di pallini (aggiungere opzione)
+  *TODO: barre invece di pallini (aggiungere opzione)
   *TODO: controllare NAs (e dirlo)
   TODO: bounds opzionali in CUBE mle (anche CUBSH?)
   TODO: 2 decimali nei 3d plot?
@@ -62,6 +62,7 @@ import pickle
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 from .general import (
     choices, freq
 )
@@ -323,13 +324,20 @@ class CUBsample(object):
         return smry
 
     def plot(self, figsize=(7, 5),
+        kind="bar", #options: scatter, bar
         ax=None, saveas=None):
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
         R = choices(self.m)
         f = freq(self.rv, self.m)
-        ax.scatter(R, f/self.rv.size, facecolor="None",
-            edgecolor="k", s=200, label="drawn")
+        if kind == "bar":
+            ax.bar(R, f/self.rv.size, color="None",
+                edgecolor="k", label="drawn")
+        else:
+            if kind != "scatter":
+                print(f"WARNING: kind `{kind}` unknown. Using `scatter` instead.")
+            ax.scatter(R, f/self.rv.size, facecolor="None",
+                edgecolor="k", s=200, label="drawn")
         #p = pmf(self.m, self.pi, self.xi)
         ax.stem(R, self.theoric, linefmt="--r",
             markerfmt="none", label="generator")

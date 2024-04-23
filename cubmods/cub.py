@@ -448,7 +448,7 @@ def mle(sample, m,
 
 class CUBresCUB00(CUBres):
 
-    def plot_ordinal(self, figsize=(7, 5),
+    def plot_ordinal(self, figsize=(7, 5), kind="bar",
         ax=None,saveas=None):
         if ax is None:
             fig, ax = plt.subplots(
@@ -473,10 +473,18 @@ class CUBresCUB00(CUBres):
 
         ax.plot(R, self.theoric, ".b:",
             label="estimated", ms=10)
-        ax.scatter(R, self.f/self.n,
-            facecolor="None",
-            edgecolor="k", s=200,
-            label="observed")
+        if kind == "bar":
+            ax.bar(R, self.f/self.n,
+                facecolor="None",
+                edgecolor="k",
+                label="observed")
+        else:
+            if kind != "scatter":
+                print(f"WARNING: kind `{kind}` unknown. Using `scatter` instead.")
+            ax.scatter(R, self.f/self.n,
+                facecolor="None",
+                edgecolor="k", s=200,
+                label="observed")
         if self.gen_pars is not None:
             p_gen = pmf(self.m, self.gen_pars['pi'], self.gen_pars['xi'])
             ax.stem(R, p_gen, linefmt="--r",

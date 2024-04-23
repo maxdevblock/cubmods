@@ -211,7 +211,8 @@ def mle(sample, m, sh,
 
 class CUBresCUSH(CUBres):
 
-    def plot_ordinal(self, figsize=(7, 7), ax=None, saveas=None):
+    def plot_ordinal(self, figsize=(7, 7), kind="bar",
+        ax=None, saveas=None):
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -230,9 +231,18 @@ class CUBresCUSH(CUBres):
             p_gen = pmf(m=self.m, sh=self.sh, delta=delta_gen)
             ax.stem(R, p_gen, linefmt="--r",
                 markerfmt="none", label="generator")
-        ax.scatter(R, self.f/self.n,
-            facecolor="None",
-            edgecolor="k", s=200, label="observed")
+        if kind == "bar":
+            ax.bar(R, self.f/self.n,
+                facecolor="None",
+                edgecolor="k",
+                label="observed")
+        else:
+            if kind != "scatter":
+                print(f"WARNING: kind `{kind}` unknown. Using `scatter` instead.")
+            ax.scatter(R, self.f/self.n,
+                facecolor="None",
+                edgecolor="k", s=200,
+                label="observed")
         ax.plot(R, self.theoric, ".--b",
             label="estimated", ms=10)
         ax.set_xticks(R)

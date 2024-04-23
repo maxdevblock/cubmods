@@ -591,7 +591,7 @@ class CUBresCUBSH(CUBres):
 
     def plot_ordinal(self,
         figsize=(7, 5),
-        ax=None,
+        ax=None, kind="bar",
         saveas=None
         ):
         if ax is None:
@@ -629,10 +629,18 @@ class CUBresCUBSH(CUBres):
         #p = pmf(m=self.m, pi1=self.pi1, pi2=self.pi2, xi=self.xi, sh=self.sh)
         ax.plot(R, self.theoric, ".b:",
             label="estimated", ms=10)
-        ax.scatter(R, self.f/self.n,
-            facecolor="None",
-            edgecolor="k", s=200,
-            label="observed")
+        if kind == "bar":
+            ax.bar(R, self.f/self.n,
+                facecolor="None",
+                edgecolor="k",
+                label="observed")
+        else:
+            if kind != "scatter":
+                print(f"WARNING: kind `{kind}` unknown. Using `scatter` instead.")
+            ax.scatter(R, self.f/self.n,
+                facecolor="None",
+                edgecolor="k", s=200,
+                label="observed")
         if self.gen_pars is not None:
             pi1_gen, pi2_gen = self.gen_pars["pi1"], self.gen_pars["pi2"]
             xi_gen = self.gen_pars['xi']
