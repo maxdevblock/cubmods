@@ -143,6 +143,7 @@ def multi(ords, ms,
                 1-pi, 1-xi, "o",
                 label=cn if labels is None else labels[i]
             )
+            posi = pos_kwargs(1)
             if pos is not None:
                 posi = pos_kwargs(pos[i])
             if model == "cube":
