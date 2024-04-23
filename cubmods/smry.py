@@ -36,7 +36,7 @@ References:
   
 List of TODOs:
 ==============
-  - ...
+  TODO: Correlation su, --- invece di === come nella tesi
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
