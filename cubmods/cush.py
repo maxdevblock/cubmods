@@ -332,9 +332,7 @@ class CUBresCUSH(CUBres):
         ax[1].set_yticks([])
         ax[2].set_yticks([])
         ax[1].set_xlabel(r"$\delta$  shelter effect")
-        #ax[1].set_ylabel(r"$(1-\xi)$  preference")
         ax[2].set_xlabel(r"$\delta$  shelter effect")
-        #ax[2].set_ylabel(r"$(1-\xi)$  preference")
 
         # change all spines
         for axis in ['bottom']:

@@ -88,7 +88,7 @@ def from_formula(
     df.dropna(inplace=True)
     dfi_nona = df.index.size
     if dfi_tot != dfi_nona:
-        print(f"WARNING: {dfi_tot-dfi_nona} NaNs detected and removed.")
+        warnings.warn(f"{dfi_tot-dfi_nona} NaNs detected and removed.")
     sample = df[ordinal]
     n = sample.size
     df, covars = dummies2(df=df, DD=covars)

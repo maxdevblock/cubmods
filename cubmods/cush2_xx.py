@@ -251,7 +251,7 @@ class CUBresCUSH2XX(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
-        title = "MARGINAL PROBABILITY MASS\n"
+        title = "AVERAGE ESTIMATED PROBABILITY\n"
         title += f"{self.model} model    "
         title += f"$n={self.n}$\n"
         title += f"    Dissim(est,obs)={self.diss:.4f}"

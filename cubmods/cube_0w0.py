@@ -270,7 +270,7 @@ class CUBresCUBE0W0(CUBres):
         #pi = self.estimates[0]
         #xi = self.estimates[1]
         #phi = self.estimates[2]
-        title = "MARGINAL PROBABILITY MASS\n"
+        title = "AVERAGE ESTIMATED PROBABILITY\n"
         title += f"{self.model} model    "
         title += f"$n={self.n}$\n"
         #title += fr"Estim($\pi={pi:.3f}$ , $\xi={xi:.3f}$ , $\phi={phi:.3f}$)"

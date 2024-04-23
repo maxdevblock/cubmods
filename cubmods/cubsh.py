@@ -674,7 +674,7 @@ class CUBresCUBSH(CUBres):
         xi = self.estimates[4]
         delta = self.estimates[5]
         ax.set_xlabel(r"$(1-\pi)$  uncertainty")
-        ax.set_ylabel(r"$(1-\xi)$  preference")
+        ax.set_ylabel(r"$(1-\xi)$  feeling")
 
         # change all spines
         for axis in ['left','bottom']:

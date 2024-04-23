@@ -505,13 +505,13 @@ class CUBresCUB00(CUBres):
 
         if equal:
             ax.set_aspect("equal")
-        ax.set_title(f"Corr(pi,xi)= {self.rho:.4f}")
+        ax.set_title(fr"Corr($\pi,\xi$)= {self.rho:.4f}")
 
         pi = self.estimates[0]
         xi = self.estimates[1]
 
         ax.set_xlabel(r"$(1-\pi)$  uncertainty")
-        ax.set_ylabel(r"$(1-\xi)$  preference")
+        ax.set_ylabel(r"$(1-\xi)$  feeling")
 
         ax.plot(1-pi, 1-xi,
             ".b",ms=20, alpha=.5,

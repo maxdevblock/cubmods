@@ -36,16 +36,16 @@ References:
   
 List of TODOs:
 ==============
-  TODO: Correlation su, --- invece di === come nella tesi
-  TODO: loglik invece di loglike
-  TODO: Corr(\pi,\xi) invece di Corr(pi, xi) nei plot
-  TODO: Feeling invece di Preference nei grafici
+  *TODO: Correlation su, --- invece di === come nella tesi
+  *TODO: loglik invece di loglike
+  *TODO: Corr(\pi,\xi) invece di Corr(pi, xi) nei plot
+  *TODO: Feeling invece di Preference nei grafici
   TODO: barre invece di pallini (aggiungere opzione)
   *TODO: controllare NAs (e dirlo)
-  TODO: bounds opzionali il CUBE mle (anche CUBSH?)
+  TODO: bounds opzionali in CUBE mle (anche CUBSH?)
   TODO: 2 decimali nei 3d plot?
   TODO: stessa unità di misura nei 3d plot magnified?
-  TODO: titolo con covariate AVERAGE ESTIMATED PROBABILITY
+  *TODO: titolo con covariate AVERAGE ESTIMATED PROBABILITY
   TODO: dissim in multicub plot (aggiungere opzione)
   TODO: grandezza punti phi in multicube
 
@@ -103,6 +103,7 @@ def as_txt(
     space4 = 2
     
     sep = "=======================================================================\n"
+    sup = "-----------------------------------------------------------------------\n"
     est = f"{' '*space1}Estimates{' '*space2}StdErr{' '*space3}Wald{' '*space4}p-value\n"
     
     smry = sep
@@ -121,7 +122,7 @@ def as_txt(
     smry += "\n"
     for i in range(p):
         if par_types[i] is not None:
-            smry += sep
+            smry += sup
             smry += f"{par_types[i]}\n"
             smry += est
         spaceA = (space1+9)-len(par_names[i])-(len(f"{pars[i]:+}"))
@@ -131,6 +132,9 @@ def as_txt(
         #print(f"`{str(pars[i])}`")
         smry += f"{par_names[i]}{' '*spaceA}{pars[i]:+}{' '*spaceB}{ses[i]}{' '*spaceC}{walds[i]}{' '*spaceD}{pvals[i]:.4f}"
         smry += "\n"
+    if rho is not None:
+        smry += sup
+        smry += f"Correlation   = {rho:.4f}\n"
     smry += sep
     if diss is not None:
         smry += f"Dissimilarity = {diss:.4f}\n"
@@ -153,19 +157,17 @@ def as_txt(
     warn = ""
     if logliksat is not None:
         warn = " (!)" if logliksat<loglike else ""
-        smry += f"Loglike(sat){ls}= {logliksat:.3f}{warn}\n"
-    smry += f"Loglike(MOD)  = {loglike:.3f}\n"
-    smry += f"Loglike(uni)  = {loglikuni:.3f}\n"
-    smry += f"Mean-loglike  = {muloglik:.3f}\n"
+        smry += f"Loglik(sat) {ls}= {logliksat:.3f}{warn}\n"
+    smry += f"Loglik(MOD)   = {loglike:.3f}\n"
+    smry += f"Loglik(uni)   = {loglikuni:.3f}\n"
+    smry += f"Mean-loglik   = {muloglik:.3f}\n"
     if dev is not None:
         smry += f"Deviance{ls}    = {dev:.3f}{warn}\n"
     if c_ is not None:
         smry += c_
     if l_ is not None:
         smry += l_
-    if rho is not None:
-        smry += f"Correlation   = {rho:.4f}\n"
-    smry += sep
+    smry += sup
     smry += f"AIC = {AIC:.2f}\n"
     smry += f"BIC = {BIC:.2f}\n"
     smry += sep

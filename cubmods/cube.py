@@ -577,7 +577,7 @@ class CUBresCUBE(CUBres):
             ax.set_title(f"Corr(pi,xi)= {self.rho}")
 
         ax.set_xlabel(r"$(1-\pi)$  uncertainty")
-        ax.set_ylabel(r"$(1-\xi)$  preference")
+        ax.set_ylabel(r"$(1-\xi)$  feeling")
 
         # change all spines
         for axis in ['left','bottom']:
