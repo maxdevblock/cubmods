@@ -226,7 +226,7 @@ def varcov(m, sample, beta, gamma, alpha,
     #    precision=5, suppress=True):
     #    print("mats5"); print(mats5)
     
-    #TODO: in R è m ma dev'essere n! Come mai? Controllare!
+    #TODO: in R è m ma dev'essere n! Perchè in R si aggiunge, in Python no.
     S1 = np.repeat(np.nan, n)
     S2 = np.repeat(np.nan, n)
     S3 = np.repeat(np.nan, n)
