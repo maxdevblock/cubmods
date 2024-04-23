@@ -386,8 +386,8 @@ def mle(m, sample, Y, W, Z,
     #print(f"beta:{beta}")
     #print(f"alpha:{alpha}")
     #print(f"gamma:{gamma}")
-    rank = pd.Series(sample).rank(method="dense")
-    rank = rank.astype(int).values
+    # rank = pd.Series(sample).rank(method="dense")
+    # rank = rank.astype(int).values
     
     niter = 1
     while niter < maxiter:
@@ -397,8 +397,8 @@ def mle(m, sample, Y, W, Z,
             1/logis(Y=Z, param=alpha)-1)
         betabin = betabinomial(m=m,
             #rank o sample?
-            sample=rank,
-            #sample=sample,
+            # sample=rank,
+            sample=sample,
             xi=xi, phi=phi)
         probi = pi*(betabin-1/m)+1/m
         lold = np.sum(np.log(probi))
