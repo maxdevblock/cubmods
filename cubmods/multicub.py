@@ -33,6 +33,7 @@ References:
 List of TODOs:
 ==============
   TODO: confidence in title or one only in legend
+  TODO: check multicub (cube) posi before assign
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
