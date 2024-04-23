@@ -84,7 +84,11 @@ def from_formula(
     ordinal, covars = formula_parser(formula)
     #print(ordinal, covars)
     # all rows with at least a NaN will be dropped
+    dfi_tot = df.index.size
     df.dropna(inplace=True)
+    dfi_nona = df.index.size
+    if dfi_tot != dfi_nona:
+        print(f"WARNING: {dfi_tot-dfi_nona} NaNs detected and removed.")
     sample = df[ordinal]
     n = sample.size
     df, covars = dummies2(df=df, DD=covars)

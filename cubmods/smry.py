@@ -41,7 +41,7 @@ List of TODOs:
   TODO: Corr(\pi,\xi) invece di Corr(pi, xi) nei plot
   TODO: Feeling invece di Preference nei grafici
   TODO: barre invece di pallini (aggiungere opzione)
-  TODO: controllare NAs (e dirlo)
+  *TODO: controllare NAs (e dirlo)
   TODO: bounds opzionali il CUBE mle (anche CUBSH?)
   TODO: 2 decimali nei 3d plot?
   TODO: stessa unità di misura nei 3d plot magnified?
