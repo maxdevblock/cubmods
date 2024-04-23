@@ -324,6 +324,7 @@ class CUBsample(object):
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.set_xlabel("Ordinal")
         ax.set_ylabel("Probability mass")
+        #TODO: title too long for models with covariates
         ax.set_title(self)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
