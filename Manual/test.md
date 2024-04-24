@@ -1,24 +1,25 @@
-- `draw`
-  - Parameters
-    - 1
-    - 2
+- `.draw()`
+  - Arguments
+    - `name` (_type_): description, options
+    - `name=default` (_tyoe_): description, options
   
   - Returns
-    - a
-    - b
+    - _type_: description (linkto)
+
+  - Raises
+    - `Exception name`: description
+    - `Exception name`: description
 
   - Methods
-    - U 
-    - o
+    - `.name`: returns what _type_, description
 
   - Functions
-    - y
-      - Parameters
-        - 1
-        - 2
+    - `.name()`
+      - Arguments
+        - `name` (_type_): description, options
+        - `name=default` (_tyoe_): description, option
       - Returns
-        - a
-        - b
-    - x
+        - _type_: description (linkto)
+    - `.name()`
 
-- `mle`
+- `.mle()`
