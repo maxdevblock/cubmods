@@ -77,7 +77,7 @@ Initial values of $(\pi^{(0)}, \xi^{(0)})$ for EM algorithm.
 
 ## `CUBresCUB00`
 
-Extension of the basic `CUBres` Class (#TODO: link). Is return by `.mle()` function [see here](cub.md#.mle()).
+Extension of the basic `CUBres` Class (#TODO: link). Is return by `.mle()` function [see here](cub.md#mle).
 
 - Methods
   - `.name`: returns what _type_, description
