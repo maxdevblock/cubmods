@@ -19,6 +19,10 @@ On the contrary, a general function to draw random sample has not been currently
 
 The last chapter, shows the basic usage for the tool `multicub`.
 
+# `gem` basic syntax
+
+TODO
+
 # Summary
 
 - [CUB family](Manual/02_cub_family.md)
