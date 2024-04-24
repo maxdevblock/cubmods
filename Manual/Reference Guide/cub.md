@@ -29,7 +29,7 @@ Estimates parameters from an observed sample.
   - `maxiter=500` (_int_): maximum number of iterations for the EM algorithm
   - `tol=1e-4` (_float_): tolerance for the EM algorithm
 - Returns
-  - an instance of `CUBresCUB00` Class (#TODO: link)
+  - an instance of `CUBresCUB00` Class [see here](cub.md#CUBresCUB00)
 
 ***
 
