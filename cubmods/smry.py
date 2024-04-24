@@ -42,7 +42,7 @@ List of TODOs:
   *TODO: Feeling invece di Preference nei grafici
   *TODO: barre invece di pallini (aggiungere opzione)
   *TODO: controllare NAs (e dirlo)
-  TODO: risultati inferenziali come DataFrame
+  TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi
   TODO: User Manual
   TODO: Refernce Guide
   TODO: bounds opzionali in CUBE mle (anche CUBSH?)
@@ -249,12 +249,12 @@ class CUBres(object):
             **self.__dict__
         )
         
-    def as_df(self):
+    def as_dataframe(self):
         df = pd.DataFrame({
-            "iperpar": self.e_types,
-            "par": self.est_names,
+            "component": self.e_types,
+            "parameter": self.est_names,
             "estimate": self.estimates,
-            "se": self.stderrs,
+            "stderr": self.stderrs,
             "wald": self.wald,
             "pvalue": self.pval
         })
