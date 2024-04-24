@@ -18,3 +18,13 @@ Even if each family has got its own _Maximum Likelihood Estimation_ function `ml
 On the contrary, a general function to draw random sample has not been currently implemented yet and the function must be called from the module of the corresponding family, for example `cube_ywz.draw()`.
 
 The last chapter, shows the basic usage for the tool `multicub`.
+
+# Summary
+
+- [CUB family](Manual/02_cub_family.md)
+- [CUBSH family](Manual/03_cubsh_family.md)
+- [CUBE family](Manual/04_cube_family.md)
+- [IHG family](Manual/06_ihg_family.md)
+- [CUSH family](Manual/05_cush_family.md)
+- [2-CUSH family](Manual/07_2cush_family.md)
+- [MULTICUB tool](Manual/08_multicub.md)
