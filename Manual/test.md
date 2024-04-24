@@ -11,4 +11,14 @@
     - U 
     - o
 
+  - Functions
+    - y
+      - Parameters
+        - 1
+        - 2
+      - Returns
+        - a
+        - b
+    - x
+
 - `mle`
