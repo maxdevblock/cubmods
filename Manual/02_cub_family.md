@@ -119,6 +119,7 @@ Elapsed time=0.00187 seconds =====>>> Wed Apr 24 11:27:35 2024
 
 ![image](https://github.com/maxdevblock/cubmods/assets/46634650/ca613509-a463-49ad-8f50-3f0bfd19c7ab)
 
+See [cub module](./Reference%20Guide/cub.md) Reference Guide for more details.
 
 ***
 
