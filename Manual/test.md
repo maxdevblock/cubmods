@@ -1,7 +1,10 @@
 - `.draw()`
   - Arguments
-    - `name` (_type_): description, options
-    - `name=default` (_tyoe_): description, options
+    - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
+    - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
+    - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
+    - `n` (_int_): number of observations to be drawn
+    - `seed=None` (_int): seed to ensure reproducibility
   
   - Returns
     - _type_: description (linkto)
