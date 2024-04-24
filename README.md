@@ -19,6 +19,31 @@ Currently, the package must be downloaded from GitHub, unzipped, and placed in t
 
 When the version `0.0.1` will be complete, it will be uploaded on `PyPI`.
 
+## Basic usage
+```Python
+# import libraries
+import matplotlib.pyplot as plt
+from cubmods import cub, gem
+
+# draw a sample
+drawn = cub.draw(m=10, pi=.7, xi=.2,
+                 n=500, seed=1)
+print(drawn.summary())
+drawn.plot()
+plt.show()
+
+# inferential method on drawn sample
+mod = gem.from_formula(
+    df=drawn.as_dataframe(),
+    formula="ordinal~0|0|0",
+    m=10,
+    gen_pars={"pi": .7, "xi":.2}
+)
+print(mod.summary())
+mod.plot()
+plt.show()
+```
+
 ## Manual
 Work in progress.
 
