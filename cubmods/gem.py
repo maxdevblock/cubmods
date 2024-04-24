@@ -85,7 +85,7 @@ def from_formula(
     #print(ordinal, covars)
     # all rows with at least a NaN will be dropped
     dfi_tot = df.index.size
-    df.dropna(inplace=True)
+    df = df.dropna().copy(deep=True)
     dfi_nona = df.index.size
     if dfi_tot != dfi_nona:
         warnings.warn(f"{dfi_tot-dfi_nona} NaNs detected and removed.")

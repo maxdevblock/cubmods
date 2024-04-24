@@ -32,7 +32,7 @@ References:
   
 List of TODOs:
 ==============
-  TODO: check multicub (cube) posi before assign
+  - ...
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -77,7 +77,7 @@ def pos_kwargs(pos):
     # default if not allowed pos value
     return dict(ha="center", va="bottom")
 
-def multi(ords, ms,
+def multi(ords, ms=None,
     model="cub",
     title=None,
     labels=None, shs=None,
@@ -102,11 +102,13 @@ def multi(ords, ms,
         )
         
     n = ords.columns.size
-    assert n == len(ms)
     if labels is not None:
         assert n == len(labels)
     if shs is not None:
         assert n == len(shs)
+    if ms is None:
+        ms = np.repeat(None, n)
+    assert n == len(ms)
     
     ests = []
     for i in range(n):
@@ -130,7 +132,7 @@ def multi(ords, ms,
             title = f"MULTICUB. Model {model.upper()}"
             if shs is not None and model == "cub":
                 title += "SH"
-            if confell:
+            if confell and model == "cub" and shs is None:
                 title += f"    CR {ci:.0%}"
         if ax is None:
             fig, ax = plt.subplots(
@@ -165,7 +167,7 @@ def multi(ords, ms,
                     alpha=alpha, ci=ci)
         ax.set_title(title)
         ax.set_xlabel(r"Uncertainty $(1-\pi)$")
-        ax.set_ylabel(r"Preference $(1-\xi)$")
+        ax.set_ylabel(r"Feeling $(1-\xi)$")
         ax.grid(True)
         ax.set_xlim(xlim)
         ax.set_ylim(ylim)
