@@ -42,6 +42,9 @@ List of TODOs:
   *TODO: Feeling invece di Preference nei grafici
   *TODO: barre invece di pallini (aggiungere opzione)
   *TODO: controllare NAs (e dirlo)
+  TODO: risultati inferenziali come DataFrame
+  TODO: User Manual
+  TODO: Refernce Guide
   TODO: bounds opzionali in CUBE mle (anche CUBSH?)
   TODO: 2 decimali nei 3d plot?
   TODO: stessa unità di misura nei 3d plot magnified?
