@@ -47,6 +47,15 @@ plt.show()
 ## Manual
 Work in progress.
 
+- [Basic Usage](Manual/01_basic_usage.md)
+- [CUB family](Manual/02_cub_family.md)
+- [CUBSH family](Manual/03_cubsh_family.md)
+- [CUBE family](Manual/04_cube_family.md)
+- [IHG family](Manual/06_ihg_family.md)
+- [CUSH family](Manual/05_cush_family.md)
+- [2-CUSH family](Manual/07_2cush_family.md)
+- [MULTICUB tool](Manual/08_multicub.md)
+
 ## References
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
   - D'Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics & Data Analysis},  \bold{49, 917--937
