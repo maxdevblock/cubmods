@@ -10,6 +10,11 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
+Reference Guide and Manual
+==========================
+    `Manual <https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md>`__
+    `Reference Guide <https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md>`__
+
 Example1:
     .. code-block::python
     # importazione librerie necessarie
