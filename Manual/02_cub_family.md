@@ -15,6 +15,8 @@ where $\pi$ and $\xi$ are the parameters for respectively the _uncertainty_ and 
 Note that $(1-\pi)$ is the _Uncertainty_ weight and $(1-\xi)$ is the _Feeling_ component for
 usual _positive wording_.
 
+See [cub module](./Reference%20Guide/cub.md) Reference Guide for more details.
+
 ### Draw a sample
 
 In the following example, a sample from a CUB model of $n=500$ observations of an ordinal variable with $m=10$ choices
@@ -119,8 +121,6 @@ Elapsed time=0.00187 seconds =====>>> Wed Apr 24 11:27:35 2024
 
 ![image](https://github.com/maxdevblock/cubmods/assets/46634650/ca613509-a463-49ad-8f50-3f0bfd19c7ab)
 
-See [cub module](./Reference%20Guide/cub.md) Reference Guide for more details.
-
 ***
 
 ## With covariates
@@ -140,6 +140,9 @@ $$
 $$
 
 ### Example with covariates for Feeling component
+
+See [cub_0w module](./Reference%20Guide/cub_0w.md) Reference Guide for more details.
+
 ```Python
 # import libraries
 import numpy as np
@@ -161,37 +164,7 @@ print(mod.summary())
 # plot the results
 mod.plot()
 plt.show()
-
-# Draw a random sample
-n = 1000
-np.random.seed(1)
-W1 = np.random.randint(1, 10, n)
-np.random.seed(42)
-W2 = np.random.randint(1, 10, n)
-W = pd.DataFrame({
-    "W1": W1, "W2": W2
-})
-drawn = cub_0w.draw(m=10, n=n, 
-    pi=mod.estimates[0],
-    gamma=mod.estimates[1:],
-    W=W
-)
-drawn.plot()
-plt.show()
-# MLE estimation of random sample
-W["ordinal"] = drawn.rv
-mod1 = gem.from_formula(
-    formula="ordinal~0|W1+W2|0",
-    df=W
-)
-# Print MLE summary
-print(mod1.summary())
-# plot the results
-mod1.plot()
-plt.show()
 ```
-
-Results
 
 ```
 =======================================================================
@@ -223,7 +196,40 @@ Elapsed time=0.10926 seconds =====>>> Thu Apr 25 12:20:33 2024
 
 ![image](https://github.com/maxdevblock/cubmods/assets/46634650/8a815c9a-b04e-4220-b6a3-f1e73212ba66)
 
+```Python
+# Draw a random sample
+n = 1000
+np.random.seed(1)
+W1 = np.random.randint(1, 10, n)
+np.random.seed(42)
+W2 = np.random.randint(1, 10, n)
+W = pd.DataFrame({
+    "W1": W1, "W2": W2
+})
+drawn = cub_0w.draw(m=10, n=n, 
+    pi=mod.estimates[0],
+    gamma=mod.estimates[1:],
+    W=W
+)
+drawn.plot()
+plt.show()
+```
+
 ![image](https://github.com/maxdevblock/cubmods/assets/46634650/89d308b8-85da-4810-b768-ada9d1204490)
+
+```Python
+# MLE estimation of random sample
+W["ordinal"] = drawn.rv
+mod1 = gem.from_formula(
+    formula="ordinal~0|W1+W2|0",
+    df=W
+)
+# Print MLE summary
+print(mod1.summary())
+# plot the results
+mod1.plot()
+plt.show()
+```
 
 ```
 =======================================================================
@@ -257,6 +263,8 @@ Elapsed time=0.08926 seconds =====>>> Thu Apr 25 12:20:34 2024
 
 ### Example with covariates for Uncertainty component
 
+See [cub_y0 module](./Reference%20Guide/cub_y0.md) Reference Guide for more details.
+
 ```Python
 # import libraries
 import numpy as np
@@ -278,35 +286,7 @@ print(mod.summary())
 # plot the results
 mod.plot()
 plt.show()
-
-# Draw a random sample
-n = 1000
-np.random.seed(1)
-Y1 = np.random.randint(1, 10, n)
-np.random.seed(42)
-Y2 = np.random.randint(1, 10, n)
-Y = pd.DataFrame({
-    "Y1": Y1, "Y2": Y2
-})
-drawn = cub_y0.draw(m=10, n=n, 
-    beta=mod.estimates[:-1], xi=mod.estimates[-1], Y=Y)
-drawn.plot()
-plt.show()
-
-# MLE estimation of random sample
-Y["ordinal"] = drawn.rv
-mod1 = gem.from_formula(
-    formula="ordinal~Y1+Y2|0|0",
-    df=Y
-)
-# Print MLE summary
-print(mod1.summary())
-# plot the results
-mod1.plot()
-plt.show()
 ```
-
-Results
 
 ```
 =======================================================================
@@ -338,7 +318,37 @@ Elapsed time=0.30304 seconds =====>>> Thu Apr 25 12:31:03 2024
 
 ![image](https://github.com/maxdevblock/cubmods/assets/46634650/2d4dab80-ca06-4d98-9d97-6e92d7545f04)
 
+```Python
+# Draw a random sample
+n = 1000
+np.random.seed(1)
+Y1 = np.random.randint(1, 10, n)
+np.random.seed(42)
+Y2 = np.random.randint(1, 10, n)
+Y = pd.DataFrame({
+    "Y1": Y1, "Y2": Y2
+})
+drawn = cub_y0.draw(m=10, n=n, 
+    beta=mod.estimates[:-1], xi=mod.estimates[-1], Y=Y)
+drawn.plot()
+plt.show()
+```
+
 ![image](https://github.com/maxdevblock/cubmods/assets/46634650/9a7bc632-5aa2-4a6e-b478-051966067b8f)
+
+```Python
+# MLE estimation of random sample
+Y["ordinal"] = drawn.rv
+mod1 = gem.from_formula(
+    formula="ordinal~Y1+Y2|0|0",
+    df=Y
+)
+# Print MLE summary
+print(mod1.summary())
+# plot the results
+mod1.plot()
+plt.show()
+```
 
 ```
 =======================================================================
