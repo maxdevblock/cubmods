@@ -10,7 +10,7 @@ See [cub_family](../02_cub_family.md) Manual for details about the models.
 
 # Main Functions
 
-## `.draw()`
+## `.draw(m, n, beta, gamma, Y, W)`
 
 Draws a random sample from a given model.
 
@@ -26,7 +26,7 @@ Draws a random sample from a given model.
 - Returns
   - an instance of `CUBsample` Class (#TODO: link)
 
-## `.mle()`
+## `.mle(sample, m, Y, W)`
 
 Estimates parameters from an observed sample.
 
@@ -45,7 +45,7 @@ Estimates parameters from an observed sample.
 
 # Ancillary Functions
 
-## `.pmf()`
+## `.pmf(m, beta, gamma, Y, W)`
 Average Estimated Probability mass of a specified model.
 - Arguments
   - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
@@ -56,7 +56,7 @@ Average Estimated Probability mass of a specified model.
 - Returns
   - an _array_ of $m$ elements, Average Estimated Probability of the specified model.
 
-## `.pmfi()`
+## `.pmfi(m, beta, gamma, Y, W)`
 PMF of a specified model for each statistical unit $i$ given the covariates and the parameters.
 - Arguments
   - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
@@ -67,7 +67,7 @@ PMF of a specified model for each statistical unit $i$ given the covariates and 
 - Returns
   - an _matrix_ $n \times m$, PMF of the specified model for each statistical unit.
 
-## `.loglik()`
+## `.loglik(m, sample, Y, W, beta, gamma)`
 Loglikelihood of a specified CUB model given an observed sample.
 - Arguments
   - `sample` (_array_): observed sample of ordinal responses
@@ -79,7 +79,7 @@ Loglikelihood of a specified CUB model given an observed sample.
 - Returns
   - the computed loglikelihood (_int_)
 
-## `.varcov()`
+## `.varcov(m, sample, Y, W, beta, gamma)`
 Asymptotic covariance matrix of estimated parameters.
 - Arguments
   - `sample` (_array_): observed sample of ordinal responses
