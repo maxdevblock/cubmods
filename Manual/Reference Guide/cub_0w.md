@@ -10,7 +10,7 @@ See [cub_family](../02_cub_family.md) Manual for details about the models.
 
 # Main Functions
 
-## `.draw()`
+## `.draw(m, n, pi, gamma, W)`
 
 Draws a random sample from a given model.
 
@@ -25,7 +25,7 @@ Draws a random sample from a given model.
 - Returns
   - an instance of `CUBsample` Class (#TODO: link)
 
-## `.mle()`
+## `.mle(sample, m, W)`
 
 Estimates parameters from an observed sample.
 
@@ -43,7 +43,7 @@ Estimates parameters from an observed sample.
 
 # Ancillary Functions
 
-## `.pmf()`
+## `.pmf(m, pi, gamma, W)`
 Average Estimated Probability mass of a specified model.
 - Arguments
   - `m` (_int_): number of ordinal responses; should be $m>3$
@@ -53,7 +53,7 @@ Average Estimated Probability mass of a specified model.
 - Returns
   - an _array_ of $m$ elements, Average Estimated Probability of the specified model.
 
-## `.pmfi()`
+## `.pmfi(m, pi, gamma, W)`
 PMF of a specified model for each statistical unit $i$ given the covariates and the parameters.
 - Arguments
   - `m` (_int_): number of ordinal responses; should be $m>3$
@@ -63,7 +63,7 @@ PMF of a specified model for each statistical unit $i$ given the covariates and 
 - Returns
   - an _matrix_ $n \times m$, PMF of the specified model for each statistical unit.
 
-## `.loglik()`
+## `.loglik(sample, m, pi, gamma, W)`
 Loglikelihood of a specified CUB model given an observed sample.
 - Arguments
   - `sample` (_array_): observed sample of ordinal responses
@@ -74,7 +74,7 @@ Loglikelihood of a specified CUB model given an observed sample.
 - Returns
   - the computed loglikelihood (_int_)
 
-## `.varcov()`
+## `.varcov(sample, m, pi, gamma, W)`
 Asymptotic covariance matrix of estimated parameters.
 - Arguments
   - `sample` (_array_): observed sample of ordinal responses
@@ -85,7 +85,7 @@ Asymptotic covariance matrix of estimated parameters.
 - Returns
   - a matrix $u \times u$ where $u = |\pmb\gamma|+1$ of the estimated covariance
 
-## `.init_gamma()`
+## `.init_gamma(sample, m, W)`
 Initial values of $\pmb\gamma^{(0)}$ for EM algorithm.
 - Arguments
   - `sample` (_array_): observed sample of ordinal responses
