@@ -12,8 +12,8 @@ Description:
 
 Reference Guide and Manual
 ==========================
-    `Manual <https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md>`__
-    `Reference Guide <https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md>`__
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
+  - Reference Guide https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md
 
 Example1:
     .. code-block::python
