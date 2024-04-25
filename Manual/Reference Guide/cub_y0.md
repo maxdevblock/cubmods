@@ -1,7 +1,7 @@
-`cub_0w` module Main Functions, Ancillary Functions and Classes
+`cub_y0` module Main Functions, Ancillary Functions and Classes
 
 ```Python
-from cubmods import cub_0w
+from cubmods import cub_y0
 ```
 
 See [cub_family](../02_cub_family.md) Manual for details about the models.
@@ -16,9 +16,9 @@ Draws a random sample from a given model.
 
 - Arguments
   - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
-  - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
-  - `gamma` (_array_): array of parameters $\pmb\gamma$ for Feeling covariates; must be of length `W.columns+1`
-  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling
+  - `beta` (_array_): array of parameters $\pmb\beta$ for Uncertainty covariates; must be of length `Y.columns+1`
+  - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
+  - `Y` (_DataFrame_): a `numpy` DataFrame with covariates values for Uncertainty
   - `n` (_int_): number of observations to be drawn, must be $n>0$
   - `seed=None` (_int_): seed to ensure reproducibility
 
@@ -32,12 +32,12 @@ Estimates parameters from an observed sample.
 - Arguments
   - `sample` (_array_): the observed sample; can be a _list_ or a `numpy` _array_
   - `m` (_int_): number of ordinal responses; must be $m>3$
-  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it must not contain a column named `constant`
-  - `gen_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters `{"pi": <float>, "gamma": <array>}`
+  - `Y` (_DataFrame_): a `numpy` DataFrame with covariates values for Uncertainty; column names will be taken as covariate variable names; it must not contain a column named `constant`
+  - `gen_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters `{"beta": <array>, "xi": <float>}`
   - `maxiter=500` (_int_): maximum number of iterations for the EM algorithm
   - `tol=1e-4` (_float_): tolerance for the EM algorithm
 - Returns
-  - an instance of `CUBresCUB0W` Class [see here](cub.md#CUBresCUB0W)
+  - an instance of `CUBresCUBY0` Class [see here](cub.md#CUBresCUBY0)
 
 ***
 
@@ -46,20 +46,20 @@ Estimates parameters from an observed sample.
 ## `.pmf()`
 Average Estimated Probability mass of a specified model.
 - Arguments
-  - `m` (_int_): number of ordinal responses; should be $m>3$
-  - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
-  - `gamma` (_array_): array of parameters $\pmb\gamma$ for Feeling covariates; must be of length `W.columns+1`
-  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
+  - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
+  - `beta` (_array_): array of parameters $\pmb\beta$ for Uncertainty covariates; must be of length `Y.columns+1`
+  - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
+  - `Y` (_DataFrame_): a `numpy` DataFrame with covariates values for Uncertainty
 - Returns
   - an _array_ of $m$ elements, Average Estimated Probability of the specified model.
 
 ## `.pmfi()`
 PMF of a specified model for each statistical unit $i$ given the covariates and the parameters.
 - Arguments
-  - `m` (_int_): number of ordinal responses; should be $m>3$
-  - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
-  - `gamma` (_array_): array of parameters $\pmb\gamma$ for Feeling covariates; must be of length `W.columns+1`
-  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
+  - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
+  - `beta` (_array_): array of parameters $\pmb\beta$ for Uncertainty covariates; must be of length `Y.columns+1`
+  - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
+  - `Y` (_DataFrame_): a `numpy` DataFrame with covariates values for Uncertainty
 - Returns
   - an _matrix_ $n \times m$, PMF of the specified model for each statistical unit.
 
@@ -78,12 +78,12 @@ Loglikelihood of a specified CUB model given an observed sample.
 Asymptotic covariance matrix of estimated parameters.
 - Arguments
   - `sample` (_array_): observed sample of ordinal responses
-  - `m` (_int_): number of ordinal responses; should be $m>3$
-  - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
-  - `gamma` (_array_): array of parameters $\pmb\gamma$ for Feeling covariates; must be of length `W.columns+1`
-  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
+  - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
+  - `beta` (_array_): array of parameters $\pmb\beta$ for Uncertainty covariates; must be of length `Y.columns+1`
+  - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
+  - `Y` (_DataFrame_): a `numpy` DataFrame with covariates values for Uncertainty
 - Returns
-  - a matrix $u \times u$ where $u = |\pmb\gamma|+1$ of the estimated covariance
+  - a matrix $u \times u$ where $u = |\pmb\beta|+1$ of the estimated covariance
 
 ## `.init_gamma()`
 Initial values of $\pmb\gamma^{(0)}$ for EM algorithm.
@@ -98,7 +98,7 @@ Initial values of $\pmb\gamma^{(0)}$ for EM algorithm.
 
 # Classes
 
-## `CUBresCUB0W`
+## `CUBresCUBY0`
 
 Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` function [see here](cub.md#mle).
 
