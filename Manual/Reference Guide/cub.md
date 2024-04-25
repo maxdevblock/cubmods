@@ -12,7 +12,7 @@ See [cub_family](../02_cub_family.md) Manual for details about the models.
 
 ## `.draw(m, pi, xi, n)`
 
-Draws a random sample from a given model.
+Draws a random sample from a given CUB model without covariates.
 
 - Arguments
   - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
@@ -26,7 +26,7 @@ Draws a random sample from a given model.
 
 ## `.mle(sample, m)`
 
-Estimates parameters from an observed sample.
+Function to estimate and validate a CUB model without covariates for given ordinal responses. The function also checks if the estimated variance-covariance matrix is not positive definite and if `NaN` are produced during calculations: in case, it prints a warning message and returns a matrix and related results with `NaN` entries.
 
 - Arguments
   - `sample` (_array_): the observed sample; can be a _list_ or a `numpy` _array_
