@@ -4,6 +4,8 @@
 from cubmods import cub
 ```
 
+See [cub_family](../02_cub_family.md) Manual for details about the models.
+
 ***
 
 # Main Functions
@@ -81,16 +83,44 @@ Initial values of $(\pi^{(0)}, \xi^{(0)})$ for EM algorithm.
 
 ## `CUBresCUB00`
 
-Extension of the basic `CUBres` Class (#TODO: link). Is return by `.mle()` function [see here](cub.md#mle).
+Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` function [see here](cub.md#mle).
 
 - Methods
   - `.name`: returns what _type_, description
 
 - Functions
-  - `.name()`
+  - `.plot_ordinal()`
+    
+    Plots the observed sample relative frequencies, the probability mass of the estimated model and (if provided) the probability mass of the kwown (generating) model.
+
     - Arguments
-      - `name` (_type_): description, options
-      - `name=default` (_tyoe_): description, option
+      - `kind="bar"` (_string_): how to plot the observed sample relative frequencies; options: `bar`, `scatter`
+      - `ax=None` (_matplotlib ax_): subplot, if `None` a new figure will be created with specified `figsize`; see [matplotlib](https://matplotlib.org) documentation for details
+      - `figsize=(7, 5)` (_tuple_): a tuple of integers of figure size `(weight, height)`; only effective if `ax=None`; see [matplotlib](https://matplotlib.org) documentation for details
+      - `saveas=None` (_string_): filename of the plot to be saved; if `None` the plot won't be saved; only effective if `ax=None`; must end with a supported extension (for example `fname.png`); see [matplotlib](https://matplotlib.org) documentation for details
     - Returns
-      - _type_: description (linkto)
-  - `.name()`
+      - _ax_ if `ax` is not `None` otherwise a tuple of _(fig, ax)_; see [matplotlib](https://matplotlib.org) documentation for details
+
+  - `.plot_confell()`
+
+    Plots the asymptotic confidence ellipse of estimated parameters.
+      
+    - Arguments
+      - `ax=None` (_matplotlib ax_): subplot, if `None` a new figure will be created with specified `figsize`; see [matplotlib](https://matplotlib.org) documentation for details
+      - `figsize=(7, 5)` (_tuple_): a tuple of integers of figure size `(weight, height)`; only effective if `ax=None`; see [matplotlib](https://matplotlib.org) documentation for details
+      - `ci=.95` (_float_): confidence level of ellipse; must be $(0,1)$
+      - `magnified=False` (_boolean_): if `False` the axes limits will be the full parameter space; otherwise if `True` matplotlib will automatically adjust the limits to fit the ellipse
+      - `equal=True` (_boolean_): if `True` the axes will be equally spaced `ax.set_aspect("equal")`; see [matplotlib](https://matplotlib.org) documentation for details
+      - `saveas=None` (_string_): filename of the plot to be saved; if `None` the plot won't be saved; only effective if `ax=None`; must end with a supported extension (for example `fname.png`); see [matplotlib](https://matplotlib.org) documentation for details
+    - Returns
+      - _ax_ if `ax` is not `None` otherwise a tuple of _(fig, ax)_; see [matplotlib](https://matplotlib.org) documentation for details
+
+  - `.plot()`
+    
+    Default plot tool. Plots a figure with 3 rows and one column with `.plot_ordinal()`, `.plot_confell()` and `.plot_confell(magnified=True)`
+    - Arguments
+      - `figsize=(7, 15)` (_tuple_) a tuple of integers of figure size `(weight, height)`; see [matplotlib](https://matplotlib.org) documentation for details
+      - `ci=.95` (_float_): confidence level of ellipse; must be $(0,1)$
+      - `saveas=None` (_string_): filename of the plot to be saved; if `None` the plot won't be saved; must end with a supported extension (for example `fname.png`); see [matplotlib](https://matplotlib.org) documentation for details
+    - Returns
+      - a tuple of _(fig, ax)_; see [matplotlib](https://matplotlib.org) documentation for details
