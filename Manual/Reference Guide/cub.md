@@ -1,5 +1,9 @@
 `cub` module Main Functions, Ancillary Functions and Classes
 
+```Python
+from cubmods import cub
+```
+
 ***
 
 # Main Functions
