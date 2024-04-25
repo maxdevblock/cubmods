@@ -57,7 +57,7 @@ sample = cubsh.draw2(
     seed=0
 )
 # save the object
-sample.save("tesi_test_cubsh")
+sample.save("test_cubsh")
 # print the summary of the drawn sample
 print(sample.summary())
 # show the plot of the drawn sample
