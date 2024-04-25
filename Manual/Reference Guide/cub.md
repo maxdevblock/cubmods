@@ -10,7 +10,7 @@ See [cub_family](../02_cub_family.md) Manual for details about the models.
 
 # Main Functions
 
-## `.draw()`
+## `.draw(m, pi, xi, n)`
 
 Draws a random sample from a given model.
 
@@ -24,7 +24,7 @@ Draws a random sample from a given model.
 - Returns
   - an instance of `CUBsample` Class (#TODO: link)
 
-## `.mle()`
+## `.mle(sample, m)`
 
 Estimates parameters from an observed sample.
 
@@ -41,7 +41,7 @@ Estimates parameters from an observed sample.
 
 # Ancillary Functions
 
-## `.pmf()`
+## `.pmf(m, pi, xi)`
 Probability Mass Function of a specified CUB model.
 - Arguments
   - `m` (_int_): number of ordinal responses; should be $m>3$
@@ -50,7 +50,7 @@ Probability Mass Function of a specified CUB model.
 - Returns
   - an _array_ of $m$ elements, PMF of the specified model.
 
-## `.loglik()`
+## `.loglik(m, pi, xi, f)`
 Loglikelihood of a specified CUB model given an observed sample.
 - Arguments
   - `m` (_int_): number of ordinal responses; should be $m>3$
@@ -60,7 +60,7 @@ Loglikelihood of a specified CUB model given an observed sample.
 - Returns
   - the computed loglikelihood (_int_)
 
-## `.varcov()`
+## `.varcov(m, pi, xi, ordinal)`
 Asymptotic covariance matrix of estimated parameters.
 - Arguments
   - `m` (_int_): number of ordinal responses; should be $m>3$
@@ -70,7 +70,7 @@ Asymptotic covariance matrix of estimated parameters.
 - Returns
   - a matrix $2 \times 2$ of the estimated covariance
 
-## `.init_theta()`
+## `.init_theta(f, m)`
 Initial values of $(\pi^{(0)}, \xi^{(0)})$ for EM algorithm.
 - Arguments
   - `f` (_array_): absolute frequencies of the observed model; must be of size $m$
