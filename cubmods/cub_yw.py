@@ -10,11 +10,12 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    TODO: add example
+Reference Guide and Manual
+==========================
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
+  - Reference Guide https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md
 
 
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
