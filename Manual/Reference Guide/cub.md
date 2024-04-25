@@ -86,7 +86,7 @@ Initial values of $(\pi^{(0)}, \xi^{(0)})$ for EM algorithm.
 Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` function [see here](cub.md#mle).
 
 - Methods
-  - `.name`: returns what _type_, description
+  - same of `CUBres` Class [see here]() #TODO: link
 
 - Functions
   - `.plot_ordinal()`
@@ -124,3 +124,5 @@ Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` fun
       - `saveas=None` (_string_): filename of the plot to be saved; if `None` the plot won't be saved; must end with a supported extension (for example `fname.png`); see [matplotlib](https://matplotlib.org) documentation for details
     - Returns
       - a tuple of _(fig, ax)_; see [matplotlib](https://matplotlib.org) documentation for details
+
+  - other functions of `CUBres` Class [see here]() #TODO: link
