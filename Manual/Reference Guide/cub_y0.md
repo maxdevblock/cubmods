@@ -10,7 +10,7 @@ See [cub_family](../02_cub_family.md) Manual for details about the models.
 
 # Main Functions
 
-## `.draw()`
+## `.draw(m, n, beta, xi, Y)`
 
 Draws a random sample from a given model.
 
@@ -25,7 +25,7 @@ Draws a random sample from a given model.
 - Returns
   - an instance of `CUBsample` Class (#TODO: link)
 
-## `.mle()`
+## `.mle(sample, m, Y)`
 
 Estimates parameters from an observed sample.
 
@@ -43,7 +43,7 @@ Estimates parameters from an observed sample.
 
 # Ancillary Functions
 
-## `.pmf()`
+## `.pmf(m, beta, xi, Y)`
 Average Estimated Probability mass of a specified model.
 - Arguments
   - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
@@ -53,7 +53,7 @@ Average Estimated Probability mass of a specified model.
 - Returns
   - an _array_ of $m$ elements, Average Estimated Probability of the specified model.
 
-## `.pmfi()`
+## `.pmfi(m, beta, xi, Y)`
 PMF of a specified model for each statistical unit $i$ given the covariates and the parameters.
 - Arguments
   - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
@@ -63,7 +63,7 @@ PMF of a specified model for each statistical unit $i$ given the covariates and 
 - Returns
   - an _matrix_ $n \times m$, PMF of the specified model for each statistical unit.
 
-## `.loglik()`
+## `.loglik(m, sample, Y, beta, xi)`
 Loglikelihood of a specified CUB model given an observed sample.
 - Arguments
   - `sample` (_array_): observed sample of ordinal responses
@@ -74,7 +74,7 @@ Loglikelihood of a specified CUB model given an observed sample.
 - Returns
   - the computed loglikelihood (_int_)
 
-## `.varcov()`
+## `.varcov(m, sample, Y, beta, xi)`
 Asymptotic covariance matrix of estimated parameters.
 - Arguments
   - `sample` (_array_): observed sample of ordinal responses
@@ -84,15 +84,6 @@ Asymptotic covariance matrix of estimated parameters.
   - `Y` (_DataFrame_): a `numpy` DataFrame with covariates values for Uncertainty
 - Returns
   - a matrix $u \times u$ where $u = |\pmb\beta|+1$ of the estimated covariance
-
-## `.init_gamma()`
-Initial values of $\pmb\gamma^{(0)}$ for EM algorithm.
-- Arguments
-  - `sample` (_array_): observed sample of ordinal responses
-  - `m` (_int_): number of ordinal responses; should be $m>3$
-  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
-- Returns
-  - an _array_ of $\pmb\gamma^{(0)}$
 
 ***
 
