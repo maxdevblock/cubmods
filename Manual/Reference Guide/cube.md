@@ -4,7 +4,7 @@
 from cubmods import cube
 ```
 
-See [cub_family](../04_cube_family.md) Manual for details about the models.
+See [cube_family](../04_cube_family.md) Manual for details about the models.
 
 ***
 
