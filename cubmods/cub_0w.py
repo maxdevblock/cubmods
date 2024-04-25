@@ -305,7 +305,7 @@ def draw(m, n, pi, gamma, W, seed=None):
 ###################################################################
 # INFERENCE
 ###################################################################
-def effe01(gamma, esterno01, m): #TODO test
+def effe01(gamma, esterno01, m):
     #' @title Auxiliary function for the log-likelihood estimation of CUB models
     #' @description Compute the opposite of the scalar function that is maximized when running 
     #' the E-M algorithm for CUB models with covariates for the feeling parameter.
@@ -338,10 +338,6 @@ def mle(sample, m, W,
     """
     fit a sample to a CUB model
     with m preference choices.
-    if the sample has been generated
-    from a CUB model itself and
-    generating (pi, xi) are known,
-    compute compare metrics
     """
     # validate parameters
     #if not validate_pars(m=m, n=sample.size):

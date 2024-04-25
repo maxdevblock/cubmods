@@ -1,7 +1,7 @@
 `cub` module Main Functions, Ancillary Functions and Classes
 
 ```Python
-from cubmods import cub
+from cubmods import cub_0w
 ```
 
 See [cub_family](../02_cub_family.md) Manual for details about the models.
@@ -44,46 +44,61 @@ Estimates parameters from an observed sample.
 # Ancillary Functions
 
 ## `.pmf()`
-Probability Mass Function of a specified CUB model.
+Average Estimated Probability mass of a specified model.
 - Arguments
   - `m` (_int_): number of ordinal responses; should be $m>3$
   - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
-  - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
+  - `gamma` (_array_): array of parameters $\pmb\gamma$ for Feeling covariates; must be of length `W.columns+1`
+  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
 - Returns
-  - an _array_ of $m$ elements, PMF of the specified model.
+  - an _array_ of $m$ elements, Average Estimated Probability of the specified model.
+
+## `.pmfi()`
+PMF of a specified model for each statistical unit $i$ given the covariates and the parameters.
+- Arguments
+  - `m` (_int_): number of ordinal responses; should be $m>3$
+  - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
+  - `gamma` (_array_): array of parameters $\pmb\gamma$ for Feeling covariates; must be of length `W.columns+1`
+  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
+- Returns
+  - an _matrix_ $n \times m$, PMF of the specified model for each statistical unit.
 
 ## `.loglik()`
 Loglikelihood of a specified CUB model given an observed sample.
 - Arguments
+  - `sample` (_array_): observed sample of ordinal responses
   - `m` (_int_): number of ordinal responses; should be $m>3$
   - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
-  - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
-  - `f` (_array_): absolute frequencies of the observed model; must be of size $m$
+  - `gamma` (_array_): array of parameters $\pmb\gamma$ for Feeling covariates; must be of length `W.columns+1`
+  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
 - Returns
   - the computed loglikelihood (_int_)
 
 ## `.varcov()`
-Estimated ovariance matrix of estimated parameters.
+Asymptotic covariance matrix of estimated parameters.
 - Arguments
+  - `sample` (_array_): observed sample of ordinal responses
   - `m` (_int_): number of ordinal responses; should be $m>3$
   - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
-  - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
-  - `ordinal` (_array_): the observed sample
+  - `gamma` (_array_): array of parameters $\pmb\gamma$ for Feeling covariates; must be of length `W.columns+1`
+  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
 - Returns
+  - a matrix $u \times u$ where $u = |\pmb\gamma|+1$ of the estimated covariance
 
-## `.init_theta()`
-Initial values of $(\pi^{(0)}, \xi^{(0)})$ for EM algorithm.
+## `.init_gamma()`
+Initial values of $\pmb\gamma^{(0)}$ for EM algorithm.
 - Arguments
-  - `f` (_array_): absolute frequencies of the observed model; must be of size $m$
+  - `sample` (_array_): observed sample of ordinal responses
   - `m` (_int_): number of ordinal responses; should be $m>3$
+  - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it should not contain a column named `constant`
 - Returns
-  - a _tuple_ of $(\pi^{(0)}, \xi^{(0)})$
+  - an _array_ of $\pmb\gamma^{(0)}$
 
 ***
 
 # Classes
 
-## `CUBresCUB00`
+## `CUBresCUB0W`
 
 Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` function [see here](cub.md#mle).
 
@@ -93,7 +108,7 @@ Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` fun
 - Functions
   - `.plot_ordinal()`
     
-    Plots the observed sample relative frequencies, the probability mass of the estimated model and (if provided) the probability mass of the kwown (generating) model.
+    Plots the observed sample relative frequencies, the average estimated probability mass of the estimated model.
 
     - Arguments
       - `kind="bar"` (_string_): how to plot the observed sample relative frequencies; options: `bar`, `scatter`
@@ -103,26 +118,11 @@ Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` fun
     - Returns
       - _ax_ if `ax` is not `None` otherwise a tuple of _(fig, ax)_; see [matplotlib](https://matplotlib.org) documentation for details
 
-  - `.plot_confell()`
-
-    Plots the asymptotic confidence ellipse of estimated parameters.
-      
-    - Arguments
-      - `ax=None` (_matplotlib ax_): subplot, if `None` a new figure will be created with specified `figsize`; see [matplotlib](https://matplotlib.org) documentation for details
-      - `figsize=(7, 5)` (_tuple_): a tuple of integers of figure size `(weight, height)`; only effective if `ax=None`; see [matplotlib](https://matplotlib.org) documentation for details
-      - `ci=.95` (_float_): confidence level of ellipse; must be $(0,1)$
-      - `magnified=False` (_boolean_): if `False` the axes limits will be the full parameter space; otherwise if `True` matplotlib will automatically adjust the limits to fit the ellipse
-      - `equal=True` (_boolean_): if `True` the axes will be equally spaced `ax.set_aspect("equal")`; see [matplotlib](https://matplotlib.org) documentation for details
-      - `saveas=None` (_string_): filename of the plot to be saved; if `None` the plot won't be saved; only effective if `ax=None`; must end with a supported extension (for example `fname.png`); see [matplotlib](https://matplotlib.org) documentation for details
-    - Returns
-      - _ax_ if `ax` is not `None` otherwise a tuple of _(fig, ax)_; see [matplotlib](https://matplotlib.org) documentation for details
-
   - `.plot()`
     
-    Default plot tool. Plots a figure with 3 rows and one column with `.plot_ordinal()`, `.plot_confell()` and `.plot_confell(magnified=True)`
+    Default plot tool. Plots a figure with 1 rows and 1 column with `.plot_ordinal()`
     - Arguments
-      - `figsize=(7, 15)` (_tuple_) a tuple of integers of figure size `(weight, height)`; see [matplotlib](https://matplotlib.org) documentation for details
-      - `ci=.95` (_float_): confidence level of ellipse; must be $(0,1)$
+      - `figsize=(7, 5)` (_tuple_) a tuple of integers of figure size `(weight, height)`; see [matplotlib](https://matplotlib.org) documentation for details
       - `saveas=None` (_string_): filename of the plot to be saved; if `None` the plot won't be saved; must end with a supported extension (for example `fname.png`); see [matplotlib](https://matplotlib.org) documentation for details
     - Returns
       - a tuple of _(fig, ax)_; see [matplotlib](https://matplotlib.org) documentation for details

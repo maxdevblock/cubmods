@@ -61,13 +61,14 @@ Loglikelihood of a specified CUB model given an observed sample.
   - the computed loglikelihood (_int_)
 
 ## `.varcov()`
-Estimated ovariance matrix of estimated parameters.
+Asymptotic covariance matrix of estimated parameters.
 - Arguments
   - `m` (_int_): number of ordinal responses; should be $m>3$
   - `pi` (_float_): parameter of Uncertainty $(1-\pi)$, must be $(0,1]$
   - `xi` (_float_): parameters of Feeling $(1-\xi)$, must be $[0,1]$
   - `ordinal` (_array_): the observed sample
 - Returns
+  - a matrix $2 \times 2$ of the estimated covariance
 
 ## `.init_theta()`
 Initial values of $(\pi^{(0)}, \xi^{(0)})$ for EM algorithm.
