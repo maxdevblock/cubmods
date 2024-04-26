@@ -222,6 +222,7 @@ def mle(sample, m, sh1, sh2,
     return CUBresCUSH2XX(
         model="2CUSH(XX)",
         m=m, n=n, sh=np.array([sh1, sh2]),
+        X=np.array([X1, X2]),
         estimates=estimates,
         est_names=est_names,
         e_types=e_types,
