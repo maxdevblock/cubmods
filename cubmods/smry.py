@@ -244,10 +244,112 @@ class CUBres(object):
                 pars += "; "
         return f"CUBres({self.model}; {pars})"
 
+    def as_txt(self):
+        par_names = np.asarray(self.est_names)
+        par_types = np.asarray(self.e_types)
+        lparnames = len(max(self.est_names, key=len))
+        pars = np.asarray(self.estimates)
+        parsT = []
+        for i in range(pars.size):
+            parsT.append(f"{pars[i]:.3f}")
+        #print(pars)
+        #lpars = len(max(pars.astype(str), key=len))
+        space1 = lparnames+2
+        #print(space1)
+        ses = np.asarray(self.stderrs)
+        sesT = []
+        for i in range(ses.size):
+            sesT.append(f"{ses[i]:.4f}")
+        lses = len(max(sesT, key=len))
+        space2 = max([6, lses])+2-6
+        walds = np.asarray(self.wald)
+        waldsT = []
+        for i in range(walds.size):
+            waldsT.append(f"{walds[i]:.3f}")
+        lwalds = len(max(waldsT, key=len))
+        space3 = max([4, lwalds])+2-4
+        pvals = np.asarray(self.pval)
+        pvalsT = []
+        for i in range(pvals.size):
+            pvalsT.append(f"{pvals[i]:.4f}")
+        #lpvals = len(max(pvals.astype(str), key=len))
+        space4 = 2
+        
+        sep = "=======================================================================\n"
+        sup = "-----------------------------------------------------------------------\n"
+        est = f"{' '*space1}Estimates{' '*space2}StdErr{' '*space3}Wald{' '*space4}p-value\n"
+        
+        smry = sep
+        smry += f"=====>>> {self.model.upper()} model <<<===== ML-estimates\n"
+        smry += sep
+        smry += f"m={self.m}  "
+        if self.sh is not None:
+            smry += f"Shelter={self.sh}  "
+        smry += f"Size={self.n}  "
+        if self.niter is not None:
+            smry += f"Iterations={self.niter}  "
+        if self.maxiter is not None:
+            smry += f"Maxiter={self.maxiter}  "
+        if self.tol is not None:
+            smry += f"Tol={self.tol:.0E}"
+        smry += "\n"
+        for i in range(self.p):
+            if par_types[i] is not None:
+                smry += sup
+                smry += f"{par_types[i]}\n"
+                smry += est
+            spaceA = (space1+9)-len(par_names[i])-(len(parsT[i]))
+            spaceB = space2+6-len(sesT[i])
+            spaceC = space3+4-len(waldsT[i])
+            spaceD = space4+7-6
+            #print(f"`{str(pars[i])}`")
+            smry += f"{par_names[i]}{' '*spaceA}{parsT[i]}{' '*spaceB}{sesT[i]}{' '*spaceC}{waldsT[i]}{' '*spaceD}{pvalsT[i]}"
+            smry += "\n"
+        if self.rho is not None:
+            smry += sup
+            smry += f"Correlation   = {self.rho:.4f}\n"
+        smry += sep
+        if self.diss is not None:
+            smry += f"Dissimilarity = {self.diss:.4f}\n"
+        ls = "  "
+        l_ = None
+        c_ = None
+        if (
+            self.V is not None or
+            self.W is not None or
+            self.X is not None or
+            self.Y is not None or
+            self.Z is not None
+            ):
+            ls = "* "
+            if self.logliksat is not None:
+                l_ = "* Saturated model without covariates\n"
+        if self.logliksatcov is not None:
+            c_ = "^ not valid for continuous covariates\n"
+            smry += f"Logl(satcov)^ = {self.logliksatcov:.3f}\n"
+        warn = ""
+        if self.logliksat is not None:
+            warn = " (!)" if self.logliksat<self.loglike else ""
+            smry += f"Loglik(sat) {ls}= {self.logliksat:.3f}{warn}\n"
+        smry += f"Loglik(MOD)   = {self.loglike:.3f}\n"
+        smry += f"Loglik(uni)   = {self.loglikuni:.3f}\n"
+        smry += f"Mean-loglik   = {self.muloglik:.3f}\n"
+        if self.dev is not None:
+            smry += f"Deviance{ls}    = {self.dev:.3f}{warn}\n"
+        if c_ is not None:
+            smry += c_
+        if l_ is not None:
+            smry += l_
+        smry += sup
+        smry += f"AIC = {self.AIC:.2f}\n"
+        smry += f"BIC = {self.BIC:.2f}\n"
+        smry += sep
+        smry += f"Elapsed time={self.seconds:.5f} seconds =====>>> {self.time_exe:%c}\n"
+        smry += sep[:-1]
+        return smry
+
     def summary(self):
-        return as_txt(
-            **self.__dict__
-        )
+        return self.as_txt()
         
     def as_dataframe(self):
         df = pd.DataFrame({
