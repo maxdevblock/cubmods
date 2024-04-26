@@ -84,6 +84,9 @@ def as_txt(
     #theoric, sample, f, varmat,
     #V, W, X, Y, Z, gen_pars
     ):
+    """
+        DEPRECATED FUNCTION.
+    """
     par_names = np.asarray(est_names)
     par_types = np.asarray(e_types)
     lparnames = len(max(par_names, key=len))

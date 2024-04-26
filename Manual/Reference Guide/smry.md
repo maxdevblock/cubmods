@@ -68,16 +68,3 @@ Default Class for MLE results; each model module function extends this Class wit
 
 - Functions
   - `.()`
-
-***
-
-# Functions
-
-## `.as_txt()`
-
-What. #TODO: move inside `CUBres`
-
-- Arguments
-  - `arg` (_type_): 
-- Returns
-  - What.
