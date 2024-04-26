@@ -21,7 +21,11 @@ The last chapter, shows the basic usage for the tool `multicub`.
 
 # `gem` basic syntax
 
-TODO
+TODO: gem basic syntax
+
+# Saving and loading objects
+
+TODO: loading and saving objects
 
 # Summary
 
