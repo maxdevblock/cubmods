@@ -61,7 +61,7 @@ An instance of this Class is returned by `.draw()` functions. See the correspond
 
 ## `CUBres`
 
-Default Class for MLE results; each model module function extends this Class with specific functions. An instance  of the extended Class is returned by `.mle()` functions.
+Default Class for MLE results; each model module extends this Class to an _ad hoc_ Class with specific functions. An instance of the extended Class is returned by `.mle()` functions of model modules.
 
 - Methods
   - `.` (_type_): 
