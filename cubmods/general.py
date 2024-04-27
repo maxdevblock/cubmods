@@ -569,7 +569,11 @@ def plot_ellipsoid(V, E, ax, zlabel,
         ax.set(
         zlim=[0,1], xlim=[0,1], ylim=[0,1])
     else:
-        ax.margins(.2)
+        #ax.margins(.2)
+        xl, yl, zl = equal3d(ax)
+        ax.set(
+            xlim=xl, ylim=yl, zlim=zl
+        )
     xlim = ax.get_xlim()
     ylim = ax.get_ylim()
     zlim = ax.get_zlim()
@@ -626,3 +630,24 @@ def plot_ellipsoid(V, E, ax, zlabel,
         bbox_to_anchor=(0,.5),
         frameon=0
     )
+
+def equal3d(ax):
+    xlim = ax.get_xlim()
+    ylim = ax.get_ylim()
+    zlim = ax.get_zlim()
+    # distances
+    dxlim = np.diff(xlim)
+    dylim = np.diff(ylim)
+    dzlim = np.diff(zlim)
+    # means
+    mxlim = np.mean(xlim)
+    mylim = np.mean(ylim)
+    mzlim = np.mean(zlim)
+    # max distance
+    maxlim = np.max([dxlim,dylim,dzlim])
+    # equal limits
+    exlim = (mxlim-maxlim/2,mxlim+maxlim/2)
+    eylim = (mylim-maxlim/2,mylim+maxlim/2)
+    ezlim = (mzlim-maxlim/2,mzlim+maxlim/2)
+    
+    return exlim, eylim, ezlim

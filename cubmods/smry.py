@@ -47,11 +47,11 @@ List of TODOs:
   TODO: Refernce Guide
   TODO: bounds opzionali in CUBE mle (anche CUBSH?)
   TODO: 2 decimali nei 3d plot?
-  TODO: stessa unità di misura nei 3d plot magnified?
+  *TODO: stessa unità di misura nei 3d plot magnified?
   *TODO: titolo con covariate AVERAGE ESTIMATED PROBABILITY
   TODO: dissim in multicub plot (aggiungere opzione)
   TODO: grandezza punti phi in multicube
-  TODO: stessi decimali nel summary
+  *TODO: stessi decimali nel summary
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
