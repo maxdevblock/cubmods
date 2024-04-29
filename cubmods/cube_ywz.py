@@ -1,22 +1,35 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
 """
 CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial) with covariates.
 
 Description:
+============
     This module contains methods and classes
     for CUB_YWZ model family.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    TODO: add example
+Reference Guide and Manual
+==========================
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/04_cube_family.md
+  - Reference Guide https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md
+
 
 References:
-    TODO: add references
+===========
+  - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
+  - D'Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics & Data Analysis},  \bold{49, 917--937
+  - Capecchi S. and Piccolo D. (2017). Dealing with heterogeneity in ordinal responses, Quality and Quantity, 51(5), 2375--2393
+  - Iannario M. (2014). Modelling Uncertainty and Overdispersion in Ordinal Data, Communications in Statistics - Theory and Methods, 43, 771--786
+  - Piccolo D. (2015). Inferential issues for CUBE models with covariates, Communications in Statistics. Theory and Methods, 44(23), 771--786.
+  - Iannario M. (2015). Detecting latent components in ordinal data with overdispersion by means of a mixture distribution, Quality & Quantity, 49, 977--987
+  - Iannario M. and Piccolo D. (2016a). A comprehensive framework for regression models of ordinal data. Metron, 74(2), 233--252.
+  - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189.
 
 List of TODOs:
-    * 
+  - ...
 
 @Author:      Massimo Pierini
 @Institution: Universitas Mercatorum
@@ -28,7 +41,7 @@ List of TODOs:
 
 import datetime as dt
 import numpy as np
-import pandas as pd
+#import pandas as pd
 from scipy.optimize import minimize
 import scipy.stats as sps
 import matplotlib.pyplot as plt
@@ -38,15 +51,20 @@ from .cube import (
 from .cub_0w import init_gamma
 from .general import (
     logis, choices, colsof, hadprod,
-    addones, 
-    #lsat, 
+    addones,
+    #lsat,
     luni, aic, bic,
-    freq, dissimilarity, 
+    freq, dissimilarity,
     #lsatcov
 )
 from .smry import CUBres, CUBsample
 
 def pmfi(m, beta, gamma, alpha, Y, W, Z):
+    """
+    Probability mass for each subject given parameters and covariates.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#pmfi
+    """
     n = W.shape[0]
     pi = logis(Y, beta)
     xi = logis(W, gamma)
@@ -59,6 +77,11 @@ def pmfi(m, beta, gamma, alpha, Y, W, Z):
     return p
 
 def pmf(m, beta, gamma, alpha, Y, W, Z):
+    """
+    PMF of CUB model.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#pmfm-beta-gamma-alpha-y-w-z
+    """
     p = pmfi(m, beta, gamma, alpha,
         Y, W, Z).mean(axis=0)
     return p
@@ -66,7 +89,9 @@ def pmf(m, beta, gamma, alpha, Y, W, Z):
 def draw(m, n, beta, gamma, alpha,
     Y, W, Z, seed=None):
     """
-    generate random sample from CUB model
+    Draw a random sample from CUB model
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#drawm-n-beta-gamma-alpha-y-w-z
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -114,8 +139,13 @@ def draw(m, n, beta, gamma, alpha,
     return sample
 
 def init_theta(m, sample, W, p, v):
-    gamma = init_gamma(sample=sample, 
-        m=m, W=W)
+    """
+    Preliminary parameter estimates for CUBE models with covariates
+
+    Compute preliminary parameter estimates for a CUBE model with covariates for all the three parameters. 
+    These estimates are set as initial values to start the E-M algorithm within maximum likelihood estimation.
+    """
+    gamma = init_gamma(sample=sample, m=m, W=W)
     pi, _, _ = ini_cube(sample=sample, m=m)
     beta0 = np.log(pi/(1-pi))
     beta = np.concatenate((
@@ -129,6 +159,13 @@ def init_theta(m, sample, W, p, v):
     return beta, gamma, alpha
 
 def betabinomial(m, sample, xi, phi):
+    """
+    Beta-Binomial probabilities of ordinal responses, with feeling and overdispersion parameters
+    for each observation
+
+    Compute the Beta-Binomial probabilities of ordinal responses, given feeling and overdispersion
+    parameters for each observation.
+    """
     n = sample.size
     p = np.repeat(np.nan, n)
     sample = np.array(sample).astype(int)
@@ -140,6 +177,14 @@ def betabinomial(m, sample, xi, phi):
 def loglik(m, sample, Y, W, Z,
     beta, gamma, alpha
     ):
+    """
+    Log-likelihood function of a CUBE model with covariates
+
+    Compute the log-likelihood function of a CUBE model for ordinal responses,
+    with covariates for explaining all the three parameters.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#loglikm-sample-y-w-z-beta-gamma-alpha
+    """
     pi = logis(Y, beta)
     xi = logis(W, gamma)
     phi = 1/(-1+1/logis(Z, alpha))
@@ -150,6 +195,12 @@ def loglik(m, sample, Y, W, Z,
     return l
 
 def Quno(beta, esterno1):
+    """
+    Auxiliary function for the log-likelihood estimation of CUBE models with covariates
+
+    Define the opposite one of the two scalar functions that are maximized when running the E-M algorithm
+    for CUBE models with covariates for feeling, uncertainty and overdispersion.
+    """
     tauno = esterno1[:,0]
     covar = esterno1[:,1:]
     ybeta = covar @ beta
@@ -158,8 +209,14 @@ def Quno(beta, esterno1):
         -np.log(1+np.exp(ybeta))
     )
     return r
-    
+
 def Qdue(pars, esterno2, v, m):
+    """
+    Auxiliary function for the log-likelihood estimation of CUBE models with covariates
+
+    Define the opposite of one of the two scalar functions that are maximized when running the E-M 
+    algorithm for CUBE models with covariates for feeling, uncertainty and overdispersion.
+    """
     #v = esterno2.shape[1]-q-2
     #print(f"e2:{esterno2.shape}")
     tauno = esterno2[:,0]
@@ -171,13 +228,18 @@ def Qdue(pars, esterno2, v, m):
     #print(f"W:{W.shape}")
     xi = logis(W, gamma)
     phi = 1/(-1+1/logis(Z, alpha))
-    betabin = betabinomial(m=m, 
+    betabin = betabinomial(m=m,
         sample=sample,
         xi=xi, phi=phi)
     r = -np.sum(tauno*np.log(betabin))
     return r
 
 def auxmat(m, xi, phi, a,b,c,d,e):
+    """
+    Auxiliary matrix
+
+    Returns an auxiliary matrix needed for computing the variance-covariance matrix of a CUBE model with covariates.
+    """
     elemat = np.ndarray(shape=(m, xi.size))
     elemat[:] = np.nan
     R = choices(m)
@@ -191,6 +253,14 @@ def auxmat(m, xi, phi, a,b,c,d,e):
 
 def varcov(m, sample, beta, gamma, alpha,
     Y, W, Z):
+    """
+    Variance-covariance matrix of a CUBE model with covariates
+
+    Compute the variance-covariance matrix of parameter estimates of a CUBE model with covariates
+    for all the three parameters.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#varcovm-sample-beta-gamma-alpha-y-w-z
+    """
     n = sample.size
     # p = colsof(Y)
     # q = colsof(W)
@@ -204,28 +274,28 @@ def varcov(m, sample, beta, gamma, alpha,
     probi = pi*(pBe-1/m)+1/m
     uui = 1-1/(m*probi)
     ubari = uui+pi*(1-uui)
-    
+
     mats1 = auxmat(m,xi,phi,1,-1,1,0, 1)
     mats2 = auxmat(m,xi,phi,0, 1,1,0, 1)
     mats3 = auxmat(m,xi,phi,1,-1,1,1, 1)
     mats4 = auxmat(m,xi,phi,0, 1,1,1, 1)
     mats5 = auxmat(m,xi,phi,1, 0,1,1, 1)
-    
+
     matd1 = auxmat(m,xi,phi,1,-1,2,0, 1)
     matd2 = auxmat(m,xi,phi,0, 1,2,0,-1)
     matd3 = auxmat(m,xi,phi,1,-1,2,1, 1)
     matd4 = auxmat(m,xi,phi,0, 1,2,1,-1)
-    
+
     math3 = auxmat(m,xi,phi,1,-1,2,2,-1)
     math4 = auxmat(m,xi,phi,0, 1,2,2,-1)
     math5 = auxmat(m,xi,phi,1, 0,2,2,-1)
-    
+
     #print("uui"); print(uui)
     #print("ubari"); print(ubari)
     #with np.printoptions(
     #    precision=5, suppress=True):
     #    print("mats5"); print(mats5)
-    
+
     #TODO: in R è m ma dev'essere n! Perchè in R si aggiunge, in Python no.
     S1 = np.repeat(np.nan, n)
     S2 = np.repeat(np.nan, n)
@@ -272,13 +342,13 @@ def varcov(m, sample, beta, gamma, alpha,
     H5 = math5[:m-1].sum(axis=0)
     #print("S1"); print(S1)
     #print("S5"); print(S5)
-    
+
     CC = S2-S1
     DD = D2-D1
     EE = S3+S4-S5
     FF = D3+D4
     GG = H3+H4-H5
-    
+
     vibe = uui*(1-pi)
     viga = ubari*xi*(1-xi)*CC
     vial = ubari*phi*EE
@@ -290,7 +360,7 @@ def varcov(m, sample, beta, gamma, alpha,
     ualga = ubari*phi*xi*(1-xi)*(
             FF+CC*EE)
     ualal = ubari*phi*(EE+phi*(EE**2+GG))
-    
+
     #print(vibe)
     gbebe = vibe*vibe-ubebe
     ggabe = viga*vibe-ugabe
@@ -298,13 +368,13 @@ def varcov(m, sample, beta, gamma, alpha,
     ggaga = viga*viga-ugaga
     galga = vial*viga-ualga
     galal = vial*vial-ualal
-    
+
     #print("gbebe"); print(gbebe)
-    
+
     YY = addones(Y)
     WW = addones(W)
     ZZ = addones(Z)
-    
+
     infbebe = YY.T @ hadprod(YY,gbebe)
     infgabe = WW.T @ hadprod(YY,ggabe)
     infalbe = ZZ.T @ hadprod(YY,galbe)
@@ -314,7 +384,7 @@ def varcov(m, sample, beta, gamma, alpha,
     infbega = infgabe.T
     infbeal = infalbe.T
     infgaal = infalga.T
-    
+
     #print("mats2"); print(mats2)
     #print("S2"); print(S2)
     #print("viga"); print(viga)
@@ -324,7 +394,7 @@ def varcov(m, sample, beta, gamma, alpha,
     #print("infalbe"); print(infalbe)
     #print("infalga"); print(infalga)
     #print("infalal"); print(infalal)
-    
+
     npi =  colsof(YY)
     nxi =  colsof(WW)
     nphi = colsof(ZZ)
@@ -371,6 +441,14 @@ def varcov(m, sample, beta, gamma, alpha,
 def mle(m, sample, Y, W, Z,
     gen_pars=None,
     maxiter=1000, tol=1e-2):
+    """
+    Main function for CUBE models with covariates
+
+    Function to estimate and validate a CUBE model with 
+    explicative covariates for all the three parameters.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#mlem-sample-y-w-z
+    """
     start = dt.datetime.now()
     f = freq(m=m, sample=sample)
     n = sample.size
@@ -499,12 +577,17 @@ def mle(m, sample, Y, W, Z,
     )
 
 class CUBresCUBEYWZ(CUBres):
-    
+    """
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz
+    """
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -572,6 +655,8 @@ class CUBresCUBEYWZ(CUBres):
         ):
         """
         plot CUB model fitted from a sample
+
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz
         """
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         self.plot_ordinal(ax=ax)
