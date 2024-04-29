@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
 r"""
 CUB models in Python.
 Module for summary tools.
@@ -183,6 +184,13 @@ def as_txt(
     return smry
 
 class CUBres(object):
+    """
+    Default Class for MLE results; each model module extends this Class to an ad hoc 
+    Class with specific functions. An instance of the extended Class is returned by .mle() 
+    functions of model modules.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres
+    """
     def __init__(
         self,
         model, m, n,
@@ -248,6 +256,9 @@ class CUBres(object):
         return f"CUBres({self.model}; {pars})"
 
     def as_txt(self):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres
+        """
         par_names = np.asarray(self.est_names)
         par_types = np.asarray(self.e_types)
         lparnames = len(max(self.est_names, key=len))
@@ -352,9 +363,15 @@ class CUBres(object):
         return smry
 
     def summary(self):
+        """
+        Call as_txt()
+        """
         return self.as_txt()
         
     def as_dataframe(self):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres
+        """
         df = pd.DataFrame({
             "component": self.e_types,
             "parameter": self.est_names,
@@ -369,6 +386,8 @@ class CUBres(object):
     def save(self, fname):
         """
         Save a CUBresult object to file
+
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres
         """
         filename = f"{fname}.cub.fit"
         with open(filename, "wb") as f:
@@ -376,6 +395,11 @@ class CUBres(object):
         print(f"Fitting object saved to {filename}")
 
 class CUBsample(object):
+    """
+    An instance of this Class is returned by .draw() functions. See the corresponding model's function for details.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
+    """
     def __init__(self, rv, m, pars,
         model, diss, theoric,
         par_names, sh=None,
@@ -410,6 +434,9 @@ class CUBsample(object):
         return f"CUBsample({self.model}; n={self.n}; {self.par_list})"
 
     def summary(self):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
+        """
         smry = "=======================================================================\n"
         smry += f"=====>>> {self.model} model <<<===== Drawn random sample\n"
         smry += "=======================================================================\n"
@@ -434,6 +461,9 @@ class CUBsample(object):
     def plot(self, figsize=(7, 5),
         kind="bar", #options: scatter, bar
         ax=None, saveas=None):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
+        """
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
         R = choices(self.m)
@@ -465,6 +495,9 @@ class CUBsample(object):
 
     def as_dataframe(self,
         varname="ordinal"):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
+        """
         df = pd.DataFrame({
             varname: self.rv
         })
