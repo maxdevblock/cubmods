@@ -42,7 +42,7 @@ List of TODOs:
 
 import datetime as dt
 import numpy as np
-import pandas as pd
+#import pandas as pd
 from scipy.optimize import minimize
 import scipy.stats as sps
 import matplotlib.pyplot as plt
