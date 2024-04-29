@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace, dangerous-default-value, too-many-branches
 """
 CUB models in Python.
 Module for GEM (Generalized Mixtures).
@@ -49,8 +50,7 @@ List of TODOs:
 @Credit:      Domenico Piccolo, Rosaria Simone
 @Contacts:    cub@maxpierini.it
 """
-# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
-# pylint: disable=dangerous-default-value, too-many-branches
+
 import warnings
 import numpy as np
 from . import (

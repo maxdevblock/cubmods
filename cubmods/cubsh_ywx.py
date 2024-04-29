@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace, invalid-unary-operand-type
 """
 CUB models in Python.
 Module for CUBSH (Combination of Uniform
@@ -38,7 +39,7 @@ List of TODOs:
 @Credit:      Domenico Piccolo, Rosaria Simone
 @Contacts:    cub@maxpierini.it
 """
-# pylint: disable=invalid-unary-operand-type
+
 import datetime as dt
 import numpy as np
 import pandas as pd

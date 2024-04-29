@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
 """
 CUB models in Python.
 Module for General functions.
@@ -37,8 +38,7 @@ List of TODOs:
 @Credit:      Domenico Piccolo, Rosaria Simone
 @Contacts:    cub@maxpierini.it
 """
-# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
-# pylint: disable=anomalous-backslash-in-string
+
 import re
 import pickle
 import numpy as np

@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
 """
 CUB models in Python.
 Module for CUSH (Combination of Uniform
@@ -46,7 +47,7 @@ List of TODOs:
 @Credit:      Domenico Piccolo, Rosaria Simone
 @Contacts:    cub@maxpierini.it
 """
-# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
+
 #import pickle
 import datetime as dt
 import numpy as np
