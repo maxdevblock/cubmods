@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
 """
 CUB models in Python.
 Module for CUB (Combination of Uniform
@@ -42,15 +43,15 @@ List of TODOs:
 
 import datetime as dt
 import numpy as np
-import pandas as pd
+#import pandas as pd
 import scipy.stats as sps
 from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from .general import (
     logis, bitgamma, freq, choices,
     hadprod, aic, bic, dissimilarity,
-    luni, 
-    #lsat, lsatcov, 
+    luni,
+    #lsat, lsatcov,
     addones, colsof
 )
 from .cub import (
@@ -61,11 +62,21 @@ from .cub_y0 import effe10
 from .smry import CUBres, CUBsample
 
 def pmf(m, beta, gamma, Y, W):
+    """
+    PMF of CUB model.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#pmfm-beta-gamma-y-w
+    """
     p = pmfi(m, beta, gamma, Y, W)
     pr = p.mean(axis=0)
     return pr
 
 def pmfi(m, beta, gamma, Y, W):
+    """
+    Probability mass for each subject given parameters and covariates.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#pmfim-beta-gamma-y-w
+    """
     pi_i = logis(Y, beta)
     xi_i = logis(W, gamma)
     n = W.shape[0]
@@ -76,6 +87,12 @@ def pmfi(m, beta, gamma, Y, W):
     return p
 
 def prob(m, sample, Y, W, beta, gamma):
+    """
+    Probability distribution of a CUB model with covariates for both feeling and uncertainty
+
+    Compute the probability distribution of a CUB model with covariates for both the feeling 
+    and the uncertainty components.
+    """
     p = (
         logis(Y=Y, param=beta)*
         (bitgamma(sample=sample,m=m,
@@ -86,7 +103,9 @@ def prob(m, sample, Y, W, beta, gamma):
 
 def draw(m, n, beta, gamma, Y, W, seed=None):
     """
-    generate random sample from CUB model
+    Draw a random sample from CUB model
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#drawm-n-beta-gamma-y-w
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -130,11 +149,27 @@ def draw(m, n, beta, gamma, Y, W, seed=None):
     return sample
 
 def loglik(m, sample, Y, W, beta, gamma):
+    """
+    Log-likelihood function of a CUB model with covariates for both feeling and uncertainty
+
+    Compute the log-likelihood function of a CUB model fitting ordinal data
+    with covariates for explaining both the feeling and the uncertainty components.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#loglikm-sample-y-w-beta-gamma
+    """
     p = prob(m, sample, Y, W, beta, gamma)
     l = np.sum(np.log(p))
     return l
 
 def varcov(m, sample, Y, W, beta, gamma):
+    """
+    Variance-covariance matrix of a CUB model with covariates for both uncertainty and feeling
+
+    Compute the variance-covariance matrix of parameter estimates of a CUB model with covariates for
+    both the uncertainty and the feeling components.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#varcovm-sample-y-w-beta-gamma
+    """
     qi = 1/(m*prob(m=m, sample=sample,
         Y=Y, W=W, beta=beta, gamma=gamma))
     ei = logis(Y, beta)
@@ -178,6 +213,14 @@ def mle(sample, m, Y, W,
     gen_pars=None,
     maxiter=500,
     tol=1e-4):
+    """
+    Main function for CUB models with covariates for both the uncertainty and the feeling components
+
+    Estimate and validate a CUB model for given ordinal responses, with covariates for explaining both the
+    feeling and the uncertainty components by means of logistic transform.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#mlesample-m-y-w
+    """
     # start datetime
     start = dt.datetime.now()
     # cast sample to numpy array
@@ -251,13 +294,12 @@ def mle(sample, m, Y, W,
     gamma = gammajj
     #l = loglikjj
     # variance-covariance matrix
-    varmat = varcov(m, sample, Y, W, 
-        beta, gamma)
+    varmat = varcov(m, sample, Y, W, beta, gamma)
     stderrs = np.sqrt(np.diag(varmat))
     wald = np.concatenate((beta,gamma))/stderrs
     # p-value
     pval = 2*(sps.norm().sf(abs(wald)))
-    
+
     muloglik = l/n
     AIC = aic(l=l, p=wald.size)
     BIC = bic(l=l, p=wald.size, n=n)
@@ -270,7 +312,7 @@ def mle(sample, m, Y, W,
     #    covars=[Y, W]
     #)
     #dev = 2*(logliksat-l)
-    
+
     beta_names = np.concatenate([
         ["constant"],
         Y.columns])
@@ -289,9 +331,9 @@ def mle(sample, m, Y, W,
         ["Feeling"],
         np.repeat(None, q)
     ))
-    
+
     end = dt.datetime.now()
-    
+
     return CUBresCUBYW(
         model="CUB(YW)",
         m=m, n=n, niter=niter,
@@ -317,12 +359,17 @@ def mle(sample, m, Y, W,
     )
 
 class CUBresCUBYW(CUBres):
-    
+    """
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#cubrescubyw
+    """
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
+        """
+        Plots relative frequencies of observed sample and estimated average probability mass.
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
