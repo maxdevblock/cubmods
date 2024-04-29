@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
 """
 CUB models in Python.
 Module for CUBE (Combination of Uniform
@@ -46,7 +47,7 @@ List of TODOs:
 @Credit:      Domenico Piccolo, Rosaria Simone
 @Contacts:    cub@maxpierini.it
 """
-# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, E1101
+
 import datetime as dt
 import numpy as np
 #import pandas as pd
@@ -82,7 +83,9 @@ def proba(m, pi, xi, phi, r):
 
 def betar(m, xi, phi):
     """
-    pmf of BetaBin component
+    Beta-Binomial distribution
+
+    Return the Beta-Binomial distribution with given parameters
     """
     R = choices(m)
     km = np.arange(0, m-1)
@@ -167,18 +170,30 @@ def laakso(m, pi, xi, phi):
     return g/(m - (m-1)*g)
 
 def loglik(m, pi, xi, phi, f):
+    """
+    Log-likelihood function of a CUBE model without covariates
+
+    Compute the log-likelihood function of a CUBE model without covariates fitting 
+    the given absolute frequency distribution.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#loglikm-pi-xi-phi-f
+    """
     L = pmf(m, pi, xi, phi)
     l = (f*np.log(L)).sum()
     return l
 
 def varcov(m, pi, xi, phi, sample):
     """
-    compute asymptotic variance-covariance
-    of CUBE estimated parameters
-    controllare n!
+    Variance-covariance matrix for CUBE models based on the observed information matrix
+
+    Compute the variance-covariance matrix of parameter estimates for a CUBE model without covariates 
+    as the inverse of the observed information matrix.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#varcovm-pi-xi-phi-sample
     """
     R = choices(m)
     f = freq(sample, m)
+    ### sum1; sum2; sum3; sum4; sum5; as in Iannario (2013), "Comm. in Stat. Theory & Methods"
     sum1=np.full(m, np.nan)
     sum2=np.full(m, np.nan)
     sum3=np.full(m, np.nan)
@@ -269,6 +284,12 @@ def varcov(m, pi, xi, phi, sample):
 
 # TODO: .5 o .3?
 def init_theta(sample, m):
+    """
+    Naive estimates for CUBE models without covariates
+
+    Compute naive parameter estimates of a CUBE model without covariates for given ordinal responses. 
+    These preliminary estimators are used within the package code to start the E-M algorithm.
+    """
     f = freq(sample, m)
     pi, xi = cub.init_theta(f, m)
     varsam = np.mean(sample**2) - np.mean(sample)**2
@@ -287,7 +308,9 @@ def init_theta(sample, m):
 
 def draw(m, pi, xi, phi, n, seed=None):
     """
-    generate random sample from CUB model
+    Draw a random sample from CUB model
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#drawm-pi-xi-phi-n
     """
     np.random.seed(seed)
     rv = np.random.choice(
@@ -318,6 +341,12 @@ def draw(m, pi, xi, phi, n, seed=None):
 ###################################################################
 
 def effecube(params, tau, f, m):
+    """
+    Auxiliary function for the log-likelihood estimation of CUBE models without covariates
+
+    Define the opposite of the scalar function that is maximized when running the E-M 
+    algorithm for CUBE models without covariates.
+    """
     xi = params[0]
     phi = params[1]
     pBe = betar(m, xi, phi)
@@ -325,15 +354,14 @@ def effecube(params, tau, f, m):
 
 def mle(sample, m,
     gen_pars=None,
-    maxiter=1000, 
+    maxiter=1000,
     tol=1e-6):
     """
-    fit a sample to a CUBE model
-    with m preference choices.
-    if the sample has been generated
-    from a CUB model itself and
-    generating (pi, xi) are known,
-    compute compare metrics
+    Main function for CUBE models without covariates
+
+    Estimate and validate a CUBE model without covariates.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#mlesample-m
     """
     # validate parameters
     #if not validate_pars(m=m, n=sample.size):
@@ -403,7 +431,6 @@ def mle(sample, m,
             l = lnew
         niter += 1
     # end E-M algorithm
-    
 
     # tta = np.array(tta) # test optimize time
     # ttb = np.array(ttb) # test optimize time
@@ -448,7 +475,7 @@ def mle(sample, m,
     # deviance from saturated model
     dev = 2*(logliksat-l)
     # ICOMP metrics
-    npars = 3
+    #npars = 3
     #trvarmat = np.sum(np.diag(varmat))
     #ICOMP = -2*l + npars*np.log(trvarmat/npars) - np.log(np.linalg.det(varmat))
     theoric = pmf(m=m, pi=pi, xi=xi, phi=phi)
@@ -494,12 +521,17 @@ def mle(sample, m,
     return res
 
 class CUBresCUBE(CUBres):
-    
+    """
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
+    """
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -513,7 +545,7 @@ class CUBresCUBE(CUBres):
         title += f"    Dissim(est,obs)={self.diss:.3f}"
         #TODO: add dissimilarity from generating model
         if self.gen_pars is not None:
-            title += f"\n"
+            title += "\n"
             title += fr"Gener($\pi={self.gen_pars['pi']:.3f}$ , $\xi={self.gen_pars['xi']:.3f}$ , "
             title += fr"$\phi={self.gen_pars['phi']:.3f}$)"
         # if self.diss_gen is not None:
@@ -571,6 +603,9 @@ class CUBresCUBE(CUBres):
         ax=None,
         saveas=None
         ):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -602,7 +637,7 @@ class CUBresCUBE(CUBres):
         if self.gen_pars is not None:
             pi_gen = self.gen_pars["pi"]
             xi_gen = self.gen_pars["xi"]
-            phi_gen = self.gen_pars["phi"]
+            #phi_gen = self.gen_pars["phi"]
             ax.scatter(1-pi_gen, 1-xi_gen,
                 facecolor="None",
                 edgecolor="r", s=200, label="generating")
@@ -655,6 +690,9 @@ class CUBresCUBE(CUBres):
 
     def plot3d(self, ax, ci=.95,
         magnified=False):
+        """
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
+        """
         pi = self.estimates[0]
         xi = self.estimates[1]
         ph = self.estimates[2]
@@ -683,6 +721,8 @@ class CUBresCUBE(CUBres):
         ):
         """
         plot CUB model fitted from a sample
+
+        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
         """
         fig, ax = plt.subplots(3, 1,
             figsize=figsize,
