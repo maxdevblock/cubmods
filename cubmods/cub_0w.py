@@ -64,12 +64,22 @@ from .smry import CUBres, CUBsample
 ###################################################################
 
 def pmf(m, pi, gamma, W):
+    """
+    PMF of CUB model.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#pmfm-pi-gamma-w
+    """
     n = W.shape[0]
     p = pmfi(m, pi, gamma, W)
     pr = p.mean(axis=0)
     return pr
 
 def pmfi(m, pi, gamma, W):
+    """
+    Probability mass for each subject given parameters and covariates.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#pmfim-pi-gamma-w
+    """
     n = W.shape[0]
     xi_i = logis(W, gamma)
     p = np.ndarray(shape=(n, m))
@@ -80,45 +90,11 @@ def pmfi(m, pi, gamma, W):
     return p
 
 def prob(sample, m, pi, gamma, W):
-    #' @title Probability distribution of a CUB model with covariates for the feeling component
-    #' @aliases probcub0q
-    #' @description Compute the probability distribution of a CUB model with covariates
-    #'  for the feeling component.
-    #' @export probcub0q
-    #' @usage probcub0q(m,ordinal,W,pai,gama)
-    #' @keywords distribution
-    #' @param m Number of ordinal categories
-    #' @param ordinal Vector of ordinal responses 
-    #' @param W Matrix of covariates for explaining the feeling component
-    #' NCOL(Y)+1 to include an intercept term in the model (first entry)
-    #' @param pai Uncertainty parameter
-    #' @param gama Vector of parameters for the feeling component, whose length equals 
-    #' NCOL(W)+1 to include an intercept term in the model (first entry)
-    #' @return A vector of the same length as \code{ordinal}, whose i-th component is the
-    #' probability of the i-th observation according to a CUB distribution with the corresponding values 
-    #' of the covariates for the feeling component and coefficients specified in \code{gama}.
-    #' @seealso \code{\link{bitgama}}, \code{\link{probcub00}}, \code{\link{probcubp0}}, 
-    #' \code{\link{probcubpq}}
-    #' @references 
-    #' Piccolo D. (2006). Observed Information Matrix for MUB Models, 
-    #' \emph{Quaderni di Statistica}, \bold{8}, 33--78 \cr
-    #' Piccolo D. and D'Elia A. (2008). A new approach for modelling consumers' preferences, \emph{Food Quality and Preference},
-    #' \bold{18}, 247--259 \cr
-    #' Iannario M. and Piccolo D. (2012). CUB models: Statistical methods and empirical evidence, in: 
-    #' Kenett R. S. and Salini S. (eds.), \emph{Modern Analysis of Customer Surveys: with applications using R}, 
-    #' J. Wiley and Sons, Chichester, 231--258
-    #' @examples
-    #' data(relgoods)
-    #' m<-10
-    #' naord<-which(is.na(relgoods$Physician))
-    #' nacov<-which(is.na(relgoods$Gender))
-    #' na<-union(naord,nacov)
-    #' ordinal<-relgoods$Physician[-na]
-    #' W<-relgoods$Gender[-na]
-    #' pai<-0.44; gama<-c(-0.91,-0.7)
-    #' pr<-probcub0q(m,ordinal,W,pai,gama)
     """
-    PMF of CUB model with covariates for xi
+    Probability distribution of a CUB model with covariates for the feeling component
+
+    Compute the probability distribution of a CUB model with covariates
+    for the feeling component.
     """
     p = pi*(bitgamma(sample=sample, m=m, W=W, gamma=gamma)-1/m) + 1/m
     return p
@@ -172,53 +148,26 @@ def laakso(m, pi, xi): #TODO laakso
     return None
 
 def loglik(sample, m, pi, gamma, W):
-    #' @title Log-likelihood function of a CUB model with covariates for the feeling component
-    #' @description Compute the log-likelihood function of a CUB model fitting ordinal data, with \eqn{q} 
-    #' covariates for explaining the feeling component.
-    #' @aliases loglikcub0q
-    #' @usage loglikcub0q(m, ordinal, W, pai, gama)
-    #' @param m Number of ordinal categories
-    #' @param ordinal Vector of ordinal responses
-    #' @param W Matrix of selected covariates for explaining the feeling component
-    #' @param pai Uncertainty parameter
-    #' @param gama Vector of parameters for the feeling component, with length NCOL(W) + 1 to account for 
-    #' an intercept term (first entry of gama)
-    #' @keywords internal
+    """
+    Log-likelihood function of a CUB model with covariates for the feeling component
+
+    Compute the log-likelihood function of a CUB model fitting ordinal data, with
+    covariates for explaining the feeling component.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#logliksample-m-pi-gamma-w
+    """
     p = prob(sample, m, pi, gamma, W)
     l = np.sum(np.log(p))
     return l
 
 def varcov(sample, m, pi, gamma, W):
-    #' @title Variance-covariance matrix of CUB models with covariates for the feeling component
-    #' @description Compute the variance-covariance matrix of parameter estimates of a CUB model
-    #'  with covariates for the feeling component.
-    #' @aliases varcovcub0q
-    #' @usage varcovcub0q(m, ordinal, W, pai, gama)
-    #' @param m Number of ordinal categories
-    #' @param ordinal Vector of ordinal responses
-    #' @param W Matrix of covariates for explaining the feeling component
-    #' @param pai Uncertainty parameter
-    #' @param gama Vector of parameters for the feeling component, whose length is 
-    #' NCOL(W)+1 to include an intercept term in the model (first entry of gama)
-    #' @export varcovcub0q
-    #' @details The function checks if the variance-covariance matrix is positive-definite: if not, 
-    #' it returns a warning message and produces a matrix with NA entries.
-    #' @keywords internal
-    #' @references
-    #' Piccolo D.(2006), Observed Information Matrix for MUB Models. \emph{Quaderni di Statistica},
-    #'  \bold{8}, 33--78,
-    #' @examples
-    #' data(univer)
-    #' m<-7
-    #' ordinal<-univer[,9]
-    #' pai<-0.86
-    #' gama<-c(-1.94, -0.17)
-    #' W<-univer[,4]           
-    #' varmat<-varcovcub0q(m, ordinal, W, pai, gama)
-
     """
-    compute asymptotic variance-covariance
-    of CUB estimated parameters
+    Variance-covariance matrix of CUB models with covariates for the feeling component
+
+    Compute the variance-covariance matrix of parameter estimates of a CUB model
+    with covariates for the feeling component.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#varcovsample-m-pi-gamma-w
     """
     qi = 1/(m*prob(sample,m,pi,gamma,W))
     qistar = 1 - (1-pi)*qi
@@ -252,6 +201,15 @@ def varcov(sample, m, pi, gamma, W):
     return varmat
 
 def init_gamma(sample, m, W):
+    """
+    Preliminary parameter estimates of a CUB model with covariates for feeling
+
+    Compute preliminary parameter estimates for the feeling component of a CUB model 
+    fitted to ordinal responses
+    These estimates are set as initial values for parameters to start the E-M algorithm.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#init_gammasample-m-w
+    """
     WW = np.c_[np.ones(W.shape[0]), W]
     ni = np.log((m-sample+.5)/(sample-.5))
     gamma = np.linalg.inv(WW.T @ WW) @ (WW.T @ ni)
@@ -263,7 +221,9 @@ def init_gamma(sample, m, W):
 
 def draw(m, n, pi, gamma, W, seed=None):
     """
-    generate random sample from CUB model
+    Draw a random sample from CUB model
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#drawm-n-pi-gamma-w
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -307,18 +267,12 @@ def draw(m, n, pi, gamma, W, seed=None):
 # INFERENCE
 ###################################################################
 def effe01(gamma, esterno01, m):
-    #' @title Auxiliary function for the log-likelihood estimation of CUB models
-    #' @description Compute the opposite of the scalar function that is maximized when running 
-    #' the E-M algorithm for CUB models with covariates for the feeling parameter.
-    #' @aliases effe01
-    #' @usage effe01(gama, esterno01, m)
-    #' @param gama Vector of the starting values of the parameters to be estimated
-    #' @param esterno01 A matrix binding together the vector of the posterior probabilities
-    #' that each observation has been generated by the first component distribution of the mixture, 
-    #' the ordinal data and the matrix of the selected covariates accounting for an intercept term
-    #' @keywords internal 
-    #' @details It is called as an argument for optim within CUB function for models with covariates for
-    #' feeling or for both feeling and uncertainty
+    """
+    Auxiliary function for the log-likelihood estimation of CUB models
+
+    Compute the opposite of the scalar function that is maximized when running 
+    the E-M algorithm for CUB models with covariates for the feeling parameter.
+    """
     ttau = esterno01[:,0]
     ordd = esterno01[:,1]
     covar = esterno01[:,2:]
@@ -337,8 +291,12 @@ def mle(sample, m, W,
     maxiter=500,
     tol=1e-4):
     """
-    fit a sample to a CUB model
-    with m preference choices.
+    Main function for CUB models with covariates for the feeling component
+
+    Function to estimate and validate a CUB model for given ordinal responses, with covariates for
+    explaining the feeling component.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#mlesample-m-w
     """
     # validate parameters
     #if not validate_pars(m=m, n=sample.size):
@@ -516,12 +474,18 @@ def mle(sample, m, W,
     return res
 
 class CUBresCUB0W(CUBres):
+    """
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#cubrescub0w
+    """
 
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar", #options bar, scatter
         saveas=None
         ):
+        """
+        Plots relative frequencies of observed sample and estimated average probability mass.
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
