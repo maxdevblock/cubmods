@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
 """
 CUB models in Python.
 Module for CUB (Combination of Uniform
@@ -40,7 +41,6 @@ List of TODOs:
 @Contacts:    cub@maxpierini.it
 """
 
-# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
 import datetime as dt
 import numpy as np
 #import pandas as pd

@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
 """
 CUB models in Python.
 Module for CUB (Combination of Uniform
@@ -47,8 +48,8 @@ from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from .general import (
     logis, bitxi, probbit, choices,
-    freq, hadprod, 
-    #lsat, 
+    freq, hadprod,
+    #lsat,
     luni,
     dissimilarity, aic, bic,
     colsof, addones
@@ -59,6 +60,11 @@ from .cub import (
 from .smry import CUBres, CUBsample
 
 def pmfi(m, beta, xi, Y):
+    """
+    Probability mass for each subject given parameters and covariates.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_y0.md#pmfim-beta-xi-y
+    """
     n = Y.shape[0]
     pi_i = logis(Y, beta)
     p = np.ndarray(shape=(n,m))
@@ -68,11 +74,22 @@ def pmfi(m, beta, xi, Y):
     return p
 
 def pmf(m, beta, xi, Y):
+    """
+    PMF of CUB model.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_y0.md#pmfm-beta-xi-y
+    """
     p = pmfi(m, beta, xi, Y)
     pr = p.mean(axis=0)
     return pr
 
 def prob(m, sample, Y, beta, xi):
+    """
+    Probability distribution of a CUB model with covariates for the uncertainty component
+
+    Compute the probability distribution of a CUB model with covariates for the 
+    uncertainty component.
+    """
     p = (
         logis(Y=Y, param=beta)*
         (bitxi(m=m, sample=sample, xi=xi) - 1/m)
@@ -80,6 +97,14 @@ def prob(m, sample, Y, beta, xi):
     return p
 
 def loglik(m, sample, Y, beta, xi):
+    """
+    Log-likelihood function of a CUB model with covariates for the uncertainty component
+
+    Compute the log-likelihood function of a CUB model fitting ordinal responses with covariates 
+    for explaining the uncertainty component.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_y0.md#loglikm-sample-y-beta-xi
+    """
     p = probbit(m, xi)
     pn = p[sample-1]
     eta = logis(Y, param=beta)
@@ -88,7 +113,9 @@ def loglik(m, sample, Y, beta, xi):
 
 def draw(m, n, beta, xi, Y, seed=None):
     """
-    generate random sample from CUB model
+    Draw a random sample from CUB model
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_y0.md#drawm-n-beta-xi-y
     """
     #np.random.seed(seed)
     assert n == Y.shape[0]
@@ -130,6 +157,14 @@ def draw(m, n, beta, xi, Y, seed=None):
     return sample
 
 def varcov(m, sample, Y, beta, xi):
+    """
+    Variance-covariance matrix of CUB model with covariates for the uncertainty parameter
+
+    Compute the variance-covariance matrix of parameter estimates of a CUB model with 
+    covariates for the uncertainty component.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_y0.md#varcovm-sample-y-beta-xi
+    """
     vvi = (m-sample)/xi-(sample-1)/(1-xi)
     ui = (m-sample)/(xi**2)+(sample-1)/((1-xi)**2)
     qi = 1/(m*prob(m=m,sample=sample,Y=Y,beta=beta,xi=xi))
@@ -159,6 +194,12 @@ def varcov(m, sample, Y, beta, xi):
     return varmat
 
 def effe10(beta, esterno10):
+    """
+    Auxiliary function for the log-likelihood estimation of CUB models
+
+    Compute the opposite of the scalar function that is maximized when running
+    the E-M algorithm for CUB models with covariates for the uncertainty parameter. 
+    """
     tauno = esterno10[:,0]
     covar = esterno10[:,1:]
     covbet = covar @ beta
@@ -172,6 +213,14 @@ def mle(sample, m, Y,
     gen_pars=None,
     maxiter=500,
     tol=1e-4):
+    """
+    Main function for CUB models with covariates for the uncertainty component
+
+    Estimate and validate a CUB model for given ordinal responses, with covariates for explaining 
+    the feeling component via a logistic transform.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_y0.md#mlesample-m-y
+    """
     # start datetime
     start = dt.datetime.now()
     # cast sample to numpy array
@@ -259,7 +308,7 @@ def mle(sample, m, Y,
     estimates = np.concatenate((
         beta, [xi]
     ))
-    
+
     res = CUBresCUBY0(
             model="CUB(Y0)",
             m=m, n=n, niter=niter,
@@ -290,12 +339,18 @@ def mle(sample, m, Y,
     return res
 
 class CUBresCUBY0(CUBres):
-    
+    """
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_y0.md#cubrescuby0
+    """
+
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
+        """
+        Plots relative frequencies of observed sample and estimated average probability mass.
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize

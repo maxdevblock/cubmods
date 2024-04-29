@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
 """
 CUB models in Python.
 Module for CUB (Combination of Uniform
@@ -39,7 +40,7 @@ List of TODOs:
 @Credit:      Domenico Piccolo, Rosaria Simone
 @Contacts:    cub@maxpierini.it
 """
-# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements
+
 import datetime as dt
 import pickle
 import numpy as np
@@ -225,7 +226,7 @@ def init_theta(f, m):
     F = f/f.sum()
     xi = 1 + (.5 - (np.argmax(F)+1))/m
     ppp = probbit(m, xi)
-    pi = np.sqrt( (np.sum(F**2)-1/m) / 
+    pi = np.sqrt( (np.sum(F**2)-1/m) /
         (np.sum(ppp**2)-1/m) )
     pi = min([pi, .99])
     return pi, xi
@@ -338,7 +339,7 @@ def mle(sample, m,
             l = lnew
         niter += 1
     # end E-M algorithm
-    
+
     # avoid division by zero
     if xi >.999:
         xi = .99
@@ -521,13 +522,13 @@ class CUBresCUB00(CUBres):
             ax.scatter(1-self.gen_pars['pi'], 1-self.gen_pars['xi'],
                 facecolor="None",
                 edgecolor="r", s=200, label="generating")
-        
+
         # change all spines
         for axis in ['left','bottom']:
             ax.spines[axis].set_linewidth(2)
             # increase tick width
             ax.tick_params(width=2)
-        
+
         #alpha = 1 - ci
         #z = abs(sps.norm().ppf(alpha/2))
         # # Horizontal CI
