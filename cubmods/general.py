@@ -571,6 +571,7 @@ def plot_ellipsoid(V, E, ax, zlabel,
     else:
         #ax.margins(.2)
         xl, yl, zl = equal3d(ax)
+
         ax.set(
             xlim=xl, ylim=yl, zlim=zl
         )

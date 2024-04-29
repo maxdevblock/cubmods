@@ -63,7 +63,9 @@ from .smry import CUBres, CUBsample
 
 def pmf(m, pi, xi):
     """
-    PMF of CUB model
+    PMF of CUB model.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#pmfm-pi-xi
     """
     R = choices(m)
     #print(m, pi, xi, R)
@@ -139,6 +141,7 @@ def laakso(m, pi, xi):
 
 def rvs(m, pi, xi, n):
     """
+    DEPRECATED
     generate random sample from CUB model
     """
     rv = np.random.choice(
@@ -150,14 +153,21 @@ def rvs(m, pi, xi, n):
     return rv
 
 def loglik(m, pi, xi, f):
+    """
+    Log-likelihood of CUB model.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#loglikm-pi-xi-f
+    """
     L = pmf(m, pi, xi)
     l = (f*np.log(L)).sum()
     return l
 
 def varcov(m, pi, xi, ordinal):
     """
-    compute asymptotic variance-covariance
-    of CUB estimated parameters
+    Computes asymptotic variance-covariance
+    of CUB estimated parameters.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#varcovm-pi-xi-ordinal
     """
     #R = choices(m)
     # OLD WAY TO COMPUTE INFORMATION MATRIX
@@ -202,6 +212,14 @@ def varcov(m, pi, xi, ordinal):
     return varmat
 
 def init_theta(f, m):
+    """
+    Preliminary estimators for CUB models without covariates.
+
+    Computes preliminary parameter estimates of a CUB model without covariates for given ordinal
+    responses. These preliminary estimators are used within the package code to start the E-M algorithm.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#init_thetaf-m
+    """
     #pi = .5
     #xi = (m-avg)/(m-1)
     F = f/f.sum()
@@ -218,7 +236,9 @@ def init_theta(f, m):
 
 def draw(m, pi, xi, n, seed=None):
     """
-    generate random sample from CUB model
+    Draw a random sample from CUB model.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#main-functions
     """
     if m<= 3:
         print("ERR: Number of ordered categories should be at least 4")
@@ -260,12 +280,11 @@ def mle(sample, m,
     maxiter=500,
     tol=1e-4,):
     """
-    fit a sample to a CUB model
-    with m preference choices.
-    if the sample has been generated
-    from a CUB model itself and
-    generating (pi, xi) are known,
-    compute compare metrics
+    Main function for CUB models without covariates.
+
+    Function to estimate and validate a CUB model without covariates for given ordinal responses.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#mlesample-m
     """
     if m<= 3:
         print("ERR: Number of ordered categories should be at least 4")
@@ -407,9 +426,18 @@ def mle(sample, m,
     return res
 
 class CUBresCUB00(CUBres):
+    """
+    Object returned by .mle() function.
+
+    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#cubrescub00
+    """
 
     def plot_ordinal(self, figsize=(7, 5), kind="bar",
         ax=None,saveas=None):
+        """
+        Plots relative frequencies of observed sample, estimated probability mass and,
+        if provided, probability mass of a known model.
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -466,6 +494,11 @@ class CUBresCUB00(CUBres):
         ci=.95, equal=True,
         magnified=False, ax=None,
         saveas=None):
+        """
+        Plots the estimated paramters values in the parameter space and
+        the asymptotic confidence ellipse.
+        If `magnified` lets matplotlib automatically set the limits.
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -577,7 +610,8 @@ class CUBresCUB00(CUBres):
 
     def save(self, fname):
         """
-        Save a CUBresult object to file
+        Save a CUBresult object to file.
+        #TODO: remove .save()
         """
         filename = f"{fname}.cub.fit"
         with open(filename, "wb") as f:
