@@ -15,7 +15,11 @@ It has been implemented by Massimo Pierini, graduand in _Statistics & Big Data_ 
 pip install -U numpy, pandas, scipy, statsmodels
 ```
 
-Currently, the package must be downloaded from GitHub, unzipped, and placed in the same directory of the scripts that import it.
+Currently, the package must be downloaded from GitHub, unzipped, and placed in the same directory of the scripts that import it or you can install/update directly from GitHub using
+
+```
+pip install -U git+https://github.com/maxdevblock/cubmods.git@main
+```
 
 When the version `0.0.1` will be complete, it will be uploaded on `PyPI`.
 
