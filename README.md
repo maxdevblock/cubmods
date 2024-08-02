@@ -5,7 +5,7 @@ This package is the first implementation of statistical methods for the models o
 
 It contains inferential methods for each family of the class CUB (with or without covariates), basic graphical tools, and methods to draw random samples from given models.
 
-It has been implemented by Massimo Pierini, graduand in _Statistics & Big Data_ (L41) at _Universitas Mercatorum_ 2024.
+It has been implemented by Massimo Pierini, graduand in _Statistics & Big Data_ (L41) at _Universitas Mercatorum_ 2024. It is mainly based upon the `CUB` package in `R`, implemented and maintened by Prof. Domenico Piccolo and Prof.ssa Rosaria Simone.
 
 ***
 
