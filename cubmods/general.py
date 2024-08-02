@@ -213,11 +213,20 @@ def bitxi(m, sample, xi):
     return cons
 
 def hadprod(Amat, xvett):
-    ra = Amat.shape[0]
-    ca = Amat.shape[1]
-    dprod = np.zeros(shape=(ra, ca))
-    for i in range(ra):
-        dprod[i,:] = Amat[i,:] * xvett[i]
+    """
+    Hadamard's product between a matrix
+    (r,c) and a vector (r,1)
+    """
+    if len(xvett.shape)==1:
+        xvett = xvett.reshape(
+            xvett.size, 1
+        )
+    dprod = Amat*xvett
+    #ra = Amat.shape[0]
+    #ca = Amat.shape[1]
+    #dprod = np.zeros(shape=(ra, ca))
+    #for i in range(ra):
+    #    dprod[i,:] = Amat[i,:] * xvett[i]
     return dprod
 
 def conf_ell(vcov, mux, muy, ci,
