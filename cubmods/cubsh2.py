@@ -62,6 +62,7 @@ from .general import (
     lsat, luni, aic, bic,
 )
 from . import cub
+from . import cubsh
 from .smry import CUBres, CUBsample
 
 ###################################################################
@@ -229,7 +230,7 @@ def varcov(m, sh1, sh2, pi1, pi2, pi3, xi, n):
     infmat[3,1] = d24
     infmat[3,2] = d34
     infmat[3,3] = d44
-    print(infmat)
+    #print(infmat)
 
     varmat = np.ndarray(shape=(4,4))
     varmat[:] = np.nan
@@ -320,7 +321,7 @@ def draw2(m, sh1, sh2, pi, xi, delta, zeta, n, seed=None):
 ###################################################################
 
 def mle(sample, m, sh1, sh2,
-    maxiter=1000, tol=1e-8,
+    maxiter=1000, tol=1e-4,
     gen_pars=None
     ):
     """
@@ -340,8 +341,7 @@ def mle(sample, m, sh1, sh2,
     n = sample.size
     dd1 = (R==sh1).astype(int)
     dd2 = (R==sh2).astype(int)
-    pi1, pi2, pi3, xi = init_theta(f=f, m=m, sh1=sh1, sh2=sh2,
-        verbose=True)
+    pi1, pi2, pi3, xi = init_theta(f=f, m=m, sh1=sh1, sh2=sh2)
     l = loglik(m=m, sh1=sh1, sh2=sh2,
         pi1=pi1, pi2=pi2, pi3=pi3, xi=xi,
         f=f)
@@ -455,7 +455,7 @@ def mle(sample, m, sh1, sh2,
         "Alternative parametrization",
         None, None, None, None,
         "Uncertainty", "Feeling",
-        "Shelter choices", "Shelter 1"
+        "Shelter effects", "1st Shelter Choice"
     ])
     stderrs = np.concatenate((
         errstd, [espi4],
@@ -520,7 +520,7 @@ def mle(sample, m, sh1, sh2,
 
 def varcov_pixi(n, m,
     sh1, sh2, pi1, pi2, pi3, xi,
-    debug=True):
+    debug=False):
     """
     Variance-covariance of (pi,xi) estimated parameters
     """
@@ -655,7 +655,8 @@ class CUBresCUBSH2(CUBres):
         magnified=False,
         ax=None,
         saveas=None,
-        confell=False, debug=False,
+        confell=False,
+        debug=False,
         cubdisp=True
         ):
         if ax is None:
@@ -714,7 +715,7 @@ class CUBresCUBSH2(CUBres):
                  ci, ax
             )
 
-        if cubdisp:
+        if cubdisp and not magnified:
             cubest = cub.mle(
                 sample=self.sample,
                 m=self.m,
@@ -730,13 +731,37 @@ class CUBresCUBSH2(CUBres):
                 (1-cubpi, 1-cubxi),
                 arrowprops=dict(
                     facecolor="black",
-                    arrowstyle="->",
+                    arrowstyle="-",
                     #alpha=.25,
                     #shrink=.05,
                     #width=1,
                     zorder=np.inf
                 )
             )
+
+            for shi in [0,1]:
+                cubshest = cubsh.mle(
+                    sample=self.sample,
+                    m=self.m, sh=self.sh[shi]
+                )
+                cubshpi = cubshest.estimates[0]
+                cubshxi = cubshest.estimates[1]
+                ax.plot(1-cubshpi, 1-cubshxi,
+                    "s", ms=9, alpha=.75,
+                    mfc="none", color=f"C{shi+3}",
+                    label=f"CUBSH $c={self.sh[shi]}$")
+                ax.annotate(
+                    "", (1-pi, 1-xi),
+                    (1-cubshpi, 1-cubshxi),
+                    arrowprops=dict(
+                        facecolor="black",
+                        arrowstyle="-",
+                        #alpha=.25,
+                        #shrink=.05,
+                        #width=1,
+                        zorder=np.inf
+                    )
+                )
 
         if not magnified:
             ax.set_xlim((0,1))
@@ -796,7 +821,6 @@ class CUBresCUBSH2(CUBres):
             zlabel=r"Shelter Choice $\delta$",
             magnified=magnified, ci=ci
         )
-        
 
     def plot(self,
         ci=.95,
