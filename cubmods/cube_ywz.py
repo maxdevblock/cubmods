@@ -210,7 +210,7 @@ def Quno(beta, esterno1):
     )
     return r
 
-def Qdue(pars, esterno2, v, m):
+def Qdue(pars, tauno, sample, W, Z, m):
     """
     Auxiliary function for the log-likelihood estimation of CUBE models with covariates
 
@@ -219,13 +219,15 @@ def Qdue(pars, esterno2, v, m):
     """
     #v = esterno2.shape[1]-q-2
     #print(f"e2:{esterno2.shape}")
-    tauno = esterno2[:,0]
-    sample = esterno2[:,1]
-    W = esterno2[:,2:-v]#o +2?
-    Z = esterno2[:,-v:]
-    gamma = pars[:-(v+1)]
-    alpha = pars[-(v+1):]
-    #print(f"W:{W.shape}")
+    # tauno = esterno2[:,0]
+    # sample = esterno2[:,1]
+    # W = esterno2[:,2:-v]#o +2?
+    # Z = esterno2[:,-v:]
+    #print(f"pars:{pars.shape}")
+    pz = colsof(Z)+1
+    gamma = pars[:-pz]
+    alpha = pars[-pz:]
+    #print(f"W:{W.shape}, gamma:{gamma.shape}")
     xi = logis(W, gamma)
     phi = 1/(-1+1/logis(Z, alpha))
     betabin = betabinomial(m=m,
@@ -496,7 +498,7 @@ def mle(m, sample, Y, W, Z,
         #print("Quno -|\nQdue ->")
         optimpars = minimize(
             Qdue, x0=pars,
-            args=(esterno2,v,m),
+            args=(taui, sample, W, Z, m),
             #method="Nelder-Mead"
         )
         #print("Qdue -|")
