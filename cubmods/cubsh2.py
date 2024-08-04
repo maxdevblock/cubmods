@@ -37,7 +37,6 @@ References:
   
 List of TODOs:
 ==============
-  TODO: check math
   TODO: check plots
 
 @Author:      Massimo Pierini
