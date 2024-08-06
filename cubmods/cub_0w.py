@@ -1,8 +1,8 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUB (Combination of Uniform
-and Binomial) with covariates.
+and Binomial) with covariates for the feeling component.
 
 Description:
 ============
@@ -11,10 +11,13 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Reference Guide and Manual
+    :math:`\Pr(R=r_i|\pmb{\theta}_i) = \pi \dbinom{m-1}{r_i-1}(1-\xi_i)^{r_i-1}\xi_i^{m-r_i}+\dfrac{1-\pi}{m}`
+
+    :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
+
+Manual and Examples
 ==========================
   - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
-  - Reference Guide https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md
 
 
 References:
@@ -33,12 +36,12 @@ List of TODOs:
 ==============
   - ...
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
 """
 
 import datetime as dt

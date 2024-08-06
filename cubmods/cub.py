@@ -68,13 +68,13 @@ def pmf(m, pi, xi):
 
     :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
 
-    :param m: number of ordinal choices
+    :param m: number of ordinal categories
     :type m: int
-    :param pi: weight of (un)certainty (must be 0<pi<1)
+    :param pi: uncertainty parameter :math:`\pi`
     :type pi: float
-    :param xi: feeling paramter (shifted binomial component)
+    :param xi: feeling parameter :math:`\xi`
     :type xi: float
-    :return: an array of the PMF for the specified model
+    :return: the vector of the probability distribution of a CUB model.
     :rtype: numpy array
     """
     R = choices(m)
@@ -85,15 +85,15 @@ def pmf(m, pi, xi):
 def proba(m, pi, xi, r):
     r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a specified CUB model.
 
-    :param m: number of ordinal choices
+    :param m: number of ordinal categories
     :type m: int
-    :param pi: weight of (un)certainty (must be :math:`0 < \pi < 1`)
+    :param pi: uncertainty parameter :math:`\pi`
     :type pi: float
-    :param xi: feeling paramter (shifted binomial component)
+    :param xi: feeling parameter :math:`\xi`
     :type xi: float
-    :param r: ordinal values (must be :math:`1 \leq r \leq m`)
+    :param r: ordinal value (must be :math:`1 \leq r \leq m`)
     :type r: int
-    :return: the :math:`\Pr(R = r | \pmb\theta)`
+    :return: the probability :math:`\Pr(R = r | \pmb\theta)`
     :rtype: float
     """
     #print(m, pi, xi, R)
@@ -102,33 +102,73 @@ def proba(m, pi, xi, r):
     return p
 
 def cmf(m, pi, xi):
-    """
-    CMF of CUB model
+    r"""Cumulative Mass Funcion of a specified CUB model.
+
+    :math:`\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: an array of the CMF for the specified model
+    :rtype: numpy array
     """
     return pmf(m, pi, xi).cumsum()
 
 def mean(m, pi, xi):
-    """
-    mean of CUB model
+    r"""Expected value of a specified CUB model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the expected value of the model
+    :rtype: float
     """
     return (m+1)/2 + pi*(m-1)*(1/2-xi)
 
 def var(m, pi, xi):
-    """
-    variance of CUB model
+    r"""Variance of a specified CUB model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the variance value of the model
+    :rtype: float
     """
     v =  (m-1)*(pi*xi*(1-xi) + (1-pi)*((m+1)/12+pi*(m-1)*(xi-1/2)**2))
     return v
 
 def std(m, pi, xi):
-    """
-    standard deviation of CUB model
+    r"""Standard deviation of a specified CUB model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the standard deviation of the model
+    :rtype: float
     """
     return np.sqrt(var(m, pi, xi))
 
 def skew(pi, xi):
-    """
-    skewness normalized eta index
+    r"""Skewness normalized :math:`\eta` index
+
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the skewness of the model
+    :rtype: float
     """
     return pi*(1/2-xi)
 
@@ -142,6 +182,17 @@ def mean_diff(m, pi, xi):
     return mu
 
 def median(m, pi, xi):
+    r"""The median of a specified CUB model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the median of the model
+    :rtype: float
+    """
     R = choices(m)
     cp = cmf(m, pi, xi)
     M = R[cp>.5][0]
@@ -150,19 +201,40 @@ def median(m, pi, xi):
     return M
 
 def gini(m, pi, xi):
+    r"""The Gini index of a specified CUB model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the Gini index of the model
+    :rtype: float
+    """
     ssum = 0
     for r in choices(m):
         ssum += proba(m, pi, xi, r)**2
     return m*(1-ssum)/(m-1)
 
 def laakso(m, pi, xi):
+    r"""The Laakso index of a specified CUB model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the Laakso index of the model
+    :rtype: float
+    """
     g = gini(m, pi, xi)
     return g/(m - (m-1)*g)
 
 def rvs(m, pi, xi, n):
-    """
-    DEPRECATED
-    generate random sample from CUB model
+    r"""
+    :DEPRECATED:
     """
     rv = np.random.choice(
         choices(m=m),
@@ -173,21 +245,40 @@ def rvs(m, pi, xi, n):
     return rv
 
 def loglik(m, pi, xi, f):
-    """
-    Log-likelihood of CUB model.
+    r"""Compute the log-likelihood function of a CUB model without 
+    covariates for a given absolute frequency distribution.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#loglikm-pi-xi-f
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param f: array of absolute frequency distribution
+    :type f: array of int
+    :return: the log-likelihood
+    :rtype: float
     """
     L = pmf(m, pi, xi)
     l = (f*np.log(L)).sum()
     return l
 
 def varcov(m, pi, xi, ordinal):
-    """
-    Computes asymptotic variance-covariance
-    of CUB estimated parameters.
+    r"""Compute the variance-covariance matrix of parameter 
+    estimates of a CUB model without covariates.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#varcovm-pi-xi-ordinal
+    :references:
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param ordinal: array of ordinal responses
+    :type ordinal: array of int
+    :return: the variance-covariance matrix of a CUB model without covariates
+    :rtype: float
     """
     #R = choices(m)
     # OLD WAY TO COMPUTE INFORMATION MATRIX
@@ -232,13 +323,16 @@ def varcov(m, pi, xi, ordinal):
     return varmat
 
 def init_theta(f, m):
-    """
-    Preliminary estimators for CUB models without covariates.
+    r"""Preliminary estimators for CUB models without covariates.
 
     Computes preliminary parameter estimates of a CUB model without covariates for given ordinal
     responses. These preliminary estimators are used within the package code to start the E-M algorithm.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#init_thetaf-m
+    :param f: array of the absolute frequencies of given ordinal responses
+    :type f: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :return: a tuple of :math:`(\pi^{(0)}, \xi^{(0)})`
     """
     #pi = .5
     #xi = (m-avg)/(m-1)
@@ -255,10 +349,20 @@ def init_theta(f, m):
 ###################################################################
 
 def draw(m, pi, xi, n, seed=None):
-    """
-    Draw a random sample from CUB model.
+    r"""Draw a random sample from a specified CUB model.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#main-functions
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param n: number of ordinal responses to be drawn
+    :type n: int
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an array of :math:`n` ordinal responses drawn from the specified model
+    :rtype: array of int
     """
     if m<= 3:
         print("ERR: Number of ordered categories should be at least 4")
@@ -299,12 +403,22 @@ def mle(sample, m,
     gen_pars=None,
     maxiter=500,
     tol=1e-4,):
-    """
-    Main function for CUB models without covariates.
+    r"""Main function for CUB models without covariates.
 
     Function to estimate and validate a CUB model without covariates for given ordinal responses.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#mlesample-m
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: maximum number of iterations allowed for running the optimization algorithm, defaults to 500
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates, defaults to :math:`10^{-4}`
+    :type tol: float
+    :return: an instance of ``CUBresCUB00`` (see the Class for details)
+    :rtype: object
     """
     if m<= 3:
         print("ERR: Number of ordered categories should be at least 4")
@@ -446,15 +560,24 @@ def mle(sample, m,
     return res
 
 class CUBresCUB00(CUBres):
-    """Object returned by `.mle()` function.
+    r"""Object returned by ``.mle()`` function.
     See the Base for details.
     """
 
     def plot_ordinal(self, figsize=(7, 5), kind="bar",
         ax=None,saveas=None):
-        """
-        Plots relative frequencies of observed sample, estimated probability mass and,
+        """Plots relative frequencies of observed sample, estimated probability mass and,
         if provided, probability mass of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the png file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         if ax is None:
             fig, ax = plt.subplots(
@@ -512,10 +635,22 @@ class CUBresCUB00(CUBres):
         ci=.95, equal=True,
         magnified=False, ax=None,
         saveas=None):
-        """
-        Plots the estimated paramters values in the parameter space and
+        r"""Plots the estimated parameter values in the parameter space and
         the asymptotic confidence ellipse.
-        If `magnified` lets matplotlib automatically set the limits.
+        
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse, defaults of :math:`0.95`
+        :type ci: float
+        :param equal: if the plot must have equal aspect, defaults to True
+        :type equal: bool
+        :param magnified: if False the limits will be the entire parameter space, otherwise let matplotlib choose the limits
+        :type magnified: bool
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the png file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         if ax is None:
             fig, ax = plt.subplots(
@@ -612,8 +747,15 @@ class CUBresCUB00(CUBres):
         saveas=None,
         figsize=(7, 15)
         ):
-        """
-        plot CUB model fitted from a sample
+        r"""Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse, defaults of :math:`0.95`
+        :type ci: float
+        :param saveas: if provided, name of the png file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         self.plot_ordinal(ax=ax[0])
@@ -628,8 +770,7 @@ class CUBresCUB00(CUBres):
 
     def save(self, fname):
         """
-        Save a CUBresult object to file.
-        #TODO: remove .save()
+        :DEPRECATED:
         """
         filename = f"{fname}.cub.fit"
         with open(filename, "wb") as f:
