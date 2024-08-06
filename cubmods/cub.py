@@ -1,23 +1,24 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUB (Combination of Uniform
 and Binomial).
 
-Description:
+Description
 ============
     This module contains methods and classes
     for CUB model family.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Reference Guide and Manual
+    :math:`\Pr(R=r|\pmb{\theta}) = \pi \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi}{m}`
+
+Manual and Examples
 ==========================
   - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
-  - Reference Guide https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md
 
 
-References:
+References
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
   - D'Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics & Data Analysis},  \bold{49, 917--937
@@ -33,12 +34,12 @@ List of TODOs:
 ==============
   - ...
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
 """
 
 import datetime as dt
@@ -63,10 +64,18 @@ from .smry import CUBres, CUBsample
 ###################################################################
 
 def pmf(m, pi, xi):
-    """
-    PMF of CUB model.
+    r"""Probability Mass Function of a specified CUB model.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#pmfm-pi-xi
+    :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal choices
+    :type m: int
+    :param pi: weight of (un)certainty (must be 0<pi<1)
+    :type pi: float
+    :param xi: feeling paramter (shifted binomial component)
+    :type xi: float
+    :return: an array of the PMF for the specified model
+    :rtype: numpy array
     """
     R = choices(m)
     #print(m, pi, xi, R)
@@ -74,8 +83,18 @@ def pmf(m, pi, xi):
     return p
 
 def proba(m, pi, xi, r):
-    """
-    probability Pr(R=r) of CUB model
+    r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a specified CUB model.
+
+    :param m: number of ordinal choices
+    :type m: int
+    :param pi: weight of (un)certainty (must be :math:`0 < \pi < 1`)
+    :type pi: float
+    :param xi: feeling paramter (shifted binomial component)
+    :type xi: float
+    :param r: ordinal values (must be :math:`1 \leq r \leq m`)
+    :type r: int
+    :return: the :math:`\Pr(R = r | \pmb\theta)`
+    :rtype: float
     """
     #print(m, pi, xi, R)
     p = pi*binom(m-1, r-1) * (1-xi)**(r-1) * xi**(m-r) + (1-pi)/m
@@ -427,10 +446,8 @@ def mle(sample, m,
     return res
 
 class CUBresCUB00(CUBres):
-    """
-    Object returned by .mle() function.
-
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub.md#cubrescub00
+    """Object returned by `.mle()` function.
+    See the Base for details.
     """
 
     def plot_ordinal(self, figsize=(7, 5), kind="bar",
