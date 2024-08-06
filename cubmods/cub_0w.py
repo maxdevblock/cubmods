@@ -67,10 +67,23 @@ from .smry import CUBres, CUBsample
 ###################################################################
 
 def pmf(m, pi, gamma, W):
-    """
-    PMF of CUB model.
+    r"""Average Probability Mass of a specified CUB model 
+    with covariates for the feeling component.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#pmfm-pi-gamma-w
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the vector of the probability distribution.
+    :rtype: numpy array
     """
     n = W.shape[0]
     p = pmfi(m, pi, gamma, W)
@@ -78,10 +91,25 @@ def pmf(m, pi, gamma, W):
     return pr
 
 def pmfi(m, pi, gamma, W):
-    """
-    Probability mass for each subject given parameters and covariates.
+    r"""Probability Mass for each subject of a specified CUB model 
+    with covariates for the feeling component.
+    
+    Auxiliary function of ``.draw()``.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#pmfim-pi-gamma-w
+    :math:`\Pr(R = r | \pmb\theta_i),\; i=1 \ldots n \; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the matrix of the probability distribution.
+    :rtype: numpy ndarray
     """
     n = W.shape[0]
     xi_i = logis(W, gamma)
@@ -93,49 +121,69 @@ def pmfi(m, pi, gamma, W):
     return p
 
 def prob(sample, m, pi, gamma, W):
-    """
-    Probability distribution of a CUB model with covariates for the feeling component
+    r"""Probability distribution of a CUB model with covariates for the feeling component
+    given an observed sample
 
     Compute the probability distribution of a CUB model with covariates
-    for the feeling component.
+    for the feeling component, given an observed sample.
+    
+    :math:`\Pr(R = r_i | \pmb\theta_i),\; i=1 \ldots n`
+    
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the array of the probability distribution.
+    :rtype: numpy array
     """
     p = pi*(bitgamma(sample=sample, m=m, W=W, gamma=gamma)-1/m) + 1/m
     return p
 
 def proba(m, pi, xi, r): #TODO proba
     """
-    probability Pr(R=r) of CUB model
+    :DEPRECATED:
     """
     return None
 
-def cmf(sample, m, pi, gamma, W): #TODO: test cmf
+def cmf(m, pi, gamma, W): #TODO: test cmf
+    r"""Average cumulative probability of a specified CUB model
+    with covariates for the feeling component.
+
+    :math:`\Pr(R \geq r | \pmb\theta_i),\; r=1 \ldots m`
+    
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the array of the cumulative probability distribution.
+    :rtype: numpy array
     """
-    CMF of CUB model
-    """
-    return prob(sample, m, pi, gamma, W).cumsum()
+    return pmf(m, pi, gamma, W).cumsum()
 
 def mean(m, pi, xi): #TODO mean
-    """
-    mean of CUB model
-    """
     return None
 
 def var(m, pi, xi): #TODO var
-    """
-    variance of CUB model
-    """
     return None
 
 def std(m, pi, xi): #TODO std
-    """
-    standard deviation of CUB model
-    """
     return None
 
 def skew(pi, xi): #TODO skew
-    """
-    skewness normalized eta index
-    """
     return None
 
 def mean_diff(m, pi, xi): #TODO mean_diff
@@ -151,26 +199,50 @@ def laakso(m, pi, xi): #TODO laakso
     return None
 
 def loglik(sample, m, pi, gamma, W):
-    """
-    Log-likelihood function of a CUB model with covariates for the feeling component
+    r"""Log-likelihood function of a CUB model with covariates for the feeling component
 
     Compute the log-likelihood function of a CUB model fitting ordinal data, with
     covariates for explaining the feeling component.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#logliksample-m-pi-gamma-w
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the log-likelihood
+    :rtype: float
     """
     p = prob(sample, m, pi, gamma, W)
     l = np.sum(np.log(p))
     return l
 
 def varcov(sample, m, pi, gamma, W):
-    """
-    Variance-covariance matrix of CUB models with covariates for the feeling component
+    r"""Variance-covariance matrix of CUB models with covariates for the feeling component
 
     Compute the variance-covariance matrix of parameter estimates of a CUB model
     with covariates for the feeling component.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#varcovsample-m-pi-gamma-w
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the log-likelihood
+    :rtype: float
     """
     qi = 1/(m*prob(sample,m,pi,gamma,W))
     qistar = 1 - (1-pi)*qi
