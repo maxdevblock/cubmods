@@ -64,7 +64,7 @@ from .smry import CUBres, CUBsample
 ###################################################################
 
 def pmf(m, pi, xi):
-    r"""Probability Mass Function of a specified CUB model.
+    r"""Probability distribution of a specified CUB model.
 
     :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
 
@@ -102,7 +102,7 @@ def proba(m, pi, xi, r):
     return p
 
 def cmf(m, pi, xi):
-    r"""Cumulative Mass Funcion of a specified CUB model.
+    r"""Cumulative probability of a specified CUB model.
 
     :math:`\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m`
 
@@ -140,7 +140,7 @@ def var(m, pi, xi):
     :type pi: float
     :param xi: feeling parameter :math:`\xi`
     :type xi: float
-    :return: the variance value of the model
+    :return: the variance of the model
     :rtype: float
     """
     v =  (m-1)*(pi*xi*(1-xi) + (1-pi)*((m+1)/12+pi*(m-1)*(xi-1/2)**2))
@@ -232,7 +232,7 @@ def laakso(m, pi, xi):
     g = gini(m, pi, xi)
     return g/(m - (m-1)*g)
 
-def rvs(m, pi, xi, n):
+def _rvs(m, pi, xi, n):
     r"""
     :DEPRECATED:
     """
@@ -277,8 +277,8 @@ def varcov(m, pi, xi, ordinal):
     :type xi: float
     :param ordinal: array of ordinal responses
     :type ordinal: array of int
-    :return: the variance-covariance matrix of a CUB model without covariates
-    :rtype: float
+    :return: the variance-covariance matrix of the CUB model
+    :rtype: numpy ndarray
     """
     #R = choices(m)
     # OLD WAY TO COMPUTE INFORMATION MATRIX
@@ -413,9 +413,9 @@ def mle(sample, m,
     :type m: int
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
-    :param maxiter: maximum number of iterations allowed for running the optimization algorithm, defaults to 500
+    :param maxiter: maximum number of iterations allowed for running the optimization algorithm
     :type maxiter: int
-    :param tol: fixed error tolerance for final estimates, defaults to :math:`10^{-4}`
+    :param tol: fixed error tolerance for final estimates
     :type tol: float
     :return: an instance of ``CUBresCUB00`` (see the Class for details)
     :rtype: object
@@ -575,7 +575,7 @@ class CUBresCUB00(CUBres):
         :type kind: str
         :param ax: matplotlib axis, if None a new figure will be created, defaults to None
         :type ax: matplolib ax, optional
-        :param saveas: if provided, name of the png file to save the plot
+        :param saveas: if provided, name of the file to save the plot
         :type saveas: str
         :return: ``ax`` or a tuple ``(fig, ax)``
         """
@@ -640,15 +640,15 @@ class CUBresCUB00(CUBres):
         
         :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
         :type figsize: tuple of float
-        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse, defaults of :math:`0.95`
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse
         :type ci: float
-        :param equal: if the plot must have equal aspect, defaults to True
+        :param equal: if the plot must have equal aspect
         :type equal: bool
         :param magnified: if False the limits will be the entire parameter space, otherwise let matplotlib choose the limits
         :type magnified: bool
         :param ax: matplotlib axis, if None a new figure will be created, defaults to None
         :type ax: matplolib ax, optional
-        :param saveas: if provided, name of the png file to save the plot
+        :param saveas: if provided, name of the file to save the plot
         :type saveas: str
         :return: ``ax`` or a tuple ``(fig, ax)``
         """
@@ -751,9 +751,9 @@ class CUBresCUB00(CUBres):
 
         :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
         :type figsize: tuple of float
-        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse, defaults of :math:`0.95`
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse
         :type ci: float
-        :param saveas: if provided, name of the png file to save the plot
+        :param saveas: if provided, name of the file to save the plot
         :type saveas: str
         :return: ``ax`` or a tuple ``(fig, ax)``
         """
@@ -768,7 +768,7 @@ class CUBresCUB00(CUBres):
             fig.savefig(saveas, bbox_inches='tight')
         return fig, ax
 
-    def save(self, fname):
+    def _save(self, fname):
         """
         :DEPRECATED:
         """

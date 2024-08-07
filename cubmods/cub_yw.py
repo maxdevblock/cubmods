@@ -1,8 +1,9 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUB (Combination of Uniform
-and Binomial) with covariates.
+and Binomial) with covariates
+for both feeling and uncertainty.
 
 Description:
 ============
@@ -11,10 +12,15 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Reference Guide and Manual
+    :math:`\Pr(R=r_i|\pmb{\theta}_i ; \pmb y_i ; \pmb w_i) = \pi_i \dbinom{m-1}{r_i-1}(1-\xi_i)^{r_i-1}\xi_i^{m-r_i}+\dfrac{1-\pi_i}{m}`
+
+    :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
+
+    :math:`\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb\beta}}`
+
+Manual and Examples
 ==========================
   - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
-  - Reference Guide https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md
 
 
 References:
@@ -33,12 +39,12 @@ List of TODOs:
 ==============
   - ...
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
 """
 
 import datetime as dt
@@ -62,20 +68,56 @@ from .cub_y0 import effe10
 from .smry import CUBres, CUBsample
 
 def pmf(m, beta, gamma, Y, W):
-    """
-    PMF of CUB model.
+    r"""Average Probability Mass of a specified CUB model 
+    with covariates for both feeling and uncertainty.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#pmfm-beta-gamma-y-w
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i; \pmb y_i),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the vector of the probability distribution.
+    :rtype: numpy array
     """
     p = pmfi(m, beta, gamma, Y, W)
     pr = p.mean(axis=0)
     return pr
 
 def pmfi(m, beta, gamma, Y, W):
-    """
-    Probability mass for each subject given parameters and covariates.
+    r"""Probability distribution for each subject of a specified CUB model 
+    with covariates for both feeling and uncertainty.
+    
+    Auxiliary function of ``.draw()``.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#pmfim-beta-gamma-y-w
+    :math:`\Pr(R = r | \pmb\theta_i ; \pmb y_i; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the matrix of the probability distribution of dimension :math:`n \times r`
+    :rtype: numpy ndarray
     """
     pi_i = logis(Y, beta)
     xi_i = logis(W, gamma)
@@ -87,11 +129,31 @@ def pmfi(m, beta, gamma, Y, W):
     return p
 
 def prob(m, sample, Y, W, beta, gamma):
-    """
-    Probability distribution of a CUB model with covariates for both feeling and uncertainty
+    r"""Probability distribution of a CUB model with covariates for both feeling and uncertainty.
 
     Compute the probability distribution of a CUB model with covariates for both the feeling 
     and the uncertainty components.
+
+    :math:`\Pr(R = r_i | \pmb\theta_i ; \pmb w_i; \pmb y_i),\; i=1 \ldots n`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the array of the probability distribution.
+    :rtype: numpy array
     """
     p = (
         logis(Y=Y, param=beta)*
@@ -102,10 +164,27 @@ def prob(m, sample, Y, W, beta, gamma):
     return p
 
 def draw(m, n, beta, gamma, Y, W, seed=None):
-    """
-    Draw a random sample from CUB model
+    r"""Draw a random sample from a specified CUB model with covariates for
+    both feeling and uncertainty.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#drawm-n-beta-gamma-y-w
+    :param n: number of ordinal responses to be drawn
+    :type n: int
+    :param m: number of ordinal categories
+    :type m: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: an array of :math:`n` ordinal responses drawn from the specified model
+    :rtype: array of int
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -149,26 +228,58 @@ def draw(m, n, beta, gamma, Y, W, seed=None):
     return sample
 
 def loglik(m, sample, Y, W, beta, gamma):
-    """
-    Log-likelihood function of a CUB model with covariates for both feeling and uncertainty
+    r"""Log-likelihood function of a CUB model with covariates for both feeling and uncertainty.
 
     Compute the log-likelihood function of a CUB model fitting ordinal data
     with covariates for explaining both the feeling and the uncertainty components.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#loglikm-sample-y-w-beta-gamma
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the log-likelihood
+    :rtype: float
     """
     p = prob(m, sample, Y, W, beta, gamma)
     l = np.sum(np.log(p))
     return l
 
 def varcov(m, sample, Y, W, beta, gamma):
-    """
-    Variance-covariance matrix of a CUB model with covariates for both uncertainty and feeling
+    r"""Variance-covariance matrix of a CUB model with covariates for both uncertainty and feeling.
 
     Compute the variance-covariance matrix of parameter estimates of a CUB model with covariates for
     both the uncertainty and the feeling components.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#varcovm-sample-y-w-beta-gamma
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the variance-covariance matrix of the CUB model
+    :rtype: numpy ndarray
     """
     qi = 1/(m*prob(m=m, sample=sample,
         Y=Y, W=W, beta=beta, gamma=gamma))
@@ -213,13 +324,29 @@ def mle(sample, m, Y, W,
     gen_pars=None,
     maxiter=500,
     tol=1e-4):
-    """
-    Main function for CUB models with covariates for both the uncertainty and the feeling components
+    r"""Main function for CUB models with covariates for both the uncertainty and the feeling components.
 
     Estimate and validate a CUB model for given ordinal responses, with covariates for explaining both the
     feeling and the uncertainty components by means of logistic transform.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#mlesample-m-y-w
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: maximum number of iterations allowed for running the optimization algorithm
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates
+    :type tol: float
+    :return: an instance of ``CUBresCUBYW`` (see the Class for details)
+    :rtype: object
     """
     # start datetime
     start = dt.datetime.now()
@@ -359,16 +486,26 @@ def mle(sample, m, Y, W,
     )
 
 class CUBresCUBYW(CUBres):
-    """
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_yw.md#cubrescubyw
+    r""""Object returned by ``.mle()`` function.
+    See the Base for details.
     """
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
-        """
-        Plots relative frequencies of observed sample and estimated average probability mass.
+        """Plots relative average frequencies of observed sample, estimated average probability mass and,
+        if provided, average probability mass of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         if ax is None:
             fig, ax = plt.subplots(
@@ -417,8 +554,13 @@ class CUBresCUBYW(CUBres):
         saveas=None,
         figsize=(7, 5)
         ):
-        """
-        plot CUB model fitted from a sample
+        """Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         self.plot_ordinal(ax=ax)

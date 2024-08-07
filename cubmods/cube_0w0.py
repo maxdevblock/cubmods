@@ -1,8 +1,8 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUBE (Combination of Uniform
-and Beta-Binomial) with covariates.
+and Beta-Binomial) with covariates for the feeling component.
 
 Description:
 ============
@@ -11,11 +11,17 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    TODO: add example
+    :math:`\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}`
+
+    :math:`\xi = \dfrac{\beta}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}`
+
+    :math:`\phi = \dfrac{1}{\alpha+\beta}`
+
+Manual and Examples
+==========================
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cube_family.md
 
 
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -30,14 +36,15 @@ References:
   
 List of TODOs:
 ==============
-  - ...
+  - Manual and Examples
+  - Remove unused imports
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
 """
 
 import datetime as dt
@@ -61,6 +68,28 @@ from .cub_0w import init_gamma
 from .smry import CUBres, CUBsample
 
 def pmfi(m, pi, gamma, phi, W):
+    r"""Probability distribution for each subject of a specified CUB model 
+    with covariates for both feeling and uncertainty.
+    
+    Auxiliary function of ``.draw()``.
+
+    :math:`\Pr(R = r | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the matrix of the probability distribution of dimension :math:`n \times r`
+    :rtype: numpy ndarray
+    """
     n = W.shape[0]
     xi = logis(W, gamma)
     p = np.ndarray(shape=(n, m))
@@ -70,12 +99,51 @@ def pmfi(m, pi, gamma, phi, W):
     return p
 
 def pmf(m, pi, gamma, phi, W):
+    r"""Average Probability Mass of a specified CUB model 
+    with covariates for the feeling component.
+
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: the matrix of the probability distribution of dimension :math:`n \times r`
+    :rtype: numpy ndarray
+    """
     p = pmfi(m, pi, gamma, phi, W).mean(
         axis=0)
     #print(p_i)
     return p
 
 def betabinomialxi(m, sample, xivett, phi):
+    r"""
+    Beta-Binomial probabilities of ordinal responses, given feeling parameter for each observation.
+
+    Compute the Beta-Binomial probabilities of given ordinal responses, with feeling 
+    parameter specified for each observation, 
+    and with the same overdispersion parameter for all the responses.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses. Missing values are not allowed: they should be preliminarily deleted
+    :type sample: array
+    :param xivett: array of feeling parameters of the Beta-Binomial distribution for given ordinal responses
+    :type xivett: array
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :return: array of the same length as ordinal: each entry is the Beta-Binomial probability for the given observation 
+        for the corresponding feeling and overdispersion parameters.
+    :rtype: array
+    """
     n = sample.size
     betabin = np.repeat(np.nan, n)
     for i in range(n):
@@ -85,8 +153,26 @@ def betabinomialxi(m, sample, xivett, phi):
     return np.array(betabin)
 
 def draw(m, n, pi, gamma, phi, W, seed=None):
-    """
-    generate random sample from CUB model
+    r"""Draw a random sample from a specified CUBE model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param n: number of ordinal responses to be drawn
+    :type n: int
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an array of :math:`n` ordinal responses drawn from the specified model
+    :rtype: array of int
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -130,18 +216,90 @@ def draw(m, n, pi, gamma, phi, W, seed=None):
     return sample
 
 def prob(m, sample, W, pi, gamma, phi):
+    r"""Probability distribution of a CUBE model with covariates for feeling.
+
+    Compute the probability distribution of a CUB model with covariates for both the feeling 
+    and the uncertainty components. Auxiliary function of ``.loglik()``
+
+    :math:`\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :return: the array of the probability distribution.
+    :rtype: numpy array
+    """
     xivett = logis(Y=W, param=gamma)
     p = pi*(betabinomialxi(m=m, sample=sample,
         xivett=xivett, phi=phi)-1/m)+1/m
     return p
 
 def loglik(m, sample, W, pi, gamma, phi):
+    r"""Log-likelihood function of CUBE model with covariates only for feeling.
+
+    Compute the log-likelihood function of a CUBE model for ordinal data with subjects' 
+    covariates only for feeling.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :return: the log-likelihood
+    :rtype: float
+    """
     p = prob(m=m, sample=sample, W=W,
         pi=pi, gamma=gamma, phi=phi)
     l = np.sum(np.log(p))
     return l
 
 def init_theta(m, sample, W, maxiter, tol):
+    r"""Preliminary estimates of parameters for CUBE models with covariates only for feeling.
+
+    Compute preliminary parameter estimates of a CUBE model with covariates only for feeling, given
+    ordinal responses. These estimates are set as initial values to start the corresponding E-M algorithm within the package.
+    Preliminary estimates for the uncertainty and the overdispersion parameters are computed by short runs of EM. 
+    As to the feeling component, it considers the nested CUB model with covariates and calls \code{\link{inibestgama}} to derive initial estimates for the coefficients
+    of the selected covariates for feeling.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param maxiter: maximum number of iterations allowed for preliminary iterations
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates for preliminary iterations
+    :type tol: float
+    :return: a tuple of :math:`(\pi^{(0)}, \pmb \gamma^{(0)}, \phi^{(0)})`, where :math:`\pi^{(0)}` is the initial 
+        estimate for the uncertainty parameter, 
+        :math:`\pmb \gamma^{(0)}` is the vector of initial estimates for the feeling component (including an intercept 
+        term in the first entry),
+        and :math:`\phi^{(0)}` is the initial estimate for the overdispersion parameter.
+    "rtype": tuple
+    """
     gamma = init_gamma(m=m, sample=sample,
         W=W)
     res_cube = mle_cube(m=m, sample=sample,
@@ -151,6 +309,24 @@ def init_theta(m, sample, W, maxiter, tol):
     return pi, gamma, phi
 
 def effe(pars, sample, W, m):
+    r"""Auxiliary function for the log-likelihood estimation of CUBE models with covariates 
+    only for the feeling component.
+
+    Compute the opposite of the scalar function that is maximized when running the 
+    E-M algorithm for CUBE models with covariates only for the feeling component.
+
+    :param pars: array of length equal to ``W.index.size+3`` whose entries are the initial parameters estimates
+    :type pars: array
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param m: number of ordinal categories
+    :type m: int
+    :return: negative log-likelihood
+    :rtype: float
+    """
     pi = pars[0]
     gamma = pars[1:-1]
     phi = pars[-1]
@@ -160,6 +336,29 @@ def effe(pars, sample, W, m):
 def mle(sample, m, W,
     gen_pars=None,
     maxiter=1000, tol=1e-6):
+    r"""Main function for CUBE models with covariates only for feeling
+
+    Estimate and validate a CUBE model for ordinal data, with covariates only for explaining the
+    feeling component.
+
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: maximum number of iterations allowed for preliminary iterations
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates for preliminary iterations;
+        the informatio matrix (to compute the variance-covariance matrix) is approximated with ``approx_hess()``
+        (see ``statsmodels.tools.numdiff`` for details)
+    :type tol: float
+    :return: an instance of ``CUBresCUBE0W0`` (see the Class for details)
+    :rtype: object
+    """
     start = dt.datetime.now()
     n = sample.size
     pi, gamma, phi = init_theta(
@@ -258,12 +457,28 @@ def mle(sample, m, W,
     )
 
 class CUBresCUBE0W0(CUBres):
+    r"""Object returned by ``.mle()`` function.
+    See the Base for details.
+    """
     
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
+        """Plots relative average frequencies of observed sample, estimated average probability mass and,
+        if provided, average probability mass of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -329,8 +544,13 @@ class CUBresCUBE0W0(CUBres):
         saveas=None,
         figsize=(7, 5)
         ):
-        """
-        plot CUB model fitted from a sample
+        """Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         self.plot_ordinal(ax=ax)

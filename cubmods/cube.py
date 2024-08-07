@@ -1,5 +1,5 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial).
@@ -11,19 +11,16 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import cube
+    :math:`\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}`
 
-    samp = pd.read_csv("ordinal.csv")
-    fit = cube.mle(samp.rv, m=7)
-    print(fit.summary())
-    fit.plot()
-    plt.show()
+    :math:`\xi = \dfrac{\beta}{\alpha+\beta}`
 
+    :math:`\phi = \dfrac{1}{\alpha+\beta}`
 
-...
+Manual and Examples
+==========================
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cube_family.md
+
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -38,14 +35,14 @@ References:
   
 List of TODOs:
 ==============
-  TODO: adjust 3d plots legend
+  - TODO: adjust 3d plots legend
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
 """
 
 import datetime as dt
@@ -70,8 +67,20 @@ from .smry import CUBres, CUBsample
 ###################################################################
 
 def proba(m, pi, xi, phi, r):
-    """
-    probability Pr(R=r) of CUBE model
+    r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a CUBE model without covariates.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param r: ordinal response
+    :type r: int
+    :return: the probability :math:`\Pr(R = r | \pmb\theta)` of a CUBE model without covariates.
+    :rtype: numpy array
     """
     i = np.arange(0, m-1)
     # Pr(R=1)
@@ -82,10 +91,18 @@ def proba(m, pi, xi, phi, r):
     return p
 
 def betar(m, xi, phi):
-    """
-    Beta-Binomial distribution
+    r"""Beta-Binomial distribution.
 
-    Return the Beta-Binomial distribution with given parameters
+    Return the Beta-Binomial distribution with given parameters.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :return: array of length :math:`m` of the Beta-Binomial distribution.
+    :rtype: numpy array
     """
     R = choices(m)
     km = np.arange(0, m-1)
@@ -98,29 +115,71 @@ def betar(m, xi, phi):
     return pBe
 
 def pmf(m, pi, xi, phi):
-    """
-    PMF of CUBE model
+    r"""Probability distribution of a specified CUBE model.
+
+    :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :return: array of length :math:`m` of the distribution of a CUBE model without covariates.
+    :rtype: numpy array
     """
     pBe = betar(m, xi, phi)
     ps = pi*(pBe-1/m) + 1/m
     return ps
 
 def cmf(m, pi, xi, phi):
-    """
-    CMF of CUBE model
+    r"""Cumulative probability of a specified CUBE model.
+
+    :math:`\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :return: array of length :math:`m` of the cumulative probability of a CUBE model without covariates.
+    :rtype: numpy array
     """
     return pmf(m, pi, xi, phi).cumsum()
 
-def mean(m, pi, xi, phi):
+def mean(m, pi, xi):
+    r"""Mean of a CUBE model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the expected value of the model
+    :rtype: float
     """
-    mean of CUBE model
-    """
-    _ = phi # CUBE mean does not depend on phi
+    #_ = phi # CUBE mean does not depend on phi
     return (m+1)/2 + pi*(m-1)*(1/2-xi)
 
 def var(m, pi, xi, phi):
-    """
-    variance of CUBE model
+    r"""Variance of a CUBE model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :return: the variance of the model
+    :rtype: float
     """
     #v1 = pi*(m-1)*(m-2)*xi*(1-xi)*phi/(1+phi)
     #v2a = pi*xi*(1-xi)
@@ -131,15 +190,15 @@ def var(m, pi, xi, phi):
     return v
 
 # TODO: check skew
-def skew(pi, xi, phi):
-    """
+def _skew(pi, xi, phi):
+    r"""
     skewness normalized eta index
     """
     _ = phi #TODO: use phi or not?
     return pi*(1/2 - xi)
 
 # TODO: test mean_diff
-def mean_diff(m, pi, xi, phi):
+def _mean_diff(m, pi, xi, phi):
     R = choices(m)
     S = choices(m)
     mu = 0
@@ -149,7 +208,7 @@ def mean_diff(m, pi, xi, phi):
     return mu
     
 # TODO: test meadian
-def median(m, pi, xi, phi):
+def _median(m, pi, xi, phi):
     R = choices(m)
     cp = cmf(m, pi, xi, phi)
     M = R[cp>.5][0]
@@ -158,38 +217,58 @@ def median(m, pi, xi, phi):
     return M
 
 # TODO: test gini
-def gini(m, pi, xi, phi):
+def _gini(m, pi, xi, phi):
     ssum = 0
     for r in choices(m):
         ssum += proba(m, pi, xi, phi, r)**2
     return m*(1-ssum)/(m-1)
 
 # TODO: test laakso
-def laakso(m, pi, xi, phi):
-    g = gini(m, pi, xi, phi)
+def _laakso(m, pi, xi, phi):
+    g = _gini(m, pi, xi, phi)
     return g/(m - (m-1)*g)
 
 def loglik(m, pi, xi, phi, f):
-    """
-    Log-likelihood function of a CUBE model without covariates
+    r"""Log-likelihood function of a CUBE model without covariates.
 
     Compute the log-likelihood function of a CUBE model without covariates fitting 
     the given absolute frequency distribution.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#loglikm-pi-xi-phi-f
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param f: array of absolute frequency distribution
+    :type f: array of int
+    :return: the log-likelihood
+    :rtype: float
     """
     L = pmf(m, pi, xi, phi)
     l = (f*np.log(L)).sum()
     return l
 
 def varcov(m, pi, xi, phi, sample):
-    """
-    Variance-covariance matrix for CUBE models based on the observed information matrix
+    r"""Variance-covariance matrix for CUBE models based on the observed information matrix.
 
     Compute the variance-covariance matrix of parameter estimates for a CUBE model without covariates 
     as the inverse of the observed information matrix.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#varcovm-pi-xi-phi-sample
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :return: the variance-covariance matrix of the CUBE model
+    :rtype: numpy ndarray
     """
     R = choices(m)
     f = freq(sample, m)
@@ -284,11 +363,18 @@ def varcov(m, pi, xi, phi, sample):
 
 # TODO: .5 o .3?
 def init_theta(sample, m):
-    """
-    Naive estimates for CUBE models without covariates
+    r"""Naive estimates for CUBE models without covariates.
 
     Compute naive parameter estimates of a CUBE model without covariates for given ordinal responses. 
     These preliminary estimators are used within the package code to start the E-M algorithm.
+
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :type m: int
+    :return: a tuple of :math:`(\pi^{(0)}, \xi^{(0)}, \phi^{(0)})`
+    :rtype: tuple of float
     """
     f = freq(sample, m)
     pi, xi = cub.init_theta(f, m)
@@ -307,10 +393,22 @@ def init_theta(sample, m):
 ###################################################################
 
 def draw(m, pi, xi, phi, n, seed=None):
-    """
-    Draw a random sample from CUB model
+    r"""Draw a random sample from a specified CUBE model.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#drawm-pi-xi-phi-n
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :param n: number of ordinal responses to be drawn
+    :type n: int
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an array of :math:`n` ordinal responses drawn from the specified model
+    :rtype: array of int
     """
     np.random.seed(seed)
     rv = np.random.choice(
@@ -341,11 +439,23 @@ def draw(m, pi, xi, phi, n, seed=None):
 ###################################################################
 
 def effecube(params, tau, f, m):
-    """
-    Auxiliary function for the log-likelihood estimation of CUBE models without covariates
+    r"""Auxiliary function for the log-likelihood estimation of CUBE models without covariates.
 
     Define the opposite of the scalar function that is maximized when running the E-M 
     algorithm for CUBE models without covariates.
+
+    :param params: array of initial estimates for the feeling and the overdispersion parameters
+    :type params: array of float
+    :param tau: a column vector of length :math:`m` containing the posterior
+        probabilities that each observed category has been generated by the first component distribution 
+        of the mixture
+    :type tau: array
+    :param f: array of the absolute frequencies of the observations
+    :type f: array
+    :param m: number of ordinal categories
+    :type m: int
+    :return: the expected value of the inconplete log-likelihood
+    :rtype: float
     """
     xi = params[0]
     phi = params[1]
@@ -356,12 +466,22 @@ def mle(sample, m,
     gen_pars=None,
     maxiter=1000,
     tol=1e-6):
-    """
-    Main function for CUBE models without covariates
+    r"""Main function for CUBE models without covariates.
 
     Estimate and validate a CUBE model without covariates.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#mlesample-m
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: maximum number of iterations allowed for running the optimization algorithm
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates
+    :type tol: float
+    :return: an instance of ``CUBresCUBE`` (see the Class for details)
+    :rtype: object    
     """
     # validate parameters
     #if not validate_pars(m=m, n=sample.size):
@@ -521,16 +641,27 @@ def mle(sample, m,
     return res
 
 class CUBresCUBE(CUBres):
+    r"""Object returned by ``.mle()`` function.
+    See the Base for details.
     """
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
-    """
+
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
-        """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
+        r"""Plots relative frequencies of observed sample, estimated probability mass and,
+        if provided, probability mass of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         if ax is None:
             fig, ax = plt.subplots(
@@ -594,7 +725,7 @@ class CUBresCUBE(CUBres):
             return ax
 
     #TODO: add option to show displacement from CUB model?
-    def plot_confell(self,
+    def _plot_confell(self,
         figsize=(7, 5),
         ci=.95,
         equal=True,
@@ -604,7 +735,7 @@ class CUBresCUBE(CUBres):
         saveas=None
         ):
         """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
+        :DEPRECATED:
         """
         if ax is None:
             fig, ax = plt.subplots(
@@ -690,8 +821,15 @@ class CUBresCUBE(CUBres):
 
     def plot3d(self, ax, ci=.95,
         magnified=False):
-        """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
+        r"""Plots the estimated parameter values in the parameter space and
+        the asymptotic confidence ellipsoid with its projections.
+        
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipsoid
+        :type ci: float
+        :param magnified: if False the limits will be the entire parameter space, otherwise let matplotlib choose the limits
+        :type magnified: bool
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
         """
         pi = self.estimates[0]
         xi = self.estimates[1]
@@ -719,10 +857,19 @@ class CUBresCUBE(CUBres):
         test3=True,
         figsize=(7, 15)
         ):
-        """
-        plot CUB model fitted from a sample
+        r"""Main function to plot an object of the Class.
 
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube.md#cubrescube
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipsoid
+        :type ci: float
+        :param confell: **DEPRECATED**, defaults to False
+        :type confell: bool
+        :param test3: **DEPRECATED**, defaults to True
+        :type test3: bool
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(3, 1,
             figsize=figsize,
@@ -739,9 +886,9 @@ class CUBresCUBE(CUBres):
             self.plot3d(ax=ax[2], ci=ci,
                 magnified=True)
         else:
-            self.plot_confell(ci=ci,
+            self._plot_confell(ci=ci,
             ax=ax[1], confell=confell)
-            self.plot_confell(
+            self._plot_confell(
                 ci=ci, ax=ax[2],
                 confell=confell,
                 magnified=True, equal=False)

@@ -11,7 +11,7 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-    :math:`\Pr(R=r_i|\pmb{\theta}_i) = \pi \dbinom{m-1}{r_i-1}(1-\xi_i)^{r_i-1}\xi_i^{m-r_i}+\dfrac{1-\pi}{m}`
+    :math:`\Pr(R=r_i|\pmb{\theta}_i ; \pmb w_i) = \pi \dbinom{m-1}{r_i-1}(1-\xi_i)^{r_i-1}\xi_i^{m-r_i}+\dfrac{1-\pi}{m}`
 
     :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
 
@@ -70,13 +70,13 @@ def pmf(m, pi, gamma, W):
     r"""Average Probability Mass of a specified CUB model 
     with covariates for the feeling component.
 
-    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i),\; r=1 \ldots m`
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
     :param pi: uncertainty parameter :math:`\pi`
     :type pi: float
-    :param gamma: array of parameters for the feeling component, whose length equals 
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
     :param W: dataframe of covariates for explaining the feeling component;
@@ -91,24 +91,24 @@ def pmf(m, pi, gamma, W):
     return pr
 
 def pmfi(m, pi, gamma, W):
-    r"""Probability Mass for each subject of a specified CUB model 
+    r"""Probability distribution for each subject of a specified CUB model 
     with covariates for the feeling component.
     
     Auxiliary function of ``.draw()``.
 
-    :math:`\Pr(R = r | \pmb\theta_i),\; i=1 \ldots n \; r=1 \ldots m`
+    :math:`\Pr(R = r | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
     :param pi: uncertainty parameter :math:`\pi`
     :type pi: float
-    :param gamma: array of parameters for the feeling component, whose length equals 
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
-    :return: the matrix of the probability distribution.
+    :return: the matrix of the probability distribution of dimension :math:`n \times r`
     :rtype: numpy ndarray
     """
     n = W.shape[0]
@@ -127,7 +127,7 @@ def prob(sample, m, pi, gamma, W):
     Compute the probability distribution of a CUB model with covariates
     for the feeling component, given an observed sample.
     
-    :math:`\Pr(R = r_i | \pmb\theta_i),\; i=1 \ldots n`
+    :math:`\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n`
     
     :param sample: array of ordinal responses
     :type sample: array of int
@@ -135,7 +135,7 @@ def prob(sample, m, pi, gamma, W):
     :type m: int
     :param pi: uncertainty parameter :math:`\pi`
     :type pi: float
-    :param gamma: array of parameters for the feeling component, whose length equals 
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
     :param W: dataframe of covariates for explaining the feeling component;
@@ -147,7 +147,7 @@ def prob(sample, m, pi, gamma, W):
     p = pi*(bitgamma(sample=sample, m=m, W=W, gamma=gamma)-1/m) + 1/m
     return p
 
-def proba(m, pi, xi, r): #TODO proba
+def _proba(m, pi, xi, r): #TODO proba
     """
     :DEPRECATED:
     """
@@ -157,13 +157,13 @@ def cmf(m, pi, gamma, W): #TODO: test cmf
     r"""Average cumulative probability of a specified CUB model
     with covariates for the feeling component.
 
-    :math:`\Pr(R \geq r | \pmb\theta_i),\; r=1 \ldots m`
+    :math:`\Pr(R \geq r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
     
     :param m: number of ordinal categories
     :type m: int
     :param pi: uncertainty parameter :math:`\pi`
     :type pi: float
-    :param gamma: array of parameters for the feeling component, whose length equals 
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
     :param W: dataframe of covariates for explaining the feeling component;
@@ -174,28 +174,28 @@ def cmf(m, pi, gamma, W): #TODO: test cmf
     """
     return pmf(m, pi, gamma, W).cumsum()
 
-def mean(m, pi, xi): #TODO mean
+def _mean(m, pi, xi): #TODO mean
     return None
 
-def var(m, pi, xi): #TODO var
+def _var(m, pi, xi): #TODO var
     return None
 
-def std(m, pi, xi): #TODO std
+def _std(m, pi, xi): #TODO std
     return None
 
-def skew(pi, xi): #TODO skew
+def _skew(pi, xi): #TODO skew
     return None
 
-def mean_diff(m, pi, xi): #TODO mean_diff
+def _mean_diff(m, pi, xi): #TODO mean_diff
     return None
     
-def median(m, pi, xi): #TODO median
+def _median(m, pi, xi): #TODO median
     return None
     
-def gini(m, pi, xi): #TODO gini
+def _gini(m, pi, xi): #TODO gini
     return None
     
-def laakso(m, pi, xi): #TODO laakso
+def _laakso(m, pi, xi): #TODO laakso
     return None
 
 def loglik(sample, m, pi, gamma, W):
@@ -210,7 +210,7 @@ def loglik(sample, m, pi, gamma, W):
     :type m: int
     :param pi: uncertainty parameter :math:`\pi`
     :type pi: float
-    :param gamma: array of parameters for the feeling component, whose length equals 
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
     :param W: dataframe of covariates for explaining the feeling component;
@@ -235,14 +235,14 @@ def varcov(sample, m, pi, gamma, W):
     :type m: int
     :param pi: uncertainty parameter :math:`\pi`
     :type pi: float
-    :param gamma: array of parameters for the feeling component, whose length equals 
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
-    :return: the log-likelihood
-    :rtype: float
+    :return: the variance-covariance matrix of the CUB model
+    :rtype: numpy ndarray
     """
     qi = 1/(m*prob(sample,m,pi,gamma,W))
     qistar = 1 - (1-pi)*qi
@@ -276,14 +276,22 @@ def varcov(sample, m, pi, gamma, W):
     return varmat
 
 def init_gamma(sample, m, W):
-    """
-    Preliminary parameter estimates of a CUB model with covariates for feeling
+    r"""
+    Preliminary parameter estimates of a CUB model with covariates for the feeling component.
 
     Compute preliminary parameter estimates for the feeling component of a CUB model 
-    fitted to ordinal responses
+    fitted to ordinal responses.
     These estimates are set as initial values for parameters to start the E-M algorithm.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#init_gammasample-m-w
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: an array :math:`\pmb\gamma^{(0)}` of size :math:`\pmb w + 1`
+    :rtype: array of float
     """
     WW = np.c_[np.ones(W.shape[0]), W]
     ni = np.log((m-sample+.5)/(sample-.5))
@@ -295,10 +303,27 @@ def init_gamma(sample, m, W):
 ###################################################################
 
 def draw(m, n, pi, gamma, W, seed=None):
-    """
-    Draw a random sample from CUB model
+    r"""
+    Draw a random sample from a specified CUB model with covariates for
+    the feeling component.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#drawm-n-pi-gamma-w
+    :param m: number of ordinal categories
+    :type m: int
+    :param n: number of ordinal responses to be drawn
+    :type n: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param seed: the `seed` to ensure reproducibility, defaults to None;
+        it must be :math:`\neq 0`
+    :type seed: int, optional
+    :return: an array of :math:`n` ordinal responses drawn from the specified model
+    :rtype: array of int
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -342,11 +367,27 @@ def draw(m, n, pi, gamma, W, seed=None):
 # INFERENCE
 ###################################################################
 def effe01(gamma, esterno01, m):
-    """
+    r"""
     Auxiliary function for the log-likelihood estimation of CUB models
+    with covariates for the feeling component.
 
     Compute the opposite of the scalar function that is maximized when running 
     the E-M algorithm for CUB models with covariates for the feeling parameter.
+
+    It is called as an argument for ``minimize`` within CUB function for models with covariates for
+    feeling or for both feeling and uncertainty.
+
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param esterno01: a matrix binding together: the vector :math:`\pmb\tau` of the posterior probabilities
+        that each observation has been generated by the first component distribution of the mixture, 
+        the ordinal data :math:`\pmb r` and the matrix :math:`\pmb w` of the selected covariates 
+        accounting for an intercept term
+    :param m: number of ordinal categories
+    :type m: int
+    :return: the expected value of the inconplete log-likelihood
+    :rtype: float
     """
     ttau = esterno01[:,0]
     ordd = esterno01[:,1]
@@ -366,12 +407,26 @@ def mle(sample, m, W,
     maxiter=500,
     tol=1e-4):
     """
-    Main function for CUB models with covariates for the feeling component
+    Main function for CUB models with covariates for the feeling component.
 
     Function to estimate and validate a CUB model for given ordinal responses, with covariates for
     explaining the feeling component.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#mlesample-m-w
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: maximum number of iterations allowed for running the optimization algorithm
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates
+    :type tol: float
+    :return: an instance of ``CUBresCUB0W`` (see the Class for details)
+    :rtype: object
     """
     # validate parameters
     #if not validate_pars(m=m, n=sample.size):
@@ -549,8 +604,8 @@ def mle(sample, m, W,
     return res
 
 class CUBresCUB0W(CUBres):
-    """
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cub_0w.md#cubrescub0w
+    """Object returned by ``.mle()`` function.
+    See the Base for details.
     """
 
     def plot_ordinal(self,
@@ -558,8 +613,18 @@ class CUBresCUB0W(CUBres):
         ax=None, kind="bar", #options bar, scatter
         saveas=None
         ):
-        """
-        Plots relative frequencies of observed sample and estimated average probability mass.
+        """Plots relative average frequencies of observed sample, estimated average probability mass and,
+        if provided, average probability mass of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         if ax is None:
             fig, ax = plt.subplots(
@@ -608,8 +673,13 @@ class CUBresCUB0W(CUBres):
         saveas=None,
         figsize=(7, 5)
         ):
-        """
-        plot CUB model fitted from a sample
+        """Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         self.plot_ordinal(ax=ax)
