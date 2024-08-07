@@ -1,5 +1,5 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect).
@@ -11,6 +11,7 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
+    :math:`\Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1 - \delta)[ \pi b_r(\xi) + (1-\pi)/m ]`
 
 References:
 ===========
@@ -30,12 +31,17 @@ List of TODOs:
   - TODO: too long title in CUBsample.plot() ?
   - TODO: test all ``def _*():`` (optional functions)
 
+Credits
+==============
 :Author:      Massimo Pierini
 :Institution: Universitas Mercatorum
 :Affiliation: Graduand in Statistics & Big Data (L41)
 :Date:        2023-24
 :Credit:      Domenico Piccolo, Rosaria Simone
 :Contacts:    cub@maxpierini.it
+
+Classes and Functions
+==============
 """
 
 #import pickle
