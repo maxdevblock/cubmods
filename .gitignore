@@ -11,7 +11,8 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+# add build for Sphinx
+#build/
 develop-eggs/
 dist/
 downloads/
