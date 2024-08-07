@@ -11,19 +11,7 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import cubsh
 
-    samp = pd.read_csv("ordinal.csv")
-    fit = cubsh.mle(samp.rv, m=7, sh=5s)
-    print(fit.summary())
-    fit.plot()
-    plt.show()
-
-
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -38,15 +26,16 @@ References:
   
 List of TODOs:
 ==============
-  TODO: fix 3d plots legend
-  TODO: too long title in CUBsample.plot()
+  - TODO: fix 3d plots legend
+  - TODO: too long title in CUBsample.plot() ?
+  - TODO: test all ``def _*():`` (optional functions)
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
 """
 
 #import pickle
@@ -156,14 +145,14 @@ def std_delta(m, pi, xi, delta):
     return s
 
 #TODO: skew
-def skew(pi, xi):
+def _skew(pi, xi):
     """
     skewness normalized eta index
     """
     return None #pi*(1/2-xi)
 
 #TODO: test mean_diff
-def mean_diff(m, sh, pi1, pi2, xi):
+def _mean_diff(m, sh, pi1, pi2, xi):
     R = choices(m)
     S = choices(m)
     mu = 0
@@ -173,7 +162,7 @@ def mean_diff(m, sh, pi1, pi2, xi):
     return mu
 
 #TODO: test median
-def median(m, sh, pi1, pi2, xi):
+def _median(m, sh, pi1, pi2, xi):
     R = choices(m)
     cp = cmf(m, sh, pi1, pi2, xi)
     M = R[cp>.5][0]
@@ -182,15 +171,15 @@ def median(m, sh, pi1, pi2, xi):
     return M
 
 #TODO: test gini
-def gini(m, sh, pi1, pi2, xi):
+def _gini(m, sh, pi1, pi2, xi):
     ssum = 0
     for r in choices(m):
         ssum += proba(m, sh, pi1, pi2, xi, r)**2
     return m*(1-ssum)/(m-1)
 
 #TODO: test laakso
-def laakso(m, sh, pi1, pi2, xi):
-    g = gini(m, sh, pi1, pi2, xi)
+def _laakso(m, sh, pi1, pi2, xi):
+    g = _gini(m, sh, pi1, pi2, xi)
     return g/(m - (m-1)*g)
 
 def loglik(m, sh, pi1, pi2, xi, f):
