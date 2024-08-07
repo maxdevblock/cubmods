@@ -10,11 +10,6 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    add example
-
-
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -26,17 +21,16 @@ References:
   - Iannario M. and Piccolo D. (2016a). A comprehensive framework for regression models of ordinal data. Metron, 74(2), 233--252.
   - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189.
 
-  
 List of TODOs:
 ==============
   - ...
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
 """
 
 import re
@@ -100,6 +94,14 @@ def colsof(A):
         return shape[1]
 
 def addones(A):
+    r"""Expand with a unitary vector in the first column of the given matrix
+    to consider also an intercept term for CUB models with covariates.
+
+    :param A: a matrix to be expanded
+    :type a: ndarray or DataFrame
+    :return: the expanded matrix
+    :rtype: same of ``A``
+    """
     AA = np.c_[np.ones(A.shape[0]), A]
     return AA
 

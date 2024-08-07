@@ -68,8 +68,8 @@ from .cub_0w import init_gamma
 from .smry import CUBres, CUBsample
 
 def pmfi(m, pi, gamma, phi, W):
-    r"""Probability distribution for each subject of a specified CUB model 
-    with covariates for both feeling and uncertainty.
+    r"""Probability distribution for each subject of a specified CUBE model 
+    with covariates for feeling only.
     
     Auxiliary function of ``.draw()``.
 
@@ -116,8 +116,8 @@ def pmf(m, pi, gamma, phi, W):
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
-    :return: the matrix of the probability distribution of dimension :math:`n \times r`
-    :rtype: numpy ndarray
+    :return: the array of the average probability distribution
+    :rtype: numpy array
     """
     p = pmfi(m, pi, gamma, phi, W).mean(
         axis=0)

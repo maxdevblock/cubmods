@@ -1,5 +1,5 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial) with covariates.
@@ -11,10 +11,17 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Reference Guide and Manual
+    :math:`\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}`
+
+    :math:`\pi = \dfrac{1}{1+e^{-\pmb y_i \pmb \beta}}`
+
+    :math:`\xi = \dfrac{\beta}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}`
+
+    :math:`\phi = \dfrac{1}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb z_i \pmb \alpha}}`
+
+Manual and Examples
 ==========================
   - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/04_cube_family.md
-  - Reference Guide https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md
 
 
 References:
@@ -29,14 +36,14 @@ References:
   - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189.
 
 List of TODOs:
-  - ...
+  - Manual and Examples
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
 """
 
 import datetime as dt
@@ -60,10 +67,35 @@ from .general import (
 from .smry import CUBres, CUBsample
 
 def pmfi(m, beta, gamma, alpha, Y, W, Z):
-    """
-    Probability mass for each subject given parameters and covariates.
+    r"""Probability distribution for each subject of a specified CUBE model 
+    with covariates.
+    
+    Auxiliary function of ``.draw()``.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#pmfi
+    :math:`\Pr(R = r | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param alpha: array :math:`\pmb \alpha` of parameters for the overdispersion, whose length equals 
+        ``Z.columns.size+1`` to include an intercept term in the model (first entry)
+    :type alpha: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param Z: dataframe of covariates for explaining the overdispersion;
+        no column must be named ``0`` nor ``constant``
+    :type Z: pandas dataframe
+    :return: the matrix of the probability distribution of dimension :math:`n \times r`
+    :rtype: numpy ndarray
     """
     n = W.shape[0]
     pi = logis(Y, beta)
@@ -77,10 +109,33 @@ def pmfi(m, beta, gamma, alpha, Y, W, Z):
     return p
 
 def pmf(m, beta, gamma, alpha, Y, W, Z):
-    """
-    PMF of CUB model.
+    r"""Average Probability Mass of a specified CUB model 
+    with covariates for the feeling component.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#pmfm-beta-gamma-alpha-y-w-z
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param alpha: array :math:`\pmb \alpha` of parameters for the overdispersion, whose length equals 
+        ``Z.columns.size+1`` to include an intercept term in the model (first entry)
+    :type alpha: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param Z: dataframe of covariates for explaining the overdispersion;
+        no column must be named ``0`` nor ``constant``
+    :type Z: pandas dataframe
+    :return: the array of the average probability distribution
+    :rtype: numpy array
     """
     p = pmfi(m, beta, gamma, alpha,
         Y, W, Z).mean(axis=0)
@@ -88,10 +143,34 @@ def pmf(m, beta, gamma, alpha, Y, W, Z):
 
 def draw(m, n, beta, gamma, alpha,
     Y, W, Z, seed=None):
-    """
-    Draw a random sample from CUB model
+    r"""Draw a random sample from a specified CUBE model.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#drawm-n-beta-gamma-alpha-y-w-z
+    :param m: number of ordinal categories
+    :type m: int
+    :param n: number of ordinal responses to be drawn
+    :type n: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param alpha: array :math:`\pmb \alpha` of parameters for the overdispersion, whose length equals 
+        ``Z.columns.size+1`` to include an intercept term in the model (first entry)
+    :type alpha: array of float
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param Z: dataframe of covariates for explaining the overdispersion;
+        no column must be named ``0`` nor ``constant``
+    :type Z: pandas dataframe
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an array of :math:`n` ordinal responses drawn from the specified model
+    :rtype: array of int
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -139,11 +218,27 @@ def draw(m, n, beta, gamma, alpha,
     return sample
 
 def init_theta(m, sample, W, p, v):
-    """
-    Preliminary parameter estimates for CUBE models with covariates
+    r"""Preliminary parameter estimates for CUBE models with covariates.
 
     Compute preliminary parameter estimates for a CUBE model with covariates for all the three parameters. 
     These estimates are set as initial values to start the E-M algorithm within maximum likelihood estimation.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param p: number of covariates for the uncertainty component
+    :type p: int
+    :param v: number of covariates for the overdispersion
+    :type v: int
+    :return: a tuple of :math:`(\pmb \beta^{(0)}, \pmb \gamma^{(0)}, \pmb \alpha^{(0)})` of preliminary estimates of parameter vectors for 
+        :math:`\pi = \pi(\pmb{\beta})`, \; \xi=\xi(\pmb{\gamma}),\; \phi=\phi(\pmb{\alpha})` respectively, of a CUBE model with covariates for all the three
+        parameters. In details, they have length equal to ``Y.columns.size+1``, ``W.columns.size``+1 and
+        ``Z.columns.size+1``, respectively, to account for an intercept term for each component.
+    :rtype: tuple of arrays
     """
     gamma = init_gamma(sample=sample, m=m, W=W)
     pi, _, _ = ini_cube(sample=sample, m=m)
@@ -159,12 +254,27 @@ def init_theta(m, sample, W, p, v):
     return beta, gamma, alpha
 
 def betabinomial(m, sample, xi, phi):
-    """
-    Beta-Binomial probabilities of ordinal responses, with feeling and overdispersion parameters
-    for each observation
+    r"""Beta-Binomial probabilities of ordinal responses, with feeling and overdispersion parameters
+    for each observation.
 
     Compute the Beta-Binomial probabilities of ordinal responses, given feeling and overdispersion
     parameters for each observation.
+
+    The Beta-Binomial distribution is the Binomial distribution in which the probability of success at
+    each trial is random and follows the Beta distribution. It is frequently used in Bayesian 
+    statistics, empirical Bayes methods and classical statistics as an overdispersed binomial distribution. 
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param phi: overdispersion parameter :math:`\phi`
+    :type phi: float
+    :return: array of the same length as ``sample``, containing the Beta-Binomial probabilities of each observation,
+        for the corresponding feeling and overdispersion parameters.
+    :rtype: array
     """
     n = sample.size
     p = np.repeat(np.nan, n)
@@ -177,13 +287,35 @@ def betabinomial(m, sample, xi, phi):
 def loglik(m, sample, Y, W, Z,
     beta, gamma, alpha
     ):
-    """
-    Log-likelihood function of a CUBE model with covariates
+    r"""Log-likelihood function of a CUBE model with covariates.
 
     Compute the log-likelihood function of a CUBE model for ordinal responses,
     with covariates for explaining all the three parameters.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#loglikm-sample-y-w-z-beta-gamma-alpha
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param Z: dataframe of covariates for explaining the overdispersion;
+        no column must be named ``0`` nor ``constant``
+    :type Z: pandas dataframe
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param alpha: array :math:`\pmb \alpha` of parameters for the overdispersion, whose length equals 
+        ``Z.columns.size+1`` to include an intercept term in the model (first entry)
+    :type alpha: array of float
+    :return: the log-likelihood
+    :rtype: float
     """
     pi = logis(Y, beta)
     xi = logis(W, gamma)
@@ -195,11 +327,22 @@ def loglik(m, sample, Y, W, Z,
     return l
 
 def Quno(beta, esterno1):
-    """
-    Auxiliary function for the log-likelihood estimation of CUBE models with covariates
+    r"""Auxiliary function for the log-likelihood estimation of CUBE models with covariates.
 
     Define the opposite one of the two scalar functions that are maximized when running the E-M algorithm
     for CUBE models with covariates for feeling, uncertainty and overdispersion.
+
+    It is iteratively called as an argument of "optim" within CUBE function (with covariates) as  the function
+    to minimize to compute the maximum likelihood estimates for the feeling and the overdispersion components. 
+
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param esterno1: matrix binding together the column vector of the posterior probabilities
+        that each observed rating has been generated by the first component distribution of the mixture, with the matrix 
+        :math:`\pmb y` of explicative  variables for the uncertainty component, expanded with a unitary vector in the first column to 
+        consider also an intercept term
+    :type esterno1: ndarray
     """
     tauno = esterno1[:,0]
     covar = esterno1[:,1:]
@@ -211,11 +354,26 @@ def Quno(beta, esterno1):
     return r
 
 def Qdue(pars, tauno, sample, W, Z, m):
-    """
-    Auxiliary function for the log-likelihood estimation of CUBE models with covariates
+    r"""Auxiliary function for the log-likelihood estimation of CUBE models with covariates.
 
     Define the opposite of one of the two scalar functions that are maximized when running the E-M 
     algorithm for CUBE models with covariates for feeling, uncertainty and overdispersion.
+
+    :param pars: array of initial estimates of parameters for the feeling component and the overdispersion effect
+    :type pars: array
+    :param tauno: the column vector of the posterior probabilities that each observed rating
+        has been generated by the distribution of the first component of the mixture
+    :type tauno: array
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param Z: dataframe of covariates for explaining the overdispersion;
+        no column must be named ``0`` nor ``constant``
+    :type Z: pandas dataframe
+    :param m: number of ordinal categories
+    :type m: int
     """
     #v = esterno2.shape[1]-q-2
     #print(f"e2:{esterno2.shape}")
@@ -237,10 +395,18 @@ def Qdue(pars, tauno, sample, W, Z, m):
     return r
 
 def auxmat(m, xi, phi, a,b,c,d,e):
-    """
-    Auxiliary matrix
+    r"""Auxiliary matrix.
 
     Returns an auxiliary matrix needed for computing the variance-covariance matrix of a CUBE model with covariates.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param xi: feeling parameters :math:`\pmb\xi`
+    :type xi: array of float
+    :param phi: overdispersion parameter :math:`\pmb\phi`
+    :type phi: array of float
+    :param a,b,c,d,e: see the reference paper *DOI: 10.1080/03610926.2013.821487* for details
+    :type a,b,c,d,e: float
     """
     elemat = np.ndarray(shape=(m, xi.size))
     elemat[:] = np.nan
@@ -255,13 +421,35 @@ def auxmat(m, xi, phi, a,b,c,d,e):
 
 def varcov(m, sample, beta, gamma, alpha,
     Y, W, Z):
-    """
-    Variance-covariance matrix of a CUBE model with covariates
+    r"""Variance-covariance matrix of a CUBE model with covariates.
 
     Compute the variance-covariance matrix of parameter estimates of a CUBE model with covariates
     for all the three parameters.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#varcovm-sample-beta-gamma-alpha-y-w-z
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param Z: dataframe of covariates for explaining the overdispersion;
+        no column must be named ``0`` nor ``constant``
+    :type Z: pandas dataframe
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param alpha: array :math:`\pmb \alpha` of parameters for the overdispersion, whose length equals 
+        ``Z.columns.size+1`` to include an intercept term in the model (first entry)
+    :type alpha: array of float
+    :return: the variance-covariance matrix
+    :rtype: ndarray
     """
     n = sample.size
     # p = colsof(Y)
@@ -443,13 +631,32 @@ def varcov(m, sample, beta, gamma, alpha,
 def mle(m, sample, Y, W, Z,
     gen_pars=None,
     maxiter=1000, tol=1e-2):
-    """
-    Main function for CUBE models with covariates
+    r"""Main function for CUBE models with covariates.
 
     Function to estimate and validate a CUBE model with 
     explicative covariates for all the three parameters.
 
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#mlem-sample-y-w-z
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param Z: dataframe of covariates for explaining the overdispersion;
+        no column must be named ``0`` nor ``constant``
+    :type Z: pandas dataframe
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: maximum number of iterations allowed for running the optimization algorithm
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates
+    :type tol: float
+    :return: an instance of ``CUBresCUBEYWZ`` (see the Class for details)
+    :rtype: object
     """
     start = dt.datetime.now()
     f = freq(m=m, sample=sample)
@@ -484,7 +691,7 @@ def mle(m, sample, Y, W, Z,
         lold = np.sum(np.log(probi))
         taui = 1-(1-pi)/(m*probi)
         esterno1 = np.c_[taui, YY]
-        esterno2 = np.c_[taui, sample, W, Z]
+        #esterno2 = np.c_[taui, sample, W, Z]
         pars = np.concatenate((
             gamma, alpha
         ))
@@ -579,16 +786,26 @@ def mle(m, sample, Y, W, Z,
     )
 
 class CUBresCUBEYWZ(CUBres):
-    """
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz
+    """Object returned by ``.mle()`` function.
+    See the Base for details.
     """
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
-        """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz
+        """Plots relative average frequencies of observed sample, estimated average probability mass and,
+        if provided, average probability mass of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         if ax is None:
             fig, ax = plt.subplots(
@@ -655,10 +872,13 @@ class CUBresCUBEYWZ(CUBres):
         saveas=None,
         figsize=(7, 5)
         ):
-        """
-        plot CUB model fitted from a sample
+        """Main function to plot an object of the Class.
 
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         self.plot_ordinal(ax=ax)
