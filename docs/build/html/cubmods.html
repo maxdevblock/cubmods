@@ -2546,10 +2546,10 @@ no column must be named <code class="docutils literal notranslate"><span class="
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the matrix of the probability distribution of dimension <span class="math notranslate nohighlight">\(n \times r\)</span></p>
+<dd class="field-even"><p>the array of the average probability distribution</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>numpy ndarray</p>
+<dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2557,8 +2557,8 @@ no column must be named <code class="docutils literal notranslate"><span class="
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_0w0.pmfi">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_0w0.</span></span><span class="sig-name descname"><span class="pre">pmfi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_0w0.pmfi" title="Permalink to this definition">#</a></dt>
-<dd><p>Probability distribution for each subject of a specified CUB model
-with covariates for both feeling and uncertainty.</p>
+<dd><p>Probability distribution for each subject of a specified CUBE model
+with covariates for feeling only.</p>
 <p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.draw()</span></code>.</p>
 <p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
@@ -2625,23 +2625,26 @@ and Beta-Binomial) with covariates.</p>
 for CUB_YWZ model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-</div></blockquote>
-</section>
-<section id="reference-guide-and-manual">
-<h3>Reference Guide and Manual<a class="headerlink" href="#reference-guide-and-manual" title="Permalink to this heading">#</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/04_cube_family.md">maxdevblock/cubmods</a></p></li>
-<li><p>Reference Guide <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md">maxdevblock/cubmods</a></p></li>
-</ul>
+<p><span class="math notranslate nohighlight">\(\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\pi = \dfrac{1}{1+e^{-\pmb y_i \pmb \beta}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\xi = \dfrac{\beta}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\phi = \dfrac{1}{\alpha+\beta} = e^{\pmb z_i \pmb \alpha}\)</span></p>
 </div></blockquote>
 </section>
 <section id="id21">
-<h3>References:<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<h3>Manual and Examples<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/04_cube_family.md">maxdevblock/cubmods</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id22">
+<h3>References:<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
-<li><p>D’Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics &amp; Data Analysis},  old{49, 917–937</p></li>
+<li><p>D’Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics &amp; Data Analysis},  bold{49, 917–937</p></li>
 <li><p>Capecchi S. and Piccolo D. (2017). Dealing with heterogeneity in ordinal responses, Quality and Quantity, 51(5), 2375–2393</p></li>
 <li><p>Iannario M. (2014). Modelling Uncertainty and Overdispersion in Ordinal Data, Communications in Statistics - Theory and Methods, 43, 771–786</p></li>
 <li><p>Piccolo D. (2015). Inferential issues for CUBE models with covariates, Communications in Statistics. Theory and Methods, 44(23), 771–786.</p></li>
@@ -2650,34 +2653,75 @@ Piccolo et Al. and CUB package in R.</p>
 <li><p>Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163–189.</p></li>
 </ul>
 </div></blockquote>
-<dl class="simple">
-<dt>List of TODOs:</dt><dd><ul class="simple">
-<li><p>…</p></li>
+</section>
+<section id="id23">
+<h3>List of TODOs:<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Manual and Examples</p></li>
 </ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Author<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Massimo Pierini</p>
+</dd>
+<dt class="field-even">Institution<span class="colon">:</span></dt>
+<dd class="field-even"><p>Universitas Mercatorum</p>
+</dd>
+<dt class="field-odd">Affiliation<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Graduand in Statistics &amp; Big Data (L41)</p>
+</dd>
+<dt class="field-even">Date<span class="colon">:</span></dt>
+<dd class="field-even"><p>2023-24</p>
+</dd>
+<dt class="field-odd">Credit<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Domenico Piccolo, Rosaria Simone</p>
+</dd>
+<dt class="field-even">Contacts<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="mailto:cub&#37;&#52;&#48;maxpierini&#46;it">cub<span>&#64;</span>maxpierini<span>&#46;</span>it</a></p>
 </dd>
 </dl>
-<p>&#64;Author:      Massimo Pierini
-&#64;Institution: Universitas Mercatorum
-&#64;Affiliation: Graduand in Statistics &amp; Big Data (L41)
-&#64;Date:        2023-24
-&#64;Credit:      Domenico Piccolo, Rosaria Simone
-&#64;Contacts:    <a class="reference external" href="mailto:cub&#37;&#52;&#48;maxpierini&#46;it">cub<span>&#64;</span>maxpierini<span>&#46;</span>it</a></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.CUBresCUBEYWZ">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBEYWZ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.CUBresCUBEYWZ" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
-<p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz">maxdevblock/cubmods</a></p>
+<p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
+See the Base for details.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.CUBresCUBEYWZ.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">5)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.CUBresCUBEYWZ.plot" title="Permalink to this definition">#</a></dt>
-<dd><p>plot CUB model fitted from a sample</p>
-<p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz">maxdevblock/cubmods</a></p>
+<dd><p>Main function to plot an object of the Class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.CUBresCUBEYWZ.plot_ordinal">
 <span class="sig-name descname"><span class="pre">plot_ordinal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.CUBresCUBEYWZ.plot_ordinal" title="Permalink to this definition">#</a></dt>
-<dd><p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#cubrescubeywz">maxdevblock/cubmods</a></p>
+<dd><p>Plots relative average frequencies of observed sample, estimated average probability mass and,
+if provided, average probability mass of a known model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>kind</strong> (<em>str</em>) – choose a barplot (<code class="docutils literal notranslate"><span class="pre">'bar'</span></code> default) of a scatterplot (<code class="docutils literal notranslate"><span class="pre">'scatter'</span></code>)</p></li>
+<li><p><strong>ax</strong> (<em>matplolib ax</em><em>, </em><em>optional</em>) – matplotlib axis, if None a new figure will be created, defaults to None</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -2685,89 +2729,320 @@ Piccolo et Al. and CUB package in R.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.Qdue">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">Qdue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.Qdue" title="Permalink to this definition">#</a></dt>
-<dd><p>Auxiliary function for the log-likelihood estimation of CUBE models with covariates</p>
+<dd><p>Auxiliary function for the log-likelihood estimation of CUBE models with covariates.</p>
 <p>Define the opposite of one of the two scalar functions that are maximized when running the E-M
 algorithm for CUBE models with covariates for feeling, uncertainty and overdispersion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<em>array</em>) – array of initial estimates of parameters for the feeling component and the overdispersion effect</p></li>
+<li><p><strong>tauno</strong> (<em>array</em>) – the column vector of the posterior probabilities that each observed rating
+has been generated by the distribution of the first component of the mixture</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.Quno">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">Quno</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">esterno1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.Quno" title="Permalink to this definition">#</a></dt>
-<dd><p>Auxiliary function for the log-likelihood estimation of CUBE models with covariates</p>
+<dd><p>Auxiliary function for the log-likelihood estimation of CUBE models with covariates.</p>
 <p>Define the opposite one of the two scalar functions that are maximized when running the E-M algorithm
 for CUBE models with covariates for feeling, uncertainty and overdispersion.</p>
+<p>It is iteratively called as an argument of “optim” within CUBE function (with covariates) as  the function
+to minimize to compute the maximum likelihood estimates for the feeling and the overdispersion components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>beta</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \beta\)</span> of parameters for the uncertainty component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>esterno1</strong> (<em>ndarray</em>) – matrix binding together the column vector of the posterior probabilities
+that each observed rating has been generated by the first component distribution of the mixture, with the matrix
+<span class="math notranslate nohighlight">\(\pmb y\)</span> of explicative  variables for the uncertainty component, expanded with a unitary vector in the first column to
+consider also an intercept term</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.auxmat">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">auxmat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.auxmat" title="Permalink to this definition">#</a></dt>
-<dd><p>Auxiliary matrix</p>
+<dd><p>Auxiliary matrix.</p>
 <p>Returns an auxiliary matrix needed for computing the variance-covariance matrix of a CUBE model with covariates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>xi</strong> (<em>array of float</em>) – feeling parameters <span class="math notranslate nohighlight">\(\pmb\xi\)</span></p></li>
+<li><p><strong>phi</strong> (<em>array of float</em>) – overdispersion parameter <span class="math notranslate nohighlight">\(\pmb\phi\)</span></p></li>
+<li><p><strong>a</strong><strong>,</strong><strong>b</strong><strong>,</strong><strong>c</strong><strong>,</strong><strong>d</strong><strong>,</strong><strong>e</strong> (<em>float</em>) – see the reference paper <em>DOI: 10.1080/03610926.2013.821487</em> for details</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.betabinomial">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">betabinomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.betabinomial" title="Permalink to this definition">#</a></dt>
 <dd><p>Beta-Binomial probabilities of ordinal responses, with feeling and overdispersion parameters
-for each observation</p>
+for each observation.</p>
 <p>Compute the Beta-Binomial probabilities of ordinal responses, given feeling and overdispersion
 parameters for each observation.</p>
+<p>The Beta-Binomial distribution is the Binomial distribution in which the probability of success at
+each trial is random and follows the Beta distribution. It is frequently used in Bayesian
+statistics, empirical Bayes methods and classical statistics as an overdispersed binomial distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>xi</strong> (<em>float</em>) – feeling parameter <span class="math notranslate nohighlight">\(\xi\)</span></p></li>
+<li><p><strong>phi</strong> (<em>float</em>) – overdispersion parameter <span class="math notranslate nohighlight">\(\phi\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>array of the same length as <code class="docutils literal notranslate"><span class="pre">sample</span></code>, containing the Beta-Binomial probabilities of each observation,
+for the corresponding feeling and overdispersion parameters.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.draw">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.draw" title="Permalink to this definition">#</a></dt>
-<dd><p>Draw a random sample from CUB model</p>
-<p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#drawm-n-beta-gamma-alpha-y-w-z">maxdevblock/cubmods</a></p>
+<dd><p>Draw a random sample from a specified CUBE model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses to be drawn</p></li>
+<li><p><strong>beta</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \beta\)</span> of parameters for the uncertainty component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>gamma</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \gamma\)</span> of parameters for the feeling component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">W.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>alpha</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \alpha\)</span> of parameters for the overdispersion, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Z.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>Y</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the uncertainty component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an array of <span class="math notranslate nohighlight">\(n\)</span> ordinal responses drawn from the specified model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array of int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.init_theta">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">init_theta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.init_theta" title="Permalink to this definition">#</a></dt>
-<dd><p>Preliminary parameter estimates for CUBE models with covariates</p>
+<dd><p>Preliminary parameter estimates for CUBE models with covariates.</p>
 <p>Compute preliminary parameter estimates for a CUBE model with covariates for all the three parameters.
 These estimates are set as initial values to start the E-M algorithm within maximum likelihood estimation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>p</strong> (<em>int</em>) – number of covariates for the uncertainty component</p></li>
+<li><p><strong>v</strong> (<em>int</em>) – number of covariates for the overdispersion</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a tuple of <span class="math notranslate nohighlight">\((\pmb \beta^{(0)}, \pmb \gamma^{(0)}, \pmb \alpha^{(0)})\)</span> of preliminary estimates of parameter vectors for
+<span class="math notranslate nohighlight">\(\pi = \pi(\pmb{\beta})\)</span>, ; xi=xi(pmb{gamma}),; phi=phi(pmb{alpha})` respectively, of a CUBE model with covariates for all the three
+parameters. In details, they have length equal to <code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code>, <code class="docutils literal notranslate"><span class="pre">W.columns.size``+1</span> <span class="pre">and</span>
+<span class="pre">``Z.columns.size+1</span></code>, respectively, to account for an intercept term for each component.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of arrays</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.loglik">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">loglik</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.loglik" title="Permalink to this definition">#</a></dt>
-<dd><p>Log-likelihood function of a CUBE model with covariates</p>
+<dd><p>Log-likelihood function of a CUBE model with covariates.</p>
 <p>Compute the log-likelihood function of a CUBE model for ordinal responses,
 with covariates for explaining all the three parameters.</p>
-<p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#loglikm-sample-y-w-z-beta-gamma-alpha">maxdevblock/cubmods</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>Y</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the uncertainty component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>beta</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \beta\)</span> of parameters for the uncertainty component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>gamma</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \gamma\)</span> of parameters for the feeling component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">W.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>alpha</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \alpha\)</span> of parameters for the overdispersion, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Z.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the log-likelihood</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.mle">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">mle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.mle" title="Permalink to this definition">#</a></dt>
-<dd><p>Main function for CUBE models with covariates</p>
+<dd><p>Main function for CUBE models with covariates.</p>
 <p>Function to estimate and validate a CUBE model with
 explicative covariates for all the three parameters.</p>
-<p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#mlem-sample-y-w-z">maxdevblock/cubmods</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>Y</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the uncertainty component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
+<li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBresCUBEYWZ</span></code> (see the Class for details)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.pmf">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.pmf" title="Permalink to this definition">#</a></dt>
-<dd><p>PMF of CUB model.</p>
-<p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#pmfm-beta-gamma-alpha-y-w-z">maxdevblock/cubmods</a></p>
+<dd><p>Average Probability Mass of a specified CUB model
+with covariates for the feeling component.</p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>beta</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \beta\)</span> of parameters for the uncertainty component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>gamma</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \gamma\)</span> of parameters for the feeling component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">W.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>alpha</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \alpha\)</span> of parameters for the overdispersion, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Z.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>Y</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the uncertainty component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the array of the average probability distribution</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.pmfi">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">pmfi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.pmfi" title="Permalink to this definition">#</a></dt>
-<dd><p>Probability mass for each subject given parameters and covariates.</p>
-<p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#pmfi">maxdevblock/cubmods</a></p>
+<dd><p>Probability distribution for each subject of a specified CUBE model
+with covariates.</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.draw()</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>beta</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \beta\)</span> of parameters for the uncertainty component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>gamma</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \gamma\)</span> of parameters for the feeling component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">W.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>alpha</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \alpha\)</span> of parameters for the overdispersion, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Z.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>Y</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the uncertainty component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the matrix of the probability distribution of dimension <span class="math notranslate nohighlight">\(n \times r\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.varcov">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">varcov</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.varcov" title="Permalink to this definition">#</a></dt>
-<dd><p>Variance-covariance matrix of a CUBE model with covariates</p>
+<dd><p>Variance-covariance matrix of a CUBE model with covariates.</p>
 <p>Compute the variance-covariance matrix of parameter estimates of a CUBE model with covariates
 for all the three parameters.</p>
-<p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/cube_ywz.md#varcovm-sample-beta-gamma-alpha-y-w-z">maxdevblock/cubmods</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>Y</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the uncertainty component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>beta</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \beta\)</span> of parameters for the uncertainty component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>gamma</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \gamma\)</span> of parameters for the feeling component, whose length equals
+<code class="docutils literal notranslate"><span class="pre">W.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>alpha</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \alpha\)</span> of parameters for the overdispersion, whose length equals
+<code class="docutils literal notranslate"><span class="pre">Z.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the variance-covariance matrix</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -2777,8 +3052,8 @@ for all the three parameters.</p>
 <p>CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect).</p>
-<section id="id22">
-<h3>Description:<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<section id="id24">
+<h3>Description:<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH model family.
@@ -2810,8 +3085,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id23">
-<h3>List of TODOs:<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<section id="id25">
+<h3>List of TODOs:<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>TODO: fix 3d plots legend
 TODO: too long title in CUBsample.plot()</p>
@@ -3002,8 +3277,8 @@ controllare n!</p>
 <p>CUB models in Python.
 Module for CUBSH2 (Combination of Uniform
 and Binomial with two Shelter Choices).</p>
-<section id="id24">
-<h3>Description:<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<section id="id26">
+<h3>Description:<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH2 model family.
@@ -3035,8 +3310,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id25">
-<h3>List of TODOs:<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<section id="id27">
+<h3>List of TODOs:<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>TODO: check plots</p>
 </div></blockquote>
@@ -3200,8 +3475,8 @@ of CUBSH2 parameters estimators</p>
 <p>CUB models in Python.
 Module for CUBSH2 (Combination of Uniform
 and Binomial with two Shelter Choices) with covariates.</p>
-<section id="id26">
-<h3>Description:<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
+<section id="id28">
+<h3>Description:<a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH2_YWXU model family.
@@ -3226,8 +3501,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id27">
-<h3>List of TODOs:<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
+<section id="id29">
+<h3>List of TODOs:<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
@@ -3314,8 +3589,8 @@ References:
 <p>CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect) with covariates.</p>
-<section id="id28">
-<h3>Description:<a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
+<section id="id30">
+<h3>Description:<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH_YWX model family.
@@ -3340,8 +3615,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id29">
-<h3>List of TODOs:<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
+<section id="id31">
+<h3>List of TODOs:<a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
@@ -3428,8 +3703,8 @@ References:
 <p>CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect).</p>
-<section id="id30">
-<h3>Description:<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
+<section id="id32">
+<h3>Description:<a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH model family.
@@ -3461,8 +3736,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id31">
-<h3>List of TODOs:<a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
+<section id="id33">
+<h3>List of TODOs:<a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>TODO: check gini &amp; laakso</p>
 </div></blockquote>
@@ -3585,8 +3860,8 @@ References:
 <li><p>Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163–189.</p></li>
 </ul>
 </div></blockquote>
-<section id="id32">
-<h3>List of TODOs:<a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
+<section id="id34">
+<h3>List of TODOs:<a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
@@ -3664,8 +3939,8 @@ Shelter Choices.</p>
 <p>CUB models in Python.
 Module for 2-CUSH (Combination of Uniform
 and 2 Shelter Choices) with covariates.</p>
-<section id="id33">
-<h3>Description:<a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
+<section id="id35">
+<h3>Description:<a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for 2-CUSH model family.
@@ -3698,8 +3973,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id34">
-<h3>List of TODOs:<a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
+<section id="id36">
+<h3>List of TODOs:<a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
@@ -3765,8 +4040,8 @@ References:
 <p>CUB models in Python.
 Module for 2-CUSH (Combination of Uniform
 and 2 Shelter Choices) with covariates.</p>
-<section id="id35">
-<h3>Description:<a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
+<section id="id37">
+<h3>Description:<a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for 2-CUSH model family.
@@ -3799,8 +4074,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id36">
-<h3>List of TODOs:<a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
+<section id="id38">
+<h3>List of TODOs:<a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
@@ -3866,8 +4141,8 @@ References:
 <p>CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect) with covariates.</p>
-<section id="id37">
-<h3>Description:<a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
+<section id="id39">
+<h3>Description:<a class="headerlink" href="#id39" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH model family.
@@ -3892,8 +4167,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id38">
-<h3>List of TODOs:<a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
+<section id="id40">
+<h3>List of TODOs:<a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>TODO: check gini &amp; laakso</p>
 </div></blockquote>
@@ -3997,8 +4272,8 @@ WARNING: DO NOT USE</p>
 <span id="cubmods-gem-module"></span><h2>cubmods.gem module<a class="headerlink" href="#module-cubmods.gem" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for GEM (Generalized Mixtures).</p>
-<section id="id39">
-<h3>Description:<a class="headerlink" href="#id39" title="Permalink to this heading">#</a></h3>
+<section id="id41">
+<h3>Description:<a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for GEM maximum likelihood estimation.
@@ -4036,8 +4311,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id40">
-<h3>List of TODOs:<a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
+<section id="id42">
+<h3>List of TODOs:<a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>TODO: implement best shelter search</p>
 </div></blockquote>
@@ -4060,19 +4335,17 @@ based upon given model and formula.</p>
 <span id="cubmods-general-module"></span><h2>cubmods.general module<a class="headerlink" href="#module-cubmods.general" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for General functions.</p>
-<section id="id41">
-<h3>Description:<a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
+<section id="id43">
+<h3>Description:<a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for general functions.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
-<p class="rubric">Example</p>
-<p>add example</p>
-<p>…
-References:
-===========</p>
+</section>
+<section id="id44">
+<h3>References:<a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
@@ -4086,19 +4359,33 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id42">
-<h3>List of TODOs:<a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
+<section id="id45">
+<h3>List of TODOs:<a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
-<p>&#64;Author:      Massimo Pierini
-&#64;Institution: Universitas Mercatorum
-&#64;Affiliation: Graduand in Statistics &amp; Big Data (L41)
-&#64;Date:        2023-24
-&#64;Credit:      Domenico Piccolo, Rosaria Simone
-&#64;Contacts:    <a class="reference external" href="mailto:cub&#37;&#52;&#48;maxpierini&#46;it">cub<span>&#64;</span>maxpierini<span>&#46;</span>it</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Author<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Massimo Pierini</p>
+</dd>
+<dt class="field-even">Institution<span class="colon">:</span></dt>
+<dd class="field-even"><p>Universitas Mercatorum</p>
+</dd>
+<dt class="field-odd">Affiliation<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Graduand in Statistics &amp; Big Data (L41)</p>
+</dd>
+<dt class="field-even">Date<span class="colon">:</span></dt>
+<dd class="field-even"><p>2023-24</p>
+</dd>
+<dt class="field-odd">Credit<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Domenico Piccolo, Rosaria Simone</p>
+</dd>
+<dt class="field-even">Contacts<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="mailto:cub&#37;&#52;&#48;maxpierini&#46;it">cub<span>&#64;</span>maxpierini<span>&#46;</span>it</a></p>
+</dd>
+</dl>
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.InvalidCategoriesError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">InvalidCategoriesError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.InvalidCategoriesError" title="Permalink to this definition">#</a></dt>
@@ -4151,7 +4438,20 @@ References:
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.addones">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">addones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.addones" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Expand with a unitary vector in the first column of the given matrix
+to consider also an intercept term for CUB models with covariates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>A</strong> – a matrix to be expanded</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the expanded matrix</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>same of <code class="docutils literal notranslate"><span class="pre">A</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.aic">
@@ -4319,8 +4619,8 @@ covar 3d list</p>
 <span id="cubmods-ihg-module"></span><h2>cubmods.ihg module<a class="headerlink" href="#module-cubmods.ihg" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for IHG (Inverse HyperGeometric).</p>
-<section id="id43">
-<h3>Description:<a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
+<section id="id46">
+<h3>Description:<a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for IHG model family.
@@ -4352,8 +4652,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id44">
-<h3>List of TODOs:<a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
+<section id="id47">
+<h3>List of TODOs:<a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
@@ -4461,8 +4761,8 @@ References:
 <li><p>Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163–189.</p></li>
 </ul>
 </div></blockquote>
-<section id="id45">
-<h3>List of TODOs:<a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
+<section id="id48">
+<h3>List of TODOs:<a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
@@ -4538,8 +4838,8 @@ References:
 <span id="cubmods-multicub-module"></span><h2>cubmods.multicub module<a class="headerlink" href="#module-cubmods.multicub" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for MULTICUB and MULTICUBE.</p>
-<section id="id46">
-<h3>Description:<a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
+<section id="id49">
+<h3>Description:<a class="headerlink" href="#id49" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for MULTICUB and MULTICUBE tool.
@@ -4567,8 +4867,8 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id47">
-<h3>List of TODOs:<a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
+<section id="id50">
+<h3>List of TODOs:<a class="headerlink" href="#id50" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
@@ -4611,8 +4911,8 @@ ms:   list of m</p>
 <span id="cubmods-smry-module"></span><h2>cubmods.smry module<a class="headerlink" href="#module-cubmods.smry" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for summary tools.</p>
-<section id="id48">
-<h3>Description:<a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
+<section id="id51">
+<h3>Description:<a class="headerlink" href="#id51" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for summary tools.
@@ -4644,25 +4944,25 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id49">
-<h3>List of TODOs:<a class="headerlink" href="#id49" title="Permalink to this heading">#</a></h3>
+<section id="id52">
+<h3>List of TODOs:<a class="headerlink" href="#id52" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><p><a href="#id50"><span class="problematic" id="id51">*</span></a>TODO: Correlation su, — invece di === come nella tesi
-<a href="#id52"><span class="problematic" id="id53">*</span></a>TODO: loglik invece di loglike
-<a href="#id54"><span class="problematic" id="id55">*</span></a>TODO: Corr(pi,xi) invece di Corr(pi, xi) nei plot
-<a href="#id56"><span class="problematic" id="id57">*</span></a>TODO: Feeling invece di Preference nei grafici
-<a href="#id58"><span class="problematic" id="id59">*</span></a>TODO: barre invece di pallini (aggiungere opzione)
-<a href="#id60"><span class="problematic" id="id61">*</span></a>TODO: controllare NAs (e dirlo)
+<div><p><a href="#id53"><span class="problematic" id="id54">*</span></a>TODO: Correlation su, — invece di === come nella tesi
+<a href="#id55"><span class="problematic" id="id56">*</span></a>TODO: loglik invece di loglike
+<a href="#id57"><span class="problematic" id="id58">*</span></a>TODO: Corr(pi,xi) invece di Corr(pi, xi) nei plot
+<a href="#id59"><span class="problematic" id="id60">*</span></a>TODO: Feeling invece di Preference nei grafici
+<a href="#id61"><span class="problematic" id="id62">*</span></a>TODO: barre invece di pallini (aggiungere opzione)
+<a href="#id63"><span class="problematic" id="id64">*</span></a>TODO: controllare NAs (e dirlo)
 TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi
 TODO: User Manual
 TODO: Refernce Guide
 TODO: bounds opzionali in CUBE mle (anche CUBSH?)
 TODO: 2 decimali nei 3d plot?
-<a href="#id62"><span class="problematic" id="id63">*</span></a>TODO: stessa unità di misura nei 3d plot magnified?
-<a href="#id64"><span class="problematic" id="id65">*</span></a>TODO: titolo con covariate AVERAGE ESTIMATED PROBABILITY
+<a href="#id65"><span class="problematic" id="id66">*</span></a>TODO: stessa unità di misura nei 3d plot magnified?
+<a href="#id67"><span class="problematic" id="id68">*</span></a>TODO: titolo con covariate AVERAGE ESTIMATED PROBABILITY
 TODO: dissim in multicub plot (aggiungere opzione)
 TODO: grandezza punti phi in multicube
-<a href="#id66"><span class="problematic" id="id67">*</span></a>TODO: stessi decimali nel summary</p>
+<a href="#id69"><span class="problematic" id="id70">*</span></a>TODO: stessi decimali nel summary</p>
 </div></blockquote>
 <p>&#64;Author:      Massimo Pierini
 &#64;Institution: Universitas Mercatorum
@@ -4829,82 +5129,84 @@ functions of model modules.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cube_ywz">cubmods.cube_ywz module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-guide-and-manual">Reference Guide and Manual</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">References:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh">cubmods.cubsh module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">References:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh2">cubmods.cubsh2 module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh">cubmods.cubsh module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh2_ywxu">cubmods.cubsh2_ywxu module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh2">cubmods.cubsh2 module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh_ywx">cubmods.cubsh_ywx module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh2_ywxu">cubmods.cubsh2_ywxu module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush">cubmods.cush module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh_ywx">cubmods.cubsh_ywx module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2">cubmods.cush2 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">List of TODOs:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush">cubmods.cush module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_x0">cubmods.cush2_x0 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">Description:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2">cubmods.cush2 module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_xx">cubmods.cush2_xx module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_x0">cubmods.cush2_x0 module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush_x">cubmods.cush_x module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_xx">cubmods.cush2_xx module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cushk">cubmods.cushk module</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.gem">cubmods.gem module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush_x">cubmods.cush_x module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.general">cubmods.general module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cushk">cubmods.cushk module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.gem">cubmods.gem module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg">cubmods.ihg module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.general">cubmods.general module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">List of TODOs:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg_v">cubmods.ihg_v module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">References:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">List of TODOs:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.multicub">cubmods.multicub module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg">cubmods.ihg module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">List of TODOs:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg_v">cubmods.ihg_v module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">List of TODOs:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.multicub">cubmods.multicub module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">List of TODOs:</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.smry">cubmods.smry module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">List of TODOs:</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods">Module contents</a></li>

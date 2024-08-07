@@ -17,10 +17,10 @@ Description:
 
     :math:`\xi = \dfrac{\beta}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}`
 
-    :math:`\phi = \dfrac{1}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb z_i \pmb \alpha}}`
+    :math:`\phi = \dfrac{1}{\alpha+\beta} = e^{\pmb z_i \pmb \alpha}`
 
 Manual and Examples
-==========================
+===================
   - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/04_cube_family.md
 
 
@@ -36,6 +36,7 @@ References:
   - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189.
 
 List of TODOs:
+===================
   - Manual and Examples
 
 :Author:      Massimo Pierini
