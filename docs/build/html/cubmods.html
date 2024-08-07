@@ -4896,12 +4896,43 @@ to consider also an intercept term for CUB models with covariates.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.aic">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">aic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.aic" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Akaike Information Criterion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>l</strong> (<em>float</em>) – log-likelihood</p></li>
+<li><p><strong>p</strong> (<em>int</em>) – number of parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the AIC value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.bic">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">bic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.bic" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Bayesian Information Criterion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>l</strong> (<em>float</em>) – log-likelihood</p></li>
+<li><p><strong>p</strong> (<em>int</em>) – number of parameters</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of observations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the BIC value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.bitgamma">
@@ -4914,21 +4945,39 @@ to consider also an intercept term for CUB models with covariates.</p>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.general.chisquared">
-<span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">chisquared</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_exp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.chisquared" title="Permalink to this definition">#</a></dt>
-<dd><p>compute chi-squared</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.choices">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">choices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.choices" title="Permalink to this definition">#</a></dt>
-<dd><p>preference choices of CUB model</p>
+<dd><p>Array of ordinal categories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>array of int from 1 to m</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.colsof">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">colsof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.colsof" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Number of columns of the given
+matrix or dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>A</strong> (<em>ndarray</em><em>, </em><em>dataframe</em>) – the matrix or dataframe</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>number of columns</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.conf_border">
@@ -4947,7 +4996,23 @@ CUB parameters of ci% on ax</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.dissimilarity">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">dissimilarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_est</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.dissimilarity" title="Permalink to this definition">#</a></dt>
-<dd><p>compute dissimilarity index</p>
+<dd><p>Normalized dissimilarity measure.</p>
+<p>Compute the normalized dissimilarity measure between observed
+relative frequencies and estimated (theoretical) probabilities of a discrete distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p_obs</strong> (<em>array</em>) – Vector of observed relative frequencies</p></li>
+<li><p><strong>p_est</strong> (<em>array</em>) – Vector of estimated (theoretical) probabilities</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Numeric value of the dissimilarity index, assessing the distance to a perfect fit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -4973,7 +5038,26 @@ CUB parameters of ci% on ax</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.freq">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.freq" title="Permalink to this definition">#</a></dt>
-<dd><p>absolute frequecies of CUB sample</p>
+<dd><p>Absolute frequecies of an
+observed sample of ordinal
+responses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>dataframe</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code> return
+a DataFrame instead of an array,
+defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the absolute frequencies of the observed sample</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array or dataframe</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -5033,7 +5117,28 @@ Example 2:  ax.plot_surface(X,Y,Z,alpha=0.1)</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.luni">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">luni</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.luni" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Log-likelihood of null model.</p>
+<p>Null level, that is when no 
+structure is searched for. 
+Specifically, this is equivalent to 
+assume a discrete Uniform over 
+the support so that any category 
+has the same probability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of observations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the log-likelihood of null model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.plot_ellipsoid">
@@ -5044,7 +5149,25 @@ Example 2:  ax.plot_surface(X,Y,Z,alpha=0.1)</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.probbit">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">probbit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.probbit" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Probability distribution of 
+shifted binomial random variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>xi</strong> (<em>float</em>) – feeling parameter <span class="math notranslate nohighlight">\(\xi\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the vector of the probability 
+distribution of a shifted Binomial 
+model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.unique">

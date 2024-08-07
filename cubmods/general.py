@@ -46,19 +46,47 @@ from matplotlib import transforms
 #from .cub import loglik as lcub
 
 def choices(m):
-    """
-    preference choices of CUB model
+    """Array of ordinal categories.
+    
+    :param m: number of ordinal categories
+    :type m: int
+    :return: array of int from 1 to m
+    :rtype: array
     """
     return np.arange(m)+1
 
 def probbit(m, xi):
+    r"""Probability distribution of 
+    shifted binomial random variable.
+    
+    :param m: number of ordinal categories
+    :type m: int
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the vector of the probability 
+        distribution of a shifted Binomial 
+        model.
+    :rtype: array
+    """
     R = choices(m)
     p = sps.binom(n=m-1, p=1-xi).pmf(R-1)
     return p
 
 def freq(sample, m, dataframe=False):
-    """
-    absolute frequecies of CUB sample
+    """Absolute frequecies of an
+    observed sample of ordinal
+    responses.
+    
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param dataframe: if ``True`` return
+        a DataFrame instead of an array,
+        defaults to ``False``
+    :type dataframe: bool
+    :return: the absolute frequencies of the observed sample
+    :rtype: array or dataframe
     """
     f = []
     R = choices(m)
@@ -73,7 +101,7 @@ def freq(sample, m, dataframe=False):
     }).set_index("choice")
     return df
     
-def chisquared(f_obs, f_exp):
+def _chisquared(f_obs, f_exp):
     """
     compute chi-squared
     """
@@ -81,12 +109,29 @@ def chisquared(f_obs, f_exp):
     return np.sum(cont**2 / f_exp)
     
 def dissimilarity(p_obs, p_est):
-    """
-    compute dissimilarity index
+    """Normalized dissimilarity measure.
+    
+    Compute the normalized dissimilarity measure between observed
+    relative frequencies and estimated (theoretical) probabilities of a discrete distribution.
+    
+    :param p_obs: Vector of observed relative frequencies
+    :type p_obs: array
+    :param p_est: Vector of estimated (theoretical) probabilities
+    :type p_est: array
+    :return: Numeric value of the dissimilarity index, assessing the distance to a perfect fit.
+    :rtype: float
     """
     return np.sum(abs(p_obs-p_est))/2
 
 def colsof(A):
+    r"""Number of columns of the given
+    matrix or dataframe.
+    
+    :param A: the matrix or dataframe
+    :type A: ndarray, dataframe
+    :return: number of columns
+    :rtype: int
+    """
     shape = A.shape
     if len(shape) == 1:
         return 1
@@ -106,13 +151,48 @@ def addones(A):
     return AA
 
 def bic(l, p, n):
+    r"""Bayesian Information Criterion.
+    
+    :param l: log-likelihood
+    :type l: float
+    :param p: number of parameters
+    :type p: int
+    :param n: number of observations
+    :type n: int
+    :return: the BIC value
+    :rtype: float
+    """
     return -2*l + np.log(n)*p
 
 def aic(l, p):
+    r"""Akaike Information Criterion.
+    
+    :param l: log-likelihood
+    :type l: float
+    :param p: number of parameters
+    :type p: int
+    :return: the AIC value
+    :rtype: float
+    """
     return -2*l + 2*p
 
 def luni(m, n):
-    # loglik of null model (uniform)
+    r"""Log-likelihood of null model.
+    
+    Null level, that is when no 
+    structure is searched for. 
+    Specifically, this is equivalent to 
+    assume a discrete Uniform over 
+    the support so that any category 
+    has the same probability. 
+    
+    :param m: number of ordinal categories
+    :type m: int
+    :param n: number of observations
+    :type n: int
+    :return: the log-likelihood of null model
+    :rtype: float
+    """
     loglikuni = -(n*np.log(m))
     return loglikuni
 
