@@ -365,7 +365,7 @@ class CUBresCUSH(CUBres):
             label="estimated", ms=10)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("probability distribution")
+        ax.set_ylabel("Probability")
         ax.set_title(title)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))

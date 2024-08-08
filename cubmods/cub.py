@@ -600,7 +600,7 @@ class CUBresCUB00(CUBres):
         R = choices(self.m)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("probability distribution")
+        ax.set_ylabel("Probability")
 
         ax.plot(R, self.theoric, ".b:",
             label="estimated", ms=10)
