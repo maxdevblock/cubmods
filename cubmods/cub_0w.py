@@ -42,6 +42,9 @@ List of TODOs:
 :Date:        2023-24
 :Credit:      Domenico Piccolo, Rosaria Simone
 :Contacts:    cub@maxpierini.it
+
+Classes and Functions
+==============
 """
 
 import datetime as dt

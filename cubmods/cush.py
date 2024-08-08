@@ -11,19 +11,10 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import cush
+Manual and Examples
+==========================
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cubsh_family.md
 
-    samp = pd.read_csv("ordinal.csv")
-    fit = cush.mle(samp.rv, m=7, sh=5)
-    print(fit.summary())
-    fit.plot()
-    plt.show()
-
-
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -38,14 +29,17 @@ References:
   
 List of TODOs:
 ==============
-  TODO: check gini & laakso
+  - TODO: check and fix gini & laakso
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
+
+Classes and Functions
+==============
 """
 
 #import pickle

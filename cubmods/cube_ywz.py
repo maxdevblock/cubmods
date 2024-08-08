@@ -45,6 +45,9 @@ List of TODOs:
 :Date:        2023-24
 :Credit:      Domenico Piccolo, Rosaria Simone
 :Contacts:    cub@maxpierini.it
+
+Classes and Functions
+==============
 """
 
 import datetime as dt
@@ -236,7 +239,7 @@ def init_theta(m, sample, W, p, v):
     :type v: int
     :return: a tuple of :math:`(\pmb \beta^{(0)}, \pmb \gamma^{(0)}, \pmb \alpha^{(0)})` of preliminary estimates of parameter vectors for 
         :math:`\pi = \pi(\pmb{\beta})`, \; \xi=\xi(\pmb{\gamma}),\; \phi=\phi(\pmb{\alpha})` respectively, of a CUBE model with covariates for all the three
-        parameters. In details, they have length equal to ``Y.columns.size+1``, ``W.columns.size``+1 and
+        parameters. In details, they have length equal to ``Y.columns.size+1``, ``W.columns.size+1`` and
         ``Z.columns.size+1``, respectively, to account for an intercept term for each component.
     :rtype: tuple of arrays
     """

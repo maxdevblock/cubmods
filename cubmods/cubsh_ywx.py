@@ -1,5 +1,5 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace, invalid-unary-operand-type
-"""
+r"""
 CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect) with covariates.
@@ -11,11 +11,20 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    TODO: add example
+    :math:`\Pr(R=r_i|\pmb\theta_i;\pmb y_i; \pmb w_i; \pmb x_i) = \delta_i D_r^{(c)} + (1 - \delta_i)[ \pi_i b_r(\xi_i) + (1-\pi_i)/m ]`
+
+    :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
+
+    :math:`\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb\beta}}`
+
+    :math:`\delta_i = \dfrac{1}{1+e^{-\pmb x_i \pmb\omega}}`
 
 
-...
+Manual and Examples
+==========================
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cubsh_family.md
+
+
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -32,12 +41,15 @@ List of TODOs:
 ==============
   - ...
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
+
+Classes and Functions
+==============
 """
 
 import datetime as dt
@@ -67,6 +79,35 @@ from .smry import CUBres, CUBsample
 
 def pmf(m, sh, beta, gamma, omega,
     Y, W, X):
+    r"""Average probability distribution of a specified CUBSH model with covariates
+    (aka GeCUB model).
+
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i; \pmb y_i, \pmb x_i),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param omega: array :math:`\pmb omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :return: the probability distribution
+    :rtype: array
+    """
     p = pmfi(m, sh, beta, gamma, omega,
         Y, W, X)
     pr = p.mean(axis=0)
@@ -74,6 +115,37 @@ def pmf(m, sh, beta, gamma, omega,
 
 def pmfi(m, sh, beta, gamma, omega,
     Y, W, X):
+    r"""Probability distribution for each subject of a specified CUBSH model with covariates
+    (aka GeCUB model).
+
+    Auxiliary function of ``.draw()``.
+
+    :math:`\Pr(R = r | \pmb\theta_i ; \pmb y_i; \pmb w_i, \pmb x_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param omega: array :math:`\pmb omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :return: the matrix of the probability distribution of dimension :math:`n \times r`
+    :rtype: numpy ndarray
+    """
     pi = logis(Y, beta)
     xi = logis(W, gamma)
     delta = logis(X, omega)
@@ -90,8 +162,33 @@ def pmfi(m, sh, beta, gamma, omega,
 
 def draw(m, n, sh, beta, gamma, omega,
     Y, W, X, seed=None):
-    """
-    generate random sample from CUB model
+    r"""Draw a random sample from a specified CUBSH model with covariates
+    (aka GeCUB model).
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param omega: array :math:`\pmb omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :param n: number of ordinal responses to be drawn
+    :type n: int
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -137,6 +234,28 @@ def draw(m, n, sh, beta, gamma, omega,
     return sample
 
 def init_theta(m, sample, p, s, W):
+    r"""Preliminary estimators for CUBSH models with covariates.
+
+    Computes preliminary parameter estimates of a CUBSH model without covariates for given ordinal
+    responses. These preliminary estimators are used within the package code to start the E-M algorithm.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param p: number of covariates for the uncertainty component
+    :type p: int
+    :param s: number of covariates for the shelter effect
+    :type s: int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :return: a tuple of :math:`(\pmb \beta^{(0)}, \pmb \gamma^{(0)}, \pmb \omega^{(0)})` of preliminary estimates of parameter vectors for 
+        :math:`\pi = \pi(\pmb{\beta})`, \; \xi=\xi(\pmb{\gamma}),\; \delta=\delta(\pmb{\omega})` respectively, of a CUBSH model with covariates for all the three
+        parameters. In details, they have length equal to ``Y.columns.size+1``, ``W.columns.size+1`` and
+        ``X.columns.size+1``, respectively, to account for an intercept term for each component.
+    :rtype: tuple of arrays
+    """
     f = freq(m=m, sample=sample)
     pi, _ = inipixi(f=f, m=m)
     beta0 = np.log(pi/(1-pi))
@@ -152,6 +271,38 @@ def init_theta(m, sample, p, s, W):
 
 def prob(m, sample, sh, Y, W, X,
     beta, gamma, omega):
+    r"""Probability distribution of a CUBSH model with covariates.
+
+    Compute the probability distribution of a CUBSH model with covariates.
+
+    :math:`\Pr(R = r_i | \pmb\theta_i ; \pmb w_i; \pmb y_i; \pmb x_i),\; i=1 \ldots n`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param omega: array :math:`\pmb omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :return: the array of the probability distribution.
+    :rtype: numpy array
+    """
     alpha1 = logis(X, omega)
     alpha2 = (1-alpha1)*logis(Y, beta)
     D = (sample==sh).astype(int)
@@ -163,6 +314,36 @@ def prob(m, sample, sh, Y, W, X,
 
 def varcov(sample, m, sh, Y, W, X,
     beta, gamma, omega):
+    r"""Variance-covariance matrix of a CUBSH model with covariates
+
+    Compute the variance-covariance matrix of parameter estimates of a CUBSH model with covariates.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param omega: array :math:`\pmb omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :return: the variance-covariance matrix of the model
+    :rtype: numpy ndarray
+    """
     probi = prob(m, sample, sh, Y, W, X,
         beta, gamma, omega)
     vvi = 1/probi
@@ -218,12 +399,55 @@ def varcov(sample, m, sh, Y, W, X,
 
 def loglik(m, sample, sh, Y, W, X,
     beta, gamma, omega):
+    r"""Log-likelihood function of a CUBSH model with covariates.
+
+    Compute the log-likelihood function of a CUBE model for ordinal responses,
+    with covariates for explaining all the three parameters (GeCUB model).
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
+        ``Y.columns.size+1`` to include an intercept term in the model (first entry)
+    :type beta: array of float
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :param omega: array :math:`\pmb omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :return: the log-likelihood value
+    :rtype: float
+    """
     p = prob(m, sample, sh, Y, W, X,
         beta, gamma, omega)
     l = np.sum(np.log(p))
     return l
 
 def Q1(param, dati1, p):
+    r"""Auxiliary function for the log-likelihood estimation of GeCUB models.
+
+    Define the opposite one of the two scalar functions that are maximized when running the E-M algorithm
+    for GeCUB models with covariates for feeling, uncertainty and shelter effect.
+
+    :param param: array of initial estimates of parameters for the uncertainty component
+    :type param: array
+    :param dati1: auxiliary matrix
+    :type dati1: ndarray or dataframe
+    :param p: number of covariates for the uncertainty component
+    :type p: int
+    """
     omega = param[:-(p+1)]
     beta = param[-(p+1):]
     tau1 = dati1[0]
@@ -241,6 +465,18 @@ def Q1(param, dati1, p):
     return esse
 
 def Q2(param, dati2, m):
+    r"""Auxiliary function for the log-likelihood estimation of GeCUB models.
+
+    Define the opposite one of the two scalar functions that are maximized when running the E-M algorithm
+    for GeCUB models with covariates for feeling, uncertainty and shelter effect.
+
+    :param param: array of initial estimates of parameters for the feeling component
+    :type param: array
+    :param dati2: auxiliary matrix
+    :type dati2: ndarray or dataframe
+    :param m: number of ordinal categories
+    :type m: int
+    """
     tau2 = dati2[0]
     sample = dati2[1]
     W = dati2[2]
@@ -251,6 +487,34 @@ def Q2(param, dati2, m):
 def mle(m, sample, sh, Y, W, X,
     gen_pars=None,
     maxiter=500, tol=1e-4):
+    r"""Main function for CUBSH models with covariates for all the components
+
+    Function to estimate and validate a CUBSH model for given ordinal responses, with covariates for
+    explaining all the components and the shelter effect.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param Y: dataframe of covariates for explaining the uncertainty component;
+        no column must be named ``0`` nor ``constant``
+    :type Y: pandas dataframe
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: maximum number of iterations allowed for running the optimization algorithm
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates
+    :type tol: float
+    :return: an instance of ``CUBresCUBSHYWZ`` (see the Class for details)
+    :rtype: object
+    """
     start = dt.datetime.now()
     n = sample.size
     # rank = pd.Series(sample).rank(method="dense")
@@ -372,11 +636,27 @@ def mle(m, sample, sh, Y, W, X,
     )
     
 class CUBresCUBSHYWX(CUBres):
+    r"""Object returned by ``.mle()`` function.
+    See the Base for details.
+    """
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
+        """Plots relative average frequencies of observed sample, estimated average probability distribution and,
+        if provided, average probability distribution of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -442,8 +722,13 @@ class CUBresCUBSHYWX(CUBres):
         saveas=None,
         figsize=(7, 5)
         ):
-        """
-        plot CUB model fitted from a sample
+        """Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         self.plot_ordinal(ax=ax)

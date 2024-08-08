@@ -13,6 +13,10 @@ Description:
 
     :math:`\Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1 - \delta)[ \pi b_r(\xi) + (1-\pi)/m ]`
 
+Manual and Examples
+==========================
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cubsh_family.md
+
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
