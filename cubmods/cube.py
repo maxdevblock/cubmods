@@ -244,7 +244,7 @@ def loglik(m, pi, xi, phi, f):
     :type phi: float
     :param f: array of absolute frequency distribution
     :type f: array of int
-    :return: the log-likelihood
+    :return: the log-likelihood value
     :rtype: float
     """
     L = pmf(m, pi, xi, phi)
@@ -407,8 +407,7 @@ def draw(m, pi, xi, phi, n, seed=None):
     :type n: int
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an array of :math:`n` ordinal responses drawn from the specified model
-    :rtype: array of int
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     np.random.seed(seed)
     rv = np.random.choice(
@@ -650,8 +649,8 @@ class CUBresCUBE(CUBres):
         ax=None, kind="bar",
         saveas=None
         ):
-        r"""Plots relative frequencies of observed sample, estimated probability mass and,
-        if provided, probability mass of a known model.
+        r"""Plots relative frequencies of observed sample, estimated probability distribution and,
+        if provided, probability distribution of a known model.
 
         :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
         :type figsize: tuple of float
@@ -688,7 +687,7 @@ class CUBresCUBE(CUBres):
         R = choices(self.m)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("Probability mass")
+        ax.set_ylabel("probability distribution")
 
         ax.plot(R, self.theoric, ".b:",
             label="estimated", ms=10)

@@ -248,7 +248,7 @@ class CUBresCUSH(CUBres):
             label="estimated", ms=10)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("Probability mass")
+        ax.set_ylabel("probability distribution")
         ax.set_title(title)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
@@ -335,7 +335,7 @@ class CUBresCUSH(CUBres):
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         ax[0].set_xticks(R)
         ax[0].set_xlabel("Ordinal")
-        ax[0].set_ylabel("Probability mass")
+        ax[0].set_ylabel("probability distribution")
         ax[1].set_xlim((0,1))
         #ax[1].set_ylim((0,1))
         ticks = np.arange(0, 1.1, .1)

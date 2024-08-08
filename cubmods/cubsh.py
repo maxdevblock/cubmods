@@ -66,28 +66,71 @@ from .smry import CUBres, CUBsample
 ###################################################################
 
 def pidelta_to_pi1pi2(pi, delta):
+    r"""Compute :math:`(\pi_1, \pi_2)` from :math:`(\pi, \delta)`
+
+    :math:`\pi_1 = (1 - \delta) \pi`
+
+    :math:`\pi_2 = (1 - \delta)(1 - \pi)`
+
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :return: a tuple of :math:`(\pi_1, \pi_2)` the mixing coefficient of the shifted
+        Binomial and the Uniform components, respectively
+    :rtype: tuple
+    """
     pi1 = (1-delta)*pi
     pi2 = (1-delta)*(1-pi)
     return pi1, pi2
 
 def pi1pi2_to_pidelta(pi1, pi2):
+    r"""Compute :math:`(\pi, \delta)` from :math:`(\pi_1, \pi_2)`
+
+    :math:`\pi = \dfrac{\pi_1}{\pi_1 + \pi_2}`
+
+    :math:`\delta = 1 - \pi_1 - \pi_2`
+
+    :param pi1: Mixing coefficient for the shifted Binomial component of the mixture distribution :math:`\pi_1`
+    :type pi1: float
+    :param pi2: Mixing coefficient for the discrete Uniform component of the mixture distribution :math:`\pi_2`
+    :type pi2: float
+    :return: a tuple of :math:`(\pi, \delta)` the parameters of 
+        uncertainty and shelter choice, respectively
+    :rtype: tuple
+    """
     pi = pi1/(pi1+pi2)
     delta = 1 - pi1 - pi2
     return pi, delta
 
-def pidelta_to_lambdeta(pi, delta):
+def _pidelta_to_lambdeta(pi, delta):
     lambd = pi*(1-delta)
     eta = ((1-pi)*(1-delta))/(1-pi*(1-delta))
     return lambd, eta
 
-def lambdeta_to_pidelta(lambd, eta):
+def _lambdeta_to_pidelta(lambd, eta):
     pi = lambd/(lambd+eta*(1-lambd))
     delta = (1-lambd)*(1-eta)
     return pi, delta
 
 def pmf_delta(m, sh, pi, xi, delta):
-    """
-    PMF of CUBSH model with delta
+    r"""Probability distribution of a specified CUBSH model,
+    using canonic parametrization :math:`(\pi, \delta)`.
+
+    :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the probability distribution
+    :rtype: array
     """
     R = choices(m)
     D = R==sh
@@ -96,8 +139,23 @@ def pmf_delta(m, sh, pi, xi, delta):
     return p
 
 def pmf(m, sh, pi1, pi2, xi):
-    """
-    PMF of CUBSH model with pi1, pi2
+    r"""Probability distribution of a specified CUBSH model,
+    using alternative parametrization :math:`(\pi_1, \pi_2)`.
+
+    :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi1: Mixing coefficient for the shifted Binomial component of the mixture distribution :math:`\pi_1`
+    :type pi1: float
+    :param pi2: Mixing coefficient for the discrete Uniform component of the mixture distribution :math:`\pi_2`
+    :type pi2: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the probability distribution
+    :rtype: array
     """
     R = choices(m)
     D = (R==sh).astype(int)
@@ -105,13 +163,45 @@ def pmf(m, sh, pi1, pi2, xi):
     return p
 
 def proba(m, sh, pi1, pi2, xi, r):
+    r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a CUBSH model without covariates,
+    using alternative parametrization :math:`(\pi_1, \pi_2)`.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi1: Mixing coefficient for the shifted Binomial component of the mixture distribution :math:`\pi_1`
+    :type pi1: float
+    :param pi2: Mixing coefficient for the discrete Uniform component of the mixture distribution :math:`\pi_2`
+    :type pi2: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param r: ordinal response
+    :type r: int
+    :return: the probability :math:`\Pr(R = r | \pmb\theta)`
+    :rtype: float
+    """
     p = pmf(m, sh, pi1, pi2, xi)
     return p[r-1]
 
 def proba_delta(m, sh, pi, xi, delta, r):
-    """
-    probability Pr(R=r) of CUBSH model
-    with delta
+    r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a CUBSH model without covariates,
+    using canonic parametrization :math:`(\pi, \delta)`.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param r: ordinal response
+    :type r: int
+    :return: the probability :math:`\Pr(R = r | \pmb\theta)`
+    :rtype: float
     """
     #print(m, pi, xi, R)
     D = r==sh
@@ -120,32 +210,100 @@ def proba_delta(m, sh, pi, xi, delta, r):
     return p
 
 def cmf(m, sh, pi1, pi2, xi):
+    r"""Cumulative probability of a specified CUBSH model,
+    using alternative parametrization :math:`(\pi_1, \pi_2)`.
+
+    :math:`\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi1: Mixing coefficient for the shifted Binomial component of the mixture distribution :math:`\pi_1`
+    :type pi1: float
+    :param pi2: Mixing coefficient for the discrete Uniform component of the mixture distribution :math:`\pi_2`
+    :type pi2: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the cumulative probability distribution
+    :rtype: array
+    """
     return pmf(m, sh, pi1, pi2, xi).cumsum()
 
 def cmf_delta(m, sh, pi, xi, delta):
+    r"""Cumulative probability of a specified CUBSH model,
+    using canonic parametrization :math:`(\pi, \delta)`.
+
+    :math:`\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the cumulative probability distribution
+    :rtype: array
     """
-    CMF of CUBSH model with delta
-    """
-    return pmf(m, pi, xi, sh, delta).cumsum()
+    return pmf_delta(m, sh, pi, xi, delta).cumsum()
 
 def mean_delta(m, sh, pi, xi, delta):
-    """
-    mean of CUBSH model with delta
+    r"""Expected value of a specified CUBSH model,
+    using canonic parametrization :math:`(\pi, \delta)`.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the expected value of the model
+    :rtype: float
     """
     mu = cub.mean(m, pi, xi)
     mi = mu + delta*(mu-sh)
     return mi
 
 def var_delta(m, pi, xi, delta):
-    """
-    variance of CUBSH model with delta
+    r"""Variance of a specified CUBSH model,
+    using canonic parametrization :math:`(\pi, \delta)`.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the variance of the model
+    :rtype: float
     """
     v = ((1-delta)**2)*cub.var(m, pi, xi)
     return v
 
 def std_delta(m, pi, xi, delta):
-    """
-    standard deviation of CUB model
+    r"""Standard deviation of a specified CUB model,
+    using canonic parametrization :math:`(\pi, \delta)`.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: the standard deviation of the model
+    :rtype: float
     """
     s = np.sqrt(var_delta(m, pi, xi, delta))
     return s
@@ -189,12 +347,50 @@ def _laakso(m, sh, pi1, pi2, xi):
     return g/(m - (m-1)*g)
 
 def loglik(m, sh, pi1, pi2, xi, f):
+    r"""Log-likelihood of a CUB model with shelter effect
+
+    Compute the log-likelihood of a CUB model with a shelter effect
+    for the given absolute frequency distribution.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi1: Mixing coefficient for the shifted Binomial component of the mixture distribution :math:`\pi_1`
+    :type pi1: float
+    :param pi2: Mixing coefficient for the discrete Uniform component of the mixture distribution :math:`\pi_2`
+    :type pi2: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param f: Vector of the absolute frequency distribution
+    :type f: array
+    :return: the log-likehood value
+    :rtype: float    
+    """
     L = pmf(m=m, sh=sh, pi1=pi1, pi2=pi2, xi=xi)
     #TODO: check log invalid value from mle
     l = (f*np.log(L)).sum()
     return l
 
 def varcov_pxd(m, sh, pi, xi, de, n):
+    r"""Variance-covariance matrix for CUB models with shelter effect,
+    using canonic parametrization :math:`(\pi, \delta)`.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param de: shelter choice parameter :math:`\delta`
+    :type de: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param n: number of ordinal responses
+    :type n: int
+    :return: the variance-covariance matrix
+    :rtype: numpy ndarray
+    """
     bb = probbit(m, xi)
     dd = np.repeat(0, m)
     dd[sh-1] = 1
@@ -233,10 +429,25 @@ def varcov_pxd(m, sh, pi, xi, de, n):
     return V
 
 def varcov(m, sh, pi1, pi2, xi, n):
-    """
-    compute asymptotic variance-covariance
-    of CUBSH estimated parameters
-    controllare n!
+    r"""Variance-covariance matrix for CUB models with shelter effect,
+    using alternative parametrization :math:`(\pi_1, \pi_2)`.
+
+    Compute the variance-covariance matrix of parameter estimates of a CUB model with shelter effect.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi1: Mixing coefficient for the shifted Binomial component of the mixture distribution :math:`\pi_1`
+    :type pi1: float
+    :param pi2: Mixing coefficient for the discrete Uniform component of the mixture distribution :math:`\pi_2`
+    :type pi2: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param n: number of ordinal responses
+    :type n: int
+    :return: the variance-covariance matrix
+    :rtype: numpy ndarray
     """
     R = choices(m)
     pr = pmf(m, sh, pi1, pi2, xi)
@@ -282,6 +493,19 @@ def varcov(m, sh, pi1, pi2, xi, n):
     return varmat
 
 def init_theta(f, m, sh):
+    r"""Preliminary estimators for CUBSH models.
+
+    Computes preliminary parameter estimates of a CUBSH model without covariates for given ordinal
+    responses. These preliminary estimators are used within the package code to start the E-M algorithm.
+
+    :param f: array of the absolute frequencies of given ordinal responses
+    :type f: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :return: a tuple of :math:`(\pi_1^{(0)}, \pi_2^{(0)}, \xi^{(0)})`
+    """
     pi1, xi = cub.init_theta(f, m)
     fc = f[sh-1]/f.sum()
     #print("fc", fc)
@@ -291,6 +515,18 @@ def init_theta(f, m, sh):
     return pi1, pi2, xi
 
 def plot_simplex(pi1pi2list, ax=None, fname=None):
+    r"""Plot simplex of parameters of a CUBSH model.
+
+    .. note:: see the reference DOI 10.1007/s10260-011-0176-x for details
+
+    .. warning:: this function still needs several fixes
+
+    :param pi1pi2list: list of ``[pi1, pi2]`` parameters
+    :type pi1pi2list: list
+    :param ax: matplotlib axis
+    :param fname: if provided, save the plot to ``fname``, defaults to None
+    :param fname: str
+    """
     # tick length
     tkl = .02
     # tick step
@@ -399,9 +635,24 @@ def plot_simplex(pi1pi2list, ax=None, fname=None):
 ###################################################################
 
 def draw(m, sh, pi1, pi2, xi, n, seed=None):
-    """
-    generate random sample from CUBSH model
-    from pi1 and pi2
+    r"""Draw a random sample from a specified CUBSH model,
+    using alternative parametrization :math:`(\pi_1, \pi_2)`.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi1: Mixing coefficient for the shifted Binomial component of the mixture distribution :math:`\pi_1`
+    :type pi1: float
+    :param pi2: Mixing coefficient for the discrete Uniform component of the mixture distribution :math:`\pi_2`
+    :type pi2: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param n: number of ordinal responses
+    :type n: int
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     if m<= 4:
         print("ERR: Number of ordered categories should be at least 5")
@@ -432,9 +683,24 @@ def draw(m, sh, pi1, pi2, xi, n, seed=None):
     return sample
 
 def draw2(m, sh, pi, xi, delta, n, seed=None):
-    """
-    generate random sample from CUBSH model
-    from pi and delta
+    r"""Draw a random sample from a specified CUBSH model,
+    using canonic parametrization :math:`(\pi, \delta)`.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param pi: uncertainty parameter :math:`\pi`
+    :type pi: float
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :param n: number of ordinal responses
+    :type n: int
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     pi1, pi2 = pidelta_to_pi1pi2(pi, delta)
     sample = draw(m, sh, pi1, pi2, xi, n, seed=seed)
@@ -447,6 +713,26 @@ def draw2(m, sh, pi, xi, delta, n, seed=None):
 def mle(sample, m, sh, maxiter=500, tol=1e-4,
     gen_pars=None
     ):
+    r"""Main function for CUB models with a shelter effect
+
+    Estimate and validate a CUB model with a shelter effect.
+
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: maximum number of iterations allowed for running the optimization algorithm
+    :type maxiter: int
+    :param tol: fixed error tolerance for final estimates
+    :type tol: float
+    :return: an instance of ``CUBresCUBSH`` (see the Class for details)
+    :rtype: object
+    :raise: Exception if :math:`m \leq 4`
+    """
     if m<= 4:
         print("ERR: Number of ordered categories should be at least 5")
         raise InvalidCategoriesError(m=m, model="cubsh")
@@ -584,12 +870,28 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
     )
 
 class CUBresCUBSH(CUBres):
+    r"""Object returned by ``.mle()`` function.
+    See the Base for details.
+    """
 
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
+        r"""Plots relative frequencies of observed sample, estimated probability distribution and,
+        if provided, probability distribution of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -620,7 +922,7 @@ class CUBresCUBSH(CUBres):
         R = choices(self.m)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("Probability mass")
+        ax.set_ylabel("probability distribution")
 
         #p = pmf(m=self.m, pi1=self.pi1, pi2=self.pi2, xi=self.xi, sh=self.sh)
         ax.plot(R, self.theoric, ".b:",
@@ -657,7 +959,7 @@ class CUBresCUBSH(CUBres):
             return ax
 
     #TODO: add displacement from CUB with no shelter effect
-    def plot_confell(self,
+    def _plot_confell(self,
         figsize=(7, 5),
         ci=.95,
         equal=True,
@@ -666,6 +968,9 @@ class CUBresCUBSH(CUBres):
         saveas=None,
         confell=False, debug=False
         ):
+        """
+        :DEPRECATED:
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -756,6 +1061,16 @@ class CUBresCUBSH(CUBres):
 
     def plot3d(self, ax, ci=.95,
         magnified=False):
+        r"""Plots the estimated parameter values in the parameter space and
+        the asymptotic confidence ellipsoid with its projections.
+        
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipsoid
+        :type ci: float
+        :param magnified: if False the limits will be the entire parameter space, otherwise let matplotlib choose the limits
+        :type magnified: bool
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        """
         pi = self.estimates[3]
         xi = self.estimates[4]
         de = self.estimates[5]
@@ -785,8 +1100,21 @@ class CUBresCUBSH(CUBres):
         test3=True,
         figsize=(7, 15)
         ):
-        """
-        plot CUBSH model fitted from a sample
+        r"""Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipsoid
+        :type ci: float
+        :param confell: **DEPRECATED**, defaults to False
+        :type confell: bool
+        :param test3: **DEPRECATED**, defaults to True
+        :type test3: bool
+        :param debug: **DEPRECATED**, defaults to False
+        :type debug: bool
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(3, 1,
             figsize=figsize,
@@ -803,7 +1131,7 @@ class CUBresCUBSH(CUBres):
             self.plot3d(ax=ax[2], ci=ci,
                 magnified=True)
         else:
-            self.plot_confell(ci=ci, ax=ax[1],
+            self._plot_confell(ci=ci, ax=ax[1],
                 confell=confell, debug=debug)
             pi1 = self.estimates[0]
             pi2 = self.estimates[1]

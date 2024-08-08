@@ -67,7 +67,7 @@ from .smry import CUBres, CUBsample
 ###################################################################
 
 def pmf(m, pi, gamma, W):
-    r"""Average Probability Mass of a specified CUB model 
+    r"""Average probability distribution of a specified CUB model 
     with covariates for the feeling component.
 
     :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
@@ -216,7 +216,7 @@ def loglik(sample, m, pi, gamma, W):
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
-    :return: the log-likelihood
+    :return: the log-likelihood value
     :rtype: float
     """
     p = prob(sample, m, pi, gamma, W)
@@ -322,8 +322,7 @@ def draw(m, n, pi, gamma, W, seed=None):
     :param seed: the `seed` to ensure reproducibility, defaults to None;
         it must be :math:`\neq 0`
     :type seed: int, optional
-    :return: an array of :math:`n` ordinal responses drawn from the specified model
-    :rtype: array of int
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -613,8 +612,8 @@ class CUBresCUB0W(CUBres):
         ax=None, kind="bar", #options bar, scatter
         saveas=None
         ):
-        """Plots relative average frequencies of observed sample, estimated average probability mass and,
-        if provided, average probability mass of a known model.
+        """Plots relative average frequencies of observed sample, estimated average probability distribution and,
+        if provided, average probability distribution of a known model.
 
         :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
         :type figsize: tuple of float
@@ -639,7 +638,7 @@ class CUBresCUB0W(CUBres):
         R = choices(self.m)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("Probability mass")
+        ax.set_ylabel("probability distribution")
 
         ax.plot(R, self.theoric, ".b:",
             label="estimated", ms=10)

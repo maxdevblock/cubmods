@@ -608,7 +608,7 @@ class CUBresCUBSH2(CUBres):
         R = choices(self.m)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("Probability mass")
+        ax.set_ylabel("probability distribution")
 
         #p = pmf(m=self.m, pi1=self.pi1, pi2=self.pi2, xi=self.xi, sh=self.sh)
         ax.plot(R, self.theoric, ".b:",

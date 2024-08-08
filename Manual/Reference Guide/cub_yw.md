@@ -46,7 +46,7 @@ Estimates parameters from an observed sample.
 # Ancillary Functions
 
 ## `.pmf(m, beta, gamma, Y, W)`
-Average Estimated Probability mass of a specified model.
+Average Estimated probability distribution of a specified model.
 - Arguments
   - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
   - `beta` (_array_): array of parameters $\pmb\beta$ for Uncertainty covariates; must be of length `Y.columns+1`
@@ -105,7 +105,7 @@ Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` fun
 - Functions
   - `.plot_ordinal()`
     
-    Plots the observed sample relative frequencies, the average estimated probability mass of the estimated model.
+    Plots the observed sample relative frequencies, the average estimated probability distribution of the estimated model.
 
     - Arguments
       - `kind="bar"` (_string_): how to plot the observed sample relative frequencies; options: `bar`, `scatter`

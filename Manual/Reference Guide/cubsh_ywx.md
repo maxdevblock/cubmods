@@ -51,7 +51,7 @@ Function to estimate and validate a CUB model without covariates for given ordin
 # Ancillary Functions
 
 ## `.pmf(m, sh, beta, gamma, omega, Y, W, X)`
-Probability Mass Function of a specified CUB model.
+probability distribution Function of a specified CUB model.
 - Arguments
   - `m` (_int_): number of ordinal responses; the support of random variable will be $[1,m]$
   - `sh` (_int_): shelter choice (must be $[1,m]$)
@@ -119,7 +119,7 @@ Extension of the basic `CUBres` Class (#TODO: link). Is returned by `.mle()` fun
 - Functions
   - `.plot_ordinal()`
     
-    Plots the observed sample relative frequencies, the probability mass of the estimated model and (if provided) the probability mass of the kwown (generating) model.
+    Plots the observed sample relative frequencies, the probability distribution of the estimated model and (if provided) the probability distribution of the kwown (generating) model.
 
     - Arguments
       - `kind="bar"` (_string_): how to plot the observed sample relative frequencies; options: `bar`, `scatter`

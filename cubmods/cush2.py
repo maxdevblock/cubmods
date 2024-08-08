@@ -64,7 +64,7 @@ from .smry import CUBres, CUBsample
 
 def pmf(m, c1, c2, d1, d2):
     """
-    Probability mass of 2-CUSH model,
+    probability distribution of 2-CUSH model,
     Combination of Uniform and 2
     Shelter Choices.
     """
@@ -309,7 +309,7 @@ class CUBresCUSH2(CUBres):
         R = choices(self.m)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("Probability mass")
+        ax.set_ylabel("probability distribution")
 
         ax.plot(R, self.theoric, ".b:",
             label="estimated", ms=10)

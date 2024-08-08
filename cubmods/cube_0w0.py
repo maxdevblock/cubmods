@@ -101,7 +101,7 @@ def pmfi(m, pi, gamma, phi, W):
     return p
 
 def pmf(m, pi, gamma, phi, W):
-    r"""Average Probability Mass of a specified CUB model 
+    r"""Average probability distribution of a specified CUB model 
     with covariates for the feeling component.
 
     :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
@@ -173,8 +173,7 @@ def draw(m, n, pi, gamma, phi, W, seed=None):
     :type n: int
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an array of :math:`n` ordinal responses drawn from the specified model
-    :rtype: array of int
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
     assert n == W.shape[0]
@@ -267,7 +266,7 @@ def loglik(m, sample, W, pi, gamma, phi):
     :type W: pandas dataframe
     :param sample: array of ordinal responses
     :type sample: array of int
-    :return: the log-likelihood
+    :return: the log-likelihood value
     :rtype: float
     """
     p = prob(m=m, sample=sample, W=W,
@@ -468,8 +467,8 @@ class CUBresCUBE0W0(CUBres):
         ax=None, kind="bar",
         saveas=None
         ):
-        """Plots relative average frequencies of observed sample, estimated average probability mass and,
-        if provided, average probability mass of a known model.
+        """Plots relative average frequencies of observed sample, estimated average probability distribution and,
+        if provided, average probability distribution of a known model.
 
         :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
         :type figsize: tuple of float
@@ -503,7 +502,7 @@ class CUBresCUBE0W0(CUBres):
         R = choices(self.m)
         ax.set_xticks(R)
         ax.set_xlabel("Ordinal")
-        ax.set_ylabel("Probability mass")
+        ax.set_ylabel("probability distribution")
 
         ax.plot(R, self.theoric, ".b:",
             label="estimated", ms=10)
