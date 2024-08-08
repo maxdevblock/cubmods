@@ -496,7 +496,7 @@ def mle(sample, m,
     start = dt.datetime.now()
     # cast sample to numpy array
     sample = np.array(sample)
-    # model preference choices
+    # model ordinal categories
     #R = choices(m)
     # observed absolute frequecies
     f = freq(sample, m)
