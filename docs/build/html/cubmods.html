@@ -4297,13 +4297,14 @@ and Shelter effect).</p>
 for CUSH model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R=r|\pmb \theta) = \delta D_r^{(c)} + (1 - \delta)/m\)</span></p>
 </div></blockquote>
 </section>
 <section id="id42">
 <h3>Manual and Examples<a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cubsh_family.md">maxdevblock/cubmods</a></p></li>
+<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/05_cush_family.md">maxdevblock/cubmods</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -4312,7 +4313,7 @@ Piccolo et Al. and CUB package in R.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
-<li><p>D’Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics &amp; Data Analysis},  old{49, 917–937</p></li>
+<li><p>D’Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics &amp; Data Analysis},  bold{49, 917–937</p></li>
 <li><p>Capecchi S. and Piccolo D. (2017). Dealing with heterogeneity in ordinal responses, Quality and Quantity, 51(5), 2375–2393</p></li>
 <li><p>Iannario M. (2014). Modelling Uncertainty and Overdispersion in Ordinal Data, Communications in Statistics - Theory and Methods, 43, 771–786</p></li>
 <li><p>Piccolo D. (2015). Inferential issues for CUBE models with covariates, Communications in Statistics. Theory and Methods, 44(23), 771–786.</p></li>
@@ -4356,6 +4357,8 @@ Piccolo et Al. and CUB package in R.</p>
 <dt class="sig sig-object py" id="cubmods.cush.CUBresCUSH">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.CUBresCUSH" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
+<p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
+See the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
@@ -4365,8 +4368,14 @@ Piccolo et Al. and CUB package in R.</p>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_txt</span></code>()</p></td>
 <td><p><a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres">maxdevblock/cubmods</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cubmods.cush.CUBresCUSH.old_plot" title="cubmods.cush.CUBresCUSH.old_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">old_plot</span></code></a>([ci, saveas, figsize])</p></td>
-<td><p>plot CUB model fitted from a sample</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cubmods.cush.CUBresCUSH.plot" title="cubmods.cush.CUBresCUSH.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([ci, saveas, figsize])</p></td>
+<td><p>Main function to plot an object of the Class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cubmods.cush.CUBresCUSH.plot_estim" title="cubmods.cush.CUBresCUSH.plot_estim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_estim</span></code></a>([ci, ax, magnified, figsize, saveas])</p></td>
+<td><p>Plots the estimated parameter values in the parameter space and the asymptotic standard error.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cubmods.cush.CUBresCUSH.plot_ordinal" title="cubmods.cush.CUBresCUSH.plot_ordinal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ordinal</span></code></a>([figsize, kind, ax, saveas])</p></td>
+<td><p>Plots relative frequencies of observed sample, estimated probability distribution and, if provided, probability distribution of a known model.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(fname)</p></td>
 <td><p>Save a CUBresult object to file</p></td>
@@ -4376,88 +4385,258 @@ Piccolo et Al. and CUB package in R.</p>
 </tr>
 </tbody>
 </table>
-<table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>plot</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>plot_estim</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><strong>plot_ordinal</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="cubmods.cush.CUBresCUSH.old_plot">
-<span class="sig-name descname"><span class="pre">old_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">15)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.CUBresCUSH.old_plot" title="Permalink to this definition">#</a></dt>
-<dd><p>plot CUB model fitted from a sample</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.cush.CUBresCUSH.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">15)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.CUBresCUSH.plot" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Main function to plot an object of the Class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the standard error</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.cush.CUBresCUSH.plot_estim">
 <span class="sig-name descname"><span class="pre">plot_estim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnified</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.CUBresCUSH.plot_estim" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Plots the estimated parameter values in the parameter space and
+the asymptotic standard error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the confidence ellipse</p></li>
+<li><p><strong>magnified</strong> (<em>bool</em>) – if False the limits will be the entire parameter space, otherwise let matplotlib choose the limits</p></li>
+<li><p><strong>ax</strong> (<em>matplolib ax</em><em>, </em><em>optional</em>) – matplotlib axis, if None a new figure will be created, defaults to None</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.cush.CUBresCUSH.plot_ordinal">
 <span class="sig-name descname"><span class="pre">plot_ordinal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.CUBresCUSH.plot_ordinal" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Plots relative frequencies of observed sample, estimated probability distribution and,
+if provided, probability distribution of a known model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>kind</strong> (<em>str</em>) – choose a barplot (<code class="docutils literal notranslate"><span class="pre">'bar'</span></code> default) of a scatterplot (<code class="docutils literal notranslate"><span class="pre">'scatter'</span></code>)</p></li>
+<li><p><strong>ax</strong> (<em>matplolib ax</em><em>, </em><em>optional</em>) – matplotlib axis, if None a new figure will be created, defaults to None</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.LRT">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">LRT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.LRT" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns lambda of LRT</p>
+<dd><p>Likelihood Ratio Test between the CUSH model and
+the null model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>fc</strong> (<em>float</em>) – relative frequency of the shelter category</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of observations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the value of the LRT</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.draw">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.draw" title="Permalink to this definition">#</a></dt>
-<dd><p>generate random sample from CUB model</p>
+<dd><p>Draw a random sample from a specified CUSH model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.gini">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">gini</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.gini" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>The Gini index of a specified CUSH model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the Gini index of the model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.laakso">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">laakso</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.laakso" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>The Laakso index of a specified CUSH model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the Laakso index of the model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.loglik">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">loglik</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.loglik" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Log-likelihood function for a CUSH model without covariates</p>
+<p>Compute the log-likelihood function for a CUSH model 
+without covariate for the given ordinal responses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the log-likehood value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.mean">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.mean" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Expected value of a specified CUSH model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the expected value of the model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.mle">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">mle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.mle" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Main function for CUSH model without covariates.</p>
+<p>Estimate and validate a CUSH model for given ordinal responses, without covariates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
+<li><p><strong>maxiter</strong> (<em>None</em>) – default to None; ensure compatibility with <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code></p></li>
+<li><p><strong>tol</strong> (<em>None</em>) – default to None; ensure compatibility with <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBresCUSH</span></code> (see the Class for details)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.pmf">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.pmf" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Probability distribution of a specified CUSH model.</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta),\; r=1 \ldots m\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the probability distribution</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.var">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.var" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Variance of a specified CUSH model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the variance of the model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>

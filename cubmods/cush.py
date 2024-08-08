@@ -1,5 +1,5 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect).
@@ -11,9 +11,11 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
+    :math:`\Pr(R=r|\pmb \theta) = \delta D_r^{(c)} + (1 - \delta)/m`
+
 Manual and Examples
 ==========================
-  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cubsh_family.md
+  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/05_cush_family.md
 
 References:
 ===========
@@ -61,12 +63,41 @@ from .smry import CUBres, CUBsample
 ###################################################################
 
 def pmf(m, sh, delta):
+    r"""Probability distribution of a specified CUSH model.
+
+    :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :return: the probability distribution
+    :rtype: array
+    """
     R = choices(m=m)
     s = (R==sh).astype(int)
     p = delta*(s-1/m)+1/m
     return p
 
 def loglik(sample, m, sh, delta):
+    r"""Log-likelihood function for a CUSH model without covariates
+
+    Compute the log-likelihood function for a CUSH model 
+    without covariate for the given ordinal responses.
+
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :return: the log-likehood value
+    :rtype: float
+    """
     n = sample.size
     f = freq(sample=sample, m=m)
     fc = f[sh-1]/n
@@ -77,23 +108,70 @@ def loglik(sample, m, sh, delta):
     return l
 
 def mean(m, sh, delta):
+    r"""Expected value of a specified CUSH model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :return: the expected value of the model
+    :rtype: float
+    """
     mu = delta*sh+(1-delta)*(m+1)/2
     return mu
 
 def var(m, sh, delta):
+    r"""Variance of a specified CUSH model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :return: the variance of the model
+    :rtype: float
+    """
     va = (1-delta)*(delta*(sh-(m+1)/2)**2+(m**2-1)/12)
     return va
 
 def gini(delta):
+    r"""The Gini index of a specified CUSH model.
+
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :return: the Gini index of the model
+    :rtype: float
+    """
     return 1-delta**2
 
 def laakso(m, delta):
+    r"""The Laakso index of a specified CUSH model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :return: the Laakso index of the model
+    :rtype: float
+    """
     l = (1-delta**2)/(1+(m-1)*delta**2)
     return l
 
 def LRT(m, fc, n):
-    """
-    Returns lambda of LRT
+    r"""Likelihood Ratio Test between the CUSH model and
+    the null model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param fc: relative frequency of the shelter category
+    :type fc: float
+    :param n: number of observations
+    :type n: int
+    :return: the value of the LRT
+    :rtype: float
     """
     a = fc*np.log(fc)
     b = (1-fc)*np.log((1-fc)/(m-1))
@@ -105,8 +183,19 @@ def LRT(m, fc, n):
 ###################################################################
 
 def draw(m, sh, delta, n, seed=None):
-    """
-    generate random sample from CUB model
+    r"""Draw a random sample from a specified CUSH model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param delta: shelter choice parameter :math:`\delta`
+    :type delta: float
+    :param n: number of ordinal responses
+    :type n: int
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     if sh is None:
         raise NoShelterError(model="cush")
@@ -140,6 +229,25 @@ def mle(sample, m, sh,
     gen_pars=None,
     maxiter=None, tol=None #for GEM compatibility
     ):
+    r"""Main function for CUSH model without covariates.
+
+    Estimate and validate a CUSH model for given ordinal responses, without covariates.
+
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: default to None; ensure compatibility with ``gem.from_formula()``
+    :type maxiter: None
+    :param tol: default to None; ensure compatibility with ``gem.from_formula()``
+    :type tol: None
+    :return: an instance of ``CUBresCUSH`` (see the Class for details)
+    :rtype: object
+    """
     _, _ = maxiter, tol
     if sh is None:
         raise NoShelterError(model="cush")
@@ -205,9 +313,24 @@ def mle(sample, m, sh,
     )
 
 class CUBresCUSH(CUBres):
-
+    r"""Object returned by ``.mle()`` function.
+    See the Base for details.
+    """
     def plot_ordinal(self, figsize=(7, 7), kind="bar",
         ax=None, saveas=None):
+        r"""Plots relative frequencies of observed sample, estimated probability distribution and,
+        if provided, probability distribution of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -258,6 +381,21 @@ class CUBresCUSH(CUBres):
     
     def plot_estim(self, ci=.95, ax=None,
         magnified=False, figsize=(7, 7), saveas=None):
+        r"""Plots the estimated parameter values in the parameter space and
+        the asymptotic standard error.
+        
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse
+        :type ci: float
+        :param magnified: if False the limits will be the entire parameter space, otherwise let matplotlib choose the limits
+        :type magnified: bool
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -299,6 +437,16 @@ class CUBresCUSH(CUBres):
             return ax
 
     def plot(self, ci=.95, saveas=None, figsize=(7, 15)):
+        r"""Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the standard error
+        :type ci: float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         self.plot_ordinal(ax=ax[0])
         self.plot_estim(ax=ax[1], ci=ci)
@@ -309,12 +457,13 @@ class CUBresCUSH(CUBres):
         return fig, ax
         
     # DEPRECATED
-    def old_plot(self,
+    def _old_plot(self,
         ci=.95,
         saveas=None,
         figsize=(7, 15)
         ):
         """
+        :DEPRECATED:
         plot CUB model fitted from a sample
         """
         R = choices(self.m)

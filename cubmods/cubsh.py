@@ -369,7 +369,7 @@ def loglik(m, sh, pi1, pi2, xi, f):
     :param f: Vector of the absolute frequency distribution
     :type f: array
     :return: the log-likehood value
-    :rtype: float    
+    :rtype: float
     """
     L = pmf(m=m, sh=sh, pi1=pi1, pi2=pi2, xi=xi)
     #TODO: check log invalid value from mle
