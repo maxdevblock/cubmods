@@ -197,12 +197,30 @@ def luni(m, n):
     return loglikuni
 
 def lsat(f, n):
+    r"""Log-likelihood of saturated model.
+
+    Ssaturated level,that is the theoretically maximum information
+    that can be obtained by a model using as many parameters as possible. 
+    Then, the saturated log-likelihood is computed by assuming that the model 
+    is specified by as many parameters as available observations. 
+    This is the extreme benchmark for comparing
+    previous log-likelihood quantities.
+
+    :param f: absolute frequencies of observed ordinal responses
+    :type f: array
+    :param n: number of observations
+    :type n: int
+    :return: log-likelihood of saturated model
+    :rtype: float
+    """
     # loglik of saturated model
     logliksat = -(n*np.log(n)) + np.sum((f[f!=0])*np.log(f[f!=0]))
     return logliksat
 
 #TODO: add loglikbin to all models and smry ???
-def lbin(sample, m, f):
+def _lbin(sample, m, f):
+    r"""Log-likelihood of shifted Binomial model.
+    """
     avg = sample.mean()
     xi = (m-avg)/(m-1)
     R = choices(m)
@@ -211,7 +229,7 @@ def lbin(sample, m, f):
     return l
 
 #TODO: is lsatcov useful?
-def lsatcov(sample, covars):
+def _lsatcov(sample, covars):
     df = pd.DataFrame({"ord":sample}).join(
         covars)
     #TODO: solve overlapping cols if same cov for more pars
@@ -223,81 +241,103 @@ def lsatcov(sample, covars):
     return logliksatcov
 
 def kkk(sample, m):
-    #' @title Sequence of combinatorial coefficients
-    #' @description Compute the sequence of binomial coefficients \eqn{{m-1}\choose{r-1}}, for \eqn{r= 1, \dots, m}, 
-    #' and then returns a vector of the same length as ordinal, whose i-th component is the corresponding binomial 
-    #' coefficient \eqn{{m-1}\choose{r_i-1}}
-    #' @aliases kkk
-    #' @keywords internal
-    #' @usage kkk(m, ordinal)
-    #' @param m Number of ordinal categories
-    #' @param Vector of ordinal responses
+    r"""Sequence of combinatorial coefficients
+
+    Compute the sequence of binomial coefficients :math:`\binom{m-1}{r-1}`, for :math:`r= 1, \ldots m`, 
+    and then returns a vector of the same length as ordinal, whose i-th component is the corresponding binomial 
+    coefficient :math:`\binom{m-1}{r_i-1}`
+
+    :param sample: array of ordinal responses
+    :type sample: array
+    :param m: number of ordinal categories
+    :type m: int
+    :return: an array of :math:`\binom{m-1}{r_i-1}`
+    :rtype: array
+    """
     R = choices(m)
     v = binom(m-1, R-1)
     return v[sample-1]
 
 def logis(Y, param):
-    #' @title The logistic transform
-    #' @description Create a matrix YY binding array \code{Y} with a vector of ones, placed as the first column of YY. 
-    #' It applies the logistic transform componentwise to the standard matrix multiplication between YY and \code{param}.
-    #' @aliases logis
-    #' @usage logis(Y,param)
-    #' @export logis
-    #' @param Y A generic matrix or one dimensional array
-    #' @param param Vector of coefficients, whose length is NCOL(Y) + 1 (to consider also an intercept term)
-    #' @return Return a vector whose length is NROW(Y) and whose i-th component is the logistic function
-    #' at the scalar product between the i-th row of YY and the vector \code{param}.
-    #' @keywords utilities
-    #' @examples
-    #' n<-50 
-    #' Y<-sample(c(1,2,3),n,replace=TRUE) 
-    #' param<-c(0.2,0.7)
-    #' logis(Y,param)
+    r"""The logistic transform.
+
+    Create a matrix ``YY`` binding array ``Y`` with a vector of ones, placed as the first column of ``YY``. 
+    It applies the logistic transform componentwise to the standard matrix multiplication between ``YY`` and ``param``.
+
+    :param Y: A generic matrix or a dataframe
+    :type Y: ndarray, dataframe
+    :param param: Vector of coefficients, whose length is ``Y.columns.size+1`` (to consider also an intercept term)
+    :type param: array
+    :return: a vector whose length is ``Y.index.size`` and whose i-th component is the logistic function
+    """
     YY = np.c_[np.ones(Y.shape[0]), Y]
     val = 1/(1 + np.exp(-YY @ param))
     #TODO: implement if (all(dim(val)==c(1,1)))
     return val
 
 def bitgamma(sample, m, W, gamma):
-    #' @title Shifted Binomial distribution with covariates
-    #' @description Return the shifted Binomial probabilities of ordinal responses where the feeling component 
-    #' is explained by covariates via a logistic link.
-    #' @aliases bitgama
-    #' @usage bitgama(m,ordinal,W,gama)
-    #' @param m Number of ordinal categories
-    #' @param ordinal Vector of ordinal responses
-    #' @param W Matrix of covariates for the feeling component
-    #' @param gama Vector of parameters for the feeling component, with length equal to 
-    #' NCOL(W)+1 to account for an intercept term (first entry of \code{gama})
-    #' @export bitgama
-    #' @return A vector of the same length as \code{ordinal}, where each entry is the shifted Binomial probability for
-    #'  the corresponding observation and feeling value.
-    #' @seealso  \code{\link{logis}}, \code{\link{probcub0q}}, \code{\link{probcubpq}} 
-    #' @keywords distribution
-    #' @import stats
-    #' @examples 
-    #' n<-100
-    #' m<-7
-    #' W<-sample(c(0,1),n,replace=TRUE)
-    #' gama<-c(0.2,-0.2)
-    #' csivett<-logis(W,gama)
-    #' ordinal<-rbinom(n,m-1,csivett)+1
-    #' pr<-bitgama(m,ordinal,W,gama)
+    r"""Shifted Binomial distribution with covariates.
+
+    Return the shifted Binomial probabilities of ordinal responses where the feeling component 
+    is explained by covariates via a logistic link.
+
+    :param sample: array of ordinal responses
+    :type sample: array
+    :param m: number of ordinal categories
+    :type m: int
+    :param W: dataframe of covariates for explaining the feeling component;
+        no column must be named ``0`` nor ``constant``
+    :type W: pandas dataframe
+    :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
+        ``W.columns.size+1`` to include an intercept term in the model (first entry)
+    :type gamma: array of float
+    :return: an array of the same length as ``sample``, where each entry is the shifted Binomial probability for
+        the corresponding observation and feeling value.
+    :rtype: array
+    """
     ci = 1/logis(Y=W, param=gamma) - 1
     bg = kkk(sample=sample, m=m) * np.exp(
         (sample-1)*np.log(ci)-(m-1)*np.log(1+ci))
     return bg
     
 def bitxi(m, sample, xi):
+    r"""Shifted Binomial probabilities of ordinal responses
+
+    Compute the shifted Binomial probabilities of ordinal responses.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array
+    :param xi: feeling parameter :math:`\xi`
+    :type xi: float
+    :return: A vector of the same length as ``sample``, where each entry is the shifted Binomial probability 
+        of the corresponding observation.
+    :rtype: array
+    """
     base = np.log(1-xi)-np.log(xi)
     cons = np.exp(m*np.log(xi)-np.log(1-xi))
     cons *= kkk(sample=sample, m=m)*np.exp(base*sample)
     return cons
 
 def hadprod(Amat, xvett):
-    """
-    Hadamard's product between a matrix
-    (r,c) and a vector (r,1)
+    r"""Hadamard product of a matrix with a vector
+
+    Return the Hadamard product between the given matrix and vector: this operation corresponds 
+    to multiply every row of the matrix by the corresponding element of the vector, and it is equivalent to the 
+    standard matrix multiplication to the right with the diagonal matrix whose diagonal is the given vector. 
+    It is possible only if the length of the vector equals the number of rows of the matrix.
+    It is an auxiliary function needed for computing the variance-covariance matrix of the estimated model 
+    with covariates.
+
+    .. note:: if ``xvett`` is a row vector, reshapes it to column vector
+
+    :param Amat: A generic matrix
+    :type Amat: ndarray
+    :param xvett: A generic vector
+    :type xvett: array
+    :return: the Hadamard product :math:`\pmb A \odot \pmb x`
+    :rtype: ndarray
     """
     if len(xvett.shape)==1:
         xvett = xvett.reshape(
@@ -315,9 +355,24 @@ def conf_ell(vcov, mux, muy, ci,
     ax, #showaxis=True, 
     color="b", label=True,
     alpha=.25):
-    """
-    plot confidence ellipse of estimated
-    CUB parameters of ci% on ax
+    r"""Plot bivariate confidence ellipse of estimated
+    parameters at level ``ci``:math:`=(1 - \alpha/2)`
+
+    :param vcov: Variance-covariance matrix :math:`2 \times 2`
+    :type vcov: ndarray
+    :param mux: estimate of first parameter
+    :type mux: float
+    :param muy: estimate of second parameter
+    :type muy: float
+    :param ci: confidence level :math:`=(1 - \alpha/2)`
+    :type ci: float
+    :param ax: matplotlib axis
+    :param color: color of confidence ellipse
+    :type color: str
+    :param label: whether to add a label of confidence level
+    :type label: bool
+    :param alpha: transparency of confidence ellipse
+    :type alpha: float
     """
     nstd = np.sqrt(sps.chi2.isf(1-ci, df=2))
     #nstd = sps.norm().ppf((1-ci)/2)
@@ -351,8 +406,17 @@ def conf_ell(vcov, mux, muy, ci,
     #     )
 
 def load_object(fname):
-    """
-    Load a saved object from file
+    """Load a saved object from file.
+
+    It can used be used to load a ``CUBsample`` or a
+    ``CUBres`` object, previously saved on a file.
+
+    .. note:: see the Classes for details about these objects
+
+    :param fname: filename
+    :type fname: str
+    :return: the loaded object, instance of ``CUBsample`` or ``CUBres``
+    :rtype: object
     """
     with open(fname, "rb") as f:
         obj = pickle.load(f)
@@ -360,6 +424,23 @@ def load_object(fname):
     return obj
 
 def formula_parser(formula):
+    r"""Parse a CUB class formula.
+
+    Auxiliary function of ``cubmods.gem.from_formula()``.
+
+    TODO: adapt formula to specific family with corresponding
+        number of parameters
+    
+    TODO: documentation about formula
+
+    TODO: add specific Exceptions for formula
+
+    :param formula: the formula to be parsed
+    :type formula: str
+    :return: a tuple of the ordinal response column name and a list of all
+        covariates' column names for each component
+    :rtype: tuple
+    """
     if '~' not in formula:
         raise Exception("ERR: ~ missing")
     if formula.count("|") != 2:
@@ -389,9 +470,14 @@ def formula_parser(formula):
     return y, XX
 
 def unique(l):
-    """
-    unique column names in
-    covar 3d list
+    """Unique elements in a 3-dimensional list.
+
+    Auxiliary function of ``.dummies2()``.
+
+    :param l: the list to analyze
+    :type l: list
+    :return: the list of unique elements
+    :rtype: list
     """
     a = []
     for i in l:
@@ -404,8 +490,18 @@ def unique(l):
     return u
 
 def dummies2(df, DD):
-    """
-    
+    r"""Create dummy variables from polychotomous variables.
+
+    Auxiliary function of ``cubmods.gem.from_formula()``.
+    A dummy variable is created for all polychotomous variables named
+    ``C(<varname>)``.
+
+    :param df: a DataFrame with all the covariates and the ordinal response
+    :type df: DataFrame
+    :param DD: the list of all covariates for each component
+    :type DD: list
+    :return: a tuple of the DataFrame with the dummy variables and the column names
+    :rtype: tuple
     """
     # new covars
     XX = []
@@ -445,7 +541,10 @@ def dummies2(df, DD):
                 
     return df, XX
 
-def dummies(df, DD):
+def _dummies(df, DD):
+    """
+    .. warn:: DEPRECATED
+    """
     # new covars
     XX = []
     for j,D in enumerate(DD):
@@ -479,8 +578,7 @@ def dummies(df, DD):
 ###########################################
 
 class InvalidCategoriesError(Exception):
-    """
-    if m is not suitable for model
+    """Exception: if m is not suitable for model.
     """
     def __init__(self, m, model):
         self.m = m
@@ -489,8 +587,7 @@ class InvalidCategoriesError(Exception):
         super().__init__(self.msg)
 
 class UnknownModelError(Exception):
-    """
-    if m is not suitable for model
+    """Exception: if the requested family is unknown.
     """
     def __init__(self, model):
         self.model = model
@@ -498,8 +595,8 @@ class UnknownModelError(Exception):
         super().__init__(self.msg)
 
 class NotImplementedModelError(Exception):
-    """
-    if m is not suitable for model
+    """Exception: if the requested model is known but not
+    yet implemented.
     """
     def __init__(self, model, formula):
         self.formula = formula
@@ -508,8 +605,7 @@ class NotImplementedModelError(Exception):
         super().__init__(self.msg)
 
 class NoShelterError(Exception):
-    """
-    if m is not suitable for model
+    """Exception: if a shelter choice is needed but it hasn't been provided.
     """
     def __init__(self, model):
         self.model = model
@@ -518,8 +614,7 @@ class NoShelterError(Exception):
 
 #TODO: add in draw & mle in cubsh, cush
 class ShelterGreaterThanM(Exception):
-    """
-    if m is not suitable for model
+    """Exception: if the provided shelter choice is greater than :math:`m`.
     """
     def __init__(self, m, sh):
         self.m = m
@@ -529,8 +624,7 @@ class ShelterGreaterThanM(Exception):
 
 #TODO: add in all draw
 class ParameterOutOfBoundsError(Exception):
-    """
-    if m is not suitable for model
+    """Exception: if the provided parameter value is out of bounds.
     """
     def __init__(self, param, value):
         self.param = param
@@ -540,8 +634,7 @@ class ParameterOutOfBoundsError(Exception):
 
 #TODO: add in all draw
 class InvalidSampleSizeError(Exception):
-    """
-    if m is not suitable for model
+    """Exception: if the sample size is not strictly greater than zero.
     """
     def __init__(self, n):
         self.n = n
@@ -555,14 +648,47 @@ class InvalidSampleSizeError(Exception):
 #########################################
 
 def get_minor(A, i, j):
-    """Solution by PaulDong"""
+    """Get a minor of a matrix.
+    
+    Auxiliary function of ``.plot_ellipsoid()``.
+
+    .. note:: Solution by PaulDong
+
+    :param A: a generic matrix
+    :type A: ndarray
+    :param i: row of the minor
+    :type i: int
+    :param j: column of the minor
+    :type j: int
+    :return: the minor of ``A``
+    :rtype: ndarray
+    """
     return np.delete(
         np.delete(A, i, axis=0), j, axis=1)
 
 def conf_border(Sigma, mx, my, ax, conf=.95,
     plane="z", xyz0=(0,0,0)):
-    """Solution by
-    https://gist.github.com/randolf-scholz"""
+    """Plot the bivariate projection of a trivariate confidence ellipse
+    on a plane.
+
+    Auxiliary function of ``plot_ellipsoid()``.
+
+    .. note:: Solution by https://gist.github.com/randolf-scholz.
+    
+    :param Sigma: bivariate variance-covariance matrix
+    :type Sigma: ndarray
+    :param mx: center of the ellipse on the :math:`x` axies
+    :type mx: float
+    :param my: center of the ellipse on the :math:`y` axies
+    :type my: float
+    :param ax: matpplotlib axis
+    :param conf: confidence level of the trivariate ellipsoid.
+    :type conf: float
+    :param plane: plane for the projection; could be ``x``, ``y`` or ``z``
+    :type plane: str
+    :param xyz0: tuple of the bivariate ellipse position
+    :type xyz0: tuple
+    """
     #n = Sigma.shape[0]
     s = 1000
     # the 2d confidemce region, projection
@@ -591,13 +717,19 @@ def conf_border(Sigma, mx, my, ax, conf=.95,
 
 def get_cov_ellipsoid(cov,
     mu=np.zeros((3)), ci=.95):
-    """
-    Return the 3d points representing the covariance matrix
-    cov centred at mu and scaled by the factor nstd.
+    r"""Return the 3d points representing the covariance matrix
+    ``cov`` centred at ``mu``, at confidence level ``ci``:math:`=(1 - \alpha/2)`.
 
-    Plot on your favourite 3d axis. 
-    Example 1:  ax.plot_wireframe(X,Y,Z,alpha=0.1)
-    Example 2:  ax.plot_surface(X,Y,Z,alpha=0.1)
+    Auxiliary function of ``.plot_ellipsoid()``.
+
+    :param cov: Variance-covariance matrix :math:`3 \times 3`
+    :type cov: ndarray
+    :param mu: ellispoid center :math:`(x_0, y_0, z_0)`
+    :type mu: array
+    :param ci: confidence level :math:`=(1 - \alpha/2)`
+    :type ci: float
+    :return: a tuple of 3d points ``(X, Y, Z)``
+    :rtype: tuple
     """
     assert cov.shape==(3,3)
     r = np.sqrt(sps.chi2.isf(1-ci, df=3))
@@ -641,8 +773,19 @@ def get_cov_ellipsoid(cov,
 
 def plot_ellipsoid(V, E, ax, zlabel,
     ci=.95, magnified=False):
-    """
-    3d confidence ellipsoid
+    r"""Plot a trivariate confidence ellipsoid.
+
+    :param V: Variance-covariance matrix
+    :type V: ndarray
+    :param E: Vector of estimated parameters
+    :type E: array
+    :param ax: matplotlib axis
+    :param zlabel: label for :math:`z` axis
+    :type zlabel: str
+    :param ci: confidence level :math:`(1 - \alpha/2)`
+    :type ci: float
+    :param magnified: if ``False`` plots in the full parameter space
+    :type magnified: bool
     """
     X,Y,Z = get_cov_ellipsoid(V, E, ci=ci)
     
@@ -724,6 +867,10 @@ def plot_ellipsoid(V, E, ax, zlabel,
     )
 
 def equal3d(ax):
+    r"""Equalize 3d axes.
+
+    Auxiliary function of ``.plot_ellipsoid()``.
+    """
     xlim = ax.get_xlim()
     ylim = ax.get_ylim()
     zlim = ax.get_zlim()

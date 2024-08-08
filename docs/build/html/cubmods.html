@@ -45,7 +45,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'cubmods';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="cubmods" href="modules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -139,12 +138,6 @@
   </p>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="modules.html">
-                        cubmods
-                      </a>
-                    </li>
-                
   </ul>
 </nav></div>
       
@@ -211,7 +204,7 @@ document.write(`
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -230,12 +223,6 @@ document.write(`
   </p>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="modules.html">
-                        cubmods
-                      </a>
-                    </li>
-                
   </ul>
 </nav></div>
         
@@ -260,18 +247,6 @@ document.write(`
       </div>
     
   </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">cubmods package</a></li>
-</ul>
-</div>
-</nav></div>
-    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -305,9 +280,6 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    
-    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">cubmods</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page">cubmods package</li>
   </ul>
 </nav>
@@ -4830,49 +4802,50 @@ Piccolo et Al. and CUB package in R.</p>
 <dt class="sig sig-object py" id="cubmods.general.InvalidCategoriesError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">InvalidCategoriesError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.InvalidCategoriesError" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>if m is not suitable for model</p>
+<p>Exception: if m is not suitable for model.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.InvalidSampleSizeError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">InvalidSampleSizeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.InvalidSampleSizeError" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>if m is not suitable for model</p>
+<p>Exception: if the sample size is not strictly greater than zero.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.NoShelterError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">NoShelterError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.NoShelterError" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>if m is not suitable for model</p>
+<p>Exception: if a shelter choice is needed but it hasn’t been provided.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.NotImplementedModelError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">NotImplementedModelError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.NotImplementedModelError" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>if m is not suitable for model</p>
+<p>Exception: if the requested model is known but not
+yet implemented.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.ParameterOutOfBoundsError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">ParameterOutOfBoundsError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.ParameterOutOfBoundsError" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>if m is not suitable for model</p>
+<p>Exception: if the provided parameter value is out of bounds.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.ShelterGreaterThanM">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">ShelterGreaterThanM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.ShelterGreaterThanM" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>if m is not suitable for model</p>
+<p>Exception: if the provided shelter choice is greater than <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.UnknownModelError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">UnknownModelError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.UnknownModelError" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>if m is not suitable for model</p>
+<p>Exception: if the requested family is unknown.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -4937,12 +4910,52 @@ to consider also an intercept term for CUB models with covariates.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.bitgamma">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">bitgamma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.bitgamma" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Shifted Binomial distribution with covariates.</p>
+<p>Return the shifted Binomial probabilities of ordinal responses where the feeling component 
+is explained by covariates via a logistic link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> (<em>array</em>) – array of ordinal responses</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
+no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>gamma</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \gamma\)</span> of parameters for the feeling component, whose length equals 
+<code class="docutils literal notranslate"><span class="pre">W.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an array of the same length as <code class="docutils literal notranslate"><span class="pre">sample</span></code>, where each entry is the shifted Binomial probability for
+the corresponding observation and feeling value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.bitxi">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">bitxi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.bitxi" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Shifted Binomial probabilities of ordinal responses</p>
+<p>Compute the shifted Binomial probabilities of ordinal responses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array</em>) – array of ordinal responses</p></li>
+<li><p><strong>xi</strong> (<em>float</em>) – feeling parameter <span class="math notranslate nohighlight">\(\xi\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A vector of the same length as <code class="docutils literal notranslate"><span class="pre">sample</span></code>, where each entry is the shifted Binomial probability 
+of the corresponding observation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.choices">
@@ -4982,15 +4995,47 @@ matrix or dataframe.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.conf_border">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">conf_border</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">my</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plane</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'z'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyz0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.conf_border" title="Permalink to this definition">#</a></dt>
-<dd><p>Solution by
-<a class="reference external" href="https://gist.github.com/randolf-scholz">https://gist.github.com/randolf-scholz</a></p>
+<dd><p>Plot the bivariate projection of a trivariate confidence ellipse
+on a plane.</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">plot_ellipsoid()</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Solution by <a class="reference external" href="https://gist.github.com/randolf-scholz">https://gist.github.com/randolf-scholz</a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Sigma</strong> (<em>ndarray</em>) – bivariate variance-covariance matrix</p></li>
+<li><p><strong>mx</strong> (<em>float</em>) – center of the ellipse on the <span class="math notranslate nohighlight">\(x\)</span> axies</p></li>
+<li><p><strong>my</strong> (<em>float</em>) – center of the ellipse on the <span class="math notranslate nohighlight">\(y\)</span> axies</p></li>
+<li><p><strong>ax</strong> – matpplotlib axis</p></li>
+<li><p><strong>conf</strong> (<em>float</em>) – confidence level of the trivariate ellipsoid.</p></li>
+<li><p><strong>plane</strong> (<em>str</em>) – plane for the projection; could be <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> or <code class="docutils literal notranslate"><span class="pre">z</span></code></p></li>
+<li><p><strong>xyz0</strong> (<em>tuple</em>) – tuple of the bivariate ellipse position</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.conf_ell">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">conf_ell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vcov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.conf_ell" title="Permalink to this definition">#</a></dt>
-<dd><p>plot confidence ellipse of estimated
-CUB parameters of ci% on ax</p>
+<dd><p>Plot bivariate confidence ellipse of estimated
+parameters at level <code class="docutils literal notranslate"><span class="pre">ci</span></code><span class="math notranslate nohighlight">\(=(1 - \alpha/2)\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vcov</strong> (<em>ndarray</em>) – Variance-covariance matrix <span class="math notranslate nohighlight">\(2 \times 2\)</span></p></li>
+<li><p><strong>mux</strong> (<em>float</em>) – estimate of first parameter</p></li>
+<li><p><strong>muy</strong> (<em>float</em>) – estimate of second parameter</p></li>
+<li><p><strong>ci</strong> (<em>float</em>) – confidence level <span class="math notranslate nohighlight">\(=(1 - \alpha/2)\)</span></p></li>
+<li><p><strong>ax</strong> – matplotlib axis</p></li>
+<li><p><strong>color</strong> (<em>str</em>) – color of confidence ellipse</p></li>
+<li><p><strong>label</strong> (<em>bool</em>) – whether to add a label of confidence level</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – transparency of confidence ellipse</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -5016,24 +5061,59 @@ relative frequencies and estimated (theoretical) probabilities of a discrete dis
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.general.dummies">
-<span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">dummies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DD</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.dummies" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.dummies2">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">dummies2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DD</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.dummies2" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Create dummy variables from polychotomous variables.</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">cubmods.gem.from_formula()</span></code>.
+A dummy variable is created for all polychotomous variables named
+<code class="docutils literal notranslate"><span class="pre">C(&lt;varname&gt;)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>DataFrame</em>) – a DataFrame with all the covariates and the ordinal response</p></li>
+<li><p><strong>DD</strong> (<em>list</em>) – the list of all covariates for each component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a tuple of the DataFrame with the dummy variables and the column names</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.equal3d">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">equal3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.equal3d" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Equalize 3d axes.</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.plot_ellipsoid()</span></code>.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.formula_parser">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">formula_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.formula_parser" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Parse a CUB class formula.</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">cubmods.gem.from_formula()</span></code>.</p>
+<dl class="simple">
+<dt>TODO: adapt formula to specific family with corresponding</dt><dd><p>number of parameters</p>
+</dd>
+</dl>
+<p>TODO: documentation about formula</p>
+<p>TODO: add specific Exceptions for formula</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>formula</strong> (<em>str</em>) – the formula to be parsed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a tuple of the ordinal response column name and a list of all
+covariates’ column names for each component</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.freq">
@@ -5064,55 +5144,171 @@ defaults to <code class="docutils literal notranslate"><span class="pre">False</
 <dt class="sig sig-object py" id="cubmods.general.get_cov_ellipsoid">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">get_cov_ellipsoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([0.,</span> <span class="pre">0.,</span> <span class="pre">0.])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.get_cov_ellipsoid" title="Permalink to this definition">#</a></dt>
 <dd><p>Return the 3d points representing the covariance matrix
-cov centred at mu and scaled by the factor nstd.</p>
-<p>Plot on your favourite 3d axis. 
-Example 1:  ax.plot_wireframe(X,Y,Z,alpha=0.1)
-Example 2:  ax.plot_surface(X,Y,Z,alpha=0.1)</p>
+<code class="docutils literal notranslate"><span class="pre">cov</span></code> centred at <code class="docutils literal notranslate"><span class="pre">mu</span></code>, at confidence level <code class="docutils literal notranslate"><span class="pre">ci</span></code><span class="math notranslate nohighlight">\(=(1 - \alpha/2)\)</span>.</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.plot_ellipsoid()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cov</strong> (<em>ndarray</em>) – Variance-covariance matrix <span class="math notranslate nohighlight">\(3 \times 3\)</span></p></li>
+<li><p><strong>mu</strong> (<em>array</em>) – ellispoid center <span class="math notranslate nohighlight">\((x_0, y_0, z_0)\)</span></p></li>
+<li><p><strong>ci</strong> (<em>float</em>) – confidence level <span class="math notranslate nohighlight">\(=(1 - \alpha/2)\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a tuple of 3d points <code class="docutils literal notranslate"><span class="pre">(X,</span> <span class="pre">Y,</span> <span class="pre">Z)</span></code></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.get_minor">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">get_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.get_minor" title="Permalink to this definition">#</a></dt>
-<dd><p>Solution by PaulDong</p>
+<dd><p>Get a minor of a matrix.</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.plot_ellipsoid()</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Solution by PaulDong</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>ndarray</em>) – a generic matrix</p></li>
+<li><p><strong>i</strong> (<em>int</em>) – row of the minor</p></li>
+<li><p><strong>j</strong> (<em>int</em>) – column of the minor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the minor of <code class="docutils literal notranslate"><span class="pre">A</span></code></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.hadprod">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">hadprod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Amat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xvett</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.hadprod" title="Permalink to this definition">#</a></dt>
-<dd><p>Hadamard’s product between a matrix
-(r,c) and a vector (r,1)</p>
+<dd><p>Hadamard product of a matrix with a vector</p>
+<p>Return the Hadamard product between the given matrix and vector: this operation corresponds 
+to multiply every row of the matrix by the corresponding element of the vector, and it is equivalent to the 
+standard matrix multiplication to the right with the diagonal matrix whose diagonal is the given vector. 
+It is possible only if the length of the vector equals the number of rows of the matrix.
+It is an auxiliary function needed for computing the variance-covariance matrix of the estimated model 
+with covariates.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if <code class="docutils literal notranslate"><span class="pre">xvett</span></code> is a row vector, reshapes it to column vector</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Amat</strong> (<em>ndarray</em>) – A generic matrix</p></li>
+<li><p><strong>xvett</strong> (<em>array</em>) – A generic vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the Hadamard product <span class="math notranslate nohighlight">\(\pmb A \odot \pmb x\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.kkk">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">kkk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.kkk" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cubmods.general.lbin">
-<span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">lbin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.lbin" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Sequence of combinatorial coefficients</p>
+<p>Compute the sequence of binomial coefficients <span class="math notranslate nohighlight">\(\binom{m-1}{r-1}\)</span>, for <span class="math notranslate nohighlight">\(r= 1, \ldots m\)</span>, 
+and then returns a vector of the same length as ordinal, whose i-th component is the corresponding binomial 
+coefficient <span class="math notranslate nohighlight">\(\binom{m-1}{r_i-1}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> (<em>array</em>) – array of ordinal responses</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an array of <span class="math notranslate nohighlight">\(\binom{m-1}{r_i-1}\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.load_object">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">load_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.load_object" title="Permalink to this definition">#</a></dt>
-<dd><p>Load a saved object from file</p>
+<dd><p>Load a saved object from file.</p>
+<p>It can used be used to load a <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> or a
+<code class="docutils literal notranslate"><span class="pre">CUBres</span></code> object, previously saved on a file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>see the Classes for details about these objects</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – filename</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the loaded object, instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> or <code class="docutils literal notranslate"><span class="pre">CUBres</span></code></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.logis">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">logis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.logis" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>The logistic transform.</p>
+<p>Create a matrix <code class="docutils literal notranslate"><span class="pre">YY</span></code> binding array <code class="docutils literal notranslate"><span class="pre">Y</span></code> with a vector of ones, placed as the first column of <code class="docutils literal notranslate"><span class="pre">YY</span></code>. 
+It applies the logistic transform componentwise to the standard matrix multiplication between <code class="docutils literal notranslate"><span class="pre">YY</span></code> and <code class="docutils literal notranslate"><span class="pre">param</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<em>ndarray</em><em>, </em><em>dataframe</em>) – A generic matrix or a dataframe</p></li>
+<li><p><strong>param</strong> (<em>array</em>) – Vector of coefficients, whose length is <code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code> (to consider also an intercept term)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a vector whose length is <code class="docutils literal notranslate"><span class="pre">Y.index.size</span></code> and whose i-th component is the logistic function</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.lsat">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">lsat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.lsat" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cubmods.general.lsatcov">
-<span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">lsatcov</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.lsatcov" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Log-likelihood of saturated model.</p>
+<p>Ssaturated level,that is the theoretically maximum information
+that can be obtained by a model using as many parameters as possible. 
+Then, the saturated log-likelihood is computed by assuming that the model 
+is specified by as many parameters as available observations. 
+This is the extreme benchmark for comparing
+previous log-likelihood quantities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>array</em>) – absolute frequencies of observed ordinal responses</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of observations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>log-likelihood of saturated model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.luni">
@@ -5143,7 +5339,19 @@ has the same probability.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.plot_ellipsoid">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">plot_ellipsoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zlabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnified</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.plot_ellipsoid" title="Permalink to this definition">#</a></dt>
-<dd><p>3d confidence ellipsoid</p>
+<dd><p>Plot a trivariate confidence ellipsoid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>V</strong> (<em>ndarray</em>) – Variance-covariance matrix</p></li>
+<li><p><strong>E</strong> (<em>array</em>) – Vector of estimated parameters</p></li>
+<li><p><strong>ax</strong> – matplotlib axis</p></li>
+<li><p><strong>zlabel</strong> (<em>str</em>) – label for <span class="math notranslate nohighlight">\(z\)</span> axis</p></li>
+<li><p><strong>ci</strong> (<em>float</em>) – confidence level <span class="math notranslate nohighlight">\((1 - \alpha/2)\)</span></p></li>
+<li><p><strong>magnified</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">False</span></code> plots in the full parameter space</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -5172,8 +5380,19 @@ model.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.general.unique">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.unique" title="Permalink to this definition">#</a></dt>
-<dd><p>unique column names in
-covar 3d list</p>
+<dd><p>Unique elements in a 3-dimensional list.</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.dummies2()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>l</strong> (<em>list</em>) – the list to analyze</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of unique elements</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -5720,15 +5939,6 @@ functions of model modules.</p>
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="modules.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">cubmods</p>
-      </div>
-    </a>
 </div>
                 </footer>
               

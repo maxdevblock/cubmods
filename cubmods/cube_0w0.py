@@ -55,8 +55,10 @@ from statsmodels.tools.numdiff import approx_hess
 import matplotlib.pyplot as plt
 from .general import (
     logis, dissimilarity,
-    aic, bic, luni, lsat,
-    freq, choices, lsatcov,
+    aic, bic, luni, 
+    #lsat,
+    freq, choices, 
+    #lsatcov,
     #addones, colsof,
 )
 from .cube import (

@@ -48,7 +48,11 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
-    'cubmods.cubsh2'
+]
+autosummary_mock_imports = [
+    'cubmods.cubsh2',
+    'cubmods.cubsh2_yxwxu',
+    'cubmods.cushk',
 ]
 
 
