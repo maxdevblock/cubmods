@@ -1,51 +1,43 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for 2-CUSH (Combination of Uniform
 and 2 Shelter Choices).
 
 Description:
+============
     This module contains methods and classes
     for 2-CUSH model family.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
+    The 2-CUSH family has been defined and implemented
+    by Massimo Pierini (2024) in the thesis
+    *Modelli della classe CUB in Python*.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import cush2
-
-    samp = pd.read_csv("ordinal.csv")
-    fit = cush2.mle(samp.rv, m=7)
-    print(fit.summary())
-    fit.plot()
-    plt.show()
+    :math:`\Pr(R=r|\pmb \theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1 - \delta_1 - \delta_2)/m`
 
 
-...
 References:
 ===========
-  - TODO: aggiungere tesi?
-  - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
-  - D'Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics & Data Analysis},  \bold{49, 917--937
-  - Capecchi S. and Piccolo D. (2017). Dealing with heterogeneity in ordinal responses, Quality and Quantity, 51(5), 2375--2393
-  - Iannario M. (2014). Modelling Uncertainty and Overdispersion in Ordinal Data, Communications in Statistics - Theory and Methods, 43, 771--786
-  - Piccolo D. (2015). Inferential issues for CUBE models with covariates, Communications in Statistics. Theory and Methods, 44(23), 771--786.
-  - Iannario M. (2015). Detecting latent components in ordinal data with overdispersion by means of a mixture distribution, Quality & Quantity, 49, 977--987
-  - Iannario M. and Piccolo D. (2016a). A comprehensive framework for regression models of ordinal data. Metron, 74(2), 233--252.
-  - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189.
+    .. bibliography:: cub.bib
+        :list: enumerated
+
+        mythesis
 
   
 List of TODOs:
 ==============
-  - ...
+    - ...
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
+
+Classes and Functions
+=====================
 """
 
 import datetime as dt
@@ -63,10 +55,22 @@ from .general import (
 from .smry import CUBres, CUBsample
 
 def pmf(m, c1, c2, d1, d2):
-    """
-    probability distribution of 2-CUSH model,
-    Combination of Uniform and 2
-    Shelter Choices.
+    r"""Probability distribution of a specified 2-CUSH model.
+
+    :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param c1: Category corresponding to the 1st shelter choice :math:`[1,m]`
+    :type c1: int
+    :param c2: Category corresponding to the 2nd shelter choice :math:`[1,m]`
+    :type c2: int
+    :param d1: 1st shelter choice parameter :math:`\delta_1`
+    :type d1: float
+    :param d2: 2nd shelter choice parameter :math:`\delta_2`
+    :type d2: float
+    :return: the probability distribution
+    :rtype: array
     """
     R = choices(m)
     D1 = (R==c1).astype(int)
@@ -84,8 +88,23 @@ def pmf(m, c1, c2, d1, d2):
 
 def draw(m, sh1, sh2,
     delta1, delta2, n, seed=None):
-    """
-    generate random sample from CUB model
+    r"""Draw a random sample from a specified 2-CUSH model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh1: Category corresponding to the 1st shelter choice :math:`[1,m]`
+    :type sh1: int
+    :param sh2: Category corresponding to the 2nd shelter choice :math:`[1,m]`
+    :type sh2: int
+    :param delta1: 1st shelter choice parameter :math:`\delta_1`
+    :type delta1: float
+    :param delta2: 2nd shelter choice parameter :math:`\delta_2`
+    :type delta2: float
+    :param n: number of ordinal responses
+    :type n: int
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #if sh is None:
     #    raise NoShelterError(model="cush2")
@@ -117,6 +136,24 @@ def draw(m, sh1, sh2,
     return sample
 
 def varcov(m, n, d1, d2, fc1, fc2):
+    r"""Compute the variance-covariance matrix of parameter 
+    estimates of a 2-CUSH model without covariates.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param n: number of ordinal responses
+    :type n: int
+    :param d1: 1st shelter choice parameter :math:`\delta_1`
+    :type d1: float
+    :param d2: 2nd shelter choice parameter :math:`\delta_2`
+    :type d2: float
+    :param fc1: relative frequency of 1st shelter choice
+    :type fc1: float
+    :param fc2: relative frequency of 2nd shelter choice
+    :type fc2: float
+    :return: the variance-covariance matrix
+    :rtype: numpy ndarray
+    """
     I11 = n*(
         fc2*(m-1)**2 / (1-d1+d2*(m-1))**2 +
         fc1          / (1-d2+d1*(m-1))**2 +
@@ -147,12 +184,31 @@ def varcov(m, n, d1, d2, fc1, fc2):
         varmat = np.linalg.inv(infmat)
     return varmat
 
-def mle(sample, m, c1, c2, gen_pars=None):
+def mle(sample, m, c1, c2, gen_pars=None,
+        maxiter=None, tol=None #for GEM compatibility
+        ):
+    r"""Main function for 2-CUSH models without covariates.
+
+    Estimate and validate a 2-CUSH model for ordinal responses, without covariates.
+    
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param c1: Category corresponding to the 1st shelter choice :math:`[1,m]`
+    :type c1: int
+    :param c2: Category corresponding to the 2nd shelter choice :math:`[1,m]`
+    :type c2: int
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: default to None; ensure compatibility with ``gem.from_formula()``
+    :type maxiter: None
+    :param tol: default to None; ensure compatibility with ``gem.from_formula()``
+    :type tol: None
+    :return: an instance of ``CUBresCUSH2`` (see the Class for details)
+    :rtype: object
     """
-    Maximum Likelihood Estimation of
-    delta1 and delta2 parameters in
-    a 2-CUSH model.
-    """
+    _, _ = maxiter, tol
     start = dt.datetime.now()
     n = sample.size
     f = freq(sample=sample, m=m)

@@ -1,5 +1,5 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect) with covariates.
@@ -11,33 +11,31 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    TODO: add example
+    :math:`\Pr(R_i=r|\pmb \theta; \pmb x_i) = \delta_i D_{r}^{(c)} + (1 - \delta_i)/m`
 
 
-...
 References:
 ===========
-  - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
-  - D'Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics & Data Analysis},  \bold{49, 917--937
-  - Capecchi S. and Piccolo D. (2017). Dealing with heterogeneity in ordinal responses, Quality and Quantity, 51(5), 2375--2393
-  - Iannario M. (2014). Modelling Uncertainty and Overdispersion in Ordinal Data, Communications in Statistics - Theory and Methods, 43, 771--786
-  - Piccolo D. (2015). Inferential issues for CUBE models with covariates, Communications in Statistics. Theory and Methods, 44(23), 771--786.
-  - Iannario M. (2015). Detecting latent components in ordinal data with overdispersion by means of a mixture distribution, Quality & Quantity, 49, 977--987
-  - Iannario M. and Piccolo D. (2016a). A comprehensive framework for regression models of ordinal data. Metron, 74(2), 233--252.
-  - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189.
+    .. bibliography:: cub.bib
+        :list: enumerated
+
+        capecchi2017dealing
+        capecchi2016gini
 
   
 List of TODOs:
 ==============
-  TODO: check gini & laakso
+    - ...
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+:Author:      Massimo Pierini
+:Institution: Universitas Mercatorum
+:Affiliation: Graduand in Statistics & Big Data (L41)
+:Date:        2023-24
+:Credit:      Domenico Piccolo, Rosaria Simone
+:Contacts:    cub@maxpierini.it
+
+Classes and Functions
+=====================
 """
 import datetime as dt
 #import pickle
@@ -58,11 +56,45 @@ from .cush import pmf as pmf_cush
 from .smry import CUBres, CUBsample
 
 def pmf(m, sh, omega, X):
+    r"""Average probability distribution of a specified CUSH model with covariates.
+
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i \pmb x_i),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :type X: pandas dataframe
+    :return: the probability distribution
+    :rtype: array
+    """
     p = pmfi(m, sh, omega, X)
     pr = p.mean(axis=0)
     return pr
 
 def pmfi(m, sh, omega, X):
+    r"""Probability distribution for each subject of a specified CUSH model with covariates
+
+    :math:`\Pr(R = r | \pmb\theta_i ; \pmb x_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :type X: pandas dataframe
+    :return: the matrix of the probability distribution of dimension :math:`n \times r`
+    :rtype: numpy ndarray
+    """
     delta = logis(X, omega)
     #print(delta)
     n = X.shape[0]
@@ -73,12 +105,47 @@ def pmfi(m, sh, omega, X):
     return p
 
 def proba(m, sample, X, omega, sh):
+    r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a specified CUSH model with covariates.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :type X: pandas dataframe
+    :return: the probability array :math:`\Pr(R = r | \pmb\theta)` for observed responses
+    :rtype: float
+    """
     delta = logis(X, omega)
     D = (sample==sh).astype(int)
     p = delta*(D-1/m)+1/m
     return p
 
 def draw(m, sh, omega, X, seed=None):
+    r"""Draw a random sample from a specified CUSH model with covariates
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :type X: pandas dataframe
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    """
     n = X.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
@@ -116,19 +183,82 @@ def draw(m, sh, omega, X, seed=None):
     )
 
 def loglik(m, sample, X, omega, sh):
+    r"""Log-likelihood function for CUSH models with covariates.
+
+    Compute the log-likelihood function for CUSH models with covariates 
+    to explain the shelter effect.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
+        ``X.columns.size+1`` to include an intercept term in the model (first entry)
+    :type omega: array
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :type X: pandas dataframe
+    :return: the log-likelihood value
+    :rtype: float
+    """
     p = proba(m=m, sample=sample, X=X,
         omega=omega, sh=sh)
     l = np.sum(np.log(p))
     return l
 
 def effe(pars, esterno, m, sh):
+    r"""Auxiliary function for the log-likelihood estimation of CUSH models with covariates
+
+    Compute the opposite of the loglikelihood function for CUSH models
+    with covariates to explain the shelter effect.
+    It is called as an argument for "optim" within ``.mle()`` function
+    as the function to minimize.
+
+    :param pars: array of the initial parameters estimates
+    :type pars: array
+    :param esterno: matrix binding together the vector of ordinal data and the matrix ``XX`` of explanatory
+        variables whose first column is a column of ones needed to consider an intercept term
+    :type esterno: ndarray
+    :param m: number of ordinal categories
+    :type m: int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    """
     sample = esterno[:,0]
     X = esterno[:,2:] # no 1
     l = loglik(m=m, sample=sample, X=X,
         omega=pars, sh=sh)
     return -l
 
-def mle(m, sample, X, sh, gen_pars=None):
+def mle(m, sample, X, sh, gen_pars=None,
+        maxiter=None, tol=None #for GEM compatibility
+        ):
+    r"""Main function for CUSH models with covariates.
+
+    Estimate and validate a CUSH model for ordinal responses, with covariates
+    to explain the shelter effect.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param sh: Category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param X: dataframe of covariates for explaining the shelter effect;
+        no column must be named ``0`` nor ``constant``
+    :type X: pandas dataframe
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param maxiter: default to None; ensure compatibility with ``gem.from_formula()``
+    :type maxiter: None
+    :param tol: default to None; ensure compatibility with ``gem.from_formula()``
+    :type tol: None
+    :return: an instance of ``CUBresCUSHX`` (see the Class for details)
+    :rtype: object
+    """
+    _, _ = maxiter, tol
     start = dt.datetime.now()
     n = sample.size
     f = freq(sample=sample, m=m)
@@ -206,12 +336,28 @@ def mle(m, sample, X, sh, gen_pars=None):
     )
 
 class CUBresCUSHX(CUBres):
-    
+    r"""Object returned by ``.mle()`` function.
+    See the Base for details.
+    """
     def plot_ordinal(self,
         figsize=(7, 5),
         ax=None, kind="bar",
         saveas=None
         ):
+        r"""Plots avreage relative frequencies of observed sample, estimated 
+        average probability distribution and,
+        if provided, average probability distribution of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -259,8 +405,13 @@ class CUBresCUSHX(CUBres):
         saveas=None,
         figsize=(7, 5)
         ):
-        """
-        plot CUB model fitted from a sample
+        """Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         self.plot_ordinal(ax=ax)
