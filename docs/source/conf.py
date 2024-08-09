@@ -38,7 +38,13 @@ extensions = [
     "sphinx.ext.autosummary",  # Create neat summary tables for modules/classes/methods etc
     #"sphinx.ext.intersphinx",  # Link to other project's documentation (see mapping below)
     #"sphinx_autodoc_typehints",  # Automatically document param types (less noise in class signature)
-    'numpydoc' # Alternative to napoleon
+    'numpydoc', # Alternative to napoleon
+    'sphinxcontrib.bibtex', # for citation and bibliography
+]
+
+# bibliography
+bibtex_bibfiles = [
+    'cub.bib'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

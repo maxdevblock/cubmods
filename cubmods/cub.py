@@ -15,27 +15,19 @@ Description
 
 Manual and Examples
 ==========================
-  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
+    - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
 
 
 References
 ===========
-    - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution,*Statistical Modelling: an International Journal*, *3*, 65--78 
-    - Piccolo D. (2003). On the moments of a mixture of uniform and shifted binomial random variables,*Quaderni di Statistica*, *5*, 85--104 
-    - D'Elia A. and Piccolo D. (2005).  A mixture model for preferences data analysis,*Computational Statistics & Data Analysis*,  *49*, 917--937 
-    - Capecchi S. and Piccolo D. (2017). Dealing with heterogeneity in ordinal responses,*Quality and Quantity*, *51*(5), 2375--2393 
-    - Iannario M. and Piccolo D. (2016a). A comprehensive framework for regression models of ordinal data.*Metron*, *74*(2), 233--252.
-    - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data.*Statistical Methods and Applications*, *25*, 163--189.
-    - Piccolo D. and D'Elia A. (2008). A new approach for modelling consumers' preferences, *Food Quality and Preference*,*18*, 247--259 
-    - Iannario M. and Piccolo D. (2012). CUB models: Statistical methods and empirical evidence, in:Kenett R. S. and Salini S. (eds.), *Modern Analysis of Customer Surveys: with applications using R*,J. Wiley and Sons, Chichester, 231--258
-    - Iannario M. (2012). Modelling *shelter* choices in a class of mixture models for ordinal responses,*Statistical Methods and Applications*, *21*, 1--22 
-    - Iannario M. and Piccolo D. (2014). Inference for CUB models: a program in R, *Statistica & Applicazioni*,*XII* n.2, 177--204 
-    - Iannario M. (2016). Testing the overdispersion parameter in CUBE models,*Communications in Statistics: Simulation and Computation*, *45*(5), 1621--1635
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :all:
 
   
 List of TODOs:
 ==============
-  - ...
+    - ...
 
 :Author:      Massimo Pierini
 :Institution: Universitas Mercatorum
@@ -75,7 +67,10 @@ def pmf(m, pi, xi):
     :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
 
     References:
-        - Piccolo D. (2003). On the moments of a mixture of uniform and shifted binomial random variables. *Quaderni di Statistica*, *5*, 85--104
+        .. bibliography:: cub.bib
+            :list: enumerated
+
+            piccolo2003moments
 
     :param m: number of ordinal categories
     :type m: int
