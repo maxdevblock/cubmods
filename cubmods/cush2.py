@@ -260,6 +260,22 @@ def mle(sample, m, c1, c2, gen_pars=None,
     )
 
 def loglik(sample, m, c1, c2):
+    r"""Log-likelihood function for a 2-CUSH model without covariates.
+
+    Compute the log-likelihood function for a 2-CUSH model 
+    without covariate for the given ordinal responses.
+
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param c1: Category corresponding to the 1st shelter choice :math:`[1,m]`
+    :type c1: int
+    :param c2: Category corresponding to the 2nd shelter choice :math:`[1,m]`
+    :type c2: int
+    :return: the log-likehood value
+    :rtype: float
+    """
     #l = (f*np.log(pr(m, d1, d2))).sum()
     n = sample.size
     fc1 = (sample==c1).sum()/n
@@ -270,7 +286,9 @@ def loglik(sample, m, c1, c2):
         fc3*np.log(fc3/(m-2)))
     return l
 
-def effe(d, sample, m, c1, c2):
+def _effe(d, sample, m, c1, c2):
+    r"""
+    """
     n = sample.size
     d1 = d[0]
     d2 = d[1]
@@ -286,12 +304,26 @@ def effe(d, sample, m, c1, c2):
     return -l
 
 class CUBresCUSH2(CUBres):
-
+    """Object returned by ``.mle()`` function.
+    See the Base for details.
+    """
     def plot_par_space(self,
         figsize=(7, 5),
         ax=None, ci=.95,
         saveas=None):
-
+        r"""Plots the estimated parameter values in the parameter space and
+        the asymptotic standard error.
+        
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse
+        :type ci: float
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         estd1, estd2 = self.estimates
         c1, c2 = self.sh
 
@@ -343,6 +375,19 @@ class CUBresCUSH2(CUBres):
         ax=None, kind="bar",
         saveas=None
         ):
+        r"""Plots relative frequencies of observed sample, estimated probability distribution and,
+        if provided, probability distribution of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -399,8 +444,15 @@ class CUBresCUSH2(CUBres):
         saveas=None,
         figsize=(7, 11)
         ):
-        """
-        plot CUB model fitted from a sample
+        r"""Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the standard error
+        :type ci: float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(2, 1,
             figsize=figsize)
