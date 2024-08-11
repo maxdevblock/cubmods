@@ -31,6 +31,40 @@ The last chapter, shows the basic usage for the tool ``multicub``.
 GEM syntax
 ----------
 
+The function ``gem.from_formula()`` is the main function that simplifies the estimation and 
+validation of a model.
+
+A ``pandas`` DataFrame must be passed to the function, with the *kwarg* ``df=``.
+
+The function needs a *formula* that is a **string** specifying the name of the ordinal 
+variable (before the ``~`` symbol)
+and (if any) of the covariates (after the symbol ``~``). Covariates for each component are
+separated by the symbol ``|`` (pipeline).
+The symbol ``0`` indicates no covariates for a certain component. 
+If more covariates explain a single component, the symbol ``+`` concatenates the names.
+Qualitative variables names, must be placed between brackets ``()`` leaded by a ``C``.
+
+.. warning::
+
+    No columns in the DataFrame must be named ``constant`` or ``0``.
+    In the column names, are only allowed letters, numbers, and underscores ``_``.
+    No space is allowed in the column names.
+
+.. warning::
+
+    Spaces are currently not allowed in the formula string.
+
+If no ``model=`` *kwarg* is declared, the function takes ``cub`` as default.
+
+For example, let's suppose we have a DataFrame where ``response`` is the ordinal variable, 
+``age`` and ``sex`` are a quantitative and a qualitative variable to explain the *feeling* component
+only in a ``cub`` family model. The formula will be ``formula = "response~0|age+C(sex)|0"``.
+
+.. warning::
+
+    Currently, the number of fields separated by ``|`` in a formula **MUST BE** three
+    even if the specified model family has less parameters (such as ``cub`` or ``cush``).
+
 CUB family
 ----------
 
@@ -100,7 +134,7 @@ Note that in the function ``gem.from_formula``:
 
 - if ``m`` is not provided, the maximum observed ordinal value will be assumed
 
-- with ``gen_pars`` dictionary, the parameters of a known model (if any) can be specified; in this case, tyhey'll be the parameters used to draw the sample
+- with ``gen_pars`` dictionary, the parameters of a known model (if any) can be specified; in this case, they'll be the parameters used to draw the sample
 
 .. code-block:: python
     :caption: Script
@@ -154,6 +188,62 @@ Note that in the function ``gem.from_formula``:
 
 With covariates
 ^^^^^^^^^^^^^^^^^^
+
+All three combinations of covariates has been implemented in both Python and R:
+for *uncertainty* only, for *feeling* only, and for *both*.
+
+Here we'll show an example with covariates for *feeling* only.
+
+First of all, we'll draw a random sample with two covariates for the *feeling* component:
+``W1`` and ``W2``. Note that, having two covariates, we'll need three :math:`\gamma` parameters,
+to consider the constant term too.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods import cub_0w, gem
+    # Draw a random sample
+    n = 1000
+    np.random.seed(1)
+    W1 = np.random.randint(1, 10, n)
+    np.random.seed(42)
+    W2 = np.random.randint(1, 10, n)
+    df = pd.DataFrame({
+        "W1": W1, "W2": W2
+    })
+    drawn = cub_0w.draw(m=10, n=n, 
+        pi=0.8,
+        gamma=[2.3, -0.4, -0.05],
+        W=df
+    )
+    drawn.plot()
+    plt.show()
+
+Then, we'll add the drawn sample to ``df`` DataFrame and will estimate the parameters.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # add the drawn sample
+    df["ordinal"] = drawn.rv
+    # MLE estimation
+    mod1 = gem.from_formula(
+        formula="ordinal~0|W1+W2|0",
+        df=df
+    )
+    # Print MLE summary
+    print(mod1.summary())
+    # plot the results
+    mod1.plot()
+    plt.show()
+
+
 
 CUBSH family
 ------------
