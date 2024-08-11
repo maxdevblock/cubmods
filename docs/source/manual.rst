@@ -38,7 +38,7 @@ A ``pandas`` DataFrame must be passed to the function, with the *kwarg* ``df=``.
 
 The function needs a *formula* that is a **string** specifying the name of the ordinal 
 variable (before the ``~`` symbol)
-and (if any) of the covariates (after the symbol ``~``). Covariates for each component are
+and of the covariates (after the symbol ``~``). Covariates for each component are
 separated by the symbol ``|`` (pipeline).
 The symbol ``0`` indicates no covariates for a certain component. 
 If more covariates explain a single component, the symbol ``+`` concatenates the names.
@@ -54,7 +54,7 @@ Qualitative variables names, must be placed between brackets ``()`` leaded by a 
 
     Spaces are currently not allowed in the formula string.
 
-If no ``model=`` *kwarg* is declared, the function takes ``cub`` as default.
+If no ``model=`` *kwarg* is declared, the function takes ``"cub"`` as default.
 
 For example, let's suppose we have a DataFrame where ``response`` is the ordinal variable, 
 ``age`` and ``sex`` are a quantitative and a qualitative variable to explain the *feeling* component
