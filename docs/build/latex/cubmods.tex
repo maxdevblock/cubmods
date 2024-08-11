@@ -196,9 +196,138 @@ The last chapter, shows the basic usage for the tool \sphinxcode{\sphinxupquote{
 
 \section{GEM syntax}
 \label{\detokenize{manual:gem-syntax}}
+\sphinxAtStartPar
+The function \sphinxcode{\sphinxupquote{gem.from\_formula()}} is the main function that simplifies the estimation and
+validation of a model from an observed sample, calling for the corresponding \sphinxcode{\sphinxupquote{.mle()}} function for
+the specified family.
+
+\sphinxAtStartPar
+The number of ordinal categories \sphinxcode{\sphinxupquote{m}} is internally retrieved if not specified
+(taking the maximum observed category)
+but it is advisable to pass it as an argument to the call if some category has zero frequency.
+
+\sphinxAtStartPar
+A \sphinxcode{\sphinxupquote{pandas}} DataFrame must be passed to the function, with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{df=}}.
+
+\sphinxAtStartPar
+The function needs a \sphinxstyleemphasis{formula} that is a \sphinxstylestrong{string} specifying the name of the ordinal
+variable (before the \sphinxcode{\sphinxupquote{\textasciitilde{}}} symbol)
+and of the covariates (after the symbol \sphinxcode{\sphinxupquote{\textasciitilde{}}}). Covariates for each component are
+separated by the symbol \sphinxcode{\sphinxupquote{|}} (pipeline).
+The symbol \sphinxcode{\sphinxupquote{0}} indicates no covariates for a certain component.
+If more covariates explain a single component, the symbol \sphinxcode{\sphinxupquote{+}} concatenates the names.
+Qualitative variables names, must be placed between brackets \sphinxcode{\sphinxupquote{()}} leaded by a \sphinxcode{\sphinxupquote{C}}.
+
+\begin{sphinxadmonition}{warning}{Warning:}
+\sphinxAtStartPar
+No columns in the DataFrame must be named \sphinxcode{\sphinxupquote{constant}} or \sphinxcode{\sphinxupquote{0}}.
+In the column names, are only allowed letters, numbers, and underscores \sphinxcode{\sphinxupquote{\_}}.
+No space is allowed in the column names.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+For example, let’s suppose we have a DataFrame where \sphinxcode{\sphinxupquote{response}} is the ordinal variable,
+\sphinxcode{\sphinxupquote{age}} and \sphinxcode{\sphinxupquote{sex}} are a quantitative and a qualitative variable to explain the \sphinxstyleemphasis{feeling} component
+only in a \sphinxcode{\sphinxupquote{cub}} family model. The formula will be \sphinxcode{\sphinxupquote{formula = "response \textasciitilde{} 0 | age + C(sex) | 0"}}.
+
+\sphinxAtStartPar
+Notice that spaces are allowed between symbols and variable names in the formula but they aren’t
+needed: a formula \sphinxcode{\sphinxupquote{ord \textasciitilde{} X | Y1 + Y2 | Z}} is the same that \sphinxcode{\sphinxupquote{ord\textasciitilde{}X|Y1+Y2|Z}}.
+
+\begin{sphinxadmonition}{warning}{Warning:}
+\sphinxAtStartPar
+Currently, the number of fields separated by \sphinxcode{\sphinxupquote{|}} in a formula \sphinxstylestrong{MUST BE} three
+even if the specified model family has less parameters
+(such as \sphinxcode{\sphinxupquote{ihg}}, \sphinxcode{\sphinxupquote{cub}}, \sphinxcode{\sphinxupquote{cush}}, and \sphinxcode{\sphinxupquote{cush2}}). In these cases, the
+unused fields should always be \sphinxcode{\sphinxupquote{0}}.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+If no \sphinxcode{\sphinxupquote{model=}} \sphinxstyleemphasis{kwarg} is declared, the function takes \sphinxcode{\sphinxupquote{"cub"}} as default.
+Currently implemented models are: \sphinxcode{\sphinxupquote{"cub"}} (default), \sphinxcode{\sphinxupquote{"cush"}}, \sphinxcode{\sphinxupquote{"cube"}},
+\sphinxcode{\sphinxupquote{"ihg"}}, and \sphinxcode{\sphinxupquote{"cush2"}}. CUB models with shelter effect, are automatically
+implemented using \sphinxcode{\sphinxupquote{model="cub"}} and specifying a shelter choice with the
+\sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh=}}.
+
+\sphinxAtStartPar
+If  \sphinxcode{\sphinxupquote{model="cub"}} (or nothing), then a CUB mixture model is fitted to the data to explain uncertainty,
+feeling and possible shelter effect by further passing the extra argument \sphinxcode{\sphinxupquote{sh}} for the corresponding category.
+Subjects’ covariates can be included by specifying covariates matrices in the
+formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}Y|W|X}},  to explain uncertainty (Y), feeling (W) or shelter (X).
+Notice that
+covariates for shelter effect can be included only if specified for both feeling and uncertainty (GeCUB models).
+
+\sphinxAtStartPar
+If \sphinxcode{\sphinxupquote{family="cube"}}, then a CUBE mixture model (Combination of Uniform and Beta\sphinxhyphen{}Binomial) is fitted to the data
+to explain uncertainty, feeling and overdispersion.   Subjects’ covariates can be also included to explain the
+feeling component or all the three components by  specifying covariates matrices in the Formula as
+\sphinxcode{\sphinxupquote{ordinal\textasciitilde{}Y|W|Z}} to explain uncertainty (Y), feeling (W) or
+overdispersion (Z).
+
+\sphinxAtStartPar
+If \sphinxcode{\sphinxupquote{family="ihg"}}, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
+CUBE models. The parameter \(\theta\) gives the probability of observing
+the first category and is therefore a direct measure of preference, attraction, pleasantness toward the
+investigated item. This is the reason why \(\theta\) is customarily referred to as the
+preference parameter of the
+IHG model. Covariates for the preference parameter \(\theta\) have to be specified
+in matrix form in the Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}U|0|0}}.
+
+\sphinxAtStartPar
+If \sphinxcode{\sphinxupquote{family="cush"}}, then a CUSH model is fitted to the data (Combination of Uniform and SHelter effect).
+The category corresponding to the inflation should be
+passed via argument \sphinxcode{\sphinxupquote{sh}}. Covariates for the shelter parameter \(\delta\)
+are specified in matrix form Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X|0|0}}.
+
+\sphinxAtStartPar
+If \sphinxcode{\sphinxupquote{family="cush2"}}, then a 2\sphinxhyphen{}CUSH model is fitted to the data (Combination of Uniform and 2 SHelter choices).
+The categories corresponding to the inflation should be
+passed as a list (or array) via the same argument \sphinxcode{\sphinxupquote{sh}}.
+Covariates for the shelter parameters \((\delta_1, \delta_2)\)
+are specified in matrix form Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X1|X2|0}}. Notice that, to specify covariates for a
+single shelter choice, the formula should be \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X1|0|0}} and not \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}0|X2|0}}.
+
+\sphinxAtStartPar
+Extra arguments include the maximum
+number of iterations \sphinxcode{\sphinxupquote{maxiter}} for the optimization algorithm,
+the required error tolerance \sphinxcode{\sphinxupquote{tol}}, and a dictionary of parameters of a known model
+\sphinxcode{\sphinxupquote{gen\_pars}} to be compared with the estimates.
+
 
 \section{CUB family}
 \label{\detokenize{manual:cub-family}}
+\sphinxAtStartPar
+Basic family of the class CUB. See the references for details.
+
+
+\subsection{References}
+\label{\detokenize{manual:references}}\begin{quote}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{0}
+\item {} 
+\sphinxAtStartPar
+Angela D\textquotesingle{}Elia and Domenico Piccolo. A mixture model for preferences data analysis. \sphinxstyleemphasis{Computational Statistics \& Data Analysis}, 49(3):917\textendash{}934, 2005.
+
+\item {} 
+\sphinxAtStartPar
+Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. \sphinxstyleemphasis{Statistica \& Applicazioni}, 12(2):177\textendash{}204, 2014.
+
+\item {} 
+\sphinxAtStartPar
+Domenico Piccolo and others. On the moments of a mixture of uniform and shifted binomial random variables. \sphinxstyleemphasis{Quaderni di Statistica}, 5(1):85\textendash{}104, 2003.
+
+\item {} 
+\sphinxAtStartPar
+Domenico Piccolo and others. Observed information matrix for mub models. \sphinxstyleemphasis{Quaderni di Statistica}, 8(1):33\textendash{}78, 2006.
+
+\item {} 
+\sphinxAtStartPar
+Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. \sphinxstyleemphasis{Statistical Methods \& Applications}, 28:389\textendash{}435, 2019.
+
+\end{enumerate}
+\end{quote}
+
 
 \subsection{Without covariates}
 \label{\detokenize{manual:without-covariates}}
@@ -220,7 +349,7 @@ In the following example, a sample will be drawn from a CUB model of \(n=500\) o
 variable with \(m=10\) ordinal categories
 and parameters \((\pi=.7, \xi=.2)\). A \sphinxcode{\sphinxupquote{seed=1}} will be set to ensure reproducibility.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id2}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id79}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
  \PYG{c+c1}{\PYGZsh{} import libraries}
  \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -279,7 +408,7 @@ with \sphinxcode{\sphinxupquote{gen\_pars}} dictionary, the parameters of a know
 
 \end{itemize}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id3}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id80}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{mod} \PYG{o}{=} \PYG{n}{gem}\PYG{o}{.}\PYG{n}{from\PYGZus{}formula}\PYG{p}{(}
@@ -330,15 +459,148 @@ Elapsed time=0.00187 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Wed Apr 24 11:27:3
 
 \subsection{With covariates}
 \label{\detokenize{manual:with-covariates}}
+\sphinxAtStartPar
+All three combinations of covariates has been implemented for CUB family in both Python and R:
+for \sphinxstyleemphasis{uncertainty} only, for \sphinxstyleemphasis{feeling} only, and for \sphinxstyleemphasis{both}.
+
+\sphinxAtStartPar
+Here we’ll show an example with covariates for \sphinxstyleemphasis{feeling} only.
+
+\sphinxAtStartPar
+First of all, we’ll draw a random sample with two covariates for the \sphinxstyleemphasis{feeling} component:
+\sphinxcode{\sphinxupquote{W1}} and \sphinxcode{\sphinxupquote{W2}}. Note that, having two covariates, we’ll need three \(\gamma\) parameters,
+to consider the constant term too.
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id81}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods} \PYG{k+kn}{import} \PYG{n}{cub\PYGZus{}0w}\PYG{p}{,} \PYG{n}{gem}
+\PYG{c+c1}{\PYGZsh{} Draw a random sample}
+\PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{1000}
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{W1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
+\PYG{n}{W2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{W1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{W1}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{W2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{W2}
+\PYG{p}{\PYGZcb{}}\PYG{p}{)}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{cub\PYGZus{}0w}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{(}\PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{n}{n}\PYG{p}{,}
+    \PYG{n}{pi}\PYG{o}{=}\PYG{l+m+mf}{0.8}\PYG{p}{,}
+    \PYG{n}{gamma}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mf}{2.3}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.4}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.05}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{W}\PYG{o}{=}\PYG{n}{df}
+\PYG{p}{)}
+\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cub0wdraw}.png}
+
+\sphinxAtStartPar
+Then, we’ll add the drawn sample to \sphinxcode{\sphinxupquote{df}} DataFrame and will estimate the parameters.
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id82}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} add the drawn sample}
+\PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ordinal}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{rv}
+\PYG{c+c1}{\PYGZsh{} MLE estimation}
+\PYG{n}{mod1} \PYG{o}{=} \PYG{n}{gem}\PYG{o}{.}\PYG{n}{from\PYGZus{}formula}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ordinal \PYGZti{} 0 | W1+W2 | 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{df}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print MLE summary}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{mod1}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} plot the results}
+\PYG{n}{mod1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUB(0W) model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
+=======================================================================
+m=10  Size=1000  Iterations=22  Maxiter=500  Tol=1E\PYGZhy{}04
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Uncertainty
+        Estimates  StdErr     Wald  p\PYGZhy{}value
+pi            0.789  0.0231   34.210   0.0000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Feeling
+        Estimates  StdErr     Wald  p\PYGZhy{}value
+constant      2.299  0.1001   22.976   0.0000
+W1           \PYGZhy{}0.407  0.0139  \PYGZhy{}29.239   0.0000
+W2           \PYGZhy{}0.044  0.0121   \PYGZhy{}3.681   0.0002
+=======================================================================
+Dissimilarity = 0.0488
+Loglik(MOD)   = \PYGZhy{}1963.868
+Loglik(uni)   = \PYGZhy{}2302.585
+Mean\PYGZhy{}loglik   = \PYGZhy{}1.964
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+AIC = 3935.74
+BIC = 3955.37
+=======================================================================
+Elapsed time=0.10014 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Sun Aug 11 22:02:15 2024
+=======================================================================
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cub0wmle}.png}
+
 
 \section{CUBSH family}
 \label{\detokenize{manual:cubsh-family}}
+\sphinxAtStartPar
+Basic family of the class CUB. See the references for details.
+
+
+\subsection{References}
+\label{\detokenize{manual:id38}}\begin{quote}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{0}
+\item {} 
+\sphinxAtStartPar
+Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. \sphinxstyleemphasis{Statistical Methods \& Applications}, 21:1\textendash{}22, 2012.
+
+\item {} 
+\sphinxAtStartPar
+Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. \sphinxstyleemphasis{Quality Technology \& Quantitative Management}, 7(2):149\textendash{}168, 2010.
+
+\item {} 
+\sphinxAtStartPar
+Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. \sphinxstyleemphasis{Statistica \& Applicazioni}, 12(2):177\textendash{}204, 2014.
+
+\item {} 
+\sphinxAtStartPar
+Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. \sphinxstyleemphasis{Statistical Methods \& Applications}, 28:389\textendash{}435, 2019.
+
+\end{enumerate}
+\end{quote}
+
+
+\subsection{Without covariates}
+\label{\detokenize{manual:id76}}
+\sphinxAtStartPar
+A model of the CUB family with shelter effect
+for responses with \(m\) ordinal categories, without covariates is specified as
+\begin{equation*}
+\begin{split}\Pr(R=r|\boldsymbol{\theta}) = \delta D_r^{(c)} + (1-\delta)\left(\pi b_r(\xi) + \frac{1-\pi}{m} \right)\end{split}
+\end{equation*}
+\sphinxAtStartPar
+where \(\pi\) and \(\xi\) are the parameters for respectively the \sphinxstyleemphasis{uncertainty} and the
+\sphinxstyleemphasis{feeling} components, and \(\delta\) is the weight of the shelter effect.
+
+
+\subsection{With covariates}
+\label{\detokenize{manual:id77}}
 
 \section{CUSH family}
 \label{\detokenize{manual:cush-family}}
 
 \section{2\sphinxhyphen{}CUSH family}
-\label{\detokenize{manual:id1}}
+\label{\detokenize{manual:id78}}
 
 \section{CUBE family}
 \label{\detokenize{manual:cube-family}}
@@ -7953,38 +8215,6 @@ Manual \sphinxurl{https://github.com/maxdevblock/cubmods/blob/main/Manual/05\_cu
 \item {} 
 \sphinxAtStartPar
 Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. \sphinxstyleemphasis{Quality \& Quantity}, 51:2375\textendash{}2393, 2017.
-
-\item {} 
-\sphinxAtStartPar
-Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The stata module for cub models for rating data analysis. In \sphinxstyleemphasis{London Stata Conference 2021}, number 16. Stata Users Group, 2021.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. \sphinxstyleemphasis{CRAN}, 2022.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo and others. On the moments of a mixture of uniform and shifted binomial random variables. \sphinxstyleemphasis{Quaderni di Statistica}, 5(1):85\textendash{}104, 2003.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo and others. Observed information matrix for mub models. \sphinxstyleemphasis{Quaderni di Statistica}, 8(1):33\textendash{}78, 2006.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. \sphinxstyleemphasis{Statistical Methods \& Applications}, 28:389\textendash{}435, 2019.
-
-\item {} 
-\sphinxAtStartPar
-Massimo Pierini. Modelli della classe cub in python. \sphinxstyleemphasis{Universitas Mercatorum, Rome, IT}, pages 16\textendash{}20, June 2024. (Bachelor\textquotesingle{}s thesis L\sphinxhyphen{}41).
-
-\item {} 
-\sphinxAtStartPar
-W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, r, git, and docker. \sphinxstyleemphasis{Computational Methods and Data Analysis for Metabolomics}, pages 265\textendash{}311, 2020.
-
-\item {} 
-\sphinxAtStartPar
-Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. Cub for gretl. \sphinxstyleemphasis{GNU Regression, Econometrics and Time Series Library}, pages 147, 2019.
 
 \end{enumerate}
 \end{quote}
