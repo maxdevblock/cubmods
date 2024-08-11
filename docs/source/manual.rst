@@ -50,12 +50,6 @@ Qualitative variables names, must be placed between brackets ``()`` leaded by a 
     In the column names, are only allowed letters, numbers, and underscores ``_``.
     No space is allowed in the column names.
 
-.. warning::
-
-    Spaces are currently not allowed in the formula string.
-
-If no ``model=`` *kwarg* is declared, the function takes ``"cub"`` as default.
-
 For example, let's suppose we have a DataFrame where ``response`` is the ordinal variable, 
 ``age`` and ``sex`` are a quantitative and a qualitative variable to explain the *feeling* component
 only in a ``cub`` family model. The formula will be ``formula = "response~0|age+C(sex)|0"``.
@@ -63,10 +57,22 @@ only in a ``cub`` family model. The formula will be ``formula = "response~0|age+
 .. warning::
 
     Currently, the number of fields separated by ``|`` in a formula **MUST BE** three
-    even if the specified model family has less parameters (such as ``cub`` or ``cush``).
+    even if the specified model family has less parameters (such as ``cub``, ``cush``, or ``cush2``).
+
+.. warning::
+
+    Spaces are currently not allowed in the formula *string*.
+
+If no ``model=`` *kwarg* is declared, the function takes ``"cub"`` as default.
+Currently implemented models are: ``"cub"`` (default), ``"cush"``, ``"cube"``,
+``"ihg"``, and ``"cush2"``. CUB models with shelter effect, are automatically
+implemented using ``model="cub"`` and specifying a shelter choice with the 
+*kwarg* ``sh=``.
 
 CUB family
 ----------
+
+Basic family of the class CUB. See the references for details.
 
 Without covariates
 ^^^^^^^^^^^^^^^^^^

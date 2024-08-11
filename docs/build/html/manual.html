@@ -369,7 +369,7 @@ validation of a model.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame must be passed to the function, with the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">df=</span></code>.</p>
 <p>The function needs a <em>formula</em> that is a <strong>string</strong> specifying the name of the ordinal
 variable (before the <code class="docutils literal notranslate"><span class="pre">~</span></code> symbol)
-and (if any) of the covariates (after the symbol <code class="docutils literal notranslate"><span class="pre">~</span></code>). Covariates for each component are
+and of the covariates (after the symbol <code class="docutils literal notranslate"><span class="pre">~</span></code>). Covariates for each component are
 separated by the symbol <code class="docutils literal notranslate"><span class="pre">|</span></code> (pipeline).
 The symbol <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates no covariates for a certain component.
 If more covariates explain a single component, the symbol <code class="docutils literal notranslate"><span class="pre">+</span></code> concatenates the names.
@@ -380,22 +380,27 @@ Qualitative variables names, must be placed between brackets <code class="docuti
 In the column names, are only allowed letters, numbers, and underscores <code class="docutils literal notranslate"><span class="pre">_</span></code>.
 No space is allowed in the column names.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Spaces are currently not allowed in the formula string.</p>
-</div>
-<p>If no <code class="docutils literal notranslate"><span class="pre">model=</span></code> <em>kwarg</em> is declared, the function takes <code class="docutils literal notranslate"><span class="pre">cub</span></code> as default.</p>
 <p>For example, let’s suppose we have a DataFrame where <code class="docutils literal notranslate"><span class="pre">response</span></code> is the ordinal variable,
 <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code> are a quantitative and a qualitative variable to explain the <em>feeling</em> component
 only in a <code class="docutils literal notranslate"><span class="pre">cub</span></code> family model. The formula will be <code class="docutils literal notranslate"><span class="pre">formula</span> <span class="pre">=</span> <span class="pre">&quot;response~0|age+C(sex)|0&quot;</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Currently, the number of fields separated by <code class="docutils literal notranslate"><span class="pre">|</span></code> in a formula <strong>MUST BE</strong> three
-even if the specified model family has less parameters (such as <code class="docutils literal notranslate"><span class="pre">cub</span></code> or <code class="docutils literal notranslate"><span class="pre">cush</span></code>).</p>
+even if the specified model family has less parameters (such as <code class="docutils literal notranslate"><span class="pre">cub</span></code>, <code class="docutils literal notranslate"><span class="pre">cush</span></code>, or <code class="docutils literal notranslate"><span class="pre">cush2</span></code>).</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Spaces are currently not allowed in the formula <em>string</em>.</p>
+</div>
+<p>If no <code class="docutils literal notranslate"><span class="pre">model=</span></code> <em>kwarg</em> is declared, the function takes <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> as default.
+Currently implemented models are: <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;cush&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cube&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;ihg&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;cush2&quot;</span></code>. CUB models with shelter effect, are automatically
+implemented using <code class="docutils literal notranslate"><span class="pre">model=&quot;cub&quot;</span></code> and specifying a shelter choice with the
+<em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh=</span></code>.</p>
 </section>
 <section id="cub-family">
 <h2>CUB family<a class="headerlink" href="#cub-family" title="Permalink to this heading">#</a></h2>
+<p>Basic family of the class CUB. See the references for details.</p>
 <section id="without-covariates">
 <h3>Without covariates<a class="headerlink" href="#without-covariates" title="Permalink to this heading">#</a></h3>
 <p>A model of the CUB family for responses with <span class="math notranslate nohighlight">\(m\)</span> ordinal categories, without covariates is specified as</p>
