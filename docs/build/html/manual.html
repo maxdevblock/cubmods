@@ -41,6 +41,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'manual';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -340,11 +341,137 @@ document.write(`
                   
   <section id="manual">
 <h1>Manual<a class="headerlink" href="#manual" title="Permalink to this heading">#</a></h1>
+<p>The package <code class="docutils literal notranslate"><span class="pre">cubmods</span></code> can be used to apply inferential methods to an observed sample in order to
+estimate the parameters and the covariance matrix of a model within the CUB class. Also, for each family,
+random samples can be drawn from a specified model.</p>
+<p>Currently, six families have been defined and implemented:</p>
+<ul class="simple">
+<li><p>CUB (Combination of Uniform and Binomial)</p></li>
+<li><p>CUBSH (CUB + a SHelter choice)</p></li>
+<li><p>CUSH (Combination of Uniform and a SHelter choice)</p></li>
+<li><p>2-CUSH (Combination of Uniform and 2 SHelter choices)</p></li>
+<li><p>CUBE (Combination of Uniform and BEta-binomial)</p></li>
+<li><p>IHG (Inverse HyperGeometric)</p></li>
+</ul>
+<p>For each family, a model can be defined with or without covariates for one or more parameters.</p>
+<p>Details about each family and examples are provided in the following chapters.</p>
+<p>Even if each family has got its own <em>Maximum Likelihood Estimation</em> function <code class="docutils literal notranslate"><span class="pre">mle()</span></code> that
+could be called directly, for example <code class="docutils literal notranslate"><span class="pre">cub.mle()</span></code>, the function <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code> provides a
+simplified and generalised procedure for MLE. In this manual <code class="docutils literal notranslate"><span class="pre">gem</span></code> will be used for the examples.</p>
+<p>On the contrary, a general function to draw random samples has not been currently
+implemented yet and the function must be called from the module of the corresponding family,
+for example <code class="docutils literal notranslate"><span class="pre">cube_ywz.draw()</span></code>.</p>
+<p>The last chapter, shows the basic usage for the tool <code class="docutils literal notranslate"><span class="pre">multicub</span></code>.</p>
 <section id="gem-syntax">
 <h2>GEM syntax<a class="headerlink" href="#gem-syntax" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="cub-family">
 <h2>CUB family<a class="headerlink" href="#cub-family" title="Permalink to this heading">#</a></h2>
+<section id="without-covariates">
+<h3>Without covariates<a class="headerlink" href="#without-covariates" title="Permalink to this heading">#</a></h3>
+<p>A model of the CUB family for responses with <span class="math notranslate nohighlight">\(m\)</span> ordinal categories, without covariates is specified as</p>
+<div class="math notranslate nohighlight">
+\[\Pr(R=r|\boldsymbol{\theta}) = \pi \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi}{m}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\xi\)</span> are the parameters for respectively the <em>uncertainty</em> and the
+<em>feeling</em> components.</p>
+<p>Note that <span class="math notranslate nohighlight">\((1-\pi)\)</span> is the weight of the Uncertainty component and
+<span class="math notranslate nohighlight">\((1-\xi)\)</span> is the Feeling component for usual <em>positive wording</em>.</p>
+<p>In the following example, a sample will be drawn from a CUB model of <span class="math notranslate nohighlight">\(n=500\)</span> observations of an ordinal
+variable with <span class="math notranslate nohighlight">\(m=10\)</span> ordinal categories
+and parameters <span class="math notranslate nohighlight">\((\pi=.7, \xi=.2)\)</span>. A <code class="docutils literal notranslate"><span class="pre">seed=1</span></code> will be set to ensure reproducibility.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="c1"># import libraries</span>
+<span class="linenos"> 2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 3</span> <span class="kn">from</span> <span class="nn">cubmods</span> <span class="kn">import</span> <span class="n">cub</span><span class="p">,</span> <span class="n">gem</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span> <span class="c1"># draw a sample</span>
+<span class="linenos"> 6</span> <span class="n">drawn</span> <span class="o">=</span> <span class="n">cub</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="mf">.7</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
+<span class="linenos"> 7</span>                 <span class="n">n</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 8</span> <span class="c1"># print the summary of the drawn sample</span>
+<span class="linenos"> 9</span> <span class="nb">print</span><span class="p">(</span><span class="n">drawn</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="linenos">10</span> <span class="c1"># show the plot of the drawn sample</span>
+<span class="linenos">11</span> <span class="n">drawn</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="linenos">12</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>=======================================================================
+=====&gt;&gt;&gt; CUB model &lt;&lt;&lt;===== Drawn random sample
+=======================================================================
+m=10  Sample size=500  seed=1
+pi=0.700
+xi=0.200
+=======================================================================
+Sample metrics
+Mean     = 7.368000
+Variance = 5.687952
+Std.Dev. = 2.384943
+-----------------------------------------------------------------------
+Dissimilarity = 0.0650938
+=======================================================================
+</pre></div>
+</div>
+<img alt="CUB00 drawn sample" src="_images/cub00draw.png" />
+<p>Using the previously drawn sample, in the next example the parameters <span class="math notranslate nohighlight">\((\hat\pi, \hat\xi)\)</span> will be estimated.</p>
+<p>Note that in the function <code class="docutils literal notranslate"><span class="pre">gem.from_formula</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df</span></code> needs to be a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame; the function <code class="docutils literal notranslate"><span class="pre">drawn.as_dataframe()</span></code> will return a DataFrame with <code class="docutils literal notranslate"><span class="pre">ordinal</span></code> as default column name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">formula</span></code> specifies the ordinal variable (<code class="docutils literal notranslate"><span class="pre">ordinal</span></code> in this case) and the covariates for each component (none in this case, so <code class="docutils literal notranslate"><span class="pre">&quot;0|0|0&quot;</span></code>)</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">m</span></code> is not provided, the maximum observed ordinal value will be assumed</p></li>
+<li><p>with <code class="docutils literal notranslate"><span class="pre">gen_pars</span></code> dictionary, the parameters of a known model (if any) can be specified; in this case, tyhey’ll be the parameters used to draw the sample</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
+<span class="linenos"> 2</span><span class="n">mod</span> <span class="o">=</span> <span class="n">gem</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
+<span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">(),</span>
+<span class="linenos"> 4</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ordinal~0|0|0&quot;</span><span class="p">,</span>
+<span class="linenos"> 5</span>    <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="linenos"> 6</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pi&quot;</span><span class="p">:</span> <span class="mf">.7</span><span class="p">,</span> <span class="s2">&quot;xi&quot;</span><span class="p">:</span><span class="mf">.2</span><span class="p">}</span>
+<span class="linenos"> 7</span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="c1"># print the summary of MLE</span>
+<span class="linenos"> 9</span><span class="nb">print</span><span class="p">(</span><span class="n">mod</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="linenos">10</span><span class="c1"># show the plot of MLE</span>
+<span class="linenos">11</span><span class="n">mod</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="linenos">12</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>=======================================================================
+=====&gt;&gt;&gt; CUB00 model &lt;&lt;&lt;===== ML-estimates
+=======================================================================
+m=10  Size=500  Iterations=13  Maxiter=500  Tol=1E-04
+-----------------------------------------------------------------------
+Uncertainty
+Estimates  StdErr    Wald  p-value
+pi     +0.675   0.034  19.872   0.0000
+-----------------------------------------------------------------------
+Feeling
+Estimates  StdErr    Wald  p-value
+xi     +0.188   0.009  20.808   0.0000
+-----------------------------------------------------------------------
+Correlation   = 0.2105
+=======================================================================
+Dissimilarity = 0.0599
+Loglik(sat)   = -994.063
+Loglik(MOD)   = -1000.111
+Loglik(uni)   = -1151.293
+Mean-loglik   = -2.000
+Deviance      = 12.096
+-----------------------------------------------------------------------
+AIC = 2004.22
+BIC = 2012.65
+=======================================================================
+Elapsed time=0.00187 seconds =====&gt;&gt;&gt; Wed Apr 24 11:27:35 2024
+=======================================================================
+</pre></div>
+</div>
+<img alt="CUB00 MLE" src="_images/cub00mle.png" />
+</section>
+<section id="with-covariates">
+<h3>With covariates<a class="headerlink" href="#with-covariates" title="Permalink to this heading">#</a></h3>
+</section>
 </section>
 <section id="cubsh-family">
 <h2>CUBSH family<a class="headerlink" href="#cubsh-family" title="Permalink to this heading">#</a></h2>
@@ -360,6 +487,9 @@ document.write(`
 </section>
 <section id="ihg-family">
 <h2>IHG family<a class="headerlink" href="#ihg-family" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="multicub">
+<h2>MULTICUB<a class="headerlink" href="#multicub" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 
@@ -408,12 +538,17 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gem-syntax">GEM syntax</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cub-family">CUB family</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cub-family">CUB family</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#without-covariates">Without covariates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#with-covariates">With covariates</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cubsh-family">CUBSH family</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cush-family">CUSH family</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2-CUSH family</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cube-family">CUBE family</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ihg-family">IHG family</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multicub">MULTICUB</a></li>
 </ul>
   </nav></div>
 
