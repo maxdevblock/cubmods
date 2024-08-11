@@ -239,7 +239,7 @@ Note that in the function ``gem.from_formula``:
 With covariates
 ^^^^^^^^^^^^^^^^^^
 
-All three combinations of covariates has been implemented in both Python and R:
+All three combinations of covariates has been implemented for CUB family in both Python and R:
 for *uncertainty* only, for *feeling* only, and for *both*.
 
 Here we'll show an example with covariates for *feeling* only.
@@ -284,7 +284,7 @@ Then, we'll add the drawn sample to ``df`` DataFrame and will estimate the param
     df["ordinal"] = drawn.rv
     # MLE estimation
     mod1 = gem.from_formula(
-        formula="ordinal~0|W1+W2|0",
+        formula="ordinal ~ 0 | W1+W2 | 0",
         df=df
     )
     # Print MLE summary
