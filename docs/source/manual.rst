@@ -32,7 +32,12 @@ GEM syntax
 ----------
 
 The function ``gem.from_formula()`` is the main function that simplifies the estimation and 
-validation of a model.
+validation of a model from an observed sample, calling for the corresponding ``.mle()`` function for
+the specified family. 
+
+The number of ordinal categories ``m`` is internally retrieved if not specified 
+(taking the maximum observed category)
+but it is advisable to pass it as an argument to the call if some category has zero frequency.
 
 A ``pandas`` DataFrame must be passed to the function, with the *kwarg* ``df=``.
 
@@ -52,22 +57,61 @@ Qualitative variables names, must be placed between brackets ``()`` leaded by a 
 
 For example, let's suppose we have a DataFrame where ``response`` is the ordinal variable, 
 ``age`` and ``sex`` are a quantitative and a qualitative variable to explain the *feeling* component
-only in a ``cub`` family model. The formula will be ``formula = "response~0|age+C(sex)|0"``.
+only in a ``cub`` family model. The formula will be ``formula = "response ~ 0 | age + C(sex) | 0"``.
+
+Notice that spaces are allowed between symbols and variable names in the formula but they aren't
+needed: a formula ``ord ~ X | Y1 + Y2 | Z`` is the same that ``ord~X|Y1+Y2|Z``.
 
 .. warning::
 
     Currently, the number of fields separated by ``|`` in a formula **MUST BE** three
-    even if the specified model family has less parameters (such as ``cub``, ``cush``, or ``cush2``).
-
-.. warning::
-
-    Spaces are currently not allowed in the formula *string*.
+    even if the specified model family has less parameters 
+    (such as ``ihg``, ``cub``, ``cush``, and ``cush2``). In these cases, the
+    unused fields should always be ``0``.
 
 If no ``model=`` *kwarg* is declared, the function takes ``"cub"`` as default.
 Currently implemented models are: ``"cub"`` (default), ``"cush"``, ``"cube"``,
 ``"ihg"``, and ``"cush2"``. CUB models with shelter effect, are automatically
 implemented using ``model="cub"`` and specifying a shelter choice with the 
 *kwarg* ``sh=``.
+
+If  ``model="cub"`` (or nothing), then a CUB mixture model is fitted to the data to explain uncertainty, 
+feeling and possible shelter effect by further passing the extra argument ``sh`` for the corresponding category.
+Subjects' covariates can be included by specifying covariates matrices in the 
+formula as ``ordinal~Y|W|X``,  to explain uncertainty (Y), feeling (W) or shelter (X). 
+Notice that
+covariates for shelter effect can be included only if specified for both feeling and uncertainty (GeCUB models). 
+
+If ``family="cube"``, then a CUBE mixture model (Combination of Uniform and Beta-Binomial) is fitted to the data
+to explain uncertainty, feeling and overdispersion.   Subjects' covariates can be also included to explain the
+feeling component or all the three components by  specifying covariates matrices in the Formula as 
+``ordinal~Y|W|Z`` to explain uncertainty (Y), feeling (W) or 
+overdispersion (Z). 
+
+If ``family="ihg"``, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
+CUBE models. The parameter :math:`\theta` gives the probability of observing 
+the first category and is therefore a direct measure of preference, attraction, pleasantness toward the 
+investigated item. This is the reason why :math:`\theta` is customarily referred to as the 
+preference parameter of the 
+IHG model. Covariates for the preference parameter :math:`\theta` have to be specified 
+in matrix form in the Formula as ``ordinal~U|0|0``.
+
+If ``family="cush"``, then a CUSH model is fitted to the data (Combination of Uniform and SHelter effect).
+The category corresponding to the inflation should be
+passed via argument ``sh``. Covariates for the shelter parameter :math:`\delta`
+are specified in matrix form Formula as ``ordinal~X|0|0``.
+
+If ``family="cush2"``, then a 2-CUSH model is fitted to the data (Combination of Uniform and 2 SHelter choices).
+The categories corresponding to the inflation should be
+passed as a list (or array) via the same argument ``sh``. 
+Covariates for the shelter parameters :math:`(\delta_1, \delta_2)`
+are specified in matrix form Formula as ``ordinal~X1|X2|0``. Notice that, to specify covariates for a
+single shelter choice, the formula should be ``ordinal~X1|0|0`` and not ``ordinal~0|X2|0``.
+
+Extra arguments include the maximum 
+number of iterations ``maxiter`` for the optimization algorithm, 
+the required error tolerance ``tol``, and a dictionary of parameters of a known model
+``gen_pars`` to be compared with the estimates.
 
 CUB family
 ----------

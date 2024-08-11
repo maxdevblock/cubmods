@@ -365,7 +365,11 @@ for example <code class="docutils literal notranslate"><span class="pre">cube_yw
 <section id="gem-syntax">
 <h2>GEM syntax<a class="headerlink" href="#gem-syntax" title="Permalink to this heading">#</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code> is the main function that simplifies the estimation and
-validation of a model.</p>
+validation of a model from an observed sample, calling for the corresponding <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function for
+the specified family.</p>
+<p>The number of ordinal categories <code class="docutils literal notranslate"><span class="pre">m</span></code> is internally retrieved if not specified
+(taking the maximum observed category)
+but it is advisable to pass it as an argument to the call if some category has zero frequency.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame must be passed to the function, with the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">df=</span></code>.</p>
 <p>The function needs a <em>formula</em> that is a <strong>string</strong> specifying the name of the ordinal
 variable (before the <code class="docutils literal notranslate"><span class="pre">~</span></code> symbol)
@@ -382,21 +386,53 @@ No space is allowed in the column names.</p>
 </div>
 <p>For example, let’s suppose we have a DataFrame where <code class="docutils literal notranslate"><span class="pre">response</span></code> is the ordinal variable,
 <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code> are a quantitative and a qualitative variable to explain the <em>feeling</em> component
-only in a <code class="docutils literal notranslate"><span class="pre">cub</span></code> family model. The formula will be <code class="docutils literal notranslate"><span class="pre">formula</span> <span class="pre">=</span> <span class="pre">&quot;response~0|age+C(sex)|0&quot;</span></code>.</p>
+only in a <code class="docutils literal notranslate"><span class="pre">cub</span></code> family model. The formula will be <code class="docutils literal notranslate"><span class="pre">formula</span> <span class="pre">=</span> <span class="pre">&quot;response</span> <span class="pre">~</span> <span class="pre">0</span> <span class="pre">|</span> <span class="pre">age</span> <span class="pre">+</span> <span class="pre">C(sex)</span> <span class="pre">|</span> <span class="pre">0&quot;</span></code>.</p>
+<p>Notice that spaces are allowed between symbols and variable names in the formula but they aren’t
+needed: a formula <code class="docutils literal notranslate"><span class="pre">ord</span> <span class="pre">~</span> <span class="pre">X</span> <span class="pre">|</span> <span class="pre">Y1</span> <span class="pre">+</span> <span class="pre">Y2</span> <span class="pre">|</span> <span class="pre">Z</span></code> is the same that <code class="docutils literal notranslate"><span class="pre">ord~X|Y1+Y2|Z</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Currently, the number of fields separated by <code class="docutils literal notranslate"><span class="pre">|</span></code> in a formula <strong>MUST BE</strong> three
-even if the specified model family has less parameters (such as <code class="docutils literal notranslate"><span class="pre">cub</span></code>, <code class="docutils literal notranslate"><span class="pre">cush</span></code>, or <code class="docutils literal notranslate"><span class="pre">cush2</span></code>).</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Spaces are currently not allowed in the formula <em>string</em>.</p>
+even if the specified model family has less parameters
+(such as <code class="docutils literal notranslate"><span class="pre">ihg</span></code>, <code class="docutils literal notranslate"><span class="pre">cub</span></code>, <code class="docutils literal notranslate"><span class="pre">cush</span></code>, and <code class="docutils literal notranslate"><span class="pre">cush2</span></code>). In these cases, the
+unused fields should always be <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 </div>
 <p>If no <code class="docutils literal notranslate"><span class="pre">model=</span></code> <em>kwarg</em> is declared, the function takes <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> as default.
 Currently implemented models are: <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;cush&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cube&quot;</span></code>,
 <code class="docutils literal notranslate"><span class="pre">&quot;ihg&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;cush2&quot;</span></code>. CUB models with shelter effect, are automatically
 implemented using <code class="docutils literal notranslate"><span class="pre">model=&quot;cub&quot;</span></code> and specifying a shelter choice with the
 <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh=</span></code>.</p>
+<p>If  <code class="docutils literal notranslate"><span class="pre">model=&quot;cub&quot;</span></code> (or nothing), then a CUB mixture model is fitted to the data to explain uncertainty,
+feeling and possible shelter effect by further passing the extra argument <code class="docutils literal notranslate"><span class="pre">sh</span></code> for the corresponding category.
+Subjects’ covariates can be included by specifying covariates matrices in the
+formula as <code class="docutils literal notranslate"><span class="pre">ordinal~Y|W|X</span></code>,  to explain uncertainty (Y), feeling (W) or shelter (X).
+Notice that
+covariates for shelter effect can be included only if specified for both feeling and uncertainty (GeCUB models).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;cube&quot;</span></code>, then a CUBE mixture model (Combination of Uniform and Beta-Binomial) is fitted to the data
+to explain uncertainty, feeling and overdispersion.   Subjects’ covariates can be also included to explain the
+feeling component or all the three components by  specifying covariates matrices in the Formula as
+<code class="docutils literal notranslate"><span class="pre">ordinal~Y|W|Z</span></code> to explain uncertainty (Y), feeling (W) or
+overdispersion (Z).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;ihg&quot;</span></code>, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
+CUBE models. The parameter <span class="math notranslate nohighlight">\(\theta\)</span> gives the probability of observing
+the first category and is therefore a direct measure of preference, attraction, pleasantness toward the
+investigated item. This is the reason why <span class="math notranslate nohighlight">\(\theta\)</span> is customarily referred to as the
+preference parameter of the
+IHG model. Covariates for the preference parameter <span class="math notranslate nohighlight">\(\theta\)</span> have to be specified
+in matrix form in the Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~U|0|0</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;cush&quot;</span></code>, then a CUSH model is fitted to the data (Combination of Uniform and SHelter effect).
+The category corresponding to the inflation should be
+passed via argument <code class="docutils literal notranslate"><span class="pre">sh</span></code>. Covariates for the shelter parameter <span class="math notranslate nohighlight">\(\delta\)</span>
+are specified in matrix form Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~X|0|0</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;cush2&quot;</span></code>, then a 2-CUSH model is fitted to the data (Combination of Uniform and 2 SHelter choices).
+The categories corresponding to the inflation should be
+passed as a list (or array) via the same argument <code class="docutils literal notranslate"><span class="pre">sh</span></code>.
+Covariates for the shelter parameters <span class="math notranslate nohighlight">\((\delta_1, \delta_2)\)</span>
+are specified in matrix form Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~X1|X2|0</span></code>. Notice that, to specify covariates for a
+single shelter choice, the formula should be <code class="docutils literal notranslate"><span class="pre">ordinal~X1|0|0</span></code> and not <code class="docutils literal notranslate"><span class="pre">ordinal~0|X2|0</span></code>.</p>
+<p>Extra arguments include the maximum
+number of iterations <code class="docutils literal notranslate"><span class="pre">maxiter</span></code> for the optimization algorithm,
+the required error tolerance <code class="docutils literal notranslate"><span class="pre">tol</span></code>, and a dictionary of parameters of a known model
+<code class="docutils literal notranslate"><span class="pre">gen_pars</span></code> to be compared with the estimates.</p>
 </section>
 <section id="cub-family">
 <h2>CUB family<a class="headerlink" href="#cub-family" title="Permalink to this heading">#</a></h2>
