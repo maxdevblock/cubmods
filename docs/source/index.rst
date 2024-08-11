@@ -10,6 +10,8 @@ Welcome to CUBmods's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   intro
+   manual
    modules
 
 
