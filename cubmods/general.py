@@ -448,6 +448,10 @@ def formula_parser(formula):
         raise Exception("ERR: ~ missing")
     if formula.count("|") != 2:
         raise Exception("ERR: | must be 2")
+    # remove spaces
+    formula = formula.replace(" ", "")
+    # check formula
+    #TODO: better formula regex?
     regex = "^([a-zA-Z0-9_()]{1,})~"
     regex += "([a-zA-Z0-9_+()]{1,})\|"
     regex += "([a-zA-Z0-9_+()]{1,})\|"
