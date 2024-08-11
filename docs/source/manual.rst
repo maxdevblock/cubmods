@@ -274,6 +274,9 @@ to consider the constant term too.
     drawn.plot()
     plt.show()
 
+.. image:: /img/cub0wdraw.png
+    :alt: CUB0W drawn sample
+
 Then, we'll add the drawn sample to ``df`` DataFrame and will estimate the parameters.
 
 .. code-block:: python
@@ -293,7 +296,37 @@ Then, we'll add the drawn sample to ``df`` DataFrame and will estimate the param
     mod1.plot()
     plt.show()
 
+.. code-block:: none
 
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUB(0W) model <<<===== ML-estimates
+    =======================================================================
+    m=10  Size=1000  Iterations=22  Maxiter=500  Tol=1E-04
+    -----------------------------------------------------------------------
+    Uncertainty
+            Estimates  StdErr     Wald  p-value
+    pi            0.789  0.0231   34.210   0.0000
+    -----------------------------------------------------------------------
+    Feeling
+            Estimates  StdErr     Wald  p-value
+    constant      2.299  0.1001   22.976   0.0000
+    W1           -0.407  0.0139  -29.239   0.0000
+    W2           -0.044  0.0121   -3.681   0.0002
+    =======================================================================
+    Dissimilarity = 0.0488
+    Loglik(MOD)   = -1963.868
+    Loglik(uni)   = -2302.585
+    Mean-loglik   = -1.964
+    -----------------------------------------------------------------------
+    AIC = 3935.74
+    BIC = 3955.37
+    =======================================================================
+    Elapsed time=0.10014 seconds =====>>> Sun Aug 11 22:02:15 2024
+    =======================================================================
+
+.. image:: /img/cub0wmle.png
+    :alt: CUB0W MLE
 
 CUBSH family
 ------------
