@@ -74,7 +74,7 @@ sphinxcontrib.bibtex.plugin.register_plugin(
 )
 
 #extensions = ["sphinxcontrib.bibtex"]
-#exclude_patterns = ["_build"]
+exclude_patterns = ["_build"]
 #bibtex_bibfiles = ["refs.bib"]
 bibtex_reference_style = "author_year_round"
 
@@ -84,13 +84,13 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = [
-]
-autosummary_mock_imports = [
-    'cubmods.cubsh2',
-    'cubmods.cubsh2_yxwxu',
-    'cubmods.cushk',
-]
+# exclude_patterns = [
+# ]
+# autosummary_mock_imports = [
+#     'cubmods.cubsh2',
+#     'cubmods.cubsh2_yxwxu',
+#     'cubmods.cushk',
+# ]
 
 
 # -- Options for HTML output -------------------------------------------------

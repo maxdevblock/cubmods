@@ -118,6 +118,19 @@ CUB family
 
 Basic family of the class CUB. See the references for details.
 
+References
+^^^^^^^^^^
+
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :filter: False
+
+        piccolo2003moments
+        d2005mixture
+        piccolo2006observed
+        iannario2014inference
+        piccolo2019class
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
@@ -330,6 +343,35 @@ Then, we'll add the drawn sample to ``df`` DataFrame and will estimate the param
 
 CUBSH family
 ------------
+
+Basic family of the class CUB. See the references for details.
+
+References
+^^^^^^^^^^
+
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :filter: False
+
+        iannario2010new
+        iannario2012modelling
+        iannario2014inference
+        piccolo2019class
+
+Without covariates
+^^^^^^^^^^^^^^^^^^
+
+A model of the CUB family with shelter effect
+for responses with :math:`m` ordinal categories, without covariates is specified as
+
+.. math::
+    \Pr(R=r|\boldsymbol{\theta}) = \delta D_r^{(c)} + (1-\delta)\left(\pi b_r(\xi) + \frac{1-\pi}{m} \right)
+
+where :math:`\pi` and :math:`\xi`` are the parameters for respectively the *uncertainty* and the 
+*feeling* components, and :math:`\delta` is the weight of the shelter effect.
+
+With covariates
+^^^^^^^^^^^^^^^
 
 CUSH family
 -----------

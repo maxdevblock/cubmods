@@ -437,6 +437,20 @@ the required error tolerance <code class="docutils literal notranslate"><span cl
 <section id="cub-family">
 <h2>CUB family<a class="headerlink" href="#cub-family" title="Permalink to this heading">#</a></h2>
 <p>Basic family of the class CUB. See the references for details.</p>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id1">
+<ol class="arabic simple" start="1">
+<li id="id5"><p>Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. <em>Computational Statistics &amp; Data Analysis</em>, 49(3):917–934, 2005.</p></li>
+<li id="id17"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id4"><p>Domenico Piccolo and others. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
+<li id="id7"><p>Domenico Piccolo and others. Observed information matrix for mub models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
+<li id="id3"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+</ol>
+</div>
+</div></blockquote>
+</section>
 <section id="without-covariates">
 <h3>Without covariates<a class="headerlink" href="#without-covariates" title="Permalink to this heading">#</a></h3>
 <p>A model of the CUB family for responses with <span class="math notranslate nohighlight">\(m\)</span> ordinal categories, without covariates is specified as</p>
@@ -449,8 +463,8 @@ the required error tolerance <code class="docutils literal notranslate"><span cl
 <p>In the following example, a sample will be drawn from a CUB model of <span class="math notranslate nohighlight">\(n=500\)</span> observations of an ordinal
 variable with <span class="math notranslate nohighlight">\(m=10\)</span> ordinal categories
 and parameters <span class="math notranslate nohighlight">\((\pi=.7, \xi=.2)\)</span>. A <code class="docutils literal notranslate"><span class="pre">seed=1</span></code> will be set to ensure reproducibility.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id79">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id79" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="c1"># import libraries</span>
 <span class="linenos"> 2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span> <span class="kn">from</span> <span class="nn">cubmods</span> <span class="kn">import</span> <span class="n">cub</span><span class="p">,</span> <span class="n">gem</span>
@@ -491,8 +505,8 @@ Dissimilarity = 0.0650938
 <li><p>if <code class="docutils literal notranslate"><span class="pre">m</span></code> is not provided, the maximum observed ordinal value will be assumed</p></li>
 <li><p>with <code class="docutils literal notranslate"><span class="pre">gen_pars</span></code> dictionary, the parameters of a known model (if any) can be specified; in this case, they’ll be the parameters used to draw the sample</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id80">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id80" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
 <span class="linenos"> 2</span><span class="n">mod</span> <span class="o">=</span> <span class="n">gem</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">(),</span>
@@ -547,8 +561,8 @@ for <em>uncertainty</em> only, for <em>feeling</em> only, and for <em>both</em>.
 <p>First of all, we’ll draw a random sample with two covariates for the <em>feeling</em> component:
 <code class="docutils literal notranslate"><span class="pre">W1</span></code> and <code class="docutils literal notranslate"><span class="pre">W2</span></code>. Note that, having two covariates, we’ll need three <span class="math notranslate nohighlight">\(\gamma\)</span> parameters,
 to consider the constant term too.</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id81">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id81" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -575,8 +589,8 @@ to consider the constant term too.</p>
 </div>
 <img alt="CUB0W drawn sample" src="_images/cub0wdraw.png" />
 <p>Then, we’ll add the drawn sample to <code class="docutils literal notranslate"><span class="pre">df</span></code> DataFrame and will estimate the parameters.</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id82">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id82" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># add the drawn sample</span>
 <span class="linenos"> 2</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;ordinal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">drawn</span><span class="o">.</span><span class="n">rv</span>
 <span class="linenos"> 3</span><span class="c1"># MLE estimation</span>
@@ -625,12 +639,38 @@ Elapsed time=0.10014 seconds =====&gt;&gt;&gt; Sun Aug 11 22:02:15 2024
 </section>
 <section id="cubsh-family">
 <h2>CUBSH family<a class="headerlink" href="#cubsh-family" title="Permalink to this heading">#</a></h2>
+<p>Basic family of the class CUB. See the references for details.</p>
+<section id="id38">
+<h3>References<a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id39">
+<ol class="arabic simple" start="1">
+<li id="id47"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
+<li id="id46"><p>Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. <em>Quality Technology &amp; Quantitative Management</em>, 7(2):149–168, 2010.</p></li>
+<li id="id55"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id41"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+</ol>
+</div>
+</div></blockquote>
+</section>
+<section id="id76">
+<h3>Without covariates<a class="headerlink" href="#id76" title="Permalink to this heading">#</a></h3>
+<p>A model of the CUB family with shelter effect
+for responses with <span class="math notranslate nohighlight">\(m\)</span> ordinal categories, without covariates is specified as</p>
+<div class="math notranslate nohighlight">
+\[\Pr(R=r|\boldsymbol{\theta}) = \delta D_r^{(c)} + (1-\delta)\left(\pi b_r(\xi) + \frac{1-\pi}{m} \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\xi\)</span> are the parameters for respectively the <em>uncertainty</em> and the
+<em>feeling</em> components, and <span class="math notranslate nohighlight">\(\delta\)</span> is the weight of the shelter effect.</p>
+</section>
+<section id="id77">
+<h3>With covariates<a class="headerlink" href="#id77" title="Permalink to this heading">#</a></h3>
+</section>
 </section>
 <section id="cush-family">
 <h2>CUSH family<a class="headerlink" href="#cush-family" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="id1">
-<h2>2-CUSH family<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="id78">
+<h2>2-CUSH family<a class="headerlink" href="#id78" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="cube-family">
 <h2>CUBE family<a class="headerlink" href="#cube-family" title="Permalink to this heading">#</a></h2>
@@ -689,13 +729,19 @@ Elapsed time=0.10014 seconds =====&gt;&gt;&gt; Sun Aug 11 22:02:15 2024
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gem-syntax">GEM syntax</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cub-family">CUB family</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#without-covariates">Without covariates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#with-covariates">With covariates</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cubsh-family">CUBSH family</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cubsh-family">CUBSH family</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">References</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Without covariates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">With covariates</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cush-family">CUSH family</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2-CUSH family</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">2-CUSH family</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cube-family">CUBE family</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ihg-family">IHG family</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multicub">MULTICUB</a></li>

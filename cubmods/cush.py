@@ -21,9 +21,9 @@ References:
 ===========
     .. bibliography:: cub.bib
         :list: enumerated
+        :filter: False
 
         capecchi2017dealing
-        capecchi2016gini
 
   
 List of TODOs:
