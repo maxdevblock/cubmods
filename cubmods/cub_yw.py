@@ -166,7 +166,8 @@ def prob(m, sample, Y, W, beta, gamma):
     )
     return p
 
-def draw(m, n, beta, gamma, Y, W, seed=None):
+def draw(m, beta, gamma, Y, W,
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUB model with covariates for
     both feeling and uncertainty.
 
@@ -189,7 +190,10 @@ def draw(m, n, beta, gamma, Y, W, seed=None):
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
-    assert n == W.shape[0]
+    assert len(beta) == Y.shape[1]+1
+    assert len(gamma) == W.shape[1]+1
+    assert Y.shape[0] == W.shape[0]
+    n = Y.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
         "Modified to 1.")
@@ -224,8 +228,9 @@ def draw(m, n, beta, gamma, Y, W, seed=None):
         model="CUB(YW)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, W=W, diss=diss,
-        theoric=theoric
+        seed=seed, diss=diss,
+        theoric=theoric,
+        df=orig_df, formula=formula
     )
     return sample
 
@@ -323,6 +328,7 @@ def varcov(m, sample, Y, W, beta, gamma):
     return varmat
 
 def mle(sample, m, Y, W,
+    df, formula,
     gen_pars=None,
     maxiter=500,
     tol=1e-4):
@@ -481,7 +487,8 @@ def mle(sample, m, Y, W,
         seconds=(end-start).total_seconds(),
         time_exe=start,
         sample=sample, f=f,
-        varmat=varmat, Y=Y, W=W,
+        varmat=varmat, df=df,
+        formula=formula,
         diss=diss,
         gen_pars=gen_pars
         #dev=dev

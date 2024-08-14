@@ -274,9 +274,38 @@ def logis(Y, param):
     :return: a vector whose length is ``Y.index.size`` and whose i-th component is the logistic function
     """
     YY = np.c_[np.ones(Y.shape[0]), Y]
+    YY = YY.astype(float)
+    #print(YY, param)
     val = 1/(1 + np.exp(-YY @ param))
     #TODO: implement if (all(dim(val)==c(1,1)))
     return val
+
+def logit(x):
+    r"""Logit function.
+    
+    It is the inverse of the
+    standard logistic function, aka
+    log-odds.
+    
+    :param x: the argument
+    :type x: float
+    :return: the logit of x
+    :rtype: float
+    """
+    return np.log(x/(1-x))
+
+def expit(x):
+    r"""Expit function.
+    
+    It is the inverse of logit. Aka
+    sigmoid or standard logistic.
+    
+    :param x: the argument
+    :type x: float
+    :return: the expit of x
+    :rtype: float
+    """
+    return 1/(1+np.exp(-x))
 
 def bitgamma(sample, m, W, gamma):
     r"""Shifted Binomial distribution with covariates.
@@ -342,6 +371,8 @@ def hadprod(Amat, xvett):
     :return: the Hadamard product :math:`\pmb A \odot \pmb x`
     :rtype: ndarray
     """
+    if isinstance(xvett, pd.Series):
+        xvett = xvett.values
     if len(xvett.shape)==1:
         xvett = xvett.reshape(
             xvett.size, 1
@@ -426,7 +457,8 @@ def load_object(fname):
     print(f"Object `{obj}` loaded from {fname}")
     return obj
 
-def formula_parser(formula):
+def formula_parser(formula,
+    model="cub"):
     r"""Parse a CUB class formula.
 
     Auxiliary function of ``cubmods.gem.from_formula()``.
@@ -446,16 +478,26 @@ def formula_parser(formula):
     """
     if '~' not in formula:
         raise Exception("ERR: ~ missing")
-    if formula.count("|") != 2:
-        raise Exception("ERR: | must be 2")
     # remove spaces
     formula = formula.replace(" ", "")
     # check formula
+    reg = "^([a-zA-Z0-9_()]{1,})"
+    rag = "([a-zA-Z0-9_()+]{1,})"
     #TODO: better formula regex?
-    regex = "^([a-zA-Z0-9_()]{1,})~"
-    regex += "([a-zA-Z0-9_+()]{1,})\|"
-    regex += "([a-zA-Z0-9_+()]{1,})\|"
-    regex += "([a-zA-Z0-9_+()]{1,})$"
+    regex = f"{reg}~"
+    comp = 2
+    if model in ["cube", "cubsh"]:
+        comp = 3
+    elif model in ["cush", "ihg"]:
+        comp = 1
+    elif model=="cubsh2":
+        comp = 4
+    if formula.count("|") != comp-1:
+        raise Exception(
+        f"ERR: in {model} | must be {comp-1}")
+    regex += "\|".join(np.repeat(rag,comp))
+    regex += "$"
+    #print(regex)
     if not re.match(regex, formula):
         raise Exception("ERR: wrong formula")
         #print("ERR: wrong formula")
@@ -471,6 +513,9 @@ def formula_parser(formula):
     for x in X:
         if x == "0":
             XX.append(None)
+            continue
+        if x == "1":
+            XX.append([])
             continue
         x = x.split("+")
         XX.append(x)
@@ -514,6 +559,7 @@ def dummies2(df, DD):
     XX = []
     # unique columns
     colnames = unique(DD)
+    #print(colnames)
     # create dummy vars if any
     for c in colnames:
         if c is None:

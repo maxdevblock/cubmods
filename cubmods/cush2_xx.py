@@ -86,7 +86,7 @@ def pmf(m, sh1, sh2,
     return p
 
 def draw(m, sh1, sh2, omega1, omega2, X1,
-    X2, seed=None):
+    X2, df, formula, seed=None):
     n = X1.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
@@ -118,8 +118,9 @@ def draw(m, sh1, sh2, omega1, omega2, X1,
         model="CUSH2(X1,X2)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, X=[X1, X2], diss=diss,
-        theoric=theoric, sh=[sh1, sh2]
+        seed=seed, diss=diss,
+        theoric=theoric, sh=[sh1, sh2],
+        df=df, formula=formula
     )
 
 def loglik(sample, m, sh1, sh2,
@@ -145,7 +146,7 @@ def effe(pars, sample, m, sh1, sh2, X1, X2):
     return -l
 
 def mle(sample, m, sh1, sh2,
-    X1, X2, gen_pars=None):
+    X1, X2, df, formula, gen_pars=None):
     start = dt.datetime.now()
     w1 = colsof(X1)
     w2 = colsof(X2)
@@ -223,7 +224,6 @@ def mle(sample, m, sh1, sh2,
     return CUBresCUSH2XX(
         model="2CUSH(XX)",
         m=m, n=n, sh=np.array([sh1, sh2]),
-        X=np.array([X1, X2]),
         estimates=estimates,
         est_names=est_names,
         e_types=e_types,
@@ -237,7 +237,7 @@ def mle(sample, m, sh1, sh2,
         #dev=dev,
         AIC=AIC, BIC=BIC,
         sample=sample, f=f, varmat=varmat,
-        diss=diss,
+        diss=diss, df=df, formula=formula,
         seconds=(end-start).total_seconds(),
         time_exe=start, gen_pars=gen_pars
     )

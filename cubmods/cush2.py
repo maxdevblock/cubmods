@@ -86,7 +86,7 @@ def pmf(m, c1, c2, d1, d2):
     #        p[i-1] = (1-d1-d2)/m
     return p
 
-def draw(m, sh1, sh2,
+def draw(m, sh1, sh2, df, orig_df, formula,
     delta1, delta2, n, seed=None):
     r"""Draw a random sample from a specified 2-CUSH model.
 
@@ -131,7 +131,8 @@ def draw(m, sh1, sh2,
         pars=pars,
         par_names=par_names,
         seed=seed, theoric=theoric,
-        diss=diss
+        diss=diss, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -184,9 +185,10 @@ def varcov(m, n, d1, d2, fc1, fc2):
         varmat = np.linalg.inv(infmat)
     return varmat
 
-def mle(sample, m, c1, c2, gen_pars=None,
-        maxiter=None, tol=None #for GEM compatibility
-        ):
+def mle(sample, m, c1, c2,
+    df, formula, gen_pars=None,
+    maxiter=None, tol=None #for GEM compatibility
+    ):
     r"""Main function for 2-CUSH models without covariates.
 
     Estimate and validate a 2-CUSH model for ordinal responses, without covariates.
@@ -256,7 +258,8 @@ def mle(sample, m, c1, c2, gen_pars=None,
         diss=diss,
         seconds=(end-start).total_seconds(),
         time_exe=start,
-        gen_pars=gen_pars
+        gen_pars=gen_pars,
+        df=df, formula=formula
     )
 
 def loglik(sample, m, c1, c2):

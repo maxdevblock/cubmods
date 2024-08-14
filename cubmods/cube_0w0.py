@@ -157,7 +157,8 @@ def betabinomialxi(m, sample, xivett, phi):
         betabin[i] = bebeta[sample[i]-1]
     return np.array(betabin)
 
-def draw(m, n, pi, gamma, phi, W, seed=None):
+def draw(m, pi, gamma, phi, W,
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUBE model.
 
     :param m: number of ordinal categories
@@ -179,7 +180,8 @@ def draw(m, n, pi, gamma, phi, W, seed=None):
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
-    assert n == W.shape[0]
+    assert len(gamma) == W.shape[1]+1
+    n = W.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
         "Modified to 1.")
@@ -214,8 +216,9 @@ def draw(m, n, pi, gamma, phi, W, seed=None):
         model="CUBE(0W0)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, W=W, diss=diss,
-        theoric=theoric
+        seed=seed, diss=diss,
+        theoric=theoric, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -307,7 +310,8 @@ def init_theta(m, sample, W, maxiter, tol):
     gamma = init_gamma(m=m, sample=sample,
         W=W)
     res_cube = mle_cube(m=m, sample=sample,
-        maxiter=maxiter, tol=tol)
+        maxiter=maxiter, tol=tol,
+        df=None, formula=None)
     pi = res_cube.estimates[0]
     phi = res_cube.estimates[2]
     return pi, gamma, phi
@@ -337,7 +341,7 @@ def effe(pars, sample, W, m):
     l = loglik(m, sample, W, pi, gamma, phi)
     return -l
 
-def mle(sample, m, W,
+def mle(sample, m, W, df, formula,
     gen_pars=None,
     maxiter=1000, tol=1e-6):
     r"""Main function for CUBE models with covariates only for feeling
@@ -457,7 +461,8 @@ def mle(sample, m, W,
         varmat=varmat,
         seconds=(end-start).total_seconds(),
         time_exe=start,
-        W=W, gen_pars=gen_pars
+        gen_pars=gen_pars,
+        df=df, formula=formula
     )
 
 class CUBresCUBE0W0(CUBres):

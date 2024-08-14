@@ -162,8 +162,9 @@ def pmfi(m, sh, beta, gamma, omega,
         )
     return p
 
-def draw(m, n, sh, beta, gamma, omega,
-    Y, W, X, seed=None):
+def draw(m, sh, beta, gamma, omega,
+    Y, W, X, df,
+    orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUBSH model with covariates
     (aka GeCUB model).
 
@@ -194,7 +195,11 @@ def draw(m, n, sh, beta, gamma, omega,
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
-    assert n == W.shape[0]
+    assert len(beta) == Y.shape[1]+1
+    assert len(gamma) == W.shape[1]+1
+    assert len(omega) == X.shape[1]+1
+    assert Y.shape[0] == W.shape[0] == X.shape[0]
+    n = W.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
         "Modified to 1.")
@@ -231,8 +236,9 @@ def draw(m, n, sh, beta, gamma, omega,
         model="CUBSH(YWX)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, W=W, diss=diss,
-        theoric=theoric
+        seed=seed, diss=diss,
+        theoric=theoric, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -491,7 +497,7 @@ def Q2(param, dati2, m):
     return -(tau2*np.log(bg)).sum()
 
 def mle(m, sample, sh, Y, W, X,
-    gen_pars=None,
+    df, formula, gen_pars=None,
     maxiter=500, tol=1e-4):
     r"""Main function for CUBSH models with covariates for all the components
 
@@ -639,7 +645,8 @@ def mle(m, sample, sh, Y, W, X,
         #dev=dev,
         AIC=AIC, BIC=BIC,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars
+        time_exe=start, gen_pars=gen_pars,
+        df=df, formula=formula
     )
     
 class CUBresCUBSHYWX(CUBres):

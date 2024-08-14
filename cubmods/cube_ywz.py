@@ -145,7 +145,8 @@ def pmf(m, beta, gamma, alpha, Y, W, Z):
         Y, W, Z).mean(axis=0)
     return p
 
-def draw(m, n, beta, gamma, alpha,
+def draw(m, beta, gamma, alpha,
+    df, orig_df, formula,
     Y, W, Z, seed=None):
     r"""Draw a random sample from a specified CUBE model.
 
@@ -176,7 +177,11 @@ def draw(m, n, beta, gamma, alpha,
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
-    assert n == W.shape[0]
+    assert len(beta) == Y.shape[1]+1
+    assert len(gamma) == W.shape[1]+1
+    assert len(alpha) == Z.shape[1]+1
+    assert Y.shape[0] == W.shape[0] == Z.shape[0]
+    n = W.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
         "Modified to 1.")
@@ -215,8 +220,9 @@ def draw(m, n, beta, gamma, alpha,
         model="CUBE(YWZ)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, W=W, diss=diss,
-        theoric=theoric
+        seed=seed, diss=diss,
+        theoric=theoric, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -631,7 +637,7 @@ def varcov(m, sample, beta, gamma, alpha,
         varmat = np.linalg.inv(matinf)
     return varmat
        
-def mle(m, sample, Y, W, Z,
+def mle(m, sample, Y, W, Z, df, formula,
     gen_pars=None,
     maxiter=1000, tol=1e-2):
     r"""Main function for CUBE models with covariates.
@@ -784,8 +790,9 @@ def mle(m, sample, Y, W, Z,
         #dev=dev,
         theoric=theoric, diss=diss,
         seconds=(end-start).total_seconds(),
-        time_exe=start, Y=Y, W=W, Z=Z,
-        gen_pars=gen_pars
+        time_exe=start,
+        gen_pars=gen_pars,
+        df=df, formula=formula
     )
 
 class CUBresCUBEYWZ(CUBres):

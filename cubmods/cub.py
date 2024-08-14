@@ -352,7 +352,8 @@ def init_theta(f, m):
 # RANDOM SAMPLE
 ###################################################################
 
-def draw(m, pi, xi, n, seed=None):
+def draw(m, pi, xi, n, 
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUB model.
 
     :param m: number of ordinal categories
@@ -394,7 +395,8 @@ def draw(m, pi, xi, n, seed=None):
         rv=rv, m=m, pars=pars,
         par_names=par_names,
         theoric=theoric, diss=diss,
-        seed=seed
+        seed=seed, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -402,7 +404,7 @@ def draw(m, pi, xi, n, seed=None):
 # INFERENCE
 ###################################################################
 
-def mle(sample, m,
+def mle(sample, m, df, formula,
     gen_pars=None,
     maxiter=500,
     tol=1e-4,):
@@ -556,6 +558,7 @@ def mle(sample, m,
             sample=sample, f=f,
             varmat=varmat,
             diss=diss,
+            df=df, formula=formula,
             #diss_gen=diss_gen,
             gen_pars=gen_pars
             #pi_gen=pi_gen, xi_gen=xi_gen

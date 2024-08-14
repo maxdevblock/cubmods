@@ -86,7 +86,7 @@ def pmf(m, sh1, sh2,
     return p
 
 def draw(m, sh1, sh2, omega1, delta2, X1,
-    seed=None):
+    df, orig_df, formula, seed=None):
     n = X1.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
@@ -118,8 +118,9 @@ def draw(m, sh1, sh2, omega1, delta2, X1,
         model="CUSH2(X1,0)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, X=X1, diss=diss,
-        theoric=theoric, sh=[sh1, sh2]
+        seed=seed, diss=diss,
+        theoric=theoric, sh=[sh1, sh2],
+        df=orig_df, formula=formula
     )
 
 def loglik(sample, m, sh1, sh2,
@@ -146,7 +147,7 @@ def effe(pars, sample, m,
 
 #TODO: constraint (1-d1-d2)<1 ?
 def mle(sample, m, sh1, sh2,
-    X1, gen_pars=None):
+    X1, df, formula, gen_pars=None):
     start = dt.datetime.now()
     w1 = colsof(X1)
     n = sample.size
@@ -238,7 +239,8 @@ def mle(sample, m, sh1, sh2,
         sample=sample, f=f, varmat=varmat,
         diss=diss,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars
+        time_exe=start, gen_pars=gen_pars,
+        df=df, formula=formula
     )
 
 class CUBresCUSH2X0(CUBres):

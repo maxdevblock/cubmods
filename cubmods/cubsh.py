@@ -638,7 +638,8 @@ def plot_simplex(pi1pi2list, ax=None, fname=None):
 # RANDOM SAMPLE
 ###################################################################
 
-def draw(m, sh, pi1, pi2, xi, n, seed=None):
+def draw2(m, sh, pi1, pi2, xi, n,
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUBSH model,
     using alternative parametrization :math:`(\pi_1, \pi_2)`.
 
@@ -682,11 +683,13 @@ def draw(m, sh, pi1, pi2, xi, n, seed=None):
         model="CUBSH",
         rv=rv, m=m, sh=sh,
         pars=pars, par_names=par_names,
-        theoric=theoric, diss=diss
+        theoric=theoric, diss=diss,
+        df=orig_df, formula=formula
     )
     return sample
 
-def draw2(m, sh, pi, xi, delta, n, seed=None):
+def draw(m, sh, pi, xi, delta, n,
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUBSH model,
     using canonic parametrization :math:`(\pi, \delta)`.
 
@@ -707,14 +710,17 @@ def draw2(m, sh, pi, xi, delta, n, seed=None):
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     pi1, pi2 = pidelta_to_pi1pi2(pi, delta)
-    sample = draw(m, sh, pi1, pi2, xi, n, seed=seed)
+    sample = draw2(m, sh, pi1, pi2, 
+       xi, n, seed=seed, orig_df=orig_df,
+        df=df, formula=formula)
     return sample
 
 ###################################################################
 # INFERENCE
 ###################################################################
 
-def mle(sample, m, sh, maxiter=500, tol=1e-4,
+def mle(sample, m, sh,
+    df, formula, maxiter=500, tol=1e-4,
     gen_pars=None
     ):
     r"""Main function for CUB models with a shelter effect
@@ -869,7 +875,7 @@ def mle(sample, m, sh, maxiter=500, tol=1e-4,
         AIC=AIC, BIC=BIC,
         seconds=durata, time_exe=start,
         sample=sample, f=f, varmat=varmat,
-        diss=diss,
+        diss=diss, df=df, formula=formula,
         gen_pars=gen_pars,
     )
 

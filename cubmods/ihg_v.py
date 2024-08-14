@@ -77,7 +77,8 @@ def pmf(m, V, nu):
     p = pmfi(m, V, nu).mean(axis=0)
     return p
 
-def draw(m, nu, V, seed=None):
+def draw(m, nu, V, 
+    df, orig_df, formula, seed=None):
     n = V.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
@@ -109,7 +110,7 @@ def draw(m, nu, V, seed=None):
         par_names=par_names,
         theoric=theoric,
         diss=diss,
-        V=V,
+        df=orig_df, formula=formula,
         rv=rv.astype(int),
         seed=seed
     )
@@ -138,7 +139,8 @@ def init_theta(m, f):
     est = (m-aver)/(1+(m-2)*aver)
     return est
 
-def mle(m, sample, V, gen_pars=None):
+def mle(m, sample, V,
+    df, formula, gen_pars=None):
     start = dt.datetime.now()
     f = freq(m=m, sample=sample)
     n = sample.size
@@ -216,7 +218,8 @@ def mle(m, sample, V, gen_pars=None):
         diss=diss, sample=sample,
         f=f, varmat=varmat,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars
+        time_exe=start, gen_pars=gen_pars,
+        df=df, formula=formula
     )
 
 class CUBresIHGV(CUBres):

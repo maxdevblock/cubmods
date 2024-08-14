@@ -45,7 +45,7 @@ List of TODOs:
 
 import numpy as np
 import matplotlib.pyplot as plt
-from .gem import from_formula
+from .gem import estimate
 from.general import (
     NotImplementedModelError,
     conf_ell
@@ -115,9 +115,12 @@ def multi(ords, ms=None,
     for i in range(n):
         cname = ords.columns[i]
         sh = shs[i] if shs is not None else None
+        comps = "0 | 0 | 0"
+        if model == "cub" and sh is None:
+            comps = "0 | 0"
         #print(cname)
-        est = from_formula(
-            f"{cname}~0|0|0",
+        est = estimate(
+            formula=f"{cname}~{comps}",
             model=model,
             df=ords,
             sh=sh,
@@ -155,12 +158,12 @@ def multi(ords, ms=None,
                 ax.text(1-pi, 1-xi,
                 "\n"fr" $\phi={phi:.2f}$ ""\n",
                 **posi, color=f"C{i}")
-            if model == "cub" and shs is not None:
+            if model == "cub" and sh is not None:
                 delta = est.estimates[2]
                 ax.text(1-pi, 1-xi,
                 "\n"fr" $\delta={delta:.2f}$ ""\n",
                 **posi, color=f"C{i}")
-            if model == "cub" and shs is None and confell:
+            if model == "cub" and sh is None and confell:
                 conf_ell(vcov=est.varmat,
                     mux=1-pi, muy=1-xi,
                     ax=ax, label=False,

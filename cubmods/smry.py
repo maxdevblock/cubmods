@@ -68,10 +68,10 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from .general import (
-    choices, freq
+    choices, freq, formula_parser
 )
 
-def as_txt(
+def _as_txt(
     model, m, n, sh,
     maxiter, niter, tol, p,
     e_types, est_names,
@@ -86,7 +86,7 @@ def as_txt(
     #V, W, X, Y, Z, gen_pars
     ):
     """
-        DEPRECATED FUNCTION.
+        :DEPRECATED:
     """
     par_names = np.asarray(est_names)
     par_types = np.asarray(e_types)
@@ -193,7 +193,7 @@ class CUBres(object):
     """
     def __init__(
         self,
-        model, m, n,
+        model, df, formula, m, n,
         sample, f, theoric, diss,
         est_names, estimates, e_types,
         varmat, stderrs, pval, wald,
@@ -205,11 +205,12 @@ class CUBres(object):
         logliksat=None, dev=None,
         logliksatcov=None,
         niter=None, maxiter=None, tol=None,
-        Y=None, W=None, X=None,
-        V=None, Z=None, sh=None,
+        sh=None,
         rho=None, gen_pars=None,
     ):
         self.model = model
+        self.df = df
+        self.formula = formula
         self.m = m
         self.n = n
         self.sh = sh
@@ -237,11 +238,6 @@ class CUBres(object):
         self.sample = sample
         self.f = f
         self.varmat = varmat
-        self.V = V
-        self.W = W
-        self.X = X
-        self.Y = Y
-        self.Z = Z
         self.diss = diss
         self.gen_pars = gen_pars
         # number of parameters
@@ -328,19 +324,19 @@ class CUBres(object):
         ls = "  "
         l_ = None
         c_ = None
-        if (
-            self.V is not None or
-            self.W is not None or
-            self.X is not None or
-            self.Y is not None or
-            self.Z is not None
-            ):
-            ls = "* "
-            if self.logliksat is not None:
-                l_ = "* Saturated model without covariates\n"
-        if self.logliksatcov is not None:
-            c_ = "^ not valid for continuous covariates\n"
-            smry += f"Logl(satcov)^ = {self.logliksatcov:.3f}\n"
+        #if (
+#            self.V is not None or
+#            self.W is not None or
+#            self.X is not None or
+#            self.Y is not None or
+#            self.Z is not None
+#            ):
+#            ls = "* "
+#            if self.logliksat is not None:
+#                l_ = "* Saturated model without covariates\n"
+#        if self.logliksatcov is not None:
+#            c_ = "^ not valid for continuous covariates\n"
+#            smry += f"Logl(satcov)^ = {self.logliksatcov:.3f}\n"
         warn = ""
         if self.logliksat is not None:
             warn = " (!)" if self.logliksat<self.loglike else ""
@@ -401,23 +397,21 @@ class CUBsample(object):
     https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
     """
     def __init__(self, rv, m, pars,
-        model, diss, theoric,
+        model, df, formula, diss, theoric,
         par_names, sh=None,
-        V=None, W=None, X=None,
-        Y=None, Z=None,
         seed=None):
         self.model = model
+        self.df = df
+        ordi, _ = formula_parser(formula,
+            model.lower().split("(")[0])
+        self.df[ordi] = rv
+        self.formula = formula
         self.diss = diss
         self.theoric = theoric
         self.m = m
         self.sh = sh
         self.pars = np.array(pars)
         self.par_names = np.array(par_names)
-        self.V = V
-        self.W = W
-        self.X = X
-        self.Y = Y
-        self.Z = Z
         self.p = self.pars.size
         self.rv = rv
         self.n  = rv.size
@@ -441,6 +435,8 @@ class CUBsample(object):
         smry += f"=====>>> {self.model} model <<<===== Drawn random sample\n"
         smry += "=======================================================================\n"
         smry += f"m={self.m}  Sample size={self.n}  seed={self.seed}\n"
+        smry += f"formula: {self.formula.replace(' ','')}\n"
+        smry += "-----------------------------------------------------------------------\n"
         par_rows = self.par_list.replace('; ','\n')
         smry += f"{par_rows}\n"
         smry += "=======================================================================\n"

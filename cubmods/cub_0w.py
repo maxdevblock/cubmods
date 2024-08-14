@@ -305,7 +305,8 @@ def init_gamma(sample, m, W):
 # RANDOM SAMPLE
 ###################################################################
 
-def draw(m, n, pi, gamma, W, seed=None):
+def draw(m, pi, gamma, W,
+    df, orig_df, formula, seed=None):
     r"""
     Draw a random sample from a specified CUB model with covariates for
     the feeling component.
@@ -328,7 +329,8 @@ def draw(m, n, pi, gamma, W, seed=None):
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
-    assert n == W.shape[0]
+    assert len(gamma) == W.shape[1]+1
+    n = W.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
         "Modified to 1.")
@@ -360,8 +362,9 @@ def draw(m, n, pi, gamma, W, seed=None):
         model="CUB(0W)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, W=W, diss=diss,
-        theoric=theoric
+        seed=seed, diss=diss,
+        theoric=theoric, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -404,7 +407,7 @@ def effe01(gamma, esterno01, m):
     )
     return r
 
-def mle(sample, m, W,
+def mle(sample, m, W, df, formula,
     gen_pars=None,
     maxiter=500,
     tol=1e-4):
@@ -598,8 +601,9 @@ def mle(sample, m, W,
             # rho=rho,
             sample=sample, f=f,
             varmat=varmat,
-            W=W,
+            #W=W,
             diss=diss,
+            df=df, formula=formula,
             gen_pars=gen_pars
             # pi_gen=pi_gen, xi_gen=xi_gen
         )

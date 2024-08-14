@@ -53,6 +53,7 @@ List of TODOs:
 
 import warnings
 import numpy as np
+import pandas as pd
 from . import (
     cub, cub_0w, cub_y0, cub_yw,
     cube, cube_0w0, cube_ywz,
@@ -68,7 +69,7 @@ from .general import (
     NoShelterError
 )
 
-def from_formula(
+def estimate(
     formula,      # the formula to apply
     df,           # DataFrame of sample and covariates
     m=None,       # if None takes max(sample)
@@ -81,7 +82,14 @@ def from_formula(
     Takes a DataFrame as input and calls MLE
     based upon given model and formula.
     """
-    ordinal, covars = formula_parser(formula)
+    warnings.filterwarnings(
+        "ignore", category=RuntimeWarning
+    )
+    modname = model
+    if model == "cub" and sh is not None:
+        modname = "cubsh"
+    ordinal, covars = formula_parser(formula,
+        model=modname)
     #print(ordinal, covars)
     # all rows with at least a NaN will be dropped
     dfi_tot = df.index.size
@@ -103,9 +111,9 @@ def from_formula(
         Y = covars[0] #covariates for pi
         W = covars[1] #covariates for xi
         # R~Y|W|$
-        if covars[2] is not None:
-            print("ERR: only Y and W are covariates for cub model")
-            return None
+#        if covars[2] is not None:
+#            print("ERR: only Y and W are covariates for cub model")
+#            return None
         # R~0|0|0
         if Y is None and W is None:
             #TODO: if m <=
@@ -173,12 +181,10 @@ def from_formula(
                 #return None
     elif model=="cush":
         X = covars[0] #covariates for delta
-        if covars[1] is not None or covars[2] is not None:
-            print("ERR: only X are covariates for cush model")
-            return None
+        
         if sh is None:
-            if sh is None:
-                raise NoShelterError(model=model)
+            #if sh is None:
+            raise NoShelterError(model=model)
         #TODO: if sh=0 search for the best shelter choice
         elif not sh:
             print("WARN: searching for best shelter choice")
@@ -228,13 +234,154 @@ def from_formula(
             mod = ihg_v
             pars = {"sample":sample, "m":m, "V":df[V]}
     else:
-        raise UnknownModelError(model=model)
-        #print(f"No implemented model {model} with formula {formula}")
-        #return None
+        raise UnknownModelError(
+        model=f"{model}"
+            + f"with formula {formula}"
+        )
 
     fit = mod.mle(
             **pars,
             **options,
-            gen_pars=gen_pars
+            gen_pars=gen_pars,
+            df=df, formula=formula
         )
     return fit
+
+def draw(formula, df=None,
+    m=7, model="cub", n=500,
+    sh=None, seed=None,
+    **params
+    ):
+    modname = model
+    if model == "cub" and sh is not None:
+        modname = "cubsh"
+    ordinal, covars = formula_parser(formula,
+        model=modname)
+    if df is None:
+        df = pd.DataFrame(
+            index=np.arange(n))
+    orig_df = df.copy(deep=True)
+    #print(ordinal, covars)
+    # all rows with at least a NaN will be dropped
+    dfi_tot = df.index.size
+    df = df.dropna().copy(deep=True)
+    dfi_nona = df.index.size
+    if dfi_tot != dfi_nona:
+        warnings.warn(f"{dfi_tot-dfi_nona} NaNs detected and removed.")
+    df, covars = dummies2(df=df, DD=covars)
+    if model=="cub" and sh is None:
+        Y = covars[0]
+        W = covars[1]
+        if Y is None and W is None:
+            mod = cub
+            params.update(dict(
+            seed=seed, n=n, m=m
+            ))
+        if Y is None and W is not None:
+            mod = cub_0w
+            params.update(dict(
+            seed=seed, W=df[W]
+            ))
+        if Y is not None and W is None:
+            mod = cub_y0
+            params.update(dict(
+            seed=seed, Y=df[Y]
+            ))
+        if Y is not None and W is not None:
+            mod = cub_yw
+            params.update(dict(
+            seed=seed, Y=df[Y], W=df[W]
+            ))
+    elif model=="cub" and sh is not None:
+        Y = covars[0]
+        W = covars[1]
+        X = covars[2]
+        if Y is None and W is None and X is None:
+            mod = cubsh
+            params.update(dict(
+            seed=seed, sh=sh, n=n
+            ))
+        if Y is not None and W is not None and X is not None:
+            mod = cubsh_ywx
+            params.update(dict(
+            seed=seed, sh=sh, m=m,
+            Y=df[Y], W=df[W], X=df[X]
+            ))
+    elif model=="cube":
+        Y = covars[0]
+        W = covars[1]
+        Z = covars[2]
+        if Y is None and W is None and Z is None:
+            mod = cube
+            params.update(dict(
+            seed=seed, n=n
+            ))
+        if Y is None and W is not None and Z is None:
+            mod = cube_0w0
+            params.update(dict(
+            seed=seed, W=df[W]
+            ))
+        if Y is not None and W is not None and Z is not None:
+            mod = cube_ywz
+            params.update(dict(
+            seed=seed, Y=df[Y], W=df[W],
+            Z=df[Z]
+            ))
+    elif model=="cush":
+        X = covars[0]
+        if X is None:
+            mod = cush
+            params.update(dict(
+            seed=seed, sh=sh, n=n
+            ))
+        if X is not None:
+            mod = cush_x
+            params.update(dict(
+            seed=seed, sh=sh, X=df[X]
+            ))
+    elif model=="cush2":
+        X1 = covars[0]
+        X2 = covars[1]
+        if X1 is None and X2 is None:
+            mod = cush2
+            params.update(dict(
+            seed=seed, sh1=sh[0], sh2=sh[1],
+            n=n
+            ))
+        if X1 is not None and X2 is None:
+            mod = cush2_x0
+            params.update(dict(
+            seed=seed, sh1=sh[0], sh2=sh[1],
+            X1=df[X1]
+            ))
+        if X1 is not None and X2 is not None:
+            mod = cush2_xx
+            params.update(dict(
+            seed=seed, sh1=sh[0], sh2=sh[1],
+            X1=df[X1], X2=df[X2]
+            ))
+    elif model=="ihg":
+        V = covars[0]
+        if V is None:
+            mod = ihg
+            params.update(dict(
+            seed=seed, n=n
+            ))
+        if V is not None:
+            mod = ihg_v
+            params.update(dict(
+            seed=seed, V=df[V]
+            ))
+    else:
+        raise UnknownModelError(
+        model=f"{model}"
+            + f"with formula {formula}"
+        )
+
+    params.update(dict(
+        df=df, formula=formula,
+        m=m, orig_df=orig_df
+    ))
+    #print(params)
+    return mod.draw(**params)
+    

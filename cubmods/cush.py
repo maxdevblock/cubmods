@@ -179,7 +179,8 @@ def LRT(m, fc, n):
 # RANDOM SAMPLE
 ###################################################################
 
-def draw(m, sh, delta, n, seed=None):
+def draw(m, sh, delta, n,
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUSH model.
 
     :param m: number of ordinal categories
@@ -214,7 +215,8 @@ def draw(m, sh, delta, n, seed=None):
         sh=sh, pars=pars,
         par_names=par_names,
         seed=seed, theoric=theoric,
-        diss=diss
+        diss=diss, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -222,7 +224,7 @@ def draw(m, sh, delta, n, seed=None):
 # INFERENCE
 ###################################################################
 
-def mle(sample, m, sh,
+def mle(sample, m, sh, df, formula,
     gen_pars=None,
     maxiter=None, tol=None #for GEM compatibility
     ):
@@ -307,6 +309,7 @@ def mle(sample, m, sh,
     sample=sample, f=f, varmat=varmat,
     diss=diss,
     gen_pars=gen_pars,
+    df=df, formula=formula
     )
 
 class CUBresCUSH(CUBres):

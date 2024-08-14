@@ -173,7 +173,8 @@ def loglik(m, sample, Y, beta, xi):
     l = np.sum(np.log(eta*(pn-1/m)+1/m))
     return l
 
-def draw(m, n, beta, xi, Y, seed=None):
+def draw(m, beta, xi, Y,
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUB model with covariates for
     the uncertainty component.
 
@@ -195,7 +196,8 @@ def draw(m, n, beta, xi, Y, seed=None):
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
-    assert n == Y.shape[0]
+    assert len(beta) == Y.shape[1]+1
+    n = Y.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
         "Modified to 1.")
@@ -228,8 +230,8 @@ def draw(m, n, beta, xi, Y, seed=None):
         model="CUB(Y0)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, Y=Y, diss=diss,
-        theoric=theoric
+        seed=seed, diss=diss, df=orig_df,
+        theoric=theoric, formula=formula
     )
     return sample
 
@@ -310,7 +312,7 @@ def effe10(beta, esterno10):
     )
     return r
 
-def mle(sample, m, Y,
+def mle(sample, m, Y, df, formula,
     gen_pars=None,
     maxiter=500,
     tol=1e-4):
@@ -447,7 +449,8 @@ def mle(sample, m, Y,
             # rho=rho,
             sample=sample, f=f,
             varmat=varmat,
-            diss=diss, Y=Y,
+            diss=diss, df=df,
+            formula=formula,
             gen_pars=gen_pars
             # pi_gen=pi_gen, xi_gen=xi_gen
         )

@@ -395,7 +395,8 @@ def init_theta(sample, m):
 # RANDOM SAMPLE
 ###################################################################
 
-def draw(m, pi, xi, phi, n, seed=None):
+def draw(m, pi, xi, phi, n,
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUBE model.
 
     :param m: number of ordinal categories
@@ -432,7 +433,8 @@ def draw(m, pi, xi, phi, n, seed=None):
         pars=pars,
         par_names=par_names,
         theoric=theoric,
-        diss=diss
+        diss=diss, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -464,7 +466,7 @@ def effecube(params, tau, f, m):
     pBe = betar(m, xi, phi)
     return -np.sum(tau*f*np.log(pBe))
 
-def mle(sample, m,
+def mle(sample, m, df, formula,
     gen_pars=None,
     maxiter=1000,
     tol=1e-6):
@@ -638,7 +640,8 @@ def mle(sample, m,
             sample=sample, f=f,
             varmat=varmat,
             diss=diss,
-            gen_pars=gen_pars
+            gen_pars=gen_pars,
+            df=df, formula=formula
         )
     return res
 

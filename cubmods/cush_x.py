@@ -127,7 +127,8 @@ def proba(m, sample, X, omega, sh):
     p = delta*(D-1/m)+1/m
     return p
 
-def draw(m, sh, omega, X, seed=None):
+def draw(m, sh, omega, X,
+    df, orig_df, formula, seed=None):
     r"""Draw a random sample from a specified CUSH model with covariates
 
     :param m: number of ordinal categories
@@ -177,7 +178,7 @@ def draw(m, sh, omega, X, seed=None):
         par_names=par_names,
         theoric=theoric,
         diss=diss,
-        X=X,
+        df=orig_df, formula=formula,
         rv=rv.astype(int),
         seed=seed
     )
@@ -232,9 +233,10 @@ def effe(pars, esterno, m, sh):
         omega=pars, sh=sh)
     return -l
 
-def mle(m, sample, X, sh, gen_pars=None,
-        maxiter=None, tol=None #for GEM compatibility
-        ):
+def mle(m, sample, X, sh,
+    df, formula, gen_pars=None,
+    maxiter=None, tol=None #for GEM compatibility
+    ):
     r"""Main function for CUSH models with covariates.
 
     Estimate and validate a CUSH model for ordinal responses, with covariates
@@ -330,7 +332,7 @@ def mle(m, sample, X, sh, gen_pars=None,
         #dev=dev,
         AIC=AIC, BIC=BIC,
         sample=sample, f=f, varmat=varmat,
-        X=X, diss=diss,
+        diss=diss, df=df, formula=formula,
         seconds=(end-start).total_seconds(),
         time_exe=start, gen_pars=gen_pars
     )

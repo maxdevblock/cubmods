@@ -82,7 +82,8 @@ def init_theta(m, f):
     est = (m-aver)/(1+(m-2)*aver)
     return est
 
-def draw(m, theta, n, seed=None):
+def draw(m, theta, n,
+    df, orig_df, formula, seed=None):
     """
     generate random sample from CUB model
     """
@@ -104,7 +105,8 @@ def draw(m, theta, n, seed=None):
         pars=pars,
         par_names=par_names,
         seed=seed, theoric=theoric,
-        diss=diss
+        diss=diss, df=orig_df,
+        formula=formula
     )
     return sample
 
@@ -114,7 +116,8 @@ def var(m, theta):
     d2 = (theta*(m-3)+2)
     return n/(d1*d2)
 
-def mle(m, sample, gen_pars=None):
+def mle(m, sample, 
+    df, formula, gen_pars=None):
     start = dt.datetime.now()
     f = freq(sample=sample, m=m)
     n = sample.size
@@ -173,7 +176,8 @@ def mle(m, sample, gen_pars=None):
         diss=diss, sample=sample,
         f=f, varmat=varmat,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars
+        time_exe=start, gen_pars=gen_pars,
+        df=df, formula=formula
     )
 
 class CUBresIHG(CUBres):
