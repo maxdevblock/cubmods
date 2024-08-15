@@ -550,8 +550,104 @@ for responses with :math:`m` ordinal categories, without covariates is specified
 .. math::
     \Pr(R=r|\boldsymbol{\theta}) = \delta D_r^{(c)} + (1-\delta)\left(\pi b_r(\xi) + \frac{1-\pi}{m} \right)
 
-where :math:`\pi` and :math:`\xi`` are the parameters for respectively the *uncertainty* and the 
+where :math:`\pi` and :math:`\xi` are the parameters for respectively the *uncertainty* and the 
 *feeling* components, and :math:`\delta` is the weight of the shelter effect.
+
+In the next example, we'll draw an ordinal response
+and then estimate the parameters given the sample.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import matplotlib.pyplot as plt
+    from cubmods.gem import draw, estimate
+
+    # draw a sample
+    drawn = draw(
+        formula="ord ~ 0 | 0 | 0",
+        m=7, sh=1,
+        pi=.8, xi=.4, delta=.15,
+        n=1500, seed=42)
+
+    print(drawn.as_dataframe())
+
+.. code-block:: none
+
+      parameter  value
+    0       pi1   0.68
+    1       pi2   0.17
+    2        xi   0.40
+    3       *pi   0.80
+    4    *delta   0.15
+
+Notice that:
+
+- since ``"cub"`` is default value of the *kwarg* ``model``, we do not need to specify it
+
+- we'll pass to ``estimate`` *kwargs* values taken from the object ``drawn``
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # inferential method on drawn sample
+    fit = estimate(
+        df=drawn.df, sh=drawn.sh,
+        formula=drawn.formula,
+        gen_pars={
+            "pi1": drawn.pars[0],
+            "pi2": drawn.pars[1],
+            "xi": drawn.pars[2],
+        }
+    )
+    # print the summary of MLE
+    print(fit.summary())
+    # show the plot of MLE
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUBSH model <<<===== ML-estimates
+    =======================================================================
+    m=7  Shelter=1  Size=1500  Iterations=59  Maxiter=500  Tol=1E-04
+    -----------------------------------------------------------------------
+    Alternative parametrization
+           Estimates  StdErr    Wald  p-value
+    pi1        0.661  0.0307  21.508   0.0000
+    pi2        0.174  0.0344   5.041   0.0000
+    xi         0.388  0.0077  50.592   0.0000
+    -----------------------------------------------------------------------
+    Uncertainty
+           Estimates  StdErr    Wald  p-value
+    pi         0.792  0.0400  19.813   0.0000
+    -----------------------------------------------------------------------
+    Feeling
+           Estimates  StdErr    Wald  p-value
+    xi         0.388  0.0077  50.592   0.0000
+    -----------------------------------------------------------------------
+    Shelter effect
+           Estimates  StdErr    Wald  p-value
+    delta      0.166  0.0116  14.327   0.0000
+    =======================================================================
+    Dissimilarity = 0.0049
+    Loglik(sat)   = -2734.302
+    Loglik(MOD)   = -2734.433
+    Loglik(uni)   = -2918.865
+    Mean-loglik   = -1.823
+    Deviance      = 0.263
+    -----------------------------------------------------------------------
+    AIC = 5474.87
+    BIC = 5490.81
+    =======================================================================
+
+.. image:: /img/cubsh00mle.png
+    :alt: CUBSH 00 MLE
+
 
 With covariates
 ^^^^^^^^^^^^^^^
@@ -569,6 +665,121 @@ With covariates
         \delta_i = \dfrac{1}{1+\exp\{-\pmb x_i \pmb \omega\}}
     \end{array}
     \right.
+
+Only the model with covariates for all components has been
+currently defined and implemented.
+
+Nevertheless, thanks to the symbol ``1`` provided by the
+*formula*, we can specify a different combination
+of covariates.
+
+For example, we'll specifiy a model CUB with shelter effect,
+with covariates for uncertainty only. We'll use the function
+``logit`` to have better 'control' of the parameters values,
+because :math:`\gamma_0 = \mathrm{logit}(\xi)` and
+similarly for :math:`\pi` and :math:`\delta`.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods.general import expit, logit
+    from cubmods.gem import draw, estimate
+
+    # Draw a random sample
+    n = 1000
+    np.random.seed(1)
+    W1 = np.random.randint(1, 10, n)
+    df = pd.DataFrame({
+        "W1": W1,
+    })
+    drawn = draw(
+        formula="fee ~ W1 | 1 | 1",
+        df=df,
+        m=9, sh=2,
+        beta=[logit(.8), -.2],
+        gamma=[logit(.3)],
+        omega=[logit(.12)],
+    )
+
+    # MLE estimation
+    fit = estimate(
+        formula="fee ~ W1 | 1 | 1",
+        df=drawn.df, sh=2,
+    )
+    # Print MLE summary
+    print(fit.summary())
+    # plot the results
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUBSH(YWX) model <<<===== ML-estimates
+    =======================================================================
+    m=9  Shelter=2  Size=1000  Iterations=25  Maxiter=500  Tol=1E-04
+    -----------------------------------------------------------------------
+    Uncertainty
+              Estimates  StdErr     Wald  p-value
+    constant      0.992  0.3314    2.994   0.0028
+    W1           -0.127  0.0569   -2.228   0.0259
+    -----------------------------------------------------------------------
+    Feeling
+              Estimates  StdErr     Wald  p-value
+    constant     -0.902  0.0381  -23.662   0.0000
+    -----------------------------------------------------------------------
+    Shelter effect
+              Estimates  StdErr     Wald  p-value
+    constant     -2.074  0.1260  -16.462   0.0000
+    =======================================================================
+    Dissimilarity = 0.0139
+    Loglik(MOD)   = -2069.978
+    Loglik(uni)   = -2197.225
+    Mean-loglik   = -2.070
+    -----------------------------------------------------------------------
+    AIC = 4147.96
+    BIC = 4167.59
+    =======================================================================
+    Elapsed time=1.43850 seconds =====>>> Thu Aug 15 19:39:49 2024
+    =======================================================================
+
+.. image:: /img/cubshywxmle.png
+    :alt: CUBSH YWX MLE
+
+To get the estimated values of :math:`\hat\xi` and :math:`\hat\delta`
+we can use the function ``expit`` because :math:`\hat\xi = \mathrm{expit}(\hat\gamma_0)`
+and similarly for :math:`\hat\delta`. Then, since
+:math:`\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi`
+we can compute the standard errors of both :math:`\hat\xi` and :math:`\hat\delta`.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    est_xi = expit(fit.estimates[2])
+    est_de = expit(fit.estimates[3])
+    est_xi_se = expit(fit.estimates[2]+fit.stderrs[2]) - est_xi
+    est_de_se = expit(fit.estimates[3]+fit.stderrs[3]) - est_de
+    print(
+        "     estimates  stderr\n"
+        f"xi      {est_xi:.4f}  {est_xi_se:.4f}"
+        "\n"
+        f"delta   {est_de:.4f}  {est_de_se:.4f}"
+    )
+
+.. code-block:: none
+
+         estimates  stderr
+    xi      0.2886  0.0079
+    delta   0.1116  0.0131
+
+which, in fact, match the values used to draw the sample.
 
 CUSH family
 -----------
