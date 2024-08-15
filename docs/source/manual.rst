@@ -784,14 +784,47 @@ which, in fact, match the values used to draw the sample.
 CUSH family
 -----------
 
+Without covariates
+^^^^^^^^^^^^^^^^^^
+
+With covariates
+^^^^^^^^^^^^^^^
+
 2-CUSH family
 -------------
+
+Without covariates
+^^^^^^^^^^^^^^^^^^
+
+With covariates
+^^^^^^^^^^^^^^^
 
 CUBE family
 -----------
 
+Without covariates
+^^^^^^^^^^^^^^^^^^
+
+With covariates
+^^^^^^^^^^^^^^^
+
 IHG family
 ----------
 
+Without covariates
+^^^^^^^^^^^^^^^^^^
+
+With covariates
+^^^^^^^^^^^^^^^
+
 MULTICUB
 --------
+
+CUB family
+^^^^^^^^^^
+
+CUBSH family
+^^^^^^^^^^^^
+
+CUBE family
+^^^^^^^^^^^

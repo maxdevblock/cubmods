@@ -379,8 +379,8 @@ def draw(formula, df=None,
         )
 
     params.update(dict(
-        df=df, formula=formula,
-        m=m, orig_df=orig_df
+        formula=formula,
+        m=m, df=orig_df
     ))
     #print(params)
     return mod.draw(**params)

@@ -158,7 +158,7 @@ def betabinomialxi(m, sample, xivett, phi):
     return np.array(betabin)
 
 def draw(m, pi, gamma, phi, W,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     r"""Draw a random sample from a specified CUBE model.
 
     :param m: number of ordinal categories
@@ -175,6 +175,10 @@ def draw(m, pi, gamma, phi, W,
     :type W: pandas dataframe
     :param n: number of ordinal responses to be drawn
     :type n: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
@@ -217,7 +221,7 @@ def draw(m, pi, gamma, phi, W,
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
         seed=seed, diss=diss,
-        theoric=theoric, df=orig_df,
+        theoric=theoric, df=df,
         formula=formula
     )
     return sample
@@ -356,6 +360,10 @@ def mle(sample, m, W, df, formula,
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for preliminary iterations
@@ -526,7 +534,7 @@ class CUBresCUBE0W0(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
-        if self.gen_pars is not None:
+        if self.gen_pars is not None: #TODO: implement gen_pars
             pi_gen = self.gen_pars["pi"]
             gamma_gen = self.gen_pars["gamma"]
             phi_gen = self.gen_pars["phi"]

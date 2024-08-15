@@ -78,7 +78,7 @@ def pmf(m, V, nu):
     return p
 
 def draw(m, nu, V, 
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     n = V.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
@@ -110,7 +110,7 @@ def draw(m, nu, V,
         par_names=par_names,
         theoric=theoric,
         diss=diss,
-        df=orig_df, formula=formula,
+        df=df, formula=formula,
         rv=rv.astype(int),
         seed=seed
     )

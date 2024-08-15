@@ -86,7 +86,7 @@ def pmf(m, c1, c2, d1, d2):
     #        p[i-1] = (1-d1-d2)/m
     return p
 
-def draw(m, sh1, sh2, df, orig_df, formula,
+def draw(m, sh1, sh2, df, formula,
     delta1, delta2, n, seed=None):
     r"""Draw a random sample from a specified 2-CUSH model.
 
@@ -102,6 +102,10 @@ def draw(m, sh1, sh2, df, orig_df, formula,
     :type delta2: float
     :param n: number of ordinal responses
     :type n: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
@@ -131,7 +135,7 @@ def draw(m, sh1, sh2, df, orig_df, formula,
         pars=pars,
         par_names=par_names,
         seed=seed, theoric=theoric,
-        diss=diss, df=orig_df,
+        diss=diss, df=df,
         formula=formula
     )
     return sample
@@ -201,6 +205,10 @@ def mle(sample, m, c1, c2,
     :type c1: int
     :param c2: Category corresponding to the 2nd shelter choice :math:`[1,m]`
     :type c2: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: default to None; ensure compatibility with ``gem.from_formula()``

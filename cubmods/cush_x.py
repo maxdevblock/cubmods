@@ -128,7 +128,7 @@ def proba(m, sample, X, omega, sh):
     return p
 
 def draw(m, sh, omega, X,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     r"""Draw a random sample from a specified CUSH model with covariates
 
     :param m: number of ordinal categories
@@ -143,6 +143,10 @@ def draw(m, sh, omega, X,
     :param X: dataframe of covariates for explaining the shelter effect;
         no column must be named ``0`` nor ``constant``
     :type X: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
@@ -178,7 +182,7 @@ def draw(m, sh, omega, X,
         par_names=par_names,
         theoric=theoric,
         diss=diss,
-        df=orig_df, formula=formula,
+        df=df, formula=formula,
         rv=rv.astype(int),
         seed=seed
     )
@@ -251,6 +255,10 @@ def mle(m, sample, X, sh,
     :param X: dataframe of covariates for explaining the shelter effect;
         no column must be named ``0`` nor ``constant``
     :type X: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: default to None; ensure compatibility with ``gem.from_formula()``

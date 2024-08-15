@@ -83,7 +83,7 @@ def init_theta(m, f):
     return est
 
 def draw(m, theta, n,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     """
     generate random sample from CUB model
     """
@@ -105,7 +105,7 @@ def draw(m, theta, n,
         pars=pars,
         par_names=par_names,
         seed=seed, theoric=theoric,
-        diss=diss, df=orig_df,
+        diss=diss, df=df,
         formula=formula
     )
     return sample

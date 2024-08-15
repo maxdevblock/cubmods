@@ -639,7 +639,7 @@ def plot_simplex(pi1pi2list, ax=None, fname=None):
 ###################################################################
 
 def draw2(m, sh, pi1, pi2, xi, n,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     r"""Draw a random sample from a specified CUBSH model,
     using alternative parametrization :math:`(\pi_1, \pi_2)`.
 
@@ -655,6 +655,10 @@ def draw2(m, sh, pi1, pi2, xi, n,
     :type xi: float
     :param n: number of ordinal responses
     :type n: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
@@ -684,12 +688,12 @@ def draw2(m, sh, pi1, pi2, xi, n,
         rv=rv, m=m, sh=sh,
         pars=pars, par_names=par_names,
         theoric=theoric, diss=diss,
-        df=orig_df, formula=formula
+        df=df, formula=formula
     )
     return sample
 
 def draw(m, sh, pi, xi, delta, n,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     r"""Draw a random sample from a specified CUBSH model,
     using canonic parametrization :math:`(\pi, \delta)`.
 
@@ -705,13 +709,17 @@ def draw(m, sh, pi, xi, delta, n,
     :type xi: float
     :param n: number of ordinal responses
     :type n: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     pi1, pi2 = pidelta_to_pi1pi2(pi, delta)
     sample = draw2(m, sh, pi1, pi2, 
-       xi, n, seed=seed, orig_df=orig_df,
+       xi, n, seed=seed,
         df=df, formula=formula)
     return sample
 
@@ -733,6 +741,10 @@ def mle(sample, m, sh,
     :type m: int
     :param sh: Category corresponding to the shelter choice :math:`[1,m]`
     :type sh: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm

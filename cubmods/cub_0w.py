@@ -150,7 +150,7 @@ def prob(sample, m, pi, gamma, W):
     p = pi*(bitgamma(sample=sample, m=m, W=W, gamma=gamma)-1/m) + 1/m
     return p
 
-def _proba(m, pi, xi, r): #TODO proba
+def _proba(m, pi, xi, r):
     """
     :DEPRECATED:
     """
@@ -306,7 +306,7 @@ def init_gamma(sample, m, W):
 ###################################################################
 
 def draw(m, pi, gamma, W,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     r"""
     Draw a random sample from a specified CUB model with covariates for
     the feeling component.
@@ -323,6 +323,10 @@ def draw(m, pi, gamma, W,
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None;
         it must be :math:`\neq 0`
     :type seed: int, optional
@@ -363,7 +367,7 @@ def draw(m, pi, gamma, W,
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
         seed=seed, diss=diss,
-        theoric=theoric, df=orig_df,
+        theoric=theoric, df=df,
         formula=formula
     )
     return sample
@@ -424,6 +428,10 @@ def mle(sample, m, W, df, formula,
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm

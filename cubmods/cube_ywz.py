@@ -146,7 +146,7 @@ def pmf(m, beta, gamma, alpha, Y, W, Z):
     return p
 
 def draw(m, beta, gamma, alpha,
-    df, orig_df, formula,
+    df, formula,
     Y, W, Z, seed=None):
     r"""Draw a random sample from a specified CUBE model.
 
@@ -172,6 +172,10 @@ def draw(m, beta, gamma, alpha,
     :param Z: dataframe of covariates for explaining the overdispersion;
         no column must be named ``0`` nor ``constant``
     :type Z: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
@@ -221,7 +225,7 @@ def draw(m, beta, gamma, alpha,
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
         seed=seed, diss=diss,
-        theoric=theoric, df=orig_df,
+        theoric=theoric, df=df,
         formula=formula
     )
     return sample
@@ -658,6 +662,10 @@ def mle(m, sample, Y, W, Z, df, formula,
     :param Z: dataframe of covariates for explaining the overdispersion;
         no column must be named ``0`` nor ``constant``
     :type Z: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm

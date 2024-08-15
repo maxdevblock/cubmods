@@ -86,7 +86,7 @@ def pmf(m, sh1, sh2,
     return p
 
 def draw(m, sh1, sh2, omega1, delta2, X1,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     n = X1.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
@@ -120,7 +120,7 @@ def draw(m, sh1, sh2, omega1, delta2, X1,
         pars=pars, par_names=par_names,
         seed=seed, diss=diss,
         theoric=theoric, sh=[sh1, sh2],
-        df=orig_df, formula=formula
+        df=df, formula=formula
     )
 
 def loglik(sample, m, sh1, sh2,

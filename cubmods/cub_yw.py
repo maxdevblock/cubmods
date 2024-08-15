@@ -167,7 +167,7 @@ def prob(m, sample, Y, W, beta, gamma):
     return p
 
 def draw(m, beta, gamma, Y, W,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     r"""Draw a random sample from a specified CUB model with covariates for
     both feeling and uncertainty.
 
@@ -187,6 +187,10 @@ def draw(m, beta, gamma, Y, W,
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
@@ -230,7 +234,7 @@ def draw(m, beta, gamma, Y, W,
         pars=pars, par_names=par_names,
         seed=seed, diss=diss,
         theoric=theoric,
-        df=orig_df, formula=formula
+        df=df, formula=formula
     )
     return sample
 
@@ -347,6 +351,10 @@ def mle(sample, m, Y, W,
     :param W: dataframe of covariates for explaining the feeling component;
         no column must be named ``0`` nor ``constant``
     :type W: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm

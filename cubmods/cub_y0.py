@@ -174,7 +174,7 @@ def loglik(m, sample, Y, beta, xi):
     return l
 
 def draw(m, beta, xi, Y,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     r"""Draw a random sample from a specified CUB model with covariates for
     the uncertainty component.
 
@@ -190,6 +190,10 @@ def draw(m, beta, xi, Y,
     :param Y: dataframe of covariates for explaining the uncertainty component;
         no column must be named ``0`` nor ``constant``
     :type Y: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None;
         it must be :math:`\neq 0`
     :type seed: int, optional
@@ -230,7 +234,7 @@ def draw(m, beta, xi, Y,
         model="CUB(Y0)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, diss=diss, df=orig_df,
+        seed=seed, diss=diss, df=df,
         theoric=theoric, formula=formula
     )
     return sample
@@ -329,6 +333,10 @@ def mle(sample, m, Y, df, formula,
     :param Y: dataframe of covariates for explaining the uncertainty component;
         no column must be named ``0`` nor ``constant``
     :type Y: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm

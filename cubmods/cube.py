@@ -396,7 +396,7 @@ def init_theta(sample, m):
 ###################################################################
 
 def draw(m, pi, xi, phi, n,
-    df, orig_df, formula, seed=None):
+    df, formula, seed=None):
     r"""Draw a random sample from a specified CUBE model.
 
     :param m: number of ordinal categories
@@ -409,6 +409,10 @@ def draw(m, pi, xi, phi, n,
     :type phi: float
     :param n: number of ordinal responses to be drawn
     :type n: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
@@ -433,7 +437,7 @@ def draw(m, pi, xi, phi, n,
         pars=pars,
         par_names=par_names,
         theoric=theoric,
-        diss=diss, df=orig_df,
+        diss=diss, df=df,
         formula=formula
     )
     return sample
@@ -478,6 +482,10 @@ def mle(sample, m, df, formula,
     :type sample: array of int
     :param m: number of ordinal categories
     :type m: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm

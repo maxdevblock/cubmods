@@ -163,8 +163,7 @@ def pmfi(m, sh, beta, gamma, omega,
     return p
 
 def draw(m, sh, beta, gamma, omega,
-    Y, W, X, df,
-    orig_df, formula, seed=None):
+    Y, W, X, df, formula, seed=None):
     r"""Draw a random sample from a specified CUBSH model with covariates
     (aka GeCUB model).
 
@@ -192,6 +191,12 @@ def draw(m, sh, beta, gamma, omega,
     :type X: pandas dataframe
     :param n: number of ordinal responses to be drawn
     :type n: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
     :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
@@ -237,7 +242,7 @@ def draw(m, sh, beta, gamma, omega,
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
         seed=seed, diss=diss,
-        theoric=theoric, df=orig_df,
+        theoric=theoric, df=df,
         formula=formula
     )
     return sample
@@ -519,6 +524,10 @@ def mle(m, sample, sh, Y, W, X,
     :param X: dataframe of covariates for explaining the shelter effect;
         no column must be named ``0`` nor ``constant``
     :type X: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
     :param gen_pars: dictionary of hypothesized parameters, defaults to None
     :type gen_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm
