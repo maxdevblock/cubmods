@@ -489,13 +489,15 @@ class CUBsample(object):
         else:
             return fig, ax
 
-    def as_dataframe(self,
-        varname="ordinal"):
-        """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
+    def as_dataframe(self):
+        """The parameters' values specified.
+
+        :return: a DataFrame with parameters' names and values
+        :rtype: DataFrame
         """
         df = pd.DataFrame({
-            varname: self.rv
+            "parameter": self.par_names,
+            "value": self.pars
         })
         return df
 

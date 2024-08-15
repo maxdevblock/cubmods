@@ -105,8 +105,13 @@ Currently implemented models are: ``"cub"`` (default), ``"cush"``, ``"cube"``,
 implemented using ``model="cub"`` and specifying a shelter choice with the 
 *kwarg* ``sh``.
 
+To ``draw`` must be passed the parameters' values with the *kwargs* of the corresponding
+family: for example, ``pi`` and ``xi`` for CUB models without covariates, ``beta`` and ``gamma``
+for CUB models with covariates for both feeling and uncertainty, etc. See the
+``.draw()`` function reference of the corresponding family module for details.
+
 If  ``model="cub"`` (or nothing), then a CUB mixture model is fitted to the data to explain uncertainty, 
-feeling and possible shelter effect by further passing the extra argument ``sh`` for the corresponding category.
+feeling (``ordinal~Y|W``) and possible shelter effect by further passing the extra argument ``sh`` for the corresponding category.
 Subjects' covariates can be included by specifying covariates matrices in the 
 formula as ``ordinal~Y|W|X``,  to explain uncertainty (Y), feeling (W) or shelter (X). 
 Notice that
@@ -159,6 +164,11 @@ and options, see the ``CUBsample`` Class (for object returned by ``draw``)
 and the extended ``CUBres`` Classes of the corresponding
 family (for objects returned by ``estimate``).
 
+Calling ``.as_dataframe()`` will return a DataFrame of parameters' names and values for objects
+of the Class ``CUBsample`` returned by ``draw``. For objects of the Base Class ``CUBres`` returned
+by ``estimate`` instead, will return a DataFrame with parameters' component, name, estimated value,
+standard error, Wald test statistics and p-value.
+
 Calling the method ``.save(fname)`` the object can be saved on a file called ``fname.cub.sample``
 (for ``draw``) or ``fname.cub.fit`` (for ``estimate``).
 
@@ -166,6 +176,14 @@ Saved objects can then be loaded using the function ``general.load(fname)``.
 
 Attributes of ``estimate`` and ``draw``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For both objects returned by ``estimate`` and ``draw``, the attributes ``.formula`` and
+``.df`` are always available. The function ``draw`` will return the original DataFrame (if provided)
+with an extra column of the drawn ordinal response called as specified in the formula.
+
+Many other attributes can be called from objects of the Base Class ``CUBres`` returned by
+``estimate``, such as the computed loglikelihood, the AIC and BIC, ectcetera. For details,
+see the Base Class ``CUBres`` reference guide.
 
 CUB family
 ----------
@@ -204,16 +222,18 @@ variable with :math:`m=10` ordinal categories
 and parameters :math:`(\pi=.7, \xi=.2)`. A ``seed=1`` will be set to ensure reproducibility.
 
 .. code-block:: python
-   :caption: Script
-   :linenos:
+    :caption: Script
+    :linenos:
 
     # import libraries
     import matplotlib.pyplot as plt
-    from cubmods import cub, gem
+    from cubmods.gem import draw
 
     # draw a sample
-    drawn = cub.draw(m=10, pi=.7, xi=.2,
-                    n=500, seed=1)
+    drawn = draw(
+        formula="ord ~ 0 | 0",
+        m=10, pi=.7, xi=.2,
+        n=500, seed=1)
     # print the summary of the drawn sample
     print(drawn.summary())
     # show the plot of the drawn sample
@@ -226,6 +246,8 @@ and parameters :math:`(\pi=.7, \xi=.2)`. A ``seed=1`` will be set to ensure repr
     =====>>> CUB model <<<===== Drawn random sample
     =======================================================================
     m=10  Sample size=500  seed=1
+    formula: ord~0|0
+    -----------------------------------------------------------------------
     pi=0.700
     xi=0.200
     =======================================================================
@@ -240,37 +262,52 @@ and parameters :math:`(\pi=.7, \xi=.2)`. A ``seed=1`` will be set to ensure repr
 .. image:: /img/cub00draw.png
     :alt: CUB00 drawn sample
 
+Notice that, since the default value of the kwarg ``model`` is
+``"cub"`` we do not need to specify it.
+
+Calling ``drawn.as_dataframe()`` will return a DataFrame with
+the parameters
+
+.. code-block:: none
+
+      parameter  value
+    0        pi    0.7
+    1        xi    0.2
 
 Using the previously drawn sample, in the next example the parameters :math:`(\hat\pi, \hat\xi)` will be estimated.
 
-Note that in the function ``gem.from_formula``:
+Note that in the function ``gem.estimate``:
 
-- ``df`` needs to be a ``pandas`` DataFrame; the function ``drawn.as_dataframe()`` will return a DataFrame with ``ordinal`` as default column name
+- ``df`` needs to be a ``pandas`` DataFrame; the attribute ``drawn.df`` will return a DataFrame with ``ord`` as column name of the drawn ordinal response (as previuosly speficied in the formula)
 
-- ``formula`` specifies the ordinal variable (``ordinal`` in this case) and the covariates for each component (none in this case, so ``"0|0|0"``)
+- ``formula`` needs the ordinal variable name (``ord`` in this case) and the covariates for each component (none in this case, so ``"0|0"``)
 
-- if ``m`` is not provided, the maximum observed ordinal value will be assumed
+- if ``m`` is not provided, the maximum observed ordinal value will be assumed and a warning will be raised
 
-- with ``gen_pars`` dictionary, the parameters of a known model (if any) can be specified; in this case, they'll be the parameters used to draw the sample
+- with ``gen_pars`` dictionary, the parameters of a known model (if any) can be specified; in this case, we'll specify the known parameters used to draw the sample
 
 .. code-block:: python
     :caption: Script
     :linenos:
 
     # inferential method on drawn sample
-    mod = gem.from_formula(
-        df=drawn.as_dataframe(),
-        formula="ordinal~0|0|0",
-        m=10,
-        gen_pars={"pi": .7, "xi":.2}
+    fit = estimate(
+        df=drawn.df,
+        formula="ord~0|0",
+        gen_pars={
+            "pi": drawn.pars[0],
+            "xi": drawn.pars[1]
+        }
     )
     # print the summary of MLE
-    print(mod.summary())
+    print(fit.summary())
     # show the plot of MLE
-    mod.plot()
+    fit.plot()
     plt.show()
 
 .. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
 
     =======================================================================
     =====>>> CUB00 model <<<===== ML-estimates
@@ -278,11 +315,11 @@ Note that in the function ``gem.from_formula``:
     m=10  Size=500  Iterations=13  Maxiter=500  Tol=1E-04
     -----------------------------------------------------------------------
     Uncertainty
-    Estimates  StdErr    Wald  p-value
+        Estimates  StdErr    Wald  p-value
     pi     +0.675   0.034  19.872   0.0000
     -----------------------------------------------------------------------
     Feeling
-    Estimates  StdErr    Wald  p-value
+        Estimates  StdErr    Wald  p-value
     xi     +0.188   0.009  20.808   0.0000
     -----------------------------------------------------------------------
     Correlation   = 0.2105
@@ -303,8 +340,29 @@ Note that in the function ``gem.from_formula``:
 .. image:: /img/cub00mle.png
     :alt: CUB00 MLE
 
+Calling ``fit.as_dataframe()`` will return a DataFrame with
+parameters' estimated values and standard errors
+
+.. code-block:: none
+
+         component parameter  estimate    stderr       wald        pvalue
+    0  Uncertainty        pi   0.67476  0.033954  19.872485  7.042905e-88
+    1      Feeling        xi   0.18817  0.009043  20.807551  3.697579e-96
+
 With covariates
 ^^^^^^^^^^^^^^^^^^
+
+.. math::
+    \Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m}
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \pi_i = \dfrac{1}{1+\exp\{-\pmb y_i \pmb \beta\}}
+        \\
+        \xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}
+    \end{array}
+    \right.
 
 All three combinations of covariates has been implemented for CUB family in both Python and R:
 for *uncertainty* only, for *feeling* only, and for *both*.
@@ -323,44 +381,114 @@ to consider the constant term too.
     import numpy as np
     import pandas as pd
     import matplotlib.pyplot as plt
-    from cubmods import cub_0w, gem
+    from cubmods.gem import draw, estimate
+
     # Draw a random sample
     n = 1000
     np.random.seed(1)
     W1 = np.random.randint(1, 10, n)
     np.random.seed(42)
-    W2 = np.random.randint(1, 10, n)
+    W2 = np.random.random(n)
     df = pd.DataFrame({
         "W1": W1, "W2": W2
     })
-    drawn = cub_0w.draw(m=10, n=n, 
+    drawn = draw(
+        formula="res ~ 0 | W1 + W2",
+        df=df,
+        m=10, n=n,
         pi=0.8,
-        gamma=[2.3, -0.4, -0.05],
-        W=df
+        gamma=[2.3, 0.2, -5],
     )
+    # print the summary
+    print(drawn.summary())
+
+.. code-block:: none
+
+    =======================================================================
+    =====>>> CUB(0W) model <<<===== Drawn random sample
+    =======================================================================
+    m=10  Sample size=1000  seed=None
+    formula: res~0|W1+W2
+    -----------------------------------------------------------------------
+    pi=0.800
+    constant=2.300
+    W1=0.200
+    W2=-5.000
+    =======================================================================
+    Sample metrics
+    Mean     = 4.566000
+    Variance = 8.089734
+    Std.Dev. = 2.844246
+    -----------------------------------------------------------------------
+    Dissimilarity = 0.0307673
+    =======================================================================
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # plot the drawn sample
     drawn.plot()
     plt.show()
 
 .. image:: /img/cub0wdraw.png
     :alt: CUB0W drawn sample
 
-Then, we'll add the drawn sample to ``df`` DataFrame and will estimate the parameters.
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # print the parameters' values
+    print(drawn.as_dataframe())
+
+.. code-block:: none
+
+      parameter  value
+    0        pi    0.8
+    1  constant    2.3
+    2        W1    0.2
+    3        W2   -5.0
 
 .. code-block:: python
     :caption: Script
     :linenos:
 
-    # add the drawn sample
-    df["ordinal"] = drawn.rv
+    # print the updated DataFrame
+    print(drawn.df)
+
+.. code-block:: none
+
+         W1        W2  res
+    0     6  0.374540    2
+    1     9  0.950714    7
+    2     6  0.731994    8
+    3     1  0.598658    8
+    4     1  0.156019    4
+    ..   ..       ...  ...
+    995   3  0.091582    2
+    996   9  0.917314    9
+    997   4  0.136819    1
+    998   7  0.950237    3
+    999   8  0.446006    2
+
+    [1000 rows x 3 columns]
+
+Finally, we'll call ``estimate`` to estimate the parameters
+given the observed (actually, drawn) sample.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
     # MLE estimation
-    mod1 = gem.from_formula(
-        formula="ordinal ~ 0 | W1+W2 | 0",
-        df=df
+    fit = estimate(
+        formula="res ~ 0 | W1+W2",
+        df=drawn.df,
     )
     # Print MLE summary
-    print(mod1.summary())
+    print(fit.summary())
     # plot the results
-    mod1.plot()
+    fit.plot()
     plt.show()
 
 .. code-block:: none
@@ -369,27 +497,27 @@ Then, we'll add the drawn sample to ``df`` DataFrame and will estimate the param
     =======================================================================
     =====>>> CUB(0W) model <<<===== ML-estimates
     =======================================================================
-    m=10  Size=1000  Iterations=22  Maxiter=500  Tol=1E-04
+    m=10  Size=1000  Iterations=18  Maxiter=500  Tol=1E-04
     -----------------------------------------------------------------------
     Uncertainty
-            Estimates  StdErr     Wald  p-value
-    pi            0.789  0.0231   34.210   0.0000
+              Estimates  StdErr     Wald  p-value
+    pi            0.800  0.0198   40.499   0.0000
     -----------------------------------------------------------------------
     Feeling
-            Estimates  StdErr     Wald  p-value
-    constant      2.299  0.1001   22.976   0.0000
-    W1           -0.407  0.0139  -29.239   0.0000
-    W2           -0.044  0.0121   -3.681   0.0002
+              Estimates  StdErr     Wald  p-value
+    constant      2.353  0.1001   23.514   0.0000
+    W1            0.194  0.0138   14.034   0.0000
+    W2           -5.076  0.1454  -34.909   0.0000
     =======================================================================
-    Dissimilarity = 0.0488
-    Loglik(MOD)   = -1963.868
+    Dissimilarity = 0.0292
+    Loglik(MOD)   = -1807.052
     Loglik(uni)   = -2302.585
-    Mean-loglik   = -1.964
+    Mean-loglik   = -1.807
     -----------------------------------------------------------------------
-    AIC = 3935.74
-    BIC = 3955.37
+    AIC = 3622.10
+    BIC = 3641.74
     =======================================================================
-    Elapsed time=0.10014 seconds =====>>> Sun Aug 11 22:02:15 2024
+    Elapsed time=0.09656 seconds =====>>> Thu Aug 15 18:31:21 2024
     =======================================================================
 
 .. image:: /img/cub0wmle.png
@@ -398,7 +526,8 @@ Then, we'll add the drawn sample to ``df`` DataFrame and will estimate the param
 CUBSH family
 ------------
 
-Basic family of the class CUB. See the references for details.
+Basic family of the class CUB with shelter effect. 
+See the references for details.
 
 References
 ^^^^^^^^^^
@@ -426,6 +555,20 @@ where :math:`\pi` and :math:`\xi`` are the parameters for respectively the *unce
 
 With covariates
 ^^^^^^^^^^^^^^^
+
+.. math::
+    \Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i, \pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)\left(\pi_i b_r(\xi_i) + \frac{1-\pi_i}{m} \right)
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \pi_i = \dfrac{1}{1+\exp\{-\pmb y_i \pmb \beta\}}
+        \\
+        \xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}
+        \\
+        \delta_i = \dfrac{1}{1+\exp\{-\pmb x_i \pmb \omega\}}
+    \end{array}
+    \right.
 
 CUSH family
 -----------
