@@ -10,7 +10,7 @@ Currently, six families have been defined and implemented:
 - CUB (Combination of Uniform and Binomial)
 - CUBSH (CUB + a SHelter choice)
 - CUSH (Combination of Uniform and a SHelter choice)
-- 2-CUSH (Combination of Uniform and 2 SHelter choices)
+- CUSH2 (Combination of Uniform and 2 SHelter choices)
 - CUBE (Combination of Uniform and BEta-binomial)
 - IHG (Inverse HyperGeometric)
 
@@ -19,61 +19,91 @@ For each family, a model can be defined with or without covariates for one or mo
 Details about each family and examples are provided in the following chapters.
 
 Even if each family has got its own *Maximum Likelihood Estimation* function ``mle()`` that 
-could be called directly, for example ``cub.mle()``, the function ``gem.from_formula()`` provides a 
-simplified and generalised procedure for MLE. In this manual ``gem`` will be used for the examples.
+could be called directly, for example ``cub.mle()``, the function ``gem.estimate()`` provides a 
+simplified and generalised procedure for MLE.
 
-On the contrary, a general function to draw random samples has not been currently 
-implemented yet and the function must be called from the module of the corresponding family, 
-for example ``cube_ywz.draw()``.
+Similarly, even if each family has got its own *Random Sample Drawing* function ``draw()`` that 
+could be called directly, for example ``cub.draw()``, the function ``gem.draw()`` provides a 
+simplified and generalised procedure to draw a random sample.
+
+In this manual ``gem`` functions will be used for the examples.
 
 The last chapter, shows the basic usage for the tool ``multicub``.
 
-GEM syntax
-----------
+GeM usage
+---------
 
-The function ``gem.from_formula()`` is the main function that simplifies the estimation and 
-validation of a model from an observed sample, calling for the corresponding ``.mle()`` function for
-the specified family. 
+GeM (Generalized Mixture) is the main module of ``cubmods`` package, which provides simplified and
+generalized functions to both estimate a model from an observed sample and draw a random sample from a 
+specified model.
 
-The number of ordinal categories ``m`` is internally retrieved if not specified 
-(taking the maximum observed category)
-but it is advisable to pass it as an argument to the call if some category has zero frequency.
+The function ``gem.estimate()`` is the main function for the estimation and 
+validation of a model from an observed sample, calling for the corresponding ``.mle()`` function of
+the specified family, with or without covariates.
 
-A ``pandas`` DataFrame must be passed to the function, with the *kwarg* ``df=``.
+The function ``gem.draw()`` is the main function for drawing a random sample from a specified model, 
+calling for the corresponding ``.draw()`` function of the corresponding family,
+with or without covariates.
 
-The function needs a *formula* that is a **string** specifying the name of the ordinal 
-variable (before the ``~`` symbol)
-and of the covariates (after the symbol ``~``). Covariates for each component are
-separated by the symbol ``|`` (pipeline).
-The symbol ``0`` indicates no covariates for a certain component. 
+The *formula* syntax
+^^^^^^^^^^^^^^^^^^^^
+
+Both functions need a ``formula`` that is a **string** specifying the name of the ordinal 
+variable (before the tilde ``~`` symbol)
+and of the covariates of the components (after the tilde symbol ``~``).
+Covariates for each component are
+separated by the pipeline symbol ``|``.
+The *zero* symbol ``0`` indicates no covariates for a certain component. 
+The *one* symbol ``1`` indicates that we want to estimate the parameter of the constant term only.
 If more covariates explain a single component, the symbol ``+`` concatenates the names.
-Qualitative variables names, must be placed between brackets ``()`` leaded by a ``C``.
+Qualitative variables names, must be placed between brackets ``()`` leaded by a ``C``,
+for example ``C(varname)``.
 
 .. warning::
 
-    No columns in the DataFrame must be named ``constant`` or ``0``.
-    In the column names, are only allowed letters, numbers, and underscores ``_``.
-    No space is allowed in the column names.
+    No columns in the DataFrame should be named ``constant``, ``1`` or ``0``.
+    In the column names, only letters, numbers, and underscores ``_`` are allowed.
+    Spaces **SHOULD NOT BE** used in the column names, but replaced with ``_``.
 
 For example, let's suppose we have a DataFrame where ``response`` is the ordinal variable, 
 ``age`` and ``sex`` are a quantitative and a qualitative variable to explain the *feeling* component
-only in a ``cub`` family model. The formula will be ``formula = "response ~ 0 | age + C(sex) | 0"``.
+only in a ``cub`` family model. The formula will be ``formula = "response ~ 0 | age + C(sex)"``.
 
 Notice that spaces are allowed between symbols and variable names in the formula but they aren't
-needed: a formula ``ord ~ X | Y1 + Y2 | Z`` is the same that ``ord~X|Y1+Y2|Z``.
+needed: a formula ``"ord ~ X | Y1 + Y2 | Z"`` is the same as ``"ord~X|Y1+Y2|Z"``.
 
 .. warning::
 
-    Currently, the number of fields separated by ``|`` in a formula **MUST BE** three
-    even if the specified model family has less parameters 
-    (such as ``ihg``, ``cub``, ``cush``, and ``cush2``). In these cases, the
-    unused fields should always be ``0``.
+    The number of fields separated by the pipeline ``|`` in a formula **MUST BE** equal to
+    the number of parameters specifying the model family. Therefore: two for ``cub`` and ``cush2``, 
+    three for ``cube`` and ``cub`` with shelter effect, one for ``cush`` and ``ihg``.
+
+Arguments of ``estimate`` and ``draw``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Within the function ``estimate`` the number of ordinal categories ``m`` is internally retrieved if not specified 
+(taking the maximum observed category)
+but it is advisable to pass it as an argument to the call if some category has zero frequency.
+Within the function ``draw`` instead, the number of ordinal categories ``m`` must always be specified.
+
+A ``pandas`` DataFrame must always be passed to the function ``estimate``, with the *kwarg* ``df``. 
+It should contain, at least, a column of the observed sample and the columns of the covariates (if any).
+If no ``df`` is passed to the function ``draw`` for a model without covariates
+instead, an empty DataFrame will be created.
+
+The number ``n`` of ordinal responses to be drawn should always be specified in the function ``draw``
+for models without covariates. For model with covariates instead, ``n`` is not effective because
+the number of drawn ordinal responsed will be equal to the passed DataFrame rows.
+
+A ``seed`` could be specified for the function ``draw`` to ensure reproducibility.
+Notice that, for models with covariates, ``seed`` cannot be ``0`` (in case, it will be
+automatically set to ``1``).
 
 If no ``model=`` *kwarg* is declared, the function takes ``"cub"`` as default.
 Currently implemented models are: ``"cub"`` (default), ``"cush"``, ``"cube"``,
 ``"ihg"``, and ``"cush2"``. CUB models with shelter effect, are automatically
 implemented using ``model="cub"`` and specifying a shelter choice with the 
-*kwarg* ``sh=``.
+*kwarg* ``sh``.
 
 If  ``model="cub"`` (or nothing), then a CUB mixture model is fitted to the data to explain uncertainty, 
 feeling and possible shelter effect by further passing the extra argument ``sh`` for the corresponding category.
@@ -81,12 +111,19 @@ Subjects' covariates can be included by specifying covariates matrices in the
 formula as ``ordinal~Y|W|X``,  to explain uncertainty (Y), feeling (W) or shelter (X). 
 Notice that
 covariates for shelter effect can be included only if specified for both feeling and uncertainty (GeCUB models). 
+Nevertheless, the symbol ``1`` could be used to specify a different combination of components with covariates.
+For example, if we want to specify a CUB model with covariate ``cov`` for uncertainty only, we could pass the
+formula ``ordinal ~ cov | 1 | 1``: in this case, for feeling and shelter effect, the constant terms only
+(:math:`\gamma_0` and :math:`\omega_0`) will be estimated and the values of the estimated :math:`\xi` and
+:math:`\delta` could be computed as :math:`\hat\xi=\mathrm{expit}(\hat\gamma_0)` and 
+:math:`\hat\delta=\mathrm{expit}(\hat\omega_0)`.
 
 If ``family="cube"``, then a CUBE mixture model (Combination of Uniform and Beta-Binomial) is fitted to the data
 to explain uncertainty, feeling and overdispersion.   Subjects' covariates can be also included to explain the
 feeling component or all the three components by  specifying covariates matrices in the Formula as 
 ``ordinal~Y|W|Z`` to explain uncertainty (Y), feeling (W) or 
-overdispersion (Z). 
+overdispersion (Z). For different combinations of components with covariates, the symbol ``1`` can be used.
+Notice that :math:`\hat\phi=e^{-\hat\alpha_0}`.
 
 If ``family="ihg"``, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
 CUBE models. The parameter :math:`\theta` gives the probability of observing 
@@ -94,24 +131,41 @@ the first category and is therefore a direct measure of preference, attraction, 
 investigated item. This is the reason why :math:`\theta` is customarily referred to as the 
 preference parameter of the 
 IHG model. Covariates for the preference parameter :math:`\theta` have to be specified 
-in matrix form in the Formula as ``ordinal~U|0|0``.
+in matrix form in the Formula as ``ordinal~V``.
 
 If ``family="cush"``, then a CUSH model is fitted to the data (Combination of Uniform and SHelter effect).
 The category corresponding to the inflation should be
 passed via argument ``sh``. Covariates for the shelter parameter :math:`\delta`
-are specified in matrix form Formula as ``ordinal~X|0|0``.
+are specified in matrix form Formula as ``ordinal~X``.
 
 If ``family="cush2"``, then a 2-CUSH model is fitted to the data (Combination of Uniform and 2 SHelter choices).
 The categories corresponding to the inflation should be
 passed as a list (or array) via the same argument ``sh``. 
 Covariates for the shelter parameters :math:`(\delta_1, \delta_2)`
-are specified in matrix form Formula as ``ordinal~X1|X2|0``. Notice that, to specify covariates for a
-single shelter choice, the formula should be ``ordinal~X1|0|0`` and not ``ordinal~0|X2|0``.
+are specified in matrix form Formula as ``ordinal~X1|X2``. Notice that, to specify covariates for a
+single shelter choice, the formula should be ``ordinal~X1|0`` and not ``ordinal~0|X2``.
 
 Extra arguments include the maximum 
 number of iterations ``maxiter`` for the optimization algorithm, 
 the required error tolerance ``tol``, and a dictionary of parameters of a known model
 ``gen_pars`` to be compared with the estimates.
+
+Methods of ``estimate`` and ``draw``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For both functions, the methods ``.summary()`` and ``.plot()`` are always available calling the
+main functions to print a summary and plot the results, respectively. For ``.plot()`` arguments
+and options, see the ``CUBsample`` Class (for object returned by ``draw``) 
+and the extended ``CUBres`` Classes of the corresponding
+family (for objects returned by ``estimate``).
+
+Calling the method ``.save(fname)`` the object can be saved on a file called ``fname.cub.sample``
+(for ``draw``) or ``fname.cub.fit`` (for ``estimate``).
+
+Saved objects can then be loaded using the function ``general.load(fname)``.
+
+Attributes of ``estimate`` and ``draw``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 CUB family
 ----------

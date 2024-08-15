@@ -349,90 +349,136 @@ random samples can be drawn from a specified model.</p>
 <li><p>CUB (Combination of Uniform and Binomial)</p></li>
 <li><p>CUBSH (CUB + a SHelter choice)</p></li>
 <li><p>CUSH (Combination of Uniform and a SHelter choice)</p></li>
-<li><p>2-CUSH (Combination of Uniform and 2 SHelter choices)</p></li>
+<li><p>CUSH2 (Combination of Uniform and 2 SHelter choices)</p></li>
 <li><p>CUBE (Combination of Uniform and BEta-binomial)</p></li>
 <li><p>IHG (Inverse HyperGeometric)</p></li>
 </ul>
 <p>For each family, a model can be defined with or without covariates for one or more parameters.</p>
 <p>Details about each family and examples are provided in the following chapters.</p>
 <p>Even if each family has got its own <em>Maximum Likelihood Estimation</em> function <code class="docutils literal notranslate"><span class="pre">mle()</span></code> that
-could be called directly, for example <code class="docutils literal notranslate"><span class="pre">cub.mle()</span></code>, the function <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code> provides a
-simplified and generalised procedure for MLE. In this manual <code class="docutils literal notranslate"><span class="pre">gem</span></code> will be used for the examples.</p>
-<p>On the contrary, a general function to draw random samples has not been currently
-implemented yet and the function must be called from the module of the corresponding family,
-for example <code class="docutils literal notranslate"><span class="pre">cube_ywz.draw()</span></code>.</p>
+could be called directly, for example <code class="docutils literal notranslate"><span class="pre">cub.mle()</span></code>, the function <code class="docutils literal notranslate"><span class="pre">gem.estimate()</span></code> provides a
+simplified and generalised procedure for MLE.</p>
+<p>Similarly, even if each family has got its own <em>Random Sample Drawing</em> function <code class="docutils literal notranslate"><span class="pre">draw()</span></code> that
+could be called directly, for example <code class="docutils literal notranslate"><span class="pre">cub.draw()</span></code>, the function <code class="docutils literal notranslate"><span class="pre">gem.draw()</span></code> provides a
+simplified and generalised procedure to draw a random sample.</p>
+<p>In this manual <code class="docutils literal notranslate"><span class="pre">gem</span></code> functions will be used for the examples.</p>
 <p>The last chapter, shows the basic usage for the tool <code class="docutils literal notranslate"><span class="pre">multicub</span></code>.</p>
-<section id="gem-syntax">
-<h2>GEM syntax<a class="headerlink" href="#gem-syntax" title="Permalink to this heading">#</a></h2>
-<p>The function <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code> is the main function that simplifies the estimation and
-validation of a model from an observed sample, calling for the corresponding <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function for
-the specified family.</p>
-<p>The number of ordinal categories <code class="docutils literal notranslate"><span class="pre">m</span></code> is internally retrieved if not specified
-(taking the maximum observed category)
-but it is advisable to pass it as an argument to the call if some category has zero frequency.</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame must be passed to the function, with the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">df=</span></code>.</p>
-<p>The function needs a <em>formula</em> that is a <strong>string</strong> specifying the name of the ordinal
-variable (before the <code class="docutils literal notranslate"><span class="pre">~</span></code> symbol)
-and of the covariates (after the symbol <code class="docutils literal notranslate"><span class="pre">~</span></code>). Covariates for each component are
-separated by the symbol <code class="docutils literal notranslate"><span class="pre">|</span></code> (pipeline).
-The symbol <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates no covariates for a certain component.
+<section id="gem-usage">
+<h2>GeM usage<a class="headerlink" href="#gem-usage" title="Permalink to this heading">#</a></h2>
+<p>GeM (Generalized Mixture) is the main module of <code class="docutils literal notranslate"><span class="pre">cubmods</span></code> package, which provides simplified and
+generalized functions to both estimate a model from an observed sample and draw a random sample from a
+specified model.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">gem.estimate()</span></code> is the main function for the estimation and
+validation of a model from an observed sample, calling for the corresponding <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function of
+the specified family, with or without covariates.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">gem.draw()</span></code> is the main function for drawing a random sample from a specified model,
+calling for the corresponding <code class="docutils literal notranslate"><span class="pre">.draw()</span></code> function of the corresponding family,
+with or without covariates.</p>
+<section id="the-formula-syntax">
+<h3>The <em>formula</em> syntax<a class="headerlink" href="#the-formula-syntax" title="Permalink to this heading">#</a></h3>
+<p>Both functions need a <code class="docutils literal notranslate"><span class="pre">formula</span></code> that is a <strong>string</strong> specifying the name of the ordinal
+variable (before the tilde <code class="docutils literal notranslate"><span class="pre">~</span></code> symbol)
+and of the covariates of the components (after the tilde symbol <code class="docutils literal notranslate"><span class="pre">~</span></code>).
+Covariates for each component are
+separated by the pipeline symbol <code class="docutils literal notranslate"><span class="pre">|</span></code>.
+The <em>zero</em> symbol <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates no covariates for a certain component.
+The <em>one</em> symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> indicates that we want to estimate the parameter of the constant term only.
 If more covariates explain a single component, the symbol <code class="docutils literal notranslate"><span class="pre">+</span></code> concatenates the names.
-Qualitative variables names, must be placed between brackets <code class="docutils literal notranslate"><span class="pre">()</span></code> leaded by a <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
+Qualitative variables names, must be placed between brackets <code class="docutils literal notranslate"><span class="pre">()</span></code> leaded by a <code class="docutils literal notranslate"><span class="pre">C</span></code>,
+for example <code class="docutils literal notranslate"><span class="pre">C(varname)</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>No columns in the DataFrame must be named <code class="docutils literal notranslate"><span class="pre">constant</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>.
-In the column names, are only allowed letters, numbers, and underscores <code class="docutils literal notranslate"><span class="pre">_</span></code>.
-No space is allowed in the column names.</p>
+<p>No columns in the DataFrame should be named <code class="docutils literal notranslate"><span class="pre">constant</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>.
+In the column names, only letters, numbers, and underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> are allowed.
+Spaces <strong>SHOULD NOT BE</strong> used in the column names, but replaced with <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p>
 </div>
 <p>For example, let’s suppose we have a DataFrame where <code class="docutils literal notranslate"><span class="pre">response</span></code> is the ordinal variable,
 <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code> are a quantitative and a qualitative variable to explain the <em>feeling</em> component
-only in a <code class="docutils literal notranslate"><span class="pre">cub</span></code> family model. The formula will be <code class="docutils literal notranslate"><span class="pre">formula</span> <span class="pre">=</span> <span class="pre">&quot;response</span> <span class="pre">~</span> <span class="pre">0</span> <span class="pre">|</span> <span class="pre">age</span> <span class="pre">+</span> <span class="pre">C(sex)</span> <span class="pre">|</span> <span class="pre">0&quot;</span></code>.</p>
+only in a <code class="docutils literal notranslate"><span class="pre">cub</span></code> family model. The formula will be <code class="docutils literal notranslate"><span class="pre">formula</span> <span class="pre">=</span> <span class="pre">&quot;response</span> <span class="pre">~</span> <span class="pre">0</span> <span class="pre">|</span> <span class="pre">age</span> <span class="pre">+</span> <span class="pre">C(sex)&quot;</span></code>.</p>
 <p>Notice that spaces are allowed between symbols and variable names in the formula but they aren’t
-needed: a formula <code class="docutils literal notranslate"><span class="pre">ord</span> <span class="pre">~</span> <span class="pre">X</span> <span class="pre">|</span> <span class="pre">Y1</span> <span class="pre">+</span> <span class="pre">Y2</span> <span class="pre">|</span> <span class="pre">Z</span></code> is the same that <code class="docutils literal notranslate"><span class="pre">ord~X|Y1+Y2|Z</span></code>.</p>
+needed: a formula <code class="docutils literal notranslate"><span class="pre">&quot;ord</span> <span class="pre">~</span> <span class="pre">X</span> <span class="pre">|</span> <span class="pre">Y1</span> <span class="pre">+</span> <span class="pre">Y2</span> <span class="pre">|</span> <span class="pre">Z&quot;</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">&quot;ord~X|Y1+Y2|Z&quot;</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Currently, the number of fields separated by <code class="docutils literal notranslate"><span class="pre">|</span></code> in a formula <strong>MUST BE</strong> three
-even if the specified model family has less parameters
-(such as <code class="docutils literal notranslate"><span class="pre">ihg</span></code>, <code class="docutils literal notranslate"><span class="pre">cub</span></code>, <code class="docutils literal notranslate"><span class="pre">cush</span></code>, and <code class="docutils literal notranslate"><span class="pre">cush2</span></code>). In these cases, the
-unused fields should always be <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>The number of fields separated by the pipeline <code class="docutils literal notranslate"><span class="pre">|</span></code> in a formula <strong>MUST BE</strong> equal to
+the number of parameters specifying the model family. Therefore: two for <code class="docutils literal notranslate"><span class="pre">cub</span></code> and <code class="docutils literal notranslate"><span class="pre">cush2</span></code>,
+three for <code class="docutils literal notranslate"><span class="pre">cube</span></code> and <code class="docutils literal notranslate"><span class="pre">cub</span></code> with shelter effect, one for <code class="docutils literal notranslate"><span class="pre">cush</span></code> and <code class="docutils literal notranslate"><span class="pre">ihg</span></code>.</p>
 </div>
+</section>
+<section id="arguments-of-estimate-and-draw">
+<h3>Arguments of <code class="docutils literal notranslate"><span class="pre">estimate</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code><a class="headerlink" href="#arguments-of-estimate-and-draw" title="Permalink to this heading">#</a></h3>
+<p>Within the function <code class="docutils literal notranslate"><span class="pre">estimate</span></code> the number of ordinal categories <code class="docutils literal notranslate"><span class="pre">m</span></code> is internally retrieved if not specified
+(taking the maximum observed category)
+but it is advisable to pass it as an argument to the call if some category has zero frequency.
+Within the function <code class="docutils literal notranslate"><span class="pre">draw</span></code> instead, the number of ordinal categories <code class="docutils literal notranslate"><span class="pre">m</span></code> must always be specified.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame must always be passed to the function <code class="docutils literal notranslate"><span class="pre">estimate</span></code>, with the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">df</span></code>.
+It should contain, at least, a column of the observed sample and the columns of the covariates (if any).
+If no <code class="docutils literal notranslate"><span class="pre">df</span></code> is passed to the function <code class="docutils literal notranslate"><span class="pre">draw</span></code> for a model without covariates
+instead, an empty DataFrame will be created.</p>
+<p>The number <code class="docutils literal notranslate"><span class="pre">n</span></code> of ordinal responses to be drawn should always be specified in the function <code class="docutils literal notranslate"><span class="pre">draw</span></code>
+for models without covariates. For model with covariates instead, <code class="docutils literal notranslate"><span class="pre">n</span></code> is not effective because
+the number of drawn ordinal responsed will be equal to the passed DataFrame rows.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">seed</span></code> could be specified for the function <code class="docutils literal notranslate"><span class="pre">draw</span></code> to ensure reproducibility.
+Notice that, for models with covariates, <code class="docutils literal notranslate"><span class="pre">seed</span></code> cannot be <code class="docutils literal notranslate"><span class="pre">0</span></code> (in case, it will be
+automatically set to <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p>
 <p>If no <code class="docutils literal notranslate"><span class="pre">model=</span></code> <em>kwarg</em> is declared, the function takes <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> as default.
 Currently implemented models are: <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;cush&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cube&quot;</span></code>,
 <code class="docutils literal notranslate"><span class="pre">&quot;ihg&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;cush2&quot;</span></code>. CUB models with shelter effect, are automatically
 implemented using <code class="docutils literal notranslate"><span class="pre">model=&quot;cub&quot;</span></code> and specifying a shelter choice with the
-<em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh=</span></code>.</p>
+<em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code>.</p>
 <p>If  <code class="docutils literal notranslate"><span class="pre">model=&quot;cub&quot;</span></code> (or nothing), then a CUB mixture model is fitted to the data to explain uncertainty,
 feeling and possible shelter effect by further passing the extra argument <code class="docutils literal notranslate"><span class="pre">sh</span></code> for the corresponding category.
 Subjects’ covariates can be included by specifying covariates matrices in the
 formula as <code class="docutils literal notranslate"><span class="pre">ordinal~Y|W|X</span></code>,  to explain uncertainty (Y), feeling (W) or shelter (X).
 Notice that
-covariates for shelter effect can be included only if specified for both feeling and uncertainty (GeCUB models).</p>
+covariates for shelter effect can be included only if specified for both feeling and uncertainty (GeCUB models).
+Nevertheless, the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> could be used to specify a different combination of components with covariates.
+For example, if we want to specify a CUB model with covariate <code class="docutils literal notranslate"><span class="pre">cov</span></code> for uncertainty only, we could pass the
+formula <code class="docutils literal notranslate"><span class="pre">ordinal</span> <span class="pre">~</span> <span class="pre">cov</span> <span class="pre">|</span> <span class="pre">1</span> <span class="pre">|</span> <span class="pre">1</span></code>: in this case, for feeling and shelter effect, the constant terms only
+(<span class="math notranslate nohighlight">\(\gamma_0\)</span> and <span class="math notranslate nohighlight">\(\omega_0\)</span>) will be estimated and the values of the estimated <span class="math notranslate nohighlight">\(\xi\)</span> and
+<span class="math notranslate nohighlight">\(\delta\)</span> could be computed as <span class="math notranslate nohighlight">\(\hat\xi=\mathrm{expit}(\hat\gamma_0)\)</span> and
+<span class="math notranslate nohighlight">\(\hat\delta=\mathrm{expit}(\hat\omega_0)\)</span>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;cube&quot;</span></code>, then a CUBE mixture model (Combination of Uniform and Beta-Binomial) is fitted to the data
 to explain uncertainty, feeling and overdispersion.   Subjects’ covariates can be also included to explain the
 feeling component or all the three components by  specifying covariates matrices in the Formula as
 <code class="docutils literal notranslate"><span class="pre">ordinal~Y|W|Z</span></code> to explain uncertainty (Y), feeling (W) or
-overdispersion (Z).</p>
+overdispersion (Z). For different combinations of components with covariates, the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> can be used.
+Notice that <span class="math notranslate nohighlight">\(\hat\phi=e^{-\hat\alpha_0}\)</span>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;ihg&quot;</span></code>, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
 CUBE models. The parameter <span class="math notranslate nohighlight">\(\theta\)</span> gives the probability of observing
 the first category and is therefore a direct measure of preference, attraction, pleasantness toward the
 investigated item. This is the reason why <span class="math notranslate nohighlight">\(\theta\)</span> is customarily referred to as the
 preference parameter of the
 IHG model. Covariates for the preference parameter <span class="math notranslate nohighlight">\(\theta\)</span> have to be specified
-in matrix form in the Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~U|0|0</span></code>.</p>
+in matrix form in the Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~V</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;cush&quot;</span></code>, then a CUSH model is fitted to the data (Combination of Uniform and SHelter effect).
 The category corresponding to the inflation should be
 passed via argument <code class="docutils literal notranslate"><span class="pre">sh</span></code>. Covariates for the shelter parameter <span class="math notranslate nohighlight">\(\delta\)</span>
-are specified in matrix form Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~X|0|0</span></code>.</p>
+are specified in matrix form Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~X</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;cush2&quot;</span></code>, then a 2-CUSH model is fitted to the data (Combination of Uniform and 2 SHelter choices).
 The categories corresponding to the inflation should be
 passed as a list (or array) via the same argument <code class="docutils literal notranslate"><span class="pre">sh</span></code>.
 Covariates for the shelter parameters <span class="math notranslate nohighlight">\((\delta_1, \delta_2)\)</span>
-are specified in matrix form Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~X1|X2|0</span></code>. Notice that, to specify covariates for a
-single shelter choice, the formula should be <code class="docutils literal notranslate"><span class="pre">ordinal~X1|0|0</span></code> and not <code class="docutils literal notranslate"><span class="pre">ordinal~0|X2|0</span></code>.</p>
+are specified in matrix form Formula as <code class="docutils literal notranslate"><span class="pre">ordinal~X1|X2</span></code>. Notice that, to specify covariates for a
+single shelter choice, the formula should be <code class="docutils literal notranslate"><span class="pre">ordinal~X1|0</span></code> and not <code class="docutils literal notranslate"><span class="pre">ordinal~0|X2</span></code>.</p>
 <p>Extra arguments include the maximum
 number of iterations <code class="docutils literal notranslate"><span class="pre">maxiter</span></code> for the optimization algorithm,
 the required error tolerance <code class="docutils literal notranslate"><span class="pre">tol</span></code>, and a dictionary of parameters of a known model
 <code class="docutils literal notranslate"><span class="pre">gen_pars</span></code> to be compared with the estimates.</p>
+</section>
+<section id="methods-of-estimate-and-draw">
+<h3>Methods of <code class="docutils literal notranslate"><span class="pre">estimate</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code><a class="headerlink" href="#methods-of-estimate-and-draw" title="Permalink to this heading">#</a></h3>
+<p>For both functions, the methods <code class="docutils literal notranslate"><span class="pre">.summary()</span></code> and <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> are always available calling the
+main functions to print a summary and plot the results, respectively. For <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> arguments
+and options, see the <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> Class (for object returned by <code class="docutils literal notranslate"><span class="pre">draw</span></code>)
+and the extended <code class="docutils literal notranslate"><span class="pre">CUBres</span></code> Classes of the corresponding
+family (for objects returned by <code class="docutils literal notranslate"><span class="pre">estimate</span></code>).</p>
+<p>Calling the method <code class="docutils literal notranslate"><span class="pre">.save(fname)</span></code> the object can be saved on a file called <code class="docutils literal notranslate"><span class="pre">fname.cub.sample</span></code>
+(for <code class="docutils literal notranslate"><span class="pre">draw</span></code>) or <code class="docutils literal notranslate"><span class="pre">fname.cub.fit</span></code> (for <code class="docutils literal notranslate"><span class="pre">estimate</span></code>).</p>
+<p>Saved objects can then be loaded using the function <code class="docutils literal notranslate"><span class="pre">general.load(fname)</span></code>.</p>
+</section>
+<section id="attributes-of-estimate-and-draw">
+<h3>Attributes of <code class="docutils literal notranslate"><span class="pre">estimate</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code><a class="headerlink" href="#attributes-of-estimate-and-draw" title="Permalink to this heading">#</a></h3>
+</section>
 </section>
 <section id="cub-family">
 <h2>CUB family<a class="headerlink" href="#cub-family" title="Permalink to this heading">#</a></h2>
@@ -727,7 +773,13 @@ for responses with <span class="math notranslate nohighlight">\(m\)</span> ordin
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gem-syntax">GEM syntax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gem-usage">GeM usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-formula-syntax">The <em>formula</em> syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments-of-estimate-and-draw">Arguments of <code class="docutils literal notranslate"><span class="pre">estimate</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-of-estimate-and-draw">Methods of <code class="docutils literal notranslate"><span class="pre">estimate</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes-of-estimate-and-draw">Attributes of <code class="docutils literal notranslate"><span class="pre">estimate</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cub-family">CUB family</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#without-covariates">Without covariates</a></li>

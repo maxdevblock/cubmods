@@ -61,7 +61,7 @@
 
 
 \title{CUBmods}
-\date{Aug 11, 2024}
+\date{Aug 15, 2024}
 \release{0.0.1}
 \author{Massimo Pierini}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -162,7 +162,7 @@ CUSH (Combination of Uniform and a SHelter choice)
 
 \item {} 
 \sphinxAtStartPar
-2\sphinxhyphen{}CUSH (Combination of Uniform and 2 SHelter choices)
+CUSH2 (Combination of Uniform and 2 SHelter choices)
 
 \item {} 
 \sphinxAtStartPar
@@ -182,24 +182,72 @@ Details about each family and examples are provided in the following chapters.
 
 \sphinxAtStartPar
 Even if each family has got its own \sphinxstyleemphasis{Maximum Likelihood Estimation} function \sphinxcode{\sphinxupquote{mle()}} that
-could be called directly, for example \sphinxcode{\sphinxupquote{cub.mle()}}, the function \sphinxcode{\sphinxupquote{gem.from\_formula()}} provides a
-simplified and generalised procedure for MLE. In this manual \sphinxcode{\sphinxupquote{gem}} will be used for the examples.
+could be called directly, for example \sphinxcode{\sphinxupquote{cub.mle()}}, the function \sphinxcode{\sphinxupquote{gem.estimate()}} provides a
+simplified and generalised procedure for MLE.
 
 \sphinxAtStartPar
-On the contrary, a general function to draw random samples has not been currently
-implemented yet and the function must be called from the module of the corresponding family,
-for example \sphinxcode{\sphinxupquote{cube\_ywz.draw()}}.
+Similarly, even if each family has got its own \sphinxstyleemphasis{Random Sample Drawing} function \sphinxcode{\sphinxupquote{draw()}} that
+could be called directly, for example \sphinxcode{\sphinxupquote{cub.draw()}}, the function \sphinxcode{\sphinxupquote{gem.draw()}} provides a
+simplified and generalised procedure to draw a random sample.
+
+\sphinxAtStartPar
+In this manual \sphinxcode{\sphinxupquote{gem}} functions will be used for the examples.
 
 \sphinxAtStartPar
 The last chapter, shows the basic usage for the tool \sphinxcode{\sphinxupquote{multicub}}.
 
 
-\section{GEM syntax}
-\label{\detokenize{manual:gem-syntax}}
+\section{GeM usage}
+\label{\detokenize{manual:gem-usage}}
 \sphinxAtStartPar
-The function \sphinxcode{\sphinxupquote{gem.from\_formula()}} is the main function that simplifies the estimation and
-validation of a model from an observed sample, calling for the corresponding \sphinxcode{\sphinxupquote{.mle()}} function for
-the specified family.
+GeM (Generalized Mixture) is the main module of \sphinxcode{\sphinxupquote{cubmods}} package, which provides simplified and
+generalized functions to both estimate a model from an observed sample and draw a random sample from a
+specified model.
+
+\sphinxAtStartPar
+The function \sphinxcode{\sphinxupquote{gem.estimate()}} is the main function for the estimation and
+validation of a model from an observed sample, calling for the corresponding \sphinxcode{\sphinxupquote{.mle()}} function of
+the specified family, with or without covariates.
+
+\sphinxAtStartPar
+The function \sphinxcode{\sphinxupquote{gem.draw()}} is the main function for drawing a random sample from a specified model,
+calling for the corresponding \sphinxcode{\sphinxupquote{.draw()}} function of the corresponding family,
+with or without covariates.
+
+\sphinxAtStartPar
+Both functions need a \sphinxcode{\sphinxupquote{formula}} that is a \sphinxstylestrong{string} specifying the name of the ordinal
+variable (before the tilde \sphinxcode{\sphinxupquote{\textasciitilde{}}} symbol)
+and of the covariates of the components (after the tilde symbol \sphinxcode{\sphinxupquote{\textasciitilde{}}}).
+Covariates for each component are
+separated by the pipeline symbol \sphinxcode{\sphinxupquote{|}}.
+The \sphinxstyleemphasis{zero} symbol \sphinxcode{\sphinxupquote{0}} indicates no covariates for a certain component.
+The \sphinxstyleemphasis{one} symbol \sphinxcode{\sphinxupquote{1}} indicates that we want to estimate the parameter of constant term only.
+If more covariates explain a single component, the symbol \sphinxcode{\sphinxupquote{+}} concatenates the names.
+Qualitative variables names, must be placed between brackets \sphinxcode{\sphinxupquote{()}} leaded by a \sphinxcode{\sphinxupquote{C}},
+for example \sphinxcode{\sphinxupquote{C(varname)}}.
+
+\begin{sphinxadmonition}{warning}{Warning:}
+\sphinxAtStartPar
+No columns in the DataFrame should be named \sphinxcode{\sphinxupquote{constant}}, \sphinxcode{\sphinxupquote{1}} or \sphinxcode{\sphinxupquote{0}}.
+In the column names, are only allowed letters, numbers, and underscores \sphinxcode{\sphinxupquote{\_}}.
+Spaces are not allowed in the column names.
+\end{sphinxadmonition}
+
+\sphinxAtStartPar
+For example, let’s suppose we have a DataFrame where \sphinxcode{\sphinxupquote{response}} is the ordinal variable,
+\sphinxcode{\sphinxupquote{age}} and \sphinxcode{\sphinxupquote{sex}} are a quantitative and a qualitative variable to explain the \sphinxstyleemphasis{feeling} component
+only in a \sphinxcode{\sphinxupquote{cub}} family model. The formula will be \sphinxcode{\sphinxupquote{formula = "response \textasciitilde{} 0 | age + C(sex)"}}.
+
+\sphinxAtStartPar
+Notice that spaces are allowed between symbols and variable names in the formula but they aren’t
+needed: a formula \sphinxcode{\sphinxupquote{"ord \textasciitilde{} X | Y1 + Y2 | Z"}} is the same as \sphinxcode{\sphinxupquote{"ord\textasciitilde{}X|Y1+Y2|Z"}}.
+
+\begin{sphinxadmonition}{warning}{Warning:}
+\sphinxAtStartPar
+The number of fields separated by pipeline \sphinxcode{\sphinxupquote{|}} in a formula \sphinxstylestrong{MUST BE} equal to
+the number of parameters specifying the model family. Therefore: two for \sphinxcode{\sphinxupquote{cub}} and \sphinxcode{\sphinxupquote{cush2}},
+three for \sphinxcode{\sphinxupquote{cube}} and \sphinxcode{\sphinxupquote{cub}} with shelter effect, one for \sphinxcode{\sphinxupquote{cush}} and \sphinxcode{\sphinxupquote{ihg}}.
+\end{sphinxadmonition}
 
 \sphinxAtStartPar
 The number of ordinal categories \sphinxcode{\sphinxupquote{m}} is internally retrieved if not specified
@@ -208,39 +256,6 @@ but it is advisable to pass it as an argument to the call if some category has z
 
 \sphinxAtStartPar
 A \sphinxcode{\sphinxupquote{pandas}} DataFrame must be passed to the function, with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{df=}}.
-
-\sphinxAtStartPar
-The function needs a \sphinxstyleemphasis{formula} that is a \sphinxstylestrong{string} specifying the name of the ordinal
-variable (before the \sphinxcode{\sphinxupquote{\textasciitilde{}}} symbol)
-and of the covariates (after the symbol \sphinxcode{\sphinxupquote{\textasciitilde{}}}). Covariates for each component are
-separated by the symbol \sphinxcode{\sphinxupquote{|}} (pipeline).
-The symbol \sphinxcode{\sphinxupquote{0}} indicates no covariates for a certain component.
-If more covariates explain a single component, the symbol \sphinxcode{\sphinxupquote{+}} concatenates the names.
-Qualitative variables names, must be placed between brackets \sphinxcode{\sphinxupquote{()}} leaded by a \sphinxcode{\sphinxupquote{C}}.
-
-\begin{sphinxadmonition}{warning}{Warning:}
-\sphinxAtStartPar
-No columns in the DataFrame must be named \sphinxcode{\sphinxupquote{constant}} or \sphinxcode{\sphinxupquote{0}}.
-In the column names, are only allowed letters, numbers, and underscores \sphinxcode{\sphinxupquote{\_}}.
-No space is allowed in the column names.
-\end{sphinxadmonition}
-
-\sphinxAtStartPar
-For example, let’s suppose we have a DataFrame where \sphinxcode{\sphinxupquote{response}} is the ordinal variable,
-\sphinxcode{\sphinxupquote{age}} and \sphinxcode{\sphinxupquote{sex}} are a quantitative and a qualitative variable to explain the \sphinxstyleemphasis{feeling} component
-only in a \sphinxcode{\sphinxupquote{cub}} family model. The formula will be \sphinxcode{\sphinxupquote{formula = "response \textasciitilde{} 0 | age + C(sex) | 0"}}.
-
-\sphinxAtStartPar
-Notice that spaces are allowed between symbols and variable names in the formula but they aren’t
-needed: a formula \sphinxcode{\sphinxupquote{ord \textasciitilde{} X | Y1 + Y2 | Z}} is the same that \sphinxcode{\sphinxupquote{ord\textasciitilde{}X|Y1+Y2|Z}}.
-
-\begin{sphinxadmonition}{warning}{Warning:}
-\sphinxAtStartPar
-Currently, the number of fields separated by \sphinxcode{\sphinxupquote{|}} in a formula \sphinxstylestrong{MUST BE} three
-even if the specified model family has less parameters
-(such as \sphinxcode{\sphinxupquote{ihg}}, \sphinxcode{\sphinxupquote{cub}}, \sphinxcode{\sphinxupquote{cush}}, and \sphinxcode{\sphinxupquote{cush2}}). In these cases, the
-unused fields should always be \sphinxcode{\sphinxupquote{0}}.
-\end{sphinxadmonition}
 
 \sphinxAtStartPar
 If no \sphinxcode{\sphinxupquote{model=}} \sphinxstyleemphasis{kwarg} is declared, the function takes \sphinxcode{\sphinxupquote{"cub"}} as default.
@@ -849,7 +864,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub.CUBresCUB00}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cub.}}\sphinxbfcode{\sphinxupquote{CUBresCUB00}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cub.}}\sphinxbfcode{\sphinxupquote{CUBresCUB00}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -1082,7 +1097,7 @@ numpy array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUB model.
@@ -1355,7 +1370,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUB models without covariates.
@@ -1782,7 +1797,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_0w.CUBresCUB0W}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cub\_0w.}}\sphinxbfcode{\sphinxupquote{CUBresCUB0W}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cub\_0w.}}\sphinxbfcode{\sphinxupquote{CUBresCUB0W}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -1965,7 +1980,7 @@ numpy array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_0w.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_0w.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_0w.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUB model with covariates for
@@ -2158,7 +2173,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_0w.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_0w.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_0w.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUB models with covariates for the feeling component.
@@ -2524,7 +2539,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_y0.CUBresCUBY0}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cub\_y0.}}\sphinxbfcode{\sphinxupquote{CUBresCUBY0}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cub\_y0.}}\sphinxbfcode{\sphinxupquote{CUBresCUBY0}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -2660,7 +2675,7 @@ if provided, average probability distribution of a known model.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_y0.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_y0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_y0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUB model with covariates for
@@ -2807,7 +2822,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_y0.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_y0.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_y0.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUB models with covariates for the uncertainty component.
@@ -3177,7 +3192,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_yw.CUBresCUBYW}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cub\_yw.}}\sphinxbfcode{\sphinxupquote{CUBresCUBYW}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cub\_yw.}}\sphinxbfcode{\sphinxupquote{CUBresCUBYW}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -3313,7 +3328,7 @@ if provided, average probability distribution of a known model.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_yw.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_yw.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_yw.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUB model with covariates for
@@ -3420,7 +3435,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_yw.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_yw.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_yw.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUB models with covariates for both the uncertainty and the feeling components.
@@ -3817,7 +3832,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube.CUBresCUBE}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cube.}}\sphinxbfcode{\sphinxupquote{CUBresCUBE}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cube.}}\sphinxbfcode{\sphinxupquote{CUBresCUBE}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -4086,7 +4101,7 @@ numpy array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{phi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{phi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBE model.
@@ -4301,7 +4316,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{1000}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{1e\sphinxhyphen{}06}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{1000}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{1e\sphinxhyphen{}06}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUBE models without covariates.
@@ -4644,7 +4659,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_0w0.CUBresCUBE0W0}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cube\_0w0.}}\sphinxbfcode{\sphinxupquote{CUBresCUBE0W0}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cube\_0w0.}}\sphinxbfcode{\sphinxupquote{CUBresCUBE0W0}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -4827,7 +4842,7 @@ array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_0w0.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_0w0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{phi}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_0w0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{phi}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBE model.
@@ -5036,7 +5051,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_0w0.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_0w0.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{1000}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{1e\sphinxhyphen{}06}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_0w0.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{1000}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{1e\sphinxhyphen{}06}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUBE models with covariates only for feeling
@@ -5370,7 +5385,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_ywz.CUBresCUBEYWZ}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cube\_ywz.}}\sphinxbfcode{\sphinxupquote{CUBresCUBEYWZ}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cube\_ywz.}}\sphinxbfcode{\sphinxupquote{CUBresCUBEYWZ}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -5679,7 +5694,7 @@ array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_ywz.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_ywz.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{alpha}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{Z}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_ywz.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{alpha}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{Z}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBE model.
@@ -5862,7 +5877,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_ywz.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_ywz.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{Z}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{1000}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.01}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_ywz.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{Z}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{1000}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.01}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUBE models with covariates.
@@ -6239,7 +6254,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh.CUBresCUBSH}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{CUBresCUBSH}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{CUBresCUBSH}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -6526,11 +6541,11 @@ array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{pi1}}, \emph{\DUrole{n}{pi2}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{delta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBSH model,
-using alternative parametrization \((\pi_1, \pi_2)\).
+using canonic parametrization \((\pi, \delta)\).
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
@@ -6543,11 +6558,11 @@ using alternative parametrization \((\pi_1, \pi_2)\).
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{pi1}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} Mixing coefficient for the shifted Binomial component of the mixture distribution \(\pi_1\)
+\sphinxstyleliteralstrong{\sphinxupquote{pi}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} uncertainty parameter \(\pi\)
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{pi2}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} Mixing coefficient for the discrete Uniform component of the mixture distribution \(\pi_2\)
+\sphinxstyleliteralstrong{\sphinxupquote{delta}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} shelter choice parameter \(\delta\)
 
 \item {} 
 \sphinxAtStartPar
@@ -6576,11 +6591,11 @@ an instance of \sphinxcode{\sphinxupquote{CUBsample}} containing ordinal respons
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh.draw2}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{draw2}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{delta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{draw2}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{pi1}}, \emph{\DUrole{n}{pi2}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBSH model,
-using canonic parametrization \((\pi, \delta)\).
+using alternative parametrization \((\pi_1, \pi_2)\).
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
@@ -6593,11 +6608,11 @@ using canonic parametrization \((\pi, \delta)\).
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{pi}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} uncertainty parameter \(\pi\)
+\sphinxstyleliteralstrong{\sphinxupquote{pi1}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} Mixing coefficient for the shifted Binomial component of the mixture distribution \(\pi_1\)
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{delta}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} shelter choice parameter \(\delta\)
+\sphinxstyleliteralstrong{\sphinxupquote{pi2}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} Mixing coefficient for the discrete Uniform component of the mixture distribution \(\pi_2\)
 
 \item {} 
 \sphinxAtStartPar
@@ -6762,7 +6777,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUB models with a shelter effect
@@ -7441,7 +7456,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh_ywx.CUBresCUBSHYWX}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cubsh\_ywx.}}\sphinxbfcode{\sphinxupquote{CUBresCUBSHYWX}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cubsh\_ywx.}}\sphinxbfcode{\sphinxupquote{CUBresCUBSHYWX}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -7643,7 +7658,7 @@ for GeCUB models with covariates for feeling, uncertainty and shelter effect.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh_ywx.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh\_ywx.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{omega}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh\_ywx.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{omega}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBSH model with covariates
@@ -7831,7 +7846,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh_ywx.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh\_ywx.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh\_ywx.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{0.0001}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUBSH models with covariates for all the components
@@ -8261,7 +8276,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush.CUBresCUSH}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush.}}\sphinxbfcode{\sphinxupquote{CUBresCUSH}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush.}}\sphinxbfcode{\sphinxupquote{CUBresCUSH}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -8488,7 +8503,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{delta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{delta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUSH model.
@@ -8670,7 +8685,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUSH model without covariates.
@@ -8903,7 +8918,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2.CUBresCUSH2}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush2.}}\sphinxbfcode{\sphinxupquote{CUBresCUSH2}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush2.}}\sphinxbfcode{\sphinxupquote{CUBresCUSH2}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -9088,7 +9103,7 @@ the asymptotic standard error.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{delta1}}, \emph{\DUrole{n}{delta2}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{delta1}}, \emph{\DUrole{n}{delta2}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified 2\sphinxhyphen{}CUSH model.
@@ -9182,7 +9197,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{c1}}, \emph{\DUrole{n}{c2}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{c1}}, \emph{\DUrole{n}{c2}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for 2\sphinxhyphen{}CUSH models without covariates.
@@ -9430,7 +9445,7 @@ Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordina
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_x0.CUBresCUSH2X0}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush2\_x0.}}\sphinxbfcode{\sphinxupquote{CUBresCUSH2X0}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush2\_x0.}}\sphinxbfcode{\sphinxupquote{CUBresCUSH2X0}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -9523,7 +9538,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_x0.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_x0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{omega1}}, \emph{\DUrole{n}{delta2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_x0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{omega1}}, \emph{\DUrole{n}{delta2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -9550,7 +9565,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_x0.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_x0.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_x0.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -9671,7 +9686,7 @@ Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordina
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_xx.CUBresCUSH2XX}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush2\_xx.}}\sphinxbfcode{\sphinxupquote{CUBresCUSH2XX}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush2\_xx.}}\sphinxbfcode{\sphinxupquote{CUBresCUSH2XX}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -9764,7 +9779,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_xx.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_xx.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{omega1}}, \emph{\DUrole{n}{omega2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{X2}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_xx.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{omega1}}, \emph{\DUrole{n}{omega2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{X2}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -9791,7 +9806,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_xx.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_xx.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{X2}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_xx.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{X2}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -9923,7 +9938,7 @@ Domenico Piccolo, Rosaria Simone
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush_x.CUBresCUSHX}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush\_x.}}\sphinxbfcode{\sphinxupquote{CUBresCUSHX}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.cush\_x.}}\sphinxbfcode{\sphinxupquote{CUBresCUSHX}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -10060,7 +10075,7 @@ if provided, average probability distribution of a known model.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush_x.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush\_x.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{omega}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush\_x.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{omega}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUSH model with covariates
@@ -10198,7 +10213,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush_x.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush\_x.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush\_x.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Main function for CUSH models with covariates.
@@ -10488,12 +10503,21 @@ TODO: implement best shelter search
 @Date:        2023\sphinxhyphen{}24
 @Credit:      Domenico Piccolo, Rosaria Simone
 @Contacts:    \sphinxhref{mailto:cub@maxpierini.it}{cub@maxpierini.it}
-\index{from\_formula() (in module cubmods.gem)@\spxentry{from\_formula()}\spxextra{in module cubmods.gem}}
+\index{draw() (in module cubmods.gem)@\spxentry{draw()}\spxextra{in module cubmods.gem}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{cubmods:cubmods.gem.from_formula}}
+\phantomsection\label{\detokenize{cubmods:cubmods.gem.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.gem.}}\sphinxbfcode{\sphinxupquote{from\_formula}}}{\emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{m}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{model}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}cub\textquotesingle{}}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{options}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.gem.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{df}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{m}\DUrole{o}{=}\DUrole{default_value}{7}}, \emph{\DUrole{n}{model}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}cub\textquotesingle{}}}, \emph{\DUrole{n}{n}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{estimate() (in module cubmods.gem)@\spxentry{estimate()}\spxextra{in module cubmods.gem}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{cubmods:cubmods.gem.estimate}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.gem.}}\sphinxbfcode{\sphinxupquote{estimate}}}{\emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{m}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{model}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}cub\textquotesingle{}}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{options}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Takes a DataFrame as input and calls MLE
@@ -11133,12 +11157,42 @@ Auxiliary function of \sphinxcode{\sphinxupquote{.plot\_ellipsoid()}}.
 
 \end{fulllineitems}
 
+\index{expit() (in module cubmods.general)@\spxentry{expit()}\spxextra{in module cubmods.general}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{cubmods:cubmods.general.expit}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.general.}}\sphinxbfcode{\sphinxupquote{expit}}}{\emph{\DUrole{n}{x}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Expit function.
+
+\sphinxAtStartPar
+It is the inverse of logit. Aka
+sigmoid or standard logistic.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{x}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} the argument
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+the expit of x
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+float
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{formula\_parser() (in module cubmods.general)@\spxentry{formula\_parser()}\spxextra{in module cubmods.general}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.general.formula_parser}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.general.}}\sphinxbfcode{\sphinxupquote{formula\_parser}}}{\emph{\DUrole{n}{formula}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.general.}}\sphinxbfcode{\sphinxupquote{formula\_parser}}}{\emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{model}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}cub\textquotesingle{}}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Parse a CUB class formula.
@@ -11454,6 +11508,37 @@ a vector whose length is \sphinxcode{\sphinxupquote{Y.index.size}} and whose i\s
 
 \end{fulllineitems}
 
+\index{logit() (in module cubmods.general)@\spxentry{logit()}\spxextra{in module cubmods.general}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{cubmods:cubmods.general.logit}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.general.}}\sphinxbfcode{\sphinxupquote{logit}}}{\emph{\DUrole{n}{x}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Logit function.
+
+\sphinxAtStartPar
+It is the inverse of the
+standard logistic function, aka
+log\sphinxhyphen{}odds.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{x}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} the argument
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+the logit of x
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+float
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{lsat() (in module cubmods.general)@\spxentry{lsat()}\spxextra{in module cubmods.general}}
 
 \begin{fulllineitems}
@@ -11736,7 +11821,7 @@ Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordina
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg.CUBresIHG}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{CUBresIHG}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{CUBresIHG}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -11842,7 +11927,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{theta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{theta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 generate random sample from CUB model
@@ -11881,7 +11966,7 @@ generate random sample from CUB model
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -11997,7 +12082,7 @@ Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordina
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg_v.CUBresIHGV}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.ihg\_v.}}\sphinxbfcode{\sphinxupquote{CUBresIHGV}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.ihg\_v.}}\sphinxbfcode{\sphinxupquote{CUBresIHGV}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{cubmods:cubmods.smry.CUBres}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CUBres}}}}}
@@ -12090,7 +12175,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg_v.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg\_v.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{nu}}, \emph{\DUrole{n}{V}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg\_v.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{nu}}, \emph{\DUrole{n}{V}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -12126,7 +12211,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg_v.mle}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg\_v.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{V}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg\_v.}}\sphinxbfcode{\sphinxupquote{mle}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{V}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -12394,7 +12479,7 @@ TODO: grandezza punti phi in multicube
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.smry.CUBres}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.smry.}}\sphinxbfcode{\sphinxupquote{CUBres}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.smry.}}\sphinxbfcode{\sphinxupquote{CUBres}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sample}}, \emph{\DUrole{n}{f}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{varmat}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{n}{logliksat}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dev}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{logliksatcov}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{niter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxiter}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{tol}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rho}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{gen\_pars}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{object}}
@@ -12504,7 +12589,7 @@ Call as\_txt()
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.smry.CUBsample}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.smry.}}\sphinxbfcode{\sphinxupquote{CUBsample}}}{\emph{\DUrole{n}{rv}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pars}}, \emph{\DUrole{n}{model}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{par\_names}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{V}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{W}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{X}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Y}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{Z}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubmods.smry.}}\sphinxbfcode{\sphinxupquote{CUBsample}}}{\emph{\DUrole{n}{rv}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pars}}, \emph{\DUrole{n}{model}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{theoric}}, \emph{\DUrole{n}{par\_names}}, \emph{\DUrole{n}{sh}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{object}}
@@ -12601,18 +12686,6 @@ Save a CUBsample object to file
 
 \end{fulllineitems}
 
-
-\end{fulllineitems}
-
-\index{as\_txt() (in module cubmods.smry)@\spxentry{as\_txt()}\spxextra{in module cubmods.smry}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{cubmods:cubmods.smry.as_txt}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.smry.}}\sphinxbfcode{\sphinxupquote{as\_txt}}}{\emph{\DUrole{n}{model}}, \emph{\DUrole{n}{m}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{maxiter}}, \emph{\DUrole{n}{niter}}, \emph{\DUrole{n}{tol}}, \emph{\DUrole{n}{p}}, \emph{\DUrole{n}{e\_types}}, \emph{\DUrole{n}{est\_names}}, \emph{\DUrole{n}{estimates}}, \emph{\DUrole{n}{stderrs}}, \emph{\DUrole{n}{wald}}, \emph{\DUrole{n}{pval}}, \emph{\DUrole{n}{loglike}}, \emph{\DUrole{n}{muloglik}}, \emph{\DUrole{n}{loglikuni}}, \emph{\DUrole{n}{logliksat}}, \emph{\DUrole{n}{logliksatcov}}, \emph{\DUrole{n}{dev}}, \emph{\DUrole{n}{diss}}, \emph{\DUrole{n}{AIC}}, \emph{\DUrole{n}{BIC}}, \emph{\DUrole{n}{rho}}, \emph{\DUrole{n}{seconds}}, \emph{\DUrole{n}{time\_exe}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
-\pysigstopsignatures
-\sphinxAtStartPar
-DEPRECATED FUNCTION.
 
 \end{fulllineitems}
 
