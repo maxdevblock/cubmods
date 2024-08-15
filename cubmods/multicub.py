@@ -105,10 +105,14 @@ def multi(ords, ms=None,
     n = ords.columns.size
     if labels is not None:
         assert n == len(labels)
+    if isinstance(shs, int):
+        shs = np.repeat(shs, n)
     if shs is not None:
         assert n == len(shs)
     if ms is None:
         ms = np.repeat(None, n)
+    if isinstance(ms, int):
+        ms = np.repeat(ms, n)
     assert n == len(ms)
     
     ests = []
