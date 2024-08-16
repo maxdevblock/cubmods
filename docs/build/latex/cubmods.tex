@@ -433,7 +433,7 @@ In the following example, a sample will be drawn from a CUB model of \(n=500\) o
 variable with \(m=10\) ordinal categories
 and parameters \((\pi=.7, \xi=.2)\). A \sphinxcode{\sphinxupquote{seed=1}} will be set to ensure reproducibility.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id165}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id203}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -510,7 +510,7 @@ with \sphinxcode{\sphinxupquote{gen\_pars}} dictionary, the parameters of a know
 
 \end{itemize}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id166}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id204}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -597,7 +597,7 @@ First of all, we’ll draw a random sample with two covariates for the \sphinxst
 \sphinxcode{\sphinxupquote{W1}} and \sphinxcode{\sphinxupquote{W2}}. Note that, having two covariates, we’ll need three \(\gamma\) parameters,
 to consider the constant term too.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id167}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id205}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -646,7 +646,7 @@ Dissimilarity = 0.0307673
 =======================================================================
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id168}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id206}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} plot the drawn sample}
 \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
@@ -655,7 +655,7 @@ Dissimilarity = 0.0307673
 
 \noindent\sphinxincludegraphics{{cub0wdraw}.png}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id169}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id207}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} print the parameters\PYGZsq{} values}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{as\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
@@ -669,7 +669,7 @@ Dissimilarity = 0.0307673
 3        W2   \PYGZhy{}5.0
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id170}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id208}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} print the updated DataFrame}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{)}
@@ -696,7 +696,7 @@ Dissimilarity = 0.0307673
 Finally, we’ll call \sphinxcode{\sphinxupquote{estimate}} to estimate the parameters
 given the observed (actually, drawn) sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id171}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id209}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -790,7 +790,7 @@ where \(\pi\) and \(\xi\) are the parameters for respectively the \sphinxstyleem
 In the next example, we’ll draw an ordinal response
 and then estimate the parameters given the sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id172}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id210}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -828,7 +828,7 @@ we’ll pass to \sphinxcode{\sphinxupquote{estimate}} \sphinxstyleemphasis{kwarg
 
 \end{itemize}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id173}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id211}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -917,7 +917,7 @@ with covariates for uncertainty only. We’ll use the function
 because \(\gamma_0 = \mathrm{logit}(\xi)\) and
 similarly for \(\pi\) and \(\delta\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id174}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id212}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -995,7 +995,7 @@ and similarly for \(\hat\delta\). Then, since
 \(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\)
 we can compute the standard errors of both \(\hat\xi\) and \(\hat\delta\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id175}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id213}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{est\PYGZus{}xi} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{est\PYGZus{}de} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
@@ -1062,7 +1062,7 @@ then estimate the parameter given the observed sample.
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id176}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id214}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1134,7 +1134,7 @@ then estimate the parameter given the observed sample.
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id177}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id215}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1201,7 +1201,7 @@ Elapsed time=0.01704 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 10:54:1
 \section{CUSH2 family}
 \label{\detokenize{manual:cush2-family}}
 \sphinxAtStartPar
-Basic family of the class CUSH with a two shelter effects (CUSH2).
+Family of the class CUSH with two shelter effects (CUSH2).
 See the references for details.
 
 
@@ -1231,7 +1231,7 @@ Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sp
 Passing a list of two shelter categories with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}}, a CUSH2 model will be
 called.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id178}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id216}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1313,8 +1313,11 @@ for both shelter choices but using the symbol \sphinxcode{\sphinxupquote{1}} in 
 formula for the second shelter choice to estimate the
 constant parameter only. This is usually not needed, but
 we do it here to confirm that \(\mathrm{expit}(\hat\omega_{20})=\hat\delta_2\).
+
+\sphinxAtStartPar
+Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id179}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id217}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1397,33 +1400,135 @@ delta2  0.0931  0.0145
 
 \section{CUBE family}
 \label{\detokenize{manual:cube-family}}
+\sphinxAtStartPar
+Family of the class CUBE (Combination of Uniform and BEtaBinomial).
+See the references for details.
+
+
+\subsection{References}
+\label{\detokenize{manual:id158}}\begin{quote}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{0}
+\item {} 
+\sphinxAtStartPar
+Massimo Pierini. Modelli della classe cub in python. \sphinxstyleemphasis{Universitas Mercatorum, Rome, IT}, pages 16\textendash{}20, June 2024. (Bachelor\textquotesingle{}s thesis L\sphinxhyphen{}41).
+
+\end{enumerate}
+\end{quote}
+
 
 \subsection{Without covariates}
-\label{\detokenize{manual:id158}}
+\label{\detokenize{manual:id196}}\begin{equation*}
+\begin{split}\Pr(R=r|\pmb\theta) = \pi b_r(p) + (1-\pi)/m\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}p \sim \mathrm{Beta}(\alpha,\beta)\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}\left\{
+\begin{array}{l}
+    \xi = \dfrac{\beta}{\alpha+\beta}
+    \\
+    \phi = \drac{1}{\alpha+\beta}
+\end{array}
+\right.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+In this example, we’ll draw a sample from a CUBE model and then
+will estimate the parameters given the observed sample.
+
+\sphinxAtStartPar
+Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id218}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}\PYG{p}{,} \PYG{n}{estimate}
+
+\PYG{c+c1}{\PYGZsh{} draw a sample}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord \PYGZti{} 0 | 0 | 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cube}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{n}{pi}\PYG{o}{=}\PYG{l+m+mf}{.7}\PYG{p}{,} \PYG{n}{xi}\PYG{o}{=}\PYG{l+m+mf}{.3}\PYG{p}{,} \PYG{n}{phi}\PYG{o}{=}\PYG{l+m+mf}{.15}\PYG{p}{,}
+    \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{500}\PYG{p}{,} \PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord\PYGZti{}0|0|0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cube}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{gen\PYGZus{}pars}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{pi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{xi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{phi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} print the summary of MLE}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} show the plot of MLE}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUBE model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
+=======================================================================
+m=9  Size=500  Iterations=62  Maxiter=1000  Tol=1E\PYGZhy{}06
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Uncertainty
+     Estimates  StdErr    Wald  p\PYGZhy{}value
+pi       0.577  0.0633   9.108   0.0000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Feeling
+     Estimates  StdErr    Wald  p\PYGZhy{}value
+xi       0.251  0.0217  11.560   0.0000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Overdispersion
+     Estimates  StdErr    Wald  p\PYGZhy{}value
+phi      0.111  0.0402   2.754   0.0059
+=======================================================================
+Dissimilarity = 0.0426
+Loglik(sat)   = \PYGZhy{}1037.855
+Loglik(MOD)   = \PYGZhy{}1041.100
+Loglik(uni)   = \PYGZhy{}1098.612
+Mean\PYGZhy{}loglik   = \PYGZhy{}2.082
+Deviance      = 6.491
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+AIC = 2088.20
+BIC = 2100.84
+=======================================================================
+Elapsed time=0.07919 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:18:49 2024
+=======================================================================
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cube000mle}.png}
+
 
 \subsection{With covariates}
-\label{\detokenize{manual:id159}}
+\label{\detokenize{manual:id197}}
 
 \section{IHG family}
 \label{\detokenize{manual:ihg-family}}
 
 \subsection{Without covariates}
-\label{\detokenize{manual:id160}}
+\label{\detokenize{manual:id198}}
 
 \subsection{With covariates}
-\label{\detokenize{manual:id161}}
+\label{\detokenize{manual:id199}}
 
 \section{MULTICUB}
 \label{\detokenize{manual:multicub}}
 
 \subsection{CUB family}
-\label{\detokenize{manual:id162}}
+\label{\detokenize{manual:id200}}
 
 \subsection{CUBSH family}
-\label{\detokenize{manual:id163}}
+\label{\detokenize{manual:id201}}
 
 \subsection{CUBE family}
-\label{\detokenize{manual:id164}}
+\label{\detokenize{manual:id202}}
 \sphinxstepscope
 
 

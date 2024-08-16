@@ -952,7 +952,7 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
 CUSH2 family
 -------------
 
-Basic family of the class CUSH with a two shelter effects (CUSH2). 
+Family of the class CUSH with two shelter effects (CUSH2). 
 See the references for details.
 
 References
@@ -1063,6 +1063,8 @@ formula for the second shelter choice to estimate the
 constant parameter only. This is usually not needed, but
 we do it here to confirm that :math:`\mathrm{expit}(\hat\omega_{20})=\hat\delta_2`.
 
+Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
+
 .. code-block:: python
     :caption: Script
     :linenos:
@@ -1148,29 +1150,517 @@ we do it here to confirm that :math:`\mathrm{expit}(\hat\omega_{20})=\hat\delta_
 CUBE family
 -----------
 
+Family of the class CUBE (Combination of Uniform and BEtaBinomial). 
+See the references for details.
+
+References
+^^^^^^^^^^
+
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :filter: False
+
+        mythesis
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
+.. math::
+    \Pr(R=r|\pmb\theta) = \pi b_r(p) + (1-\pi)/m
+
+.. math::
+    p \sim \mathrm{Beta}(\alpha,\beta)
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \xi = \dfrac{\beta}{\alpha+\beta}
+        \\
+        \phi = \dfrac{1}{\alpha+\beta}
+    \end{array}
+    \right.
+
+In this example, we'll draw a sample from a CUBE model and then
+will estimate the parameters given the observed sample.
+
+Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import matplotlib.pyplot as plt
+    from cubmods.gem import draw, estimate
+
+    # draw a sample
+    drawn = draw(
+        formula="ord ~ 0 | 0 | 0",
+        model="cube",
+        m=9, pi=.7, xi=.3, phi=.15,
+        n=500, seed=1)
+
+    # inferential method on drawn sample
+    fit = estimate(
+        df=drawn.df,
+        formula="ord~0|0|0",
+        model="cube",
+        gen_pars={
+            "pi": drawn.pars[0],
+            "xi": drawn.pars[1],
+            "phi": drawn.pars[2],
+        }
+    )
+    # print the summary of MLE
+    print(fit.summary())
+    # show the plot of MLE
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUBE model <<<===== ML-estimates
+    =======================================================================
+    m=9  Size=500  Iterations=62  Maxiter=1000  Tol=1E-06
+    -----------------------------------------------------------------------
+    Uncertainty
+         Estimates  StdErr    Wald  p-value
+    pi       0.577  0.0633   9.108   0.0000
+    -----------------------------------------------------------------------
+    Feeling
+         Estimates  StdErr    Wald  p-value
+    xi       0.251  0.0217  11.560   0.0000
+    -----------------------------------------------------------------------
+    Overdispersion
+         Estimates  StdErr    Wald  p-value
+    phi      0.111  0.0402   2.754   0.0059
+    =======================================================================
+    Dissimilarity = 0.0426
+    Loglik(sat)   = -1037.855
+    Loglik(MOD)   = -1041.100
+    Loglik(uni)   = -1098.612
+    Mean-loglik   = -2.082
+    Deviance      = 6.491
+    -----------------------------------------------------------------------
+    AIC = 2088.20
+    BIC = 2100.84
+    =======================================================================
+    Elapsed time=0.07919 seconds =====>>> Fri Aug 16 12:18:49 2024
+    =======================================================================
+
+.. image:: /img/cube000mle.png
+    :alt: CUBE 000 MLE
+
 With covariates
 ^^^^^^^^^^^^^^^
+
+.. math::
+    \Pr(R_i=r|\pmb\theta,\pmb y_i, \pmb w_i, \pmb z_i) = \pi_i b_r(p_i) + (1-\pi_i)/m
+
+.. math::
+    p_i \sim \mathrm{Beta}(\alpha_i,\beta_i)
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \xi_i = \dfrac{\beta_i}{\alpha_i+\beta_i}
+        \\
+        \phi_i = \dfrac{1}{\alpha_i+\beta_i}
+    \end{array}
+    \right.
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \pi_i = \dfrac{1}{1+\exp\{ -\pmb y_i \pmb\beta\}}
+        \\
+        \xi_i = \dfrac{1}{1+\exp\{ -\pmb w_i \pmb\gamma\}}
+        \\
+        \phi_i = \exp\{ \pmb z_i \pmb \alpha \}
+    \end{array}
+    \right.
+
+Currently, two CUBE models have been defined and implemented:
+for the *feeling* only and for all components.
+Nevertheless, the symbol ``1`` can always be used in the
+formula for different combinations of covariates.
+
+In this example, we'll draw a sample with covariates for
+*feeling* only and then will estimate the parameters given
+the observed sample.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods.general import expit, logit
+    from cubmods.gem import draw, estimate
+
+    # Draw a random sample
+    n = 1000
+    np.random.seed(76)
+    W = np.random.randint(1, 10, n)
+    df = pd.DataFrame({
+        "W": W,
+    })
+    drawn = draw(
+        formula="fee ~ 0 | W | 0",
+        model="cube",
+        df=df,
+        m=9,
+        pi=.8,
+        gamma=[logit(.3), -.1],
+        phi=.12,
+    )
+
+    # MLE estimation
+    fit = estimate(
+        formula="fee ~ 0 | W | 0",
+        model="cube",
+        df=drawn.df,
+    )
+    # Print MLE summary
+    print(fit.summary())
+    # plot the results
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUBE(0W0) model <<<===== ML-estimates
+    =======================================================================
+    m=9  Size=1000  
+    -----------------------------------------------------------------------
+    Uncertainty
+              Estimates  StdErr    Wald  p-value
+    pi            0.815  0.0343  23.733   0.0000
+    -----------------------------------------------------------------------
+    Feeling
+              Estimates  StdErr    Wald  p-value
+    constant     -0.770  0.1012  -7.612   0.0000
+    W            -0.116  0.0191  -6.052   0.0000
+    -----------------------------------------------------------------------
+    Overdisperson
+              Estimates  StdErr    Wald  p-value
+    phi           0.150  0.0260   5.779   0.0000
+    =======================================================================
+    Dissimilarity = 0.0183
+    Loglik(MOD)   = -1886.654
+    Loglik(uni)   = -2197.225
+    Mean-loglik   = -1.887
+    -----------------------------------------------------------------------
+    AIC = 3781.31
+    BIC = 3800.94
+    =======================================================================
+    Elapsed time=2.30903 seconds =====>>> Fri Aug 16 12:31:10 2024
+    =======================================================================
+
+.. image:: /img/cube0w0mle.png
+    :alt: CUBE 0W0 MLE
+
+Notice that the same results can be achieved using a CUBE
+model with covariates for all components and passing
+the symbol ``1`` to the *feeling* and *uncertainty*
+component.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # MLE estimation
+    fit = estimate(
+        formula="fee ~ 1 | W | 1",
+        model="cube",
+        df=drawn.df,
+    )
+    # Print MLE summary
+    print(fit.summary())
+    # plot the results
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUBE(YWZ) model <<<===== ML-estimates
+    =======================================================================
+    m=9  Size=1000  Iterations=29  Maxiter=1000  Tol=1E-02
+    -----------------------------------------------------------------------
+    Uncertainty
+              Estimates  StdErr     Wald  p-value
+    constant      1.423  0.2183    6.518   0.0000
+    -----------------------------------------------------------------------
+    Feeling
+              Estimates  StdErr     Wald  p-value
+    constant     -0.778  0.1018   -7.639   0.0000
+    W            -0.117  0.0193   -6.074   0.0000
+    -----------------------------------------------------------------------
+    Overdispersion
+              Estimates  StdErr     Wald  p-value
+    constant     -1.930  0.1756  -10.989   0.0000
+    =======================================================================
+    Dissimilarity = 0.0239
+    Loglik(MOD)   = -1886.690
+    Loglik(uni)   = -2197.225
+    Mean-loglik   = -1.887
+    -----------------------------------------------------------------------
+    AIC = 3781.38
+    BIC = 3801.01
+    =======================================================================
+    Elapsed time=50.02969 seconds =====>>> Fri Aug 16 12:33:36 2024
+    =======================================================================
+
+.. image:: /img/cubeywzmle.png
+    :alt: CUBE YWZ MLE
+
+In fact:
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    est_pi = expit(fit.estimates[0])
+    est_ph = np.exp(fit.estimates[3])
+    est_pi_se = expit(fit.estimates[0]+fit.stderrs[0]) - est_pi
+    est_ph_se = np.exp(fit.estimates[3]+fit.stderrs[3]) - est_ph
+    print(
+        "     estimates  stderr\n"
+        f"pi      {est_pi:.4f}  {est_pi_se:.4f}"
+        "\n"
+        f"phi     {est_ph:.4f}  {est_ph_se:.4f}"
+    )
+
+.. code-block:: none
+
+         estimates  stderr
+    pi      0.8058  0.0319
+    phi     0.1451  0.0279
 
 IHG family
 ----------
 
+Family of the class IHG (Inverse Hyper Geometric). 
+See the references for details.
+
+References
+^^^^^^^^^^
+
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :filter: False
+
+        mythesis
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
+
+In this example, we'll draw a sample from an IHG model
+and the estimate the parameter from the observed sample.
+
+.. code-block:: python
+
+    # import libraries
+    import matplotlib.pyplot as plt
+    from cubmods.gem import draw, estimate
+
+    # draw a sample
+    drawn = draw(
+        formula="ord ~ 0",
+        model="ihg",
+        m=10, theta=.2,
+        n=500, seed=42)
+
+    # inferential method on drawn sample
+    fit = estimate(
+        df=drawn.df,
+        formula="ord ~ 0",
+        model="ihg",
+        gen_pars={
+            "theta": drawn.pars[0],
+        }
+    )
+    # print the summary of MLE
+    print(fit.summary())
+    # show the plot of MLE
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> IHG model <<<===== ML-estimates
+    =======================================================================
+    m=10  Size=500  
+    -----------------------------------------------------------------------
+    Theta
+           Estimates  StdErr    Wald  p-value
+    theta      0.200  0.0086  23.292   0.0000
+    =======================================================================
+    Dissimilarity = 0.0639
+    Loglik(sat)   = -1044.100
+    Loglik(MOD)   = -1050.513
+    Loglik(uni)   = -1151.293
+    Mean-loglik   = -2.101
+    Deviance      = 12.824
+    -----------------------------------------------------------------------
+    AIC = 2103.03
+    BIC = 2107.24
+    =======================================================================
+    Elapsed time=0.00464 seconds =====>>> Fri Aug 16 12:47:55 2024
+    =======================================================================
+
+.. image:: /img/ihg0mle.png
+    :alt: IHG 0 MLE
 
 With covariates
 ^^^^^^^^^^^^^^^
 
+.. math::
+    \theta_i = \dfrac{1}{1 + \exp\{ - \pmb \nu_i \pmb v \}}
+
+In this example we'll draw a sample from an IHG with covariates
+and then will estimate the parameters given the observed sample.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods.gem import draw, estimate
+    from cubmods.general import logit
+
+    # Draw a random sample
+    n = 1000
+    np.random.seed(1)
+    V1 = np.random.random(n)
+    np.random.seed(42)
+    V2 = np.random.random(n)
+    df = pd.DataFrame({
+        "V1": V1, "V2": V2
+    })
+
+    # draw a sample
+    drawn = draw(
+        df=df,
+        formula="ord ~ V1 + V2",
+        model="ihg",
+        m=10,
+        nu=[logit(.1), -2, 3],
+        seed=42)
+
+    # inferential method on drawn sample
+    fit = estimate(
+        df=drawn.df,
+        formula=drawn.formula,
+        model="ihg",
+        gen_pars={
+            "theta": drawn.pars[0],
+        }
+    )
+    # print the summary of MLE
+    print(fit.summary())
+    # show the plot of MLE
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> IHG(V) model <<<===== ML-estimates
+    =======================================================================
+    m=10  Size=1000  
+    -----------------------------------------------------------------------
+    Theta
+              Estimates  StdErr     Wald  p-value
+    constant     -2.368  0.0998  -23.741   0.0000
+    V1           -1.973  0.1438  -13.721   0.0000
+    V2            3.230  0.1451   22.261   0.0000
+    =======================================================================
+    Dissimilarity = 0.0455
+    Loglik(MOD)   = -1958.475
+    Loglik(uni)   = -2302.585
+    Mean-loglik   = -1.958
+    -----------------------------------------------------------------------
+    AIC = 3922.95
+    BIC = 3937.67
+    =======================================================================
+    Elapsed time=1.10664 seconds =====>>> Fri Aug 16 12:53:12 2024
+    =======================================================================
+
+.. image:: /img/ihgvmle.png
+    :alt: IHG V MLE
+
 MULTICUB
 --------
 
-CUB family
-^^^^^^^^^^
+With the **multicub** tool, parameters estimated from
+multiple observed samples can be shown in a single plot.
 
-CUBSH family
-^^^^^^^^^^^^
+In this example, we'll draw three samples from CUBE
+models and *manually* add a shelter category. Then we'll
+use the **multicub** tool for CUB models, CUBE models and
+CUBSH models.
 
-CUBE family
-^^^^^^^^^^^
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods.gem import draw
+    from cubmods.multicub import multi
+
+    # draw random samples
+    df = pd.DataFrame()
+    for i, (pi, xi, phi) in enumerate(
+        zip([.9, .8, .7], [.3, .5, .7], [.05, .1, .15])
+        ):
+        drawn = draw(
+            formula="ord ~ 0 | 0 | 0",
+            m = 9, model="cube", n=500,
+            pi=pi, xi=xi, phi=phi
+        )
+        # add a shelter category at c=1
+        df[f"ord{i+1}"] = np.concatenate((
+            drawn.rv, np.repeat(1, 25)
+        ))
+
+    # MULTI-CUB
+    multi(
+        ords=df, ms=9, model="cub"
+    )
+    plt.show()
+    # MULTI-CUBE
+    multi(
+        ords=df, ms=9, model="cube"
+    )
+    plt.show()
+    # MULTI-CUBSH
+    multi(
+        ords=df, ms=9, model="cub", shs=1
+    )
+    plt.show()
+
+.. image:: /img/multicub.png
+    :alt: MULTICUB
+
+.. image:: /img/multicube.png
+    :alt: MULTICUBE
+
+.. image:: /img/multicubsh.png
+    :alt: MULTICUBSH

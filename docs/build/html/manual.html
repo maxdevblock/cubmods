@@ -525,8 +525,8 @@ see the Base Class <code class="docutils literal notranslate"><span class="pre">
 <p>In the following example, a sample will be drawn from a CUB model of <span class="math notranslate nohighlight">\(n=500\)</span> observations of an ordinal
 variable with <span class="math notranslate nohighlight">\(m=10\)</span> ordinal categories
 and parameters <span class="math notranslate nohighlight">\((\pi=.7, \xi=.2)\)</span>. A <code class="docutils literal notranslate"><span class="pre">seed=1</span></code> will be set to ensure reproducibility.</p>
-<div class="literal-block-wrapper docutils container" id="id165">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id165" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id238">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id238" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span>
@@ -580,8 +580,8 @@ the parameters</p>
 <li><p>if <code class="docutils literal notranslate"><span class="pre">m</span></code> is not provided, the maximum observed ordinal value will be assumed and a warning will be raised</p></li>
 <li><p>with <code class="docutils literal notranslate"><span class="pre">gen_pars</span></code> dictionary, the parameters of a known model (if any) can be specified; in this case, we’ll specify the known parameters used to draw the sample</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id166">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id166" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id239">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id239" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
@@ -657,8 +657,8 @@ for <em>uncertainty</em> only, for <em>feeling</em> only, and for <em>both</em>.
 <p>First of all, we’ll draw a random sample with two covariates for the <em>feeling</em> component:
 <code class="docutils literal notranslate"><span class="pre">W1</span></code> and <code class="docutils literal notranslate"><span class="pre">W2</span></code>. Note that, having two covariates, we’ll need three <span class="math notranslate nohighlight">\(\gamma\)</span> parameters,
 to consider the constant term too.</p>
-<div class="literal-block-wrapper docutils container" id="id167">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id167" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id240">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id240" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -706,8 +706,8 @@ Dissimilarity = 0.0307673
 =======================================================================
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id168">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id168" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id241">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id241" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># plot the drawn sample</span>
 <span class="linenos">2</span><span class="n">drawn</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="linenos">3</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -715,8 +715,8 @@ Dissimilarity = 0.0307673
 </div>
 </div>
 <img alt="CUB0W drawn sample" src="_images/cub0wdraw.png" />
-<div class="literal-block-wrapper docutils container" id="id169">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id169" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id242">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id242" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># print the parameters&#39; values</span>
 <span class="linenos">2</span><span class="nb">print</span><span class="p">(</span><span class="n">drawn</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">())</span>
 </pre></div>
@@ -729,8 +729,8 @@ Dissimilarity = 0.0307673
 3        W2   -5.0
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id170">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id170" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id243">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id243" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># print the updated DataFrame</span>
 <span class="linenos">2</span><span class="nb">print</span><span class="p">(</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
@@ -754,8 +754,8 @@ Dissimilarity = 0.0307673
 </div>
 <p>Finally, we’ll call <code class="docutils literal notranslate"><span class="pre">estimate</span></code> to estimate the parameters
 given the observed (actually, drawn) sample.</p>
-<div class="literal-block-wrapper docutils container" id="id171">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id171" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id244">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id244" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;res ~ 0 | W1+W2&quot;</span><span class="p">,</span>
@@ -827,8 +827,8 @@ for responses with <span class="math notranslate nohighlight">\(m\)</span> ordin
 <em>feeling</em> components, and <span class="math notranslate nohighlight">\(\delta\)</span> is the weight of the shelter effect.</p>
 <p>In the next example, we’ll draw an ordinal response
 and then estimate the parameters given the sample.</p>
-<div class="literal-block-wrapper docutils container" id="id172">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id172" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id245">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id245" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -857,8 +857,8 @@ and then estimate the parameters given the sample.</p>
 <li><p>since <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> is default value of the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">model</span></code>, we do not need to specify it</p></li>
 <li><p>we’ll pass to <code class="docutils literal notranslate"><span class="pre">estimate</span></code> <em>kwargs</em> values taken from the object <code class="docutils literal notranslate"><span class="pre">drawn</span></code></p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id173">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id173" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id246">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id246" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">sh</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">sh</span><span class="p">,</span>
@@ -939,8 +939,8 @@ with covariates for uncertainty only. We’ll use the function
 <code class="docutils literal notranslate"><span class="pre">logit</span></code> to have better ‘control’ of the parameters values,
 because <span class="math notranslate nohighlight">\(\gamma_0 = \mathrm{logit}(\xi)\)</span> and
 similarly for <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
-<div class="literal-block-wrapper docutils container" id="id174">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id174" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id247">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id247" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1014,8 +1014,8 @@ we can use the function <code class="docutils literal notranslate"><span class="
 and similarly for <span class="math notranslate nohighlight">\(\hat\delta\)</span>. Then, since
 <span class="math notranslate nohighlight">\(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\)</span>
 we can compute the standard errors of both <span class="math notranslate nohighlight">\(\hat\xi\)</span> and <span class="math notranslate nohighlight">\(\hat\delta\)</span>.</p>
-<div class="literal-block-wrapper docutils container" id="id175">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id175" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id248">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id248" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">est_xi</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="linenos"> 2</span><span class="n">est_de</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="linenos"> 3</span><span class="n">est_xi_se</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">fit</span><span class="o">.</span><span class="n">stderrs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="n">est_xi</span>
@@ -1061,8 +1061,8 @@ See the references for details.</p>
 <p>In the example, we’ll draw a sample from a CUSH model without covariates and
 then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id176">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id176" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id249">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id249" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -1128,8 +1128,8 @@ Elapsed time=0.00113 seconds =====&gt;&gt;&gt; Fri Aug 16 10:44:07 2024
 <p>In the example, we’ll draw a sample from a CUSH model with covariates and
 then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id177">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id177" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id250">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id250" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1194,7 +1194,7 @@ Elapsed time=0.01704 seconds =====&gt;&gt;&gt; Fri Aug 16 10:54:11 2024
 </section>
 <section id="cush2-family">
 <h2>CUSH2 family<a class="headerlink" href="#cush2-family" title="Permalink to this heading">#</a></h2>
-<p>Basic family of the class CUSH with a two shelter effects (CUSH2).
+<p>Family of the class CUSH with two shelter effects (CUSH2).
 See the references for details.</p>
 <section id="id118">
 <h3>References<a class="headerlink" href="#id118" title="Permalink to this heading">#</a></h3>
@@ -1215,8 +1215,8 @@ then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.
 Passing a list of two shelter categories with the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code>, a CUSH2 model will be
 called.</p>
-<div class="literal-block-wrapper docutils container" id="id178">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id178" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id251">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id251" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -1294,9 +1294,10 @@ estimate the parameters with a CUSH2 model with covariates
 for both shelter choices but using the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> in the
 formula for the second shelter choice to estimate the
 constant parameter only. This is usually not needed, but
-we do it here to confirm that <span class="math notranslate nohighlight">\(\mathrm{expit}(\hat\omega_0)=\hat\delta_2\)</span>.</p>
-<div class="literal-block-wrapper docutils container" id="id179">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id179" title="Permalink to this code">#</a></div>
+we do it here to confirm that <span class="math notranslate nohighlight">\(\mathrm{expit}(\hat\omega_{20})=\hat\delta_2\)</span>.</p>
+<p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
+<div class="literal-block-wrapper docutils container" id="id252">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id252" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1377,33 +1378,480 @@ delta2  0.0931  0.0145
 </section>
 <section id="cube-family">
 <h2>CUBE family<a class="headerlink" href="#cube-family" title="Permalink to this heading">#</a></h2>
+<p>Family of the class CUBE (Combination of Uniform and BEtaBinomial).
+See the references for details.</p>
 <section id="id158">
-<h3>Without covariates<a class="headerlink" href="#id158" title="Permalink to this heading">#</a></h3>
+<h3>References<a class="headerlink" href="#id158" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id159">
+<ol class="arabic simple" start="1">
+<li id="id195"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+</ol>
+</div>
+</div></blockquote>
 </section>
-<section id="id159">
-<h3>With covariates<a class="headerlink" href="#id159" title="Permalink to this heading">#</a></h3>
+<section id="id196">
+<h3>Without covariates<a class="headerlink" href="#id196" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\Pr(R=r|\pmb\theta) = \pi b_r(p) + (1-\pi)/m\]</div>
+<div class="math notranslate nohighlight">
+\[p \sim \mathrm{Beta}(\alpha,\beta)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{
+\begin{array}{l}
+    \xi = \dfrac{\beta}{\alpha+\beta}
+    \\
+    \phi = \dfrac{1}{\alpha+\beta}
+\end{array}
+\right.\end{split}\]</div>
+<p>In this example, we’ll draw a sample from a CUBE model and then
+will estimate the parameters given the observed sample.</p>
+<p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
+<div class="literal-block-wrapper docutils container" id="id253">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id253" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># draw a sample</span>
+<span class="linenos"> 6</span><span class="n">drawn</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span>
+<span class="linenos"> 7</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord ~ 0 | 0 | 0&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span>    <span class="n">m</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="mf">.7</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">.3</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="mf">.15</span><span class="p">,</span>
+<span class="linenos">10</span>    <span class="n">n</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1"># inferential method on drawn sample</span>
+<span class="linenos">13</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
+<span class="linenos">14</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
+<span class="linenos">15</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord~0|0|0&quot;</span><span class="p">,</span>
+<span class="linenos">16</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span>
+<span class="linenos">17</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">18</span>        <span class="s2">&quot;pi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">19</span>        <span class="s2">&quot;xi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">20</span>        <span class="s2">&quot;phi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="linenos">21</span>    <span class="p">}</span>
+<span class="linenos">22</span><span class="p">)</span>
+<span class="linenos">23</span><span class="c1"># print the summary of MLE</span>
+<span class="linenos">24</span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="linenos">25</span><span class="c1"># show the plot of MLE</span>
+<span class="linenos">26</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="linenos">27</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warnings.warn(&quot;No m given, max(ordinal) has been taken&quot;)
+=======================================================================
+=====&gt;&gt;&gt; CUBE model &lt;&lt;&lt;===== ML-estimates
+=======================================================================
+m=9  Size=500  Iterations=62  Maxiter=1000  Tol=1E-06
+-----------------------------------------------------------------------
+Uncertainty
+     Estimates  StdErr    Wald  p-value
+pi       0.577  0.0633   9.108   0.0000
+-----------------------------------------------------------------------
+Feeling
+     Estimates  StdErr    Wald  p-value
+xi       0.251  0.0217  11.560   0.0000
+-----------------------------------------------------------------------
+Overdispersion
+     Estimates  StdErr    Wald  p-value
+phi      0.111  0.0402   2.754   0.0059
+=======================================================================
+Dissimilarity = 0.0426
+Loglik(sat)   = -1037.855
+Loglik(MOD)   = -1041.100
+Loglik(uni)   = -1098.612
+Mean-loglik   = -2.082
+Deviance      = 6.491
+-----------------------------------------------------------------------
+AIC = 2088.20
+BIC = 2100.84
+=======================================================================
+Elapsed time=0.07919 seconds =====&gt;&gt;&gt; Fri Aug 16 12:18:49 2024
+=======================================================================
+</pre></div>
+</div>
+<img alt="CUBE 000 MLE" src="_images/cube000mle.png" />
+</section>
+<section id="id197">
+<h3>With covariates<a class="headerlink" href="#id197" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\Pr(R_i=r|\pmb\theta,\pmb y_i, \pmb w_i, \pmb z_i) = \pi_i b_r(p_i) + (1-\pi_i)/m\]</div>
+<div class="math notranslate nohighlight">
+\[p_i \sim \mathrm{Beta}(\alpha_i,\beta_i)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{
+\begin{array}{l}
+    \xi_i = \dfrac{\beta_i}{\alpha_i+\beta_i}
+    \\
+    \phi_i = \dfrac{1}{\alpha_i+\beta_i}
+\end{array}
+\right.\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{
+\begin{array}{l}
+    \pi_i = \dfrac{1}{1+\exp\{ -\pmb y_i \pmb\beta\}}
+    \\
+    \xi_i = \dfrac{1}{1+\exp\{ -\pmb w_i \pmb\gamma\}}
+    \\
+    \phi_i = \exp\{ \pmb z_i \pmb \alpha \}
+\end{array}
+\right.\end{split}\]</div>
+<p>Currently, two CUBE models have been defined and implemented:
+for the <em>feeling</em> only and for all components.
+Nevertheless, the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> can always be used in the
+formula for different combinations of covariates.</p>
+<p>In this example, we’ll draw a sample with covariates for
+<em>feeling</em> only and then will estimate the parameters given
+the observed sample.</p>
+<div class="literal-block-wrapper docutils container" id="id254">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id254" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">cubmods.general</span> <span class="kn">import</span> <span class="n">expit</span><span class="p">,</span> <span class="n">logit</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1"># Draw a random sample</span>
+<span class="linenos"> 9</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="linenos">10</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">76</span><span class="p">)</span>
+<span class="linenos">11</span><span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="linenos">12</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="linenos">13</span>    <span class="s2">&quot;W&quot;</span><span class="p">:</span> <span class="n">W</span><span class="p">,</span>
+<span class="linenos">14</span><span class="p">})</span>
+<span class="linenos">15</span><span class="n">drawn</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span>
+<span class="linenos">16</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;fee ~ 0 | W | 0&quot;</span><span class="p">,</span>
+<span class="linenos">17</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span>
+<span class="linenos">18</span>    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+<span class="linenos">19</span>    <span class="n">m</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+<span class="linenos">20</span>    <span class="n">pi</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span>
+<span class="linenos">21</span>    <span class="n">gamma</span><span class="o">=</span><span class="p">[</span><span class="n">logit</span><span class="p">(</span><span class="mf">.3</span><span class="p">),</span> <span class="o">-</span><span class="mf">.1</span><span class="p">],</span>
+<span class="linenos">22</span>    <span class="n">phi</span><span class="o">=</span><span class="mf">.12</span><span class="p">,</span>
+<span class="linenos">23</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="c1"># MLE estimation</span>
+<span class="linenos">26</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
+<span class="linenos">27</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;fee ~ 0 | W | 0&quot;</span><span class="p">,</span>
+<span class="linenos">28</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
+<span class="linenos">30</span><span class="p">)</span>
+<span class="linenos">31</span><span class="c1"># Print MLE summary</span>
+<span class="linenos">32</span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="linenos">33</span><span class="c1"># plot the results</span>
+<span class="linenos">34</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="linenos">35</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warnings.warn(&quot;No m given, max(ordinal) has been taken&quot;)
+=======================================================================
+=====&gt;&gt;&gt; CUBE(0W0) model &lt;&lt;&lt;===== ML-estimates
+=======================================================================
+m=9  Size=1000
+-----------------------------------------------------------------------
+Uncertainty
+          Estimates  StdErr    Wald  p-value
+pi            0.815  0.0343  23.733   0.0000
+-----------------------------------------------------------------------
+Feeling
+          Estimates  StdErr    Wald  p-value
+constant     -0.770  0.1012  -7.612   0.0000
+W            -0.116  0.0191  -6.052   0.0000
+-----------------------------------------------------------------------
+Overdisperson
+          Estimates  StdErr    Wald  p-value
+phi           0.150  0.0260   5.779   0.0000
+=======================================================================
+Dissimilarity = 0.0183
+Loglik(MOD)   = -1886.654
+Loglik(uni)   = -2197.225
+Mean-loglik   = -1.887
+-----------------------------------------------------------------------
+AIC = 3781.31
+BIC = 3800.94
+=======================================================================
+Elapsed time=2.30903 seconds =====&gt;&gt;&gt; Fri Aug 16 12:31:10 2024
+=======================================================================
+</pre></div>
+</div>
+<img alt="CUBE 0W0 MLE" src="_images/cube0w0mle.png" />
+<p>Notice that the same results can be achieved using a CUBE
+model with covariates for all components and passing
+the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> to the <em>feeling</em> and <em>uncertainty</em>
+component.</p>
+<div class="literal-block-wrapper docutils container" id="id255">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id255" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>
+<span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
+<span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;fee ~ 1 | W | 1&quot;</span><span class="p">,</span>
+<span class="linenos"> 4</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span>
+<span class="linenos"> 5</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
+<span class="linenos"> 6</span><span class="p">)</span>
+<span class="linenos"> 7</span><span class="c1"># Print MLE summary</span>
+<span class="linenos"> 8</span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="linenos"> 9</span><span class="c1"># plot the results</span>
+<span class="linenos">10</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="linenos">11</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warnings.warn(&quot;No m given, max(ordinal) has been taken&quot;)
+=======================================================================
+=====&gt;&gt;&gt; CUBE(YWZ) model &lt;&lt;&lt;===== ML-estimates
+=======================================================================
+m=9  Size=1000  Iterations=29  Maxiter=1000  Tol=1E-02
+-----------------------------------------------------------------------
+Uncertainty
+          Estimates  StdErr     Wald  p-value
+constant      1.423  0.2183    6.518   0.0000
+-----------------------------------------------------------------------
+Feeling
+          Estimates  StdErr     Wald  p-value
+constant     -0.778  0.1018   -7.639   0.0000
+W            -0.117  0.0193   -6.074   0.0000
+-----------------------------------------------------------------------
+Overdispersion
+          Estimates  StdErr     Wald  p-value
+constant     -1.930  0.1756  -10.989   0.0000
+=======================================================================
+Dissimilarity = 0.0239
+Loglik(MOD)   = -1886.690
+Loglik(uni)   = -2197.225
+Mean-loglik   = -1.887
+-----------------------------------------------------------------------
+AIC = 3781.38
+BIC = 3801.01
+=======================================================================
+Elapsed time=50.02969 seconds =====&gt;&gt;&gt; Fri Aug 16 12:33:36 2024
+=======================================================================
+</pre></div>
+</div>
+<img alt="CUBE YWZ MLE" src="_images/cubeywzmle.png" />
+<p>In fact:</p>
+<div class="literal-block-wrapper docutils container" id="id256">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id256" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">est_pi</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos"> 2</span><span class="n">est_ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="linenos"> 3</span><span class="n">est_pi_se</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">fit</span><span class="o">.</span><span class="n">stderrs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">est_pi</span>
+<span class="linenos"> 4</span><span class="n">est_ph_se</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">fit</span><span class="o">.</span><span class="n">stderrs</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">-</span> <span class="n">est_ph</span>
+<span class="linenos"> 5</span><span class="nb">print</span><span class="p">(</span>
+<span class="linenos"> 6</span>    <span class="s2">&quot;     estimates  stderr</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="linenos"> 7</span>    <span class="sa">f</span><span class="s2">&quot;pi      </span><span class="si">{</span><span class="n">est_pi</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">est_pi_se</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos"> 8</span>    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="linenos"> 9</span>    <span class="sa">f</span><span class="s2">&quot;phi     </span><span class="si">{</span><span class="n">est_ph</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">est_ph_se</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     estimates  stderr
+pi      0.8058  0.0319
+phi     0.1451  0.0279
+</pre></div>
+</div>
 </section>
 </section>
 <section id="ihg-family">
 <h2>IHG family<a class="headerlink" href="#ihg-family" title="Permalink to this heading">#</a></h2>
-<section id="id160">
-<h3>Without covariates<a class="headerlink" href="#id160" title="Permalink to this heading">#</a></h3>
+<p>Family of the class IHG (Inverse Hyper Geometric).
+See the references for details.</p>
+<section id="id198">
+<h3>References<a class="headerlink" href="#id198" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id199">
+<ol class="arabic simple" start="1">
+<li id="id235"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+</ol>
+</div>
+</div></blockquote>
 </section>
-<section id="id161">
-<h3>With covariates<a class="headerlink" href="#id161" title="Permalink to this heading">#</a></h3>
+<section id="id236">
+<h3>Without covariates<a class="headerlink" href="#id236" title="Permalink to this heading">#</a></h3>
+<p>In this example, we’ll draw a sample from an IHG model
+and the estimate the parameter from the observed sample.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
+
+<span class="c1"># draw a sample</span>
+<span class="n">drawn</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span>
+    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord ~ 0&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;ihg&quot;</span><span class="p">,</span>
+    <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># inferential method on drawn sample</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord ~ 0&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;ihg&quot;</span><span class="p">,</span>
+    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;theta&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># print the summary of MLE</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="c1"># show the plot of MLE</span>
+<span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warnings.warn(&quot;No m given, max(ordinal) has been taken&quot;)
+=======================================================================
+=====&gt;&gt;&gt; IHG model &lt;&lt;&lt;===== ML-estimates
+=======================================================================
+m=10  Size=500
+-----------------------------------------------------------------------
+Theta
+       Estimates  StdErr    Wald  p-value
+theta      0.200  0.0086  23.292   0.0000
+=======================================================================
+Dissimilarity = 0.0639
+Loglik(sat)   = -1044.100
+Loglik(MOD)   = -1050.513
+Loglik(uni)   = -1151.293
+Mean-loglik   = -2.101
+Deviance      = 12.824
+-----------------------------------------------------------------------
+AIC = 2103.03
+BIC = 2107.24
+=======================================================================
+Elapsed time=0.00464 seconds =====&gt;&gt;&gt; Fri Aug 16 12:47:55 2024
+=======================================================================
+</pre></div>
+</div>
+<img alt="IHG 0 MLE" src="_images/ihg0mle.png" />
+</section>
+<section id="id237">
+<h3>With covariates<a class="headerlink" href="#id237" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\theta_i = \dfrac{1}{1 + \exp\{ - \pmb \nu_i \pmb v \}}\]</div>
+<p>In this example we’ll draw a sample from an IHG with covariates
+and then will estimate the parameters given the observed sample.</p>
+<div class="literal-block-wrapper docutils container" id="id257">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id257" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">cubmods.general</span> <span class="kn">import</span> <span class="n">logit</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1"># Draw a random sample</span>
+<span class="linenos"> 9</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="linenos">10</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">11</span><span class="n">V1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="linenos">12</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="linenos">13</span><span class="n">V2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="linenos">14</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="linenos">15</span>    <span class="s2">&quot;V1&quot;</span><span class="p">:</span> <span class="n">V1</span><span class="p">,</span> <span class="s2">&quot;V2&quot;</span><span class="p">:</span> <span class="n">V2</span>
+<span class="linenos">16</span><span class="p">})</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="c1"># draw a sample</span>
+<span class="linenos">19</span><span class="n">drawn</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span>
+<span class="linenos">20</span>    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+<span class="linenos">21</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord ~ V1 + V2&quot;</span><span class="p">,</span>
+<span class="linenos">22</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;ihg&quot;</span><span class="p">,</span>
+<span class="linenos">23</span>    <span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="linenos">24</span>    <span class="n">nu</span><span class="o">=</span><span class="p">[</span><span class="n">logit</span><span class="p">(</span><span class="mf">.1</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="linenos">25</span>    <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="c1"># inferential method on drawn sample</span>
+<span class="linenos">28</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
+<span class="linenos">29</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
+<span class="linenos">30</span>    <span class="n">formula</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">formula</span><span class="p">,</span>
+<span class="linenos">31</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;ihg&quot;</span><span class="p">,</span>
+<span class="linenos">32</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">33</span>        <span class="s2">&quot;theta&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">34</span>    <span class="p">}</span>
+<span class="linenos">35</span><span class="p">)</span>
+<span class="linenos">36</span><span class="c1"># print the summary of MLE</span>
+<span class="linenos">37</span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="linenos">38</span><span class="c1"># show the plot of MLE</span>
+<span class="linenos">39</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="linenos">40</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warnings.warn(&quot;No m given, max(ordinal) has been taken&quot;)
+=======================================================================
+=====&gt;&gt;&gt; IHG(V) model &lt;&lt;&lt;===== ML-estimates
+=======================================================================
+m=10  Size=1000
+-----------------------------------------------------------------------
+Theta
+          Estimates  StdErr     Wald  p-value
+constant     -2.368  0.0998  -23.741   0.0000
+V1           -1.973  0.1438  -13.721   0.0000
+V2            3.230  0.1451   22.261   0.0000
+=======================================================================
+Dissimilarity = 0.0455
+Loglik(MOD)   = -1958.475
+Loglik(uni)   = -2302.585
+Mean-loglik   = -1.958
+-----------------------------------------------------------------------
+AIC = 3922.95
+BIC = 3937.67
+=======================================================================
+Elapsed time=1.10664 seconds =====&gt;&gt;&gt; Fri Aug 16 12:53:12 2024
+=======================================================================
+</pre></div>
+</div>
+<img alt="IHG V MLE" src="_images/ihgvmle.png" />
 </section>
 </section>
 <section id="multicub">
 <h2>MULTICUB<a class="headerlink" href="#multicub" title="Permalink to this heading">#</a></h2>
-<section id="id162">
-<h3>CUB family<a class="headerlink" href="#id162" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="id163">
-<h3>CUBSH family<a class="headerlink" href="#id163" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="id164">
-<h3>CUBE family<a class="headerlink" href="#id164" title="Permalink to this heading">#</a></h3>
-</section>
+<p>With the <strong>multicub</strong> tool, parameters estimated from
+multiple observed samples can be shown in a single plot.</p>
+<p>In this example, we’ll draw three samples from CUBE
+models and <em>manually</em> add a shelter category. Then we’ll
+use the <strong>multicub</strong> tool for CUB models, CUBE models and
+CUBSH models.</p>
+<div class="literal-block-wrapper docutils container" id="id258">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id258" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span>
+<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">cubmods.multicub</span> <span class="kn">import</span> <span class="n">multi</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># draw random samples</span>
+<span class="linenos"> 8</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="linenos"> 9</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+<span class="linenos">10</span>    <span class="nb">zip</span><span class="p">([</span><span class="mf">.9</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">.3</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.15</span><span class="p">])</span>
+<span class="linenos">11</span>    <span class="p">):</span>
+<span class="linenos">12</span>    <span class="n">drawn</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span>
+<span class="linenos">13</span>        <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord ~ 0 | 0 | 0&quot;</span><span class="p">,</span>
+<span class="linenos">14</span>        <span class="n">m</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+<span class="linenos">15</span>        <span class="n">pi</span><span class="o">=</span><span class="n">pi</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="n">xi</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="n">phi</span>
+<span class="linenos">16</span>    <span class="p">)</span>
+<span class="linenos">17</span>    <span class="c1"># add a shelter category at c=1</span>
+<span class="linenos">18</span>    <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;ord</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span>
+<span class="linenos">19</span>        <span class="n">drawn</span><span class="o">.</span><span class="n">rv</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="linenos">20</span>    <span class="p">))</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="c1"># MULTI-CUB</span>
+<span class="linenos">23</span><span class="n">multi</span><span class="p">(</span>
+<span class="linenos">24</span>    <span class="n">ords</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cub&quot;</span>
+<span class="linenos">25</span><span class="p">)</span>
+<span class="linenos">26</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">27</span><span class="c1"># MULTI-CUBE</span>
+<span class="linenos">28</span><span class="n">multi</span><span class="p">(</span>
+<span class="linenos">29</span>    <span class="n">ords</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span>
+<span class="linenos">30</span><span class="p">)</span>
+<span class="linenos">31</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">32</span><span class="c1"># MULTI-CUBSH</span>
+<span class="linenos">33</span><span class="n">multi</span><span class="p">(</span>
+<span class="linenos">34</span>    <span class="n">ords</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cub&quot;</span><span class="p">,</span> <span class="n">shs</span><span class="o">=</span><span class="mi">1</span>
+<span class="linenos">35</span><span class="p">)</span>
+<span class="linenos">36</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<img alt="MULTICUB" src="_images/multicub.png" />
+<img alt="MULTICUBE" src="_images/multicube.png" />
+<img alt="MULTICUBSH" src="_images/multicubsh.png" />
 </section>
 </section>
 
@@ -1483,21 +1931,18 @@ delta2  0.0931  0.0145
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cube-family">CUBE family</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id158">Without covariates</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id159">With covariates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id158">References</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id196">Without covariates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id197">With covariates</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ihg-family">IHG family</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id160">Without covariates</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id161">With covariates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id198">References</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id236">Without covariates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id237">With covariates</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multicub">MULTICUB</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id162">CUB family</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id163">CUBSH family</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id164">CUBE family</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multicub">MULTICUB</a></li>
 </ul>
   </nav></div>
 

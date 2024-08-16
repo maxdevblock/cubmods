@@ -7,24 +7,18 @@ from cubmods.gem import draw, estimate
 
 # draw a sample
 drawn = draw(
-    formula="ord ~ 0 | 0",
-    m=10, pi=.7, xi=.2,
-    n=500, seed=1)
-# print the summary of the drawn sample
-print(drawn.summary())
-# show the plot of the drawn sample
-drawn.plot()
-plt.show()
-
-print(drawn.as_dataframe())
+    formula="ord ~ 0",
+    model="ihg",
+    m=10, theta=.2,
+    n=500, seed=42)
 
 # inferential method on drawn sample
 fit = estimate(
     df=drawn.df,
-    formula="ord~0|0",
+    formula="ord ~ 0",
+    model="ihg",
     gen_pars={
-        "pi": drawn.pars[0],
-        "xi": drawn.pars[1]
+        "theta": drawn.pars[0],
     }
 )
 # print the summary of MLE
