@@ -61,7 +61,7 @@
 
 
 \title{CUBmods}
-\date{Aug 15, 2024}
+\date{Aug 16, 2024}
 \release{0.0.1}
 \author{Massimo Pierini}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -214,6 +214,9 @@ The function \sphinxcode{\sphinxupquote{gem.draw()}} is the main function for dr
 calling for the corresponding \sphinxcode{\sphinxupquote{.draw()}} function of the corresponding family,
 with or without covariates.
 
+
+\subsection{The \sphinxstyleemphasis{formula} syntax}
+\label{\detokenize{manual:the-formula-syntax}}
 \sphinxAtStartPar
 Both functions need a \sphinxcode{\sphinxupquote{formula}} that is a \sphinxstylestrong{string} specifying the name of the ordinal
 variable (before the tilde \sphinxcode{\sphinxupquote{\textasciitilde{}}} symbol)
@@ -221,7 +224,7 @@ and of the covariates of the components (after the tilde symbol \sphinxcode{\sph
 Covariates for each component are
 separated by the pipeline symbol \sphinxcode{\sphinxupquote{|}}.
 The \sphinxstyleemphasis{zero} symbol \sphinxcode{\sphinxupquote{0}} indicates no covariates for a certain component.
-The \sphinxstyleemphasis{one} symbol \sphinxcode{\sphinxupquote{1}} indicates that we want to estimate the parameter of constant term only.
+The \sphinxstyleemphasis{one} symbol \sphinxcode{\sphinxupquote{1}} indicates that we want to estimate the parameter of the constant term only.
 If more covariates explain a single component, the symbol \sphinxcode{\sphinxupquote{+}} concatenates the names.
 Qualitative variables names, must be placed between brackets \sphinxcode{\sphinxupquote{()}} leaded by a \sphinxcode{\sphinxupquote{C}},
 for example \sphinxcode{\sphinxupquote{C(varname)}}.
@@ -229,8 +232,8 @@ for example \sphinxcode{\sphinxupquote{C(varname)}}.
 \begin{sphinxadmonition}{warning}{Warning:}
 \sphinxAtStartPar
 No columns in the DataFrame should be named \sphinxcode{\sphinxupquote{constant}}, \sphinxcode{\sphinxupquote{1}} or \sphinxcode{\sphinxupquote{0}}.
-In the column names, are only allowed letters, numbers, and underscores \sphinxcode{\sphinxupquote{\_}}.
-Spaces are not allowed in the column names.
+In the column names, only letters, numbers, and underscores \sphinxcode{\sphinxupquote{\_}} are allowed.
+Spaces \sphinxstylestrong{SHOULD NOT BE} used in the column names, but replaced with \sphinxcode{\sphinxupquote{\_}}.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar
@@ -244,40 +247,70 @@ needed: a formula \sphinxcode{\sphinxupquote{"ord \textasciitilde{} X | Y1 + Y2 
 
 \begin{sphinxadmonition}{warning}{Warning:}
 \sphinxAtStartPar
-The number of fields separated by pipeline \sphinxcode{\sphinxupquote{|}} in a formula \sphinxstylestrong{MUST BE} equal to
+The number of fields separated by the pipeline \sphinxcode{\sphinxupquote{|}} in a formula \sphinxstylestrong{MUST BE} equal to
 the number of parameters specifying the model family. Therefore: two for \sphinxcode{\sphinxupquote{cub}} and \sphinxcode{\sphinxupquote{cush2}},
 three for \sphinxcode{\sphinxupquote{cube}} and \sphinxcode{\sphinxupquote{cub}} with shelter effect, one for \sphinxcode{\sphinxupquote{cush}} and \sphinxcode{\sphinxupquote{ihg}}.
 \end{sphinxadmonition}
 
+
+\subsection{Arguments of \sphinxstyleliteralintitle{\sphinxupquote{estimate}} and \sphinxstyleliteralintitle{\sphinxupquote{draw}}}
+\label{\detokenize{manual:arguments-of-estimate-and-draw}}
 \sphinxAtStartPar
-The number of ordinal categories \sphinxcode{\sphinxupquote{m}} is internally retrieved if not specified
+Within the function \sphinxcode{\sphinxupquote{estimate}} the number of ordinal categories \sphinxcode{\sphinxupquote{m}} is internally retrieved if not specified
 (taking the maximum observed category)
 but it is advisable to pass it as an argument to the call if some category has zero frequency.
+Within the function \sphinxcode{\sphinxupquote{draw}} instead, the number of ordinal categories \sphinxcode{\sphinxupquote{m}} must always be specified.
 
 \sphinxAtStartPar
-A \sphinxcode{\sphinxupquote{pandas}} DataFrame must be passed to the function, with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{df=}}.
+A \sphinxcode{\sphinxupquote{pandas}} DataFrame must always be passed to the function \sphinxcode{\sphinxupquote{estimate}}, with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{df}}.
+It should contain, at least, a column of the observed sample and the columns of the covariates (if any).
+If no \sphinxcode{\sphinxupquote{df}} is passed to the function \sphinxcode{\sphinxupquote{draw}} for a model without covariates
+instead, an empty DataFrame will be created.
+
+\sphinxAtStartPar
+The number \sphinxcode{\sphinxupquote{n}} of ordinal responses to be drawn should always be specified in the function \sphinxcode{\sphinxupquote{draw}}
+for models without covariates. For model with covariates instead, \sphinxcode{\sphinxupquote{n}} is not effective because
+the number of drawn ordinal responsed will be equal to the passed DataFrame rows.
+
+\sphinxAtStartPar
+A \sphinxcode{\sphinxupquote{seed}} could be specified for the function \sphinxcode{\sphinxupquote{draw}} to ensure reproducibility.
+Notice that, for models with covariates, \sphinxcode{\sphinxupquote{seed}} cannot be \sphinxcode{\sphinxupquote{0}} (in case, it will be
+automatically set to \sphinxcode{\sphinxupquote{1}}).
 
 \sphinxAtStartPar
 If no \sphinxcode{\sphinxupquote{model=}} \sphinxstyleemphasis{kwarg} is declared, the function takes \sphinxcode{\sphinxupquote{"cub"}} as default.
 Currently implemented models are: \sphinxcode{\sphinxupquote{"cub"}} (default), \sphinxcode{\sphinxupquote{"cush"}}, \sphinxcode{\sphinxupquote{"cube"}},
 \sphinxcode{\sphinxupquote{"ihg"}}, and \sphinxcode{\sphinxupquote{"cush2"}}. CUB models with shelter effect, are automatically
 implemented using \sphinxcode{\sphinxupquote{model="cub"}} and specifying a shelter choice with the
-\sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh=}}.
+\sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}}.
+
+\sphinxAtStartPar
+To \sphinxcode{\sphinxupquote{draw}} must be passed the parameters’ values with the \sphinxstyleemphasis{kwargs} of the corresponding
+family: for example, \sphinxcode{\sphinxupquote{pi}} and \sphinxcode{\sphinxupquote{xi}} for CUB models without covariates, \sphinxcode{\sphinxupquote{beta}} and \sphinxcode{\sphinxupquote{gamma}}
+for CUB models with covariates for both feeling and uncertainty, etc. See the
+\sphinxcode{\sphinxupquote{.draw()}} function reference of the corresponding family module for details.
 
 \sphinxAtStartPar
 If  \sphinxcode{\sphinxupquote{model="cub"}} (or nothing), then a CUB mixture model is fitted to the data to explain uncertainty,
-feeling and possible shelter effect by further passing the extra argument \sphinxcode{\sphinxupquote{sh}} for the corresponding category.
+feeling (\sphinxcode{\sphinxupquote{ordinal\textasciitilde{}Y|W}}) and possible shelter effect by further passing the extra argument \sphinxcode{\sphinxupquote{sh}} for the corresponding category.
 Subjects’ covariates can be included by specifying covariates matrices in the
 formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}Y|W|X}},  to explain uncertainty (Y), feeling (W) or shelter (X).
 Notice that
 covariates for shelter effect can be included only if specified for both feeling and uncertainty (GeCUB models).
+Nevertheless, the symbol \sphinxcode{\sphinxupquote{1}} could be used to specify a different combination of components with covariates.
+For example, if we want to specify a CUB model with covariate \sphinxcode{\sphinxupquote{cov}} for uncertainty only, we could pass the
+formula \sphinxcode{\sphinxupquote{ordinal \textasciitilde{} cov | 1 | 1}}: in this case, for feeling and shelter effect, the constant terms only
+(\(\gamma_0\) and \(\omega_0\)) will be estimated and the values of the estimated \(\xi\) and
+\(\delta\) could be computed as \(\hat\xi=\mathrm{expit}(\hat\gamma_0)\) and
+\(\hat\delta=\mathrm{expit}(\hat\omega_0)\).
 
 \sphinxAtStartPar
 If \sphinxcode{\sphinxupquote{family="cube"}}, then a CUBE mixture model (Combination of Uniform and Beta\sphinxhyphen{}Binomial) is fitted to the data
 to explain uncertainty, feeling and overdispersion.   Subjects’ covariates can be also included to explain the
 feeling component or all the three components by  specifying covariates matrices in the Formula as
 \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}Y|W|Z}} to explain uncertainty (Y), feeling (W) or
-overdispersion (Z).
+overdispersion (Z). For different combinations of components with covariates, the symbol \sphinxcode{\sphinxupquote{1}} can be used.
+Notice that \(\hat\phi=e^{-\hat\alpha_0}\).
 
 \sphinxAtStartPar
 If \sphinxcode{\sphinxupquote{family="ihg"}}, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
@@ -286,27 +319,63 @@ the first category and is therefore a direct measure of preference, attraction, 
 investigated item. This is the reason why \(\theta\) is customarily referred to as the
 preference parameter of the
 IHG model. Covariates for the preference parameter \(\theta\) have to be specified
-in matrix form in the Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}U|0|0}}.
+in matrix form in the Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}V}}.
 
 \sphinxAtStartPar
 If \sphinxcode{\sphinxupquote{family="cush"}}, then a CUSH model is fitted to the data (Combination of Uniform and SHelter effect).
-The category corresponding to the inflation should be
-passed via argument \sphinxcode{\sphinxupquote{sh}}. Covariates for the shelter parameter \(\delta\)
-are specified in matrix form Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X|0|0}}.
-
-\sphinxAtStartPar
-If \sphinxcode{\sphinxupquote{family="cush2"}}, then a 2\sphinxhyphen{}CUSH model is fitted to the data (Combination of Uniform and 2 SHelter choices).
-The categories corresponding to the inflation should be
-passed as a list (or array) via the same argument \sphinxcode{\sphinxupquote{sh}}.
-Covariates for the shelter parameters \((\delta_1, \delta_2)\)
-are specified in matrix form Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X1|X2|0}}. Notice that, to specify covariates for a
-single shelter choice, the formula should be \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X1|0|0}} and not \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}0|X2|0}}.
+If a category corresponding to the inflation should be
+passed via argument \sphinxcode{\sphinxupquote{sh}} a CUSH model is called and
+covariates for the shelter parameter \(\delta\)
+are specified in matrix form Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X}}.
+If two category corresponding to the inflation should be
+passed via argument \sphinxcode{\sphinxupquote{sh}} (as a \sphinxstyleemphasis{list} or \sphinxstyleemphasis{array}) a CUSH2 model is called and
+covariates for the shelters’ parameters \((\delta_1,\delta_2)\)
+are specified in matrix form Formula as \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X1|X2}}.
+Notice that, to specify covariates for a
+single shelter choice in a CUSH2 model,
+the formula should be \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}X1|0}} and not \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}0|X2}}.
 
 \sphinxAtStartPar
 Extra arguments include the maximum
 number of iterations \sphinxcode{\sphinxupquote{maxiter}} for the optimization algorithm,
 the required error tolerance \sphinxcode{\sphinxupquote{tol}}, and a dictionary of parameters of a known model
 \sphinxcode{\sphinxupquote{gen\_pars}} to be compared with the estimates.
+
+
+\subsection{Methods of \sphinxstyleliteralintitle{\sphinxupquote{estimate}} and \sphinxstyleliteralintitle{\sphinxupquote{draw}}}
+\label{\detokenize{manual:methods-of-estimate-and-draw}}
+\sphinxAtStartPar
+For both functions, the methods \sphinxcode{\sphinxupquote{.summary()}} and \sphinxcode{\sphinxupquote{.plot()}} are always available calling the
+main functions to print a summary and plot the results, respectively. For \sphinxcode{\sphinxupquote{.plot()}} arguments
+and options, see the \sphinxcode{\sphinxupquote{CUBsample}} Class (for object returned by \sphinxcode{\sphinxupquote{draw}})
+and the extended \sphinxcode{\sphinxupquote{CUBres}} Classes of the corresponding
+family (for objects returned by \sphinxcode{\sphinxupquote{estimate}}).
+
+\sphinxAtStartPar
+Calling \sphinxcode{\sphinxupquote{.as\_dataframe()}} will return a DataFrame of parameters’ names and values for objects
+of the Class \sphinxcode{\sphinxupquote{CUBsample}} returned by \sphinxcode{\sphinxupquote{draw}}. For objects of the Base Class \sphinxcode{\sphinxupquote{CUBres}} returned
+by \sphinxcode{\sphinxupquote{estimate}} instead, will return a DataFrame with parameters’ component, name, estimated value,
+standard error, Wald test statistics and p\sphinxhyphen{}value.
+
+\sphinxAtStartPar
+Calling the method \sphinxcode{\sphinxupquote{.save(fname)}} the object can be saved on a file called \sphinxcode{\sphinxupquote{fname.cub.sample}}
+(for \sphinxcode{\sphinxupquote{draw}}) or \sphinxcode{\sphinxupquote{fname.cub.fit}} (for \sphinxcode{\sphinxupquote{estimate}}).
+
+\sphinxAtStartPar
+Saved objects can then be loaded using the function \sphinxcode{\sphinxupquote{general.load(fname)}}.
+
+
+\subsection{Attributes of \sphinxstyleliteralintitle{\sphinxupquote{estimate}} and \sphinxstyleliteralintitle{\sphinxupquote{draw}}}
+\label{\detokenize{manual:attributes-of-estimate-and-draw}}
+\sphinxAtStartPar
+For both objects returned by \sphinxcode{\sphinxupquote{estimate}} and \sphinxcode{\sphinxupquote{draw}}, the attributes \sphinxcode{\sphinxupquote{.formula}} and
+\sphinxcode{\sphinxupquote{.df}} are always available. The function \sphinxcode{\sphinxupquote{draw}} will return the original DataFrame (if provided)
+with an extra column of the drawn ordinal response called as specified in the formula.
+
+\sphinxAtStartPar
+Many other attributes can be called from objects of the Base Class \sphinxcode{\sphinxupquote{CUBres}} returned by
+\sphinxcode{\sphinxupquote{estimate}}, such as the computed loglikelihood, the AIC and BIC, ectcetera. For details,
+see the Base Class \sphinxcode{\sphinxupquote{CUBres}} reference guide.
 
 
 \section{CUB family}
@@ -364,20 +433,22 @@ In the following example, a sample will be drawn from a CUB model of \(n=500\) o
 variable with \(m=10\) ordinal categories
 and parameters \((\pi=.7, \xi=.2)\). A \sphinxcode{\sphinxupquote{seed=1}} will be set to ensure reproducibility.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id79}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id165}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
- \PYG{c+c1}{\PYGZsh{} import libraries}
- \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
- \PYG{k+kn}{from} \PYG{n+nn}{cubmods} \PYG{k+kn}{import} \PYG{n}{cub}\PYG{p}{,} \PYG{n}{gem}
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}
 
- \PYG{c+c1}{\PYGZsh{} draw a sample}
- \PYG{n}{drawn} \PYG{o}{=} \PYG{n}{cub}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{(}\PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{pi}\PYG{o}{=}\PYG{l+m+mf}{.7}\PYG{p}{,} \PYG{n}{xi}\PYG{o}{=}\PYG{l+m+mf}{.2}\PYG{p}{,}
-                 \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{500}\PYG{p}{,} \PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
- \PYG{c+c1}{\PYGZsh{} print the summary of the drawn sample}
- \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
- \PYG{c+c1}{\PYGZsh{} show the plot of the drawn sample}
- \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
- \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} draw a sample}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord \PYGZti{} 0 | 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{pi}\PYG{o}{=}\PYG{l+m+mf}{.7}\PYG{p}{,} \PYG{n}{xi}\PYG{o}{=}\PYG{l+m+mf}{.2}\PYG{p}{,}
+    \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{500}\PYG{p}{,} \PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} print the summary of the drawn sample}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} show the plot of the drawn sample}
+\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -385,6 +456,8 @@ and parameters \((\pi=.7, \xi=.2)\). A \sphinxcode{\sphinxupquote{seed=1}} will 
 =====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUB model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== Drawn random sample
 =======================================================================
 m=10  Sample size=500  seed=1
+formula: ord\PYGZti{}0|0
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
 pi=0.700
 xi=0.200
 =======================================================================
@@ -400,57 +473,75 @@ Dissimilarity = 0.0650938
 \noindent\sphinxincludegraphics{{cub00draw}.png}
 
 \sphinxAtStartPar
+Notice that, since the default value of the kwarg \sphinxcode{\sphinxupquote{model}} is
+\sphinxcode{\sphinxupquote{"cub"}} we do not need to specify it.
+
+\sphinxAtStartPar
+Calling \sphinxcode{\sphinxupquote{drawn.as\_dataframe()}} will return a DataFrame with
+the parameters
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+  parameter  value
+0        pi    0.7
+1        xi    0.2
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
 Using the previously drawn sample, in the next example the parameters \((\hat\pi, \hat\xi)\) will be estimated.
 
 \sphinxAtStartPar
-Note that in the function \sphinxcode{\sphinxupquote{gem.from\_formula}}:
+Note that in the function \sphinxcode{\sphinxupquote{gem.estimate}}:
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxcode{\sphinxupquote{df}} needs to be a \sphinxcode{\sphinxupquote{pandas}} DataFrame; the function \sphinxcode{\sphinxupquote{drawn.as\_dataframe()}} will return a DataFrame with \sphinxcode{\sphinxupquote{ordinal}} as default column name
+\sphinxcode{\sphinxupquote{df}} needs to be a \sphinxcode{\sphinxupquote{pandas}} DataFrame; the attribute \sphinxcode{\sphinxupquote{drawn.df}} will return a DataFrame with \sphinxcode{\sphinxupquote{ord}} as column name of the drawn ordinal response (as previuosly speficied in the formula)
 
 \item {} 
 \sphinxAtStartPar
-\sphinxcode{\sphinxupquote{formula}} specifies the ordinal variable (\sphinxcode{\sphinxupquote{ordinal}} in this case) and the covariates for each component (none in this case, so \sphinxcode{\sphinxupquote{"0|0|0"}})
+\sphinxcode{\sphinxupquote{formula}} needs the ordinal variable name (\sphinxcode{\sphinxupquote{ord}} in this case) and the covariates for each component (none in this case, so \sphinxcode{\sphinxupquote{"0|0"}})
 
 \item {} 
 \sphinxAtStartPar
-if \sphinxcode{\sphinxupquote{m}} is not provided, the maximum observed ordinal value will be assumed
+if \sphinxcode{\sphinxupquote{m}} is not provided, the maximum observed ordinal value will be assumed and a warning will be raised
 
 \item {} 
 \sphinxAtStartPar
-with \sphinxcode{\sphinxupquote{gen\_pars}} dictionary, the parameters of a known model (if any) can be specified; in this case, they’ll be the parameters used to draw the sample
+with \sphinxcode{\sphinxupquote{gen\_pars}} dictionary, the parameters of a known model (if any) can be specified; in this case, we’ll specify the known parameters used to draw the sample
 
 \end{itemize}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id80}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id166}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
-\PYG{n}{mod} \PYG{o}{=} \PYG{n}{gem}\PYG{o}{.}\PYG{n}{from\PYGZus{}formula}\PYG{p}{(}
-    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{as\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
-    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ordinal\PYGZti{}0|0|0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
-    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,}
-    \PYG{n}{gen\PYGZus{}pars}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{pi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+m+mf}{.7}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{xi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mf}{.2}\PYG{p}{\PYGZcb{}}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord\PYGZti{}0|0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{gen\PYGZus{}pars}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{pi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{xi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+    \PYG{p}{\PYGZcb{}}
 \PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} print the summary of MLE}
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{mod}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} show the plot of MLE}
-\PYG{n}{mod}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+
 =======================================================================
 =====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUB00 model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
 =======================================================================
 m=10  Size=500  Iterations=13  Maxiter=500  Tol=1E\PYGZhy{}04
 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
 Uncertainty
-Estimates  StdErr    Wald  p\PYGZhy{}value
+    Estimates  StdErr    Wald  p\PYGZhy{}value
 pi     +0.675   0.034  19.872   0.0000
 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
 Feeling
-Estimates  StdErr    Wald  p\PYGZhy{}value
+    Estimates  StdErr    Wald  p\PYGZhy{}value
 xi     +0.188   0.009  20.808   0.0000
 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
 Correlation   = 0.2105
@@ -471,9 +562,29 @@ Elapsed time=0.00187 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Wed Apr 24 11:27:3
 
 \noindent\sphinxincludegraphics{{cub00mle}.png}
 
+\sphinxAtStartPar
+Calling \sphinxcode{\sphinxupquote{fit.as\_dataframe()}} will return a DataFrame with
+parameters’ estimated values and standard errors
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+     component parameter  estimate    stderr       wald        pvalue
+0  Uncertainty        pi   0.67476  0.033954  19.872485  7.042905e\PYGZhy{}88
+1      Feeling        xi   0.18817  0.009043  20.807551  3.697579e\PYGZhy{}96
+\end{sphinxVerbatim}
+
 
 \subsection{With covariates}
-\label{\detokenize{manual:with-covariates}}
+\label{\detokenize{manual:with-covariates}}\begin{equation*}
+\begin{split}\Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m}\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}\left\{
+\begin{array}{l}
+    \pi_i = \dfrac{1}{1+\exp\{-\pmb y_i \pmb \beta\}}
+    \\
+    \xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}
+\end{array}
+\right.\end{split}
+\end{equation*}
 \sphinxAtStartPar
 All three combinations of covariates has been implemented for CUB family in both Python and R:
 for \sphinxstyleemphasis{uncertainty} only, for \sphinxstyleemphasis{feeling} only, and for \sphinxstyleemphasis{both}.
@@ -486,49 +597,116 @@ First of all, we’ll draw a random sample with two covariates for the \sphinxst
 \sphinxcode{\sphinxupquote{W1}} and \sphinxcode{\sphinxupquote{W2}}. Note that, having two covariates, we’ll need three \(\gamma\) parameters,
 to consider the constant term too.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id81}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id167}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{k+kn}{from} \PYG{n+nn}{cubmods} \PYG{k+kn}{import} \PYG{n}{cub\PYGZus{}0w}\PYG{p}{,} \PYG{n}{gem}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}\PYG{p}{,} \PYG{n}{estimate}
+
 \PYG{c+c1}{\PYGZsh{} Draw a random sample}
 \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{1000}
 \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
 \PYG{n}{W1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}
 \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
-\PYG{n}{W2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}
+\PYG{n}{W2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{random}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}
 \PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{\PYGZob{}}
     \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{W1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{W1}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{W2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{W2}
 \PYG{p}{\PYGZcb{}}\PYG{p}{)}
-\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{cub\PYGZus{}0w}\PYG{o}{.}\PYG{n}{draw}\PYG{p}{(}\PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{n}{n}\PYG{p}{,}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{res \PYGZti{} 0 | W1 + W2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{df}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{o}{=}\PYG{n}{n}\PYG{p}{,}
     \PYG{n}{pi}\PYG{o}{=}\PYG{l+m+mf}{0.8}\PYG{p}{,}
-    \PYG{n}{gamma}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mf}{2.3}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.4}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.05}\PYG{p}{]}\PYG{p}{,}
-    \PYG{n}{W}\PYG{o}{=}\PYG{n}{df}
+    \PYG{n}{gamma}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mf}{2.3}\PYG{p}{,} \PYG{l+m+mf}{0.2}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{,}
 \PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} print the summary}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUB(0W) model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== Drawn random sample
+=======================================================================
+m=10  Sample size=1000  seed=None
+formula: res\PYGZti{}0|W1+W2
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+pi=0.800
+constant=2.300
+W1=0.200
+W2=\PYGZhy{}5.000
+=======================================================================
+Sample metrics
+Mean     = 4.566000
+Variance = 8.089734
+Std.Dev. = 2.844246
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Dissimilarity = 0.0307673
+=======================================================================
+\end{sphinxVerbatim}
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id168}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} plot the drawn sample}
 \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{cub0wdraw}.png}
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id169}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} print the parameters\PYGZsq{} values}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{as\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+  parameter  value
+0        pi    0.8
+1  constant    2.3
+2        W1    0.2
+3        W2   \PYGZhy{}5.0
+\end{sphinxVerbatim}
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id170}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} print the updated DataFrame}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+     W1        W2  res
+0     6  0.374540    2
+1     9  0.950714    7
+2     6  0.731994    8
+3     1  0.598658    8
+4     1  0.156019    4
+..   ..       ...  ...
+995   3  0.091582    2
+996   9  0.917314    9
+997   4  0.136819    1
+998   7  0.950237    3
+999   8  0.446006    2
+
+[1000 rows x 3 columns]
+\end{sphinxVerbatim}
 
 \sphinxAtStartPar
-Then, we’ll add the drawn sample to \sphinxcode{\sphinxupquote{df}} DataFrame and will estimate the parameters.
+Finally, we’ll call \sphinxcode{\sphinxupquote{estimate}} to estimate the parameters
+given the observed (actually, drawn) sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id82}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id171}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
-\PYG{c+c1}{\PYGZsh{} add the drawn sample}
-\PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ordinal}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{rv}
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
-\PYG{n}{mod1} \PYG{o}{=} \PYG{n}{gem}\PYG{o}{.}\PYG{n}{from\PYGZus{}formula}\PYG{p}{(}
-    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ordinal \PYGZti{} 0 | W1+W2 | 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
-    \PYG{n}{df}\PYG{o}{=}\PYG{n}{df}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{res \PYGZti{} 0 | W1+W2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,}
 \PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} Print MLE summary}
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{mod1}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} plot the results}
-\PYG{n}{mod1}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 
@@ -537,27 +715,27 @@ warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
 =======================================================================
 =====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUB(0W) model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
 =======================================================================
-m=10  Size=1000  Iterations=22  Maxiter=500  Tol=1E\PYGZhy{}04
+m=10  Size=1000  Iterations=18  Maxiter=500  Tol=1E\PYGZhy{}04
 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
 Uncertainty
-        Estimates  StdErr     Wald  p\PYGZhy{}value
-pi            0.789  0.0231   34.210   0.0000
+          Estimates  StdErr     Wald  p\PYGZhy{}value
+pi            0.800  0.0198   40.499   0.0000
 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
 Feeling
-        Estimates  StdErr     Wald  p\PYGZhy{}value
-constant      2.299  0.1001   22.976   0.0000
-W1           \PYGZhy{}0.407  0.0139  \PYGZhy{}29.239   0.0000
-W2           \PYGZhy{}0.044  0.0121   \PYGZhy{}3.681   0.0002
+          Estimates  StdErr     Wald  p\PYGZhy{}value
+constant      2.353  0.1001   23.514   0.0000
+W1            0.194  0.0138   14.034   0.0000
+W2           \PYGZhy{}5.076  0.1454  \PYGZhy{}34.909   0.0000
 =======================================================================
-Dissimilarity = 0.0488
-Loglik(MOD)   = \PYGZhy{}1963.868
+Dissimilarity = 0.0292
+Loglik(MOD)   = \PYGZhy{}1807.052
 Loglik(uni)   = \PYGZhy{}2302.585
-Mean\PYGZhy{}loglik   = \PYGZhy{}1.964
+Mean\PYGZhy{}loglik   = \PYGZhy{}1.807
 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
-AIC = 3935.74
-BIC = 3955.37
+AIC = 3622.10
+BIC = 3641.74
 =======================================================================
-Elapsed time=0.10014 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Sun Aug 11 22:02:15 2024
+Elapsed time=0.09656 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Thu Aug 15 18:31:21 2024
 =======================================================================
 \end{sphinxVerbatim}
 
@@ -567,7 +745,8 @@ Elapsed time=0.10014 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Sun Aug 11 22:02:1
 \section{CUBSH family}
 \label{\detokenize{manual:cubsh-family}}
 \sphinxAtStartPar
-Basic family of the class CUB. See the references for details.
+Basic family of the class CUB with shelter effect.
+See the references for details.
 
 
 \subsection{References}
@@ -607,24 +786,644 @@ for responses with \(m\) ordinal categories, without covariates is specified as
 where \(\pi\) and \(\xi\) are the parameters for respectively the \sphinxstyleemphasis{uncertainty} and the
 \sphinxstyleemphasis{feeling} components, and \(\delta\) is the weight of the shelter effect.
 
+\sphinxAtStartPar
+In the next example, we’ll draw an ordinal response
+and then estimate the parameters given the sample.
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id172}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}\PYG{p}{,} \PYG{n}{estimate}
+
+\PYG{c+c1}{\PYGZsh{} draw a sample}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord \PYGZti{} 0 | 0 | 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{n}{sh}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}
+    \PYG{n}{pi}\PYG{o}{=}\PYG{l+m+mf}{.8}\PYG{p}{,} \PYG{n}{xi}\PYG{o}{=}\PYG{l+m+mf}{.4}\PYG{p}{,} \PYG{n}{delta}\PYG{o}{=}\PYG{l+m+mf}{.15}\PYG{p}{,}
+    \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1500}\PYG{p}{,} \PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{as\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+  parameter  value
+0       pi1   0.68
+1       pi2   0.17
+2        xi   0.40
+3       *pi   0.80
+4    *delta   0.15
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Notice that:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+since \sphinxcode{\sphinxupquote{"cub"}} is default value of the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{model}}, we do not need to specify it
+
+\item {} 
+\sphinxAtStartPar
+we’ll pass to \sphinxcode{\sphinxupquote{estimate}} \sphinxstyleemphasis{kwargs} values taken from the object \sphinxcode{\sphinxupquote{drawn}}
+
+\end{itemize}
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id173}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,} \PYG{n}{sh}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{sh}\PYG{p}{,}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{formula}\PYG{p}{,}
+    \PYG{n}{gen\PYGZus{}pars}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{pi1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{pi2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{xi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{,}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} print the summary of MLE}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} show the plot of MLE}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUBSH model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
+=======================================================================
+m=7  Shelter=1  Size=1500  Iterations=59  Maxiter=500  Tol=1E\PYGZhy{}04
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Alternative parametrization
+       Estimates  StdErr    Wald  p\PYGZhy{}value
+pi1        0.661  0.0307  21.508   0.0000
+pi2        0.174  0.0344   5.041   0.0000
+xi         0.388  0.0077  50.592   0.0000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Uncertainty
+       Estimates  StdErr    Wald  p\PYGZhy{}value
+pi         0.792  0.0400  19.813   0.0000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Feeling
+       Estimates  StdErr    Wald  p\PYGZhy{}value
+xi         0.388  0.0077  50.592   0.0000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Shelter effect
+       Estimates  StdErr    Wald  p\PYGZhy{}value
+delta      0.166  0.0116  14.327   0.0000
+=======================================================================
+Dissimilarity = 0.0049
+Loglik(sat)   = \PYGZhy{}2734.302
+Loglik(MOD)   = \PYGZhy{}2734.433
+Loglik(uni)   = \PYGZhy{}2918.865
+Mean\PYGZhy{}loglik   = \PYGZhy{}1.823
+Deviance      = 0.263
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+AIC = 5474.87
+BIC = 5490.81
+=======================================================================
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cubsh00mle}.png}
+
 
 \subsection{With covariates}
-\label{\detokenize{manual:id77}}
+\label{\detokenize{manual:id77}}\begin{equation*}
+\begin{split}\Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i, \pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)\left(\pi_i b_r(\xi_i) + \frac{1-\pi_i}{m} \right)\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}\left\{
+\begin{array}{l}
+    \pi_i = \dfrac{1}{1+\exp\{-\pmb y_i \pmb \beta\}}
+    \\
+    \xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}
+    \\
+    \delta_i = \dfrac{1}{1+\exp\{-\pmb x_i \pmb \omega\}}
+\end{array}
+\right.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Only the model with covariates for all components has been
+currently defined and implemented.
+
+\sphinxAtStartPar
+Nevertheless, thanks to the symbol \sphinxcode{\sphinxupquote{1}} provided by the
+\sphinxstyleemphasis{formula}, we can specify a different combination
+of covariates.
+
+\sphinxAtStartPar
+For example, we’ll specifiy a model CUB with shelter effect,
+with covariates for uncertainty only. We’ll use the function
+\sphinxcode{\sphinxupquote{logit}} to have better ‘control’ of the parameters values,
+because \(\gamma_0 = \mathrm{logit}(\xi)\) and
+similarly for \(\pi\) and \(\delta\).
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id174}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{general} \PYG{k+kn}{import} \PYG{n}{expit}\PYG{p}{,} \PYG{n}{logit}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}\PYG{p}{,} \PYG{n}{estimate}
+
+\PYG{c+c1}{\PYGZsh{} Draw a random sample}
+\PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{1000}
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{W1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{W1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{W1}\PYG{p}{,}
+\PYG{p}{\PYGZcb{}}\PYG{p}{)}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{fee \PYGZti{} W1 | 1 | 1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{df}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{n}{sh}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{,}
+    \PYG{n}{beta}\PYG{o}{=}\PYG{p}{[}\PYG{n}{logit}\PYG{p}{(}\PYG{l+m+mf}{.8}\PYG{p}{)}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{.2}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{gamma}\PYG{o}{=}\PYG{p}{[}\PYG{n}{logit}\PYG{p}{(}\PYG{l+m+mf}{.3}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{omega}\PYG{o}{=}\PYG{p}{[}\PYG{n}{logit}\PYG{p}{(}\PYG{l+m+mf}{.12}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}
+\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} MLE estimation}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{fee \PYGZti{} W1 | 1 | 1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,} \PYG{n}{sh}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{,}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print MLE summary}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} plot the results}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUBSH(YWX) model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
+=======================================================================
+m=9  Shelter=2  Size=1000  Iterations=25  Maxiter=500  Tol=1E\PYGZhy{}04
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Uncertainty
+          Estimates  StdErr     Wald  p\PYGZhy{}value
+constant      0.992  0.3314    2.994   0.0028
+W1           \PYGZhy{}0.127  0.0569   \PYGZhy{}2.228   0.0259
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Feeling
+          Estimates  StdErr     Wald  p\PYGZhy{}value
+constant     \PYGZhy{}0.902  0.0381  \PYGZhy{}23.662   0.0000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Shelter effect
+          Estimates  StdErr     Wald  p\PYGZhy{}value
+constant     \PYGZhy{}2.074  0.1260  \PYGZhy{}16.462   0.0000
+=======================================================================
+Dissimilarity = 0.0139
+Loglik(MOD)   = \PYGZhy{}2069.978
+Loglik(uni)   = \PYGZhy{}2197.225
+Mean\PYGZhy{}loglik   = \PYGZhy{}2.070
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+AIC = 4147.96
+BIC = 4167.59
+=======================================================================
+Elapsed time=1.43850 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Thu Aug 15 19:39:49 2024
+=======================================================================
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cubshywxmle}.png}
+
+\sphinxAtStartPar
+To get the estimated values of \(\hat\xi\) and \(\hat\delta\)
+we can use the function \sphinxcode{\sphinxupquote{expit}} because \(\hat\xi = \mathrm{expit}(\hat\gamma_0)\)
+and similarly for \(\hat\delta\). Then, since
+\(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\)
+we can compute the standard errors of both \(\hat\xi\) and \(\hat\delta\).
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id175}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{n}{est\PYGZus{}xi} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{est\PYGZus{}de} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{est\PYGZus{}xi\PYGZus{}se} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{+}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{stderrs}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{est\PYGZus{}xi}
+\PYG{n}{est\PYGZus{}de\PYGZus{}se} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{+}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{stderrs}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{est\PYGZus{}de}
+\PYG{n+nb}{print}\PYG{p}{(}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{     estimates  stderr}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{xi      }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{est\PYGZus{}xi}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{est\PYGZus{}xi\PYGZus{}se}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{delta   }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{est\PYGZus{}de}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{est\PYGZus{}de\PYGZus{}se}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+     estimates  stderr
+xi      0.2886  0.0079
+delta   0.1116  0.0131
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+which, in fact, match the values used to draw the sample.
+
 
 \section{CUSH family}
 \label{\detokenize{manual:cush-family}}
+\sphinxAtStartPar
+Basic family of the class CUSH with a single shelter effect.
+See the references for details.
 
-\section{2\sphinxhyphen{}CUSH family}
-\label{\detokenize{manual:id78}}
+
+\subsection{References}
+\label{\detokenize{manual:id78}}\begin{quote}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{0}
+\item {} 
+\sphinxAtStartPar
+Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. \sphinxstyleemphasis{Statistical Methods \& Applications}, 21:1\textendash{}22, 2012.
+
+\item {} 
+\sphinxAtStartPar
+Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. \sphinxstyleemphasis{Quality Technology \& Quantitative Management}, 7(2):149\textendash{}168, 2010.
+
+\item {} 
+\sphinxAtStartPar
+Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. \sphinxstyleemphasis{Statistica \& Applicazioni}, 12(2):177\textendash{}204, 2014.
+
+\item {} 
+\sphinxAtStartPar
+Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. \sphinxstyleemphasis{Statistical Methods \& Applications}, 28:389\textendash{}435, 2019.
+
+\end{enumerate}
+\end{quote}
+
+
+\subsection{Without covariates}
+\label{\detokenize{manual:id116}}\begin{equation*}
+\begin{split}\Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1-\delta)/m\end{split}
+\end{equation*}
+\sphinxAtStartPar
+In the example, we’ll draw a sample from a CUSH model without covariates and
+then estimate the parameter given the observed sample.
+
+\sphinxAtStartPar
+Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id176}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}\PYG{p}{,} \PYG{n}{estimate}
+
+\PYG{c+c1}{\PYGZsh{} draw a sample}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord \PYGZti{} 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{sh}\PYG{o}{=}\PYG{l+m+mi}{7}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{n}{delta}\PYG{o}{=}\PYG{l+m+mf}{.15}\PYG{p}{,}
+    \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1500}\PYG{p}{,} \PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{76}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord\PYGZti{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{sh}\PYG{o}{=}\PYG{l+m+mi}{7}\PYG{p}{,}
+    \PYG{n}{gen\PYGZus{}pars}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{delta}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} print the summary of MLE}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} show the plot of MLE}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUSH model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
+=======================================================================
+m=7  Shelter=7  Size=1500
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Shelter effect
+       Estimates  StdErr   Wald  p\PYGZhy{}value
+delta      0.124  0.0130  9.532   0.0000
+=======================================================================
+Dissimilarity = 0.0236
+Loglik(sat)   = \PYGZhy{}2856.039
+Loglik(MOD)   = \PYGZhy{}2859.923
+Loglik(uni)   = \PYGZhy{}2918.865
+Mean\PYGZhy{}loglik   = \PYGZhy{}1.907
+Deviance      = 7.768
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+AIC = 5721.85
+BIC = 5727.16
+=======================================================================
+Elapsed time=0.00113 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 10:44:07 2024
+=======================================================================
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cush0mle}.png}
+
+
+\subsection{With covariates}
+\label{\detokenize{manual:id117}}\begin{equation*}
+\begin{split}\Pr(R_i=r|\pmb\theta,\pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)/m\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}\delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb\omega \}}\end{split}
+\end{equation*}
+\sphinxAtStartPar
+In the example, we’ll draw a sample from a CUSH model with covariates and
+then estimate the parameter given the observed sample.
+
+\sphinxAtStartPar
+Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id177}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{general} \PYG{k+kn}{import} \PYG{n}{logit}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}\PYG{p}{,} \PYG{n}{estimate}
+
+\PYG{c+c1}{\PYGZsh{} Draw a random sample}
+\PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{1000}
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{X} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{X}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{X}\PYG{p}{,}
+\PYG{p}{\PYGZcb{}}\PYG{p}{)}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{fee \PYGZti{} X}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{df}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{n}{sh}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{,}
+    \PYG{n}{omega}\PYG{o}{=}\PYG{p}{[}\PYG{n}{logit}\PYG{p}{(}\PYG{l+m+mf}{.05}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mf}{.2}\PYG{p}{]}\PYG{p}{,}
+\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} MLE estimation}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{fee \PYGZti{} X}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,} \PYG{n}{sh}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{,}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print MLE summary}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} plot the results}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUSH(X) model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
+=======================================================================
+m=9  Shelter=5  Size=1000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Shelter effect
+          Estimates  StdErr    Wald  p\PYGZhy{}value
+constant     \PYGZhy{}3.131  0.4361  \PYGZhy{}7.180   0.0000
+X             0.229  0.0629   3.642   0.0003
+=======================================================================
+Dissimilarity = 0.0395
+Loglik(MOD)   = \PYGZhy{}2130.030
+Loglik(uni)   = \PYGZhy{}2197.225
+Mean\PYGZhy{}loglik   = \PYGZhy{}2.130
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+AIC = 4264.06
+BIC = 4273.87
+=======================================================================
+Elapsed time=0.01704 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 10:54:11 2024
+=======================================================================
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cushxmle}.png}
+
+
+\section{CUSH2 family}
+\label{\detokenize{manual:cush2-family}}
+\sphinxAtStartPar
+Basic family of the class CUSH with a two shelter effects (CUSH2).
+See the references for details.
+
+
+\subsection{References}
+\label{\detokenize{manual:id118}}\begin{quote}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{0}
+\item {} 
+\sphinxAtStartPar
+Massimo Pierini. Modelli della classe cub in python. \sphinxstyleemphasis{Universitas Mercatorum, Rome, IT}, pages 16\textendash{}20, June 2024. (Bachelor\textquotesingle{}s thesis L\sphinxhyphen{}41).
+
+\end{enumerate}
+\end{quote}
+
+
+\subsection{Without covariates}
+\label{\detokenize{manual:id156}}\begin{equation*}
+\begin{split}\Pr(R=r|\pmb\theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1-\delta_1-\delta_2)/m\end{split}
+\end{equation*}
+\sphinxAtStartPar
+In the example, we’ll draw a sample from a CUSH2 model without covariates and
+then estimate the parameter given the observed sample.
+
+\sphinxAtStartPar
+Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
+Passing a list of two shelter categories with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}}, a CUSH2 model will be
+called.
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id178}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}\PYG{p}{,} \PYG{n}{estimate}
+
+\PYG{c+c1}{\PYGZsh{} draw a sample}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord \PYGZti{} 0 | 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{sh}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{7}\PYG{p}{,}
+    \PYG{n}{delta1}\PYG{o}{=}\PYG{l+m+mf}{.15}\PYG{p}{,} \PYG{n}{delta2}\PYG{o}{=}\PYG{l+m+mf}{.1}\PYG{p}{,}
+    \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord\PYGZti{}0|0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{sh}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{gen\PYGZus{}pars}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{delta1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{delta2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} print the summary of MLE}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} show the plot of MLE}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUSH2 model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
+=======================================================================
+m=7  Shelter=[1 7]  Size=1000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Shelter effects
+        Estimates  StdErr    Wald  p\PYGZhy{}value
+delta1      0.171  0.0148  11.535   0.0000
+delta2      0.107  0.0163   6.555   0.0000
+=======================================================================
+Dissimilarity = 0.0184
+Loglik(sat)   = \PYGZhy{}1852.818
+Loglik(MOD)   = \PYGZhy{}1854.344
+Loglik(uni)   = \PYGZhy{}1945.910
+Mean\PYGZhy{}loglik   = \PYGZhy{}1.854
+Deviance      = 3.053
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+AIC = 3712.69
+BIC = 3722.50
+=======================================================================
+Elapsed time=0.00228 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 11:15:21 2024
+=======================================================================
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cush200mle}.png}
+
+
+\subsection{With covariates}
+\label{\detokenize{manual:id157}}\begin{equation*}
+\begin{split}\Pr(R_i=r|\pmb\theta,\pmb x_{1i}, \pmb x_{2i}) = \delta_{1i} D_r^{(c_1)} + \delta_{2i} D_r^{(c_2)} + (1-\delta_{1i}- \delta_{2i})/m\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}\left\{
+\begin{array}{l}
+    \delta_{1i} = \dfrac{1}{1+\exp\{ - \pmb x_{1i} \pmb\omega_1 \}}
+    \\
+    \delta_{2i} = \dfrac{1}{1+\exp\{ - \pmb x_{2i} \pmb\omega_2 \}}
+\end{array}
+\right.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+In this example we’ll draw a sample from a CUSH2 model with
+covariates for the first shelter choice only and will then
+estimate the parameters with a CUSH2 model with covariates
+for both shelter choices but using the symbol \sphinxcode{\sphinxupquote{1}} in the
+formula for the second shelter choice to estimate the
+constant parameter only. This is usually not needed, but
+we do it here to confirm that \(\mathrm{expit}(\hat\omega_{20})=\hat\delta_2\).
+\sphinxSetupCaptionForVerbatim{Script}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id179}}}
+\begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PYG{c+c1}{\PYGZsh{} import libraries}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{general} \PYG{k+kn}{import} \PYG{n}{logit}\PYG{p}{,} \PYG{n}{expit}
+\PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{gem} \PYG{k+kn}{import} \PYG{n}{draw}\PYG{p}{,} \PYG{n}{estimate}
+
+\PYG{c+c1}{\PYGZsh{} Draw a random sample}
+\PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{1000}
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{X} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{X}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{X}\PYG{p}{,}
+\PYG{p}{\PYGZcb{}}\PYG{p}{)}
+\PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{fee \PYGZti{} X | 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{df}\PYG{p}{,}
+    \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{n}{sh}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{omega1}\PYG{o}{=}\PYG{p}{[}\PYG{n}{logit}\PYG{p}{(}\PYG{l+m+mf}{.05}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mf}{.2}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{delta2}\PYG{o}{=}\PYG{l+m+mf}{.1}
+\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} MLE estimation}
+\PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
+    \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{fee \PYGZti{} X | 1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,} \PYG{n}{sh}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{,}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print MLE summary}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} plot the results}
+\PYG{n}{fit}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{n}{est\PYGZus{}de2} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{est\PYGZus{}de2\PYGZus{}es} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{+}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{stderrs}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{est\PYGZus{}de2}
+\PYG{n+nb}{print}\PYG{p}{(}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{     estimates  stderr}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{delta2  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{est\PYGZus{}de2}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{  }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{est\PYGZus{}de2\PYGZus{}es}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
+=======================================================================
+=====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUSH2(X1,X2) model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
+=======================================================================
+m=9  Shelter=[2 8]  Size=1000
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Shelter effect 1
+          Estimates  StdErr     Wald  p\PYGZhy{}value
+constant     \PYGZhy{}3.170  0.4216   \PYGZhy{}7.519   0.0000
+X             0.207  0.0613    3.379   0.0007
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+Shelter effect 2
+          Estimates  StdErr     Wald  p\PYGZhy{}value
+constant     \PYGZhy{}2.276  0.1609  \PYGZhy{}14.149   0.0000
+=======================================================================
+Dissimilarity = 0.0305
+Loglik(MOD)   = \PYGZhy{}2122.463
+Loglik(uni)   = \PYGZhy{}2197.225
+Mean\PYGZhy{}loglik   = \PYGZhy{}2.122
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+AIC = 4250.93
+BIC = 4265.65
+=======================================================================
+Elapsed time=0.06553 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 11:29:11 2024
+=======================================================================
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{cush2xxmle}.png}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+     estimates  stderr
+delta2  0.0931  0.0145
+\end{sphinxVerbatim}
+
 
 \section{CUBE family}
 \label{\detokenize{manual:cube-family}}
 
+\subsection{Without covariates}
+\label{\detokenize{manual:id158}}
+
+\subsection{With covariates}
+\label{\detokenize{manual:id159}}
+
 \section{IHG family}
 \label{\detokenize{manual:ihg-family}}
 
+\subsection{Without covariates}
+\label{\detokenize{manual:id160}}
+
+\subsection{With covariates}
+\label{\detokenize{manual:id161}}
+
 \section{MULTICUB}
 \label{\detokenize{manual:multicub}}
+
+\subsection{CUB family}
+\label{\detokenize{manual:id162}}
+
+\subsection{CUBSH family}
+\label{\detokenize{manual:id163}}
+
+\subsection{CUBE family}
+\label{\detokenize{manual:id164}}
 \sphinxstepscope
 
 
@@ -1097,7 +1896,7 @@ numpy array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUB model.
@@ -1118,6 +1917,14 @@ Draw a random sample from a specified CUB model.
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{n}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal responses to be drawn
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -1386,6 +2193,14 @@ Function to estimate and validate a CUB model without covariates for given ordin
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{m}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal categories
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -1980,7 +2795,7 @@ numpy array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_0w.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_0w.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_0w.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUB model with covariates for
@@ -2008,6 +2823,14 @@ the feeling component.
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{W}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the feeling component;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -2195,6 +3018,14 @@ explaining the feeling component.
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{W}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the feeling component;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -2675,7 +3506,7 @@ if provided, average probability distribution of a known model.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_y0.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_y0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_y0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUB model with covariates for
@@ -2703,6 +3534,14 @@ the uncertainty component.
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{Y}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the uncertainty component;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -2844,6 +3683,14 @@ the uncertainty component.
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{Y}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the uncertainty component;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -3328,7 +4175,7 @@ if provided, average probability distribution of a known model.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_yw.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_yw.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cub\_yw.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUB model with covariates for
@@ -3362,6 +4209,14 @@ no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxup
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{W}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the feeling component;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \end{itemize}
 
@@ -3462,6 +4317,14 @@ no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxup
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{W}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the feeling component;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -4101,7 +4964,7 @@ numpy array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{phi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{phi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBE model.
@@ -4126,6 +4989,14 @@ Draw a random sample from a specified CUBE model.
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{n}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal responses to be drawn
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -4332,6 +5203,14 @@ Estimate and validate a CUBE model without covariates.
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{m}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal categories
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -4842,7 +5721,7 @@ array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_0w0.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_0w0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{phi}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_0w0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{phi}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBE model.
@@ -4873,6 +5752,14 @@ no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxup
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{n}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal responses to be drawn
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -5073,6 +5960,14 @@ feeling component.
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{W}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the feeling component;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -5694,7 +6589,7 @@ array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_ywz.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_ywz.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{alpha}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{Z}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cube\_ywz.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{alpha}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{Z}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBE model.
@@ -5737,6 +6632,14 @@ no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxup
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{Z}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the overdispersion;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -5909,6 +6812,14 @@ no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxup
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{Z}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the overdispersion;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -6541,7 +7452,7 @@ array
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{delta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{pi}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{delta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBSH model,
@@ -6574,6 +7485,14 @@ using canonic parametrization \((\pi, \delta)\).
 
 \item {} 
 \sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
+
+\item {} 
+\sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{seed}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} the \sphinxtitleref{seed} to ensure reproducibility, defaults to None
 
 \end{itemize}
@@ -6591,7 +7510,7 @@ an instance of \sphinxcode{\sphinxupquote{CUBsample}} containing ordinal respons
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh.draw2}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{draw2}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{pi1}}, \emph{\DUrole{n}{pi2}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh.}}\sphinxbfcode{\sphinxupquote{draw2}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{pi1}}, \emph{\DUrole{n}{pi2}}, \emph{\DUrole{n}{xi}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBSH model,
@@ -6621,6 +7540,14 @@ using alternative parametrization \((\pi_1, \pi_2)\).
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{n}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal responses
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -6797,6 +7724,14 @@ Estimate and validate a CUB model with a shelter effect.
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{sh}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} Category corresponding to the shelter choice \([1,m]\)
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -7658,7 +8593,7 @@ for GeCUB models with covariates for feeling, uncertainty and shelter effect.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh_ywx.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh\_ywx.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{omega}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cubsh\_ywx.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{beta}}, \emph{\DUrole{n}{gamma}}, \emph{\DUrole{n}{omega}}, \emph{\DUrole{n}{Y}}, \emph{\DUrole{n}{W}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUBSH model with covariates
@@ -7706,6 +8641,18 @@ no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxup
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{n}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal responses to be drawn
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{seed}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} the \sphinxtitleref{seed} to ensure reproducibility, defaults to None
 
 \end{itemize}
 
@@ -7882,6 +8829,14 @@ no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxup
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{X}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the shelter effect;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -8503,7 +9458,7 @@ float
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{delta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{delta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUSH model.
@@ -8524,6 +9479,14 @@ Draw a random sample from a specified CUSH model.
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{n}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal responses
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -8705,6 +9668,14 @@ Estimate and validate a CUSH model for given ordinal responses, without covariat
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{sh}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} Category corresponding to the shelter choice \([1,m]\)
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -9103,7 +10074,7 @@ the asymptotic standard error.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{delta1}}, \emph{\DUrole{n}{delta2}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{delta1}}, \emph{\DUrole{n}{delta2}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified 2\sphinxhyphen{}CUSH model.
@@ -9132,6 +10103,14 @@ Draw a random sample from a specified 2\sphinxhyphen{}CUSH model.
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{n}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal responses
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -9221,6 +10200,14 @@ Estimate and validate a 2\sphinxhyphen{}CUSH model for ordinal responses, withou
 \item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{c2}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} Category corresponding to the 2nd shelter choice \([1,m]\)
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -9538,7 +10525,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_x0.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_x0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{omega1}}, \emph{\DUrole{n}{delta2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush2\_x0.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh1}}, \emph{\DUrole{n}{sh2}}, \emph{\DUrole{n}{omega1}}, \emph{\DUrole{n}{delta2}}, \emph{\DUrole{n}{X1}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -10075,7 +11062,7 @@ if provided, average probability distribution of a known model.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush_x.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush\_x.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{omega}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.cush\_x.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{sh}}, \emph{\DUrole{n}{omega}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Draw a random sample from a specified CUSH model with covariates
@@ -10102,6 +11089,14 @@ Draw a random sample from a specified CUSH model with covariates
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{X}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the shelter effect;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -10239,6 +11234,14 @@ to explain the shelter effect.
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{X}} (\sphinxstyleliteralemphasis{\sphinxupquote{pandas dataframe}}) \textendash{} dataframe of covariates for explaining the shelter effect;
 no column must be named \sphinxcode{\sphinxupquote{0}} nor \sphinxcode{\sphinxupquote{constant}}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{df}} (\sphinxstyleliteralemphasis{\sphinxupquote{DataFrame}}) \textendash{} original DataFrame
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula used
 
 \item {} 
 \sphinxAtStartPar
@@ -11198,23 +12201,21 @@ float
 Parse a CUB class formula.
 
 \sphinxAtStartPar
-Auxiliary function of \sphinxcode{\sphinxupquote{cubmods.gem.from\_formula()}}.
-\begin{description}
-\sphinxlineitem{TODO: adapt formula to specific family with corresponding}
-\sphinxAtStartPar
-number of parameters
-
-\end{description}
-
-\sphinxAtStartPar
-TODO: documentation about formula
+Auxiliary function of \sphinxcode{\sphinxupquote{cubmods.gem}} functions.
 
 \sphinxAtStartPar
 TODO: add specific Exceptions for formula
 \begin{quote}\begin{description}
-\sphinxlineitem{Parameters}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{formula}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the formula to be parsed
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{model}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} the model family
+
+\end{itemize}
 
 \sphinxlineitem{Returns}
 \sphinxAtStartPar
@@ -11927,7 +12928,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{theta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{theta}}, \emph{\DUrole{n}{n}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 generate random sample from CUB model
@@ -12175,7 +13176,7 @@ plot CUB model fitted from a sample
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg_v.draw}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg\_v.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{nu}}, \emph{\DUrole{n}{V}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{orig\_df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg\_v.}}\sphinxbfcode{\sphinxupquote{draw}}}{\emph{\DUrole{n}{m}}, \emph{\DUrole{n}{nu}}, \emph{\DUrole{n}{V}}, \emph{\DUrole{n}{df}}, \emph{\DUrole{n}{formula}}, \emph{\DUrole{n}{seed}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -12608,10 +13609,10 @@ An instance of this Class is returned by .draw() functions. See the correspondin
 \hline
 
 \sphinxAtStartPar
-{\hyperref[\detokenize{cubmods:cubmods.smry.CUBsample.as_dataframe}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{as\_dataframe}}}}}({[}varname{]})
+{\hyperref[\detokenize{cubmods:cubmods.smry.CUBsample.as_dataframe}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{as\_dataframe}}}}}()
 &
 \sphinxAtStartPar
-\sphinxurl{https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference\%20Guide/smry.md\#cubsample}
+The parameters\textquotesingle{} values specified.
 \\
 \hline
 \sphinxAtStartPar
@@ -12643,10 +13644,20 @@ Save a CUBsample object to file
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.smry.CUBsample.as_dataframe}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{as\_dataframe}}}{\emph{\DUrole{n}{varname}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}ordinal\textquotesingle{}}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{as\_dataframe}}}{}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-\sphinxurl{https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference\%20Guide/smry.md\#cubsample}
+The parameters’ values specified.
+\begin{quote}\begin{description}
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+a DataFrame with parameters’ names and values
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+DataFrame
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
