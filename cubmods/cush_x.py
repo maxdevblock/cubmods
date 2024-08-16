@@ -18,9 +18,13 @@ References:
 ===========
     .. bibliography:: cub.bib
         :list: enumerated
+        :filter: False
 
         capecchi2017dealing
-        capecchi2016gini
+        iannario2009program
+        iannario2014inference
+        iannario2022package
+        piccolo2019class
 
   
 List of TODOs:

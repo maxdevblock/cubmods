@@ -21,8 +21,13 @@ References:
 ===========
     .. bibliography:: cub.bib
         :list: enumerated
+        :filter: False
 
         mythesis
+        iannario2009program
+        iannario2014inference
+        iannario2022package
+        piccolo2019class
 
   
 List of TODOs:

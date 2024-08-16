@@ -203,7 +203,10 @@ References
         piccolo2003moments
         d2005mixture
         piccolo2006observed
+        iannario2010new
+        iannario2009program
         iannario2014inference
+        iannario2022package
         piccolo2019class
 
 Without covariates
@@ -539,9 +542,10 @@ References
         :list: enumerated
         :filter: False
 
-        iannario2010new
         iannario2012modelling
+        iannario2009program
         iannario2014inference
+        iannario2022package
         piccolo2019class
 
 Without covariates
@@ -798,6 +802,9 @@ References
         :filter: False
 
         capecchi2017dealing
+        iannario2009program
+        iannario2014inference
+        iannario2022package
         piccolo2019class
 
 Without covariates
@@ -963,6 +970,10 @@ References
         :filter: False
 
         mythesis
+        iannario2009program
+        iannario2014inference
+        iannario2022package
+        piccolo2019class
 
 Without covariates
 ^^^^^^^^^^^^^^^^^^
@@ -1162,6 +1173,9 @@ References
 
         iannario2014modelling
         iannario2015detecting
+        iannario2009program
+        iannario2014inference
+        iannario2022package
         piccolo2019class
 
 Without covariates
@@ -1462,6 +1476,9 @@ References
 
         d2003modelling
         d2005moment
+        iannario2009program
+        iannario2014inference
+        iannario2022package
         piccolo2019class
 
 Without covariates

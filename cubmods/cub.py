@@ -22,7 +22,16 @@ References
 ===========
     .. bibliography:: cub.bib
         :list: enumerated
-        :all:
+        :filter: False
+
+        piccolo2003moments
+        d2005mixture
+        piccolo2006observed
+        iannario2010new
+        iannario2009program
+        iannario2014inference
+        iannario2022package
+        piccolo2019class
 
   
 List of TODOs:
