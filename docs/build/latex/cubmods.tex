@@ -280,11 +280,13 @@ Notice that, for models with covariates, \sphinxcode{\sphinxupquote{seed}} canno
 automatically set to \sphinxcode{\sphinxupquote{1}}).
 
 \sphinxAtStartPar
-If no \sphinxcode{\sphinxupquote{model=}} \sphinxstyleemphasis{kwarg} is declared, the function takes \sphinxcode{\sphinxupquote{"cub"}} as default.
+If no \sphinxcode{\sphinxupquote{model}} is declared, the function takes \sphinxcode{\sphinxupquote{"cub"}} as default.
 Currently implemented models are: \sphinxcode{\sphinxupquote{"cub"}} (default), \sphinxcode{\sphinxupquote{"cush"}}, \sphinxcode{\sphinxupquote{"cube"}},
-\sphinxcode{\sphinxupquote{"ihg"}}, and \sphinxcode{\sphinxupquote{"cush2"}}. CUB models with shelter effect, are automatically
+and \sphinxcode{\sphinxupquote{"ihg"}}. CUB models with shelter effect are automatically
 implemented using \sphinxcode{\sphinxupquote{model="cub"}} and specifying a shelter choice with the
-\sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}}.
+\sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}}. CUSH2 models are automatically
+implemented using \sphinxcode{\sphinxupquote{model="cush"}} and passing a list of two categories to
+the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}} instead of an integer.
 
 \sphinxAtStartPar
 To \sphinxcode{\sphinxupquote{draw}} must be passed the parameters’ values with the \sphinxstyleemphasis{kwargs} of the corresponding
@@ -312,7 +314,7 @@ to explain uncertainty, feeling and overdispersion.   Subjects’ covariates can
 feeling component or all the three components by  specifying covariates matrices in the Formula as
 \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}Y|W|Z}} to explain uncertainty (Y), feeling (W) or
 overdispersion (Z). For different combinations of components with covariates, the symbol \sphinxcode{\sphinxupquote{1}} can be used.
-Notice that \(\hat\phi=e^{-\hat\alpha_0}\).
+Notice that \(\hat\phi=e^{\hat\alpha_0}\).
 
 \sphinxAtStartPar
 If \sphinxcode{\sphinxupquote{family="ihg"}}, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
@@ -1619,8 +1621,8 @@ Elapsed time=2.30903 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:31:1
 \sphinxAtStartPar
 Notice that the same results can be achieved using a CUBE
 model with covariates for all components and passing
-the symbol \sphinxcode{\sphinxupquote{1}} to the \sphinxstyleemphasis{feeling} and \sphinxstyleemphasis{uncertainty}
-component.
+the symbol \sphinxcode{\sphinxupquote{1}} to the \sphinxstyleemphasis{uncertainty} and \sphinxstyleemphasis{overdispersion}
+components.
 \sphinxSetupCaptionForVerbatim{Script}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id292}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]

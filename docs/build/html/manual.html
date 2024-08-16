@@ -420,11 +420,13 @@ the number of drawn ordinal responsed will be equal to the passed DataFrame rows
 <p>A <code class="docutils literal notranslate"><span class="pre">seed</span></code> could be specified for the function <code class="docutils literal notranslate"><span class="pre">draw</span></code> to ensure reproducibility.
 Notice that, for models with covariates, <code class="docutils literal notranslate"><span class="pre">seed</span></code> cannot be <code class="docutils literal notranslate"><span class="pre">0</span></code> (in case, it will be
 automatically set to <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p>
-<p>If no <code class="docutils literal notranslate"><span class="pre">model=</span></code> <em>kwarg</em> is declared, the function takes <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> as default.
+<p>If no <code class="docutils literal notranslate"><span class="pre">model</span></code> is declared, the function takes <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> as default.
 Currently implemented models are: <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;cush&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cube&quot;</span></code>,
-<code class="docutils literal notranslate"><span class="pre">&quot;ihg&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;cush2&quot;</span></code>. CUB models with shelter effect, are automatically
+and <code class="docutils literal notranslate"><span class="pre">&quot;ihg&quot;</span></code>. CUB models with shelter effect are automatically
 implemented using <code class="docutils literal notranslate"><span class="pre">model=&quot;cub&quot;</span></code> and specifying a shelter choice with the
-<em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code>.</p>
+<em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code>. CUSH2 models are automatically
+implemented using <code class="docutils literal notranslate"><span class="pre">model=&quot;cush&quot;</span></code> and passing a list of two categories to
+the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code> instead of an integer.</p>
 <p>To <code class="docutils literal notranslate"><span class="pre">draw</span></code> must be passed the parameters’ values with the <em>kwargs</em> of the corresponding
 family: for example, <code class="docutils literal notranslate"><span class="pre">pi</span></code> and <code class="docutils literal notranslate"><span class="pre">xi</span></code> for CUB models without covariates, <code class="docutils literal notranslate"><span class="pre">beta</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code>
 for CUB models with covariates for both feeling and uncertainty, etc. See the
@@ -446,7 +448,7 @@ to explain uncertainty, feeling and overdispersion.   Subjects’ covariates can
 feeling component or all the three components by  specifying covariates matrices in the Formula as
 <code class="docutils literal notranslate"><span class="pre">ordinal~Y|W|Z</span></code> to explain uncertainty (Y), feeling (W) or
 overdispersion (Z). For different combinations of components with covariates, the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> can be used.
-Notice that <span class="math notranslate nohighlight">\(\hat\phi=e^{-\hat\alpha_0}\)</span>.</p>
+Notice that <span class="math notranslate nohighlight">\(\hat\phi=e^{\hat\alpha_0}\)</span>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;ihg&quot;</span></code>, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
 CUBE models. The parameter <span class="math notranslate nohighlight">\(\theta\)</span> gives the probability of observing
 the first category and is therefore a direct measure of preference, attraction, pleasantness toward the
@@ -1578,8 +1580,8 @@ Elapsed time=2.30903 seconds =====&gt;&gt;&gt; Fri Aug 16 12:31:10 2024
 <img alt="CUBE 0W0 MLE" src="_images/cube0w0mle.png" />
 <p>Notice that the same results can be achieved using a CUBE
 model with covariates for all components and passing
-the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> to the <em>feeling</em> and <em>uncertainty</em>
-component.</p>
+the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> to the <em>uncertainty</em> and <em>overdispersion</em>
+components.</p>
 <div class="literal-block-wrapper docutils container" id="id292">
 <div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id292" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>

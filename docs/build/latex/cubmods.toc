@@ -1,0 +1,171 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}References}{1}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Manual}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}GeM usage}{3}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}The \sphinxstyleemphasis {formula} syntax}{4}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Arguments of \sphinxstyleliteralintitle {\sphinxupquote {estimate}} and \sphinxstyleliteralintitle {\sphinxupquote {draw}}}{4}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Methods of \sphinxstyleliteralintitle {\sphinxupquote {estimate}} and \sphinxstyleliteralintitle {\sphinxupquote {draw}}}{5}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Attributes of \sphinxstyleliteralintitle {\sphinxupquote {estimate}} and \sphinxstyleliteralintitle {\sphinxupquote {draw}}}{5}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}CUB family}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}References}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Without covariates}{6}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}With covariates}{10}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}CUBSH family}{14}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}References}{14}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Without covariates}{14}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}With covariates}{18}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}CUSH family}{21}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}References}{21}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Without covariates}{21}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}With covariates}{24}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}CUSH2 family}{26}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}References}{26}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Without covariates}{26}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}With covariates}{29}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}CUBE family}{31}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}References}{31}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Without covariates}{32}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}With covariates}{35}{subsection.2.6.3}%
+\contentsline {section}{\numberline {2.7}IHG family}{39}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}References}{39}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Without covariates}{39}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}With covariates}{42}{subsection.2.7.3}%
+\contentsline {section}{\numberline {2.8}MULTICUB}{44}{section.2.8}%
+\contentsline {chapter}{\numberline {3}cubmods}{49}{chapter.3}%
+\contentsline {section}{\numberline {3.1}cubmods package}{49}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Submodules}{49}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}cubmods.cub module}{49}{subsection.3.1.2}%
+\contentsline {subsubsection}{Description}{49}{subsubsection*.3}%
+\contentsline {subsubsection}{Manual and Examples}{49}{subsubsection*.4}%
+\contentsline {subsubsection}{References}{49}{subsubsection*.5}%
+\contentsline {subsubsection}{List of TODOs:}{51}{subsubsection*.6}%
+\contentsline {subsubsection}{Credits}{51}{subsubsection*.7}%
+\contentsline {subsubsection}{Classes and Functions}{52}{subsubsection*.8}%
+\contentsline {subsection}{\numberline {3.1.3}cubmods.cub\_0w module}{58}{subsection.3.1.3}%
+\contentsline {subsubsection}{Description:}{58}{subsubsection*.29}%
+\contentsline {subsubsection}{Manual and Examples}{58}{subsubsection*.30}%
+\contentsline {subsubsection}{References:}{58}{subsubsection*.31}%
+\contentsline {subsubsection}{List of TODOs:}{59}{subsubsection*.32}%
+\contentsline {subsubsection}{Credits}{59}{subsubsection*.33}%
+\contentsline {subsubsection}{Classes and Functions}{59}{subsubsection*.34}%
+\contentsline {subsection}{\numberline {3.1.4}cubmods.cub\_y0 module}{64}{subsection.3.1.4}%
+\contentsline {subsubsection}{Description:}{64}{subsubsection*.48}%
+\contentsline {subsubsection}{Manual and Examples}{64}{subsubsection*.49}%
+\contentsline {subsubsection}{References:}{64}{subsubsection*.50}%
+\contentsline {subsubsection}{List of TODOs:}{65}{subsubsection*.51}%
+\contentsline {subsubsection}{Credits}{65}{subsubsection*.52}%
+\contentsline {subsubsection}{Classes and Functions}{65}{subsubsection*.53}%
+\contentsline {subsection}{\numberline {3.1.5}cubmods.cub\_yw module}{69}{subsection.3.1.5}%
+\contentsline {subsubsection}{Description:}{69}{subsubsection*.65}%
+\contentsline {subsubsection}{Manual and Examples}{70}{subsubsection*.66}%
+\contentsline {subsubsection}{References:}{70}{subsubsection*.67}%
+\contentsline {subsubsection}{List of TODOs:}{70}{subsubsection*.68}%
+\contentsline {subsubsection}{Credits}{70}{subsubsection*.69}%
+\contentsline {subsubsection}{Classes and Functions}{71}{subsubsection*.70}%
+\contentsline {subsection}{\numberline {3.1.6}cubmods.cube module}{75}{subsection.3.1.6}%
+\contentsline {subsubsection}{Description:}{75}{subsubsection*.81}%
+\contentsline {subsubsection}{Manual and Examples}{75}{subsubsection*.82}%
+\contentsline {subsubsection}{References:}{75}{subsubsection*.83}%
+\contentsline {subsubsection}{List of TODOs:}{76}{subsubsection*.84}%
+\contentsline {subsubsection}{Credits}{76}{subsubsection*.85}%
+\contentsline {subsubsection}{Classes and Functions}{76}{subsubsection*.86}%
+\contentsline {subsection}{\numberline {3.1.7}cubmods.cube\_0w0 module}{81}{subsection.3.1.7}%
+\contentsline {subsubsection}{Description:}{81}{subsubsection*.103}%
+\contentsline {subsubsection}{Manual and Examples}{82}{subsubsection*.104}%
+\contentsline {subsubsection}{References:}{82}{subsubsection*.105}%
+\contentsline {subsubsection}{List of TODOs:}{82}{subsubsection*.106}%
+\contentsline {subsubsection}{Credits}{82}{subsubsection*.107}%
+\contentsline {subsubsection}{Classes and Functions}{83}{subsubsection*.108}%
+\contentsline {subsection}{\numberline {3.1.8}cubmods.cube\_ywz module}{87}{subsection.3.1.8}%
+\contentsline {subsubsection}{Description:}{87}{subsubsection*.121}%
+\contentsline {subsubsection}{Manual and Examples}{88}{subsubsection*.122}%
+\contentsline {subsubsection}{References:}{88}{subsubsection*.123}%
+\contentsline {subsubsection}{List of TODOs:}{88}{subsubsection*.124}%
+\contentsline {subsubsection}{Credits}{88}{subsubsection*.125}%
+\contentsline {subsubsection}{Classes and Functions}{89}{subsubsection*.126}%
+\contentsline {subsection}{\numberline {3.1.9}cubmods.cubsh module}{94}{subsection.3.1.9}%
+\contentsline {subsubsection}{Description:}{94}{subsubsection*.141}%
+\contentsline {subsubsection}{References:}{95}{subsubsection*.142}%
+\contentsline {subsubsection}{List of TODOs:}{95}{subsubsection*.143}%
+\contentsline {subsubsection}{Credits}{95}{subsubsection*.144}%
+\contentsline {subsubsection}{Classes and Functions}{96}{subsubsection*.145}%
+\contentsline {subsection}{\numberline {3.1.10}cubmods.cubsh\_ywx module}{104}{subsection.3.1.10}%
+\contentsline {subsubsection}{Description:}{104}{subsubsection*.169}%
+\contentsline {subsubsection}{Manual and Examples}{104}{subsubsection*.170}%
+\contentsline {subsubsection}{References:}{104}{subsubsection*.171}%
+\contentsline {subsubsection}{List of TODOs:}{105}{subsubsection*.172}%
+\contentsline {subsubsection}{Credits}{105}{subsubsection*.173}%
+\contentsline {subsubsection}{Classes and Functions}{105}{subsubsection*.174}%
+\contentsline {subsection}{\numberline {3.1.11}cubmods.cush module}{111}{subsection.3.1.11}%
+\contentsline {subsubsection}{Description:}{111}{subsubsection*.188}%
+\contentsline {subsubsection}{Manual and Examples}{111}{subsubsection*.189}%
+\contentsline {subsubsection}{References:}{111}{subsubsection*.190}%
+\contentsline {subsubsection}{List of TODOs:}{111}{subsubsection*.191}%
+\contentsline {subsubsection}{Credits}{111}{subsubsection*.192}%
+\contentsline {subsubsection}{Classes and Functions}{112}{subsubsection*.193}%
+\contentsline {subsection}{\numberline {3.1.12}cubmods.cush2 module}{116}{subsection.3.1.12}%
+\contentsline {subsubsection}{Description:}{116}{subsubsection*.207}%
+\contentsline {subsubsection}{References:}{116}{subsubsection*.208}%
+\contentsline {subsubsection}{List of TODOs:}{116}{subsubsection*.209}%
+\contentsline {subsubsection}{Credits}{116}{subsubsection*.210}%
+\contentsline {subsubsection}{Classes and Functions}{117}{subsubsection*.211}%
+\contentsline {subsection}{\numberline {3.1.13}cubmods.cush2\_x0 module}{120}{subsection.3.1.13}%
+\contentsline {subsubsection}{Description:}{120}{subsubsection*.221}%
+\contentsline {subsubsection}{References:}{120}{subsubsection*.222}%
+\contentsline {subsubsection}{List of TODOs:}{121}{subsubsection*.223}%
+\contentsline {subsubsection}{Credits}{121}{subsubsection*.224}%
+\contentsline {subsubsection}{Classes and Functions}{121}{subsubsection*.225}%
+\contentsline {subsection}{\numberline {3.1.14}cubmods.cush2\_xx module}{124}{subsection.3.1.14}%
+\contentsline {subsubsection}{Description:}{125}{subsubsection*.235}%
+\contentsline {subsubsection}{References:}{125}{subsubsection*.236}%
+\contentsline {subsubsection}{List of TODOs:}{125}{subsubsection*.237}%
+\contentsline {subsubsection}{Credits}{125}{subsubsection*.238}%
+\contentsline {subsubsection}{Classes and Functions}{126}{subsubsection*.239}%
+\contentsline {subsection}{\numberline {3.1.15}cubmods.cush\_x module}{129}{subsection.3.1.15}%
+\contentsline {subsubsection}{Description:}{129}{subsubsection*.249}%
+\contentsline {subsubsection}{References:}{130}{subsubsection*.250}%
+\contentsline {subsubsection}{List of TODOs:}{130}{subsubsection*.251}%
+\contentsline {subsubsection}{Credits}{130}{subsubsection*.252}%
+\contentsline {subsubsection}{Classes and Functions}{131}{subsubsection*.253}%
+\contentsline {subsection}{\numberline {3.1.16}cubmods.gem module}{134}{subsection.3.1.16}%
+\contentsline {subsubsection}{Description:}{134}{subsubsection*.264}%
+\contentsline {subsubsection}{References:}{134}{subsubsection*.265}%
+\contentsline {subsubsection}{List of TODOs:}{135}{subsubsection*.266}%
+\contentsline {subsubsection}{Credits}{135}{subsubsection*.267}%
+\contentsline {subsubsection}{Classes and Functions}{135}{subsubsection*.268}%
+\contentsline {subsection}{\numberline {3.1.17}cubmods.general module}{136}{subsection.3.1.17}%
+\contentsline {subsubsection}{Description:}{136}{subsubsection*.271}%
+\contentsline {subsubsection}{References:}{136}{subsubsection*.272}%
+\contentsline {subsubsection}{List of TODOs:}{137}{subsubsection*.273}%
+\contentsline {subsubsection}{Credits}{137}{subsubsection*.274}%
+\contentsline {subsubsection}{Classes and Functions}{137}{subsubsection*.275}%
+\contentsline {subsection}{\numberline {3.1.18}cubmods.ihg module}{145}{subsection.3.1.18}%
+\contentsline {subsubsection}{Description:}{145}{subsubsection*.310}%
+\contentsline {subsubsection}{References:}{145}{subsubsection*.311}%
+\contentsline {subsubsection}{List of TODOs:}{146}{subsubsection*.312}%
+\contentsline {subsubsection}{Credits}{146}{subsubsection*.313}%
+\contentsline {subsubsection}{Classes and Functions}{146}{subsubsection*.314}%
+\contentsline {subsection}{\numberline {3.1.19}cubmods.ihg\_v module}{150}{subsection.3.1.19}%
+\contentsline {subsubsection}{Description:}{150}{subsubsection*.326}%
+\contentsline {subsubsection}{References:}{150}{subsubsection*.327}%
+\contentsline {subsubsection}{List of TODOs:}{150}{subsubsection*.328}%
+\contentsline {subsubsection}{Credits}{150}{subsubsection*.329}%
+\contentsline {subsubsection}{Classes and Functions}{151}{subsubsection*.330}%
+\contentsline {subsection}{\numberline {3.1.20}cubmods.multicub module}{154}{subsection.3.1.20}%
+\contentsline {subsubsection}{Description:}{154}{subsubsection*.342}%
+\contentsline {subsubsection}{References:}{154}{subsubsection*.343}%
+\contentsline {subsubsection}{List of TODOs:}{155}{subsubsection*.344}%
+\contentsline {subsubsection}{Credits}{155}{subsubsection*.345}%
+\contentsline {subsubsection}{Classes and Functions}{155}{subsubsection*.346}%
+\contentsline {subsection}{\numberline {3.1.21}cubmods.smry module}{156}{subsection.3.1.21}%
+\contentsline {subsubsection}{Description:}{156}{subsubsection*.349}%
+\contentsline {subsubsection}{References:}{156}{subsubsection*.350}%
+\contentsline {subsubsection}{List of TODOs:}{157}{subsubsection*.351}%
+\contentsline {subsubsection}{Credits}{157}{subsubsection*.352}%
+\contentsline {subsubsection}{Classes and Functions}{157}{subsubsection*.353}%
+\contentsline {subsection}{\numberline {3.1.22}Module contents}{159}{subsection.3.1.22}%
+\contentsline {chapter}{\numberline {4}Indices and tables}{161}{chapter.4}%
+\contentsline {chapter}{Bibliography}{163}{chapter*.364}%
+\contentsline {chapter}{Python Module Index}{165}{section*.365}%

@@ -99,11 +99,13 @@ A ``seed`` could be specified for the function ``draw`` to ensure reproducibilit
 Notice that, for models with covariates, ``seed`` cannot be ``0`` (in case, it will be
 automatically set to ``1``).
 
-If no ``model=`` *kwarg* is declared, the function takes ``"cub"`` as default.
+If no ``model`` is declared, the function takes ``"cub"`` as default.
 Currently implemented models are: ``"cub"`` (default), ``"cush"``, ``"cube"``,
-``"ihg"``, and ``"cush2"``. CUB models with shelter effect, are automatically
+and ``"ihg"``. CUB models with shelter effect are automatically
 implemented using ``model="cub"`` and specifying a shelter choice with the 
-*kwarg* ``sh``.
+*kwarg* ``sh``. CUSH2 models are automatically
+implemented using ``model="cush"`` and passing a list of two categories to
+the *kwarg* ``sh`` instead of an integer.
 
 To ``draw`` must be passed the parameters' values with the *kwargs* of the corresponding
 family: for example, ``pi`` and ``xi`` for CUB models without covariates, ``beta`` and ``gamma``
@@ -128,7 +130,7 @@ to explain uncertainty, feeling and overdispersion.   Subjects' covariates can b
 feeling component or all the three components by  specifying covariates matrices in the Formula as 
 ``ordinal~Y|W|Z`` to explain uncertainty (Y), feeling (W) or 
 overdispersion (Z). For different combinations of components with covariates, the symbol ``1`` can be used.
-Notice that :math:`\hat\phi=e^{-\hat\alpha_0}`.
+Notice that :math:`\hat\phi=e^{\hat\alpha_0}`.
 
 If ``family="ihg"``, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
 CUBE models. The parameter :math:`\theta` gives the probability of observing 
@@ -1368,8 +1370,8 @@ the observed sample.
 
 Notice that the same results can be achieved using a CUBE
 model with covariates for all components and passing
-the symbol ``1`` to the *feeling* and *uncertainty*
-component.
+the symbol ``1`` to the *uncertainty* and *overdispersion*
+components.
 
 .. code-block:: python
     :caption: Script
