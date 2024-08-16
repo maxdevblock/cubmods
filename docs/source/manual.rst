@@ -785,13 +785,171 @@ which, in fact, match the values used to draw the sample.
 CUSH family
 -----------
 
+Basic family of the class CUB with shelter effect. 
+See the references for details.
+
+References
+^^^^^^^^^^
+
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :filter: False
+
+        iannario2010new
+        iannario2012modelling
+        iannario2014inference
+        piccolo2019class
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
+
+.. math::
+    \Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1-\delta)/m
+
+In the example, we'll draw a sample from a CUSH model without covariates and
+then estimate the parameter given the observed sample.
+
+Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import matplotlib.pyplot as plt
+    from cubmods.gem import draw, estimate
+
+    # draw a sample
+    drawn = draw(
+        formula="ord ~ 0",
+        model="cush",
+        sh=7,
+        m=7, delta=.15,
+        n=1500, seed=76)
+
+    # inferential method on drawn sample
+    fit = estimate(
+        df=drawn.df,
+        model="cush",
+        formula="ord~0",
+        sh=7,
+        gen_pars={
+            "delta": drawn.pars[0],
+        }
+    )
+    # print the summary of MLE
+    print(fit.summary())
+    # show the plot of MLE
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUSH model <<<===== ML-estimates
+    =======================================================================
+    m=7  Shelter=7  Size=1500  
+    -----------------------------------------------------------------------
+    Shelter effect
+           Estimates  StdErr   Wald  p-value
+    delta      0.124  0.0130  9.532   0.0000
+    =======================================================================
+    Dissimilarity = 0.0236
+    Loglik(sat)   = -2856.039
+    Loglik(MOD)   = -2859.923
+    Loglik(uni)   = -2918.865
+    Mean-loglik   = -1.907
+    Deviance      = 7.768
+    -----------------------------------------------------------------------
+    AIC = 5721.85
+    BIC = 5727.16
+    =======================================================================
+    Elapsed time=0.00113 seconds =====>>> Fri Aug 16 10:44:07 2024
+    =======================================================================
+
+.. image:: /img/cush0mle.png
+    :alt: CUSH 0 MLE
 
 With covariates
 ^^^^^^^^^^^^^^^
 
-2-CUSH family
+.. math::
+    \Pr(R_i=r|\pmb\theta,\pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)/m
+
+.. math::
+    \delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb\omega \}}
+
+In the example, we'll draw a sample from a CUSH model with covariates and
+then estimate the parameter given the observed sample.
+
+Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
+
+.. code-block:: python
+    :caption: Script
+
+    # import libraries
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods.general import logit
+    from cubmods.gem import draw, estimate
+
+    # Draw a random sample
+    n = 1000
+    np.random.seed(1)
+    X = np.random.randint(1, 10, n)
+    df = pd.DataFrame({
+        "X": X,
+    })
+    drawn = draw(
+        formula="fee ~ X",
+        model="cush",
+        df=df,
+        m=9, sh=5,
+        omega=[logit(.05), .2],
+    )
+
+    # MLE estimation
+    fit = estimate(
+        formula="fee ~ X",
+        model="cush",
+        df=drawn.df, sh=5,
+    )
+    # Print MLE summary
+    print(fit.summary())
+    # plot the results
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUSH(X) model <<<===== ML-estimates
+    =======================================================================
+    m=9  Shelter=5  Size=1000  
+    -----------------------------------------------------------------------
+    Shelter effect
+              Estimates  StdErr    Wald  p-value
+    constant     -3.131  0.4361  -7.180   0.0000
+    X             0.229  0.0629   3.642   0.0003
+    =======================================================================
+    Dissimilarity = 0.0395
+    Loglik(MOD)   = -2130.030
+    Loglik(uni)   = -2197.225
+    Mean-loglik   = -2.130
+    -----------------------------------------------------------------------
+    AIC = 4264.06
+    BIC = 4273.87
+    =======================================================================
+    Elapsed time=0.01704 seconds =====>>> Fri Aug 16 10:54:11 2024
+    =======================================================================
+
+.. image:: /img/cushxmle.png
+    :alt: CUSH X MLE
+
+CUSH2 family
 -------------
 
 Without covariates

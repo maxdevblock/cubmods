@@ -578,7 +578,7 @@ if provided, probability distribution of a known model.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cub.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUB model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -587,6 +587,8 @@ if provided, probability distribution of a known model.</p>
 <li><p><strong>pi</strong> (<em>float</em>) – uncertainty parameter <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
 <li><p><strong>xi</strong> (<em>float</em>) – feeling parameter <span class="math notranslate nohighlight">\(\xi\)</span></p></li>
 <li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses to be drawn</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -737,6 +739,8 @@ covariates for a given absolute frequency distribution.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
@@ -1068,7 +1072,7 @@ no column must be named <code class="docutils literal notranslate"><span class="
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cub_0w.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cub_0w.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_0w.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cub_0w.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_0w.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUB model with covariates for
 the feeling component.</p>
 <dl class="field-list simple">
@@ -1081,6 +1085,8 @@ the feeling component.</p>
 <code class="docutils literal notranslate"><span class="pre">W.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
 <li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None;
 it must be <span class="math notranslate nohighlight">\(\neq 0\)</span></p></li>
 </ul>
@@ -1186,6 +1192,8 @@ explaining the feeling component.</p>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
 <li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
@@ -1454,7 +1462,7 @@ if provided, average probability distribution of a known model.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cub_y0.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cub_y0.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_y0.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cub_y0.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_y0.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUB model with covariates for
 the uncertainty component.</p>
 <dl class="field-list simple">
@@ -1467,6 +1475,8 @@ the uncertainty component.</p>
 <code class="docutils literal notranslate"><span class="pre">Y.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
 <li><p><strong>Y</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the uncertainty component;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None;
 it must be <span class="math notranslate nohighlight">\(\neq 0\)</span></p></li>
 </ul>
@@ -1547,6 +1557,8 @@ the uncertainty component.</p>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
 <li><p><strong>Y</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the uncertainty component;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
@@ -1817,7 +1829,7 @@ if provided, average probability distribution of a known model.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cub_yw.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cub_yw.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_yw.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cub_yw.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_yw.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUB model with covariates for
 both feeling and uncertainty.</p>
 <dl class="field-list simple">
@@ -1833,6 +1845,8 @@ both feeling and uncertainty.</p>
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
 <li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1886,6 +1900,8 @@ feeling and the uncertainty components by means of logistic transform.</p>
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
 <li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
@@ -2233,7 +2249,7 @@ if provided, probability distribution of a known model.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cube.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cube.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUBE model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2243,6 +2259,8 @@ if provided, probability distribution of a known model.</p>
 <li><p><strong>xi</strong> (<em>float</em>) – feeling parameter <span class="math notranslate nohighlight">\(\xi\)</span></p></li>
 <li><p><strong>phi</strong> (<em>float</em>) – overdispersion parameter <span class="math notranslate nohighlight">\(\phi\)</span></p></li>
 <li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses to be drawn</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -2356,6 +2374,8 @@ the given absolute frequency distribution.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
@@ -2636,7 +2656,7 @@ for the corresponding feeling and overdispersion parameters.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_0w0.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cube_0w0.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_0w0.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cube_0w0.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_0w0.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUBE model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2649,6 +2669,8 @@ for the corresponding feeling and overdispersion parameters.</p>
 <li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
 <li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses to be drawn</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -2756,6 +2778,8 @@ feeling component.</p>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
 <li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for preliminary iterations</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates for preliminary iterations;
@@ -3094,7 +3118,7 @@ for the corresponding feeling and overdispersion parameters.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUBE model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3113,6 +3137,8 @@ no column must be named <code class="docutils literal notranslate"><span class="
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
 <li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -3202,6 +3228,8 @@ no column must be named <code class="docutils literal notranslate"><span class="
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
 <li><p><strong>Z</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the overdispersion;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
@@ -3539,7 +3567,7 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cubsh.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUBSH model,
 using canonic parametrization <span class="math notranslate nohighlight">\((\pi, \delta)\)</span>.</p>
 <dl class="field-list simple">
@@ -3551,6 +3579,8 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 <li><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p></li>
 <li><p><strong>xi</strong> (<em>float</em>) – feeling parameter <span class="math notranslate nohighlight">\(\xi\)</span></p></li>
 <li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -3562,7 +3592,7 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cubsh.draw2">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">draw2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.draw2" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">draw2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.draw2" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUBSH model,
 using alternative parametrization <span class="math notranslate nohighlight">\((\pi_1, \pi_2)\)</span>.</p>
 <dl class="field-list simple">
@@ -3574,6 +3604,8 @@ using alternative parametrization <span class="math notranslate nohighlight">\((
 <li><p><strong>pi2</strong> (<em>float</em>) – Mixing coefficient for the discrete Uniform component of the mixture distribution <span class="math notranslate nohighlight">\(\pi_2\)</span></p></li>
 <li><p><strong>xi</strong> (<em>float</em>) – feeling parameter <span class="math notranslate nohighlight">\(\xi\)</span></p></li>
 <li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -3664,6 +3696,8 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 <li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
 <li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
@@ -4129,7 +4163,7 @@ for GeCUB models with covariates for feeling, uncertainty and shelter effect.</p
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cubsh_ywx.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cubsh_ywx.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh_ywx.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cubsh_ywx.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh_ywx.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUBSH model with covariates
 (aka GeCUB model).</p>
 <dl class="field-list simple">
@@ -4150,6 +4184,9 @@ no column must be named <code class="docutils literal notranslate"><span class="
 <li><p><strong>X</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the shelter effect;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
 <li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses to be drawn</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -4240,6 +4277,8 @@ no column must be named <code class="docutils literal notranslate"><span class="
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
 <li><p><strong>X</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the shelter effect;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>int</em>) – maximum number of iterations allowed for running the optimization algorithm</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – fixed error tolerance for final estimates</p></li>
@@ -4578,7 +4617,7 @@ the null model.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUSH model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4587,6 +4626,8 @@ the null model.</p>
 <li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
 <li><p><strong>delta</strong> (<em>float</em>) – shelter choice parameter <span class="math notranslate nohighlight">\(\delta\)</span></p></li>
 <li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -4689,6 +4730,8 @@ without covariate for the given ordinal responses.</p>
 <li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
 <li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>None</em>) – default to None; ensure compatibility with <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code></p></li>
 <li><p><strong>tol</strong> (<em>None</em>) – default to None; ensure compatibility with <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code></p></li>
@@ -4911,7 +4954,7 @@ the asymptotic standard error.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush2.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cush2.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cush2.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified 2-CUSH model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -4922,6 +4965,8 @@ the asymptotic standard error.</p>
 <li><p><strong>delta1</strong> (<em>float</em>) – 1st shelter choice parameter <span class="math notranslate nohighlight">\(\delta_1\)</span></p></li>
 <li><p><strong>delta2</strong> (<em>float</em>) – 2nd shelter choice parameter <span class="math notranslate nohighlight">\(\delta_2\)</span></p></li>
 <li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -4967,6 +5012,8 @@ without covariate for the given ordinal responses.</p>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
 <li><p><strong>c1</strong> (<em>int</em>) – Category corresponding to the 1st shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
 <li><p><strong>c2</strong> (<em>int</em>) – Category corresponding to the 2nd shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>None</em>) – default to None; ensure compatibility with <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code></p></li>
 <li><p><strong>tol</strong> (<em>None</em>) – default to None; ensure compatibility with <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code></p></li>
@@ -5140,7 +5187,7 @@ References:
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush2_x0.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cush2_x0.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2_x0.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cush2_x0.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2_x0.draw" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -5446,7 +5493,7 @@ if provided, average probability distribution of a known model.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush_x.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cush_x.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush_x.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.cush_x.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush_x.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUSH model with covariates</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -5458,6 +5505,8 @@ if provided, average probability distribution of a known model.</p>
 <code class="docutils literal notranslate"><span class="pre">X.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
 <li><p><strong>X</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the shelter effect;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
 </ul>
 </dd>
@@ -5529,6 +5578,8 @@ to explain the shelter effect.</p>
 <li><p><strong>sh</strong> (<em>int</em>) – Category corresponding to the shelter choice <span class="math notranslate nohighlight">\([1,m]\)</span></p></li>
 <li><p><strong>X</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the shelter effect;
 no column must be named <code class="docutils literal notranslate"><span class="pre">0</span></code> nor <code class="docutils literal notranslate"><span class="pre">constant</span></code></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
 <li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
 <li><p><strong>maxiter</strong> (<em>None</em>) – default to None; ensure compatibility with <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code></p></li>
 <li><p><strong>tol</strong> (<em>None</em>) – default to None; ensure compatibility with <code class="docutils literal notranslate"><span class="pre">gem.from_formula()</span></code></p></li>
@@ -6063,16 +6114,14 @@ sigmoid or standard logistic.</p>
 <dt class="sig sig-object py" id="cubmods.general.formula_parser">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">formula_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cub'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.formula_parser" title="Permalink to this definition">#</a></dt>
 <dd><p>Parse a CUB class formula.</p>
-<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">cubmods.gem.from_formula()</span></code>.</p>
-<dl class="simple">
-<dt>TODO: adapt formula to specific family with corresponding</dt><dd><p>number of parameters</p>
-</dd>
-</dl>
-<p>TODO: documentation about formula</p>
+<p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">cubmods.gem</span></code> functions.</p>
 <p>TODO: add specific Exceptions for formula</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>formula</strong> (<em>str</em>) – the formula to be parsed</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>formula</strong> (<em>str</em>) – the formula to be parsed</p></li>
+<li><p><strong>model</strong> (<em>str</em>) – the model family</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a tuple of the ordinal response column name and a list of all
@@ -6500,7 +6549,7 @@ References:
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>generate random sample from CUB model</p>
 </dd></dl>
 
@@ -6639,7 +6688,7 @@ References:
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.draw">
-<span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.draw" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.draw" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
