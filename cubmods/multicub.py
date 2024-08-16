@@ -10,15 +10,6 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import multicub
-
-    TODO: add MULTICUB example
-
-
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -57,12 +48,20 @@ from.general import (
 )
 
 def pos_kwargs(pos):
-    """
-         1
-       8   2
-     7   @   3
-       6   4
-         5
+    r"""Position of the :math:`\delta` or :math:`\phi` estimated values
+
+    .. code-block:: none
+
+            1
+          8   2
+        7   @   3
+          6   4
+            5
+
+    :param pos: position (1..8)
+    :type pos: int
+    :return: a dictionary for ``matplotlib``
+    :rtype: dict
     """
     if pos == 1:
         return dict(ha="center", va="bottom")
@@ -96,9 +95,45 @@ def multi(ords, ms=None,
     alpha=.2, ci=.95,
     figsize=(7,7),
     ax=None):
-    """
-    ords: DataFrame
-    ms:   list of m
+    r"""Joint plot of estimated CUB models in the parameter space
+
+    Return a plot of estimated CUB models represented as points in the parameter space.
+
+    :param ords: list of arrays of observed ordinal responses
+    :type ords: list
+    :param model: model; defaults to ``cub``; options ``cube``
+    :type model: str
+    :param title: title of the plot
+    :type title: str
+    :param labels: labels of the points
+    :type labels: list
+    :param shs: shelter effect(s); can be an *int* if the same shelter
+        effect is valid for all samples or a *list* to specify different
+        shelter choices
+    :type shs: int or list
+    :param plot: if ``True`` (default) plot the results;
+    :type plot: bool
+    :param print_res: if ``True`` print the results; defaults to ``False``
+    :type print_res: bool
+    :param pos: position of the :math:`\delta` or :math:`\phi` estimated values
+    :type pos: list
+    :param xlim: x-axis limits
+    :type xlim: tuple
+    :param ylim: y-axis limits
+    :type ylim: tuple
+    :param equal: if the plot must have equal aspect; defaults to ``True``
+    :type equal: bool
+    :param alpha: confidence ellipse transparency
+    :type alpha: float
+    :param confell: if ``True`` (default) plot confidence ellipse (for CUB model only)
+    :type confell: bool
+    :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse
+    :type ci: float
+    :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+    :type figsize: tuple of float
+    :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+    :type ax: matplolib ax, optional
+    :return: ``ax``
     """
     allowed = ["cub", "cube"]
     if model not in allowed:

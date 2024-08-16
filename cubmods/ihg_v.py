@@ -4,23 +4,12 @@ CUB models in Python.
 Module for IHG (Inverse HyperGeometric) with covariates.
 
 Description:
+============
     This module contains methods and classes
-    for IHG model family.
+    for IHG model family with covariates.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import ihg
-
-    samp = pd.read_csv("ordinal.csv")
-    fit = ihg.mle(samp.rv, m=7)
-    print(fit.summary())
-    fit.plot()
-    plt.show()
-
-...
 References:
 ===========
   - TODO: aggiungere tesi?
@@ -62,12 +51,27 @@ from .general import (
     #lsat, 
     luni, dissimilarity,
     #lsatcov, 
-    addones, colsof,
+    #addones, 
+    colsof,
 )
 from .ihg import pmf as pmf_ihg
 from .smry import CUBres, CUBsample
 
 def pmfi(m, V, nu):
+    r"""Probability distribution for each subject of a specified IHG model with covariates
+
+    :math:`\Pr(R = r | \pmb\theta_i ; \pmb v_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param nu: array :math:`\pmb \nu` of parameters for :math:`\theta`, whose length equals 
+        ``V.columns.size+1`` to include an intercept term in the model (first entry)
+    :type nu: array
+    :param V: dataframe of covariates for explaining the parameter :math:`\theta`
+    :type V: pandas dataframe
+    :return: the matrix of the probability distribution of dimension :math:`n \times r`
+    :rtype: numpy ndarray
+    """
     n = V.shape[0]
     p_i = np.ndarray(shape=(n,m))
     theta = logis(V, nu)
@@ -76,14 +80,44 @@ def pmfi(m, V, nu):
     return p_i
 
 def pmf(m, V, nu):
-    """
-    Test pmf
+    r"""Average probability distribution of a specified IHG model with covariates.
+
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i \pmb v_i),\; r=1 \ldots m`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param nu: array :math:`\pmb \nu` of parameters for :math:`\theta`, whose length equals 
+        ``V.columns.size+1`` to include an intercept term in the model (first entry)
+    :type nu: array
+    :param V: dataframe of covariates for explaining the parameter :math:`\theta`
+    :type V: pandas dataframe
+    :return: the probability distribution
+    :rtype: array
     """
     p = pmfi(m, V, nu).mean(axis=0)
     return p
 
 def draw(m, nu, V, 
     df, formula, seed=None):
+    r"""Draw a random sample from a specified IHG model with covariates
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param nu: array :math:`\pmb \nu` of parameters for :math:`\theta`, whose length equals 
+        ``V.columns.size+1`` to include an intercept term in the model (first entry)
+    :type nu: array
+    :param V: dataframe of covariates for explaining the parameter :math:`\theta`
+    :type V: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    """
     n = V.shape[0]
     if seed == 0:
         print("Seed cannot be zero. "
@@ -121,6 +155,26 @@ def draw(m, nu, V,
     )
 
 def probi(m, sample, V, nu):
+    r"""Probability distribution of a IHG model with covariates
+    given an observed sample.
+
+    Compute the probability distribution of a IHG model with covariates, 
+    given an observed sample.
+    
+    :math:`\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n`
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param nu: array :math:`\pmb \nu` of parameters for :math:`\theta`, whose length equals 
+        ``V.columns.size+1`` to include an intercept term in the model (first entry)
+    :type nu: array
+    :param V: dataframe of covariates for explaining the parameter :math:`\theta`
+    :type V: pandas dataframe
+    :return: the array of the probability distribution.
+    :rtype: numpy array
+    """
     n = sample.size
     theta = logis(V, nu)
     p = np.repeat(np.nan, n)
@@ -130,15 +184,59 @@ def probi(m, sample, V, nu):
     return p
 
 def loglik(m, sample, V, nu):
+    r"""Log-likelihood function for IHG models with covariates.
+
+    Compute the log-likelihood function for CUSH models with covariates 
+    to explain the shelter effect.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param nu: array :math:`\pmb \nu` of parameters for :math:`\theta`, whose length equals 
+        ``V.columns.size+1`` to include an intercept term in the model (first entry)
+    :type nu: array
+    :param V: dataframe of covariates for explaining the parameter :math:`\theta`
+    :type V: pandas dataframe
+    :return: the log-likelihood value
+    :rtype: float
+    """
     p = probi(m, sample, V, nu)
     l = np.sum(np.log(p))
     return l
 
 def effe(nu, m, sample, V):
+    r"""Auxiliary function for the log-likelihood estimation of IHG models with covariates
+
+    Compute the opposite of the loglikelihood function for IHG models
+    with covariates.
+    It is called as an argument for "optim" within ``.mle()`` function
+    as the function to minimize.
+
+    :param nu: initial parameter estimate
+    :type nu: float
+    :param V: dataframe of covariates for explaining the parameter :math:`\theta`
+    :type V: pandas dataframe
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    """
     l = loglik(m, sample, V, nu)
     return -l
 
 def init_theta(m, f):
+    r"""Preliminary estimators for IHG models without covariates.
+
+    Computes preliminary parameter estimates of a IHG model without covariates for given ordinal
+    responses. These preliminary estimators are used within the package code to start the E-M algorithm.
+
+    :param f: array of the absolute frequencies of given ordinal responses
+    :type f: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :return: the array of :math:`\pmb\nu^{(0)}`
+    """
     R = choices(m)
     aver = np.sum(f*R)/np.sum(f)
     est = (m-aver)/(1+(m-2)*aver)
@@ -146,6 +244,25 @@ def init_theta(m, f):
 
 def mle(m, sample, V,
     df, formula, gen_pars=None):
+    r"""Main function for IHG models with covariates.
+
+    Estimate and validate a IHG model for ordinal responses, with covariates.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param V: dataframe of covariates for explaining the parameter :math:`\theta`
+    :type V: pandas dataframe
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :return: an instance of ``CUBresIHGV`` (see the Class for details)
+    :rtype: object
+    """
     start = dt.datetime.now()
     f = freq(m=m, sample=sample)
     n = sample.size
@@ -234,6 +351,20 @@ class CUBresIHGV(CUBres):
         ax=None, kind="bar",
         saveas=None
         ):
+        r"""Plots avreage relative frequencies of observed sample, estimated 
+        average probability distribution and,
+        if provided, average probability distribution of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -281,8 +412,13 @@ class CUBresIHGV(CUBres):
         saveas=None,
         figsize=(7, 5)
         ):
-        """
-        plot CUB model fitted from a sample
+        """Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         self.plot_ordinal(ax=ax)

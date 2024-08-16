@@ -6792,24 +6792,13 @@ Module for IHG (Inverse HyperGeometric).</p>
 <h3>Description:<a class="headerlink" href="#id343" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
-for IHG model family.
+for IHG model family without covariates.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
-<dl>
-<dt>Example:</dt><dd><p>import pandas as pd
-import matplotlib.pyplot as plt
-from cubmods import ihg</p>
-<p>samp = pd.read_csv(“ordinal.csv”)
-fit = ihg.mle(samp.rv, m=7)
-print(fit.summary())
-fit.plot()
-plt.show()</p>
-</dd>
-</dl>
-<p>…
-References:
-===========</p>
+</section>
+<section id="id344">
+<h3>References:<a class="headerlink" href="#id344" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
@@ -6823,16 +6812,16 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id344">
-<h3>List of TODOs:<a class="headerlink" href="#id344" title="Permalink to this heading">#</a></h3>
+<section id="id345">
+<h3>List of TODOs:<a class="headerlink" href="#id345" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id345">
-<h3>Credits<a class="headerlink" href="#id345" title="Permalink to this heading">#</a></h3>
+<section id="id346">
+<h3>Credits<a class="headerlink" href="#id346" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -6856,12 +6845,14 @@ References:
 </dl>
 </div></blockquote>
 </section>
-<section id="id346">
-<h3>Classes and Functions<a class="headerlink" href="#id346" title="Permalink to this heading">#</a></h3>
+<section id="id347">
+<h3>Classes and Functions<a class="headerlink" href="#id347" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.ihg.CUBresIHG">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">CUBresIHG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.CUBresIHG" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
+<p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
+See the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -6876,7 +6867,13 @@ References:
 <td><p>Print the summary.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cubmods.ihg.CUBresIHG.plot" title="cubmods.ihg.CUBresIHG.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([ci, saveas, figsize])</p></td>
-<td><p>plot CUB model fitted from a sample</p></td>
+<td><p>Main function to plot an object of the Class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cubmods.ihg.CUBresIHG.plot_estim" title="cubmods.ihg.CUBresIHG.plot_estim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_estim</span></code></a>([ci, ax, magnified])</p></td>
+<td><p>Plots the estimated parameter values in the parameter space and the asymptotic standard error.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cubmods.ihg.CUBresIHG.plot_ordinal" title="cubmods.ihg.CUBresIHG.plot_ordinal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ordinal</span></code></a>([figsize, ax, kind, saveas])</p></td>
+<td><p>Plots relative frequencies of observed sample, estimated probability distribution and, if provided, probability distribution of a known model.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(fname)</p></td>
 <td><p>Save a CUBresult object to file named <code class="docutils literal notranslate"><span class="pre">fname</span></code> + <code class="docutils literal notranslate"><span class="pre">.cub.fit</span></code></p></td>
@@ -6886,53 +6883,127 @@ References:
 </tr>
 </tbody>
 </table>
-<table class="table">
-<colgroup>
-<col style="width: 62%" />
-<col style="width: 38%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><strong>plot_estim</strong></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><strong>plot_ordinal</strong></p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.ihg.CUBresIHG.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">15)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.CUBresIHG.plot" title="Permalink to this definition">#</a></dt>
-<dd><p>plot CUB model fitted from a sample</p>
+<dd><p>Main function to plot an object of the Class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the standard error</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.ihg.CUBresIHG.plot_estim">
 <span class="sig-name descname"><span class="pre">plot_estim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnified</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.CUBresIHG.plot_estim" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Plots the estimated parameter values in the parameter space and
+the asymptotic standard error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the confidence ellipse</p></li>
+<li><p><strong>magnified</strong> (<em>bool</em>) – if False the limits will be the entire parameter space, otherwise let matplotlib choose the limits</p></li>
+<li><p><strong>ax</strong> (<em>matplolib ax</em><em>, </em><em>optional</em>) – matplotlib axis, if None a new figure will be created, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.ihg.CUBresIHG.plot_ordinal">
 <span class="sig-name descname"><span class="pre">plot_ordinal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.CUBresIHG.plot_ordinal" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Plots relative frequencies of observed sample, estimated probability distribution and,
+if provided, probability distribution of a known model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>kind</strong> (<em>str</em>) – choose a barplot (<code class="docutils literal notranslate"><span class="pre">'bar'</span></code> default) of a scatterplot (<code class="docutils literal notranslate"><span class="pre">'scatter'</span></code>)</p></li>
+<li><p><strong>ax</strong> (<em>matplolib ax</em><em>, </em><em>optional</em>) – matplotlib axis, if None a new figure will be created, defaults to None</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.draw">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.draw" title="Permalink to this definition">#</a></dt>
-<dd><p>generate random sample from CUB model</p>
+<dd><p>Draw a random sample from a specified IHG model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>theta</strong> (<em>float</em>) – parameter <span class="math notranslate nohighlight">\(\theta\)</span> (probability of 1st shelter category)</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of ordinal responses to be drawn</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.effe">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">effe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.effe" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Compute the log-likelihood function of a IHG model without 
+covariates for a given absolute frequency distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theta</strong> (<em>float</em>) – parameter <span class="math notranslate nohighlight">\(\theta\)</span> (probability of 1st shelter category)</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>f</strong> (<em>array of int</em>) – array of absolute frequency distribution</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the log-likelihood value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.init_theta">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">init_theta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.init_theta" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Preliminary estimators for IHG models without covariates.</p>
+<p>Computes preliminary parameter estimates of a IHG model without covariates for given ordinal
+responses. These preliminary estimators are used within the package code to start the E-M algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>array of int</em>) – array of the absolute frequencies of given ordinal responses</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the value of <span class="math notranslate nohighlight">\(\theta^{(0)}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.loglik">
@@ -6942,17 +7013,82 @@ References:
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.mle">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">mle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.mle" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Main function for CUB models without covariates.</p>
+<p>Function to estimate and validate a CUB model without covariates for given ordinal responses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
+<li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBresIHG</span></code> (see the Class for details)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.pmf">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.pmf" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Probability distribution of a specified IHG model without covariates.</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta),\; r=1 \ldots m\)</span></p>
+<dl>
+<dt>References:</dt><dd><div class="docutils container" id="id348">
+<ol class="arabic simple" start="1">
+<li id="id371"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The stata module for cub models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
+<li id="id365"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id351"><p>Domenico Piccolo and others. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
+<li id="id354"><p>Domenico Piccolo and others. Observed information matrix for mub models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
+<li id="id350"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id384"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id370"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, r, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
+<li id="id372"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. Cub for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
+</ol>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>theta</strong> (<em>float</em>) – parameter <span class="math notranslate nohighlight">\(\theta\)</span> (probability of 1st shelter category)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the vector of the probability distribution of a CUB model.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.var">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.var" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Variance of a specified IHG model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>theta</strong> (<em>float</em>) – parameter <span class="math notranslate nohighlight">\(\theta\)</span> (probability of 1st shelter category)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the variance of the model</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>
@@ -6960,25 +7096,17 @@ References:
 <span id="cubmods-ihg-v-module"></span><h2>cubmods.ihg_v module<a class="headerlink" href="#module-cubmods.ihg_v" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for IHG (Inverse HyperGeometric) with covariates.</p>
-<dl>
-<dt>Description:</dt><dd><p>This module contains methods and classes
-for IHG model family.
+<section id="id385">
+<h3>Description:<a class="headerlink" href="#id385" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>This module contains methods and classes
+for IHG model family with covariates.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-</dd>
-<dt>Example:</dt><dd><p>import pandas as pd
-import matplotlib.pyplot as plt
-from cubmods import ihg</p>
-<p>samp = pd.read_csv(“ordinal.csv”)
-fit = ihg.mle(samp.rv, m=7)
-print(fit.summary())
-fit.plot()
-plt.show()</p>
-</dd>
-</dl>
-<p>…
-References:
-===========</p>
+</div></blockquote>
+</section>
+<section id="id386">
+<h3>References:<a class="headerlink" href="#id386" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: aggiungere tesi?</p></li>
@@ -6992,16 +7120,17 @@ References:
 <li><p>Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163–189.</p></li>
 </ul>
 </div></blockquote>
-<section id="id347">
-<h3>List of TODOs:<a class="headerlink" href="#id347" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="id387">
+<h3>List of TODOs:<a class="headerlink" href="#id387" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id348">
-<h3>Credits<a class="headerlink" href="#id348" title="Permalink to this heading">#</a></h3>
+<section id="id388">
+<h3>Credits<a class="headerlink" href="#id388" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -7025,8 +7154,8 @@ References:
 </dl>
 </div></blockquote>
 </section>
-<section id="id349">
-<h3>Classes and Functions<a class="headerlink" href="#id349" title="Permalink to this heading">#</a></h3>
+<section id="id389">
+<h3>Classes and Functions<a class="headerlink" href="#id389" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.ihg_v.CUBresIHGV">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">CUBresIHGV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.CUBresIHGV" title="Permalink to this definition">#</a></dt>
@@ -7045,80 +7174,243 @@ References:
 <td><p>Print the summary.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cubmods.ihg_v.CUBresIHGV.plot" title="cubmods.ihg_v.CUBresIHGV.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([saveas, figsize])</p></td>
-<td><p>plot CUB model fitted from a sample</p></td>
+<td><p>Main function to plot an object of the Class.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(fname)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cubmods.ihg_v.CUBresIHGV.plot_ordinal" title="cubmods.ihg_v.CUBresIHGV.plot_ordinal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ordinal</span></code></a>([figsize, ax, kind, saveas])</p></td>
+<td><p>Plots avreage relative frequencies of observed sample, estimated  average probability distribution and, if provided, average probability distribution of a known model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(fname)</p></td>
 <td><p>Save a CUBresult object to file named <code class="docutils literal notranslate"><span class="pre">fname</span></code> + <code class="docutils literal notranslate"><span class="pre">.cub.fit</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>()</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">summary</span></code>()</p></td>
 <td><p>Call <code class="docutils literal notranslate"><span class="pre">as_txt()</span></code></p></td>
-</tr>
-</tbody>
-</table>
-<table class="table">
-<colgroup>
-<col style="width: 62%" />
-<col style="width: 38%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><strong>plot_ordinal</strong></p></td>
-<td></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.ihg_v.CUBresIHGV.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">5)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.CUBresIHGV.plot" title="Permalink to this definition">#</a></dt>
-<dd><p>plot CUB model fitted from a sample</p>
+<dd><p>Main function to plot an object of the Class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.ihg_v.CUBresIHGV.plot_ordinal">
 <span class="sig-name descname"><span class="pre">plot_ordinal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.CUBresIHGV.plot_ordinal" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Plots avreage relative frequencies of observed sample, estimated 
+average probability distribution and,
+if provided, average probability distribution of a known model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>kind</strong> (<em>str</em>) – choose a barplot (<code class="docutils literal notranslate"><span class="pre">'bar'</span></code> default) of a scatterplot (<code class="docutils literal notranslate"><span class="pre">'scatter'</span></code>)</p></li>
+<li><p><strong>ax</strong> (<em>matplolib ax</em><em>, </em><em>optional</em>) – matplotlib axis, if None a new figure will be created, defaults to None</p></li>
+<li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> or a tuple <code class="docutils literal notranslate"><span class="pre">(fig,</span> <span class="pre">ax)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.draw">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.draw" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Draw a random sample from a specified IHG model with covariates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>nu</strong> (<em>array</em>) – array <span class="math notranslate nohighlight">\(\pmb \nu\)</span> of parameters for <span class="math notranslate nohighlight">\(\theta\)</span>, whose length equals 
+<code class="docutils literal notranslate"><span class="pre">V.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>V</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the parameter <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – the <cite>seed</cite> to ensure reproducibility, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.effe">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">effe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.effe" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Auxiliary function for the log-likelihood estimation of IHG models with covariates</p>
+<p>Compute the opposite of the loglikelihood function for IHG models
+with covariates.
+It is called as an argument for “optim” within <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function
+as the function to minimize.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>float</em>) – initial parameter estimate</p></li>
+<li><p><strong>V</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the parameter <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.init_theta">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">init_theta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.init_theta" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Preliminary estimators for IHG models without covariates.</p>
+<p>Computes preliminary parameter estimates of a IHG model without covariates for given ordinal
+responses. These preliminary estimators are used within the package code to start the E-M algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>array of int</em>) – array of the absolute frequencies of given ordinal responses</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the array of <span class="math notranslate nohighlight">\(\pmb\nu^{(0)}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.loglik">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">loglik</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.loglik" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Log-likelihood function for IHG models with covariates.</p>
+<p>Compute the log-likelihood function for CUSH models with covariates 
+to explain the shelter effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>nu</strong> (<em>array</em>) – array <span class="math notranslate nohighlight">\(\pmb \nu\)</span> of parameters for <span class="math notranslate nohighlight">\(\theta\)</span>, whose length equals 
+<code class="docutils literal notranslate"><span class="pre">V.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>V</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the parameter <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the log-likelihood value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.mle">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">mle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.mle" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Main function for IHG models with covariates.</p>
+<p>Estimate and validate a IHG model for ordinal responses, with covariates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>V</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the parameter <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – original DataFrame</p></li>
+<li><p><strong>formula</strong> (<em>str</em>) – the formula used</p></li>
+<li><p><strong>gen_pars</strong> (<em>dictionary</em><em>, </em><em>optional</em>) – dictionary of hypothesized parameters, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBresIHGV</span></code> (see the Class for details)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.pmf">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.pmf" title="Permalink to this definition">#</a></dt>
-<dd><p>Test pmf</p>
+<dd><p>Average probability distribution of a specified IHG model with covariates.</p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i \pmb v_i),\; r=1 \ldots m\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>nu</strong> (<em>array</em>) – array <span class="math notranslate nohighlight">\(\pmb \nu\)</span> of parameters for <span class="math notranslate nohighlight">\(\theta\)</span>, whose length equals 
+<code class="docutils literal notranslate"><span class="pre">V.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>V</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the parameter <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the probability distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.pmfi">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">pmfi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.pmfi" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Probability distribution for each subject of a specified IHG model with covariates</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta_i ; \pmb v_i),\; i=1 \ldots n ,\; r=1 \ldots m\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>nu</strong> (<em>array</em>) – array <span class="math notranslate nohighlight">\(\pmb \nu\)</span> of parameters for <span class="math notranslate nohighlight">\(\theta\)</span>, whose length equals 
+<code class="docutils literal notranslate"><span class="pre">V.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>V</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the parameter <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the matrix of the probability distribution of dimension <span class="math notranslate nohighlight">\(n \times r\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy ndarray</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg_v.probi">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">probi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.probi" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Probability distribution of a IHG model with covariates
+given an observed sample.</p>
+<p>Compute the probability distribution of a IHG model with covariates, 
+given an observed sample.</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>sample</strong> (<em>array of int</em>) – array of ordinal responses</p></li>
+<li><p><strong>nu</strong> (<em>array</em>) – array <span class="math notranslate nohighlight">\(\pmb \nu\)</span> of parameters for <span class="math notranslate nohighlight">\(\theta\)</span>, whose length equals 
+<code class="docutils literal notranslate"><span class="pre">V.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
+<li><p><strong>V</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the parameter <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the array of the probability distribution.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>
@@ -7126,24 +7418,17 @@ References:
 <span id="cubmods-multicub-module"></span><h2>cubmods.multicub module<a class="headerlink" href="#module-cubmods.multicub" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for MULTICUB and MULTICUBE.</p>
-<section id="id350">
-<h3>Description:<a class="headerlink" href="#id350" title="Permalink to this heading">#</a></h3>
+<section id="id390">
+<h3>Description:<a class="headerlink" href="#id390" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for MULTICUB and MULTICUBE tool.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
-<dl>
-<dt>Example:</dt><dd><p>import pandas as pd
-import matplotlib.pyplot as plt
-from cubmods import multicub</p>
-<p>TODO: add MULTICUB example</p>
-</dd>
-</dl>
-<p>…
-References:
-===========</p>
+</section>
+<section id="id391">
+<h3>References:<a class="headerlink" href="#id391" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
@@ -7157,16 +7442,16 @@ References:
 </ul>
 </div></blockquote>
 </section>
-<section id="id351">
-<h3>List of TODOs:<a class="headerlink" href="#id351" title="Permalink to this heading">#</a></h3>
+<section id="id392">
+<h3>List of TODOs:<a class="headerlink" href="#id392" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id352">
-<h3>Credits<a class="headerlink" href="#id352" title="Permalink to this heading">#</a></h3>
+<section id="id393">
+<h3>Credits<a class="headerlink" href="#id393" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -7190,29 +7475,62 @@ References:
 </dl>
 </div></blockquote>
 </section>
-<section id="id353">
-<h3>Classes and Functions<a class="headerlink" href="#id353" title="Permalink to this heading">#</a></h3>
+<section id="id394">
+<h3>Classes and Functions<a class="headerlink" href="#id394" title="Permalink to this heading">#</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.multicub.multi">
 <span class="sig-prename descclassname"><span class="pre">cubmods.multicub.</span></span><span class="sig-name descname"><span class="pre">multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cub'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.multicub.multi" title="Permalink to this definition">#</a></dt>
-<dd><p>ords: DataFrame
-ms:   list of m</p>
+<dd><p>Joint plot of estimated CUB models in the parameter space</p>
+<p>Return a plot of estimated CUB models represented as points in the parameter space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ords</strong> (<em>list</em>) – list of arrays of observed ordinal responses</p></li>
+<li><p><strong>model</strong> (<em>str</em>) – model; defaults to <code class="docutils literal notranslate"><span class="pre">cub</span></code>; options <code class="docutils literal notranslate"><span class="pre">cube</span></code></p></li>
+<li><p><strong>title</strong> (<em>str</em>) – title of the plot</p></li>
+<li><p><strong>labels</strong> (<em>list</em>) – labels of the points</p></li>
+<li><p><strong>shs</strong> (<em>int</em><em> or </em><em>list</em>) – shelter effect(s); can be an <em>int</em> if the same shelter
+effect is valid for all samples or a <em>list</em> to specify different
+shelter choices</p></li>
+<li><p><strong>plot</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code> (default) plot the results;</p></li>
+<li><p><strong>print_res</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code> print the results; defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p><strong>pos</strong> (<em>list</em>) – position of the <span class="math notranslate nohighlight">\(\delta\)</span> or <span class="math notranslate nohighlight">\(\phi\)</span> estimated values</p></li>
+<li><p><strong>xlim</strong> (<em>tuple</em>) – x-axis limits</p></li>
+<li><p><strong>ylim</strong> (<em>tuple</em>) – y-axis limits</p></li>
+<li><p><strong>equal</strong> (<em>bool</em>) – if the plot must have equal aspect; defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – confidence ellipse transparency</p></li>
+<li><p><strong>confell</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code> (default) plot confidence ellipse (for CUB model only)</p></li>
+<li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the confidence ellipse</p></li>
+<li><p><strong>figsize</strong> (<em>tuple of float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>ax</strong> (<em>matplolib ax</em><em>, </em><em>optional</em>) – matplotlib axis, if None a new figure will be created, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">ax</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.multicub.pos_kwargs">
 <span class="sig-prename descclassname"><span class="pre">cubmods.multicub.</span></span><span class="sig-name descname"><span class="pre">pos_kwargs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.multicub.pos_kwargs" title="Permalink to this definition">#</a></dt>
-<dd><blockquote>
-<div><blockquote>
-<div><p>1</p>
-</div></blockquote>
-<p>8   2</p>
-</div></blockquote>
-<dl class="simple">
-<dt>7   &#64;   3</dt><dd><dl class="simple">
-<dt>6   4</dt><dd><p>5</p>
+<dd><p>Position of the <span class="math notranslate nohighlight">\(\delta\)</span> or <span class="math notranslate nohighlight">\(\phi\)</span> estimated values</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    1
+  8   2
+7   @   3
+  6   4
+    5
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pos</strong> (<em>int</em>) – position (1..8)</p>
 </dd>
-</dl>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dictionary for <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -7223,8 +7541,8 @@ ms:   list of m</p>
 <span id="cubmods-smry-module"></span><h2>cubmods.smry module<a class="headerlink" href="#module-cubmods.smry" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for summary tools.</p>
-<section id="id354">
-<h3>Description:<a class="headerlink" href="#id354" title="Permalink to this heading">#</a></h3>
+<section id="id395">
+<h3>Description:<a class="headerlink" href="#id395" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for summary tools.
@@ -7232,8 +7550,8 @@ It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
 </section>
-<section id="id355">
-<h3>References:<a class="headerlink" href="#id355" title="Permalink to this heading">#</a></h3>
+<section id="id396">
+<h3>References:<a class="headerlink" href="#id396" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
@@ -7247,8 +7565,8 @@ Piccolo et Al. and CUB package in R.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id356">
-<h3>List of TODOs:<a class="headerlink" href="#id356" title="Permalink to this heading">#</a></h3>
+<section id="id397">
+<h3>List of TODOs:<a class="headerlink" href="#id397" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi</p></li>
@@ -7259,8 +7577,8 @@ Piccolo et Al. and CUB package in R.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id357">
-<h3>Credits<a class="headerlink" href="#id357" title="Permalink to this heading">#</a></h3>
+<section id="id398">
+<h3>Credits<a class="headerlink" href="#id398" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -7284,8 +7602,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id358">
-<h3>Classes and Functions<a class="headerlink" href="#id358" title="Permalink to this heading">#</a></h3>
+<section id="id399">
+<h3>Classes and Functions<a class="headerlink" href="#id399" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.smry.CUBres">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.smry.</span></span><span class="sig-name descname"><span class="pre">CUBres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.smry.CUBres" title="Permalink to this definition">#</a></dt>
@@ -7598,30 +7916,34 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg">cubmods.ihg module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id343">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id344">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id345">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id346">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id344">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id345">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id346">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id347">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg_v">cubmods.ihg_v module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id347">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id348">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id349">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id385">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id386">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id387">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id388">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id389">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.multicub">cubmods.multicub module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id350">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id351">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id352">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id353">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id390">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id391">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id392">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id393">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id394">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.smry">cubmods.smry module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id354">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id355">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id356">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id357">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id358">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id395">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id396">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id397">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id398">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id399">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods">Module contents</a></li>

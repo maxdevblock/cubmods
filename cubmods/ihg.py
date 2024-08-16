@@ -6,23 +6,10 @@ Module for IHG (Inverse HyperGeometric).
 Description:
 ============
     This module contains methods and classes
-    for IHG model family.
+    for IHG model family without covariates.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import ihg
-
-    samp = pd.read_csv("ordinal.csv")
-    fit = ihg.mle(samp.rv, m=7)
-    print(fit.summary())
-    fit.plot()
-    plt.show()
-
-
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -66,6 +53,23 @@ from .general import (
 from .smry import CUBres, CUBsample
 
 def pmf(m, theta):
+    r"""Probability distribution of a specified IHG model without covariates.
+
+    :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
+
+    References:
+        .. bibliography:: cub.bib
+            :list: enumerated
+
+            piccolo2003moments
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param theta: parameter :math:`\theta` (probability of 1st shelter category)
+    :type theta: float
+    :return: the vector of the probability distribution of a CUB model.
+    :rtype: numpy array
+    """
     pr = np.repeat(np.nan, m)
     pr[0] = theta
     for i in range(m-1):
@@ -79,9 +83,32 @@ def loglik(m, theta, f):
     return l
 
 def effe(theta, m, f):
+    r"""Compute the log-likelihood function of a IHG model without 
+    covariates for a given absolute frequency distribution.
+
+    :param theta: parameter :math:`\theta` (probability of 1st shelter category)
+    :type theta: float
+    :param m: number of ordinal categories
+    :type m: int
+    :param f: array of absolute frequency distribution
+    :type f: array of int
+    :return: the log-likelihood value
+    :rtype: float
+    """
     return -loglik(m=m, theta=theta, f=f)
 
 def init_theta(m, f):
+    r"""Preliminary estimators for IHG models without covariates.
+
+    Computes preliminary parameter estimates of a IHG model without covariates for given ordinal
+    responses. These preliminary estimators are used within the package code to start the E-M algorithm.
+
+    :param f: array of the absolute frequencies of given ordinal responses
+    :type f: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :return: the value of :math:`\theta^{(0)}`
+    """
     R = choices(m)
     aver = (R*f).sum()/f.sum()
     est = (m-aver)/(1+(m-2)*aver)
@@ -89,8 +116,21 @@ def init_theta(m, f):
 
 def draw(m, theta, n,
     df, formula, seed=None):
-    """
-    generate random sample from CUB model
+    r"""Draw a random sample from a specified IHG model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param theta: parameter :math:`\theta` (probability of 1st shelter category)
+    :type theta: float
+    :param n: number of ordinal responses to be drawn
+    :type n: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
     """
     theoric = pmf(m=m, theta=theta)
     np.random.seed(seed)
@@ -116,6 +156,15 @@ def draw(m, theta, n,
     return sample
 
 def var(m, theta):
+    r"""Variance of a specified IHG model.
+
+    :param m: number of ordinal categories
+    :type m: int
+    :param theta: parameter :math:`\theta` (probability of 1st shelter category)
+    :type theta: float
+    :return: the variance of the model
+    :rtype: float
+    """
     n = theta*(1-theta)*(m-theta)*(m-1)**2
     d1 = (theta*(m-2)+1)**2
     d2 = (theta*(m-3)+2)
@@ -123,6 +172,23 @@ def var(m, theta):
 
 def mle(m, sample, 
     df, formula, gen_pars=None):
+    r"""Main function for CUB models without covariates.
+
+    Function to estimate and validate a CUB model without covariates for given ordinal responses.
+
+    :param sample: array of ordinal responses
+    :type sample: array of int
+    :param m: number of ordinal categories
+    :type m: int
+    :param df: original DataFrame
+    :type df: DataFrame
+    :param formula: the formula used
+    :type formula: str
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :return: an instance of ``CUBresIHG`` (see the Class for details)
+    :rtype: object
+    """
     start = dt.datetime.now()
     f = freq(sample=sample, m=m)
     n = sample.size
@@ -186,9 +252,24 @@ def mle(m, sample,
     )
 
 class CUBresIHG(CUBres):
-    
+    r"""Object returned by ``.mle()`` function.
+    See the Base for details.
+    """
     def plot_estim(self, ci=.95, ax=None,
         magnified=False):
+        r"""Plots the estimated parameter values in the parameter space and
+        the asymptotic standard error.
+        
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse
+        :type ci: float
+        :param magnified: if False the limits will be the entire parameter space, otherwise let matplotlib choose the limits
+        :type magnified: bool
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         theta = self.estimates
         se = self.stderrs
         # change all spines
@@ -226,6 +307,19 @@ class CUBresIHG(CUBres):
         ax=None, kind="bar",
         saveas=None
         ):
+        r"""Plots relative frequencies of observed sample, estimated probability distribution and,
+        if provided, probability distribution of a known model.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
+        """
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize
@@ -280,8 +374,15 @@ class CUBresIHG(CUBres):
         saveas=None,
         figsize=(7, 15)
         ):
-        """
-        plot CUB model fitted from a sample
+        r"""Main function to plot an object of the Class.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param ci: level :math:`(1-\alpha/2)` for the standard error
+        :type ci: float
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         fig, ax = plt.subplots(3, 1, figsize=figsize)
         self.plot_ordinal(ax=ax[0])
