@@ -785,7 +785,7 @@ which, in fact, match the values used to draw the sample.
 CUSH family
 -----------
 
-Basic family of the class CUB with shelter effect. 
+Basic family of the class CUSH with a single shelter effect. 
 See the references for details.
 
 References
@@ -952,11 +952,198 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
 CUSH2 family
 -------------
 
+Basic family of the class CUSH with a two shelter effects (CUSH2). 
+See the references for details.
+
+References
+^^^^^^^^^^
+
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :filter: False
+
+        mythesis
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
+.. math::
+    \Pr(R=r|\pmb\theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1-\delta_1-\delta_2)/m
+
+In the example, we'll draw a sample from a CUSH2 model without covariates and
+then estimate the parameter given the observed sample.
+
+Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
+Passing a list of two shelter categories with the *kwarg* ``sh``, a CUSH2 model will be
+called.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import matplotlib.pyplot as plt
+    from cubmods.gem import draw, estimate
+
+    # draw a sample
+    drawn = draw(
+        formula="ord ~ 0 | 0",
+        model="cush",
+        sh=[1,7],
+        m=7,
+        delta1=.15, delta2=.1,
+        n=1000, seed=42)
+
+    # inferential method on drawn sample
+    fit = estimate(
+        df=drawn.df,
+        model="cush",
+        formula="ord~0|0",
+        sh=[1,7],
+        gen_pars={
+            "delta1": drawn.pars[0],
+            "delta2": drawn.pars[1],
+        }
+    )
+    # print the summary of MLE
+    print(fit.summary())
+    # show the plot of MLE
+    fit.plot()
+    plt.show()
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUSH2 model <<<===== ML-estimates
+    =======================================================================
+    m=7  Shelter=[1 7]  Size=1000  
+    -----------------------------------------------------------------------
+    Shelter effects
+            Estimates  StdErr    Wald  p-value
+    delta1      0.171  0.0148  11.535   0.0000
+    delta2      0.107  0.0163   6.555   0.0000
+    =======================================================================
+    Dissimilarity = 0.0184
+    Loglik(sat)   = -1852.818
+    Loglik(MOD)   = -1854.344
+    Loglik(uni)   = -1945.910
+    Mean-loglik   = -1.854
+    Deviance      = 3.053
+    -----------------------------------------------------------------------
+    AIC = 3712.69
+    BIC = 3722.50
+    =======================================================================
+    Elapsed time=0.00228 seconds =====>>> Fri Aug 16 11:15:21 2024
+    =======================================================================
+
+.. image:: /img/cush200mle.png
+    :alt: CUSH2 00 MLE
+
 With covariates
 ^^^^^^^^^^^^^^^
+
+.. math::
+    \Pr(R_i=r|\pmb\theta,\pmb x_{1i}, \pmb x_{2i}) = \delta_{1i} D_r^{(c_1)} + \delta_{2i} D_r^{(c_2)} + (1-\delta_{1i}- \delta_{2i})/m
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \delta_{1i} = \dfrac{1}{1+\exp\{ - \pmb x_{1i} \pmb\omega_1 \}}
+        \\
+        \delta_{2i} = \dfrac{1}{1+\exp\{ - \pmb x_{2i} \pmb\omega_2 \}}
+    \end{array}
+    \right.
+
+In this example we'll draw a sample from a CUSH2 model with
+covariates for the first shelter choice only and will then
+estimate the parameters with a CUSH2 model with covariates
+for both shelter choices but using the symbol ``1`` in the
+formula for the second shelter choice to estimate the
+constant parameter only. This is usually not needed, but
+we do it here to confirm that :math:`\mathrm{expit}(\hat\omega_0)=\hat\delta_2`.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    # import libraries
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    from cubmods.general import logit, expit
+    from cubmods.gem import draw, estimate
+
+    # Draw a random sample
+    n = 1000
+    np.random.seed(1)
+    X = np.random.randint(1, 10, n)
+    df = pd.DataFrame({
+        "X": X,
+    })
+    drawn = draw(
+        formula="fee ~ X | 0",
+        model="cush",
+        df=df,
+        m=9, sh=[2, 8],
+        omega1=[logit(.05), .2],
+        delta2=.1
+    )
+
+    # MLE estimation
+    fit = estimate(
+        formula="fee ~ X | 1",
+        model="cush",
+        df=drawn.df, sh=[2, 8],
+    )
+    # Print MLE summary
+    print(fit.summary())
+    # plot the results
+    fit.plot()
+    plt.show()
+
+    est_de2 = expit(fit.estimates[2])
+    est_de2_es = expit(fit.estimates[2]+fit.stderrs[2]) - est_de2
+    print(
+        "     estimates  stderr\n"
+        f"delta2  {est_de2:.4f}  {est_de2_es:.4f}"
+    )
+
+.. code-block:: none
+
+    warnings.warn("No m given, max(ordinal) has been taken")
+    =======================================================================
+    =====>>> CUSH2(X1,X2) model <<<===== ML-estimates
+    =======================================================================
+    m=9  Shelter=[2 8]  Size=1000  
+    -----------------------------------------------------------------------
+    Shelter effect 1
+              Estimates  StdErr     Wald  p-value
+    constant     -3.170  0.4216   -7.519   0.0000
+    X             0.207  0.0613    3.379   0.0007
+    -----------------------------------------------------------------------
+    Shelter effect 2
+              Estimates  StdErr     Wald  p-value
+    constant     -2.276  0.1609  -14.149   0.0000
+    =======================================================================
+    Dissimilarity = 0.0305
+    Loglik(MOD)   = -2122.463
+    Loglik(uni)   = -2197.225
+    Mean-loglik   = -2.122
+    -----------------------------------------------------------------------
+    AIC = 4250.93
+    BIC = 4265.65
+    =======================================================================
+    Elapsed time=0.06553 seconds =====>>> Fri Aug 16 11:29:11 2024
+    =======================================================================
+
+.. image:: /img/cush2xxmle.png
+    :alt: CUSH2 XX MLE
+
+.. code-block:: none
+
+         estimates  stderr
+    delta2  0.0931  0.0145
 
 CUBE family
 -----------
