@@ -91,14 +91,11 @@ def pmfi(m, beta, gamma, alpha, Y, W, Z):
     :param alpha: array :math:`\pmb \alpha` of parameters for the overdispersion, whose length equals 
         ``Z.columns.size+1`` to include an intercept term in the model (first entry)
     :type alpha: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param Z: dataframe of covariates for explaining the overdispersion;
-        no column must be named ``0`` nor ``constant``
+    :param Z: dataframe of covariates for explaining the overdispersion
     :type Z: pandas dataframe
     :return: the matrix of the probability distribution of dimension :math:`n \times r`
     :rtype: numpy ndarray
@@ -131,14 +128,11 @@ def pmf(m, beta, gamma, alpha, Y, W, Z):
     :param alpha: array :math:`\pmb \alpha` of parameters for the overdispersion, whose length equals 
         ``Z.columns.size+1`` to include an intercept term in the model (first entry)
     :type alpha: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param Z: dataframe of covariates for explaining the overdispersion;
-        no column must be named ``0`` nor ``constant``
+    :param Z: dataframe of covariates for explaining the overdispersion
     :type Z: pandas dataframe
     :return: the array of the average probability distribution
     :rtype: numpy array
@@ -165,14 +159,11 @@ def draw(m, beta, gamma, alpha,
     :param alpha: array :math:`\pmb \alpha` of parameters for the overdispersion, whose length equals 
         ``Z.columns.size+1`` to include an intercept term in the model (first entry)
     :type alpha: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param Z: dataframe of covariates for explaining the overdispersion;
-        no column must be named ``0`` nor ``constant``
+    :param Z: dataframe of covariates for explaining the overdispersion
     :type Z: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame
@@ -242,8 +233,7 @@ def init_theta(m, sample, W, p, v):
     :type m: int
     :param sample: array of ordinal responses
     :type sample: array of int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param p: number of covariates for the uncertainty component
     :type p: int
@@ -311,14 +301,11 @@ def loglik(m, sample, Y, W, Z,
     :type m: int
     :param sample: array of ordinal responses
     :type sample: array of int
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param Z: dataframe of covariates for explaining the overdispersion;
-        no column must be named ``0`` nor ``constant``
+    :param Z: dataframe of covariates for explaining the overdispersion
     :type Z: pandas dataframe
     :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
         ``Y.columns.size+1`` to include an intercept term in the model (first entry)
@@ -381,11 +368,9 @@ def Qdue(pars, tauno, sample, W, Z, m):
     :type tauno: array
     :param sample: array of ordinal responses
     :type sample: array of int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param Z: dataframe of covariates for explaining the overdispersion;
-        no column must be named ``0`` nor ``constant``
+    :param Z: dataframe of covariates for explaining the overdispersion
     :type Z: pandas dataframe
     :param m: number of ordinal categories
     :type m: int
@@ -445,14 +430,11 @@ def varcov(m, sample, beta, gamma, alpha,
     :type m: int
     :param sample: array of ordinal responses
     :type sample: array of int
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param Z: dataframe of covariates for explaining the overdispersion;
-        no column must be named ``0`` nor ``constant``
+    :param Z: dataframe of covariates for explaining the overdispersion
     :type Z: pandas dataframe
     :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
         ``Y.columns.size+1`` to include an intercept term in the model (first entry)
@@ -655,14 +637,11 @@ def mle(m, sample, Y, W, Z, df, formula,
     :type m: int
     :param sample: array of ordinal responses
     :type sample: array of int
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param Z: dataframe of covariates for explaining the overdispersion;
-        no column must be named ``0`` nor ``constant``
+    :param Z: dataframe of covariates for explaining the overdispersion
     :type Z: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame

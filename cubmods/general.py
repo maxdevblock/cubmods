@@ -319,8 +319,7 @@ def bitgamma(sample, m, W, gamma):
     :type sample: array
     :param m: number of ordinal categories
     :type m: int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)

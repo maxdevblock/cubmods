@@ -91,8 +91,7 @@ def pmfi(m, pi, gamma, phi, W):
     :type gamma: array of float
     :param phi: overdispersion parameter :math:`\phi`
     :type phi: float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: the matrix of the probability distribution of dimension :math:`n \times r`
     :rtype: numpy ndarray
@@ -120,8 +119,7 @@ def pmf(m, pi, gamma, phi, W):
     :type gamma: array of float
     :param phi: overdispersion parameter :math:`\phi`
     :type phi: float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: the array of the average probability distribution
     :rtype: numpy array
@@ -172,8 +170,7 @@ def draw(m, pi, gamma, phi, W,
     :type gamma: array of float
     :param phi: overdispersion parameter :math:`\phi`
     :type phi: float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param n: number of ordinal responses to be drawn
     :type n: int
@@ -245,8 +242,7 @@ def prob(m, sample, W, pi, gamma, phi):
     :type gamma: array of float
     :param phi: overdispersion parameter :math:`\phi`
     :type phi: float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param sample: array of ordinal responses
     :type sample: array of int
@@ -273,8 +269,7 @@ def loglik(m, sample, W, pi, gamma, phi):
     :type gamma: array of float
     :param phi: overdispersion parameter :math:`\phi`
     :type phi: float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param sample: array of ordinal responses
     :type sample: array of int
@@ -299,8 +294,7 @@ def init_theta(m, sample, W, maxiter, tol):
     :type m: int
     :param sample: array of ordinal responses
     :type sample: array of int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param maxiter: maximum number of iterations allowed for preliminary iterations
     :type maxiter: int
@@ -333,8 +327,7 @@ def effe(pars, sample, W, m):
     :type pars: array
     :param sample: array of ordinal responses
     :type sample: array of int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param m: number of ordinal categories
     :type m: int
@@ -359,8 +352,7 @@ def mle(sample, m, W, df, formula,
     :type sample: array of int
     :param m: number of ordinal categories
     :type m: int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame

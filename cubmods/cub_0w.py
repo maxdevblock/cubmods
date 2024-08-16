@@ -84,8 +84,7 @@ def pmf(m, pi, gamma, W):
     :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: the vector of the probability distribution.
     :rtype: numpy array
@@ -110,8 +109,7 @@ def pmfi(m, pi, gamma, W):
     :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: the matrix of the probability distribution of dimension :math:`n \times r`
     :rtype: numpy ndarray
@@ -143,8 +141,7 @@ def prob(sample, m, pi, gamma, W):
     :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: the array of the probability distribution.
     :rtype: numpy array
@@ -171,8 +168,7 @@ def cmf(m, pi, gamma, W): #TODO: test cmf
     :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: the array of the cumulative probability distribution.
     :rtype: numpy array
@@ -218,8 +214,7 @@ def loglik(sample, m, pi, gamma, W):
     :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: the log-likelihood value
     :rtype: float
@@ -243,8 +238,7 @@ def varcov(sample, m, pi, gamma, W):
     :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: the variance-covariance matrix of the CUB model
     :rtype: numpy ndarray
@@ -292,8 +286,7 @@ def init_gamma(sample, m, W):
     :type sample: array of int
     :param m: number of ordinal categories
     :type m: int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: an array :math:`\pmb\gamma^{(0)}` of size :math:`\pmb w + 1`
     :rtype: array of float
@@ -322,8 +315,7 @@ def draw(m, pi, gamma, W,
     :param gamma: array :math:`\pmb \gamma` of parameters for the feeling component, whose length equals 
         ``W.columns.size+1`` to include an intercept term in the model (first entry)
     :type gamma: array of float
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame
@@ -427,8 +419,7 @@ def mle(sample, m, W, df, formula,
     :type sample: array of int
     :param m: number of ordinal categories
     :type m: int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame

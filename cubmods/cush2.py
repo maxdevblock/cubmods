@@ -1,16 +1,16 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
 r"""
 CUB models in Python.
-Module for 2-CUSH (Combination of Uniform
+Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices).
 
 Description:
 ============
     This module contains methods and classes
-    for 2-CUSH model family.
+    for CUSH2 model family.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
-    The 2-CUSH family has been defined and implemented
+    The CUSH2 family has been defined and implemented
     by Massimo Pierini (2024) in the thesis
     *Modelli della classe CUB in Python*.
 
@@ -57,7 +57,7 @@ from .general import (
 from .smry import CUBres, CUBsample
 
 def pmf(m, c1, c2, d1, d2):
-    r"""Probability distribution of a specified 2-CUSH model.
+    r"""Probability distribution of a specified CUSH2 model.
 
     :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
 
@@ -90,7 +90,7 @@ def pmf(m, c1, c2, d1, d2):
 
 def draw(m, sh1, sh2, df, formula,
     delta1, delta2, n, seed=None):
-    r"""Draw a random sample from a specified 2-CUSH model.
+    r"""Draw a random sample from a specified CUSH2 model.
 
     :param m: number of ordinal categories
     :type m: int
@@ -144,7 +144,7 @@ def draw(m, sh1, sh2, df, formula,
 
 def varcov(m, n, d1, d2, fc1, fc2):
     r"""Compute the variance-covariance matrix of parameter 
-    estimates of a 2-CUSH model without covariates.
+    estimates of a CUSH2 model without covariates.
 
     :param m: number of ordinal categories
     :type m: int
@@ -195,9 +195,9 @@ def mle(sample, m, c1, c2,
     df, formula, gen_pars=None,
     maxiter=None, tol=None #for GEM compatibility
     ):
-    r"""Main function for 2-CUSH models without covariates.
+    r"""Main function for CUSH2 models without covariates.
 
-    Estimate and validate a 2-CUSH model for ordinal responses, without covariates.
+    Estimate and validate a CUSH2 model for ordinal responses, without covariates.
     
     :param sample: array of ordinal responses
     :type sample: array of int
@@ -273,9 +273,9 @@ def mle(sample, m, c1, c2,
     )
 
 def loglik(sample, m, c1, c2):
-    r"""Log-likelihood function for a 2-CUSH model without covariates.
+    r"""Log-likelihood function for a CUSH2 model without covariates.
 
-    Compute the log-likelihood function for a 2-CUSH model 
+    Compute the log-likelihood function for a CUSH2 model 
     without covariate for the given ordinal responses.
 
     :param sample: array of ordinal responses
@@ -374,7 +374,7 @@ class CUBresCUSH2(CUBres):
             ax.tick_params(width=2)
         ax.grid(True)
         ax.legend(loc="upper right")
-        ax.set_title("2-CUSH model parameter space")
+        ax.set_title("CUSH2 model parameter space")
         if ax is None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')

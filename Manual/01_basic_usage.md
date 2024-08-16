@@ -7,7 +7,7 @@ Currently, six families have been defined and implemented:
 - CUBE (Combination of Uniform and BEta-binomial)
 - IHG (Inverse HyperGeometric)
 - CUSH (Combination of Uniform and a SHelter choice)
-- 2-CUSH (Combination of Uniform and 2 SHelter choices)
+- CUSH2 (Combination of Uniform and 2 SHelter choices)
 
 For each family, can be defined a model with or without covariates for one or more parameters.
 
@@ -34,5 +34,5 @@ TODO: loading and saving objects
 - [CUBE family](Manual/04_cube_family.md)
 - [IHG family](Manual/06_ihg_family.md)
 - [CUSH family](Manual/05_cush_family.md)
-- [2-CUSH family](Manual/07_2cush_family.md)
+- [CUSH2 family](Manual/07_2cush_family.md)
 - [MULTICUB tool](Manual/08_multicub.md)

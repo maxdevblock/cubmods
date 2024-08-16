@@ -69,8 +69,7 @@ def pmf(m, sh, omega, X):
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :return: the probability distribution
     :rtype: array
@@ -91,8 +90,7 @@ def pmfi(m, sh, omega, X):
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :return: the matrix of the probability distribution of dimension :math:`n \times r`
     :rtype: numpy ndarray
@@ -118,8 +116,7 @@ def proba(m, sample, X, omega, sh):
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :return: the probability array :math:`\Pr(R = r | \pmb\theta)` for observed responses
     :rtype: float
@@ -142,8 +139,7 @@ def draw(m, sh, omega, X,
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame
@@ -204,8 +200,7 @@ def loglik(m, sample, X, omega, sh):
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :return: the log-likelihood value
     :rtype: float
@@ -254,8 +249,7 @@ def mle(m, sample, X, sh,
     :type sample: array of int
     :param sh: Category corresponding to the shelter choice :math:`[1,m]`
     :type sh: int
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame

@@ -81,8 +81,7 @@ def pmfi(m, beta, xi, Y):
     :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
         ``Y.columns.size+1`` to include an intercept term in the model (first entry)
     :type beta: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
     :return: the matrix of the probability distribution of dimension :math:`n \times r`
     :rtype: numpy ndarray
@@ -108,8 +107,7 @@ def pmf(m, beta, xi, Y):
     :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
         ``Y.columns.size+1`` to include an intercept term in the model (first entry)
     :type beta: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
     :return: the vector of the probability distribution.
     :rtype: numpy array
@@ -136,8 +134,7 @@ def prob(m, sample, Y, beta, xi):
     :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
         ``Y.columns.size+1`` to include an intercept term in the model (first entry)
     :type beta: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
     :return: the array of the probability distribution.
     :rtype: numpy array
@@ -163,8 +160,7 @@ def loglik(m, sample, Y, beta, xi):
     :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
         ``Y.columns.size+1`` to include an intercept term in the model (first entry)
     :type beta: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
     :return: the log-likelihood value
     :rtype: float
@@ -189,8 +185,7 @@ def draw(m, beta, xi, Y,
     :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
         ``Y.columns.size+1`` to include an intercept term in the model (first entry)
     :type beta: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame
@@ -256,8 +251,7 @@ def varcov(m, sample, Y, beta, xi):
     :param beta: array :math:`\pmb \beta` of parameters for the uncertainty component, whose length equals 
         ``Y.columns.size+1`` to include an intercept term in the model (first entry)
     :type beta: array of float
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
     :return: the variance-covariance matrix of the CUB model
     :rtype: numpy ndarray
@@ -332,8 +326,7 @@ def mle(sample, m, Y, df, formula,
     :type sample: array of int
     :param m: number of ordinal categories
     :type m: int
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame

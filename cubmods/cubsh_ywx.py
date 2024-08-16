@@ -99,14 +99,11 @@ def pmf(m, sh, beta, gamma, omega,
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :return: the probability distribution
     :rtype: array
@@ -138,14 +135,11 @@ def pmfi(m, sh, beta, gamma, omega,
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :return: the matrix of the probability distribution of dimension :math:`n \times r`
     :rtype: numpy ndarray
@@ -182,14 +176,11 @@ def draw(m, sh, beta, gamma, omega,
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :param n: number of ordinal responses to be drawn
     :type n: int
@@ -263,8 +254,7 @@ def init_theta(m, sample, p, s, W):
     :type p: int
     :param s: number of covariates for the shelter effect
     :type s: int
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
     :return: a tuple of :math:`(\pmb \beta^{(0)}, \pmb \gamma^{(0)}, \pmb \omega^{(0)})` of preliminary estimates of parameter vectors for 
         :math:`\pi = \pi(\pmb{\beta})`, \; \xi=\xi(\pmb{\gamma}),\; \delta=\delta(\pmb{\omega})` respectively, of a CUBSH model with covariates for all the three
@@ -306,14 +296,11 @@ def prob(m, sample, sh, Y, W, X,
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :param sample: array of ordinal responses
     :type sample: array of int
@@ -348,14 +335,11 @@ def varcov(sample, m, sh, Y, W, X,
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :param sample: array of ordinal responses
     :type sample: array of int
@@ -435,14 +419,11 @@ def loglik(m, sample, sh, Y, W, X,
     :param omega: array :math:`\pmb \omega` of parameters for the shelter effect, whose length equals 
         ``X.columns.size+1`` to include an intercept term in the model (first entry)
     :type omega: array
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :param sample: array of ordinal responses
     :type sample: array of int
@@ -517,14 +498,11 @@ def mle(m, sample, sh, Y, W, X,
     :type sample: array of int
     :param sh: Category corresponding to the shelter choice :math:`[1,m]`
     :type sh: int
-    :param Y: dataframe of covariates for explaining the uncertainty component;
-        no column must be named ``0`` nor ``constant``
+    :param Y: dataframe of covariates for explaining the uncertainty component
     :type Y: pandas dataframe
-    :param W: dataframe of covariates for explaining the feeling component;
-        no column must be named ``0`` nor ``constant``
+    :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :param X: dataframe of covariates for explaining the shelter effect;
-        no column must be named ``0`` nor ``constant``
+    :param X: dataframe of covariates for explaining the shelter effect
     :type X: pandas dataframe
     :param df: original DataFrame
     :type df: DataFrame
