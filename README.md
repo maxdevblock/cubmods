@@ -27,19 +27,20 @@ When the version `0.0.1` will be complete, it will be uploaded on `PyPI`.
 ```Python
 # import libraries
 import matplotlib.pyplot as plt
-from cubmods import cub, gem
+from cubmods.gem import draw, estimate
 
 # draw a sample
-drawn = cub.draw(m=10, pi=.7, xi=.2,
-                 n=500, seed=1)
+drawn = draw(formula="ordinal ~ 0 | 0",
+             m=10, pi=.7, xi=.2,
+             n=500, seed=1)
 print(drawn.summary())
 drawn.plot()
 plt.show()
 
 # inferential method on drawn sample
-mod = gem.from_formula(
-    df=drawn.as_dataframe(),
-    formula="ordinal~0|0|0",
+mod = estimate(
+    df=drawn.df,
+    formula="ordinal~0|0",
     m=10,
     gen_pars={"pi": .7, "xi":.2}
 )
@@ -52,7 +53,6 @@ plt.show()
 Work in progress.
 
 - [Manual](./Manual) for models' specifications and working examples
-- [Reference Guide](./Manual/Reference%20Guide) for details about modules' Functions and Classes
 
 ## References
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
