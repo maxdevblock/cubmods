@@ -129,7 +129,7 @@ models = [
     },
     #cush2
     {"draw": dict(
-        model="cush2", m=m, sh=[1,3],
+        model="cush", m=m, sh=[1,3],
         formula="ord ~ 0 | 0",
         delta1=.15,
         delta2=.2,
@@ -137,12 +137,12 @@ models = [
         seed=76
         ),
     "est": dict(
-        model="cush2", m=m, sh=[1,3],
+        model="cush", m=m, sh=[1,3],
         formula="ord ~ 0 | 0",
         )
     },
     {"draw": dict(
-        model="cush2", m=m, sh=[1,3],
+        model="cush", m=m, sh=[1,3],
         formula="ord ~ D+C | 0",
         omega1=[logit(.15),.02,-.1],
         delta2=.2,
@@ -150,8 +150,21 @@ models = [
         seed=76
         ),
     "est": dict(
-        model="cush2", m=m, sh=[1,3],
+        model="cush", m=m, sh=[1,3],
         formula="ord ~ D+C | 0",
+        )
+    },
+    {"draw": dict(
+        model="cush", m=m, sh=[1,3],
+        formula="ord ~ D | C",
+        omega1=[logit(.15),.02],
+        omega2=[logit(.2),-.1],
+        n=n, df=df,
+        seed=76
+        ),
+    "est": dict(
+        model="cush", m=m, sh=[1,3],
+        formula="ord ~ D | C",
         )
     },
     #ihg

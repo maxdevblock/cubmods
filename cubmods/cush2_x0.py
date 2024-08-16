@@ -158,14 +158,14 @@ def mle(sample, m, sh1, sh2,
         .01, (fc1*(m-1)+fc2-1)/(m-2)])
     om1_0 = np.log(delta1_0/(1-delta1_0))
     om1 = np.concatenate((
-        [om1_0], np.repeat(.1, w1)
+        [om1_0], np.repeat(0, w1)
     ))
     delta2 = max([
         .01, (fc2*(m-1)+fc1-1)/(m-2)])
 
     pars = np.concatenate((om1, [delta2]))
     bounds = [[None,None] for _ in range(w1+1)]
-    bounds.append([.01,.99])
+    bounds.append([.001,.999])
     optim = minimize(
         effe, x0=pars,
         args=(sample, m,
@@ -222,7 +222,7 @@ def mle(sample, m, sh1, sh2,
     end = dt.datetime.now()
     
     return CUBresCUSH2X0(
-        model="2CUSH(X0)",
+        model="CUSH2(X1,0)",
         m=m, n=n, sh=np.array([sh1, sh2]),
         estimates=estimates,
         est_names=est_names,

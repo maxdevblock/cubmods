@@ -73,7 +73,7 @@ def estimate(
     formula,      # the formula to apply
     df,           # DataFrame of sample and covariates
     m=None,       # if None takes max(sample)
-    model="cub",  # "cub", "cube", "cush", "cush2"
+    model="cub",  # "cub", "cube", "cush"
     sh=None,      # used for cubsh and cush only
     gen_pars=None,# dict of known generating params
     options={}    # "maxiter" and/or "tol"
@@ -88,6 +88,10 @@ def estimate(
     modname = model
     if model == "cub" and sh is not None:
         modname = "cubsh"
+    elif model == "cush" and isinstance(sh, int):
+        modname = "cush"
+    elif model == "cush" and isinstance(sh, (list, np.ndarray)):
+        modname = "cush2"
     ordinal, covars = formula_parser(formula,
         model=modname)
     #print(ordinal, covars)
@@ -162,7 +166,8 @@ def estimate(
         W = covars[1] #covariates for xi
         X = covars[2] #covariates for delta
         if not sh:
-            print("WARN: searching for best shelter choice")
+            raise NotImplementedModelError("Searching for best shelter choice not implemented yet.",
+                                           formula)
             #TODO: implement shelter choice search
         else:
             # R~0|0|0
@@ -179,7 +184,7 @@ def estimate(
                 raise NotImplementedModelError(model=model, formula=formula)
                 #print(f"ERR(cubsh): no implemented model {model}sh with formula {formula}")
                 #return None
-    elif model=="cush":
+    elif modname == "cush":
         X = covars[0] #covariates for delta
         
         if sh is None:
@@ -187,8 +192,11 @@ def estimate(
             raise NoShelterError(model=model)
         #TODO: if sh=0 search for the best shelter choice
         elif not sh:
-            print("WARN: searching for best shelter choice")
+            raise NotImplementedModelError("Searching for best shelter choice not implemented yet.",
+                                           formula)
             #TODO: implement shelter choice search
+        #elif isinstance(sh, float):
+        #TODO: implement cush2 from cush if sh is arraylike of size 2
         else:
             if X is None:
                 #TODO: if m <=
@@ -202,7 +210,7 @@ def estimate(
                 raise NotImplementedModelError(model=model, formula=formula)
                 #print(f"ERR: no implemented model {model} with formula {formula}")
                 #return None
-    elif model == "cush2":
+    elif modname == "cush2":
         X1 = covars[0]
         X2 = covars[1]
         sh1 = sh[0]
@@ -255,7 +263,11 @@ def draw(formula, df=None,
     modname = model
     if model == "cub" and sh is not None:
         modname = "cubsh"
-    ordinal, covars = formula_parser(formula,
+    elif model == "cush" and isinstance(sh, int):
+        modname = "cush"
+    elif model == "cush" and isinstance(sh, (list, np.ndarray)):
+        modname = "cush2"
+    _, covars = formula_parser(formula,
         model=modname)
     if df is None:
         df = pd.DataFrame(
@@ -327,7 +339,7 @@ def draw(formula, df=None,
             seed=seed, Y=df[Y], W=df[W],
             Z=df[Z]
             ))
-    elif model=="cush":
+    elif modname=="cush":
         X = covars[0]
         if X is None:
             mod = cush
@@ -339,7 +351,7 @@ def draw(formula, df=None,
             params.update(dict(
             seed=seed, sh=sh, X=df[X]
             ))
-    elif model=="cush2":
+    elif modname=="cush2":
         X1 = covars[0]
         X2 = covars[1]
         if X1 is None and X2 is None:

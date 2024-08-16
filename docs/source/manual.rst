@@ -139,16 +139,17 @@ IHG model. Covariates for the preference parameter :math:`\theta` have to be spe
 in matrix form in the Formula as ``ordinal~V``.
 
 If ``family="cush"``, then a CUSH model is fitted to the data (Combination of Uniform and SHelter effect).
-The category corresponding to the inflation should be
-passed via argument ``sh``. Covariates for the shelter parameter :math:`\delta`
+If a category corresponding to the inflation should be
+passed via argument ``sh`` a CUSH model is called and
+covariates for the shelter parameter :math:`\delta`
 are specified in matrix form Formula as ``ordinal~X``.
-
-If ``family="cush2"``, then a 2-CUSH model is fitted to the data (Combination of Uniform and 2 SHelter choices).
-The categories corresponding to the inflation should be
-passed as a list (or array) via the same argument ``sh``. 
-Covariates for the shelter parameters :math:`(\delta_1, \delta_2)`
-are specified in matrix form Formula as ``ordinal~X1|X2``. Notice that, to specify covariates for a
-single shelter choice, the formula should be ``ordinal~X1|0`` and not ``ordinal~0|X2``.
+If two category corresponding to the inflation should be
+passed via argument ``sh`` (as a *list* or *array*) a CUSH2 model is called and
+covariates for the shelters' parameters :math:`(\delta_1,\delta_2)`
+are specified in matrix form Formula as ``ordinal~X1|X2``.
+Notice that, to specify covariates for a
+single shelter choice in a CUSH2 model, 
+the formula should be ``ordinal~X1|0`` and not ``ordinal~0|X2``.
 
 Extra arguments include the maximum 
 number of iterations ``maxiter`` for the optimization algorithm, 

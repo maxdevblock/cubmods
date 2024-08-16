@@ -461,17 +461,14 @@ def formula_parser(formula,
     model="cub"):
     r"""Parse a CUB class formula.
 
-    Auxiliary function of ``cubmods.gem.from_formula()``.
-
-    TODO: adapt formula to specific family with corresponding
-        number of parameters
-    
-    TODO: documentation about formula
+    Auxiliary function of ``cubmods.gem`` functions.
 
     TODO: add specific Exceptions for formula
 
     :param formula: the formula to be parsed
     :type formula: str
+    :param model: the model family
+    :type model: str
     :return: a tuple of the ordinal response column name and a list of all
         covariates' column names for each component
     :rtype: tuple
@@ -494,7 +491,7 @@ def formula_parser(formula,
         comp = 4
     if formula.count("|") != comp-1:
         raise Exception(
-        f"ERR: in {model} | must be {comp-1}")
+        f"ERR: {model} is specified by  {comp} components")
     regex += "\|".join(np.repeat(rag,comp))
     regex += "$"
     #print(regex)

@@ -129,7 +129,7 @@ def draw(m, sh1, sh2, df, formula,
     par_names = np.array(["delta1", "delta2"])
     #sh=np.array([c1, c2])
     sample = CUBsample(
-        model="2CUSH",
+        model="CUSH2",
         rv=rv, m=m,
         sh=np.array([sh1, sh2]),
         pars=pars,
@@ -250,7 +250,7 @@ def mle(sample, m, c1, c2,
     end = dt.datetime.now()
     
     return CUBresCUSH2(
-        model="2CUSH",
+        model="CUSH2",
         m=m, n=n, sh=np.array([c1, c2]),
         estimates=estimates,
         est_names=est_names,
