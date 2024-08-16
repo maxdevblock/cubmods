@@ -795,9 +795,7 @@ References
         :list: enumerated
         :filter: False
 
-        iannario2010new
-        iannario2012modelling
-        iannario2014inference
+        capecchi2017dealing
         piccolo2019class
 
 Without covariates
@@ -1160,7 +1158,9 @@ References
         :list: enumerated
         :filter: False
 
-        mythesis
+        iannario2014modelling
+        iannario2015detecting
+        piccolo2019class
 
 Without covariates
 ^^^^^^^^^^^^^^^^^^
@@ -1458,7 +1458,9 @@ References
         :list: enumerated
         :filter: False
 
-        mythesis
+        d2003modelling
+        d2005moment
+        piccolo2019class
 
 Without covariates
 ^^^^^^^^^^^^^^^^^^
@@ -1606,6 +1608,12 @@ and then will estimate the parameters given the observed sample.
 
 MULTICUB
 --------
+
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :filter: False
+
+        piccolo2019class
 
 With the **multicub** tool, parameters estimated from
 multiple observed samples can be shown in a single plot.

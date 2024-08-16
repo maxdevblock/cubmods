@@ -10,19 +10,6 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import cub
-
-    samp = pd.read_csv("ordinal.csv")
-    fit = cub.mle(samp.rv, m=7)
-    print(fit.summary())
-    fit.plot()
-    plt.show()
-
-
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -37,29 +24,23 @@ References:
   
 List of TODOs:
 ==============
-  *TODO: Correlation su, --- invece di === come nella tesi
-  *TODO: loglik invece di loglike
-  *TODO: Corr(\pi,\xi) invece di Corr(pi, xi) nei plot
-  *TODO: Feeling invece di Preference nei grafici
-  *TODO: barre invece di pallini (aggiungere opzione)
-  *TODO: controllare NAs (e dirlo)
-  TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi
-  TODO: User Manual
-  TODO: Refernce Guide
-  TODO: bounds opzionali in CUBE mle (anche CUBSH?)
-  TODO: 2 decimali nei 3d plot?
-  *TODO: stessa unità di misura nei 3d plot magnified?
-  *TODO: titolo con covariate AVERAGE ESTIMATED PROBABILITY
-  TODO: dissim in multicub plot (aggiungere opzione)
-  TODO: grandezza punti phi in multicube
-  *TODO: stessi decimali nel summary
+  - TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi
+  - TODO: bounds opzionali in CUBE mle (anche CUBSH?)
+  - TODO: 2 decimali nei 3d plot?
+  - TODO: dissim in multicub plot (aggiungere opzione)
+  - TODO: grandezza punti phi in multicube
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+Credits
+==============
+    :Author:      Massimo Pierini
+    :Institution: Universitas Mercatorum
+    :Affiliation: Graduand in Statistics & Big Data (L41)
+    :Date:        2023-24
+    :Credit:      Domenico Piccolo, Rosaria Simone
+    :Contacts:    cub@maxpierini.it
+
+Classes and Functions
+=====================
 """
 
 #import datetime as dt
@@ -184,12 +165,9 @@ def _as_txt(
     return smry
 
 class CUBres(object):
-    """
-    Default Class for MLE results; each model module extends this Class to an ad hoc 
-    Class with specific functions. An instance of the extended Class is returned by .mle() 
+    """Default Class for MLE results; each model module extends this Class to an ad hoc 
+    Class with specific functions. An instance of the extended Class is returned by ``.mle()``
     functions of model modules.
-
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres
     """
     def __init__(
         self,
@@ -252,8 +230,7 @@ class CUBres(object):
         return f"CUBres({self.model}; {pars})"
 
     def as_txt(self):
-        """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres
+        """Print the summary.
         """
         par_names = np.asarray(self.est_names)
         par_types = np.asarray(self.e_types)
@@ -359,14 +336,12 @@ class CUBres(object):
         return smry
 
     def summary(self):
-        """
-        Call as_txt()
+        """Call ``as_txt()``
         """
         return self.as_txt()
         
     def as_dataframe(self):
-        """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres
+        """DataFrame of estimated parameters
         """
         df = pd.DataFrame({
             "component": self.e_types,
@@ -380,10 +355,8 @@ class CUBres(object):
         return df
     
     def save(self, fname):
-        """
-        Save a CUBresult object to file
-
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubres
+        """Save a CUBresult object to file
+        named ``fname`` + ``.cub.fit``
         """
         filename = f"{fname}.cub.fit"
         with open(filename, "wb") as f:
@@ -391,10 +364,8 @@ class CUBres(object):
         print(f"Fitting object saved to {filename}")
 
 class CUBsample(object):
-    """
-    An instance of this Class is returned by .draw() functions. See the corresponding model's function for details.
-
-    https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
+    """An instance of this Class is returned by ``.draw()`` functions. 
+    See the corresponding model's function for details.
     """
     def __init__(self, rv, m, pars,
         model, df, formula, diss, theoric,
@@ -428,8 +399,7 @@ class CUBsample(object):
         return f"CUBsample({self.model}; n={self.n}; {self.par_list})"
 
     def summary(self):
-        """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
+        """Print the summary of the drawn sample.
         """
         smry = "=======================================================================\n"
         smry += f"=====>>> {self.model} model <<<===== Drawn random sample\n"
@@ -457,8 +427,17 @@ class CUBsample(object):
     def plot(self, figsize=(7, 5),
         kind="bar", #options: scatter, bar
         ax=None, saveas=None):
-        """
-        https://github.com/maxdevblock/cubmods/blob/main/Manual/Reference%20Guide/smry.md#cubsample
+        """Basic plot function.
+
+        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :type figsize: tuple of float
+        :param kind: choose a barplot (``'bar'`` default) of a scatterplot (``'scatter'``)
+        :type kind: str
+        :param ax: matplotlib axis, if None a new figure will be created, defaults to None
+        :type ax: matplolib ax, optional
+        :param saveas: if provided, name of the file to save the plot
+        :type saveas: str
+        :return: ``ax`` or a tuple ``(fig, ax)``
         """
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
@@ -502,8 +481,8 @@ class CUBsample(object):
         return df
 
     def save(self, fname):
-        """
-        Save a CUBsample object to file
+        """Save a CUBsample object to file
+        named ``fname`` + ``cub.sample``
         """
         filename = f"{fname}.cub.sample"
         with open(filename, "wb") as f:

@@ -42,5 +42,5 @@ this environment could be useful to the scientific community.
 References
 **********
 
-.. bibliography:: cub.bib
-    :cited:
+    .. bibliography:: cub.bib
+        :cited:

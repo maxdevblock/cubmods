@@ -6,27 +6,11 @@ Module for GEM (Generalized Mixtures).
 Description:
 ============
     This module contains methods and classes
-    for GEM maximum likelihood estimation.
+    for GEM maximum likelihood estimation
+    and sample drawing.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-Example:
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from cubmods import gem
-
-    samp = pd.read_csv("observed.csv")
-    fit = gem.from_formula(
-        formula="ordinal~0|0|0",
-        model="cub",
-        m=7
-    )
-    print(fit.summary())
-    fit.plot()
-    plt.show()
-
-
-...
 References:
 ===========
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
@@ -41,14 +25,19 @@ References:
   
 List of TODOs:
 ==============
-  TODO: implement best shelter search
+  - TODO: implement best shelter search
 
-@Author:      Massimo Pierini
-@Institution: Universitas Mercatorum
-@Affiliation: Graduand in Statistics & Big Data (L41)
-@Date:        2023-24
-@Credit:      Domenico Piccolo, Rosaria Simone
-@Contacts:    cub@maxpierini.it
+Credits
+==============
+    :Author:      Massimo Pierini
+    :Institution: Universitas Mercatorum
+    :Affiliation: Graduand in Statistics & Big Data (L41)
+    :Date:        2023-24
+    :Credit:      Domenico Piccolo, Rosaria Simone
+    :Contacts:    cub@maxpierini.it
+
+Classes and Functions
+=====================
 """
 
 import warnings
@@ -78,9 +67,27 @@ def estimate(
     gen_pars=None,# dict of known generating params
     options={}    # "maxiter" and/or "tol"
     ):
-    """
-    Takes a DataFrame as input and calls MLE
-    based upon given model and formula.
+    r"""Main function to estimate and validate GEneralized Mixture models.
+
+    :param formula: a formula used to estimate the model's parameters, see
+        Manual for details
+    :type formula: str
+    :param df: the DataFrame with observed ordinal sample and covariates (if any)
+    :type df: DataFrame
+    :param m: number of ordinal categories
+    :type m: int
+    :param model: the model family; default to ``"cub"``; options ``"cube"`` and ``"cush"``
+    :type model: str
+    :param sh: category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param options: a dictionary of extra options ``maxiter`` and ``tol``; see the reference
+        guide for details
+    :type options: dict
+    :return: an instance of the Base Class ``CUBres`` extended by the family module;
+        see each module for details
+    :rtype: obj
     """
     warnings.filterwarnings(
         "ignore", category=RuntimeWarning
@@ -260,6 +267,32 @@ def draw(formula, df=None,
     sh=None, seed=None,
     **params
     ):
+    r"""Main function to draw a sample from GEneralized Mixture models.
+
+    :param formula: a formula used to draw the sample, see
+        Manual for details
+    :type formula: str
+    :param df: the DataFrame with covariates (if any)
+    :type df: DataFrame
+    :param m: number of ordinal categories
+    :type m: int
+    :param model: the model family; default to ``"cub"``; options ``"cube"`` and ``"cush"``
+    :type model: str
+    :param sh: category corresponding to the shelter choice :math:`[1,m]`
+    :type sh: int
+    :param n: number of ordinal responses; it is only effective if the model
+        is without covariates
+    :type n: int
+    :param gen_pars: dictionary of hypothesized parameters, defaults to None
+    :type gen_pars: dictionary, optional
+    :param options: a dictionary of extra options ``maxiter`` and ``tol``; see the reference
+        guide for details
+    :type options: dict
+    :param seed: the `seed` to ensure reproducibility, defaults to None
+    :type seed: int, optional
+    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :rtype: obj
+    """
     modname = model
     if model == "cub" and sh is not None:
         modname = "cubsh"

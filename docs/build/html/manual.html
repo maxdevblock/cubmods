@@ -525,8 +525,8 @@ see the Base Class <code class="docutils literal notranslate"><span class="pre">
 <p>In the following example, a sample will be drawn from a CUB model of <span class="math notranslate nohighlight">\(n=500\)</span> observations of an ordinal
 variable with <span class="math notranslate nohighlight">\(m=10\)</span> ordinal categories
 and parameters <span class="math notranslate nohighlight">\((\pi=.7, \xi=.2)\)</span>. A <code class="docutils literal notranslate"><span class="pre">seed=1</span></code> will be set to ensure reproducibility.</p>
-<div class="literal-block-wrapper docutils container" id="id238">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id238" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id275">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id275" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span>
@@ -580,8 +580,8 @@ the parameters</p>
 <li><p>if <code class="docutils literal notranslate"><span class="pre">m</span></code> is not provided, the maximum observed ordinal value will be assumed and a warning will be raised</p></li>
 <li><p>with <code class="docutils literal notranslate"><span class="pre">gen_pars</span></code> dictionary, the parameters of a known model (if any) can be specified; in this case, we’ll specify the known parameters used to draw the sample</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id239">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id239" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id276">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id276" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
@@ -657,8 +657,8 @@ for <em>uncertainty</em> only, for <em>feeling</em> only, and for <em>both</em>.
 <p>First of all, we’ll draw a random sample with two covariates for the <em>feeling</em> component:
 <code class="docutils literal notranslate"><span class="pre">W1</span></code> and <code class="docutils literal notranslate"><span class="pre">W2</span></code>. Note that, having two covariates, we’ll need three <span class="math notranslate nohighlight">\(\gamma\)</span> parameters,
 to consider the constant term too.</p>
-<div class="literal-block-wrapper docutils container" id="id240">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id240" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id277">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id277" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -706,8 +706,8 @@ Dissimilarity = 0.0307673
 =======================================================================
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id241">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id241" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id278">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id278" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># plot the drawn sample</span>
 <span class="linenos">2</span><span class="n">drawn</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="linenos">3</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -715,8 +715,8 @@ Dissimilarity = 0.0307673
 </div>
 </div>
 <img alt="CUB0W drawn sample" src="_images/cub0wdraw.png" />
-<div class="literal-block-wrapper docutils container" id="id242">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id242" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id279">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id279" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># print the parameters&#39; values</span>
 <span class="linenos">2</span><span class="nb">print</span><span class="p">(</span><span class="n">drawn</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">())</span>
 </pre></div>
@@ -729,8 +729,8 @@ Dissimilarity = 0.0307673
 3        W2   -5.0
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id243">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id243" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id280">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id280" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># print the updated DataFrame</span>
 <span class="linenos">2</span><span class="nb">print</span><span class="p">(</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
@@ -754,8 +754,8 @@ Dissimilarity = 0.0307673
 </div>
 <p>Finally, we’ll call <code class="docutils literal notranslate"><span class="pre">estimate</span></code> to estimate the parameters
 given the observed (actually, drawn) sample.</p>
-<div class="literal-block-wrapper docutils container" id="id244">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id244" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id281">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id281" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;res ~ 0 | W1+W2&quot;</span><span class="p">,</span>
@@ -827,8 +827,8 @@ for responses with <span class="math notranslate nohighlight">\(m\)</span> ordin
 <em>feeling</em> components, and <span class="math notranslate nohighlight">\(\delta\)</span> is the weight of the shelter effect.</p>
 <p>In the next example, we’ll draw an ordinal response
 and then estimate the parameters given the sample.</p>
-<div class="literal-block-wrapper docutils container" id="id245">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id245" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id282">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id282" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -857,8 +857,8 @@ and then estimate the parameters given the sample.</p>
 <li><p>since <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> is default value of the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">model</span></code>, we do not need to specify it</p></li>
 <li><p>we’ll pass to <code class="docutils literal notranslate"><span class="pre">estimate</span></code> <em>kwargs</em> values taken from the object <code class="docutils literal notranslate"><span class="pre">drawn</span></code></p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id246">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id246" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id283">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id283" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">sh</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">sh</span><span class="p">,</span>
@@ -939,8 +939,8 @@ with covariates for uncertainty only. We’ll use the function
 <code class="docutils literal notranslate"><span class="pre">logit</span></code> to have better ‘control’ of the parameters values,
 because <span class="math notranslate nohighlight">\(\gamma_0 = \mathrm{logit}(\xi)\)</span> and
 similarly for <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
-<div class="literal-block-wrapper docutils container" id="id247">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id247" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id284">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id284" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1014,8 +1014,8 @@ we can use the function <code class="docutils literal notranslate"><span class="
 and similarly for <span class="math notranslate nohighlight">\(\hat\delta\)</span>. Then, since
 <span class="math notranslate nohighlight">\(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\)</span>
 we can compute the standard errors of both <span class="math notranslate nohighlight">\(\hat\xi\)</span> and <span class="math notranslate nohighlight">\(\hat\delta\)</span>.</p>
-<div class="literal-block-wrapper docutils container" id="id248">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id248" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id285">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id285" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">est_xi</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="linenos"> 2</span><span class="n">est_de</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="linenos"> 3</span><span class="n">est_xi_se</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">fit</span><span class="o">.</span><span class="n">stderrs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="n">est_xi</span>
@@ -1046,9 +1046,7 @@ See the references for details.</p>
 <blockquote>
 <div><div class="docutils container" id="id79">
 <ol class="arabic simple" start="1">
-<li id="id87"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
-<li id="id86"><p>Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. <em>Quality Technology &amp; Quantitative Management</em>, 7(2):149–168, 2010.</p></li>
-<li id="id95"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id88"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
 <li id="id81"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
@@ -1061,8 +1059,8 @@ See the references for details.</p>
 <p>In the example, we’ll draw a sample from a CUSH model without covariates and
 then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id249">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id249" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id286">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id286" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -1128,8 +1126,8 @@ Elapsed time=0.00113 seconds =====&gt;&gt;&gt; Fri Aug 16 10:44:07 2024
 <p>In the example, we’ll draw a sample from a CUSH model with covariates and
 then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id250">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id250" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id287">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id287" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1215,8 +1213,8 @@ then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.
 Passing a list of two shelter categories with the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code>, a CUSH2 model will be
 called.</p>
-<div class="literal-block-wrapper docutils container" id="id251">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id251" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id288">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id288" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -1296,8 +1294,8 @@ formula for the second shelter choice to estimate the
 constant parameter only. This is usually not needed, but
 we do it here to confirm that <span class="math notranslate nohighlight">\(\mathrm{expit}(\hat\omega_{20})=\hat\delta_2\)</span>.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id252">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id252" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id289">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id289" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1385,7 +1383,9 @@ See the references for details.</p>
 <blockquote>
 <div><div class="docutils container" id="id159">
 <ol class="arabic simple" start="1">
-<li id="id195"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id170"><p>Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. <em>Communications in Statistics-Theory and Methods</em>, 43(4):771–786, 2014.</p></li>
+<li id="id169"><p>Maria Iannario. Detecting latent components in ordinal data with overdispersion by means of a mixture distribution. <em>Quality &amp; Quantity</em>, 49:977–987, 2015.</p></li>
+<li id="id161"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
 </div></blockquote>
@@ -1407,8 +1407,8 @@ See the references for details.</p>
 <p>In this example, we’ll draw a sample from a CUBE model and then
 will estimate the parameters given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id253">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id253" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id290">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id290" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -1504,8 +1504,8 @@ formula for different combinations of covariates.</p>
 <p>In this example, we’ll draw a sample with covariates for
 <em>feeling</em> only and then will estimate the parameters given
 the observed sample.</p>
-<div class="literal-block-wrapper docutils container" id="id254">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id254" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id291">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id291" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1580,8 +1580,8 @@ Elapsed time=2.30903 seconds =====&gt;&gt;&gt; Fri Aug 16 12:31:10 2024
 model with covariates for all components and passing
 the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> to the <em>feeling</em> and <em>uncertainty</em>
 component.</p>
-<div class="literal-block-wrapper docutils container" id="id255">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id255" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id292">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id292" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;fee ~ 1 | W | 1&quot;</span><span class="p">,</span>
@@ -1629,8 +1629,8 @@ Elapsed time=50.02969 seconds =====&gt;&gt;&gt; Fri Aug 16 12:33:36 2024
 </div>
 <img alt="CUBE YWZ MLE" src="_images/cubeywzmle.png" />
 <p>In fact:</p>
-<div class="literal-block-wrapper docutils container" id="id256">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id256" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id293">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id293" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">est_pi</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="linenos"> 2</span><span class="n">est_ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="linenos"> 3</span><span class="n">est_pi_se</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">fit</span><span class="o">.</span><span class="n">stderrs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">est_pi</span>
@@ -1660,7 +1660,9 @@ See the references for details.</p>
 <blockquote>
 <div><div class="docutils container" id="id199">
 <ol class="arabic simple" start="1">
-<li id="id235"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id212"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the ihg distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
+<li id="id211"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
+<li id="id201"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
 </div></blockquote>
@@ -1728,8 +1730,8 @@ Elapsed time=0.00464 seconds =====&gt;&gt;&gt; Fri Aug 16 12:47:55 2024
 \[\theta_i = \dfrac{1}{1 + \exp\{ - \pmb \nu_i \pmb v \}}\]</div>
 <p>In this example we’ll draw a sample from an IHG with covariates
 and then will estimate the parameters given the observed sample.</p>
-<div class="literal-block-wrapper docutils container" id="id257">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id257" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id294">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id294" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1802,14 +1804,21 @@ Elapsed time=1.10664 seconds =====&gt;&gt;&gt; Fri Aug 16 12:53:12 2024
 </section>
 <section id="multicub">
 <h2>MULTICUB<a class="headerlink" href="#multicub" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><div class="docutils container" id="id238">
+<ol class="arabic simple" start="1">
+<li id="id240"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+</ol>
+</div>
+</div></blockquote>
 <p>With the <strong>multicub</strong> tool, parameters estimated from
 multiple observed samples can be shown in a single plot.</p>
 <p>In this example, we’ll draw three samples from CUBE
 models and <em>manually</em> add a shelter category. Then we’ll
 use the <strong>multicub</strong> tool for CUB models, CUBE models and
 CUBSH models.</p>
-<div class="literal-block-wrapper docutils container" id="id258">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id258" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id295">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id295" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>

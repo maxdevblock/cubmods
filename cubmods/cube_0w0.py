@@ -39,12 +39,14 @@ List of TODOs:
   - Manual and Examples
   - Remove unused imports
 
-:Author:      Massimo Pierini
-:Institution: Universitas Mercatorum
-:Affiliation: Graduand in Statistics & Big Data (L41)
-:Date:        2023-24
-:Credit:      Domenico Piccolo, Rosaria Simone
-:Contacts:    cub@maxpierini.it
+Credits
+==============
+    :Author:      Massimo Pierini
+    :Institution: Universitas Mercatorum
+    :Affiliation: Graduand in Statistics & Big Data (L41)
+    :Date:        2023-24
+    :Credit:      Domenico Piccolo, Rosaria Simone
+    :Contacts:    cub@maxpierini.it
 
 Classes and Functions
 =====================
@@ -535,14 +537,15 @@ class CUBresCUBE0W0(CUBres):
                 edgecolor="k", s=200,
                 label="observed")
         if self.gen_pars is not None: #TODO: implement gen_pars
-            pi_gen = self.gen_pars["pi"]
-            gamma_gen = self.gen_pars["gamma"]
-            phi_gen = self.gen_pars["phi"]
-            p_gen = pmf(m=self.m, pi=pi_gen,
-                gamma=gamma_gen, phi=phi_gen,
-                W=self.W)
-            ax.stem(R, p_gen, linefmt="--r",
-            markerfmt="none", label="generating")
+            pass
+            # pi_gen = self.gen_pars["pi"]
+            # gamma_gen = self.gen_pars["gamma"]
+            # phi_gen = self.gen_pars["phi"]
+            # p_gen = pmf(m=self.m, pi=pi_gen,
+            #     gamma=gamma_gen, phi=phi_gen,
+            #     W=self.W)
+            # ax.stem(R, p_gen, linefmt="--r",
+            # markerfmt="none", label="generating")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
