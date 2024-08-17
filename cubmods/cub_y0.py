@@ -78,7 +78,7 @@ def pmfi(m, beta, xi, Y):
     
     Auxiliary function of ``.draw()``.
 
-    :math:`\Pr(R = r | \pmb\theta_i ; \pmb y_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+    :math:`\Pr(R_i = r | \pmb\theta ; \pmb y_i),\; i=1 \ldots n ,\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
@@ -104,7 +104,7 @@ def pmf(m, beta, xi, Y):
     r"""Average probability distribution of a specified CUB model 
     with covariates.
 
-    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R_i = r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
@@ -129,7 +129,7 @@ def prob(m, sample, Y, beta, xi):
     Compute the probability distribution of a CUB model with covariates
     for the feeling component, given an observed sample.
     
-    :math:`\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n`
+    :math:`\Pr(R_i = r_i | \pmb\theta ; \pmb w_i),\; i=1 \ldots n`
     
     :param sample: array of ordinal responses
     :type sample: array of int
