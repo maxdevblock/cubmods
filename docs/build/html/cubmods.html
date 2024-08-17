@@ -377,7 +377,7 @@ Piccolo et Al. and CUB package in R.</p>
 <h3>Manual and Examples<a class="headerlink" href="#manual-and-examples" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cub-models-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -892,7 +892,7 @@ and Binomial) with covariates for the feeling component.</p>
 for CUB_0W model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R=r_i|\pmb{\theta}_i ; \pmb w_i) = \pi \dbinom{m-1}{r_i-1}(1-\xi_i)^{r_i-1}\xi_i^{m-r_i}+\dfrac{1-\pi}{m}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb{\theta} ; \pmb w_i) = \pi \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi}{m}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}\)</span></p>
 </div></blockquote>
 </section>
@@ -900,7 +900,7 @@ Piccolo et Al. and CUB package in R.</p>
 <h3>Manual and Examples<a class="headerlink" href="#id76" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cub-models-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -1306,7 +1306,7 @@ and Binomial) with covariates for the uncertainty component.</p>
 for CUB_Y0 model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R=r_i|\pmb{\theta}_i ; \pmb y_i) = \pi_i \dbinom{m-1}{r_i-1}(1-\xi)^{r_i-1}\xi^{m-r_i}+\dfrac{1-\pi_i}{m}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb{\theta} ; \pmb y_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi_i}{m}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb\beta}}\)</span></p>
 </div></blockquote>
 </section>
@@ -1314,7 +1314,7 @@ Piccolo et Al. and CUB package in R.</p>
 <h3>Manual and Examples<a class="headerlink" href="#id119" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cub-models-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -1672,7 +1672,7 @@ for both feeling and uncertainty.</p>
 for CUB_YW model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R=r_i|\pmb{\theta}_i ; \pmb y_i ; \pmb w_i) = \pi_i \dbinom{m-1}{r_i-1}(1-\xi_i)^{r_i-1}\xi_i^{m-r_i}+\dfrac{1-\pi_i}{m}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb{\theta} ; \pmb y_i ; \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb\beta}}\)</span></p>
 </div></blockquote>
@@ -1681,7 +1681,7 @@ Piccolo et Al. and CUB package in R.</p>
 <h3>Manual and Examples<a class="headerlink" href="#id162" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cub-models-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -2018,16 +2018,14 @@ and Beta-Binomial).</p>
 for CUBE model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\xi = \dfrac{\beta}{\alpha+\beta}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\phi = \dfrac{1}{\alpha+\beta}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m}\)</span></p>
 </div></blockquote>
 </section>
 <section id="id205">
 <h3>Manual and Examples<a class="headerlink" href="#id205" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cube_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cube-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -2470,16 +2468,15 @@ and Beta-Binomial) with covariates for the feeling component.</p>
 for CUBE_0W0 model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\xi = \dfrac{\beta}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\phi = \dfrac{1}{\alpha+\beta}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb{\theta};\pmb w_i) = \pi \beta e(\xi_i,\phi)+\dfrac{1-\pi}{m}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}\)</span></p>
 </div></blockquote>
 </section>
 <section id="id248">
 <h3>Manual and Examples<a class="headerlink" href="#id248" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cube_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cube-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -2864,17 +2861,17 @@ and Beta-Binomial) with covariates.</p>
 for CUB_YWZ model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\pi = \dfrac{1}{1+e^{-\pmb y_i \pmb \beta}}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\xi = \dfrac{\beta}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\phi = \dfrac{1}{\alpha+\beta} = e^{\pmb z_i \pmb \alpha}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb \beta}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\phi_i = e^{\pmb z_i \pmb \alpha}\)</span></p>
 </div></blockquote>
 </section>
 <section id="id291">
 <h3>Manual and Examples<a class="headerlink" href="#id291" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/04_cube_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cube-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -3317,21 +3314,29 @@ Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
 </section>
 <section id="id334">
-<h3>References:<a class="headerlink" href="#id334" title="Permalink to this heading">#</a></h3>
+<h3>Manual and Examples<a class="headerlink" href="#id334" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id335">
+<div><ul class="simple">
+<li><p><a class="reference external" href="manual.html#cubsh-without-covariates">Models manual</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id335">
+<h3>References:<a class="headerlink" href="#id335" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id336">
 <ol class="arabic simple" start="1">
-<li id="id343"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
-<li id="id350"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id351"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id352"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id337"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id344"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
+<li id="id351"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id352"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id353"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id338"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id372">
-<h3>List of TODOs:<a class="headerlink" href="#id372" title="Permalink to this heading">#</a></h3>
+<section id="id373">
+<h3>List of TODOs:<a class="headerlink" href="#id373" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: fix 3d plots legend</p></li>
@@ -3340,8 +3345,8 @@ Piccolo et Al. and CUB package in R.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id373">
-<h3>Credits<a class="headerlink" href="#id373" title="Permalink to this heading">#</a></h3>
+<section id="id374">
+<h3>Credits<a class="headerlink" href="#id374" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -3365,8 +3370,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id374">
-<h3>Classes and Functions<a class="headerlink" href="#id374" title="Permalink to this heading">#</a></h3>
+<section id="id375">
+<h3>Classes and Functions<a class="headerlink" href="#id375" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cubsh.CUBresCUBSH">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBSH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.CUBresCUBSH" title="Permalink to this definition">#</a></dt>
@@ -3936,51 +3941,51 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 <p>CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect) with covariates.</p>
-<section id="id375">
-<h3>Description:<a class="headerlink" href="#id375" title="Permalink to this heading">#</a></h3>
+<section id="id376">
+<h3>Description:<a class="headerlink" href="#id376" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH_YWX model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R=r_i|\pmb\theta_i;\pmb y_i; \pmb w_i; \pmb x_i) = \delta_i D_r^{(c)} + (1 - \delta_i)[ \pi_i b_r(\xi_i) + (1-\pi_i)/m ]\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb\theta;\pmb y_i; \pmb w_i; \pmb x_i) = \delta_i D_r^{(c)} + (1 - \delta_i)[ \pi_i b_r(\xi_i) + (1-\pi_i)/m ]\)</span></p>
 <p><span class="math notranslate nohighlight">\(\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb\beta}}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\delta_i = \dfrac{1}{1+e^{-\pmb x_i \pmb\omega}}\)</span></p>
 </div></blockquote>
 </section>
-<section id="id376">
-<h3>Manual and Examples<a class="headerlink" href="#id376" title="Permalink to this heading">#</a></h3>
+<section id="id377">
+<h3>Manual and Examples<a class="headerlink" href="#id377" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cubsh_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cubsh-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id377">
-<h3>References:<a class="headerlink" href="#id377" title="Permalink to this heading">#</a></h3>
+<section id="id378">
+<h3>References:<a class="headerlink" href="#id378" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id378">
+<div><div class="docutils container" id="id379">
 <ol class="arabic simple" start="1">
-<li id="id386"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
-<li id="id393"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id394"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id395"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id380"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id387"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
+<li id="id394"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id395"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id396"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id381"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id415">
-<h3>List of TODOs:<a class="headerlink" href="#id415" title="Permalink to this heading">#</a></h3>
+<section id="id416">
+<h3>List of TODOs:<a class="headerlink" href="#id416" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id416">
-<h3>Credits<a class="headerlink" href="#id416" title="Permalink to this heading">#</a></h3>
+<section id="id417">
+<h3>Credits<a class="headerlink" href="#id417" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -4004,8 +4009,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id417">
-<h3>Classes and Functions<a class="headerlink" href="#id417" title="Permalink to this heading">#</a></h3>
+<section id="id418">
+<h3>Classes and Functions<a class="headerlink" href="#id418" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cubsh_ywx.CUBresCUBSHYWX">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cubsh_ywx.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBSHYWX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh_ywx.CUBresCUBSHYWX" title="Permalink to this definition">#</a></dt>
@@ -4367,8 +4372,8 @@ explaining all the components and the shelter effect.</p>
 <p>CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect).</p>
-<section id="id418">
-<h3>Description:<a class="headerlink" href="#id418" title="Permalink to this heading">#</a></h3>
+<section id="id419">
+<h3>Description:<a class="headerlink" href="#id419" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH model family.
@@ -4377,38 +4382,38 @@ Piccolo et Al. and CUB package in R.</p>
 <p><span class="math notranslate nohighlight">\(\Pr(R=r|\pmb \theta) = \delta D_r^{(c)} + (1 - \delta)/m\)</span></p>
 </div></blockquote>
 </section>
-<section id="id419">
-<h3>Manual and Examples<a class="headerlink" href="#id419" title="Permalink to this heading">#</a></h3>
+<section id="id420">
+<h3>Manual and Examples<a class="headerlink" href="#id420" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>Manual <a class="github reference external" href="https://github.com/maxdevblock/cubmods/blob/main/Manual/05_cush_family.md">maxdevblock/cubmods</a></p></li>
+<li><p><a class="reference external" href="manual.html#cush-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id420">
-<h3>References:<a class="headerlink" href="#id420" title="Permalink to this heading">#</a></h3>
+<section id="id421">
+<h3>References:<a class="headerlink" href="#id421" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id421">
+<div><div class="docutils container" id="id422">
 <ol class="arabic simple" start="1">
-<li id="id430"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
-<li id="id436"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id437"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id438"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id423"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id431"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
+<li id="id437"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id438"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id439"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id424"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id458">
-<h3>List of TODOs:<a class="headerlink" href="#id458" title="Permalink to this heading">#</a></h3>
+<section id="id459">
+<h3>List of TODOs:<a class="headerlink" href="#id459" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: check and fix gini &amp; laakso</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id459">
-<h3>Credits<a class="headerlink" href="#id459" title="Permalink to this heading">#</a></h3>
+<section id="id460">
+<h3>Credits<a class="headerlink" href="#id460" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -4432,8 +4437,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id460">
-<h3>Classes and Functions<a class="headerlink" href="#id460" title="Permalink to this heading">#</a></h3>
+<section id="id461">
+<h3>Classes and Functions<a class="headerlink" href="#id461" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush.CUBresCUSH">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.CUBresCUSH" title="Permalink to this definition">#</a></dt>
@@ -4734,8 +4739,8 @@ without covariate for the given ordinal responses.</p>
 <p>CUB models in Python.
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices).</p>
-<section id="id461">
-<h3>Description:<a class="headerlink" href="#id461" title="Permalink to this heading">#</a></h3>
+<section id="id462">
+<h3>Description:<a class="headerlink" href="#id462" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family.
@@ -4747,30 +4752,38 @@ by Massimo Pierini (2024) in the thesis
 <p><span class="math notranslate nohighlight">\(\Pr(R=r|\pmb \theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1 - \delta_1 - \delta_2)/m\)</span></p>
 </div></blockquote>
 </section>
-<section id="id462">
-<h3>References:<a class="headerlink" href="#id462" title="Permalink to this heading">#</a></h3>
+<section id="id463">
+<h3>Manual and Examples<a class="headerlink" href="#id463" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id463">
+<div><ul class="simple">
+<li><p><a class="reference external" href="manual.html#cush2-without-covariates">Models manual</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id464">
+<h3>References:<a class="headerlink" href="#id464" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id465">
 <ol class="arabic simple" start="1">
-<li id="id478"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id479"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id480"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id465"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
-<li id="id499"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id480"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id481"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id482"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id467"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id501"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id500">
-<h3>List of TODOs:<a class="headerlink" href="#id500" title="Permalink to this heading">#</a></h3>
+<section id="id502">
+<h3>List of TODOs:<a class="headerlink" href="#id502" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id501">
-<h3>Credits<a class="headerlink" href="#id501" title="Permalink to this heading">#</a></h3>
+<section id="id503">
+<h3>Credits<a class="headerlink" href="#id503" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -4794,8 +4807,8 @@ by Massimo Pierini (2024) in the thesis
 </dl>
 </div></blockquote>
 </section>
-<section id="id502">
-<h3>Classes and Functions<a class="headerlink" href="#id502" title="Permalink to this heading">#</a></h3>
+<section id="id504">
+<h3>Classes and Functions<a class="headerlink" href="#id504" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2.CUBresCUSH2">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush2.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2.CUBresCUSH2" title="Permalink to this definition">#</a></dt>
@@ -5024,39 +5037,52 @@ estimates of a CUSH2 model without covariates.</p>
 <p>CUB models in Python.
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices) with covariates.</p>
-<section id="id503">
-<h3>Description:<a class="headerlink" href="#id503" title="Permalink to this heading">#</a></h3>
+<section id="id505">
+<h3>Description:<a class="headerlink" href="#id505" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family.
 It is based upon the works of Domenico
-Piccolo et Al. and CUB package in R.</p>
+Piccolo et Al. and CUB package in R.
+The CUSH2 family has been defined and implemented
+by Massimo Pierini (2024) in the thesis
+<em>Modelli della classe CUB in Python</em>.</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb \theta;\pmb x_{1i}) = \delta_{1i} D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1 - \delta_{1i} - \delta_2)/m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\delta_{1i} = \dfrac{1}{1+\exp\{ - \pmb x_{1i} \pmb \omega_1 \}}\)</span></p>
 </div></blockquote>
 </section>
-<section id="id504">
-<h3>References:<a class="headerlink" href="#id504" title="Permalink to this heading">#</a></h3>
+<section id="id506">
+<h3>Manual and Examples<a class="headerlink" href="#id506" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id505">
+<div><ul class="simple">
+<li><p><a class="reference external" href="manual.html#cush2-with-covariates">Models manual</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id507">
+<h3>References:<a class="headerlink" href="#id507" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id508">
 <ol class="arabic simple" start="1">
-<li id="id520"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id521"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id522"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id507"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
-<li id="id541"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id523"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id524"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id525"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id510"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id544"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id542">
-<h3>List of TODOs:<a class="headerlink" href="#id542" title="Permalink to this heading">#</a></h3>
+<section id="id545">
+<h3>List of TODOs:<a class="headerlink" href="#id545" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id543">
-<h3>Credits<a class="headerlink" href="#id543" title="Permalink to this heading">#</a></h3>
+<section id="id546">
+<h3>Credits<a class="headerlink" href="#id546" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -5080,8 +5106,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id544">
-<h3>Classes and Functions<a class="headerlink" href="#id544" title="Permalink to this heading">#</a></h3>
+<section id="id547">
+<h3>Classes and Functions<a class="headerlink" href="#id547" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2_x0.CUBresCUSH2X0">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush2_x0.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH2X0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2_x0.CUBresCUSH2X0" title="Permalink to this definition">#</a></dt>
@@ -5318,40 +5344,54 @@ for the first shelter choice only.</p>
 <p>CUB models in Python.
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices) with covariates.</p>
-<section id="id545">
-<h3>Description:<a class="headerlink" href="#id545" title="Permalink to this heading">#</a></h3>
+<section id="id548">
+<h3>Description:<a class="headerlink" href="#id548" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family with covariates for
 both shelter choices.
 It is based upon the works of Domenico
-Piccolo et Al. and CUB package in R.</p>
+Piccolo et Al. and CUB package in R.
+The CUSH2 family has been defined and implemented
+by Massimo Pierini (2024) in the thesis
+<em>Modelli della classe CUB in Python</em>.</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb \theta;\pmb x_{1i};\pmb x_{2i}) = \delta_{1i} D_r^{(c_1)} + \delta_{2i} D_r^{(c_2)} + (1 - \delta_{1i} - \delta_{2i})/m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\delta_{1i} = \dfrac{1}{1+\exp\{ - \pmb x_{1i} \pmb \omega_1 \}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\delta_{2i} = \dfrac{1}{1+\exp\{ - \pmb x_{2i} \pmb \omega_2 \}}\)</span></p>
 </div></blockquote>
 </section>
-<section id="id546">
-<h3>References:<a class="headerlink" href="#id546" title="Permalink to this heading">#</a></h3>
+<section id="id549">
+<h3>Manual and Examples<a class="headerlink" href="#id549" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id547">
+<div><ul class="simple">
+<li><p><a class="reference external" href="manual.html#cush2-with-covariates">Models manual</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id550">
+<h3>References:<a class="headerlink" href="#id550" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id551">
 <ol class="arabic simple" start="1">
-<li id="id562"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id563"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id564"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id549"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
-<li id="id583"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id566"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id567"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id568"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id553"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id587"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id584">
-<h3>List of TODOs:<a class="headerlink" href="#id584" title="Permalink to this heading">#</a></h3>
+<section id="id588">
+<h3>List of TODOs:<a class="headerlink" href="#id588" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id585">
-<h3>Credits<a class="headerlink" href="#id585" title="Permalink to this heading">#</a></h3>
+<section id="id589">
+<h3>Credits<a class="headerlink" href="#id589" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -5375,8 +5415,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id586">
-<h3>Classes and Functions<a class="headerlink" href="#id586" title="Permalink to this heading">#</a></h3>
+<section id="id590">
+<h3>Classes and Functions<a class="headerlink" href="#id590" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2_xx.CUBresCUSH2XX">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush2_xx.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH2XX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2_xx.CUBresCUSH2XX" title="Permalink to this definition">#</a></dt>
@@ -5623,40 +5663,49 @@ for both shelter choices.</p>
 <p>CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect) with covariates.</p>
-<section id="id587">
-<h3>Description:<a class="headerlink" href="#id587" title="Permalink to this heading">#</a></h3>
+<section id="id591">
+<h3>Description:<a class="headerlink" href="#id591" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH model family.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 <p><span class="math notranslate nohighlight">\(\Pr(R_i=r|\pmb \theta; \pmb x_i) = \delta_i D_{r}^{(c)} + (1 - \delta_i)/m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb \omega \}}\)</span></p>
 </div></blockquote>
 </section>
-<section id="id588">
-<h3>References:<a class="headerlink" href="#id588" title="Permalink to this heading">#</a></h3>
+<section id="id592">
+<h3>Manual and Examples<a class="headerlink" href="#id592" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id589">
+<div><ul class="simple">
+<li><p><a class="reference external" href="manual.html#cush-with-covariates">Models manual</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id593">
+<h3>References:<a class="headerlink" href="#id593" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id594">
 <ol class="arabic simple" start="1">
-<li id="id598"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
-<li id="id604"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id605"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id606"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id591"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id603"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
+<li id="id609"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id610"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id611"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id596"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id626">
-<h3>List of TODOs:<a class="headerlink" href="#id626" title="Permalink to this heading">#</a></h3>
+<section id="id631">
+<h3>List of TODOs:<a class="headerlink" href="#id631" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id627">
-<h3>Credits<a class="headerlink" href="#id627" title="Permalink to this heading">#</a></h3>
+<section id="id632">
+<h3>Credits<a class="headerlink" href="#id632" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -5680,8 +5729,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id628">
-<h3>Classes and Functions<a class="headerlink" href="#id628" title="Permalink to this heading">#</a></h3>
+<section id="id633">
+<h3>Classes and Functions<a class="headerlink" href="#id633" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush_x.CUBresCUSHX">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush_x.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSHX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush_x.CUBresCUSHX" title="Permalink to this definition">#</a></dt>
@@ -5933,8 +5982,8 @@ to explain the shelter effect.</p>
 <span id="cubmods-gem-module"></span><h2>cubmods.gem module<a class="headerlink" href="#module-cubmods.gem" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for GEM (Generalized Mixtures).</p>
-<section id="id629">
-<h3>Description:<a class="headerlink" href="#id629" title="Permalink to this heading">#</a></h3>
+<section id="id634">
+<h3>Description:<a class="headerlink" href="#id634" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for GEM maximum likelihood estimation
@@ -5943,8 +5992,8 @@ It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
 </section>
-<section id="id630">
-<h3>References:<a class="headerlink" href="#id630" title="Permalink to this heading">#</a></h3>
+<section id="id635">
+<h3>References:<a class="headerlink" href="#id635" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
@@ -5958,16 +6007,16 @@ Piccolo et Al. and CUB package in R.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id631">
-<h3>List of TODOs:<a class="headerlink" href="#id631" title="Permalink to this heading">#</a></h3>
+<section id="id636">
+<h3>List of TODOs:<a class="headerlink" href="#id636" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: implement best shelter search</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id632">
-<h3>Credits<a class="headerlink" href="#id632" title="Permalink to this heading">#</a></h3>
+<section id="id637">
+<h3>Credits<a class="headerlink" href="#id637" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -5991,8 +6040,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id633">
-<h3>Classes and Functions<a class="headerlink" href="#id633" title="Permalink to this heading">#</a></h3>
+<section id="id638">
+<h3>Classes and Functions<a class="headerlink" href="#id638" title="Permalink to this heading">#</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.gem.draw">
 <span class="sig-prename descclassname"><span class="pre">cubmods.gem.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cub'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.gem.draw" title="Permalink to this definition">#</a></dt>
@@ -6057,8 +6106,8 @@ see each module for details</p>
 <span id="cubmods-general-module"></span><h2>cubmods.general module<a class="headerlink" href="#module-cubmods.general" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for General functions.</p>
-<section id="id634">
-<h3>Description:<a class="headerlink" href="#id634" title="Permalink to this heading">#</a></h3>
+<section id="id639">
+<h3>Description:<a class="headerlink" href="#id639" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for general functions.
@@ -6066,8 +6115,8 @@ It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
 </section>
-<section id="id635">
-<h3>References:<a class="headerlink" href="#id635" title="Permalink to this heading">#</a></h3>
+<section id="id640">
+<h3>References:<a class="headerlink" href="#id640" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
@@ -6081,16 +6130,16 @@ Piccolo et Al. and CUB package in R.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id636">
-<h3>List of TODOs:<a class="headerlink" href="#id636" title="Permalink to this heading">#</a></h3>
+<section id="id641">
+<h3>List of TODOs:<a class="headerlink" href="#id641" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id637">
-<h3>Credits<a class="headerlink" href="#id637" title="Permalink to this heading">#</a></h3>
+<section id="id642">
+<h3>Credits<a class="headerlink" href="#id642" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -6114,8 +6163,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id638">
-<h3>Classes and Functions<a class="headerlink" href="#id638" title="Permalink to this heading">#</a></h3>
+<section id="id643">
+<h3>Classes and Functions<a class="headerlink" href="#id643" title="Permalink to this heading">#</a></h3>
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.InvalidCategoriesError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">InvalidCategoriesError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.InvalidCategoriesError" title="Permalink to this definition">#</a></dt>
@@ -6755,40 +6804,56 @@ model.</p>
 <span id="cubmods-ihg-module"></span><h2>cubmods.ihg module<a class="headerlink" href="#module-cubmods.ihg" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for IHG (Inverse HyperGeometric).</p>
-<section id="id639">
-<h3>Description:<a class="headerlink" href="#id639" title="Permalink to this heading">#</a></h3>
+<section id="id644">
+<h3>Description:<a class="headerlink" href="#id644" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for IHG model family without covariates.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{
+\begin{array}{l}
+    \Pr(R=1|\theta) = \theta
+    \\
+    \Pr(R=r+1|\theta) = \Pr(R=r)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
+\end{array}
+\right.\end{split}\]</div>
 </div></blockquote>
 </section>
-<section id="id640">
-<h3>References:<a class="headerlink" href="#id640" title="Permalink to this heading">#</a></h3>
+<section id="id645">
+<h3>Manual and Examples<a class="headerlink" href="#id645" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id641">
+<div><ul class="simple">
+<li><p><a class="reference external" href="manual.html#ihg-without-covariates">Models manual</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id646">
+<h3>References:<a class="headerlink" href="#id646" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id647">
 <ol class="arabic simple" start="1">
-<li id="id654"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the ihg distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
-<li id="id653"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
-<li id="id656"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id657"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id658"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id643"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id660"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the ihg distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
+<li id="id659"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
+<li id="id662"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id663"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id664"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id649"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id678">
-<h3>List of TODOs:<a class="headerlink" href="#id678" title="Permalink to this heading">#</a></h3>
+<section id="id684">
+<h3>List of TODOs:<a class="headerlink" href="#id684" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id679">
-<h3>Credits<a class="headerlink" href="#id679" title="Permalink to this heading">#</a></h3>
+<section id="id685">
+<h3>Credits<a class="headerlink" href="#id685" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -6812,8 +6877,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id680">
-<h3>Classes and Functions<a class="headerlink" href="#id680" title="Permalink to this heading">#</a></h3>
+<section id="id686">
+<h3>Classes and Functions<a class="headerlink" href="#id686" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.ihg.CUBresIHG">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">CUBresIHG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.CUBresIHG" title="Permalink to this definition">#</a></dt>
@@ -7007,16 +7072,16 @@ responses. These preliminary estimators are used within the package code to star
 <dd><p>Probability distribution of a specified IHG model without covariates.</p>
 <p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta),\; r=1 \ldots m\)</span></p>
 <dl>
-<dt>References:</dt><dd><div class="docutils container" id="id681">
+<dt>References:</dt><dd><div class="docutils container" id="id687">
 <ol class="arabic simple" start="1">
-<li id="id704"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The stata module for cub models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
-<li id="id698"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id684"><p>Domenico Piccolo and others. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
-<li id="id687"><p>Domenico Piccolo and others. Observed information matrix for mub models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
-<li id="id683"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
-<li id="id717"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
-<li id="id703"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, r, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
-<li id="id705"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. Cub for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
+<li id="id710"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The stata module for cub models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
+<li id="id704"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id690"><p>Domenico Piccolo and others. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
+<li id="id693"><p>Domenico Piccolo and others. Observed information matrix for mub models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
+<li id="id689"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id723"><p>Massimo Pierini. Modelli della classe cub in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 16–20, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id709"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, r, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
+<li id="id711"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. Cub for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
 </ol>
 </div>
 </dd>
@@ -7063,40 +7128,58 @@ responses. These preliminary estimators are used within the package code to star
 <span id="cubmods-ihg-v-module"></span><h2>cubmods.ihg_v module<a class="headerlink" href="#module-cubmods.ihg_v" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for IHG (Inverse HyperGeometric) with covariates.</p>
-<section id="id718">
-<h3>Description:<a class="headerlink" href="#id718" title="Permalink to this heading">#</a></h3>
+<section id="id724">
+<h3>Description:<a class="headerlink" href="#id724" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for IHG model family with covariates.
 It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{
+\begin{array}{l}
+    \Pr(R_i=1|\pmb\theta;\pmb v_i) = \theta_i
+    \\
+    \Pr(R_i=r+1|\pmb\theta;\pmb v_i) = \Pr(R_i=r)(1-\theta_i)\dfrac{m-r}{m-1-r(1-\theta_i)},\; r= 1, \ldots, m-1
+\end{array}
+\right.\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\theta_i = \dfrac{1}{1 + \exp\{ - \pmb \nu_i \pmb v \}}\]</div>
 </div></blockquote>
 </section>
-<section id="id719">
-<h3>References:<a class="headerlink" href="#id719" title="Permalink to this heading">#</a></h3>
+<section id="id725">
+<h3>Manual and Examples<a class="headerlink" href="#id725" title="Permalink to this heading">#</a></h3>
 <blockquote>
-<div><div class="docutils container" id="id720">
+<div><ul class="simple">
+<li><p><a class="reference external" href="manual.html#ihg-with-covariates">Models manual</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id726">
+<h3>References:<a class="headerlink" href="#id726" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><div class="docutils container" id="id727">
 <ol class="arabic simple" start="1">
-<li id="id733"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the ihg distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
-<li id="id732"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
-<li id="id735"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id736"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id737"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
-<li id="id722"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
+<li id="id740"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the ihg distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
+<li id="id739"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
+<li id="id742"><p>Maria Iannario and Domenico Piccolo. A program in r for cub models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id743"><p>Maria Iannario, Domenico Piccolo, and others. Inference for cub models: a program in r. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id744"><p>Maria Iannario, Domenico Piccolo, and Maintainer Rosaria Simone. Package ‘cub’. <em>CRAN</em>, 2022.</p></li>
+<li id="id729"><p>Domenico Piccolo and Rosaria Simone. The class of cub models: statistical foundations, inferential issues and empirical evidence. <em>Statistical Methods &amp; Applications</em>, 28:389–435, 2019.</p></li>
 </ol>
 </div>
 </div></blockquote>
 </section>
-<section id="id757">
-<h3>List of TODOs:<a class="headerlink" href="#id757" title="Permalink to this heading">#</a></h3>
+<section id="id764">
+<h3>List of TODOs:<a class="headerlink" href="#id764" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id758">
-<h3>Credits<a class="headerlink" href="#id758" title="Permalink to this heading">#</a></h3>
+<section id="id765">
+<h3>Credits<a class="headerlink" href="#id765" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -7120,8 +7203,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id759">
-<h3>Classes and Functions<a class="headerlink" href="#id759" title="Permalink to this heading">#</a></h3>
+<section id="id766">
+<h3>Classes and Functions<a class="headerlink" href="#id766" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.ihg_v.CUBresIHGV">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">CUBresIHGV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.CUBresIHGV" title="Permalink to this definition">#</a></dt>
@@ -7384,8 +7467,8 @@ given an observed sample.</p>
 <span id="cubmods-multicub-module"></span><h2>cubmods.multicub module<a class="headerlink" href="#module-cubmods.multicub" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for MULTICUB and MULTICUBE.</p>
-<section id="id760">
-<h3>Description:<a class="headerlink" href="#id760" title="Permalink to this heading">#</a></h3>
+<section id="id767">
+<h3>Description:<a class="headerlink" href="#id767" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for MULTICUB and MULTICUBE tool.
@@ -7393,8 +7476,8 @@ It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
 </section>
-<section id="id761">
-<h3>References:<a class="headerlink" href="#id761" title="Permalink to this heading">#</a></h3>
+<section id="id768">
+<h3>References:<a class="headerlink" href="#id768" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
@@ -7408,16 +7491,16 @@ Piccolo et Al. and CUB package in R.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id762">
-<h3>List of TODOs:<a class="headerlink" href="#id762" title="Permalink to this heading">#</a></h3>
+<section id="id769">
+<h3>List of TODOs:<a class="headerlink" href="#id769" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id763">
-<h3>Credits<a class="headerlink" href="#id763" title="Permalink to this heading">#</a></h3>
+<section id="id770">
+<h3>Credits<a class="headerlink" href="#id770" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -7441,8 +7524,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id764">
-<h3>Classes and Functions<a class="headerlink" href="#id764" title="Permalink to this heading">#</a></h3>
+<section id="id771">
+<h3>Classes and Functions<a class="headerlink" href="#id771" title="Permalink to this heading">#</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.multicub.multi">
 <span class="sig-prename descclassname"><span class="pre">cubmods.multicub.</span></span><span class="sig-name descname"><span class="pre">multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cub'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.multicub.multi" title="Permalink to this definition">#</a></dt>
@@ -7507,8 +7590,8 @@ shelter choices</p></li>
 <span id="cubmods-smry-module"></span><h2>cubmods.smry module<a class="headerlink" href="#module-cubmods.smry" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for summary tools.</p>
-<section id="id765">
-<h3>Description:<a class="headerlink" href="#id765" title="Permalink to this heading">#</a></h3>
+<section id="id772">
+<h3>Description:<a class="headerlink" href="#id772" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for summary tools.
@@ -7516,8 +7599,8 @@ It is based upon the works of Domenico
 Piccolo et Al. and CUB package in R.</p>
 </div></blockquote>
 </section>
-<section id="id766">
-<h3>References:<a class="headerlink" href="#id766" title="Permalink to this heading">#</a></h3>
+<section id="id773">
+<h3>References:<a class="headerlink" href="#id773" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>D’Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65–78</p></li>
@@ -7531,8 +7614,8 @@ Piccolo et Al. and CUB package in R.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id767">
-<h3>List of TODOs:<a class="headerlink" href="#id767" title="Permalink to this heading">#</a></h3>
+<section id="id774">
+<h3>List of TODOs:<a class="headerlink" href="#id774" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi</p></li>
@@ -7543,8 +7626,8 @@ Piccolo et Al. and CUB package in R.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id768">
-<h3>Credits<a class="headerlink" href="#id768" title="Permalink to this heading">#</a></h3>
+<section id="id775">
+<h3>Credits<a class="headerlink" href="#id775" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -7568,8 +7651,8 @@ Piccolo et Al. and CUB package in R.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id769">
-<h3>Classes and Functions<a class="headerlink" href="#id769" title="Permalink to this heading">#</a></h3>
+<section id="id776">
+<h3>Classes and Functions<a class="headerlink" href="#id776" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.smry.CUBres">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.smry.</span></span><span class="sig-name descname"><span class="pre">CUBres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.smry.CUBres" title="Permalink to this definition">#</a></dt>
@@ -7808,71 +7891,68 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh">cubmods.cubsh module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id333">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id334">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id372">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id373">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id374">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id334">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id335">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id373">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id374">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id375">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh_ywx">cubmods.cubsh_ywx module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id375">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id376">Manual and Examples</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id377">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id415">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id416">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id417">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id376">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id377">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id378">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id416">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id417">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id418">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush">cubmods.cush module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id418">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id419">Manual and Examples</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id420">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id458">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id459">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id460">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id419">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id420">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id421">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id459">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id460">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id461">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2">cubmods.cush2 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id461">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id462">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id500">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id501">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id502">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id462">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id463">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id464">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id502">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id503">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id504">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_x0">cubmods.cush2_x0 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id503">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id504">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id542">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id543">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id544">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id505">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id506">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id507">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id545">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id546">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id547">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_xx">cubmods.cush2_xx module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id545">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id546">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id584">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id585">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id586">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id548">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id549">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id550">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id588">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id589">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id590">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush_x">cubmods.cush_x module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id587">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id588">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id626">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id627">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id628">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.gem">cubmods.gem module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id629">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id630">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id591">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id592">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id593">References:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id631">List of TODOs:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id632">Credits</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id633">Classes and Functions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.general">cubmods.general module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.gem">cubmods.gem module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id634">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id635">References:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id636">List of TODOs:</a></li>
@@ -7880,36 +7960,46 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id638">Classes and Functions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg">cubmods.ihg module</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.general">cubmods.general module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id639">Description:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id640">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id678">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id679">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id680">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id641">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id642">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id643">Classes and Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg">cubmods.ihg module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id644">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id645">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id646">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id684">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id685">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id686">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg_v">cubmods.ihg_v module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id718">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id719">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id757">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id758">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id759">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id724">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id725">Manual and Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id726">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id764">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id765">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id766">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.multicub">cubmods.multicub module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id760">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id761">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id762">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id763">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id764">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id767">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id768">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id769">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id770">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id771">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.smry">cubmods.smry module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id765">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id766">References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id767">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id768">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id769">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id772">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id773">References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id774">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id775">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id776">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods">Module contents</a></li>

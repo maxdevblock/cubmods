@@ -11,7 +11,7 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-    :math:`\Pr(R=r_i|\pmb\theta_i;\pmb y_i; \pmb w_i; \pmb x_i) = \delta_i D_r^{(c)} + (1 - \delta_i)[ \pi_i b_r(\xi_i) + (1-\pi_i)/m ]`
+    :math:`\Pr(R_i=r|\pmb\theta;\pmb y_i; \pmb w_i; \pmb x_i) = \delta_i D_r^{(c)} + (1 - \delta_i)[ \pi_i b_r(\xi_i) + (1-\pi_i)/m ]`
 
     :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
 
@@ -22,7 +22,7 @@ Description:
 
 Manual and Examples
 ==========================
-  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cubsh_family.md
+    - `Models manual <manual.html#cubsh-with-covariates>`__
 
 
 References:

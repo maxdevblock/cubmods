@@ -1,5 +1,5 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices) with covariates.
@@ -11,6 +11,19 @@ Description:
     both shelter choices.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
+    The CUSH2 family has been defined and implemented
+    by Massimo Pierini (2024) in the thesis
+    *Modelli della classe CUB in Python*.
+
+    :math:`\Pr(R_i=r|\pmb \theta;\pmb x_{1i};\pmb x_{2i}) = \delta_{1i} D_r^{(c_1)} + \delta_{2i} D_r^{(c_2)} + (1 - \delta_{1i} - \delta_{2i})/m`
+
+    :math:`\delta_{1i} = \dfrac{1}{1+\exp\{ - \pmb x_{1i} \pmb \omega_1 \}}`
+
+    :math:`\delta_{2i} = \dfrac{1}{1+\exp\{ - \pmb x_{2i} \pmb \omega_2 \}}`
+
+Manual and Examples
+==========================
+    - `Models manual <manual.html#cush2-with-covariates>`__
 
 References:
 ===========

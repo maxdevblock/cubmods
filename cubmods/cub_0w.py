@@ -11,13 +11,13 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-    :math:`\Pr(R=r_i|\pmb{\theta}_i ; \pmb w_i) = \pi \dbinom{m-1}{r_i-1}(1-\xi_i)^{r_i-1}\xi_i^{m-r_i}+\dfrac{1-\pi}{m}`
+    :math:`\Pr(R_i=r|\pmb{\theta} ; \pmb w_i) = \pi \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi}{m}`
 
     :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
 
 Manual and Examples
 ==========================
-  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
+    - `Models manual <manual.html#cub-models-with-covariates>`__
 
 
 References:

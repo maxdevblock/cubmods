@@ -13,6 +13,10 @@ Description:
 
     :math:`\Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1 - \delta)[ \pi b_r(\xi) + (1-\pi)/m ]`
 
+Manual and Examples
+==========================
+    - `Models manual <manual.html#cubsh-without-covariates>`__
+
 References:
 ===========
     .. bibliography:: cub.bib

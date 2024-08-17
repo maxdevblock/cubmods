@@ -16,6 +16,9 @@ Description:
 
     :math:`\Pr(R=r|\pmb \theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1 - \delta_1 - \delta_2)/m`
 
+Manual and Examples
+==========================
+    - `Models manual <manual.html#cush2-without-covariates>`__
 
 References:
 ===========

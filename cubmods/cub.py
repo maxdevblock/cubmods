@@ -15,8 +15,7 @@ Description
 
 Manual and Examples
 ==========================
-    - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/02_cub_family.md
-
+    - `Models manual <manual.html#cub-models-without-covariates>`__
 
 References
 ===========

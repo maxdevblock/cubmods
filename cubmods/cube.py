@@ -11,15 +11,11 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-    :math:`\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}`
-
-    :math:`\xi = \dfrac{\beta}{\alpha+\beta}`
-
-    :math:`\phi = \dfrac{1}{\alpha+\beta}`
+    :math:`\Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m}`
 
 Manual and Examples
 ==========================
-  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cube_family.md
+    - `Models manual <manual.html#cube-without-covariates>`__
 
 References:
 ===========

@@ -209,6 +209,8 @@ References
         iannario2022package
         piccolo2019class
 
+.. _cub-models-without-covariates:
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
@@ -354,6 +356,8 @@ parameters' estimated values and standard errors
          component parameter  estimate    stderr       wald        pvalue
     0  Uncertainty        pi   0.67476  0.033954  19.872485  7.042905e-88
     1      Feeling        xi   0.18817  0.009043  20.807551  3.697579e-96
+
+.. _cub-models-with-covariates:
 
 With covariates
 ^^^^^^^^^^^^^^^^^^
@@ -548,6 +552,8 @@ References
         iannario2022package
         piccolo2019class
 
+.. _cubsh-without-covariates:
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
@@ -655,6 +661,7 @@ Notice that:
 .. image:: /img/cubsh00mle.png
     :alt: CUBSH 00 MLE
 
+.. _cubsh-with-covariates:
 
 With covariates
 ^^^^^^^^^^^^^^^
@@ -807,6 +814,8 @@ References
         iannario2022package
         piccolo2019class
 
+.. _cush-without-covariates:
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
@@ -877,6 +886,8 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
 
 .. image:: /img/cush0mle.png
     :alt: CUSH 0 MLE
+
+.. _cush-with-covariates:
 
 With covariates
 ^^^^^^^^^^^^^^^
@@ -975,6 +986,8 @@ References
         iannario2022package
         piccolo2019class
 
+.. _cush2-without-covariates:
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
@@ -1051,6 +1064,8 @@ called.
 .. image:: /img/cush200mle.png
     :alt: CUSH2 00 MLE
 
+.. _cush2-with-covariates:
+
 With covariates
 ^^^^^^^^^^^^^^^
 
@@ -1065,6 +1080,9 @@ With covariates
         \delta_{2i} = \dfrac{1}{1+\exp\{ - \pmb x_{2i} \pmb\omega_2 \}}
     \end{array}
     \right.
+
+Two CUSH2 models with covariates have been defined and implemented:
+for the first shelter choice only and for both.
 
 In this example we'll draw a sample from a CUSH2 model with
 covariates for the first shelter choice only and will then
@@ -1178,23 +1196,13 @@ References
         iannario2022package
         piccolo2019class
 
+.. _cube-without-covariates:
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
 .. math::
-    \Pr(R=r|\pmb\theta) = \pi b_r(p) + (1-\pi)/m
-
-.. math::
-    p \sim \mathrm{Beta}(\alpha,\beta)
-
-.. math::
-    \left\{
-    \begin{array}{l}
-        \xi = \dfrac{\beta}{\alpha+\beta}
-        \\
-        \phi = \dfrac{1}{\alpha+\beta}
-    \end{array}
-    \right.
+    \Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m}
 
 In this example, we'll draw a sample from a CUBE model and then
 will estimate the parameters given the observed sample.
@@ -1269,23 +1277,13 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
 .. image:: /img/cube000mle.png
     :alt: CUBE 000 MLE
 
+.. _cube-with-covariates:
+
 With covariates
 ^^^^^^^^^^^^^^^
 
 .. math::
-    \Pr(R_i=r|\pmb\theta,\pmb y_i, \pmb w_i, \pmb z_i) = \pi_i b_r(p_i) + (1-\pi_i)/m
-
-.. math::
-    p_i \sim \mathrm{Beta}(\alpha_i,\beta_i)
-
-.. math::
-    \left\{
-    \begin{array}{l}
-        \xi_i = \dfrac{\beta_i}{\alpha_i+\beta_i}
-        \\
-        \phi_i = \dfrac{1}{\alpha_i+\beta_i}
-    \end{array}
-    \right.
+    \Pr(R_i=r|\pmb{\theta};\pmb y_i, \pmb w_i; \pmb z_i) = \pi_i \beta e(\xi_i,\phi_i)+\dfrac{1-\pi_i}{m}
 
 .. math::
     \left\{
@@ -1481,8 +1479,19 @@ References
         iannario2022package
         piccolo2019class
 
+.. _ihg-without-covariates:
+
 Without covariates
 ^^^^^^^^^^^^^^^^^^
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \Pr(R=1|\theta) = \theta
+        \\
+        \Pr(R=r+1|\theta) = \Pr(R=r)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
+    \end{array}
+    \right.
 
 In this example, we'll draw a sample from an IHG model
 and the estimate the parameter from the observed sample.
@@ -1543,8 +1552,19 @@ and the estimate the parameter from the observed sample.
 .. image:: /img/ihg0mle.png
     :alt: IHG 0 MLE
 
+.. _ihg-with-covariates:
+
 With covariates
 ^^^^^^^^^^^^^^^
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \Pr(R_i=1|\pmb\theta;\pmb v_i) = \theta_i
+        \\
+        \Pr(R_i=r+1|\pmb\theta;\pmb v_i) = \Pr(R_i=r)(1-\theta_i)\dfrac{m-r}{m-1-r(1-\theta_i)},\; r= 1, \ldots, m-1
+    \end{array}
+    \right.
 
 .. math::
     \theta_i = \dfrac{1}{1 + \exp\{ - \pmb \nu_i \pmb v \}}

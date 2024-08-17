@@ -15,7 +15,7 @@ Description:
 
 Manual and Examples
 ==========================
-  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/05_cush_family.md
+    - `Models manual <manual.html#cush-without-covariates>`__
 
 References:
 ===========

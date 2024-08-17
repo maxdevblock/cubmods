@@ -39,8 +39,6 @@ of the Python programming language also in the statistical field :cite:p:`pittar
 their implementation in
 this environment could be useful to the scientific community.
 
-References
-**********
 
-    .. bibliography:: cub.bib
-        :cited:
+.. bibliography:: cub.bib
+    :cited:

@@ -1,5 +1,5 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
-"""
+r"""
 CUB models in Python.
 Module for IHG (Inverse HyperGeometric).
 
@@ -9,6 +9,19 @@ Description:
     for IHG model family without covariates.
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
+
+    .. math::
+        \left\{
+        \begin{array}{l}
+            \Pr(R=1|\theta) = \theta
+            \\
+            \Pr(R=r+1|\theta) = \Pr(R=r)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
+        \end{array}
+        \right.
+
+Manual and Examples
+==========================
+    - `Models manual <manual.html#ihg-without-covariates>`__
 
 References:
 ===========

@@ -11,15 +11,13 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-    :math:`\Pr(R=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}`
+    :math:`\Pr(R_i=r|\pmb{\theta};\pmb w_i) = \pi \beta e(\xi_i,\phi)+\dfrac{1-\pi}{m}`
 
-    :math:`\xi = \dfrac{\beta}{\alpha+\beta} = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}`
-
-    :math:`\phi = \dfrac{1}{\alpha+\beta}`
+    :math:`\xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}`
 
 Manual and Examples
 ==========================
-  - Manual https://github.com/maxdevblock/cubmods/blob/main/Manual/03_cube_family.md
+    - `Models manual <manual.html#cube-with-covariates>`__
 
 
 References:

@@ -13,6 +13,11 @@ Description:
 
     :math:`\Pr(R_i=r|\pmb \theta; \pmb x_i) = \delta_i D_{r}^{(c)} + (1 - \delta_i)/m`
 
+    :math:`\delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb \omega \}}`
+
+Manual and Examples
+==========================
+    - `Models manual <manual.html#cush-with-covariates>`__
 
 References:
 ===========
