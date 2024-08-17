@@ -364,7 +364,7 @@ simplified and generalised procedure to draw a random sample.</p>
 <p>In this manual <code class="docutils literal notranslate"><span class="pre">gem</span></code> functions will be used for the examples.</p>
 <p>The last chapter, shows the basic usage for the tool <code class="docutils literal notranslate"><span class="pre">multicub</span></code>.</p>
 <section id="gem-usage">
-<h2>GeM usage<a class="headerlink" href="#gem-usage" title="Permalink to this heading">#</a></h2>
+<span id="gem-manual"></span><h2>GeM usage<a class="headerlink" href="#gem-usage" title="Permalink to this heading">#</a></h2>
 <p>GeM (Generalized Mixture) is the main module of <code class="docutils literal notranslate"><span class="pre">cubmods</span></code> package, which provides simplified and
 generalized functions to both estimate a model from an observed sample and draw a random sample from a
 specified model.</p>
@@ -374,6 +374,7 @@ the specified family, with or without covariates.</p>
 <p>The function <code class="docutils literal notranslate"><span class="pre">gem.draw()</span></code> is the main function for drawing a random sample from a specified model,
 calling for the corresponding <code class="docutils literal notranslate"><span class="pre">.draw()</span></code> function of the corresponding family,
 with or without covariates.</p>
+<p><a class="reference external" href="cubmods.html#gem-module">Reference guide</a></p>
 <section id="the-formula-syntax">
 <h3>The <em>formula</em> syntax<a class="headerlink" href="#the-formula-syntax" title="Permalink to this heading">#</a></h3>
 <p>Both functions need a <code class="docutils literal notranslate"><span class="pre">formula</span></code> that is a <strong>string</strong> specifying the name of the ordinal
@@ -520,6 +521,7 @@ see the Base Class <code class="docutils literal notranslate"><span class="pre">
 </section>
 <section id="without-covariates">
 <span id="cub-models-without-covariates"></span><h3>Without covariates<a class="headerlink" href="#without-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cub00-module">Reference guide</a></p>
 <p>A model of the CUB family for responses with <span class="math notranslate nohighlight">\(m\)</span> ordinal categories, without covariates is specified as</p>
 <div class="math notranslate nohighlight">
 \[\Pr(R=r|\boldsymbol{\theta}) = \pi \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi}{m}\]</div>
@@ -646,6 +648,9 @@ parameters’ estimated values and standard errors</p>
 </section>
 <section id="with-covariates">
 <span id="cub-models-with-covariates"></span><h3>With covariates<a class="headerlink" href="#with-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cub0w-module">Reference guide (0|W)</a></p>
+<p><a class="reference external" href="cubmods.html#cuby0-module">Reference guide (Y|0)</a></p>
+<p><a class="reference external" href="cubmods.html#cubyw-module">Reference guide (Y|W)</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m}\]</div>
 <div class="math notranslate nohighlight">
@@ -825,6 +830,7 @@ See the references for details.</p>
 </section>
 <section id="cubsh-without-covariates">
 <span id="id76"></span><h3>Without covariates<a class="headerlink" href="#cubsh-without-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cubsh000-module">Reference guide</a></p>
 <p>A model of the CUB family with shelter effect
 for responses with <span class="math notranslate nohighlight">\(m\)</span> ordinal categories, without covariates is specified as</p>
 <div class="math notranslate nohighlight">
@@ -923,6 +929,7 @@ BIC = 5490.81
 </section>
 <section id="cubsh-with-covariates">
 <span id="id77"></span><h3>With covariates<a class="headerlink" href="#cubsh-with-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cubshywx-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i, \pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)\left(\pi_i b_r(\xi_i) + \frac{1-\pi_i}{m} \right)\]</div>
 <div class="math notranslate nohighlight">
@@ -1063,6 +1070,7 @@ See the references for details.</p>
 </section>
 <section id="cush-without-covariates">
 <span id="id116"></span><h3>Without covariates<a class="headerlink" href="#cush-without-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cush0-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1-\delta)/m\]</div>
 <p>In the example, we’ll draw a sample from a CUSH model without covariates and
@@ -1128,6 +1136,7 @@ Elapsed time=0.00113 seconds =====&gt;&gt;&gt; Fri Aug 16 10:44:07 2024
 </section>
 <section id="cush-with-covariates">
 <span id="id117"></span><h3>With covariates<a class="headerlink" href="#cush-with-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cushx-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R_i=r|\pmb\theta,\pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)/m\]</div>
 <div class="math notranslate nohighlight">
@@ -1219,6 +1228,7 @@ See the references for details.</p>
 </section>
 <section id="cush2-without-covariates">
 <span id="id156"></span><h3>Without covariates<a class="headerlink" href="#cush2-without-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cush200-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R=r|\pmb\theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1-\delta_1-\delta_2)/m\]</div>
 <p>In the example, we’ll draw a sample from a CUSH2 model without covariates and
@@ -1289,6 +1299,8 @@ Elapsed time=0.00228 seconds =====&gt;&gt;&gt; Fri Aug 16 11:15:21 2024
 </section>
 <section id="cush2-with-covariates">
 <span id="id157"></span><h3>With covariates<a class="headerlink" href="#cush2-with-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cush2x0-module">Reference guide (X1|0)</a></p>
+<p><a class="reference external" href="cubmods.html#cush2xx-module">Reference guide (X1|X2)</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R_i=r|\pmb\theta,\pmb x_{1i}, \pmb x_{2i}) = \delta_{1i} D_r^{(c_1)} + \delta_{2i} D_r^{(c_2)} + (1-\delta_{1i}- \delta_{2i})/m\]</div>
 <div class="math notranslate nohighlight">
@@ -1410,6 +1422,7 @@ See the references for details.</p>
 </section>
 <section id="cube-without-covariates">
 <span id="id196"></span><h3>Without covariates<a class="headerlink" href="#cube-without-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cube000-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m}\]</div>
 <p>In this example, we’ll draw a sample from a CUBE model and then
@@ -1483,6 +1496,8 @@ Elapsed time=0.07919 seconds =====&gt;&gt;&gt; Fri Aug 16 12:18:49 2024
 </section>
 <section id="cube-with-covariates">
 <span id="id197"></span><h3>With covariates<a class="headerlink" href="#cube-with-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#cube0w0-module">Reference guide (0|W|0)</a></p>
+<p><a class="reference external" href="cubmods.html#cubeywz-module">Reference guide (Y|W|Z)</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R_i=r|\pmb{\theta};\pmb y_i, \pmb w_i; \pmb z_i) = \pi_i \beta e(\xi_i,\phi_i)+\dfrac{1-\pi_i}{m}\]</div>
 <div class="math notranslate nohighlight">
@@ -1670,6 +1685,7 @@ See the references for details.</p>
 </section>
 <section id="ihg-without-covariates">
 <span id="id236"></span><h3>Without covariates<a class="headerlink" href="#ihg-without-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#ihg0-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left\{
 \begin{array}{l}
@@ -1735,6 +1751,7 @@ Elapsed time=0.00464 seconds =====&gt;&gt;&gt; Fri Aug 16 12:47:55 2024
 </section>
 <section id="ihg-with-covariates">
 <span id="id237"></span><h3>With covariates<a class="headerlink" href="#ihg-with-covariates" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="cubmods.html#ihgv-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left\{
 \begin{array}{l}
@@ -1820,7 +1837,7 @@ Elapsed time=1.10664 seconds =====&gt;&gt;&gt; Fri Aug 16 12:53:12 2024
 </section>
 </section>
 <section id="multicub">
-<h2>MULTICUB<a class="headerlink" href="#multicub" title="Permalink to this heading">#</a></h2>
+<span id="multicub-manual"></span><h2>MULTICUB<a class="headerlink" href="#multicub" title="Permalink to this heading">#</a></h2>
 <blockquote>
 <div><div class="docutils container" id="id238">
 <ol class="arabic simple" start="1">
@@ -1828,6 +1845,7 @@ Elapsed time=1.10664 seconds =====&gt;&gt;&gt; Fri Aug 16 12:53:12 2024
 </ol>
 </div>
 </div></blockquote>
+<p><a class="reference external" href="cubmods.html#multicub-module">Reference guide</a></p>
 <p>With the <strong>multicub</strong> tool, parameters estimated from
 multiple observed samples can be shown in a single plot.</p>
 <p>In this example, we’ll draw three samples from CUBE

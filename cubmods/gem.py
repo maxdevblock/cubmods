@@ -1,5 +1,7 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace, dangerous-default-value, too-many-branches
 """
+.. _gem-module:
+
 CUB models in Python.
 Module for GEM (Generalized Mixtures).
 
@@ -11,16 +13,20 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
+Manual and Examples
+==========================
+    - `Models manual <manual.html#gem-manual>`__
+
 References:
 ===========
-  - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
-  - D'Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics & Data Analysis},  \bold{49, 917--937
-  - Capecchi S. and Piccolo D. (2017). Dealing with heterogeneity in ordinal responses, Quality and Quantity, 51(5), 2375--2393
-  - Iannario M. (2014). Modelling Uncertainty and Overdispersion in Ordinal Data, Communications in Statistics - Theory and Methods, 43, 771--786
-  - Piccolo D. (2015). Inferential issues for CUBE models with covariates, Communications in Statistics. Theory and Methods, 44(23), 771--786.
-  - Iannario M. (2015). Detecting latent components in ordinal data with overdispersion by means of a mixture distribution, Quality & Quantity, 49, 977--987
-  - Iannario M. and Piccolo D. (2016a). A comprehensive framework for regression models of ordinal data. Metron, 74(2), 233--252.
-  - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189.
+    .. bibliography:: cub.bib
+        :list: enumerated
+        :filter: False
+
+        iannario2009program
+        iannario2014inference
+        iannario2022package
+        piccolo2019class
 
   
 List of TODOs:

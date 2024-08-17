@@ -1,5 +1,7 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
 r"""
+.. _cubyw-module:
+
 CUB models in Python.
 Module for CUB (Combination of Uniform
 and Binomial) with covariates

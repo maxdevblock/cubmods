@@ -30,6 +30,8 @@ In this manual ``gem`` functions will be used for the examples.
 
 The last chapter, shows the basic usage for the tool ``multicub``.
 
+.. _gem-manual:
+
 GeM usage
 ---------
 
@@ -44,6 +46,8 @@ the specified family, with or without covariates.
 The function ``gem.draw()`` is the main function for drawing a random sample from a specified model, 
 calling for the corresponding ``.draw()`` function of the corresponding family,
 with or without covariates.
+
+`Reference guide <cubmods.html#gem-module>`__
 
 The *formula* syntax
 ^^^^^^^^^^^^^^^^^^^^
@@ -214,6 +218,8 @@ References
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
+`Reference guide <cubmods.html#cub00-module>`__
+
 A model of the CUB family for responses with :math:`m` ordinal categories, without covariates is specified as
 
 .. math::
@@ -361,6 +367,12 @@ parameters' estimated values and standard errors
 
 With covariates
 ^^^^^^^^^^^^^^^^^^
+
+`Reference guide (0|W) <cubmods.html#cub0w-module>`__
+
+`Reference guide (Y|0) <cubmods.html#cuby0-module>`__
+
+`Reference guide (Y|W) <cubmods.html#cubyw-module>`__
 
 .. math::
     \Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m}
@@ -557,6 +569,8 @@ References
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
+`Reference guide <cubmods.html#cubsh000-module>`__
+
 A model of the CUB family with shelter effect
 for responses with :math:`m` ordinal categories, without covariates is specified as
 
@@ -665,6 +679,8 @@ Notice that:
 
 With covariates
 ^^^^^^^^^^^^^^^
+
+`Reference guide <cubmods.html#cubshywx-module>`__
 
 .. math::
     \Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i, \pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)\left(\pi_i b_r(\xi_i) + \frac{1-\pi_i}{m} \right)
@@ -819,6 +835,8 @@ References
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
+`Reference guide <cubmods.html#cush0-module>`__
+
 .. math::
     \Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1-\delta)/m
 
@@ -891,6 +909,8 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
 
 With covariates
 ^^^^^^^^^^^^^^^
+
+`Reference guide <cubmods.html#cushx-module>`__
 
 .. math::
     \Pr(R_i=r|\pmb\theta,\pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)/m
@@ -991,6 +1011,8 @@ References
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
+`Reference guide <cubmods.html#cush200-module>`__
+
 .. math::
     \Pr(R=r|\pmb\theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1-\delta_1-\delta_2)/m
 
@@ -1068,6 +1090,10 @@ called.
 
 With covariates
 ^^^^^^^^^^^^^^^
+
+`Reference guide (X1|0) <cubmods.html#cush2x0-module>`__
+
+`Reference guide (X1|X2) <cubmods.html#cush2xx-module>`__
 
 .. math::
     \Pr(R_i=r|\pmb\theta,\pmb x_{1i}, \pmb x_{2i}) = \delta_{1i} D_r^{(c_1)} + \delta_{2i} D_r^{(c_2)} + (1-\delta_{1i}- \delta_{2i})/m
@@ -1201,6 +1227,8 @@ References
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
+`Reference guide <cubmods.html#cube000-module>`__
+
 .. math::
     \Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m}
 
@@ -1281,6 +1309,10 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
 
 With covariates
 ^^^^^^^^^^^^^^^
+
+`Reference guide (0|W|0) <cubmods.html#cube0w0-module>`__
+
+`Reference guide (Y|W|Z) <cubmods.html#cubeywz-module>`__
 
 .. math::
     \Pr(R_i=r|\pmb{\theta};\pmb y_i, \pmb w_i; \pmb z_i) = \pi_i \beta e(\xi_i,\phi_i)+\dfrac{1-\pi_i}{m}
@@ -1484,6 +1516,8 @@ References
 Without covariates
 ^^^^^^^^^^^^^^^^^^
 
+`Reference guide <cubmods.html#ihg0-module>`__
+
 .. math::
     \left\{
     \begin{array}{l}
@@ -1556,6 +1590,8 @@ and the estimate the parameter from the observed sample.
 
 With covariates
 ^^^^^^^^^^^^^^^
+
+`Reference guide <cubmods.html#ihgv-module>`__
 
 .. math::
     \left\{
@@ -1645,6 +1681,8 @@ and then will estimate the parameters given the observed sample.
 .. image:: /img/ihgvmle.png
     :alt: IHG V MLE
 
+.. _multicub-manual:
+
 MULTICUB
 --------
 
@@ -1653,6 +1691,8 @@ MULTICUB
         :filter: False
 
         piccolo2019class
+
+`Reference guide <cubmods.html#multicub-module>`__
 
 With the **multicub** tool, parameters estimated from
 multiple observed samples can be shown in a single plot.

@@ -1,5 +1,7 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace, invalid-unary-operand-type
 r"""
+.. _cubshywx-module:
+
 CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect) with covariates.

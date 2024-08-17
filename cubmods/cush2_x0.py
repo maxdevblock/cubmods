@@ -1,8 +1,11 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
 r"""
+.. _cush2x0-module:
+
 CUB models in Python.
 Module for CUSH2 (Combination of Uniform
-and 2 Shelter Choices) with covariates.
+and 2 Shelter Choices) with covariates
+for the 1st shelter choice.
 
 Description:
 ============

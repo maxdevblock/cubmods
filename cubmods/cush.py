@@ -1,5 +1,7 @@
 # pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name, too-many-arguments, too-many-locals, too-many-statements, trailing-whitespace
 r"""
+.. _cush0-module:
+
 CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect).
