@@ -81,7 +81,7 @@ def pmf(m, pi, gamma, W):
     r"""Average probability distribution of a specified CUB model 
     with covariates for the feeling component.
 
-    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R_i = r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
@@ -106,7 +106,7 @@ def pmfi(m, pi, gamma, W):
     
     Auxiliary function of ``.draw()``.
 
-    :math:`\Pr(R = r | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+    :math:`\Pr(R_i = r | \pmb\theta ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
@@ -136,7 +136,7 @@ def prob(sample, m, pi, gamma, W):
     Compute the probability distribution of a CUB model with covariates
     for the feeling component, given an observed sample.
     
-    :math:`\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n`
+    :math:`\Pr(R_i = r_i | \pmb\theta ; \pmb w_i),\; i=1 \ldots n`
     
     :param sample: array of ordinal responses
     :type sample: array of int
@@ -165,7 +165,7 @@ def cmf(m, pi, gamma, W): #TODO: test cmf
     r"""Average cumulative probability of a specified CUB model
     with covariates for the feeling component.
 
-    :math:`\Pr(R \geq r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
+    :math:`\Pr(R_i \geq r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m`
     
     :param m: number of ordinal categories
     :type m: int
@@ -294,7 +294,7 @@ def init_gamma(sample, m, W):
     :type m: int
     :param W: dataframe of covariates for explaining the feeling component
     :type W: pandas dataframe
-    :return: an array :math:`\pmb\gamma^{(0)}` of size :math:`\pmb w + 1`
+    :return: an array :math:`\pmb\gamma^{(0)}`
     :rtype: array of float
     """
     WW = np.c_[np.ones(W.shape[0]), W]
