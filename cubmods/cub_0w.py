@@ -161,7 +161,7 @@ def _proba(m, pi, xi, r):
     """
     return None
 
-def cmf(m, pi, gamma, W): #TODO: test cmf
+def _cmf(m, pi, gamma, W): #TODO: test cmf
     r"""Average cumulative probability of a specified CUB model
     with covariates for the feeling component.
 
