@@ -165,7 +165,7 @@ def _cmf(m, pi, gamma, W): #TODO: test cmf
     r"""Average cumulative probability of a specified CUB model
     with covariates for the feeling component.
 
-    :math:`\Pr(R_i \geq r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m`
+    :math:`\Pr(R_i \leq r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m`
     
     :param m: number of ordinal categories
     :type m: int

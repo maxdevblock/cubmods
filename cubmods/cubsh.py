@@ -220,7 +220,7 @@ def cmf(m, sh, pi1, pi2, xi):
     r"""Cumulative probability of a specified CUBSH model,
     using alternative parametrization :math:`(\pi_1, \pi_2)`.
 
-    :math:`\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m`
+    :math:`\Pr(R \leq r | \pmb\theta),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
@@ -241,7 +241,7 @@ def cmf_delta(m, sh, pi, xi, delta):
     r"""Cumulative probability of a specified CUBSH model,
     using canonic parametrization :math:`(\pi, \delta)`.
 
-    :math:`\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m`
+    :math:`\Pr(R \leq r | \pmb\theta),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int

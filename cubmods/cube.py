@@ -142,7 +142,7 @@ def pmf(m, pi, xi, phi):
 def cmf(m, pi, xi, phi):
     r"""Cumulative probability of a specified CUBE model.
 
-    :math:`\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m`
+    :math:`\Pr(R \leq r | \pmb\theta),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
