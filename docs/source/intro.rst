@@ -39,6 +39,11 @@ of the Python programming language also in the statistical field :cite:p:`pittar
 their implementation in
 this environment could be useful to the scientific community.
 
+Notes
+*****
+
+To simplify the notation, the complete matrix of the covariates will be occasionally indicated by :math:`\pmb T` and the column vector of model's parameters by :math:`\pmb\theta`.
+
 
 .. bibliography:: cub.bib
     :cited:
