@@ -188,7 +188,7 @@ def skew(pi, xi):
     """
     return pi*(1/2-xi)
 
-def mean_diff(m, pi, xi):
+def _mean_diff(m, pi, xi):
     R = choices(m)
     S = choices(m)
     mu = 0
