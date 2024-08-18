@@ -1,294 +1,292 @@
 \indexentry{module@\spxentry{module}!cubmods.cub@\spxentry{cubmods.cub}|hyperpage}{49}
 \indexentry{cubmods.cub@\spxentry{cubmods.cub}!module@\spxentry{module}|hyperpage}{49}
-\indexentry{CUBresCUB00 (class in cubmods.cub)@\spxentry{CUBresCUB00}\spxextra{class in cubmods.cub}|hyperpage}{52}
-\indexentry{plot() (cubmods.cub.CUBresCUB00 method)@\spxentry{plot()}\spxextra{cubmods.cub.CUBresCUB00 method}|hyperpage}{52}
-\indexentry{plot\_confell() (cubmods.cub.CUBresCUB00 method)@\spxentry{plot\_confell()}\spxextra{cubmods.cub.CUBresCUB00 method}|hyperpage}{52}
-\indexentry{plot\_ordinal() (cubmods.cub.CUBresCUB00 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cub.CUBresCUB00 method}|hyperpage}{53}
-\indexentry{cmf() (in module cubmods.cub)@\spxentry{cmf()}\spxextra{in module cubmods.cub}|hyperpage}{53}
-\indexentry{draw() (in module cubmods.cub)@\spxentry{draw()}\spxextra{in module cubmods.cub}|hyperpage}{53}
-\indexentry{gini() (in module cubmods.cub)@\spxentry{gini()}\spxextra{in module cubmods.cub}|hyperpage}{53}
-\indexentry{init\_theta() (in module cubmods.cub)@\spxentry{init\_theta()}\spxextra{in module cubmods.cub}|hyperpage}{54}
-\indexentry{laakso() (in module cubmods.cub)@\spxentry{laakso()}\spxextra{in module cubmods.cub}|hyperpage}{54}
-\indexentry{loglik() (in module cubmods.cub)@\spxentry{loglik()}\spxextra{in module cubmods.cub}|hyperpage}{54}
-\indexentry{mean() (in module cubmods.cub)@\spxentry{mean()}\spxextra{in module cubmods.cub}|hyperpage}{55}
-\indexentry{mean\_diff() (in module cubmods.cub)@\spxentry{mean\_diff()}\spxextra{in module cubmods.cub}|hyperpage}{55}
-\indexentry{median() (in module cubmods.cub)@\spxentry{median()}\spxextra{in module cubmods.cub}|hyperpage}{55}
-\indexentry{mle() (in module cubmods.cub)@\spxentry{mle()}\spxextra{in module cubmods.cub}|hyperpage}{55}
-\indexentry{pmf() (in module cubmods.cub)@\spxentry{pmf()}\spxextra{in module cubmods.cub}|hyperpage}{56}
-\indexentry{proba() (in module cubmods.cub)@\spxentry{proba()}\spxextra{in module cubmods.cub}|hyperpage}{56}
-\indexentry{skew() (in module cubmods.cub)@\spxentry{skew()}\spxextra{in module cubmods.cub}|hyperpage}{56}
-\indexentry{std() (in module cubmods.cub)@\spxentry{std()}\spxextra{in module cubmods.cub}|hyperpage}{57}
-\indexentry{var() (in module cubmods.cub)@\spxentry{var()}\spxextra{in module cubmods.cub}|hyperpage}{57}
-\indexentry{varcov() (in module cubmods.cub)@\spxentry{varcov()}\spxextra{in module cubmods.cub}|hyperpage}{57}
-\indexentry{module@\spxentry{module}!cubmods.cub\_0w@\spxentry{cubmods.cub\_0w}|hyperpage}{58}
-\indexentry{cubmods.cub\_0w@\spxentry{cubmods.cub\_0w}!module@\spxentry{module}|hyperpage}{58}
-\indexentry{CUBresCUB0W (class in cubmods.cub\_0w)@\spxentry{CUBresCUB0W}\spxextra{class in cubmods.cub\_0w}|hyperpage}{59}
-\indexentry{plot() (cubmods.cub\_0w.CUBresCUB0W method)@\spxentry{plot()}\spxextra{cubmods.cub\_0w.CUBresCUB0W method}|hyperpage}{59}
-\indexentry{plot\_ordinal() (cubmods.cub\_0w.CUBresCUB0W method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cub\_0w.CUBresCUB0W method}|hyperpage}{60}
-\indexentry{cmf() (in module cubmods.cub\_0w)@\spxentry{cmf()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{60}
-\indexentry{draw() (in module cubmods.cub\_0w)@\spxentry{draw()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{60}
-\indexentry{effe01() (in module cubmods.cub\_0w)@\spxentry{effe01()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{61}
-\indexentry{init\_gamma() (in module cubmods.cub\_0w)@\spxentry{init\_gamma()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{61}
-\indexentry{loglik() (in module cubmods.cub\_0w)@\spxentry{loglik()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{61}
-\indexentry{mle() (in module cubmods.cub\_0w)@\spxentry{mle()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{62}
-\indexentry{pmf() (in module cubmods.cub\_0w)@\spxentry{pmf()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{62}
-\indexentry{pmfi() (in module cubmods.cub\_0w)@\spxentry{pmfi()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{62}
-\indexentry{prob() (in module cubmods.cub\_0w)@\spxentry{prob()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{63}
-\indexentry{varcov() (in module cubmods.cub\_0w)@\spxentry{varcov()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{63}
-\indexentry{module@\spxentry{module}!cubmods.cub\_y0@\spxentry{cubmods.cub\_y0}|hyperpage}{64}
-\indexentry{cubmods.cub\_y0@\spxentry{cubmods.cub\_y0}!module@\spxentry{module}|hyperpage}{64}
-\indexentry{CUBresCUBY0 (class in cubmods.cub\_y0)@\spxentry{CUBresCUBY0}\spxextra{class in cubmods.cub\_y0}|hyperpage}{65}
-\indexentry{plot() (cubmods.cub\_y0.CUBresCUBY0 method)@\spxentry{plot()}\spxextra{cubmods.cub\_y0.CUBresCUBY0 method}|hyperpage}{65}
-\indexentry{plot\_ordinal() (cubmods.cub\_y0.CUBresCUBY0 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cub\_y0.CUBresCUBY0 method}|hyperpage}{66}
-\indexentry{draw() (in module cubmods.cub\_y0)@\spxentry{draw()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{66}
-\indexentry{effe10() (in module cubmods.cub\_y0)@\spxentry{effe10()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{66}
-\indexentry{loglik() (in module cubmods.cub\_y0)@\spxentry{loglik()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{67}
-\indexentry{mle() (in module cubmods.cub\_y0)@\spxentry{mle()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{67}
-\indexentry{pmf() (in module cubmods.cub\_y0)@\spxentry{pmf()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{68}
-\indexentry{pmfi() (in module cubmods.cub\_y0)@\spxentry{pmfi()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{68}
-\indexentry{prob() (in module cubmods.cub\_y0)@\spxentry{prob()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{68}
-\indexentry{varcov() (in module cubmods.cub\_y0)@\spxentry{varcov()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{69}
-\indexentry{module@\spxentry{module}!cubmods.cub\_yw@\spxentry{cubmods.cub\_yw}|hyperpage}{69}
-\indexentry{cubmods.cub\_yw@\spxentry{cubmods.cub\_yw}!module@\spxentry{module}|hyperpage}{69}
-\indexentry{CUBresCUBYW (class in cubmods.cub\_yw)@\spxentry{CUBresCUBYW}\spxextra{class in cubmods.cub\_yw}|hyperpage}{71}
-\indexentry{plot() (cubmods.cub\_yw.CUBresCUBYW method)@\spxentry{plot()}\spxextra{cubmods.cub\_yw.CUBresCUBYW method}|hyperpage}{71}
-\indexentry{plot\_ordinal() (cubmods.cub\_yw.CUBresCUBYW method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cub\_yw.CUBresCUBYW method}|hyperpage}{71}
-\indexentry{draw() (in module cubmods.cub\_yw)@\spxentry{draw()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{71}
-\indexentry{loglik() (in module cubmods.cub\_yw)@\spxentry{loglik()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{72}
-\indexentry{mle() (in module cubmods.cub\_yw)@\spxentry{mle()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{72}
-\indexentry{pmf() (in module cubmods.cub\_yw)@\spxentry{pmf()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{73}
-\indexentry{pmfi() (in module cubmods.cub\_yw)@\spxentry{pmfi()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{73}
-\indexentry{prob() (in module cubmods.cub\_yw)@\spxentry{prob()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{74}
-\indexentry{varcov() (in module cubmods.cub\_yw)@\spxentry{varcov()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{74}
-\indexentry{module@\spxentry{module}!cubmods.cube@\spxentry{cubmods.cube}|hyperpage}{75}
-\indexentry{cubmods.cube@\spxentry{cubmods.cube}!module@\spxentry{module}|hyperpage}{75}
-\indexentry{CUBresCUBE (class in cubmods.cube)@\spxentry{CUBresCUBE}\spxextra{class in cubmods.cube}|hyperpage}{76}
-\indexentry{plot() (cubmods.cube.CUBresCUBE method)@\spxentry{plot()}\spxextra{cubmods.cube.CUBresCUBE method}|hyperpage}{76}
-\indexentry{plot3d() (cubmods.cube.CUBresCUBE method)@\spxentry{plot3d()}\spxextra{cubmods.cube.CUBresCUBE method}|hyperpage}{77}
-\indexentry{plot\_ordinal() (cubmods.cube.CUBresCUBE method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cube.CUBresCUBE method}|hyperpage}{77}
-\indexentry{betar() (in module cubmods.cube)@\spxentry{betar()}\spxextra{in module cubmods.cube}|hyperpage}{77}
-\indexentry{cmf() (in module cubmods.cube)@\spxentry{cmf()}\spxextra{in module cubmods.cube}|hyperpage}{77}
-\indexentry{draw() (in module cubmods.cube)@\spxentry{draw()}\spxextra{in module cubmods.cube}|hyperpage}{78}
-\indexentry{effecube() (in module cubmods.cube)@\spxentry{effecube()}\spxextra{in module cubmods.cube}|hyperpage}{78}
-\indexentry{init\_theta() (in module cubmods.cube)@\spxentry{init\_theta()}\spxextra{in module cubmods.cube}|hyperpage}{79}
-\indexentry{loglik() (in module cubmods.cube)@\spxentry{loglik()}\spxextra{in module cubmods.cube}|hyperpage}{79}
-\indexentry{mean() (in module cubmods.cube)@\spxentry{mean()}\spxextra{in module cubmods.cube}|hyperpage}{79}
-\indexentry{mle() (in module cubmods.cube)@\spxentry{mle()}\spxextra{in module cubmods.cube}|hyperpage}{79}
-\indexentry{pmf() (in module cubmods.cube)@\spxentry{pmf()}\spxextra{in module cubmods.cube}|hyperpage}{80}
-\indexentry{proba() (in module cubmods.cube)@\spxentry{proba()}\spxextra{in module cubmods.cube}|hyperpage}{80}
-\indexentry{var() (in module cubmods.cube)@\spxentry{var()}\spxextra{in module cubmods.cube}|hyperpage}{80}
-\indexentry{varcov() (in module cubmods.cube)@\spxentry{varcov()}\spxextra{in module cubmods.cube}|hyperpage}{81}
-\indexentry{module@\spxentry{module}!cubmods.cube\_0w0@\spxentry{cubmods.cube\_0w0}|hyperpage}{81}
-\indexentry{cubmods.cube\_0w0@\spxentry{cubmods.cube\_0w0}!module@\spxentry{module}|hyperpage}{81}
-\indexentry{CUBresCUBE0W0 (class in cubmods.cube\_0w0)@\spxentry{CUBresCUBE0W0}\spxextra{class in cubmods.cube\_0w0}|hyperpage}{83}
-\indexentry{plot() (cubmods.cube\_0w0.CUBresCUBE0W0 method)@\spxentry{plot()}\spxextra{cubmods.cube\_0w0.CUBresCUBE0W0 method}|hyperpage}{83}
-\indexentry{plot\_ordinal() (cubmods.cube\_0w0.CUBresCUBE0W0 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cube\_0w0.CUBresCUBE0W0 method}|hyperpage}{83}
-\indexentry{betabinomialxi() (in module cubmods.cube\_0w0)@\spxentry{betabinomialxi()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{83}
-\indexentry{draw() (in module cubmods.cube\_0w0)@\spxentry{draw()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{84}
-\indexentry{effe() (in module cubmods.cube\_0w0)@\spxentry{effe()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{84}
-\indexentry{init\_theta() (in module cubmods.cube\_0w0)@\spxentry{init\_theta()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{85}
-\indexentry{loglik() (in module cubmods.cube\_0w0)@\spxentry{loglik()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{85}
-\indexentry{mle() (in module cubmods.cube\_0w0)@\spxentry{mle()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{85}
-\indexentry{pmf() (in module cubmods.cube\_0w0)@\spxentry{pmf()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{86}
-\indexentry{pmfi() (in module cubmods.cube\_0w0)@\spxentry{pmfi()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{86}
-\indexentry{prob() (in module cubmods.cube\_0w0)@\spxentry{prob()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{87}
-\indexentry{module@\spxentry{module}!cubmods.cube\_ywz@\spxentry{cubmods.cube\_ywz}|hyperpage}{87}
-\indexentry{cubmods.cube\_ywz@\spxentry{cubmods.cube\_ywz}!module@\spxentry{module}|hyperpage}{87}
-\indexentry{CUBresCUBEYWZ (class in cubmods.cube\_ywz)@\spxentry{CUBresCUBEYWZ}\spxextra{class in cubmods.cube\_ywz}|hyperpage}{89}
-\indexentry{plot() (cubmods.cube\_ywz.CUBresCUBEYWZ method)@\spxentry{plot()}\spxextra{cubmods.cube\_ywz.CUBresCUBEYWZ method}|hyperpage}{89}
-\indexentry{plot\_ordinal() (cubmods.cube\_ywz.CUBresCUBEYWZ method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cube\_ywz.CUBresCUBEYWZ method}|hyperpage}{89}
-\indexentry{Qdue() (in module cubmods.cube\_ywz)@\spxentry{Qdue()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{89}
-\indexentry{Quno() (in module cubmods.cube\_ywz)@\spxentry{Quno()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{90}
-\indexentry{auxmat() (in module cubmods.cube\_ywz)@\spxentry{auxmat()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{90}
-\indexentry{betabinomial() (in module cubmods.cube\_ywz)@\spxentry{betabinomial()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{90}
-\indexentry{draw() (in module cubmods.cube\_ywz)@\spxentry{draw()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{91}
-\indexentry{init\_theta() (in module cubmods.cube\_ywz)@\spxentry{init\_theta()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{91}
-\indexentry{loglik() (in module cubmods.cube\_ywz)@\spxentry{loglik()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{92}
-\indexentry{mle() (in module cubmods.cube\_ywz)@\spxentry{mle()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{92}
-\indexentry{pmf() (in module cubmods.cube\_ywz)@\spxentry{pmf()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{93}
-\indexentry{pmfi() (in module cubmods.cube\_ywz)@\spxentry{pmfi()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{93}
-\indexentry{varcov() (in module cubmods.cube\_ywz)@\spxentry{varcov()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{94}
-\indexentry{module@\spxentry{module}!cubmods.cubsh@\spxentry{cubmods.cubsh}|hyperpage}{94}
-\indexentry{cubmods.cubsh@\spxentry{cubmods.cubsh}!module@\spxentry{module}|hyperpage}{94}
-\indexentry{CUBresCUBSH (class in cubmods.cubsh)@\spxentry{CUBresCUBSH}\spxextra{class in cubmods.cubsh}|hyperpage}{96}
-\indexentry{plot() (cubmods.cubsh.CUBresCUBSH method)@\spxentry{plot()}\spxextra{cubmods.cubsh.CUBresCUBSH method}|hyperpage}{96}
-\indexentry{plot3d() (cubmods.cubsh.CUBresCUBSH method)@\spxentry{plot3d()}\spxextra{cubmods.cubsh.CUBresCUBSH method}|hyperpage}{96}
-\indexentry{plot\_ordinal() (cubmods.cubsh.CUBresCUBSH method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cubsh.CUBresCUBSH method}|hyperpage}{97}
-\indexentry{cmf() (in module cubmods.cubsh)@\spxentry{cmf()}\spxextra{in module cubmods.cubsh}|hyperpage}{97}
-\indexentry{cmf\_delta() (in module cubmods.cubsh)@\spxentry{cmf\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{97}
-\indexentry{draw() (in module cubmods.cubsh)@\spxentry{draw()}\spxextra{in module cubmods.cubsh}|hyperpage}{98}
-\indexentry{draw2() (in module cubmods.cubsh)@\spxentry{draw2()}\spxextra{in module cubmods.cubsh}|hyperpage}{98}
-\indexentry{init\_theta() (in module cubmods.cubsh)@\spxentry{init\_theta()}\spxextra{in module cubmods.cubsh}|hyperpage}{98}
-\indexentry{loglik() (in module cubmods.cubsh)@\spxentry{loglik()}\spxextra{in module cubmods.cubsh}|hyperpage}{99}
-\indexentry{mean\_delta() (in module cubmods.cubsh)@\spxentry{mean\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{99}
-\indexentry{mle() (in module cubmods.cubsh)@\spxentry{mle()}\spxextra{in module cubmods.cubsh}|hyperpage}{99}
-\indexentry{pi1pi2\_to\_pidelta() (in module cubmods.cubsh)@\spxentry{pi1pi2\_to\_pidelta()}\spxextra{in module cubmods.cubsh}|hyperpage}{100}
-\indexentry{pidelta\_to\_pi1pi2() (in module cubmods.cubsh)@\spxentry{pidelta\_to\_pi1pi2()}\spxextra{in module cubmods.cubsh}|hyperpage}{100}
-\indexentry{plot\_simplex() (in module cubmods.cubsh)@\spxentry{plot\_simplex()}\spxextra{in module cubmods.cubsh}|hyperpage}{100}
-\indexentry{pmf() (in module cubmods.cubsh)@\spxentry{pmf()}\spxextra{in module cubmods.cubsh}|hyperpage}{101}
-\indexentry{pmf\_delta() (in module cubmods.cubsh)@\spxentry{pmf\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{101}
-\indexentry{proba() (in module cubmods.cubsh)@\spxentry{proba()}\spxextra{in module cubmods.cubsh}|hyperpage}{101}
-\indexentry{proba\_delta() (in module cubmods.cubsh)@\spxentry{proba\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{102}
-\indexentry{std\_delta() (in module cubmods.cubsh)@\spxentry{std\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{102}
-\indexentry{var\_delta() (in module cubmods.cubsh)@\spxentry{var\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{102}
-\indexentry{varcov() (in module cubmods.cubsh)@\spxentry{varcov()}\spxextra{in module cubmods.cubsh}|hyperpage}{103}
-\indexentry{varcov\_pxd() (in module cubmods.cubsh)@\spxentry{varcov\_pxd()}\spxextra{in module cubmods.cubsh}|hyperpage}{103}
-\indexentry{module@\spxentry{module}!cubmods.cubsh\_ywx@\spxentry{cubmods.cubsh\_ywx}|hyperpage}{104}
-\indexentry{cubmods.cubsh\_ywx@\spxentry{cubmods.cubsh\_ywx}!module@\spxentry{module}|hyperpage}{104}
-\indexentry{CUBresCUBSHYWX (class in cubmods.cubsh\_ywx)@\spxentry{CUBresCUBSHYWX}\spxextra{class in cubmods.cubsh\_ywx}|hyperpage}{105}
-\indexentry{plot() (cubmods.cubsh\_ywx.CUBresCUBSHYWX method)@\spxentry{plot()}\spxextra{cubmods.cubsh\_ywx.CUBresCUBSHYWX method}|hyperpage}{105}
-\indexentry{plot\_ordinal() (cubmods.cubsh\_ywx.CUBresCUBSHYWX method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cubsh\_ywx.CUBresCUBSHYWX method}|hyperpage}{106}
-\indexentry{Q1() (in module cubmods.cubsh\_ywx)@\spxentry{Q1()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{106}
-\indexentry{Q2() (in module cubmods.cubsh\_ywx)@\spxentry{Q2()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{106}
-\indexentry{draw() (in module cubmods.cubsh\_ywx)@\spxentry{draw()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{106}
-\indexentry{init\_theta() (in module cubmods.cubsh\_ywx)@\spxentry{init\_theta()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{107}
-\indexentry{loglik() (in module cubmods.cubsh\_ywx)@\spxentry{loglik()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{107}
-\indexentry{mle() (in module cubmods.cubsh\_ywx)@\spxentry{mle()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{108}
-\indexentry{pmf() (in module cubmods.cubsh\_ywx)@\spxentry{pmf()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{108}
-\indexentry{pmfi() (in module cubmods.cubsh\_ywx)@\spxentry{pmfi()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{109}
-\indexentry{prob() (in module cubmods.cubsh\_ywx)@\spxentry{prob()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{109}
-\indexentry{varcov() (in module cubmods.cubsh\_ywx)@\spxentry{varcov()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{110}
-\indexentry{module@\spxentry{module}!cubmods.cush@\spxentry{cubmods.cush}|hyperpage}{111}
-\indexentry{cubmods.cush@\spxentry{cubmods.cush}!module@\spxentry{module}|hyperpage}{111}
-\indexentry{CUBresCUSH (class in cubmods.cush)@\spxentry{CUBresCUSH}\spxextra{class in cubmods.cush}|hyperpage}{112}
-\indexentry{plot() (cubmods.cush.CUBresCUSH method)@\spxentry{plot()}\spxextra{cubmods.cush.CUBresCUSH method}|hyperpage}{112}
-\indexentry{plot\_estim() (cubmods.cush.CUBresCUSH method)@\spxentry{plot\_estim()}\spxextra{cubmods.cush.CUBresCUSH method}|hyperpage}{112}
-\indexentry{plot\_ordinal() (cubmods.cush.CUBresCUSH method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush.CUBresCUSH method}|hyperpage}{113}
-\indexentry{LRT() (in module cubmods.cush)@\spxentry{LRT()}\spxextra{in module cubmods.cush}|hyperpage}{113}
-\indexentry{draw() (in module cubmods.cush)@\spxentry{draw()}\spxextra{in module cubmods.cush}|hyperpage}{113}
-\indexentry{gini() (in module cubmods.cush)@\spxentry{gini()}\spxextra{in module cubmods.cush}|hyperpage}{113}
-\indexentry{laakso() (in module cubmods.cush)@\spxentry{laakso()}\spxextra{in module cubmods.cush}|hyperpage}{114}
-\indexentry{loglik() (in module cubmods.cush)@\spxentry{loglik()}\spxextra{in module cubmods.cush}|hyperpage}{114}
-\indexentry{mean() (in module cubmods.cush)@\spxentry{mean()}\spxextra{in module cubmods.cush}|hyperpage}{114}
-\indexentry{mle() (in module cubmods.cush)@\spxentry{mle()}\spxextra{in module cubmods.cush}|hyperpage}{114}
-\indexentry{pmf() (in module cubmods.cush)@\spxentry{pmf()}\spxextra{in module cubmods.cush}|hyperpage}{115}
-\indexentry{var() (in module cubmods.cush)@\spxentry{var()}\spxextra{in module cubmods.cush}|hyperpage}{115}
-\indexentry{module@\spxentry{module}!cubmods.cush2@\spxentry{cubmods.cush2}|hyperpage}{116}
-\indexentry{cubmods.cush2@\spxentry{cubmods.cush2}!module@\spxentry{module}|hyperpage}{116}
-\indexentry{CUBresCUSH2 (class in cubmods.cush2)@\spxentry{CUBresCUSH2}\spxextra{class in cubmods.cush2}|hyperpage}{117}
-\indexentry{plot() (cubmods.cush2.CUBresCUSH2 method)@\spxentry{plot()}\spxextra{cubmods.cush2.CUBresCUSH2 method}|hyperpage}{117}
-\indexentry{plot\_ordinal() (cubmods.cush2.CUBresCUSH2 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush2.CUBresCUSH2 method}|hyperpage}{117}
-\indexentry{plot\_par\_space() (cubmods.cush2.CUBresCUSH2 method)@\spxentry{plot\_par\_space()}\spxextra{cubmods.cush2.CUBresCUSH2 method}|hyperpage}{118}
-\indexentry{draw() (in module cubmods.cush2)@\spxentry{draw()}\spxextra{in module cubmods.cush2}|hyperpage}{118}
-\indexentry{loglik() (in module cubmods.cush2)@\spxentry{loglik()}\spxextra{in module cubmods.cush2}|hyperpage}{118}
-\indexentry{mle() (in module cubmods.cush2)@\spxentry{mle()}\spxextra{in module cubmods.cush2}|hyperpage}{119}
-\indexentry{pmf() (in module cubmods.cush2)@\spxentry{pmf()}\spxextra{in module cubmods.cush2}|hyperpage}{119}
-\indexentry{varcov() (in module cubmods.cush2)@\spxentry{varcov()}\spxextra{in module cubmods.cush2}|hyperpage}{119}
-\indexentry{module@\spxentry{module}!cubmods.cush2\_x0@\spxentry{cubmods.cush2\_x0}|hyperpage}{120}
-\indexentry{cubmods.cush2\_x0@\spxentry{cubmods.cush2\_x0}!module@\spxentry{module}|hyperpage}{120}
-\indexentry{CUBresCUSH2X0 (class in cubmods.cush2\_x0)@\spxentry{CUBresCUSH2X0}\spxextra{class in cubmods.cush2\_x0}|hyperpage}{121}
-\indexentry{plot() (cubmods.cush2\_x0.CUBresCUSH2X0 method)@\spxentry{plot()}\spxextra{cubmods.cush2\_x0.CUBresCUSH2X0 method}|hyperpage}{121}
-\indexentry{plot\_ordinal() (cubmods.cush2\_x0.CUBresCUSH2X0 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush2\_x0.CUBresCUSH2X0 method}|hyperpage}{122}
-\indexentry{draw() (in module cubmods.cush2\_x0)@\spxentry{draw()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{122}
-\indexentry{effe() (in module cubmods.cush2\_x0)@\spxentry{effe()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{122}
-\indexentry{loglik() (in module cubmods.cush2\_x0)@\spxentry{loglik()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{123}
-\indexentry{mle() (in module cubmods.cush2\_x0)@\spxentry{mle()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{123}
-\indexentry{pmf() (in module cubmods.cush2\_x0)@\spxentry{pmf()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{123}
-\indexentry{pmfi() (in module cubmods.cush2\_x0)@\spxentry{pmfi()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{124}
-\indexentry{module@\spxentry{module}!cubmods.cush2\_xx@\spxentry{cubmods.cush2\_xx}|hyperpage}{124}
-\indexentry{cubmods.cush2\_xx@\spxentry{cubmods.cush2\_xx}!module@\spxentry{module}|hyperpage}{124}
-\indexentry{CUBresCUSH2XX (class in cubmods.cush2\_xx)@\spxentry{CUBresCUSH2XX}\spxextra{class in cubmods.cush2\_xx}|hyperpage}{126}
-\indexentry{plot() (cubmods.cush2\_xx.CUBresCUSH2XX method)@\spxentry{plot()}\spxextra{cubmods.cush2\_xx.CUBresCUSH2XX method}|hyperpage}{126}
-\indexentry{plot\_ordinal() (cubmods.cush2\_xx.CUBresCUSH2XX method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush2\_xx.CUBresCUSH2XX method}|hyperpage}{126}
-\indexentry{draw() (in module cubmods.cush2\_xx)@\spxentry{draw()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{126}
-\indexentry{effe() (in module cubmods.cush2\_xx)@\spxentry{effe()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{127}
-\indexentry{loglik() (in module cubmods.cush2\_xx)@\spxentry{loglik()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{127}
-\indexentry{mle() (in module cubmods.cush2\_xx)@\spxentry{mle()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{128}
-\indexentry{pmf() (in module cubmods.cush2\_xx)@\spxentry{pmf()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{128}
-\indexentry{pmfi() (in module cubmods.cush2\_xx)@\spxentry{pmfi()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{129}
-\indexentry{module@\spxentry{module}!cubmods.cush\_x@\spxentry{cubmods.cush\_x}|hyperpage}{129}
-\indexentry{cubmods.cush\_x@\spxentry{cubmods.cush\_x}!module@\spxentry{module}|hyperpage}{129}
-\indexentry{CUBresCUSHX (class in cubmods.cush\_x)@\spxentry{CUBresCUSHX}\spxextra{class in cubmods.cush\_x}|hyperpage}{131}
-\indexentry{plot() (cubmods.cush\_x.CUBresCUSHX method)@\spxentry{plot()}\spxextra{cubmods.cush\_x.CUBresCUSHX method}|hyperpage}{131}
-\indexentry{plot\_ordinal() (cubmods.cush\_x.CUBresCUSHX method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush\_x.CUBresCUSHX method}|hyperpage}{131}
-\indexentry{draw() (in module cubmods.cush\_x)@\spxentry{draw()}\spxextra{in module cubmods.cush\_x}|hyperpage}{131}
-\indexentry{effe() (in module cubmods.cush\_x)@\spxentry{effe()}\spxextra{in module cubmods.cush\_x}|hyperpage}{132}
-\indexentry{loglik() (in module cubmods.cush\_x)@\spxentry{loglik()}\spxextra{in module cubmods.cush\_x}|hyperpage}{132}
-\indexentry{mle() (in module cubmods.cush\_x)@\spxentry{mle()}\spxextra{in module cubmods.cush\_x}|hyperpage}{132}
-\indexentry{pmf() (in module cubmods.cush\_x)@\spxentry{pmf()}\spxextra{in module cubmods.cush\_x}|hyperpage}{133}
-\indexentry{pmfi() (in module cubmods.cush\_x)@\spxentry{pmfi()}\spxextra{in module cubmods.cush\_x}|hyperpage}{133}
-\indexentry{proba() (in module cubmods.cush\_x)@\spxentry{proba()}\spxextra{in module cubmods.cush\_x}|hyperpage}{134}
-\indexentry{module@\spxentry{module}!cubmods.gem@\spxentry{cubmods.gem}|hyperpage}{134}
-\indexentry{cubmods.gem@\spxentry{cubmods.gem}!module@\spxentry{module}|hyperpage}{134}
-\indexentry{draw() (in module cubmods.gem)@\spxentry{draw()}\spxextra{in module cubmods.gem}|hyperpage}{135}
-\indexentry{estimate() (in module cubmods.gem)@\spxentry{estimate()}\spxextra{in module cubmods.gem}|hyperpage}{136}
-\indexentry{module@\spxentry{module}!cubmods.general@\spxentry{cubmods.general}|hyperpage}{136}
-\indexentry{cubmods.general@\spxentry{cubmods.general}!module@\spxentry{module}|hyperpage}{136}
-\indexentry{InvalidCategoriesError@\spxentry{InvalidCategoriesError}|hyperpage}{137}
-\indexentry{InvalidSampleSizeError@\spxentry{InvalidSampleSizeError}|hyperpage}{137}
-\indexentry{NoShelterError@\spxentry{NoShelterError}|hyperpage}{137}
-\indexentry{NotImplementedModelError@\spxentry{NotImplementedModelError}|hyperpage}{137}
-\indexentry{ParameterOutOfBoundsError@\spxentry{ParameterOutOfBoundsError}|hyperpage}{137}
-\indexentry{ShelterGreaterThanM@\spxentry{ShelterGreaterThanM}|hyperpage}{137}
-\indexentry{UnknownModelError@\spxentry{UnknownModelError}|hyperpage}{138}
-\indexentry{addones() (in module cubmods.general)@\spxentry{addones()}\spxextra{in module cubmods.general}|hyperpage}{138}
-\indexentry{aic() (in module cubmods.general)@\spxentry{aic()}\spxextra{in module cubmods.general}|hyperpage}{138}
-\indexentry{bic() (in module cubmods.general)@\spxentry{bic()}\spxextra{in module cubmods.general}|hyperpage}{138}
-\indexentry{bitgamma() (in module cubmods.general)@\spxentry{bitgamma()}\spxextra{in module cubmods.general}|hyperpage}{138}
-\indexentry{bitxi() (in module cubmods.general)@\spxentry{bitxi()}\spxextra{in module cubmods.general}|hyperpage}{139}
-\indexentry{choices() (in module cubmods.general)@\spxentry{choices()}\spxextra{in module cubmods.general}|hyperpage}{139}
-\indexentry{colsof() (in module cubmods.general)@\spxentry{colsof()}\spxextra{in module cubmods.general}|hyperpage}{139}
-\indexentry{conf\_border() (in module cubmods.general)@\spxentry{conf\_border()}\spxextra{in module cubmods.general}|hyperpage}{139}
-\indexentry{conf\_ell() (in module cubmods.general)@\spxentry{conf\_ell()}\spxextra{in module cubmods.general}|hyperpage}{140}
-\indexentry{dissimilarity() (in module cubmods.general)@\spxentry{dissimilarity()}\spxextra{in module cubmods.general}|hyperpage}{140}
-\indexentry{dummies2() (in module cubmods.general)@\spxentry{dummies2()}\spxextra{in module cubmods.general}|hyperpage}{140}
-\indexentry{equal3d() (in module cubmods.general)@\spxentry{equal3d()}\spxextra{in module cubmods.general}|hyperpage}{141}
-\indexentry{expit() (in module cubmods.general)@\spxentry{expit()}\spxextra{in module cubmods.general}|hyperpage}{141}
-\indexentry{formula\_parser() (in module cubmods.general)@\spxentry{formula\_parser()}\spxextra{in module cubmods.general}|hyperpage}{141}
-\indexentry{freq() (in module cubmods.general)@\spxentry{freq()}\spxextra{in module cubmods.general}|hyperpage}{141}
-\indexentry{get\_cov\_ellipsoid() (in module cubmods.general)@\spxentry{get\_cov\_ellipsoid()}\spxextra{in module cubmods.general}|hyperpage}{141}
-\indexentry{get\_minor() (in module cubmods.general)@\spxentry{get\_minor()}\spxextra{in module cubmods.general}|hyperpage}{142}
-\indexentry{hadprod() (in module cubmods.general)@\spxentry{hadprod()}\spxextra{in module cubmods.general}|hyperpage}{142}
-\indexentry{kkk() (in module cubmods.general)@\spxentry{kkk()}\spxextra{in module cubmods.general}|hyperpage}{143}
-\indexentry{load\_object() (in module cubmods.general)@\spxentry{load\_object()}\spxextra{in module cubmods.general}|hyperpage}{143}
-\indexentry{logis() (in module cubmods.general)@\spxentry{logis()}\spxextra{in module cubmods.general}|hyperpage}{143}
-\indexentry{logit() (in module cubmods.general)@\spxentry{logit()}\spxextra{in module cubmods.general}|hyperpage}{143}
-\indexentry{lsat() (in module cubmods.general)@\spxentry{lsat()}\spxextra{in module cubmods.general}|hyperpage}{144}
-\indexentry{luni() (in module cubmods.general)@\spxentry{luni()}\spxextra{in module cubmods.general}|hyperpage}{144}
-\indexentry{plot\_ellipsoid() (in module cubmods.general)@\spxentry{plot\_ellipsoid()}\spxextra{in module cubmods.general}|hyperpage}{144}
-\indexentry{probbit() (in module cubmods.general)@\spxentry{probbit()}\spxextra{in module cubmods.general}|hyperpage}{144}
-\indexentry{unique() (in module cubmods.general)@\spxentry{unique()}\spxextra{in module cubmods.general}|hyperpage}{145}
-\indexentry{module@\spxentry{module}!cubmods.ihg@\spxentry{cubmods.ihg}|hyperpage}{145}
-\indexentry{cubmods.ihg@\spxentry{cubmods.ihg}!module@\spxentry{module}|hyperpage}{145}
-\indexentry{CUBresIHG (class in cubmods.ihg)@\spxentry{CUBresIHG}\spxextra{class in cubmods.ihg}|hyperpage}{146}
-\indexentry{plot() (cubmods.ihg.CUBresIHG method)@\spxentry{plot()}\spxextra{cubmods.ihg.CUBresIHG method}|hyperpage}{146}
-\indexentry{plot\_estim() (cubmods.ihg.CUBresIHG method)@\spxentry{plot\_estim()}\spxextra{cubmods.ihg.CUBresIHG method}|hyperpage}{147}
-\indexentry{plot\_ordinal() (cubmods.ihg.CUBresIHG method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.ihg.CUBresIHG method}|hyperpage}{147}
-\indexentry{draw() (in module cubmods.ihg)@\spxentry{draw()}\spxextra{in module cubmods.ihg}|hyperpage}{147}
-\indexentry{effe() (in module cubmods.ihg)@\spxentry{effe()}\spxextra{in module cubmods.ihg}|hyperpage}{148}
-\indexentry{init\_theta() (in module cubmods.ihg)@\spxentry{init\_theta()}\spxextra{in module cubmods.ihg}|hyperpage}{148}
-\indexentry{loglik() (in module cubmods.ihg)@\spxentry{loglik()}\spxextra{in module cubmods.ihg}|hyperpage}{148}
-\indexentry{mle() (in module cubmods.ihg)@\spxentry{mle()}\spxextra{in module cubmods.ihg}|hyperpage}{148}
-\indexentry{pmf() (in module cubmods.ihg)@\spxentry{pmf()}\spxextra{in module cubmods.ihg}|hyperpage}{148}
-\indexentry{var() (in module cubmods.ihg)@\spxentry{var()}\spxextra{in module cubmods.ihg}|hyperpage}{149}
-\indexentry{module@\spxentry{module}!cubmods.ihg\_v@\spxentry{cubmods.ihg\_v}|hyperpage}{150}
-\indexentry{cubmods.ihg\_v@\spxentry{cubmods.ihg\_v}!module@\spxentry{module}|hyperpage}{150}
-\indexentry{CUBresIHGV (class in cubmods.ihg\_v)@\spxentry{CUBresIHGV}\spxextra{class in cubmods.ihg\_v}|hyperpage}{151}
-\indexentry{plot() (cubmods.ihg\_v.CUBresIHGV method)@\spxentry{plot()}\spxextra{cubmods.ihg\_v.CUBresIHGV method}|hyperpage}{151}
-\indexentry{plot\_ordinal() (cubmods.ihg\_v.CUBresIHGV method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.ihg\_v.CUBresIHGV method}|hyperpage}{151}
-\indexentry{draw() (in module cubmods.ihg\_v)@\spxentry{draw()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{151}
-\indexentry{effe() (in module cubmods.ihg\_v)@\spxentry{effe()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{152}
-\indexentry{init\_theta() (in module cubmods.ihg\_v)@\spxentry{init\_theta()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{152}
-\indexentry{loglik() (in module cubmods.ihg\_v)@\spxentry{loglik()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{152}
-\indexentry{mle() (in module cubmods.ihg\_v)@\spxentry{mle()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{153}
-\indexentry{pmf() (in module cubmods.ihg\_v)@\spxentry{pmf()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{153}
-\indexentry{pmfi() (in module cubmods.ihg\_v)@\spxentry{pmfi()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{153}
-\indexentry{probi() (in module cubmods.ihg\_v)@\spxentry{probi()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{154}
-\indexentry{module@\spxentry{module}!cubmods.multicub@\spxentry{cubmods.multicub}|hyperpage}{154}
-\indexentry{cubmods.multicub@\spxentry{cubmods.multicub}!module@\spxentry{module}|hyperpage}{154}
-\indexentry{multi() (in module cubmods.multicub)@\spxentry{multi()}\spxextra{in module cubmods.multicub}|hyperpage}{155}
-\indexentry{pos\_kwargs() (in module cubmods.multicub)@\spxentry{pos\_kwargs()}\spxextra{in module cubmods.multicub}|hyperpage}{156}
-\indexentry{module@\spxentry{module}!cubmods.smry@\spxentry{cubmods.smry}|hyperpage}{156}
-\indexentry{cubmods.smry@\spxentry{cubmods.smry}!module@\spxentry{module}|hyperpage}{156}
-\indexentry{CUBres (class in cubmods.smry)@\spxentry{CUBres}\spxextra{class in cubmods.smry}|hyperpage}{157}
-\indexentry{as\_dataframe() (cubmods.smry.CUBres method)@\spxentry{as\_dataframe()}\spxextra{cubmods.smry.CUBres method}|hyperpage}{158}
-\indexentry{as\_txt() (cubmods.smry.CUBres method)@\spxentry{as\_txt()}\spxextra{cubmods.smry.CUBres method}|hyperpage}{158}
-\indexentry{save() (cubmods.smry.CUBres method)@\spxentry{save()}\spxextra{cubmods.smry.CUBres method}|hyperpage}{158}
-\indexentry{summary() (cubmods.smry.CUBres method)@\spxentry{summary()}\spxextra{cubmods.smry.CUBres method}|hyperpage}{158}
-\indexentry{CUBsample (class in cubmods.smry)@\spxentry{CUBsample}\spxextra{class in cubmods.smry}|hyperpage}{158}
-\indexentry{as\_dataframe() (cubmods.smry.CUBsample method)@\spxentry{as\_dataframe()}\spxextra{cubmods.smry.CUBsample method}|hyperpage}{158}
-\indexentry{plot() (cubmods.smry.CUBsample method)@\spxentry{plot()}\spxextra{cubmods.smry.CUBsample method}|hyperpage}{158}
-\indexentry{save() (cubmods.smry.CUBsample method)@\spxentry{save()}\spxextra{cubmods.smry.CUBsample method}|hyperpage}{159}
-\indexentry{summary() (cubmods.smry.CUBsample method)@\spxentry{summary()}\spxextra{cubmods.smry.CUBsample method}|hyperpage}{159}
-\indexentry{module@\spxentry{module}!cubmods@\spxentry{cubmods}|hyperpage}{159}
-\indexentry{cubmods@\spxentry{cubmods}!module@\spxentry{module}|hyperpage}{159}
+\indexentry{CUBresCUB00 (class in cubmods.cub)@\spxentry{CUBresCUB00}\spxextra{class in cubmods.cub}|hyperpage}{50}
+\indexentry{plot() (cubmods.cub.CUBresCUB00 method)@\spxentry{plot()}\spxextra{cubmods.cub.CUBresCUB00 method}|hyperpage}{50}
+\indexentry{plot\_confell() (cubmods.cub.CUBresCUB00 method)@\spxentry{plot\_confell()}\spxextra{cubmods.cub.CUBresCUB00 method}|hyperpage}{51}
+\indexentry{plot\_ordinal() (cubmods.cub.CUBresCUB00 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cub.CUBresCUB00 method}|hyperpage}{51}
+\indexentry{cmf() (in module cubmods.cub)@\spxentry{cmf()}\spxextra{in module cubmods.cub}|hyperpage}{51}
+\indexentry{draw() (in module cubmods.cub)@\spxentry{draw()}\spxextra{in module cubmods.cub}|hyperpage}{52}
+\indexentry{gini() (in module cubmods.cub)@\spxentry{gini()}\spxextra{in module cubmods.cub}|hyperpage}{52}
+\indexentry{init\_theta() (in module cubmods.cub)@\spxentry{init\_theta()}\spxextra{in module cubmods.cub}|hyperpage}{52}
+\indexentry{laakso() (in module cubmods.cub)@\spxentry{laakso()}\spxextra{in module cubmods.cub}|hyperpage}{52}
+\indexentry{loglik() (in module cubmods.cub)@\spxentry{loglik()}\spxextra{in module cubmods.cub}|hyperpage}{53}
+\indexentry{mean() (in module cubmods.cub)@\spxentry{mean()}\spxextra{in module cubmods.cub}|hyperpage}{53}
+\indexentry{median() (in module cubmods.cub)@\spxentry{median()}\spxextra{in module cubmods.cub}|hyperpage}{53}
+\indexentry{mle() (in module cubmods.cub)@\spxentry{mle()}\spxextra{in module cubmods.cub}|hyperpage}{54}
+\indexentry{pmf() (in module cubmods.cub)@\spxentry{pmf()}\spxextra{in module cubmods.cub}|hyperpage}{54}
+\indexentry{prob() (in module cubmods.cub)@\spxentry{prob()}\spxextra{in module cubmods.cub}|hyperpage}{55}
+\indexentry{skew() (in module cubmods.cub)@\spxentry{skew()}\spxextra{in module cubmods.cub}|hyperpage}{55}
+\indexentry{std() (in module cubmods.cub)@\spxentry{std()}\spxextra{in module cubmods.cub}|hyperpage}{55}
+\indexentry{var() (in module cubmods.cub)@\spxentry{var()}\spxextra{in module cubmods.cub}|hyperpage}{55}
+\indexentry{varcov() (in module cubmods.cub)@\spxentry{varcov()}\spxextra{in module cubmods.cub}|hyperpage}{56}
+\indexentry{module@\spxentry{module}!cubmods.cub\_0w@\spxentry{cubmods.cub\_0w}|hyperpage}{56}
+\indexentry{cubmods.cub\_0w@\spxentry{cubmods.cub\_0w}!module@\spxentry{module}|hyperpage}{56}
+\indexentry{CUBresCUB0W (class in cubmods.cub\_0w)@\spxentry{CUBresCUB0W}\spxextra{class in cubmods.cub\_0w}|hyperpage}{58}
+\indexentry{plot() (cubmods.cub\_0w.CUBresCUB0W method)@\spxentry{plot()}\spxextra{cubmods.cub\_0w.CUBresCUB0W method}|hyperpage}{58}
+\indexentry{plot\_ordinal() (cubmods.cub\_0w.CUBresCUB0W method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cub\_0w.CUBresCUB0W method}|hyperpage}{58}
+\indexentry{draw() (in module cubmods.cub\_0w)@\spxentry{draw()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{58}
+\indexentry{effe01() (in module cubmods.cub\_0w)@\spxentry{effe01()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{59}
+\indexentry{init\_gamma() (in module cubmods.cub\_0w)@\spxentry{init\_gamma()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{59}
+\indexentry{loglik() (in module cubmods.cub\_0w)@\spxentry{loglik()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{60}
+\indexentry{mle() (in module cubmods.cub\_0w)@\spxentry{mle()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{60}
+\indexentry{pmf() (in module cubmods.cub\_0w)@\spxentry{pmf()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{60}
+\indexentry{pmfi() (in module cubmods.cub\_0w)@\spxentry{pmfi()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{61}
+\indexentry{prob() (in module cubmods.cub\_0w)@\spxentry{prob()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{61}
+\indexentry{varcov() (in module cubmods.cub\_0w)@\spxentry{varcov()}\spxextra{in module cubmods.cub\_0w}|hyperpage}{62}
+\indexentry{module@\spxentry{module}!cubmods.cub\_y0@\spxentry{cubmods.cub\_y0}|hyperpage}{62}
+\indexentry{cubmods.cub\_y0@\spxentry{cubmods.cub\_y0}!module@\spxentry{module}|hyperpage}{62}
+\indexentry{CUBresCUBY0 (class in cubmods.cub\_y0)@\spxentry{CUBresCUBY0}\spxextra{class in cubmods.cub\_y0}|hyperpage}{64}
+\indexentry{plot() (cubmods.cub\_y0.CUBresCUBY0 method)@\spxentry{plot()}\spxextra{cubmods.cub\_y0.CUBresCUBY0 method}|hyperpage}{64}
+\indexentry{plot\_ordinal() (cubmods.cub\_y0.CUBresCUBY0 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cub\_y0.CUBresCUBY0 method}|hyperpage}{64}
+\indexentry{draw() (in module cubmods.cub\_y0)@\spxentry{draw()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{64}
+\indexentry{effe10() (in module cubmods.cub\_y0)@\spxentry{effe10()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{65}
+\indexentry{loglik() (in module cubmods.cub\_y0)@\spxentry{loglik()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{65}
+\indexentry{mle() (in module cubmods.cub\_y0)@\spxentry{mle()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{66}
+\indexentry{pmf() (in module cubmods.cub\_y0)@\spxentry{pmf()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{66}
+\indexentry{pmfi() (in module cubmods.cub\_y0)@\spxentry{pmfi()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{66}
+\indexentry{prob() (in module cubmods.cub\_y0)@\spxentry{prob()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{67}
+\indexentry{varcov() (in module cubmods.cub\_y0)@\spxentry{varcov()}\spxextra{in module cubmods.cub\_y0}|hyperpage}{67}
+\indexentry{module@\spxentry{module}!cubmods.cub\_yw@\spxentry{cubmods.cub\_yw}|hyperpage}{68}
+\indexentry{cubmods.cub\_yw@\spxentry{cubmods.cub\_yw}!module@\spxentry{module}|hyperpage}{68}
+\indexentry{CUBresCUBYW (class in cubmods.cub\_yw)@\spxentry{CUBresCUBYW}\spxextra{class in cubmods.cub\_yw}|hyperpage}{69}
+\indexentry{plot() (cubmods.cub\_yw.CUBresCUBYW method)@\spxentry{plot()}\spxextra{cubmods.cub\_yw.CUBresCUBYW method}|hyperpage}{69}
+\indexentry{plot\_ordinal() (cubmods.cub\_yw.CUBresCUBYW method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cub\_yw.CUBresCUBYW method}|hyperpage}{70}
+\indexentry{draw() (in module cubmods.cub\_yw)@\spxentry{draw()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{70}
+\indexentry{loglik() (in module cubmods.cub\_yw)@\spxentry{loglik()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{70}
+\indexentry{mle() (in module cubmods.cub\_yw)@\spxentry{mle()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{71}
+\indexentry{pmf() (in module cubmods.cub\_yw)@\spxentry{pmf()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{71}
+\indexentry{pmfi() (in module cubmods.cub\_yw)@\spxentry{pmfi()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{72}
+\indexentry{prob() (in module cubmods.cub\_yw)@\spxentry{prob()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{72}
+\indexentry{varcov() (in module cubmods.cub\_yw)@\spxentry{varcov()}\spxextra{in module cubmods.cub\_yw}|hyperpage}{72}
+\indexentry{module@\spxentry{module}!cubmods.cube@\spxentry{cubmods.cube}|hyperpage}{73}
+\indexentry{cubmods.cube@\spxentry{cubmods.cube}!module@\spxentry{module}|hyperpage}{73}
+\indexentry{CUBresCUBE (class in cubmods.cube)@\spxentry{CUBresCUBE}\spxextra{class in cubmods.cube}|hyperpage}{74}
+\indexentry{plot() (cubmods.cube.CUBresCUBE method)@\spxentry{plot()}\spxextra{cubmods.cube.CUBresCUBE method}|hyperpage}{74}
+\indexentry{plot3d() (cubmods.cube.CUBresCUBE method)@\spxentry{plot3d()}\spxextra{cubmods.cube.CUBresCUBE method}|hyperpage}{75}
+\indexentry{plot\_ordinal() (cubmods.cube.CUBresCUBE method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cube.CUBresCUBE method}|hyperpage}{75}
+\indexentry{betar() (in module cubmods.cube)@\spxentry{betar()}\spxextra{in module cubmods.cube}|hyperpage}{75}
+\indexentry{cmf() (in module cubmods.cube)@\spxentry{cmf()}\spxextra{in module cubmods.cube}|hyperpage}{76}
+\indexentry{draw() (in module cubmods.cube)@\spxentry{draw()}\spxextra{in module cubmods.cube}|hyperpage}{76}
+\indexentry{effecube() (in module cubmods.cube)@\spxentry{effecube()}\spxextra{in module cubmods.cube}|hyperpage}{76}
+\indexentry{init\_theta() (in module cubmods.cube)@\spxentry{init\_theta()}\spxextra{in module cubmods.cube}|hyperpage}{77}
+\indexentry{loglik() (in module cubmods.cube)@\spxentry{loglik()}\spxextra{in module cubmods.cube}|hyperpage}{77}
+\indexentry{mean() (in module cubmods.cube)@\spxentry{mean()}\spxextra{in module cubmods.cube}|hyperpage}{77}
+\indexentry{mle() (in module cubmods.cube)@\spxentry{mle()}\spxextra{in module cubmods.cube}|hyperpage}{77}
+\indexentry{pmf() (in module cubmods.cube)@\spxentry{pmf()}\spxextra{in module cubmods.cube}|hyperpage}{78}
+\indexentry{prob() (in module cubmods.cube)@\spxentry{prob()}\spxextra{in module cubmods.cube}|hyperpage}{78}
+\indexentry{var() (in module cubmods.cube)@\spxentry{var()}\spxextra{in module cubmods.cube}|hyperpage}{79}
+\indexentry{varcov() (in module cubmods.cube)@\spxentry{varcov()}\spxextra{in module cubmods.cube}|hyperpage}{79}
+\indexentry{module@\spxentry{module}!cubmods.cube\_0w0@\spxentry{cubmods.cube\_0w0}|hyperpage}{79}
+\indexentry{cubmods.cube\_0w0@\spxentry{cubmods.cube\_0w0}!module@\spxentry{module}|hyperpage}{79}
+\indexentry{CUBresCUBE0W0 (class in cubmods.cube\_0w0)@\spxentry{CUBresCUBE0W0}\spxextra{class in cubmods.cube\_0w0}|hyperpage}{81}
+\indexentry{plot() (cubmods.cube\_0w0.CUBresCUBE0W0 method)@\spxentry{plot()}\spxextra{cubmods.cube\_0w0.CUBresCUBE0W0 method}|hyperpage}{81}
+\indexentry{plot\_ordinal() (cubmods.cube\_0w0.CUBresCUBE0W0 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cube\_0w0.CUBresCUBE0W0 method}|hyperpage}{81}
+\indexentry{betabinomialxi() (in module cubmods.cube\_0w0)@\spxentry{betabinomialxi()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{81}
+\indexentry{draw() (in module cubmods.cube\_0w0)@\spxentry{draw()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{82}
+\indexentry{effe() (in module cubmods.cube\_0w0)@\spxentry{effe()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{82}
+\indexentry{init\_theta() (in module cubmods.cube\_0w0)@\spxentry{init\_theta()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{83}
+\indexentry{loglik() (in module cubmods.cube\_0w0)@\spxentry{loglik()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{83}
+\indexentry{mle() (in module cubmods.cube\_0w0)@\spxentry{mle()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{83}
+\indexentry{pmf() (in module cubmods.cube\_0w0)@\spxentry{pmf()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{84}
+\indexentry{pmfi() (in module cubmods.cube\_0w0)@\spxentry{pmfi()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{84}
+\indexentry{prob() (in module cubmods.cube\_0w0)@\spxentry{prob()}\spxextra{in module cubmods.cube\_0w0}|hyperpage}{85}
+\indexentry{module@\spxentry{module}!cubmods.cube\_ywz@\spxentry{cubmods.cube\_ywz}|hyperpage}{85}
+\indexentry{cubmods.cube\_ywz@\spxentry{cubmods.cube\_ywz}!module@\spxentry{module}|hyperpage}{85}
+\indexentry{CUBresCUBEYWZ (class in cubmods.cube\_ywz)@\spxentry{CUBresCUBEYWZ}\spxextra{class in cubmods.cube\_ywz}|hyperpage}{87}
+\indexentry{plot() (cubmods.cube\_ywz.CUBresCUBEYWZ method)@\spxentry{plot()}\spxextra{cubmods.cube\_ywz.CUBresCUBEYWZ method}|hyperpage}{87}
+\indexentry{plot\_ordinal() (cubmods.cube\_ywz.CUBresCUBEYWZ method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cube\_ywz.CUBresCUBEYWZ method}|hyperpage}{87}
+\indexentry{Qdue() (in module cubmods.cube\_ywz)@\spxentry{Qdue()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{87}
+\indexentry{Quno() (in module cubmods.cube\_ywz)@\spxentry{Quno()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{88}
+\indexentry{auxmat() (in module cubmods.cube\_ywz)@\spxentry{auxmat()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{88}
+\indexentry{betabinomial() (in module cubmods.cube\_ywz)@\spxentry{betabinomial()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{88}
+\indexentry{draw() (in module cubmods.cube\_ywz)@\spxentry{draw()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{89}
+\indexentry{init\_theta() (in module cubmods.cube\_ywz)@\spxentry{init\_theta()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{89}
+\indexentry{loglik() (in module cubmods.cube\_ywz)@\spxentry{loglik()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{90}
+\indexentry{mle() (in module cubmods.cube\_ywz)@\spxentry{mle()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{90}
+\indexentry{pmf() (in module cubmods.cube\_ywz)@\spxentry{pmf()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{91}
+\indexentry{pmfi() (in module cubmods.cube\_ywz)@\spxentry{pmfi()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{91}
+\indexentry{varcov() (in module cubmods.cube\_ywz)@\spxentry{varcov()}\spxextra{in module cubmods.cube\_ywz}|hyperpage}{92}
+\indexentry{module@\spxentry{module}!cubmods.cubsh@\spxentry{cubmods.cubsh}|hyperpage}{92}
+\indexentry{cubmods.cubsh@\spxentry{cubmods.cubsh}!module@\spxentry{module}|hyperpage}{92}
+\indexentry{CUBresCUBSH (class in cubmods.cubsh)@\spxentry{CUBresCUBSH}\spxextra{class in cubmods.cubsh}|hyperpage}{94}
+\indexentry{plot() (cubmods.cubsh.CUBresCUBSH method)@\spxentry{plot()}\spxextra{cubmods.cubsh.CUBresCUBSH method}|hyperpage}{94}
+\indexentry{plot3d() (cubmods.cubsh.CUBresCUBSH method)@\spxentry{plot3d()}\spxextra{cubmods.cubsh.CUBresCUBSH method}|hyperpage}{94}
+\indexentry{plot\_ordinal() (cubmods.cubsh.CUBresCUBSH method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cubsh.CUBresCUBSH method}|hyperpage}{95}
+\indexentry{cmf() (in module cubmods.cubsh)@\spxentry{cmf()}\spxextra{in module cubmods.cubsh}|hyperpage}{95}
+\indexentry{cmf\_delta() (in module cubmods.cubsh)@\spxentry{cmf\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{95}
+\indexentry{draw() (in module cubmods.cubsh)@\spxentry{draw()}\spxextra{in module cubmods.cubsh}|hyperpage}{96}
+\indexentry{draw2() (in module cubmods.cubsh)@\spxentry{draw2()}\spxextra{in module cubmods.cubsh}|hyperpage}{96}
+\indexentry{init\_theta() (in module cubmods.cubsh)@\spxentry{init\_theta()}\spxextra{in module cubmods.cubsh}|hyperpage}{96}
+\indexentry{loglik() (in module cubmods.cubsh)@\spxentry{loglik()}\spxextra{in module cubmods.cubsh}|hyperpage}{97}
+\indexentry{mean\_delta() (in module cubmods.cubsh)@\spxentry{mean\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{97}
+\indexentry{mle() (in module cubmods.cubsh)@\spxentry{mle()}\spxextra{in module cubmods.cubsh}|hyperpage}{97}
+\indexentry{pi1pi2\_to\_pidelta() (in module cubmods.cubsh)@\spxentry{pi1pi2\_to\_pidelta()}\spxextra{in module cubmods.cubsh}|hyperpage}{98}
+\indexentry{pidelta\_to\_pi1pi2() (in module cubmods.cubsh)@\spxentry{pidelta\_to\_pi1pi2()}\spxextra{in module cubmods.cubsh}|hyperpage}{98}
+\indexentry{plot\_simplex() (in module cubmods.cubsh)@\spxentry{plot\_simplex()}\spxextra{in module cubmods.cubsh}|hyperpage}{98}
+\indexentry{pmf() (in module cubmods.cubsh)@\spxentry{pmf()}\spxextra{in module cubmods.cubsh}|hyperpage}{99}
+\indexentry{pmf\_delta() (in module cubmods.cubsh)@\spxentry{pmf\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{99}
+\indexentry{prob() (in module cubmods.cubsh)@\spxentry{prob()}\spxextra{in module cubmods.cubsh}|hyperpage}{100}
+\indexentry{proba\_delta() (in module cubmods.cubsh)@\spxentry{proba\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{100}
+\indexentry{std\_delta() (in module cubmods.cubsh)@\spxentry{std\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{100}
+\indexentry{var\_delta() (in module cubmods.cubsh)@\spxentry{var\_delta()}\spxextra{in module cubmods.cubsh}|hyperpage}{101}
+\indexentry{varcov() (in module cubmods.cubsh)@\spxentry{varcov()}\spxextra{in module cubmods.cubsh}|hyperpage}{101}
+\indexentry{varcov\_pxd() (in module cubmods.cubsh)@\spxentry{varcov\_pxd()}\spxextra{in module cubmods.cubsh}|hyperpage}{101}
+\indexentry{module@\spxentry{module}!cubmods.cubsh\_ywx@\spxentry{cubmods.cubsh\_ywx}|hyperpage}{102}
+\indexentry{cubmods.cubsh\_ywx@\spxentry{cubmods.cubsh\_ywx}!module@\spxentry{module}|hyperpage}{102}
+\indexentry{CUBresCUBSHYWX (class in cubmods.cubsh\_ywx)@\spxentry{CUBresCUBSHYWX}\spxextra{class in cubmods.cubsh\_ywx}|hyperpage}{103}
+\indexentry{plot() (cubmods.cubsh\_ywx.CUBresCUBSHYWX method)@\spxentry{plot()}\spxextra{cubmods.cubsh\_ywx.CUBresCUBSHYWX method}|hyperpage}{103}
+\indexentry{plot\_ordinal() (cubmods.cubsh\_ywx.CUBresCUBSHYWX method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cubsh\_ywx.CUBresCUBSHYWX method}|hyperpage}{104}
+\indexentry{Q1() (in module cubmods.cubsh\_ywx)@\spxentry{Q1()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{104}
+\indexentry{Q2() (in module cubmods.cubsh\_ywx)@\spxentry{Q2()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{104}
+\indexentry{draw() (in module cubmods.cubsh\_ywx)@\spxentry{draw()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{104}
+\indexentry{init\_theta() (in module cubmods.cubsh\_ywx)@\spxentry{init\_theta()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{105}
+\indexentry{loglik() (in module cubmods.cubsh\_ywx)@\spxentry{loglik()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{105}
+\indexentry{mle() (in module cubmods.cubsh\_ywx)@\spxentry{mle()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{106}
+\indexentry{pmf() (in module cubmods.cubsh\_ywx)@\spxentry{pmf()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{106}
+\indexentry{pmfi() (in module cubmods.cubsh\_ywx)@\spxentry{pmfi()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{107}
+\indexentry{prob() (in module cubmods.cubsh\_ywx)@\spxentry{prob()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{107}
+\indexentry{varcov() (in module cubmods.cubsh\_ywx)@\spxentry{varcov()}\spxextra{in module cubmods.cubsh\_ywx}|hyperpage}{108}
+\indexentry{module@\spxentry{module}!cubmods.cush@\spxentry{cubmods.cush}|hyperpage}{109}
+\indexentry{cubmods.cush@\spxentry{cubmods.cush}!module@\spxentry{module}|hyperpage}{109}
+\indexentry{CUBresCUSH (class in cubmods.cush)@\spxentry{CUBresCUSH}\spxextra{class in cubmods.cush}|hyperpage}{110}
+\indexentry{plot() (cubmods.cush.CUBresCUSH method)@\spxentry{plot()}\spxextra{cubmods.cush.CUBresCUSH method}|hyperpage}{110}
+\indexentry{plot\_estim() (cubmods.cush.CUBresCUSH method)@\spxentry{plot\_estim()}\spxextra{cubmods.cush.CUBresCUSH method}|hyperpage}{110}
+\indexentry{plot\_ordinal() (cubmods.cush.CUBresCUSH method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush.CUBresCUSH method}|hyperpage}{111}
+\indexentry{LRT() (in module cubmods.cush)@\spxentry{LRT()}\spxextra{in module cubmods.cush}|hyperpage}{111}
+\indexentry{draw() (in module cubmods.cush)@\spxentry{draw()}\spxextra{in module cubmods.cush}|hyperpage}{111}
+\indexentry{gini() (in module cubmods.cush)@\spxentry{gini()}\spxextra{in module cubmods.cush}|hyperpage}{111}
+\indexentry{laakso() (in module cubmods.cush)@\spxentry{laakso()}\spxextra{in module cubmods.cush}|hyperpage}{112}
+\indexentry{loglik() (in module cubmods.cush)@\spxentry{loglik()}\spxextra{in module cubmods.cush}|hyperpage}{112}
+\indexentry{mean() (in module cubmods.cush)@\spxentry{mean()}\spxextra{in module cubmods.cush}|hyperpage}{112}
+\indexentry{mle() (in module cubmods.cush)@\spxentry{mle()}\spxextra{in module cubmods.cush}|hyperpage}{112}
+\indexentry{pmf() (in module cubmods.cush)@\spxentry{pmf()}\spxextra{in module cubmods.cush}|hyperpage}{113}
+\indexentry{var() (in module cubmods.cush)@\spxentry{var()}\spxextra{in module cubmods.cush}|hyperpage}{113}
+\indexentry{module@\spxentry{module}!cubmods.cush2@\spxentry{cubmods.cush2}|hyperpage}{114}
+\indexentry{cubmods.cush2@\spxentry{cubmods.cush2}!module@\spxentry{module}|hyperpage}{114}
+\indexentry{CUBresCUSH2 (class in cubmods.cush2)@\spxentry{CUBresCUSH2}\spxextra{class in cubmods.cush2}|hyperpage}{115}
+\indexentry{plot() (cubmods.cush2.CUBresCUSH2 method)@\spxentry{plot()}\spxextra{cubmods.cush2.CUBresCUSH2 method}|hyperpage}{115}
+\indexentry{plot\_ordinal() (cubmods.cush2.CUBresCUSH2 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush2.CUBresCUSH2 method}|hyperpage}{115}
+\indexentry{plot\_par\_space() (cubmods.cush2.CUBresCUSH2 method)@\spxentry{plot\_par\_space()}\spxextra{cubmods.cush2.CUBresCUSH2 method}|hyperpage}{116}
+\indexentry{draw() (in module cubmods.cush2)@\spxentry{draw()}\spxextra{in module cubmods.cush2}|hyperpage}{116}
+\indexentry{loglik() (in module cubmods.cush2)@\spxentry{loglik()}\spxextra{in module cubmods.cush2}|hyperpage}{116}
+\indexentry{mle() (in module cubmods.cush2)@\spxentry{mle()}\spxextra{in module cubmods.cush2}|hyperpage}{116}
+\indexentry{pmf() (in module cubmods.cush2)@\spxentry{pmf()}\spxextra{in module cubmods.cush2}|hyperpage}{117}
+\indexentry{varcov() (in module cubmods.cush2)@\spxentry{varcov()}\spxextra{in module cubmods.cush2}|hyperpage}{117}
+\indexentry{module@\spxentry{module}!cubmods.cush2\_x0@\spxentry{cubmods.cush2\_x0}|hyperpage}{118}
+\indexentry{cubmods.cush2\_x0@\spxentry{cubmods.cush2\_x0}!module@\spxentry{module}|hyperpage}{118}
+\indexentry{CUBresCUSH2X0 (class in cubmods.cush2\_x0)@\spxentry{CUBresCUSH2X0}\spxextra{class in cubmods.cush2\_x0}|hyperpage}{119}
+\indexentry{plot() (cubmods.cush2\_x0.CUBresCUSH2X0 method)@\spxentry{plot()}\spxextra{cubmods.cush2\_x0.CUBresCUSH2X0 method}|hyperpage}{119}
+\indexentry{plot\_ordinal() (cubmods.cush2\_x0.CUBresCUSH2X0 method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush2\_x0.CUBresCUSH2X0 method}|hyperpage}{120}
+\indexentry{draw() (in module cubmods.cush2\_x0)@\spxentry{draw()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{120}
+\indexentry{effe() (in module cubmods.cush2\_x0)@\spxentry{effe()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{120}
+\indexentry{loglik() (in module cubmods.cush2\_x0)@\spxentry{loglik()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{121}
+\indexentry{mle() (in module cubmods.cush2\_x0)@\spxentry{mle()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{121}
+\indexentry{pmf() (in module cubmods.cush2\_x0)@\spxentry{pmf()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{121}
+\indexentry{pmfi() (in module cubmods.cush2\_x0)@\spxentry{pmfi()}\spxextra{in module cubmods.cush2\_x0}|hyperpage}{122}
+\indexentry{module@\spxentry{module}!cubmods.cush2\_xx@\spxentry{cubmods.cush2\_xx}|hyperpage}{122}
+\indexentry{cubmods.cush2\_xx@\spxentry{cubmods.cush2\_xx}!module@\spxentry{module}|hyperpage}{122}
+\indexentry{CUBresCUSH2XX (class in cubmods.cush2\_xx)@\spxentry{CUBresCUSH2XX}\spxextra{class in cubmods.cush2\_xx}|hyperpage}{124}
+\indexentry{plot() (cubmods.cush2\_xx.CUBresCUSH2XX method)@\spxentry{plot()}\spxextra{cubmods.cush2\_xx.CUBresCUSH2XX method}|hyperpage}{124}
+\indexentry{plot\_ordinal() (cubmods.cush2\_xx.CUBresCUSH2XX method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush2\_xx.CUBresCUSH2XX method}|hyperpage}{124}
+\indexentry{draw() (in module cubmods.cush2\_xx)@\spxentry{draw()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{125}
+\indexentry{effe() (in module cubmods.cush2\_xx)@\spxentry{effe()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{125}
+\indexentry{loglik() (in module cubmods.cush2\_xx)@\spxentry{loglik()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{125}
+\indexentry{mle() (in module cubmods.cush2\_xx)@\spxentry{mle()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{126}
+\indexentry{pmf() (in module cubmods.cush2\_xx)@\spxentry{pmf()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{126}
+\indexentry{pmfi() (in module cubmods.cush2\_xx)@\spxentry{pmfi()}\spxextra{in module cubmods.cush2\_xx}|hyperpage}{127}
+\indexentry{module@\spxentry{module}!cubmods.cush\_x@\spxentry{cubmods.cush\_x}|hyperpage}{127}
+\indexentry{cubmods.cush\_x@\spxentry{cubmods.cush\_x}!module@\spxentry{module}|hyperpage}{127}
+\indexentry{CUBresCUSHX (class in cubmods.cush\_x)@\spxentry{CUBresCUSHX}\spxextra{class in cubmods.cush\_x}|hyperpage}{128}
+\indexentry{plot() (cubmods.cush\_x.CUBresCUSHX method)@\spxentry{plot()}\spxextra{cubmods.cush\_x.CUBresCUSHX method}|hyperpage}{129}
+\indexentry{plot\_ordinal() (cubmods.cush\_x.CUBresCUSHX method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.cush\_x.CUBresCUSHX method}|hyperpage}{129}
+\indexentry{draw() (in module cubmods.cush\_x)@\spxentry{draw()}\spxextra{in module cubmods.cush\_x}|hyperpage}{129}
+\indexentry{effe() (in module cubmods.cush\_x)@\spxentry{effe()}\spxextra{in module cubmods.cush\_x}|hyperpage}{130}
+\indexentry{loglik() (in module cubmods.cush\_x)@\spxentry{loglik()}\spxextra{in module cubmods.cush\_x}|hyperpage}{130}
+\indexentry{mle() (in module cubmods.cush\_x)@\spxentry{mle()}\spxextra{in module cubmods.cush\_x}|hyperpage}{130}
+\indexentry{pmf() (in module cubmods.cush\_x)@\spxentry{pmf()}\spxextra{in module cubmods.cush\_x}|hyperpage}{131}
+\indexentry{pmfi() (in module cubmods.cush\_x)@\spxentry{pmfi()}\spxextra{in module cubmods.cush\_x}|hyperpage}{131}
+\indexentry{prob() (in module cubmods.cush\_x)@\spxentry{prob()}\spxextra{in module cubmods.cush\_x}|hyperpage}{131}
+\indexentry{module@\spxentry{module}!cubmods.gem@\spxentry{cubmods.gem}|hyperpage}{132}
+\indexentry{cubmods.gem@\spxentry{cubmods.gem}!module@\spxentry{module}|hyperpage}{132}
+\indexentry{draw() (in module cubmods.gem)@\spxentry{draw()}\spxextra{in module cubmods.gem}|hyperpage}{133}
+\indexentry{estimate() (in module cubmods.gem)@\spxentry{estimate()}\spxextra{in module cubmods.gem}|hyperpage}{133}
+\indexentry{module@\spxentry{module}!cubmods.general@\spxentry{cubmods.general}|hyperpage}{134}
+\indexentry{cubmods.general@\spxentry{cubmods.general}!module@\spxentry{module}|hyperpage}{134}
+\indexentry{InvalidCategoriesError@\spxentry{InvalidCategoriesError}|hyperpage}{135}
+\indexentry{InvalidSampleSizeError@\spxentry{InvalidSampleSizeError}|hyperpage}{135}
+\indexentry{NoShelterError@\spxentry{NoShelterError}|hyperpage}{135}
+\indexentry{NotImplementedModelError@\spxentry{NotImplementedModelError}|hyperpage}{135}
+\indexentry{ParameterOutOfBoundsError@\spxentry{ParameterOutOfBoundsError}|hyperpage}{135}
+\indexentry{ShelterGreaterThanM@\spxentry{ShelterGreaterThanM}|hyperpage}{135}
+\indexentry{UnknownModelError@\spxentry{UnknownModelError}|hyperpage}{135}
+\indexentry{addones() (in module cubmods.general)@\spxentry{addones()}\spxextra{in module cubmods.general}|hyperpage}{135}
+\indexentry{aic() (in module cubmods.general)@\spxentry{aic()}\spxextra{in module cubmods.general}|hyperpage}{135}
+\indexentry{bic() (in module cubmods.general)@\spxentry{bic()}\spxextra{in module cubmods.general}|hyperpage}{136}
+\indexentry{bitgamma() (in module cubmods.general)@\spxentry{bitgamma()}\spxextra{in module cubmods.general}|hyperpage}{136}
+\indexentry{bitxi() (in module cubmods.general)@\spxentry{bitxi()}\spxextra{in module cubmods.general}|hyperpage}{136}
+\indexentry{choices() (in module cubmods.general)@\spxentry{choices()}\spxextra{in module cubmods.general}|hyperpage}{137}
+\indexentry{colsof() (in module cubmods.general)@\spxentry{colsof()}\spxextra{in module cubmods.general}|hyperpage}{137}
+\indexentry{conf\_border() (in module cubmods.general)@\spxentry{conf\_border()}\spxextra{in module cubmods.general}|hyperpage}{137}
+\indexentry{conf\_ell() (in module cubmods.general)@\spxentry{conf\_ell()}\spxextra{in module cubmods.general}|hyperpage}{137}
+\indexentry{dissimilarity() (in module cubmods.general)@\spxentry{dissimilarity()}\spxextra{in module cubmods.general}|hyperpage}{138}
+\indexentry{dummies2() (in module cubmods.general)@\spxentry{dummies2()}\spxextra{in module cubmods.general}|hyperpage}{138}
+\indexentry{equal3d() (in module cubmods.general)@\spxentry{equal3d()}\spxextra{in module cubmods.general}|hyperpage}{138}
+\indexentry{expit() (in module cubmods.general)@\spxentry{expit()}\spxextra{in module cubmods.general}|hyperpage}{138}
+\indexentry{formula\_parser() (in module cubmods.general)@\spxentry{formula\_parser()}\spxextra{in module cubmods.general}|hyperpage}{138}
+\indexentry{freq() (in module cubmods.general)@\spxentry{freq()}\spxextra{in module cubmods.general}|hyperpage}{139}
+\indexentry{get\_cov\_ellipsoid() (in module cubmods.general)@\spxentry{get\_cov\_ellipsoid()}\spxextra{in module cubmods.general}|hyperpage}{139}
+\indexentry{get\_minor() (in module cubmods.general)@\spxentry{get\_minor()}\spxextra{in module cubmods.general}|hyperpage}{139}
+\indexentry{hadprod() (in module cubmods.general)@\spxentry{hadprod()}\spxextra{in module cubmods.general}|hyperpage}{140}
+\indexentry{kkk() (in module cubmods.general)@\spxentry{kkk()}\spxextra{in module cubmods.general}|hyperpage}{140}
+\indexentry{load\_object() (in module cubmods.general)@\spxentry{load\_object()}\spxextra{in module cubmods.general}|hyperpage}{140}
+\indexentry{logis() (in module cubmods.general)@\spxentry{logis()}\spxextra{in module cubmods.general}|hyperpage}{141}
+\indexentry{logit() (in module cubmods.general)@\spxentry{logit()}\spxextra{in module cubmods.general}|hyperpage}{141}
+\indexentry{lsat() (in module cubmods.general)@\spxentry{lsat()}\spxextra{in module cubmods.general}|hyperpage}{141}
+\indexentry{luni() (in module cubmods.general)@\spxentry{luni()}\spxextra{in module cubmods.general}|hyperpage}{142}
+\indexentry{plot\_ellipsoid() (in module cubmods.general)@\spxentry{plot\_ellipsoid()}\spxextra{in module cubmods.general}|hyperpage}{142}
+\indexentry{probbit() (in module cubmods.general)@\spxentry{probbit()}\spxextra{in module cubmods.general}|hyperpage}{142}
+\indexentry{unique() (in module cubmods.general)@\spxentry{unique()}\spxextra{in module cubmods.general}|hyperpage}{142}
+\indexentry{module@\spxentry{module}!cubmods.ihg@\spxentry{cubmods.ihg}|hyperpage}{143}
+\indexentry{cubmods.ihg@\spxentry{cubmods.ihg}!module@\spxentry{module}|hyperpage}{143}
+\indexentry{CUBresIHG (class in cubmods.ihg)@\spxentry{CUBresIHG}\spxextra{class in cubmods.ihg}|hyperpage}{144}
+\indexentry{plot() (cubmods.ihg.CUBresIHG method)@\spxentry{plot()}\spxextra{cubmods.ihg.CUBresIHG method}|hyperpage}{144}
+\indexentry{plot\_estim() (cubmods.ihg.CUBresIHG method)@\spxentry{plot\_estim()}\spxextra{cubmods.ihg.CUBresIHG method}|hyperpage}{145}
+\indexentry{plot\_ordinal() (cubmods.ihg.CUBresIHG method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.ihg.CUBresIHG method}|hyperpage}{145}
+\indexentry{draw() (in module cubmods.ihg)@\spxentry{draw()}\spxextra{in module cubmods.ihg}|hyperpage}{145}
+\indexentry{effe() (in module cubmods.ihg)@\spxentry{effe()}\spxextra{in module cubmods.ihg}|hyperpage}{145}
+\indexentry{init\_theta() (in module cubmods.ihg)@\spxentry{init\_theta()}\spxextra{in module cubmods.ihg}|hyperpage}{146}
+\indexentry{loglik() (in module cubmods.ihg)@\spxentry{loglik()}\spxextra{in module cubmods.ihg}|hyperpage}{146}
+\indexentry{mle() (in module cubmods.ihg)@\spxentry{mle()}\spxextra{in module cubmods.ihg}|hyperpage}{146}
+\indexentry{pmf() (in module cubmods.ihg)@\spxentry{pmf()}\spxextra{in module cubmods.ihg}|hyperpage}{146}
+\indexentry{var() (in module cubmods.ihg)@\spxentry{var()}\spxextra{in module cubmods.ihg}|hyperpage}{147}
+\indexentry{module@\spxentry{module}!cubmods.ihg\_v@\spxentry{cubmods.ihg\_v}|hyperpage}{147}
+\indexentry{cubmods.ihg\_v@\spxentry{cubmods.ihg\_v}!module@\spxentry{module}|hyperpage}{147}
+\indexentry{CUBresIHGV (class in cubmods.ihg\_v)@\spxentry{CUBresIHGV}\spxextra{class in cubmods.ihg\_v}|hyperpage}{149}
+\indexentry{plot() (cubmods.ihg\_v.CUBresIHGV method)@\spxentry{plot()}\spxextra{cubmods.ihg\_v.CUBresIHGV method}|hyperpage}{149}
+\indexentry{plot\_ordinal() (cubmods.ihg\_v.CUBresIHGV method)@\spxentry{plot\_ordinal()}\spxextra{cubmods.ihg\_v.CUBresIHGV method}|hyperpage}{149}
+\indexentry{draw() (in module cubmods.ihg\_v)@\spxentry{draw()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{149}
+\indexentry{effe() (in module cubmods.ihg\_v)@\spxentry{effe()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{150}
+\indexentry{init\_theta() (in module cubmods.ihg\_v)@\spxentry{init\_theta()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{150}
+\indexentry{loglik() (in module cubmods.ihg\_v)@\spxentry{loglik()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{150}
+\indexentry{mle() (in module cubmods.ihg\_v)@\spxentry{mle()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{151}
+\indexentry{pmf() (in module cubmods.ihg\_v)@\spxentry{pmf()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{151}
+\indexentry{pmfi() (in module cubmods.ihg\_v)@\spxentry{pmfi()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{151}
+\indexentry{prob() (in module cubmods.ihg\_v)@\spxentry{prob()}\spxextra{in module cubmods.ihg\_v}|hyperpage}{152}
+\indexentry{module@\spxentry{module}!cubmods.multicub@\spxentry{cubmods.multicub}|hyperpage}{152}
+\indexentry{cubmods.multicub@\spxentry{cubmods.multicub}!module@\spxentry{module}|hyperpage}{152}
+\indexentry{multi() (in module cubmods.multicub)@\spxentry{multi()}\spxextra{in module cubmods.multicub}|hyperpage}{153}
+\indexentry{pos\_kwargs() (in module cubmods.multicub)@\spxentry{pos\_kwargs()}\spxextra{in module cubmods.multicub}|hyperpage}{154}
+\indexentry{module@\spxentry{module}!cubmods.smry@\spxentry{cubmods.smry}|hyperpage}{154}
+\indexentry{cubmods.smry@\spxentry{cubmods.smry}!module@\spxentry{module}|hyperpage}{154}
+\indexentry{CUBres (class in cubmods.smry)@\spxentry{CUBres}\spxextra{class in cubmods.smry}|hyperpage}{155}
+\indexentry{as\_dataframe() (cubmods.smry.CUBres method)@\spxentry{as\_dataframe()}\spxextra{cubmods.smry.CUBres method}|hyperpage}{156}
+\indexentry{as\_txt() (cubmods.smry.CUBres method)@\spxentry{as\_txt()}\spxextra{cubmods.smry.CUBres method}|hyperpage}{156}
+\indexentry{save() (cubmods.smry.CUBres method)@\spxentry{save()}\spxextra{cubmods.smry.CUBres method}|hyperpage}{156}
+\indexentry{summary() (cubmods.smry.CUBres method)@\spxentry{summary()}\spxextra{cubmods.smry.CUBres method}|hyperpage}{156}
+\indexentry{CUBsample (class in cubmods.smry)@\spxentry{CUBsample}\spxextra{class in cubmods.smry}|hyperpage}{157}
+\indexentry{as\_dataframe() (cubmods.smry.CUBsample method)@\spxentry{as\_dataframe()}\spxextra{cubmods.smry.CUBsample method}|hyperpage}{157}
+\indexentry{plot() (cubmods.smry.CUBsample method)@\spxentry{plot()}\spxextra{cubmods.smry.CUBsample method}|hyperpage}{157}
+\indexentry{save() (cubmods.smry.CUBsample method)@\spxentry{save()}\spxextra{cubmods.smry.CUBsample method}|hyperpage}{158}
+\indexentry{summary() (cubmods.smry.CUBsample method)@\spxentry{summary()}\spxextra{cubmods.smry.CUBsample method}|hyperpage}{158}
+\indexentry{module@\spxentry{module}!cubmods@\spxentry{cubmods}|hyperpage}{158}
+\indexentry{cubmods@\spxentry{cubmods}!module@\spxentry{module}|hyperpage}{158}
