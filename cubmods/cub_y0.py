@@ -78,7 +78,7 @@ def pmfi(m, beta, xi, Y):
     
     Auxiliary function of ``.draw()``.
 
-    :math:`\Pr(R_i = r | \pmb\theta ; \pmb y_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+    :math:`\Pr(R_i=r|\pmb\theta; \pmb T_i),\; i=1 \ldots n ,\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int

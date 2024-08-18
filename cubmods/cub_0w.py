@@ -106,7 +106,7 @@ def pmfi(m, pi, gamma, W):
     
     Auxiliary function of ``.draw()``.
 
-    :math:`\Pr(R_i = r | \pmb\theta ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+    :math:`\Pr(R_i=r|\pmb\theta; \pmb T_i),\; i=1 \ldots n ,\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int

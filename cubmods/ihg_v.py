@@ -79,7 +79,7 @@ from .smry import CUBres, CUBsample
 def pmfi(m, V, nu):
     r"""Probability distribution for each subject of a specified IHG model with covariates
 
-    :math:`\Pr(R = r | \pmb\theta_i ; \pmb v_i),\; i=1 \ldots n ,\; r=1 \ldots m`
+    :math:`\Pr(R_i=r|\pmb\theta; \pmb T_i),\; i=1 \ldots n ,\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
