@@ -13,7 +13,7 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and CUB package in R.
 
-    :math:`\Pr(R_i=r|\pmb{\theta}) = \pi \mathrm{Beta}(\xi,\phi)+\dfrac{1-\pi}{m}`
+    :math:`\Pr(R_i=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m}`
 
     :math:`\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb \beta}}`
 

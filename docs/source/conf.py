@@ -53,6 +53,11 @@ extensions = [
 bibtex_bibfiles = [
     'cub.bib'
 ]
+latex_elements = {
+    'preamble': r'''
+    \usepackage{upgreek}
+    '''
+}
 
 # https://github.com/mcmtroffaes/sphinxcontrib-bibtex/blob/develop/test/roots/test-citation_style_round_brackets/conf.py
 def bracket_style() -> BracketStyle:
