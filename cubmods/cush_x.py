@@ -71,7 +71,7 @@ from .smry import CUBres, CUBsample
 def pmf(m, sh, omega, X):
     r"""Average probability distribution of a specified CUSH model with covariates.
 
-    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i \pmb x_i),\; r=1 \ldots m`
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
@@ -116,7 +116,9 @@ def pmfi(m, sh, omega, X):
     return p
 
 def prob(m, sample, X, omega, sh):
-    r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a specified CUSH model with covariates.
+    r"""Probability distribution of a specified CUSH model with covariates.
+
+    :math:`\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\;i = 1 \ldots n`
 
     :param m: number of ordinal categories
     :type m: int

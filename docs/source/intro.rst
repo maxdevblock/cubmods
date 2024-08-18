@@ -86,8 +86,10 @@ Generally speaking, for models with covariates three different probability funct
 
     which is a column vector :math:`n \times 1` of the probabilities for each :math:`i`-th subject
     of the observed response :math:`r_i` given the estimated parameters and the covariates.
-    This can be an auxiliary function of ``.loglik()``. Notice that usually it doesn't sum to 1.
+    This has not been implemented for all models and can be an auxiliary function 
+    of ``.loglik()``. Notice that usually it doesn't sum to 1.
 
+|
 |
 |
 

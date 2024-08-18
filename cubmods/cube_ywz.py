@@ -119,7 +119,7 @@ def pmf(m, beta, gamma, alpha, Y, W, Z):
     r"""Average probability distribution of a specified CUB model 
     with covariates for the feeling component.
 
-    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int

@@ -117,7 +117,7 @@ def pmf(m, sh1, sh2,
     r"""Average probability distribution of a specified CUSH2 model with covariates
     for both shelter choices.
 
-    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb x_{1i}; ; \pmb x_{2i}),\; r=1 \ldots m`
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int

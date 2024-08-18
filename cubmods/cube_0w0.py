@@ -110,7 +110,7 @@ def pmf(m, pi, gamma, phi, W):
     r"""Average probability distribution of a specified CUB model 
     with covariates for the feeling component.
 
-    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m`
+    :math:`\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m`
 
     :param m: number of ordinal categories
     :type m: int
@@ -233,7 +233,7 @@ def prob(m, sample, W, pi, gamma, phi):
     Compute the probability distribution of a CUB model with covariates for both the feeling 
     and the uncertainty components. Auxiliary function of ``.loglik()``
 
-    :math:`\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n`
+    :math:`\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1 \ldots n`
 
     :param m: number of ordinal categories
     :type m: int

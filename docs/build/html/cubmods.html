@@ -1162,7 +1162,7 @@ explaining the feeling component.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub_0w.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_0w.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUB model 
 with covariates for the feeling component.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i = r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1215,7 +1215,7 @@ with covariates for the feeling component.</p>
 given an observed sample</p>
 <p>Compute the probability distribution of a CUB model with covariates
 for the feeling component, given an observed sample.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R_i = r_i | \pmb\theta ; \pmb w_i),\; i=1 \ldots n\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1527,7 +1527,7 @@ the uncertainty component.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub_y0.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_y0.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUB model 
 with covariates.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i = r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1580,7 +1580,7 @@ with covariates.</p>
 given an observed sample</p>
 <p>Compute the probability distribution of a CUB model with covariates
 for the feeling component, given an observed sample.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R_i = r_i | \pmb\theta ; \pmb w_i),\; i=1 \ldots n\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1867,7 +1867,7 @@ feeling and the uncertainty components by means of logistic transform.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub_yw.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_yw.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUB model 
 with covariates for both feeling and uncertainty.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i; \pmb y_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1923,7 +1923,7 @@ with covariates for both feeling and uncertainty.</p>
 <dd><p>Probability distribution of a CUB model with covariates for both feeling and uncertainty.</p>
 <p>Compute the probability distribution of a CUB model with covariates for both the feeling 
 and the uncertainty components.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R = r_i | \pmb\theta_i ; \pmb w_i; \pmb y_i),\; i=1 \ldots n\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2741,7 +2741,7 @@ the informatio matrix (to compute the variance-covariance matrix) is approximate
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_0w0.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_0w0.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUB model 
 with covariates for the feeling component.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2795,7 +2795,7 @@ with covariates for feeling only.</p>
 <dd><p>Probability distribution of a CUBE model with covariates for feeling.</p>
 <p>Compute the probability distribution of a CUB model with covariates for both the feeling 
 and the uncertainty components. Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.loglik()</span></code></p>
-<p><span class="math notranslate nohighlight">\(\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -3179,7 +3179,7 @@ explicative covariates for all the three parameters.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUB model 
 with covariates for the feeling component.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -4214,7 +4214,7 @@ explaining all the components and the shelter effect.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cubsh_ywx.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh_ywx.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUBSH model with covariates
 (aka GeCUB model).</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i; \pmb y_i, \pmb x_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -4277,7 +4277,7 @@ explaining all the components and the shelter effect.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cubsh_ywx.</span></span><span class="sig-name descname"><span class="pre">prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh_ywx.prob" title="Permalink to this definition">#</a></dt>
 <dd><p>Probability distribution of a CUBSH model with covariates.</p>
 <p>Compute the probability distribution of a CUBSH model with covariates.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R = r_i | \pmb\theta_i ; \pmb w_i; \pmb y_i; \pmb x_i),\; i=1 \ldots n\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -5258,7 +5258,7 @@ for the given ordinal responses.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush2_x0.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2_x0.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUSH2 model with covariates
 for the 1st shelter choice.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb x_{1i}),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -5573,7 +5573,7 @@ for the given ordinal responses.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush2_xx.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2_xx.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUSH2 model with covariates
 for both shelter choices.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb x_{1i}; ; \pmb x_{2i}),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -5879,7 +5879,7 @@ to explain the shelter effect.</p>
 <dt class="sig sig-object py" id="cubmods.cush_x.pmf">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush_x.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush_x.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUSH model with covariates.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i \pmb x_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -5926,7 +5926,8 @@ to explain the shelter effect.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cush_x.prob">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cush_x.</span></span><span class="sig-name descname"><span class="pre">prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush_x.prob" title="Permalink to this definition">#</a></dt>
-<dd><p>Probability <span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta)\)</span> of a specified CUSH model with covariates.</p>
+<dd><p>Probability distribution of a specified CUSH model with covariates.</p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\;i = 1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -7367,7 +7368,7 @@ to explain the shelter effect.</p>
 <dt class="sig sig-object py" id="cubmods.ihg_v.pmf">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified IHG model with covariates.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i \pmb v_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -7416,7 +7417,7 @@ to explain the shelter effect.</p>
 given an observed sample.</p>
 <p>Compute the probability distribution of a IHG model with covariates, 
 given an observed sample.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
