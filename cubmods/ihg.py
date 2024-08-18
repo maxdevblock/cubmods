@@ -17,7 +17,7 @@ Description:
         \begin{array}{l}
             \Pr(R=1|\theta) = \theta
             \\
-            \Pr(R=r+1|\theta) = \Pr(R=r)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
+            \Pr(R=r+1|\theta) = \Pr(R=r|\pmb\theta)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
         \end{array}
         \right.
 

@@ -17,7 +17,7 @@ Description:
         \begin{array}{l}
             \Pr(R_i=1|\pmb\theta;\pmb v_i) = \theta_i
             \\
-            \Pr(R_i=r+1|\pmb\theta;\pmb v_i) = \Pr(R_i=r)(1-\theta_i)\dfrac{m-r}{m-1-r(1-\theta_i)},\; r= 1, \ldots, m-1
+            \Pr(R_i=r+1|\pmb\theta;\pmb v_i) = \Pr(R_i=r|\pmb\theta ; \pmb v_i)(1-\theta_i)\dfrac{m-r}{m-1-r(1-\theta_i)},\; r= 1, \ldots, m-1
         \end{array}
         \right.
 
