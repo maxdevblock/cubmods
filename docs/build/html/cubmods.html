@@ -7640,6 +7640,44 @@ Piccolo et Al. and CUB package in R.</p>
 <p>Default Class for MLE results; each model module extends this Class to an ad hoc 
 Class with specific functions. An instance of the extended Class is returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code>
 functions of model modules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – the model family</p></li>
+<li><p><strong>df</strong> – the original DataFrame with observed sample and covariates (if any)</p></li>
+<li><p><strong>formula</strong> – the formula used to fit the data</p></li>
+<li><p><strong>m</strong> – number of ordinal categories</p></li>
+<li><p><strong>n</strong> – number of observed ordinal responses</p></li>
+<li><p><strong>sample</strong> – the observed sample of ordinal resposes</p></li>
+<li><p><strong>f</strong> – absolute frequecies of the sample</p></li>
+<li><p><strong>theoric</strong> – estimated probabilty distribution</p></li>
+<li><p><strong>diss</strong> – dissimilarity index</p></li>
+<li><p><strong>est_names</strong> – name of estimated parameters</p></li>
+<li><p><strong>estimates</strong> – values of estimated parameters</p></li>
+<li><p><strong>e_types</strong> – parameters’ component</p></li>
+<li><p><strong>varmat</strong> – variance-covariance matrix of estimated parameters</p></li>
+<li><p><strong>srtderrs</strong> – standard errors of estimated parameters</p></li>
+<li><p><strong>pval</strong> – p-values of estimated parameters</p></li>
+<li><p><strong>wald</strong> – Wald test statistics of estimated parameters</p></li>
+<li><p><strong>loglike</strong> – log-likelihood value</p></li>
+<li><p><strong>muloglik</strong> – average log-likelihood for each observation</p></li>
+<li><p><strong>loglikuni</strong> – log-likelihood of null model</p></li>
+<li><p><strong>AIC</strong> – Akaike Information Criterion</p></li>
+<li><p><strong>BIC</strong> – Bayesian Information Criterino</p></li>
+<li><p><strong>seconds</strong> – execution time of the algorithm</p></li>
+<li><p><strong>time_exe</strong> – when the algorithm has been executed</p></li>
+<li><p><strong>logliksat</strong> – log-likelihood of saturated model (for models without covariates only)</p></li>
+<li><p><strong>logliksatcov</strong> – <strong>deprecated</strong></p></li>
+<li><p><strong>dev</strong> – deviance</p></li>
+<li><p><strong>niter</strong> – number of iterations of the EM algorithm</p></li>
+<li><p><strong>maxiter</strong> – maximum number of iterations of the EM algorithm</p></li>
+<li><p><strong>tol</strong> – fixed error tolerance</p></li>
+<li><p><strong>sh</strong> – shelter choice(s), if any</p></li>
+<li><p><strong>rho</strong> – coefficient of correlation between <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\xi\)</span></p></li>
+<li><p><strong>gen_pars</strong> – parameters of known model to be compared with the estimates</p></li>
+</ul>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -7694,6 +7732,23 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An instance of this Class is returned by <code class="docutils literal notranslate"><span class="pre">.draw()</span></code> functions. 
 See the corresponding model’s function for details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rv</strong> – array of drawn ordinal responses</p></li>
+<li><p><strong>m</strong> – number of ordinal categories</p></li>
+<li><p><strong>pars</strong> – parameters’ values array</p></li>
+<li><p><strong>model</strong> – the model family</p></li>
+<li><p><strong>df</strong> – original DataFrame (if provided) with a column of the drawn sample</p></li>
+<li><p><strong>formula</strong> – the formula used to draw the sample</p></li>
+<li><p><strong>diss</strong> – dissimilarity index between drawn and theoretical distribution</p></li>
+<li><p><strong>theoric</strong> – theoretical distribution</p></li>
+<li><p><strong>par_name</strong> – names of the parameters</p></li>
+<li><p><strong>sh</strong> – shelter choice(s), if any</p></li>
+<li><p><strong>seed</strong> – the <code class="docutils literal notranslate"><span class="pre">seed</span></code> used to ensure reproducibility</p></li>
+</ul>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>

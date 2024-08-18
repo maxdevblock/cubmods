@@ -165,9 +165,42 @@ def _as_txt(
     return smry
 
 class CUBres(object):
-    """Default Class for MLE results; each model module extends this Class to an ad hoc 
+    r"""Default Class for MLE results; each model module extends this Class to an ad hoc 
     Class with specific functions. An instance of the extended Class is returned by ``.mle()``
     functions of model modules.
+
+    :ivar model: the model family
+    :ivar df: the original DataFrame with observed sample and covariates (if any)
+    :ivar formula: the formula used to fit the data
+    :ivar m: number of ordinal categories
+    :ivar n: number of observed ordinal responses
+    :ivar sample: the observed sample of ordinal resposes
+    :ivar f: absolute frequecies of the sample
+    :ivar theoric: estimated probabilty distribution
+    :ivar diss: dissimilarity index
+    :ivar est_names: name of estimated parameters
+    :ivar estimates: values of estimated parameters
+    :ivar e_types: parameters' component
+    :ivar varmat: variance-covariance matrix of estimated parameters
+    :ivar srtderrs: standard errors of estimated parameters
+    :ivar pval: p-values of estimated parameters
+    :ivar wald: Wald test statistics of estimated parameters
+    :ivar loglike: log-likelihood value
+    :ivar muloglik: average log-likelihood for each observation
+    :ivar loglikuni: log-likelihood of null model
+    :ivar AIC: Akaike Information Criterion
+    :ivar BIC: Bayesian Information Criterino
+    :ivar seconds: execution time of the algorithm
+    :ivar time_exe: when the algorithm has been executed
+    :ivar logliksat: log-likelihood of saturated model (for models without covariates only)
+    :ivar logliksatcov: **deprecated**
+    :ivar dev: deviance
+    :ivar niter: number of iterations of the EM algorithm
+    :ivar maxiter: maximum number of iterations of the EM algorithm
+    :ivar tol: fixed error tolerance
+    :ivar sh: shelter choice(s), if any
+    :ivar rho: coefficient of correlation between :math:`\pi` and :math:`\xi`
+    :ivar gen_pars: parameters of known model to be compared with the estimates
     """
     def __init__(
         self,
@@ -366,6 +399,18 @@ class CUBres(object):
 class CUBsample(object):
     """An instance of this Class is returned by ``.draw()`` functions. 
     See the corresponding model's function for details.
+
+    :ivar rv: array of drawn ordinal responses
+    :ivar m: number of ordinal categories
+    :ivar pars: parameters' values array
+    :ivar model: the model family
+    :ivar df: original DataFrame (if provided) with a column of the drawn sample
+    :ivar formula: the formula used to draw the sample
+    :ivar diss: dissimilarity index between drawn and theoretical distribution
+    :ivar theoric: theoretical distribution
+    :ivar par_name: names of the parameters
+    :ivar sh: shelter choice(s), if any
+    :ivar seed: the ``seed`` used to ensure reproducibility
     """
     def __init__(self, rv, m, pars,
         model, df, formula, diss, theoric,
