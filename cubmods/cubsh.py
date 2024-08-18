@@ -169,7 +169,7 @@ def pmf(m, sh, pi1, pi2, xi):
     p = pi1*probbit(m, xi) + pi2/m + (1-pi1-pi2)*D
     return p
 
-def proba(m, sh, pi1, pi2, xi, r):
+def prob(m, sh, pi1, pi2, xi, r):
     r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a CUBSH model without covariates,
     using alternative parametrization :math:`(\pi_1, \pi_2)`.
 
@@ -329,7 +329,7 @@ def _mean_diff(m, sh, pi1, pi2, xi):
     mu = 0
     for r in R:
         for s in S:
-            mu += abs(r-s)*proba(m,sh,pi1,pi2,xi,r)*proba(m,sh,pi1,pi2,xi,s)
+            mu += abs(r-s)*prob(m,sh,pi1,pi2,xi,r)*prob(m,sh,pi1,pi2,xi,s)
     return mu
 
 #TODO: test median
@@ -345,7 +345,7 @@ def _median(m, sh, pi1, pi2, xi):
 def _gini(m, sh, pi1, pi2, xi):
     ssum = 0
     for r in choices(m):
-        ssum += proba(m, sh, pi1, pi2, xi, r)**2
+        ssum += prob(m, sh, pi1, pi2, xi, r)**2
     return m*(1-ssum)/(m-1)
 
 #TODO: test laakso

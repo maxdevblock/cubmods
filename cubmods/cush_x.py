@@ -115,7 +115,7 @@ def pmfi(m, sh, omega, X):
             delta=delta[i])
     return p
 
-def proba(m, sample, X, omega, sh):
+def prob(m, sample, X, omega, sh):
     r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a specified CUSH model with covariates.
 
     :param m: number of ordinal categories
@@ -216,7 +216,7 @@ def loglik(m, sample, X, omega, sh):
     :return: the log-likelihood value
     :rtype: float
     """
-    p = proba(m=m, sample=sample, X=X,
+    p = prob(m=m, sample=sample, X=X,
         omega=omega, sh=sh)
     l = np.sum(np.log(p))
     return l

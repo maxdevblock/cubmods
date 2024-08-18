@@ -98,7 +98,7 @@ def pmf(m, pi, xi):
     p = pi*binom(m-1, R-1) * (1-xi)**(R-1) * xi**(m-R) + (1-pi)/m
     return p
 
-def proba(m, pi, xi, r):
+def prob(m, pi, xi, r):
     r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a specified CUB model.
 
     :param m: number of ordinal categories
@@ -194,7 +194,7 @@ def _mean_diff(m, pi, xi):
     mu = 0
     for r in R:
         for s in S:
-            mu += abs(r-s)*proba(m,pi,xi,r)*proba(m,pi,xi,s)
+            mu += abs(r-s)*prob(m,pi,xi,r)*prob(m,pi,xi,s)
     return mu
 
 def median(m, pi, xi):
@@ -230,7 +230,7 @@ def gini(m, pi, xi):
     """
     ssum = 0
     for r in choices(m):
-        ssum += proba(m, pi, xi, r)**2
+        ssum += prob(m, pi, xi, r)**2
     return m*(1-ssum)/(m-1)
 
 def laakso(m, pi, xi):

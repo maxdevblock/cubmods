@@ -71,7 +71,7 @@ from .smry import CUBres, CUBsample
 # FUNCTIONS
 ###################################################################
 
-def proba(m, pi, xi, phi, r):
+def prob(m, pi, xi, phi, r):
     r"""Probability :math:`\Pr(R = r | \pmb\theta)` of a CUBE model without covariates.
 
     :param m: number of ordinal categories
@@ -209,7 +209,7 @@ def _mean_diff(m, pi, xi, phi):
     mu = 0
     for r in R:
         for s in S:
-            mu += abs(r-s)*proba(m,pi,xi,phi,r)*proba(m,pi,xi,phi,s)
+            mu += abs(r-s)*prob(m,pi,xi,phi,r)*prob(m,pi,xi,phi,s)
     return mu
     
 # TODO: test meadian
@@ -225,7 +225,7 @@ def _median(m, pi, xi, phi):
 def _gini(m, pi, xi, phi):
     ssum = 0
     for r in choices(m):
-        ssum += proba(m, pi, xi, phi, r)**2
+        ssum += prob(m, pi, xi, phi, r)**2
     return m*(1-ssum)/(m-1)
 
 # TODO: test laakso

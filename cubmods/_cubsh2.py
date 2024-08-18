@@ -101,7 +101,7 @@ def pmf(m, sh1, sh2, pi1, pi2, pi3, xi):
         + (1-pi1-pi2-pi3)*D2)
     return p
 
-def proba(m, sh1, sh2, pi1, pi2, pi3, xi, r):
+def prob(m, sh1, sh2, pi1, pi2, pi3, xi, r):
     p = pmf(m, sh1, sh2, pi1, pi2, pi3, xi)
     return p[r-1]
 
@@ -149,7 +149,7 @@ def mean_diff(m, sh1, sh2, pi1, pi2, pi3, xi):
     mu = 0
     for r in R:
         for s in S:
-            mu += abs(r-s)*proba(m,sh1,sh2,pi1,pi2,pi3,xi,r)*proba(m,sh1,sh2,pi1,pi2,pi3,xi,s)
+            mu += abs(r-s)*prob(m,sh1,sh2,pi1,pi2,pi3,xi,r)*prob(m,sh1,sh2,pi1,pi2,pi3,xi,s)
     return mu
 
 #TODO: test median
@@ -165,7 +165,7 @@ def median(m, sh1, sh2, pi1, pi2, pi3, xi):
 def gini(m, sh1, sh2, pi1, pi2, pi3, xi):
     ssum = 0
     for r in choices(m):
-        ssum += proba(m, sh1, sh2, pi1, pi2, pi3, xi, r)**2
+        ssum += prob(m, sh1, sh2, pi1, pi2, pi3, xi, r)**2
     return m*(1-ssum)/(m-1)
 
 #TODO: test laakso

@@ -173,7 +173,7 @@ def draw(m, nu, V,
         seed=seed
     )
 
-def probi(m, sample, V, nu):
+def prob(m, sample, V, nu):
     r"""Probability distribution of a IHG model with covariates
     given an observed sample.
 
@@ -220,7 +220,7 @@ def loglik(m, sample, V, nu):
     :return: the log-likelihood value
     :rtype: float
     """
-    p = probi(m, sample, V, nu)
+    p = prob(m, sample, V, nu)
     l = np.sum(np.log(p))
     return l
 

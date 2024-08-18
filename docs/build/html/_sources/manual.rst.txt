@@ -1523,7 +1523,7 @@ Without covariates
     \begin{array}{l}
         \Pr(R=1|\theta) = \theta
         \\
-        \Pr(R=r+1|\theta) = \Pr(R=r)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
+        \Pr(R=r+1|\theta) = \Pr(R=r|\theta)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
     \end{array}
     \right.
 
@@ -1598,12 +1598,12 @@ With covariates
     \begin{array}{l}
         \Pr(R_i=1|\pmb\theta;\pmb v_i) = \theta_i
         \\
-        \Pr(R_i=r+1|\pmb\theta;\pmb v_i) = \Pr(R_i=r)(1-\theta_i)\dfrac{m-r}{m-1-r(1-\theta_i)},\; r= 1, \ldots, m-1
+        \Pr(R_i=r+1|\pmb\theta;\pmb v_i) = \Pr(R_i=r|\pmb\theta;\pmb v_i)(1-\theta_i)\dfrac{m-r}{m-1-r(1-\theta_i)},\; r= 1, \ldots, m-1
     \end{array}
     \right.
 
 .. math::
-    \theta_i = \dfrac{1}{1 + \exp\{ - \pmb \nu_i \pmb v \}}
+    \theta_i = \dfrac{1}{1 + \exp\{ - \pmb v_i \pmb \nu \}}
 
 In this example we'll draw a sample from an IHG with covariates
 and then will estimate the parameters given the observed sample.

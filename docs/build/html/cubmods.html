@@ -535,7 +535,7 @@ if provided, probability distribution of a known model.</p>
 <dt class="sig sig-object py" id="cubmods.cub.cmf">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">cmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.cmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Cumulative probability of a specified CUB model.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R \leq r | \pmb\theta),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -681,11 +681,6 @@ covariates for a given absolute frequency distribution.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.cub.mean_diff">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">mean_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.mean_diff" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cub.median">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">median</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.median" title="Permalink to this definition">#</a></dt>
 <dd><p>The median of a specified CUB model.</p>
@@ -770,8 +765,8 @@ covariates for a given absolute frequency distribution.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.cub.proba">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.proba" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cubmods.cub.prob">
+<span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.prob" title="Permalink to this definition">#</a></dt>
 <dd><p>Probability <span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta)\)</span> of a specified CUB model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1029,31 +1024,6 @@ if provided, average probability distribution of a known model.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.cub_0w.cmf">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cub_0w.</span></span><span class="sig-name descname"><span class="pre">cmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_0w.cmf" title="Permalink to this definition">#</a></dt>
-<dd><p>Average cumulative probability of a specified CUB model
-with covariates for the feeling component.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R \geq r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m\)</span></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
-<li><p><strong>pi</strong> (<em>float</em>) – uncertainty parameter <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
-<li><p><strong>gamma</strong> (<em>array of float</em>) – array <span class="math notranslate nohighlight">\(\pmb \gamma\)</span> of parameters for the feeling component, whose length equals 
-<code class="docutils literal notranslate"><span class="pre">W.columns.size+1</span></code> to include an intercept term in the model (first entry)</p></li>
-<li><p><strong>W</strong> (<em>pandas dataframe</em>) – dataframe of covariates for explaining the feeling component</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the array of the cumulative probability distribution.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>numpy array</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="cubmods.cub_0w.draw">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub_0w.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_0w.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a random sample from a specified CUB model with covariates for
@@ -1125,7 +1095,7 @@ These estimates are set as initial values for parameters to start the E-M algori
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an array <span class="math notranslate nohighlight">\(\pmb\gamma^{(0)}\)</span> of size <span class="math notranslate nohighlight">\(\pmb w + 1\)</span></p>
+<dd class="field-even"><p>an array <span class="math notranslate nohighlight">\(\pmb\gamma^{(0)}\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>array of float</p>
@@ -1192,7 +1162,7 @@ explaining the feeling component.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub_0w.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_0w.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUB model 
 with covariates for the feeling component.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i = r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1218,7 +1188,7 @@ with covariates for the feeling component.</p>
 <dd><p>Probability distribution for each subject of a specified CUB model 
 with covariates for the feeling component.</p>
 <p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.draw()</span></code>.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i = r | \pmb\theta ; \pmb w_i),\; i=1 \ldots n ,\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1245,7 +1215,7 @@ with covariates for the feeling component.</p>
 given an observed sample</p>
 <p>Compute the probability distribution of a CUB model with covariates
 for the feeling component, given an observed sample.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i = r_i | \pmb\theta ; \pmb w_i),\; i=1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1557,7 +1527,7 @@ the uncertainty component.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub_y0.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_y0.pmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Average probability distribution of a specified CUB model 
 with covariates.</p>
-<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R = r | \pmb\theta_i ; \pmb w_i),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^n \Pr(R_i = r | \pmb\theta ; \pmb w_i),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1583,7 +1553,7 @@ with covariates.</p>
 <dd><p>Probability distribution for each subject of a specified CUB model 
 with covariates.</p>
 <p>Auxiliary function of <code class="docutils literal notranslate"><span class="pre">.draw()</span></code>.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta_i ; \pmb y_i),\; i=1 \ldots n ,\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i = r | \pmb\theta ; \pmb y_i),\; i=1 \ldots n ,\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1610,7 +1580,7 @@ with covariates.</p>
 given an observed sample</p>
 <p>Compute the probability distribution of a CUB model with covariates
 for the feeling component, given an observed sample.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R = r_i | \pmb\theta_i ; \pmb w_i),\; i=1 \ldots n\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R_i = r_i | \pmb\theta ; \pmb w_i),\; i=1 \ldots n\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2199,7 +2169,7 @@ if provided, probability distribution of a known model.</p>
 <dt class="sig sig-object py" id="cubmods.cube.cmf">
 <span class="sig-prename descclassname"><span class="pre">cubmods.cube.</span></span><span class="sig-name descname"><span class="pre">cmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube.cmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Cumulative probability of a specified CUBE model.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R \leq r | \pmb\theta),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2385,8 +2355,8 @@ the given absolute frequency distribution.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.cube.proba">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cube.</span></span><span class="sig-name descname"><span class="pre">proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube.proba" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cubmods.cube.prob">
+<span class="sig-prename descclassname"><span class="pre">cubmods.cube.</span></span><span class="sig-name descname"><span class="pre">prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube.prob" title="Permalink to this definition">#</a></dt>
 <dd><p>Probability <span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta)\)</span> of a CUBE model without covariates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3472,7 +3442,7 @@ if provided, probability distribution of a known model.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">cmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.cmf" title="Permalink to this definition">#</a></dt>
 <dd><p>Cumulative probability of a specified CUBSH model,
 using alternative parametrization <span class="math notranslate nohighlight">\((\pi_1, \pi_2)\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R \leq r | \pmb\theta),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -3497,7 +3467,7 @@ using alternative parametrization <span class="math notranslate nohighlight">\((
 <span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">cmf_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.cmf_delta" title="Permalink to this definition">#</a></dt>
 <dd><p>Cumulative probability of a specified CUBSH model,
 using canonic parametrization <span class="math notranslate nohighlight">\((\pi, \delta)\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(\Pr(R \geq r | \pmb\theta),\; r=1 \ldots m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Pr(R \leq r | \pmb\theta),\; r=1 \ldots m\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -3788,8 +3758,8 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.cubsh.proba">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.proba" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cubmods.cubsh.prob">
+<span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.prob" title="Permalink to this definition">#</a></dt>
 <dd><p>Probability <span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta)\)</span> of a CUBSH model without covariates,
 using alternative parametrization <span class="math notranslate nohighlight">\((\pi_1, \pi_2)\)</span>.</p>
 <dl class="field-list simple">
@@ -5954,8 +5924,8 @@ to explain the shelter effect.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.cush_x.proba">
-<span class="sig-prename descclassname"><span class="pre">cubmods.cush_x.</span></span><span class="sig-name descname"><span class="pre">proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush_x.proba" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cubmods.cush_x.prob">
+<span class="sig-prename descclassname"><span class="pre">cubmods.cush_x.</span></span><span class="sig-name descname"><span class="pre">prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush_x.prob" title="Permalink to this definition">#</a></dt>
 <dd><p>Probability <span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta)\)</span> of a specified CUSH model with covariates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -7440,8 +7410,8 @@ to explain the shelter effect.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="cubmods.ihg_v.probi">
-<span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">probi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.probi" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="cubmods.ihg_v.prob">
+<span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.prob" title="Permalink to this definition">#</a></dt>
 <dd><p>Probability distribution of a IHG model with covariates
 given an observed sample.</p>
 <p>Compute the probability distribution of a IHG model with covariates, 

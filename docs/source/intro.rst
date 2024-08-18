@@ -42,8 +42,54 @@ this environment could be useful to the scientific community.
 Notes
 *****
 
-To simplify the notation, the complete matrix of the covariates will be occasionally indicated by :math:`\pmb T` and the column vector of model's parameters by :math:`\pmb\theta`.
+To simplify the notation, the complete matrix of the covariates will be occasionally 
+indicated by :math:`\pmb T` and the column vector of model's parameters by :math:`\pmb\theta`.
 
+Generally speaking, for models with covariates three different probability functions are available:
+
+1. ``.pmfi()`` (probability distribution matrix)
+    .. math::
+        \Pr(R_i=r|\pmb\theta; \pmb T_i),
+        \left\{
+        \begin{array}{l}
+        i=1,\ldots,n
+        \\
+        r=1,\ldots,m
+        \end{array}
+        \right.
+
+    which is a matrix :math:`n \times m` of the probability distribution for each :math:`i`-th subject
+    given the estimated parameters and the covariates. This is an auxiliary function
+    for ``.draw()``. Notice that each row sums to 1, i.e. 
+
+    .. math::
+        \sum_{r=1}^m \Pr(R_i=r|\pmb\theta; \pmb T_i) = 1,\; \forall i
+
+2. ``.pmf()`` (average probability distribution)
+    .. math::
+        \frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1,\ldots,m
+
+    which is a row vector :math:`1 \times m` of the average probability given the
+    estimated parameters and the covariates. This is an auxiliary function
+    of ``.plot_ordinal()``. Notice that it sums to 1 because 
+
+    .. math::
+        \begin{align*}
+        \sum_{r=1}^m \frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i)
+        &= \frac{1}{n} \sum_{i=1}^n \; \sum_{r=1}^m \Pr(R_i=r|\pmb\theta; \pmb T_i)
+        \\&= \frac{1}{n} \sum_{i=1}^n 1 = \frac{1}{n} n = 1
+        \end{align*}
+
+3. ``.prob()`` (observed sample probability)
+    .. math::
+        \Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1,\ldots,n
+
+    which is a column vector :math:`n \times 1` of the probabilities for each :math:`i`-th subject
+    of the observed response :math:`r_i` given the estimated parameters and the covariates.
+    This can be an auxiliary function of ``.loglik()``. Notice that usually it doesn't sum to 1.
+
+|
+|
 
 .. bibliography:: cub.bib
     :cited:

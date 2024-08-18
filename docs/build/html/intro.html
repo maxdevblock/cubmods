@@ -41,6 +41,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -370,6 +371,60 @@ and GAUSS <span id="id12">(<a class="reference internal" href="#id20" title="Dom
 of the Python programming language also in the statistical field <span id="id13">(<a class="reference internal" href="#id36" title="W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, r, git, and docker. Computational Methods and Data Analysis for Metabolomics, pages 265–311, 2020.">Pittard and Li, 2020</a>)</span>,
 their implementation in
 this environment could be useful to the scientific community.</p>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">#</a></h2>
+<p>To simplify the notation, the complete matrix of the covariates will be occasionally
+indicated by <span class="math notranslate nohighlight">\(\pmb T\)</span> and the column vector of model’s parameters by <span class="math notranslate nohighlight">\(\pmb\theta\)</span>.</p>
+<p>Generally speaking, for models with covariates three different probability functions are available:</p>
+<ol class="arabic">
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">.pmfi()</span></code> (probability distribution matrix)</dt><dd><div class="math notranslate nohighlight">
+\[\begin{split}\Pr(R_i=r|\pmb\theta; \pmb T_i),
+\left\{
+\begin{array}{l}
+i=1,\ldots,n
+\\
+r=1,\ldots,m
+\end{array}
+\right.\end{split}\]</div>
+<p>which is a matrix <span class="math notranslate nohighlight">\(n \times m\)</span> of the probability distribution for each <span class="math notranslate nohighlight">\(i\)</span>-th subject
+given the estimated parameters and the covariates. This is an auxiliary function
+for <code class="docutils literal notranslate"><span class="pre">.draw()</span></code>. Notice that each row sums to 1, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\sum_{r=1}^m \Pr(R_i=r|\pmb\theta; \pmb T_i) = 1,\; \forall i\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">.pmf()</span></code> (average probability distribution)</dt><dd><div class="math notranslate nohighlight">
+\[\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1,\ldots,m\]</div>
+<p>which is a row vector <span class="math notranslate nohighlight">\(1 \times m\)</span> of the average probability given the
+estimated parameters and the covariates. This is an auxiliary function
+of <code class="docutils literal notranslate"><span class="pre">.plot_ordinal()</span></code>. Notice that it sums to 1 because</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\sum_{r=1}^m \frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i)
+&amp;= \frac{1}{n} \sum_{i=1}^n \; \sum_{r=1}^m \Pr(R_i=r|\pmb\theta; \pmb T_i)
+\\&amp;= \frac{1}{n} \sum_{i=1}^n 1 = \frac{1}{n} n = 1
+\end{align*}\end{split}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">.prob()</span></code> (observed sample probability)</dt><dd><div class="math notranslate nohighlight">
+\[\Pr(R_i=r_i|\pmb\theta;\pmb T_i),\; i=1,\ldots,n\]</div>
+<p>which is a column vector <span class="math notranslate nohighlight">\(n \times 1\)</span> of the probabilities for each <span class="math notranslate nohighlight">\(i\)</span>-th subject
+of the observed response <span class="math notranslate nohighlight">\(r_i\)</span> given the estimated parameters and the covariates.
+This can be an auxiliary function of <code class="docutils literal notranslate"><span class="pre">.loglik()</span></code>. Notice that usually it doesn’t sum to 1.</p>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
 <div class="docutils container" id="id14">
 <dl class="citation">
 <dt class="label" id="id37"><span class="brackets">CSDI+21</span></dt>
@@ -446,6 +501,7 @@ this environment could be useful to the scientific community.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
 </ul>
   </nav></div>
 
