@@ -123,6 +123,9 @@ def estimate(
     #TODO: other warnings?
     if n < 200:
         warnings.warn("Sample size less than 200")
+    if df[ordinal].min() < 1:
+        warnings.warn(f"ATTENTION: minimum ordinal category is {df[ordinal].min()}. "
+                      "Should be 1.")
     if m is None:
         warnings.warn("No m given, max(ordinal) has been taken")
         m = np.max(sample)
