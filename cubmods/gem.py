@@ -111,6 +111,9 @@ def estimate(
     # all rows with at least a NaN will be dropped
     dfi_tot = df.index.size
     df = df.dropna().copy(deep=True)
+    # if NaN also an int var is typecasted to float
+    # so we need to typecast ordinal as int
+    df[ordinal] = df[ordinal].astype(int)
     dfi_nona = df.index.size
     if dfi_tot != dfi_nona:
         warnings.warn(f"{dfi_tot-dfi_nona} NaNs detected and removed.")
