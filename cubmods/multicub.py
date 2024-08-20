@@ -209,7 +209,7 @@ def multi(ords, ms=None,
                 "\n"fr" $\phi={phi:.2f}$ ""\n",
                 **posi, color=f"C{i}")
             if model == "cub" and sh is not None:
-                delta = est.estimates[2]
+                delta = est.estimates[-1]
                 ax.text(1-pi, 1-xi,
                 "\n"fr" $\delta={delta:.2f}$ ""\n",
                 **posi, color=f"C{i}")
