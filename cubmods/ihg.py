@@ -341,6 +341,9 @@ class CUBresIHG(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
+        
         title = f"{self.model} model    "
         title += f"$n={self.n}$\n"
         title += fr"Estim($\theta={self.estimates[0]:.3f}$)"
@@ -378,13 +381,10 @@ class CUBresIHG(CUBres):
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
 
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
 
     def plot(self,
         ci=.95,

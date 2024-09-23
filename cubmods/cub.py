@@ -609,6 +609,9 @@ class CUBresCUB00(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
+        
         pi = self.estimates[0]
         xi = self.estimates[1]
         title = "CUB model    "
@@ -649,13 +652,10 @@ class CUBresCUB00(CUBres):
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
 
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
 
     def plot_confell(self, figsize=(7, 5),
         ci=.95, equal=True,
@@ -682,6 +682,8 @@ class CUBresCUB00(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
 
         if equal:
             ax.set_aspect("equal")
@@ -759,14 +761,11 @@ class CUBresCUB00(CUBres):
             bbox_to_anchor=(1,1))
         ax.grid(visible=True)
 
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas,
                     bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
 
     def plot(self,
         ci=.95,

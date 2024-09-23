@@ -192,6 +192,9 @@ def multi(ords, ms=None,
             fig, ax = plt.subplots(
                 figsize=figsize,
             )
+        else:
+            fig = None
+        
         for i, est in enumerate(ests):
             pi = est.estimates[0]
             xi = est.estimates[1]
@@ -238,4 +241,4 @@ def multi(ords, ms=None,
             ax.tick_params(width=4)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
-        return ax
+        return fig, ax

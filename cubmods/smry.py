@@ -486,6 +486,9 @@ class CUBsample(object):
         """
         if ax is None:
             fig, ax = plt.subplots(figsize=figsize)
+        else:
+            fig = None
+        
         R = choices(self.m)
         f = freq(self.rv, self.m)
         if kind == "bar":
@@ -507,11 +510,12 @@ class CUBsample(object):
         ax.set_title(self)
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
-        if saveas is not None:
-            fig.savefig(saveas,
-                bbox_inches='tight')
-        else:
-            return fig, ax
+        
+        if fig is not None:
+            if saveas is not None:
+                fig.savefig(saveas,
+                    bbox_inches='tight')
+        return fig, ax
 
     def as_dataframe(self):
         """The parameters' values specified.

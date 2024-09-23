@@ -354,6 +354,8 @@ class CUBresCUSH2(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
 
         if self.gen_pars is not None:
             d1 = self.gen_pars["delta1"]
@@ -385,13 +387,11 @@ class CUBresCUSH2(CUBres):
         ax.grid(True)
         ax.legend(loc="upper right")
         ax.set_title("CUSH2 model parameter space")
-        if ax is None:
+
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
     
     def plot_ordinal(self,
         figsize=(7, 5),
@@ -415,6 +415,9 @@ class CUBresCUSH2(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
+        
         estd1, estd2 = self.estimates
         title = f"{self.model} model "
         title += fr"($c_1={self.sh[0]}$ , $c_2={self.sh[1]}$)"
@@ -454,13 +457,10 @@ class CUBresCUSH2(CUBres):
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
 
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
 
     def plot(self,
         ci=.95,

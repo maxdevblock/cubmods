@@ -351,6 +351,9 @@ class CUBresCUSH(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
+        
         R = choices(self.m)
         #print(R, self.f, self.n)
         delta = self.estimates[0]
@@ -387,13 +390,10 @@ class CUBresCUSH(CUBres):
             bbox_to_anchor=(1,1))
         ax.set_ylim((0, ax.get_ylim()[1]))
         
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
     
     def plot_estim(self, ci=.95, ax=None,
         magnified=False, figsize=(7, 7), saveas=None):
@@ -416,6 +416,9 @@ class CUBresCUSH(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
+        
         delta = self.estimates[0]
         ax.set_xlabel(fr"$\delta$  shelter effect (c={self.sh})")
         ax.plot(delta, 0,
@@ -444,13 +447,10 @@ class CUBresCUSH(CUBres):
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
         
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
 
     def plot(self, ci=.95, saveas=None, figsize=(7, 15)):
         r"""Main function to plot an object of the Class.

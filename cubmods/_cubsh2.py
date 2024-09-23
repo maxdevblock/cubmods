@@ -568,6 +568,8 @@ class CUBresCUBSH2(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
         pi1 = self.estimates[0]
         pi2 = self.estimates[1]
         pi3 = self.estimates[2]
@@ -638,14 +640,11 @@ class CUBresCUBSH2(CUBres):
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
 
-        #if ax is None:
-        if saveas is not None:
-            print(f"Saving plot as `{saveas}`")
-            fig.savefig(saveas, bbox_inches='tight')
-        else:
-            return fig, ax
-        #else:
-            #return ax
+        if fig is not None:
+            if saveas is not None:
+                print(f"Saving plot as `{saveas}`")
+                fig.savefig(saveas, bbox_inches='tight')
+        return fig, ax
 
     #TODO: add displacement from CUB with no shelter effect
     def plot_confell(self,
@@ -663,6 +662,8 @@ class CUBresCUBSH2(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
 
         if equal:
             ax.set_aspect("equal")
@@ -791,14 +792,11 @@ class CUBresCUBSH2(CUBres):
             bbox_to_anchor=(1,1))
         ax.grid(visible=True)
 
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas,
                     bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
 
     def plot3d(self, ax, ci=.95,
         magnified=False):

@@ -540,6 +540,8 @@ def plot_simplex(pi1pi2list, ax=None, fname=None):
     steps = .05
     if ax is None:
         fig, ax = plt.subplots(figsize=(10, 10))
+    else:
+        fig = None
     # simplex axes
     ax.plot([-1, 0], [0, 0], "k")
     ax.plot([-1, -.5], [0, np.sin(np.pi/3)], "k")
@@ -631,11 +633,11 @@ def plot_simplex(pi1pi2list, ax=None, fname=None):
         ax.scatter(x, y, facecolor="None",
             edgecolor="k", s=200)
         ax.text(x, y, f"{chr(i+65)}", ha="center", va="center")
-    if ax is None:
+    if fig is not None:
         fig.tight_layout()
     if fname:
         fig.savefig(fname)
-    return ax
+    return fig, ax
 
 ###################################################################
 # RANDOM SAMPLE
@@ -921,6 +923,9 @@ class CUBresCUBSH(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
+        
         #pi1 = self.estimates[0]
         #pi2 = self.estimates[1]
         pi = self.estimates[3]
@@ -975,13 +980,10 @@ class CUBresCUBSH(CUBres):
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
 
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas, bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
 
     #TODO: add displacement from CUB with no shelter effect
     def _plot_confell(self,
@@ -1000,6 +1002,8 @@ class CUBresCUBSH(CUBres):
             fig, ax = plt.subplots(
                 figsize=figsize
             )
+        else:
+            fig = None
 
         if equal:
             ax.set_aspect("equal")
@@ -1075,14 +1079,11 @@ class CUBresCUBSH(CUBres):
             bbox_to_anchor=(1,1))
         ax.grid(visible=True)
 
-        if ax is None:
+        if fig is not None:
             if saveas is not None:
                 fig.savefig(saveas,
                     bbox_inches='tight')
-            else:
-                return fig, ax
-        else:
-            return ax
+        return fig, ax
 
     def plot3d(self, ax, ci=.95,
         magnified=False):
