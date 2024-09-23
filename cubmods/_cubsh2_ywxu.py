@@ -54,12 +54,15 @@ from .cub_0w import (
 )
 from .general import (
     choices, freq, logis, colsof,
-    addones, hadprod, aic, bic,
+    addones, 
+    #hadprod, 
+    aic, bic,
     #lsat, 
     luni, dissimilarity,
     #lsatcov
 )
-from .cubsh2 import (
+#TODO: change to .cubsh2 when production
+from ._cubsh2 import (
     pmf as pmf_cubsh2,
     pdz_to_p123
 )
@@ -90,7 +93,7 @@ def pmfi(m, sh1, sh2, beta, gamma, omega,
     return p
 
 def draw(m, n, sh1, sh2, beta, gamma, omega, psi,
-    Y, W, X, U, seed=None):
+    Y, W, X, U, df, formula, seed=None):
     """
     generate random sample from CUB model
     """
@@ -132,9 +135,10 @@ def draw(m, n, sh1, sh2, beta, gamma, omega, psi,
     ))
     sample = CUBsample(
         model="CUBSH2(YWXU)",
+        df=df, formula=formula,
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
-        seed=seed, W=W, diss=diss,
+        seed=seed, diss=diss,
         theoric=theoric
     )
     return sample
@@ -313,6 +317,7 @@ def Q2(param, dati2, m):
     return -(tau2*np.log(bg)).sum()
 
 def mle(m, sample, sh1, sh2, Y, W, X, U,
+    df, formula,
     gen_pars=None,
     maxiter=1000, tol=1e-4):
     start = dt.datetime.now()
@@ -426,6 +431,7 @@ def mle(m, sample, sh1, sh2, Y, W, X, U,
     
     return CUBresCUBSH2YWXU(
         model="CUBSH2(YWXU)",
+        df=df, formula=formula,
         m=m, n=n, sh=[sh1,sh2], sample=sample,
         f=f, theoric=theoric,
         niter=niter, maxiter=maxiter,

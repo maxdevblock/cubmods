@@ -271,7 +271,7 @@ def init_theta(f, m, sh1, sh2,
 ###################################################################
 
 def draw(m, sh1, sh2, pi1, pi2, pi3, xi,
-    n, seed=None):
+    n, df, formula, seed=None):
     """
     generate random sample from CUBSH model
     from pi1 and pi2
@@ -299,7 +299,7 @@ def draw(m, sh1, sh2, pi1, pi2, pi3, xi,
     f = freq(m=m, sample=rv)
     diss = dissimilarity(f/n, theoric)
     sample = CUBsample(
-        model="CUBSH2",
+        model="CUBSH2", df=df, formula=formula,
         rv=rv, m=m, sh=[sh1, sh2],
         pars=pars, par_names=par_names,
         theoric=theoric, diss=diss
@@ -307,13 +307,13 @@ def draw(m, sh1, sh2, pi1, pi2, pi3, xi,
     return sample
 
 #TODO: test draw2
-def draw2(m, sh1, sh2, pi, xi, delta, zeta, n, seed=None):
+def draw2(m, sh1, sh2, pi, xi, delta, zeta, n, df, formula, seed=None):
     """
     generate random sample from CUBSH2 model
     from pi, delta, and zeta
     """
     pi1, pi2, pi3 = pdz_to_p123(pi, delta, zeta)
-    sample = draw(m, sh1, sh2, pi1, pi2, pi3, xi, n, seed=seed)
+    sample = draw(m, sh1, sh2, pi1, pi2, pi3, xi, n, df, formula, seed=seed)
     return sample
 
 ###################################################################
@@ -321,6 +321,7 @@ def draw2(m, sh1, sh2, pi, xi, delta, zeta, n, seed=None):
 ###################################################################
 
 def mle(sample, m, sh1, sh2,
+    df, formula,
     maxiter=1000, tol=1e-4,
     gen_pars=None
     ):
@@ -499,7 +500,7 @@ def mle(sample, m, sh1, sh2,
     BIC = bic(l=l, p=4, n=n)
 
     return CUBresCUBSH2(
-        model="CUBSH2",
+        model="CUBSH2", df=df, formula=formula,
         m=m, sh=[sh1,sh2], n=n,
         niter=niter, maxiter=maxiter,
         tol=tol, theoric=theoric,
@@ -719,7 +720,8 @@ class CUBresCUBSH2(CUBres):
         if cubdisp and not magnified:
             cubest = cub.mle(
                 sample=self.sample,
-                m=self.m,
+                m=self.m, df=self.df,
+                formula=self.formula
             )
             cubpi = cubest.estimates[0]
             cubxi = cubest.estimates[1]
@@ -743,7 +745,8 @@ class CUBresCUBSH2(CUBres):
             for shi in [0,1]:
                 cubshest = cubsh.mle(
                     sample=self.sample,
-                    m=self.m, sh=self.sh[shi]
+                    m=self.m, sh=self.sh[shi],
+                    df=self.df, formula=self.formula
                 )
                 cubshpi = cubshest.estimates[0]
                 cubshxi = cubshest.estimates[1]
@@ -798,6 +801,7 @@ class CUBresCUBSH2(CUBres):
                     bbox_inches='tight')
         return fig, ax
 
+    #TODO: remove plot3d()
     def plot3d(self, ax, ci=.95,
         magnified=False):
         pi = self.estimates[3]
@@ -831,6 +835,7 @@ class CUBresCUBSH2(CUBres):
         """
         plot CUBSH model fitted from a sample
         """
+        #TODO: remove test3d
         fig, ax = plt.subplots(3, 1,
             figsize=figsize,
             constrained_layout=True)
