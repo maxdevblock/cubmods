@@ -186,7 +186,9 @@ the formula should be ``ordinal~X1|0`` and not ``ordinal~0|X2``.
 Extra arguments include the maximum 
 number of iterations ``maxiter`` for the optimization algorithm, 
 the required error tolerance ``tol``, and a dictionary of parameters of a known model
-``ass_pars`` to be compared with the estimates.
+``ass_pars`` (assumed parameters) to be compared with the estimates: these could be 
+the parameters used to draw the sample, theoretical parameters, or howsoever specified
+parameters we want to (graphically) compare with the estimates.
 
 Methods of ``estimate`` and ``draw``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
