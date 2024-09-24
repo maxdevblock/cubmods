@@ -11,9 +11,9 @@ Description:
     This module contains methods and classes
     for CUSH model family.
     It is based upon the works of Domenico
-    Piccolo et Al. and CUB package in R.
+    Piccolo et Al. and the ``CUB`` package in R.
 
-    :math:`\Pr(R_i=r|\pmb \theta; \pmb x_i) = \delta_i D_{r}^{(c)} + (1 - \delta_i)/m`
+    :math:`\Pr(R_i=r|\pmb \theta; \pmb x_i) = \delta_i D_{r}^{(c)} + (1 - \delta_i)/m,\; r=1,2,\ldots,m`
 
     :math:`\delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb \omega \}}`
 
@@ -41,10 +41,9 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-    :Institution: Universitas Mercatorum
-    :Affiliation: Graduand in Statistics & Big Data (L41)
+
     :Date:        2023-24
-    :Credit:      Domenico Piccolo, Rosaria Simone
+    :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it
 
 Classes and Functions

@@ -1,8 +1,9 @@
 Manual
 ======
 
-The package ``cubmods`` can be used to apply inferential methods to an observed sample in order to 
-estimate the parameters and the covariance matrix of a model within the CUB class. Also, for each family, 
+The package ``cubmods`` can be used to build models within the CUB class 
+given an observed sample (and, eventually, the covariance matrix) 
+in order to estimate the parameters. Also, for each family, 
 random samples can be drawn from a specified model.
 
 Currently, six families have been defined and implemented: 
@@ -70,8 +71,8 @@ for example ``C(varname)``.
     Spaces **SHOULD NOT BE** used in the column names, but replaced with ``_``.
 
 For example, let's suppose we have a DataFrame where ``response`` is the ordinal variable, 
-``age`` and ``sex`` are a quantitative and a qualitative variable to explain the *feeling* component
-only in a ``cub`` family model. The formula will be ``formula = "response ~ 0 | age + C(sex)"``.
+``age`` and ``sex`` are respectively a quantitative and a qualitative variable to explain the *feeling* component
+only, in a ``cub`` family model. The formula will be ``formula = "response ~ 0 | age + C(sex)"``.
 
 Notice that spaces are allowed between symbols and variable names in the formula but they aren't
 needed: a formula ``"ord ~ X | Y1 + Y2 | Z"`` is the same as ``"ord~X|Y1+Y2|Z"``.
@@ -90,14 +91,15 @@ Within the function ``estimate`` the number of ordinal categories ``m`` is inter
 but it is advisable to pass it as an argument to the call if some category has zero frequency.
 Within the function ``draw`` instead, the number of ordinal categories ``m`` must always be specified.
 
-A ``pandas`` DataFrame must always be passed to the function ``estimate``, with the *kwarg* ``df``. 
+A ``pandas`` DataFrame must always be passed to the function ``estimate``, with the *kwarg*
+(keyword argument) ``df``. 
 It should contain, at least, a column of the observed sample and the columns of the covariates (if any).
 If no ``df`` is passed to the function ``draw`` for a model without covariates
 instead, an empty DataFrame will be created.
 
 The number ``n`` of ordinal responses to be drawn should always be specified in the function ``draw``
 for models without covariates. For model with covariates instead, ``n`` is not effective because
-the number of drawn ordinal responsed will be equal to the passed DataFrame rows.
+the number of drawn ordinal responses will be equal to the passed DataFrame rows.
 
 A ``seed`` could be specified for the function ``draw`` to ensure reproducibility.
 Notice that, for models with covariates, ``seed`` cannot be ``0`` (in case, it will be
@@ -109,10 +111,11 @@ and ``"ihg"``. CUB models with shelter effect are automatically
 implemented using ``model="cub"`` and specifying a shelter choice with the 
 *kwarg* ``sh``. CUSH2 models are automatically
 implemented using ``model="cush"`` and passing a list of two categories to
-the *kwarg* ``sh`` instead of an integer.
+the *kwarg* ``sh`` instead of an integer, for instance ``sh=[2, 7]``.
 
-To ``draw`` must be passed the parameters' values with the *kwargs* of the corresponding
-family: for example, ``pi`` and ``xi`` for CUB models without covariates, ``beta`` and ``gamma``
+To the ``draw`` function, the parameters' values (with the *kwargs* of the corresponding
+family) must be passed: 
+for example, ``pi`` and ``xi`` for CUB models without covariates, ``beta`` and ``gamma``
 for CUB models with covariates for both feeling and uncertainty, etc. See the
 ``.draw()`` function reference of the corresponding family module for details.
 
@@ -121,13 +124,15 @@ feeling (``ordinal~Y|W``) and possible shelter effect by further passing the ext
 Subjects' covariates can be included by specifying covariates matrices in the 
 formula as ``ordinal~Y|W|X``,  to explain uncertainty (Y), feeling (W) or shelter (X). 
 Notice that
-covariates for shelter effect can be included only if specified for both feeling and uncertainty (GeCUB models). 
+covariates for the shelter effect can be included only if specified for both feeling and uncertainty too (GeCUB models)
+because, as in the R package ``CUB``, only the models without covariates and with covariates for all components
+have been implemented. 
 Nevertheless, the symbol ``1`` could be used to specify a different combination of components with covariates.
 For example, if we want to specify a CUB model with covariate ``cov`` for uncertainty only, we could pass the
 formula ``ordinal ~ cov | 1 | 1``: in this case, for feeling and shelter effect, the constant terms only
 (:math:`\gamma_0` and :math:`\omega_0`) will be estimated and the values of the estimated :math:`\xi` and
 :math:`\delta` could be computed as :math:`\hat\xi=\mathrm{expit}(\hat\gamma_0)` and 
-:math:`\hat\delta=\mathrm{expit}(\hat\omega_0)`.
+:math:`\hat\delta=\mathrm{expit}(\hat\omega_0)`, where :math:`\mathrm{expit}(x) = 1 / (1 + \exp(-x))`.
 
 If ``family="cube"``, then a CUBE mixture model (Combination of Uniform and Beta-Binomial) is fitted to the data
 to explain uncertainty, feeling and overdispersion.   Subjects' covariates can be also included to explain the
@@ -136,7 +141,7 @@ feeling component or all the three components by  specifying covariates matrices
 overdispersion (Z). For different combinations of components with covariates, the symbol ``1`` can be used.
 Notice that :math:`\hat\phi=e^{\hat\alpha_0}`.
 
-If ``family="ihg"``, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are nested into
+If ``family="ihg"``, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are a peculiar case of
 CUBE models. The parameter :math:`\theta` gives the probability of observing 
 the first category and is therefore a direct measure of preference, attraction, pleasantness toward the 
 investigated item. This is the reason why :math:`\theta` is customarily referred to as the 
@@ -223,13 +228,14 @@ Without covariates
 A model of the CUB family for responses with :math:`m` ordinal categories, without covariates is specified as
 
 .. math::
-    \Pr(R=r|\boldsymbol{\theta}) = \pi \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi}{m}
+    \Pr(R=r|\boldsymbol{\theta}) = \pi \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi}{m},
+    \; r = 1,2,\ldots,m
 
-where :math:`\pi` and :math:`\xi`` are the parameters for respectively the *uncertainty* and the 
+where :math:`\pi` and :math:`\xi` are the parameters for respectively the *uncertainty* and the 
 *feeling* components.
 
 Note that :math:`(1-\pi)` is the weight of the Uncertainty component and 
-:math:`(1-\xi)` is the Feeling component for usual *positive wording*.
+:math:`(1-\xi)` is the Feeling component for common *positive wording*.
 
 In the following example, a sample will be drawn from a CUB model of :math:`n=500` observations of an ordinal 
 variable with :math:`m=10` ordinal categories
@@ -276,7 +282,7 @@ and parameters :math:`(\pi=.7, \xi=.2)`. A ``seed=1`` will be set to ensure repr
 .. image:: /img/cub00draw.png
     :alt: CUB00 drawn sample
 
-Notice that, since the default value of the kwarg ``model`` is
+Notice that, since the default value of the *kwarg* ``model`` is
 ``"cub"`` we do not need to specify it.
 
 Calling ``drawn.as_dataframe()`` will return a DataFrame with
@@ -376,6 +382,7 @@ With covariates
 
 .. math::
     \Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m}
+    ,\; r = 1,2,\ldots,m
 
 .. math::
     \left\{
@@ -383,6 +390,14 @@ With covariates
         \pi_i = \dfrac{1}{1+\exp\{-\pmb y_i \pmb \beta\}}
         \\
         \xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}
+    \end{array}
+    \right.
+    \equiv
+    \left\{
+    \begin{array}{l}
+        \mathrm{logit}(1-\pi_i) = - \pmb y_i \pmb \beta
+        \\
+        \mathrm{logit}(1-\xi_i) = - \pmb w_i \pmb \gamma
     \end{array}
     \right.
 
@@ -576,6 +591,7 @@ for responses with :math:`m` ordinal categories, without covariates is specified
 
 .. math::
     \Pr(R=r|\boldsymbol{\theta}) = \delta D_r^{(c)} + (1-\delta)\left(\pi b_r(\xi) + \frac{1-\pi}{m} \right)
+    ,\; r=1,2,\ldots,m
 
 where :math:`\pi` and :math:`\xi` are the parameters for respectively the *uncertainty* and the 
 *feeling* components, and :math:`\delta` is the weight of the shelter effect.
@@ -684,6 +700,7 @@ With covariates
 
 .. math::
     \Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i, \pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)\left(\pi_i b_r(\xi_i) + \frac{1-\pi_i}{m} \right)
+    ,\; r=1,2,\ldots,m
 
 .. math::
     \left\{
@@ -695,9 +712,19 @@ With covariates
         \delta_i = \dfrac{1}{1+\exp\{-\pmb x_i \pmb \omega\}}
     \end{array}
     \right.
+    \equiv
+    \left\{
+    \begin{array}{l}
+        \mathrm{logit}(1-\pi_i) = -\pmb y_i \pmb \beta
+        \\
+        \mathrm{logit}(1-\xi_i) = -\pmb w_i \pmb \gamma
+        \\
+        \mathrm{logit}(\delta_i) = \pmb x_i \pmb \omega
+    \end{array}
+    \right.
 
 Only the model with covariates for all components has been
-currently defined and implemented.
+currently defined and implemented, as in the R package ``CUB``.
 
 Nevertheless, thanks to the symbol ``1`` provided by the
 *formula*, we can specify a different combination
@@ -784,9 +811,9 @@ similarly for :math:`\pi` and :math:`\delta`.
 
 To get the estimated values of :math:`\hat\xi` and :math:`\hat\delta`
 we can use the function ``expit`` because :math:`\hat\xi = \mathrm{expit}(\hat\gamma_0)`
-and similarly for :math:`\hat\delta`. Then, since
-:math:`\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi`
-we can compute the standard errors of both :math:`\hat\xi` and :math:`\hat\delta`.
+and similarly for :math:`\hat\delta`. Then, we can use the :math:`\Delta` method 
+to compute the standard errors of both :math:`\hat\xi` and :math:`\hat\delta`, for instance
+:math:`\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi`.
 
 .. code-block:: python
     :caption: Script
@@ -839,6 +866,7 @@ Without covariates
 
 .. math::
     \Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1-\delta)/m
+    ,\; r=1,2,\ldots,m
 
 In the example, we'll draw a sample from a CUSH model without covariates and
 then estimate the parameter given the observed sample.
@@ -914,9 +942,12 @@ With covariates
 
 .. math::
     \Pr(R_i=r|\pmb\theta,\pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)/m
+    ,\; r=1,2,\ldots,m
 
 .. math::
     \delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb\omega \}}
+    \equiv
+    \mathrm{logit}(\delta_i) = \pmb x_i \pmb\omega
 
 In the example, we'll draw a sample from a CUSH model with covariates and
 then estimate the parameter given the observed sample.
@@ -993,6 +1024,11 @@ CUSH2 family
 Family of the class CUSH with two shelter effects (CUSH2). 
 See the references for details.
 
+These models are particularly useful whenever the shelter choices are not 
+*polarized*, i.e. they're not at the extremes of the ordinal variable support.
+In these cases, finite mixtures of the Beta Discretized distribution can be
+used :cite:p:`simone2022finite`.
+
 References
 ^^^^^^^^^^
 
@@ -1001,9 +1037,6 @@ References
         :filter: False
 
         mythesis
-        iannario2009program
-        iannario2014inference
-        iannario2022package
         piccolo2019class
 
 .. _cush2-without-covariates:
@@ -1015,6 +1048,7 @@ Without covariates
 
 .. math::
     \Pr(R=r|\pmb\theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1-\delta_1-\delta_2)/m
+    ,\; r=1,2,\ldots,m
 
 In the example, we'll draw a sample from a CUSH2 model without covariates and
 then estimate the parameter given the observed sample.
@@ -1097,6 +1131,7 @@ With covariates
 
 .. math::
     \Pr(R_i=r|\pmb\theta,\pmb x_{1i}, \pmb x_{2i}) = \delta_{1i} D_r^{(c_1)} + \delta_{2i} D_r^{(c_2)} + (1-\delta_{1i}- \delta_{2i})/m
+    ,\; r=1,2,\ldots,m
 
 .. math::
     \left\{
@@ -1104,6 +1139,14 @@ With covariates
         \delta_{1i} = \dfrac{1}{1+\exp\{ - \pmb x_{1i} \pmb\omega_1 \}}
         \\
         \delta_{2i} = \dfrac{1}{1+\exp\{ - \pmb x_{2i} \pmb\omega_2 \}}
+    \end{array}
+    \right.
+    \equiv
+    \left\{
+    \begin{array}{l}
+        \mathrm{logit}(\delta_{1i}) = \pmb x_{1i} \pmb\omega_1
+        \\
+        \mathrm{logit}(\delta_{2i}) = \pmb x_{2i} \pmb\omega_2
     \end{array}
     \right.
 
@@ -1206,6 +1249,9 @@ CUBE family
 -----------
 
 Family of the class CUBE (Combination of Uniform and BEtaBinomial). 
+CUB models are nested into CUBE models: in fact, a CUB model is equal to
+a CUBE model with the overdispersion parameter :math:`\phi=0`.
+Notiche that :math:`0\geq\phi\geq0.2` is the usual range of the overdispersion parameter.
 See the references for details.
 
 References
@@ -1230,7 +1276,8 @@ Without covariates
 `Reference guide <cubmods.html#cube000-module>`__
 
 .. math::
-    \Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m}
+    \Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m},
+    ,\; r=1,2,\ldots,m
 
 In this example, we'll draw a sample from a CUBE model and then
 will estimate the parameters given the observed sample.
@@ -1315,7 +1362,8 @@ With covariates
 `Reference guide (Y|W|Z) <cubmods.html#cubeywz-module>`__
 
 .. math::
-    \Pr(R_i=r|\pmb{\theta};\pmb y_i, \pmb w_i; \pmb z_i) = \pi_i \beta e(\xi_i,\phi_i)+\dfrac{1-\pi_i}{m}
+    \Pr(R_i=r|\pmb{\theta};\pmb y_i, \pmb w_i; \pmb z_i) = \pi_i \beta e(\xi_i,\phi_i)+\dfrac{1-\pi_i}{m},
+    ,\; r=1,2,\ldots,m
 
 .. math::
     \left\{
@@ -1327,8 +1375,18 @@ With covariates
         \phi_i = \exp\{ \pmb z_i \pmb \alpha \}
     \end{array}
     \right.
+    \equiv
+    \left\{
+    \begin{array}{l}
+        \mathrm{logit}(1-\pi_i) = -\pmb y_i \pmb\beta
+        \\
+        \mathrm{logit}(1-\xi_i) = -\pmb w_i \pmb\gamma
+        \\
+        \log(\phi_i) = \pmb z_i \pmb \alpha
+    \end{array}
+    \right.
 
-Currently, two CUBE models have been defined and implemented:
+Currently, as in the R package ``CUB``, two CUBE models with covariates have been defined and implemented:
 for the *feeling* only and for all components.
 Nevertheless, the symbol ``1`` can always be used in the
 formula for different combinations of covariates.
@@ -1494,7 +1552,7 @@ In fact:
 IHG family
 ----------
 
-Family of the class IHG (Inverse Hyper Geometric). 
+Family of the class IHG (Inverse HyperGeometric). 
 See the references for details.
 
 References
@@ -1604,9 +1662,13 @@ With covariates
 
 .. math::
     \theta_i = \dfrac{1}{1 + \exp\{ - \pmb v_i \pmb \nu \}}
+    \equiv
+    \mathrm{logit}(\theta_i) = \pmb v_i \pmb \nu
 
-In this example we'll draw a sample from an IHG with covariates
+In this example we'll draw a sample from an IHG with two covariates
 and then will estimate the parameters given the observed sample.
+Notice that IHG models without covariates are unimodals but, however,
+IHG models with covariates can be bimodal, as the one in the following example.
 
 .. code-block:: python
     :caption: Script
@@ -1700,7 +1762,10 @@ multiple observed samples can be shown in a single plot.
 In this example, we'll draw three samples from CUBE
 models and *manually* add a shelter category. Then we'll
 use the **multicub** tool for CUB models, CUBE models and
-CUBSH models.
+CUBSH models (that aren't yet implemented in the R package ``CUB``).
+
+The **multicub** tool in ``cubmods`` package can also show confidence
+ellipses for CUB models.
 
 .. code-block:: python
     :caption: Script

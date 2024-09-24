@@ -11,7 +11,7 @@ Description:
     for GEM maximum likelihood estimation
     and sample drawing.
     It is based upon the works of Domenico
-    Piccolo et Al. and CUB package in R.
+    Piccolo et Al. and the ``CUB`` package in R.
 
 Manual and Examples
 ==========================
@@ -36,10 +36,9 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-    :Institution: Universitas Mercatorum
-    :Affiliation: Graduand in Statistics & Big Data (L41)
+
     :Date:        2023-24
-    :Credit:      Domenico Piccolo, Rosaria Simone
+    :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it
 
 Classes and Functions

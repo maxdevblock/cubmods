@@ -12,9 +12,9 @@ Description:
     This module contains methods and classes
     for CUB_YW model family.
     It is based upon the works of Domenico
-    Piccolo et Al. and CUB package in R.
+    Piccolo et Al. and the ``CUB`` package in R.
 
-    :math:`\Pr(R_i=r|\pmb{\theta} ; \pmb y_i ; \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m}`
+    :math:`\Pr(R_i=r|\pmb{\theta} ; \pmb y_i ; \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m},\; r=1,2,\ldots,m`
 
     :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
 
@@ -48,10 +48,9 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-    :Institution: Universitas Mercatorum
-    :Affiliation: Graduand in Statistics & Big Data (L41)
+
     :Date:        2023-24
-    :Credit:      Domenico Piccolo, Rosaria Simone
+    :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it
 
 Classes and Functions
