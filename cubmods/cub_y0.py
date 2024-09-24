@@ -318,7 +318,7 @@ def effe10(beta, esterno10):
     return r
 
 def mle(sample, m, Y, df, formula,
-    gen_pars=None,
+    ass_pars=None,
     maxiter=500,
     tol=1e-4):
     r"""
@@ -337,8 +337,8 @@ def mle(sample, m, Y, df, formula,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm
     :type maxiter: int
     :param tol: fixed error tolerance for final estimates
@@ -459,7 +459,7 @@ def mle(sample, m, Y, df, formula,
             varmat=varmat,
             diss=diss, df=df,
             formula=formula,
-            gen_pars=gen_pars
+            ass_pars=ass_pars
             # pi_gen=pi_gen, xi_gen=xi_gen
         )
     return res

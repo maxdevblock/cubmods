@@ -498,7 +498,7 @@ the formula should be <code class="docutils literal notranslate"><span class="pr
 <p>Extra arguments include the maximum
 number of iterations <code class="docutils literal notranslate"><span class="pre">maxiter</span></code> for the optimization algorithm,
 the required error tolerance <code class="docutils literal notranslate"><span class="pre">tol</span></code>, and a dictionary of parameters of a known model
-<code class="docutils literal notranslate"><span class="pre">gen_pars</span></code> to be compared with the estimates.</p>
+<code class="docutils literal notranslate"><span class="pre">ass_pars</span></code> to be compared with the estimates.</p>
 </section>
 <section id="methods-of-estimate-and-draw">
 <h3>Methods of <code class="docutils literal notranslate"><span class="pre">estimate</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code><a class="headerlink" href="#methods-of-estimate-and-draw" title="Permalink to this heading">#</a></h3>
@@ -612,7 +612,7 @@ the parameters</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">df</span></code> needs to be a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame; the attribute <code class="docutils literal notranslate"><span class="pre">drawn.df</span></code> will return a DataFrame with <code class="docutils literal notranslate"><span class="pre">ord</span></code> as column name of the drawn ordinal response (as previuosly speficied in the formula)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">formula</span></code> needs the ordinal variable name (<code class="docutils literal notranslate"><span class="pre">ord</span></code> in this case) and the covariates for each component (none in this case, so <code class="docutils literal notranslate"><span class="pre">&quot;0|0&quot;</span></code>)</p></li>
 <li><p>if <code class="docutils literal notranslate"><span class="pre">m</span></code> is not provided, the maximum observed ordinal value will be assumed and a warning will be raised</p></li>
-<li><p>with <code class="docutils literal notranslate"><span class="pre">gen_pars</span></code> dictionary, the parameters of a known model (if any) can be specified; in this case, we’ll specify the known parameters used to draw the sample</p></li>
+<li><p>with <code class="docutils literal notranslate"><span class="pre">ass_pars</span></code> dictionary, the parameters of a known model (if any) can be specified; in this case, we’ll specify the known parameters used to draw the sample</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id285">
 <div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id285" title="Permalink to this code">#</a></div>
@@ -620,7 +620,7 @@ the parameters</p>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
 <span class="linenos"> 4</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord~0|0&quot;</span><span class="p">,</span>
-<span class="linenos"> 5</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
 <span class="linenos"> 6</span>        <span class="s2">&quot;pi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="linenos"> 7</span>        <span class="s2">&quot;xi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="linenos"> 8</span>    <span class="p">}</span>
@@ -912,7 +912,7 @@ and then estimate the parameters given the sample.</p>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">sh</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">sh</span><span class="p">,</span>
 <span class="linenos"> 4</span>    <span class="n">formula</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">formula</span><span class="p">,</span>
-<span class="linenos"> 5</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos"> 5</span>    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
 <span class="linenos"> 6</span>        <span class="s2">&quot;pi1&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="linenos"> 7</span>        <span class="s2">&quot;pi2&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
 <span class="linenos"> 8</span>        <span class="s2">&quot;xi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
@@ -1145,7 +1145,7 @@ then estimate the parameter given the observed sample.</p>
 <span class="linenos">16</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cush&quot;</span><span class="p">,</span>
 <span class="linenos">17</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord~0&quot;</span><span class="p">,</span>
 <span class="linenos">18</span>    <span class="n">sh</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
-<span class="linenos">19</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">19</span>    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
 <span class="linenos">20</span>        <span class="s2">&quot;delta&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="linenos">21</span>    <span class="p">}</span>
 <span class="linenos">22</span><span class="p">)</span>
@@ -1311,7 +1311,7 @@ called.</p>
 <span class="linenos">17</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cush&quot;</span><span class="p">,</span>
 <span class="linenos">18</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord~0|0&quot;</span><span class="p">,</span>
 <span class="linenos">19</span>    <span class="n">sh</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
-<span class="linenos">20</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">20</span>    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
 <span class="linenos">21</span>        <span class="s2">&quot;delta1&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="linenos">22</span>        <span class="s2">&quot;delta2&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
 <span class="linenos">23</span>    <span class="p">}</span>
@@ -1513,7 +1513,7 @@ will estimate the parameters given the observed sample.</p>
 <span class="linenos">14</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
 <span class="linenos">15</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord~0|0|0&quot;</span><span class="p">,</span>
 <span class="linenos">16</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span>
-<span class="linenos">17</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">17</span>    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
 <span class="linenos">18</span>        <span class="s2">&quot;pi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="linenos">19</span>        <span class="s2">&quot;xi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
 <span class="linenos">20</span>        <span class="s2">&quot;phi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
@@ -1790,7 +1790,7 @@ and the estimate the parameter from the observed sample.</p>
     <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
     <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;ord ~ 0&quot;</span><span class="p">,</span>
     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;ihg&quot;</span><span class="p">,</span>
-    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
         <span class="s2">&quot;theta&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
     <span class="p">}</span>
 <span class="p">)</span>
@@ -1879,7 +1879,7 @@ IHG models with covariates can be bimodal, as the one in the following example.<
 <span class="linenos">29</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
 <span class="linenos">30</span>    <span class="n">formula</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">formula</span><span class="p">,</span>
 <span class="linenos">31</span>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;ihg&quot;</span><span class="p">,</span>
-<span class="linenos">32</span>    <span class="n">gen_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">32</span>    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
 <span class="linenos">33</span>        <span class="s2">&quot;theta&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="linenos">34</span>    <span class="p">}</span>
 <span class="linenos">35</span><span class="p">)</span>

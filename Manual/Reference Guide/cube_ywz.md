@@ -38,7 +38,7 @@ Estimates parameters from an observed sample.
   - `Y` (_DataFrame_): a `numpy` DataFrame with covariates values for Uncertainty; column names will be taken as covariate variable names; it must not contain a column named `constant`
   - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it must not contain a column named `constant`
   - `Z` (_DataFrame_): a `numpy` DataFrame with covariates values for Overdispersion; column names will be taken as covariate variable names; it must not contain a column named `constant`
-  - `gen_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters `{"beta": <array>, "gamma": <array>, "alpha": <array>}`
+  - `ass_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters `{"beta": <array>, "gamma": <array>, "alpha": <array>}`
   - `maxiter=1000` (_int_): maximum number of iterations for the EM algorithm
   - `tol=1e-2` (_float_): tolerance for the EM algorithm
 - Returns

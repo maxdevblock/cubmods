@@ -201,7 +201,7 @@ def varcov(m, n, d1, d2, fc1, fc2):
     return varmat
 
 def mle(sample, m, c1, c2,
-    df, formula, gen_pars=None,
+    df, formula, ass_pars=None,
     maxiter=None, tol=None #for GEM compatibility
     ):
     r"""Main function for CUSH2 models without covariates.
@@ -220,8 +220,8 @@ def mle(sample, m, c1, c2,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: default to None; ensure compatibility with ``gem.from_formula()``
     :type maxiter: None
     :param tol: default to None; ensure compatibility with ``gem.from_formula()``
@@ -277,7 +277,7 @@ def mle(sample, m, c1, c2,
         diss=diss,
         seconds=(end-start).total_seconds(),
         time_exe=start,
-        gen_pars=gen_pars,
+        ass_pars=ass_pars,
         df=df, formula=formula
     )
 
@@ -356,9 +356,9 @@ class CUBresCUSH2(CUBres):
         else:
             fig = None
 
-        if self.gen_pars is not None:
-            d1 = self.gen_pars["delta1"]
-            d2 = self.gen_pars["delta2"]
+        if self.ass_pars is not None:
+            d1 = self.ass_pars["delta1"]
+            d2 = self.ass_pars["delta2"]
             ax.plot(d1, d2, "xr",
                 label="generating",
                 zorder=np.inf)
@@ -423,9 +423,9 @@ class CUBresCUSH2(CUBres):
         title += f"    $n={self.n}$\n"
         title += fr"Estim($\delta_1={estd1:.3f}$ , $\delta_2={estd2:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
-        if self.gen_pars is not None:
+        if self.ass_pars is not None:
             title += "\n"
-            title += fr"Gener($\delta_1={self.gen_pars['delta1']:.3f}$ , $\delta_2={self.gen_pars['delta2']:.3f}$)"
+            title += fr"Gener($\delta_1={self.ass_pars['delta1']:.3f}$ , $\delta_2={self.ass_pars['delta2']:.3f}$)"
             p_gen = pmf(c1=self.sh[0], c2=self.sh[1], d1=estd1, d2=estd2, m=self.m)
             R = choices(m=self.m)
             ax.stem(R, p_gen, linefmt="--r",

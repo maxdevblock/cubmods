@@ -263,7 +263,7 @@ def effe(pars, sample, m,
 
 #TODO: constraint (1-d1-d2)<1 ?
 def mle(sample, m, sh1, sh2,
-    X1, df, formula, gen_pars=None):
+    X1, df, formula, ass_pars=None):
     r"""Main function for CUSH2 models with covariates for the 1st shelter choice only.
 
     Estimate and validate a CUSH2 model for given ordinal responses, with covariates for the 1st shelter choice only.
@@ -281,8 +281,8 @@ def mle(sample, m, sh1, sh2,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :return: an instance of ``CUBresCUSH2X0`` (see the Class for details)
     :rtype: object
     """
@@ -377,7 +377,7 @@ def mle(sample, m, sh1, sh2,
         sample=sample, f=f, varmat=varmat,
         diss=diss,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars,
+        time_exe=start, ass_pars=ass_pars,
         df=df, formula=formula
     )
 

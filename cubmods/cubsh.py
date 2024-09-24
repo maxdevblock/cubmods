@@ -733,7 +733,7 @@ def draw(m, sh, pi, xi, delta, n,
 
 def mle(sample, m, sh,
     df, formula, maxiter=500, tol=1e-4,
-    gen_pars=None
+    ass_pars=None
     ):
     r"""Main function for CUB models with a shelter effect
 
@@ -749,8 +749,8 @@ def mle(sample, m, sh,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm
     :type maxiter: int
     :param tol: fixed error tolerance for final estimates
@@ -892,7 +892,7 @@ def mle(sample, m, sh,
         seconds=durata, time_exe=start,
         sample=sample, f=f, varmat=varmat,
         diss=diss, df=df, formula=formula,
-        gen_pars=gen_pars,
+        ass_pars=ass_pars,
     )
 
 class CUBresCUBSH(CUBres):
@@ -934,12 +934,12 @@ class CUBresCUBSH(CUBres):
         title += f"$n={self.n}$\n"
         title += fr"Estim($\pi={pi:.3f}$ , $\xi={xi:.3f}$ , $\delta={delta:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
-        if self.gen_pars is not None:
-            genpi1 = self.gen_pars['pi1']
-            genpi2 = self.gen_pars['pi2']
+        if self.ass_pars is not None:
+            genpi1 = self.ass_pars['pi1']
+            genpi2 = self.ass_pars['pi2']
             genpi, gendelta = pi1pi2_to_pidelta(genpi1, genpi2)
             title += "\n"
-            title += fr"Gener($\pi={genpi:.3f}$ , $\xi={self.gen_pars['xi']:.3f}$ , "
+            title += fr"Gener($\pi={genpi:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$ , "
             title += fr"$\delta={gendelta:.3f}$)"
         #TODO: add diss_gen
         # if self.diss_gen is not None:
@@ -968,9 +968,9 @@ class CUBresCUBSH(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
-        if self.gen_pars is not None:
-            pi1_gen, pi2_gen = self.gen_pars["pi1"], self.gen_pars["pi2"]
-            xi_gen = self.gen_pars['xi']
+        if self.ass_pars is not None:
+            pi1_gen, pi2_gen = self.ass_pars["pi1"], self.ass_pars["pi2"]
+            xi_gen = self.ass_pars['xi']
             p_gen = pmf(m=self.m, pi1=pi1_gen, pi2=pi2_gen, xi=xi_gen, sh=self.sh)
             ax.stem(R, p_gen, linefmt="--r",
                 markerfmt="none", label="generating")
@@ -1025,9 +1025,9 @@ class CUBresCUBSH(CUBres):
         ax.text(1-pi, 1-xi,
             fr"  $\delta = {delta:.3f}$" "\n",
             ha="left", va="bottom")
-        if self.gen_pars is not None:
+        if self.ass_pars is not None:
             pass
-            #TODO: add gen_pars?
+            #TODO: add ass_pars?
         
         # Confidence Ellipse
         if confell:

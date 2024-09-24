@@ -472,7 +472,7 @@ def effecube(params, tau, f, m):
     return -np.sum(tau*f*np.log(pBe))
 
 def mle(sample, m, df, formula,
-    gen_pars=None,
+    ass_pars=None,
     maxiter=1000,
     tol=1e-6):
     r"""Main function for CUBE models without covariates.
@@ -487,8 +487,8 @@ def mle(sample, m, df, formula,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm
     :type maxiter: int
     :param tol: fixed error tolerance for final estimates
@@ -649,7 +649,7 @@ def mle(sample, m, df, formula,
             sample=sample, f=f,
             varmat=varmat,
             diss=diss,
-            gen_pars=gen_pars,
+            ass_pars=ass_pars,
             df=df, formula=formula
         )
     return res
@@ -692,10 +692,10 @@ class CUBresCUBE(CUBres):
         title += fr"Estim($\pi={pi:.3f}$ , $\xi={xi:.3f}$ , $\phi={phi:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.3f}"
         #TODO: add dissimilarity from generating model
-        if self.gen_pars is not None:
+        if self.ass_pars is not None:
             title += "\n"
-            title += fr"Gener($\pi={self.gen_pars['pi']:.3f}$ , $\xi={self.gen_pars['xi']:.3f}$ , "
-            title += fr"$\phi={self.gen_pars['phi']:.3f}$)"
+            title += fr"Gener($\pi={self.ass_pars['pi']:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$ , "
+            title += fr"$\phi={self.ass_pars['phi']:.3f}$)"
         # if self.diss_gen is not None:
         #     title += "\n"
         #     title += fr"Gener($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
@@ -721,10 +721,10 @@ class CUBresCUBE(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
-        if self.gen_pars is not None:
-            pi_gen = self.gen_pars["pi"]
-            xi_gen = self.gen_pars["xi"]
-            phi_gen = self.gen_pars["phi"]
+        if self.ass_pars is not None:
+            pi_gen = self.ass_pars["pi"]
+            xi_gen = self.ass_pars["xi"]
+            phi_gen = self.ass_pars["phi"]
             p_gen = pmf(m=self.m, pi=pi_gen, xi=xi_gen, phi=phi_gen)
             ax.stem(R, p_gen, linefmt="--r",
             markerfmt="none", label="generating")
@@ -782,10 +782,10 @@ class CUBresCUBE(CUBres):
         ax.text(1-pi, 1-xi,
             fr"  $\phi = {phi:.3f}$" "\n",
             ha="left", va="bottom")
-        if self.gen_pars is not None:
-            pi_gen = self.gen_pars["pi"]
-            xi_gen = self.gen_pars["xi"]
-            #phi_gen = self.gen_pars["phi"]
+        if self.ass_pars is not None:
+            pi_gen = self.ass_pars["pi"]
+            xi_gen = self.ass_pars["xi"]
+            #phi_gen = self.ass_pars["phi"]
             ax.scatter(1-pi_gen, 1-xi_gen,
                 facecolor="None",
                 edgecolor="r", s=200, label="generating")

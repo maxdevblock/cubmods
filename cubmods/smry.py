@@ -63,7 +63,7 @@ def _as_txt(
     # unused for Class compatibility
     **kwargs,
     #theoric, sample, f, varmat,
-    #V, W, X, Y, Z, gen_pars
+    #V, W, X, Y, Z, ass_pars
     ):
     """
         :DEPRECATED:
@@ -199,7 +199,7 @@ class CUBres(object):
     :ivar tol: fixed error tolerance
     :ivar sh: shelter choice(s), if any
     :ivar rho: coefficient of correlation between :math:`\pi` and :math:`\xi`
-    :ivar gen_pars: parameters of known model to be compared with the estimates
+    :ivar ass_pars: parameters of known model to be compared with the estimates
     """
     def __init__(
         self,
@@ -216,7 +216,7 @@ class CUBres(object):
         logliksatcov=None,
         niter=None, maxiter=None, tol=None,
         sh=None,
-        rho=None, gen_pars=None,
+        rho=None, ass_pars=None,
     ):
         self.model = model
         self.df = df
@@ -249,7 +249,7 @@ class CUBres(object):
         self.f = f
         self.varmat = varmat
         self.diss = diss
-        self.gen_pars = gen_pars
+        self.ass_pars = ass_pars
         # number of parameters
         self.p = self.estimates.size
 

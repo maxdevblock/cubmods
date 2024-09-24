@@ -42,7 +42,7 @@ mod = estimate(
     df=drawn.df,
     formula="ordinal~0|0",
     m=10,
-    gen_pars={"pi": .7, "xi":.2}
+    ass_pars={"pi": .7, "xi":.2}
 )
 print(mod.summary())
 mod.plot()

@@ -70,7 +70,7 @@ Note that in the function `gem.from_formula`:
 - `df` needs to be a `pandas` DataFrame; the function `drawn.as_dataframe()` will return a DataFrame with `ordinal` as default column name
 - `formula` specifies the ordinal variable (`ordinal` in this case) and the covariates for each component (none in this case, so "0|0|0")
 - if `m` is not provided, the maximum observed value will be taken
-- with `gen_pars` the parameter of a known model (if any) can be specified
+- with `ass_pars` the parameter of a known model (if any) can be specified
 
 ```Python
 # inferential method on drawn sample
@@ -78,7 +78,7 @@ mod = gem.from_formula(
     df=drawn.as_dataframe(),
     formula="ordinal~0|0|0",
     m=10,
-    gen_pars={"pi": .7, "xi":.2}
+    ass_pars={"pi": .7, "xi":.2}
 )
 # print the summary of MLE
 print(mod.summary())

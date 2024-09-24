@@ -629,7 +629,7 @@ def varcov(m, sample, beta, gamma, alpha,
     return varmat
        
 def mle(m, sample, Y, W, Z, df, formula,
-    gen_pars=None,
+    ass_pars=None,
     maxiter=1000, tol=1e-2):
     r"""Main function for CUBE models with covariates.
 
@@ -650,8 +650,8 @@ def mle(m, sample, Y, W, Z, df, formula,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm
     :type maxiter: int
     :param tol: fixed error tolerance for final estimates
@@ -783,7 +783,7 @@ def mle(m, sample, Y, W, Z, df, formula,
         theoric=theoric, diss=diss,
         seconds=(end-start).total_seconds(),
         time_exe=start,
-        gen_pars=gen_pars,
+        ass_pars=ass_pars,
         df=df, formula=formula
     )
 
@@ -850,10 +850,10 @@ class CUBresCUBEYWZ(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
-        # if self.gen_pars is not None:
-        #     pi_gen = self.gen_pars["pi"]
-        #     gamma_gen = self.gen_pars["gamma"]
-        #     phi_gen = self.gen_pars["phi"]
+        # if self.ass_pars is not None:
+        #     pi_gen = self.ass_pars["pi"]
+        #     gamma_gen = self.ass_pars["gamma"]
+        #     phi_gen = self.ass_pars["phi"]
         #     p_gen = pmf(m=self.m, pi=pi_gen,
         #         gamma=gamma_gen, phi=phi_gen,
         #         W=self.W)

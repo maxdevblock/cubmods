@@ -69,7 +69,7 @@ def estimate(
     m=None,       # if None takes max(sample)
     model="cub",  # "cub", "cube", "cush"
     sh=None,      # used for cubsh and cush only
-    gen_pars=None,# dict of known generating params
+    ass_pars=None,# dict of known generating params
     options={}    # "maxiter" and/or "tol"
     ):
     r"""Main function to estimate and validate GEneralized Mixture models.
@@ -85,8 +85,8 @@ def estimate(
     :type model: str
     :param sh: category corresponding to the shelter choice :math:`[1,m]`
     :type sh: int
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param options: a dictionary of extra options ``maxiter`` and ``tol``; see the reference
         guide for details
     :type options: dict
@@ -268,7 +268,7 @@ def estimate(
     fit = mod.mle(
             **pars,
             **options,
-            gen_pars=gen_pars,
+            ass_pars=ass_pars,
             df=df, formula=formula
         )
     return fit
@@ -294,8 +294,8 @@ def draw(formula, df=None,
     :param n: number of ordinal responses; it is only effective if the model
         is without covariates
     :type n: int
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param options: a dictionary of extra options ``maxiter`` and ``tol``; see the reference
         guide for details
     :type options: dict

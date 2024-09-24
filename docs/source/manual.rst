@@ -186,7 +186,7 @@ the formula should be ``ordinal~X1|0`` and not ``ordinal~0|X2``.
 Extra arguments include the maximum 
 number of iterations ``maxiter`` for the optimization algorithm, 
 the required error tolerance ``tol``, and a dictionary of parameters of a known model
-``gen_pars`` to be compared with the estimates.
+``ass_pars`` to be compared with the estimates.
 
 Methods of ``estimate`` and ``draw``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -325,7 +325,7 @@ Note that in the function ``gem.estimate``:
 
 - if ``m`` is not provided, the maximum observed ordinal value will be assumed and a warning will be raised
 
-- with ``gen_pars`` dictionary, the parameters of a known model (if any) can be specified; in this case, we'll specify the known parameters used to draw the sample
+- with ``ass_pars`` dictionary, the parameters of a known model (if any) can be specified; in this case, we'll specify the known parameters used to draw the sample
 
 .. code-block:: python
     :caption: Script
@@ -335,7 +335,7 @@ Note that in the function ``gem.estimate``:
     fit = estimate(
         df=drawn.df,
         formula="ord~0|0",
-        gen_pars={
+        ass_pars={
             "pi": drawn.pars[0],
             "xi": drawn.pars[1]
         }
@@ -660,7 +660,7 @@ Notice that:
     fit = estimate(
         df=drawn.df, sh=drawn.sh,
         formula=drawn.formula,
-        gen_pars={
+        ass_pars={
             "pi1": drawn.pars[0],
             "pi2": drawn.pars[1],
             "xi": drawn.pars[2],
@@ -916,7 +916,7 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
         model="cush",
         formula="ord~0",
         sh=7,
-        gen_pars={
+        ass_pars={
             "delta": drawn.pars[0],
         }
     )
@@ -1101,7 +1101,7 @@ called.
         model="cush",
         formula="ord~0|0",
         sh=[1,7],
-        gen_pars={
+        ass_pars={
             "delta1": drawn.pars[0],
             "delta2": drawn.pars[1],
         }
@@ -1325,7 +1325,7 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
         df=drawn.df,
         formula="ord~0|0|0",
         model="cube",
-        gen_pars={
+        ass_pars={
             "pi": drawn.pars[0],
             "xi": drawn.pars[1],
             "phi": drawn.pars[2],
@@ -1627,7 +1627,7 @@ and the estimate the parameter from the observed sample.
         df=drawn.df,
         formula="ord ~ 0",
         model="ihg",
-        gen_pars={
+        ass_pars={
             "theta": drawn.pars[0],
         }
     )
@@ -1726,7 +1726,7 @@ IHG models with covariates can be bimodal, as the one in the following example.
         df=drawn.df,
         formula=drawn.formula,
         model="ihg",
-        gen_pars={
+        ass_pars={
             "theta": drawn.pars[0],
         }
     )

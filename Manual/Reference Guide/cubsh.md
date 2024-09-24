@@ -34,7 +34,7 @@ Function to estimate and validate a CUB model without covariates for given ordin
   - `sample` (_array_): the observed sample; can be a _list_ or a `numpy` _array_
   - `m` (_int_): number of ordinal responses; must be $m>3$
   - `sh` (_int_): shelter choice (must be $[1,m]$)
-  - `gen_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters
+  - `ass_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters
   - `maxiter=500` (_int_): maximum number of iterations for the EM algorithm
   - `tol=1e-4` (_float_): tolerance for the EM algorithm
 - Returns

@@ -18,7 +18,7 @@ print(drawn.as_dataframe())
 fit = estimate(
     df=drawn.df, sh=drawn.sh,
     formula=drawn.formula,
-    gen_pars={
+    ass_pars={
         "pi1": drawn.pars[0],
         "pi2": drawn.pars[1],
         "xi": drawn.pars[2],

@@ -236,7 +236,7 @@ def draw(m, sh, delta, n,
 ###################################################################
 
 def mle(sample, m, sh, df, formula,
-    gen_pars=None,
+    ass_pars=None,
     maxiter=None, tol=None #for GEM compatibility
     ):
     r"""Main function for CUSH model without covariates.
@@ -253,8 +253,8 @@ def mle(sample, m, sh, df, formula,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: default to None; ensure compatibility with ``gem.from_formula()``
     :type maxiter: None
     :param tol: default to None; ensure compatibility with ``gem.from_formula()``
@@ -323,7 +323,7 @@ def mle(sample, m, sh, df, formula,
     time_exe=start,
     sample=sample, f=f, varmat=varmat,
     diss=diss,
-    gen_pars=gen_pars,
+    ass_pars=ass_pars,
     df=df, formula=formula
     )
 
@@ -360,8 +360,8 @@ class CUBresCUSH(CUBres):
         title += f"$n={self.n}$\n"
         title += fr"Estim($\delta={delta:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
-        if self.gen_pars is not None:
-            delta_gen = self.gen_pars["delta"]
+        if self.ass_pars is not None:
+            delta_gen = self.ass_pars["delta"]
             title += "\n"
             title += fr"Gener($\delta={delta_gen:.3f}$)"
             p_gen = pmf(m=self.m, sh=self.sh, delta=delta_gen)
@@ -423,8 +423,8 @@ class CUBresCUSH(CUBres):
         ax.plot(delta, 0,
             ".b",ms=20, alpha=.5,
             label="estimated")
-        if self.gen_pars is not None:
-            delta_gen = self.gen_pars["delta"]
+        if self.ass_pars is not None:
+            delta_gen = self.ass_pars["delta"]
             ax.scatter(delta_gen, 0,
                 facecolor="None",
                 edgecolor="r", s=200, label="generator")
@@ -531,8 +531,8 @@ class CUBresCUSH(CUBres):
         ax[0].scatter(R, self.f/self.n, 
             facecolor="None",
             edgecolor="k", s=200, label="observed")
-        if self.gen_pars is not None:
-            delta_gen = self.gen_pars["delta"]
+        if self.ass_pars is not None:
+            delta_gen = self.ass_pars["delta"]
             p_gen = pmf(m=self.m, sh=self.sh, delta=delta_gen)
             ax[0].stem(R, p_gen, linefmt="--r",
             markerfmt="none", label="generator")

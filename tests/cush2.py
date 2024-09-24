@@ -20,7 +20,7 @@ fit = estimate(
     model="cush",
     formula="ord~0|0",
     sh=[1,7],
-    gen_pars={
+    ass_pars={
         "delta1": drawn.pars[0],
         "delta2": drawn.pars[1],
     }

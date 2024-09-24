@@ -323,7 +323,7 @@ def draw2(m, sh1, sh2, pi, xi, delta, zeta, n, df, formula, seed=None):
 def mle(sample, m, sh1, sh2,
     df, formula,
     maxiter=1000, tol=1e-4,
-    gen_pars=None
+    ass_pars=None
     ):
     """
     Maximum likelihood estimation of parameters pi1, pi2, pi3, xi
@@ -516,7 +516,7 @@ def mle(sample, m, sh1, sh2,
         seconds=durata, time_exe=start,
         sample=sample, f=f, varmat=varmat,
         diss=diss,
-        gen_pars=gen_pars,
+        ass_pars=ass_pars,
     )
 
 def varcov_pixi(n, m,
@@ -589,12 +589,12 @@ class CUBresCUBSH2(CUBres):
         title += f"$c_2={self.sh[1]}$\n"
         title += fr"Estim($\pi_1={pi1:.3f}$ , $\pi_2={pi2:.3f}$ , $\pi_3={pi3:.3f}$ , $\xi={xi:.3f}$)"
         title += f"\nDissim(est,obs)={self.diss:.4f}"
-        if self.gen_pars is not None:
+        if self.ass_pars is not None:
             #pass
-            genpi1 = self.gen_pars['pi1']
-            genpi2 = self.gen_pars['pi2']
-            genpi3 = self.gen_pars['pi3']
-            genxi  = self.gen_pars['xi']
+            genpi1 = self.ass_pars['pi1']
+            genpi2 = self.ass_pars['pi2']
+            genpi3 = self.ass_pars['pi3']
+            genxi  = self.ass_pars['xi']
             title += "\n"
             title += fr"Gener($\pi_1={genpi1:.3f}$ , "
             title += fr"$\pi_2={genpi2:.3f}$ , "
@@ -628,7 +628,7 @@ class CUBresCUBSH2(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
-        if self.gen_pars is not None:
+        if self.ass_pars is not None:
             p_gen = pmf(m=self.m,
                 pi1=genpi1, pi2=genpi2,
                 pi3=genpi3, xi=genxi,
@@ -688,11 +688,11 @@ class CUBresCUBSH2(CUBres):
         #ax.text(1-pi, 1-xi,
         #    fr"  $\delta = {delta:.3f}$" "\n",
         #    ha="left", va="bottom")
-        if self.gen_pars is not None:
-            gpi1 = self.gen_pars["pi1"]
-            gpi2 = self.gen_pars["pi2"]
-            gpi3 = self.gen_pars["pi3"]
-            gxi = self.gen_pars["xi"]
+        if self.ass_pars is not None:
+            gpi1 = self.ass_pars["pi1"]
+            gpi2 = self.ass_pars["pi2"]
+            gpi3 = self.ass_pars["pi3"]
+            gxi = self.ass_pars["xi"]
             gpi,_,_ = p123_to_pdz(
                 gpi1, gpi2, gpi3
             )

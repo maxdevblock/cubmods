@@ -187,7 +187,7 @@ def var(m, theta):
     return n/(d1*d2)
 
 def mle(m, sample, 
-    df, formula, gen_pars=None):
+    df, formula, ass_pars=None):
     r"""Main function for CUB models without covariates.
 
     Function to estimate and validate a CUB model without covariates for given ordinal responses.
@@ -200,8 +200,8 @@ def mle(m, sample,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :return: an instance of ``CUBresIHG`` (see the Class for details)
     :rtype: object
     """
@@ -263,7 +263,7 @@ def mle(m, sample,
         diss=diss, sample=sample,
         f=f, varmat=varmat,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars,
+        time_exe=start, ass_pars=ass_pars,
         df=df, formula=formula
     )
 
@@ -304,8 +304,8 @@ class CUBresIHG(CUBres):
                 [0, 0],
                 "b", lw=1
             )
-        if self.gen_pars is not None:
-            ax.scatter(self.gen_pars['theta'], 0,
+        if self.ass_pars is not None:
+            ax.scatter(self.ass_pars['theta'], 0,
                 facecolor="None",
                 edgecolor="r", s=200, label="generator")
         ax.legend(loc="upper left",
@@ -347,10 +347,10 @@ class CUBresIHG(CUBres):
         title += f"$n={self.n}$\n"
         title += fr"Estim($\theta={self.estimates[0]:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
-        if self.gen_pars is not None:
+        if self.ass_pars is not None:
             title += "\n"
-            title += fr"Gener($\theta={self.gen_pars['theta']:.3f}$)"
-            p_gen = pmf(m=self.m, theta=self.gen_pars['theta'])
+            title += fr"Gener($\theta={self.ass_pars['theta']:.3f}$)"
+            p_gen = pmf(m=self.m, theta=self.ass_pars['theta'])
             R = choices(m=self.m)
             ax.stem(R, p_gen, linefmt="--r",
                 markerfmt="none", label="generating")

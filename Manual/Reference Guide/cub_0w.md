@@ -33,7 +33,7 @@ Estimates parameters from an observed sample.
   - `sample` (_array_): the observed sample; can be a _list_ or a `numpy` _array_
   - `m` (_int_): number of ordinal responses; must be $m>3$
   - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling; column names will be taken as covariate variable names; it must not contain a column named `constant`
-  - `gen_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters `{"pi": <float>, "gamma": <array>}`
+  - `ass_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters `{"pi": <float>, "gamma": <array>}`
   - `maxiter=500` (_int_): maximum number of iterations for the EM algorithm
   - `tol=1e-4` (_float_): tolerance for the EM algorithm
 - Returns

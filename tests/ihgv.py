@@ -32,7 +32,7 @@ fit = estimate(
     df=drawn.df,
     formula=drawn.formula,
     model="ihg",
-    gen_pars={
+    ass_pars={
         "theta": drawn.pars[0],
     }
 )

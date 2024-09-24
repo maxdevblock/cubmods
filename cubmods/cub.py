@@ -420,7 +420,7 @@ def draw(m, pi, xi, n,
 ###################################################################
 
 def mle(sample, m, df, formula,
-    gen_pars=None,
+    ass_pars=None,
     maxiter=500,
     tol=1e-4,):
     r"""Main function for CUB models without covariates.
@@ -435,8 +435,8 @@ def mle(sample, m, df, formula,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm
     :type maxiter: int
     :param tol: fixed error tolerance for final estimates
@@ -579,7 +579,7 @@ def mle(sample, m, df, formula,
             diss=diss,
             df=df, formula=formula,
             #diss_gen=diss_gen,
-            gen_pars=gen_pars
+            ass_pars=ass_pars
             #pi_gen=pi_gen, xi_gen=xi_gen
         )
     return res
@@ -617,9 +617,9 @@ class CUBresCUB00(CUBres):
         title += f"$n={self.n}$\n"
         title += fr"Estim($\pi={pi:.3f}$ , $\xi={xi:.3f}$)"
         title += f"    Dissim(est,obs)={self.diss:.4f}"
-        if self.gen_pars is not None:
+        if self.ass_pars is not None:
             title += "\n"
-            title += fr"Gener($\pi={self.gen_pars['pi']:.3f}$ , $\xi={self.gen_pars['xi']:.3f}$)"
+            title += fr"Gener($\pi={self.ass_pars['pi']:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$)"
             #title += f"    Dissim(est,gen)={self.diss_gen:.6f}"
         ax.set_title(title)
 
@@ -642,8 +642,8 @@ class CUBresCUB00(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
-        if self.gen_pars is not None:
-            p_gen = pmf(self.m, self.gen_pars['pi'], self.gen_pars['xi'])
+        if self.ass_pars is not None:
+            p_gen = pmf(self.m, self.ass_pars['pi'], self.ass_pars['xi'])
             ax.stem(R, p_gen, linefmt="--r",
             markerfmt="none", label="generating")
 
@@ -697,8 +697,8 @@ class CUBresCUB00(CUBres):
         ax.plot(1-pi, 1-xi,
             ".b",ms=20, alpha=.5,
             label="estimated")
-        if self.gen_pars is not None:
-            ax.scatter(1-self.gen_pars['pi'], 1-self.gen_pars['xi'],
+        if self.ass_pars is not None:
+            ax.scatter(1-self.ass_pars['pi'], 1-self.ass_pars['xi'],
                 facecolor="None",
                 edgecolor="r", s=200, label="generating")
 

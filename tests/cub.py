@@ -22,7 +22,7 @@ print(drawn.as_dataframe())
 fit = estimate(
     df=drawn.df,
     formula="ord~0|0",
-    gen_pars={
+    ass_pars={
         "pi": drawn.pars[0],
         "xi": drawn.pars[1]
     }

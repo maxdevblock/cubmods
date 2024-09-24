@@ -261,7 +261,7 @@ def init_theta(m, f):
     return est
 
 def mle(m, sample, V,
-    df, formula, gen_pars=None):
+    df, formula, ass_pars=None):
     r"""Main function for IHG models with covariates.
 
     Estimate and validate a IHG model for ordinal responses, with covariates.
@@ -276,8 +276,8 @@ def mle(m, sample, V,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :return: an instance of ``CUBresIHGV`` (see the Class for details)
     :rtype: object
     """
@@ -358,7 +358,7 @@ def mle(m, sample, V,
         diss=diss, sample=sample,
         f=f, varmat=varmat,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars,
+        time_exe=start, ass_pars=ass_pars,
         df=df, formula=formula
     )
 

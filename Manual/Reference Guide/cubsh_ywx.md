@@ -40,7 +40,7 @@ Function to estimate and validate a CUB model without covariates for given ordin
   - `Y` (_DataFrame_): a `numpy` DataFrame with covariates values for Uncertainty
   - `W` (_DataFrame_): a `numpy` DataFrame with covariates values for Feeling
   - `X` (_DataFrame_): a `numpy` DataFrame with covariates values for Shelter
-  - `gen_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters
+  - `ass_pars=None` (_dictionary_): if provided, a dictionary of a known model parameters
   - `maxiter=500` (_int_): maximum number of iterations for the EM algorithm
   - `tol=1e-4` (_float_): tolerance for the EM algorithm
 - Returns

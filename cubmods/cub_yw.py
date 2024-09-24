@@ -328,7 +328,7 @@ def varcov(m, sample, Y, W, beta, gamma):
 
 def mle(sample, m, Y, W,
     df, formula,
-    gen_pars=None,
+    ass_pars=None,
     maxiter=500,
     tol=1e-4):
     r"""Main function for CUB models with covariates for both the uncertainty and the feeling components.
@@ -348,8 +348,8 @@ def mle(sample, m, Y, W,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: maximum number of iterations allowed for running the optimization algorithm
     :type maxiter: int
     :param tol: fixed error tolerance for final estimates
@@ -491,7 +491,7 @@ def mle(sample, m, Y, W,
         varmat=varmat, df=df,
         formula=formula,
         diss=diss,
-        gen_pars=gen_pars
+        ass_pars=ass_pars
         #dev=dev
     )
 

@@ -318,7 +318,7 @@ def Q2(param, dati2, m):
 
 def mle(m, sample, sh1, sh2, Y, W, X, U,
     df, formula,
-    gen_pars=None,
+    ass_pars=None,
     maxiter=1000, tol=1e-4):
     start = dt.datetime.now()
     n = sample.size
@@ -448,7 +448,7 @@ def mle(m, sample, sh1, sh2, Y, W, X, U,
         #dev=dev,
         AIC=AIC, BIC=BIC,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars
+        time_exe=start, ass_pars=ass_pars
     )
     
 class CUBresCUBSH2YWXU(CUBres):
@@ -497,10 +497,10 @@ class CUBresCUBSH2YWXU(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
-        # if self.gen_pars is not None:
-        #     pi_gen = self.gen_pars["pi"]
-        #     gamma_gen = self.gen_pars["gamma"]
-        #     phi_gen = self.gen_pars["phi"]
+        # if self.ass_pars is not None:
+        #     pi_gen = self.ass_pars["pi"]
+        #     gamma_gen = self.ass_pars["gamma"]
+        #     phi_gen = self.ass_pars["phi"]
         #     p_gen = pmf(m=self.m, pi=pi_gen,
         #         gamma=gamma_gen, phi=phi_gen,
         #         W=self.W)

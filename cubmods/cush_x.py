@@ -247,7 +247,7 @@ def effe(pars, esterno, m, sh):
     return -l
 
 def mle(m, sample, X, sh,
-    df, formula, gen_pars=None,
+    df, formula, ass_pars=None,
     maxiter=None, tol=None #for GEM compatibility
     ):
     r"""Main function for CUSH models with covariates.
@@ -267,8 +267,8 @@ def mle(m, sample, X, sh,
     :type df: DataFrame
     :param formula: the formula used
     :type formula: str
-    :param gen_pars: dictionary of hypothesized parameters, defaults to None
-    :type gen_pars: dictionary, optional
+    :param ass_pars: dictionary of hypothesized parameters, defaults to None
+    :type ass_pars: dictionary, optional
     :param maxiter: default to None; ensure compatibility with ``gem.from_formula()``
     :type maxiter: None
     :param tol: default to None; ensure compatibility with ``gem.from_formula()``
@@ -350,7 +350,7 @@ def mle(m, sample, X, sh,
         sample=sample, f=f, varmat=varmat,
         diss=diss, df=df, formula=formula,
         seconds=(end-start).total_seconds(),
-        time_exe=start, gen_pars=gen_pars
+        time_exe=start, ass_pars=ass_pars
     )
 
 class CUBresCUSHX(CUBres):

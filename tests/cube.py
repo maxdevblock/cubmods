@@ -17,7 +17,7 @@ fit = estimate(
     df=drawn.df,
     formula="ord~0|0|0",
     model="cube",
-    gen_pars={
+    ass_pars={
         "pi": drawn.pars[0],
         "xi": drawn.pars[1],
         "phi": drawn.pars[2],
