@@ -74,6 +74,26 @@ For example, let's suppose we have a DataFrame where ``response`` is the ordinal
 ``age`` and ``sex`` are respectively a quantitative and a qualitative variable to explain the *feeling* component
 only, in a ``cub`` family model. The formula will be ``formula = "response ~ 0 | age + C(sex)"``.
 
+.. note::
+
+    Python will automatically order qualitative variables in alphanumeric order. So, for
+    instance, a variable ``sex`` with two categories ``"M"`` and ``"F"`` will be ordered as 
+    ``["F", "M"]`` thus the dummy variabile will be equal to ``0`` where ``sex=="F"`` and equal
+    to ``1`` where otherwise ``sex=="M"``. Consequently, the estimated parameters will be the 
+    ``constant`` for ``sex=="F"`` and ``C.sex_M`` for ``sex=="M"``. If you want a different order
+    for the categorical variables, you must specify it in *DataFrame*, for instance with the
+    ``pandas`` funtion ``Categorical``. In the example:
+
+    .. code-block:: python
+        :caption: Script
+        :linenos:
+
+        df["sex"] = pd.Categorical(
+            df["sex"],
+            categories=["M", "F"],
+            ordered=True
+        )
+
 Notice that spaces are allowed between symbols and variable names in the formula but they aren't
 needed: a formula ``"ord ~ X | Y1 + Y2 | Z"`` is the same as ``"ord~X|Y1+Y2|Z"``.
 
@@ -133,6 +153,7 @@ formula ``ordinal ~ cov | 1 | 1``: in this case, for feeling and shelter effect,
 (:math:`\gamma_0` and :math:`\omega_0`) will be estimated and the values of the estimated :math:`\xi` and
 :math:`\delta` could be computed as :math:`\hat\xi=\mathrm{expit}(\hat\gamma_0)` and 
 :math:`\hat\delta=\mathrm{expit}(\hat\omega_0)`, where :math:`\mathrm{expit}(x) = 1 / (1 + \exp(-x))`.
+See `this example <#cubsh-with-covariates>`__ for the GeCUB model.
 
 If ``family="cube"``, then a CUBE mixture model (Combination of Uniform and Beta-Binomial) is fitted to the data
 to explain uncertainty, feeling and overdispersion.   Subjects' covariates can be also included to explain the
