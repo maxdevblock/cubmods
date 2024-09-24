@@ -453,7 +453,7 @@ to consider the constant term too.
         "W1": W1, "W2": W2
     })
     drawn = draw(
-        formula="res ~ 0 | W1 + W2",
+        formula="response ~ 0 | W1 + W2",
         df=df,
         m=10, n=n,
         pi=0.8,
@@ -468,7 +468,7 @@ to consider the constant term too.
     =====>>> CUB(0W) model <<<===== Drawn random sample
     =======================================================================
     m=10  Sample size=1000  seed=None
-    formula: res~0|W1+W2
+    formula: response~0|W1+W2
     -----------------------------------------------------------------------
     pi=0.800
     constant=2.300
@@ -542,7 +542,7 @@ given the observed (actually, drawn) sample.
 
     # MLE estimation
     fit = estimate(
-        formula="res ~ 0 | W1+W2",
+        formula="response ~ 0 | W1+W2",
         df=drawn.df,
     )
     # Print MLE summary
