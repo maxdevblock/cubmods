@@ -765,7 +765,7 @@ class CUBresCUBE(CUBres):
         if equal:
             ax.set_aspect("equal")
         if self.rho is not None:
-            ax.set_title(f"Corr(pi,xi)= {self.rho}")
+            ax.set_title(fr"Corr($\hat\pi,\hat\xi$)= {self.rho}")
 
         ax.set_xlabel(r"$(1-\pi)$  uncertainty")
         ax.set_ylabel(r"$(1-\xi)$  feeling")

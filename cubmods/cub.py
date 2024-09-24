@@ -686,7 +686,7 @@ class CUBresCUB00(CUBres):
 
         if equal:
             ax.set_aspect("equal")
-        ax.set_title(fr"Corr($\pi,\xi$)= {self.rho:.4f}")
+        ax.set_title(fr"Corr($\hat\pi,\hat\xi$)= {self.rho:.4f}")
 
         pi = self.estimates[0]
         xi = self.estimates[1]
