@@ -102,5 +102,5 @@ Generally speaking, for models with covariates three different probability funct
 |
 |
 
-.. bibliography:: cub.bib
-    :cited:
+.. .. bibliography:: cub.bib
+..     :cited:

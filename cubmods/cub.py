@@ -18,6 +18,7 @@ Description
 Manual and Examples
 ==========================
     - `Models manual <manual.html#cub-models-without-covariates>`__
+    See the Manual for references.
 
 References
 ===========

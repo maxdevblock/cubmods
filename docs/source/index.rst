@@ -13,7 +13,7 @@ Welcome to CUBmods's documentation!
    intro
    manual
    modules
-
+   references
 
 
 Indices and tables

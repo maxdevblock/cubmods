@@ -223,7 +223,8 @@ see the Base Class ``CUBres`` reference guide.
 CUB family
 ----------
 
-Basic family of the class CUB. See the references for details.
+Basic family of the class CUB. See the references for details: 
+:cite:t:`piccolo2003moments`, :cite:t:`d2005mixture`, :cite:t:`piccolo2006observed`
 
 References
 ^^^^^^^^^^
