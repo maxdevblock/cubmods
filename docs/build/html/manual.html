@@ -921,16 +921,18 @@ and then estimate the parameters given the sample.</p>
 <p>Notice that:</p>
 <ul class="simple">
 <li><p>since <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> is default value of the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">model</span></code>, we do not need to specify it</p></li>
-<li><p>we’ll pass to <code class="docutils literal notranslate"><span class="pre">estimate</span></code> <em>kwargs</em> values taken from the object <code class="docutils literal notranslate"><span class="pre">drawn</span></code></p></li>
+<li><p>we’ll pass to <code class="docutils literal notranslate"><span class="pre">estimate</span></code> <em>kwarg</em> values taken from the object <code class="docutils literal notranslate"><span class="pre">drawn</span></code></p></li>
 </ul>
-<p>The method <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> (of the <code class="docutils literal notranslate"><span class="pre">fit</span></code> object)
-shows, in the parameters space, the trivariate confidence ellipsoid too, which have not
-been implemented in the <code class="docutils literal notranslate"><span class="pre">CUB</span></code> package in R.
-The plot includes the marginal confidence ellipses too. Notice that, as proven in
+<p id="confidence-ellipsoid">The method <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> (of the <code class="docutils literal notranslate"><span class="pre">fit</span></code> object)
+shows, in the parameters space, the trivariate confidence ellipsoid too, which has not
+been implemented yet in the <code class="docutils literal notranslate"><span class="pre">CUB</span></code> package in R.
+The plot includes the marginal bivariate confidence ellipses too. Notice that, as proven in
 <span id="id82">Pierini (<a class="reference internal" href="references.html#id38" title="Massimo Pierini. Modelli della classe CUB in python. Universitas Mercatorum, Rome, IT, pages 16–20, June 2024. (Bachelor's thesis L-41).">2024</a>)</span> pp 28-30, the confidence level of the marginal ellipses is greater
-than the ellipsoid’s confidence level. Indeed, the radius <span class="math notranslate nohighlight">\(r\)</span> of a sphere at confidence
+than the ellipsoid’s confidence level. Indeed, the radius <span class="math notranslate nohighlight">\(r\)</span> of a
+standardized sphere at confidence
 level <span class="math notranslate nohighlight">\((1-\alpha_3)\)</span> is equal to <span class="math notranslate nohighlight">\(r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3) }\)</span>, thus
-the confidence level of the marginal ellipses is <span class="math notranslate nohighlight">\((1-\alpha_2) = F_{\chi^2_{(2)}(r^2)}\)</span>.</p>
+the confidence level of the bivariate marginal ellipses (which is a section of a trivariate
+cylinder) is <span class="math notranslate nohighlight">\((1-\alpha_2) = F_{\chi^2_{(2)}(r^2)}\)</span>.</p>
 <div class="literal-block-wrapper docutils container" id="id296">
 <div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id296" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
@@ -1097,7 +1099,7 @@ Elapsed time=1.43850 seconds =====&gt;&gt;&gt; Thu Aug 15 19:39:49 2024
 <img alt="CUBSH YWX MLE" src="_images/cubshywxmle.png" />
 <p>To get the estimated values of <span class="math notranslate nohighlight">\(\hat\xi\)</span> and <span class="math notranslate nohighlight">\(\hat\delta\)</span>
 we can use the function <code class="docutils literal notranslate"><span class="pre">expit</span></code> because <span class="math notranslate nohighlight">\(\hat\xi = \mathrm{expit}(\hat\gamma_0)\)</span>
-and similarly for <span class="math notranslate nohighlight">\(\hat\delta\)</span>. Then, we can use the <span class="math notranslate nohighlight">\(\Delta\)</span> method
+and similarly for <span class="math notranslate nohighlight">\(\hat\delta\)</span>. Then, we can use the delta-method
 to compute the standard errors of both <span class="math notranslate nohighlight">\(\hat\xi\)</span> and <span class="math notranslate nohighlight">\(\hat\delta\)</span>, for instance
 <span class="math notranslate nohighlight">\(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\)</span>.</p>
 <div class="literal-block-wrapper docutils container" id="id298">
@@ -1520,6 +1522,8 @@ See the references for details.</p>
 <p>In this example, we’ll draw a sample from a CUBE model and then
 will estimate the parameters given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
+<p>The <cite>.plot()</cite> method of the object <cite>fit</cite> will show trivariate and bivariate confidence
+regions too, as in CUBSH models. See <a class="reference external" href="#confidence-ellipsoid">here</a> for the values of confidence levels.</p>
 <div class="literal-block-wrapper docutils container" id="id303">
 <div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id303" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
@@ -1794,9 +1798,16 @@ See the references for details.</p>
 \begin{array}{l}
     \Pr(R=1|\theta) = \theta
     \\
-    \Pr(R=r+1|\theta) = \Pr(R=r|\theta)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
+    \Pr(R=r+1|\theta) = \Pr(R=r|\theta)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1,2, \ldots, m-1
 \end{array}
 \right.\end{split}\]</div>
+<p>which is equivalent to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\Pr(R=r|\theta) = \frac{ \dbinom{m+B-r-1}{m-r} }{ \dbinom{m+B-1}{m-1} },\; r= 1,2, \ldots, m
+\\
+\textrm{with } B = (m-1)\theta / (1 - \theta)
+\end{array}\end{split}\]</div>
 <p>In this example, we’ll draw a sample from an IHG model
 and the estimate the parameter from the observed sample.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>

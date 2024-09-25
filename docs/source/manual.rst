@@ -655,12 +655,15 @@ Notice that:
 
 - we'll pass to ``estimate`` *kwarg* values taken from the object ``drawn``
 
+.. _confidence-ellipsoid:
+
 The method ``.plot()`` (of the ``fit`` object)
 shows, in the parameters space, the trivariate confidence ellipsoid too, which has not
 been implemented yet in the ``CUB`` package in R.
 The plot includes the marginal bivariate confidence ellipses too. Notice that, as proven in
 :cite:t:`mythesis` pp 28-30, the confidence level of the marginal ellipses is greater
-than the ellipsoid's confidence level. Indeed, the radius :math:`r` of a sphere at confidence
+than the ellipsoid's confidence level. Indeed, the radius :math:`r` of a 
+standardized sphere at confidence
 level :math:`(1-\alpha_3)` is equal to :math:`r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3) }`, thus
 the confidence level of the bivariate marginal ellipses (which is a section of a trivariate
 cylinder) is :math:`(1-\alpha_2) = F_{\chi^2_{(2)}(r^2)}`.
@@ -1318,6 +1321,9 @@ will estimate the parameters given the observed sample.
 
 Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
 
+The `.plot()` method of the object `fit` will show trivariate and bivariate confidence
+regions too, as in CUBSH models. See `here <#confidence-ellipsoid>`__ for the values of confidence levels.
+
 .. code-block:: python
     :caption: Script
     :linenos:
@@ -1615,9 +1621,18 @@ Without covariates
     \begin{array}{l}
         \Pr(R=1|\theta) = \theta
         \\
-        \Pr(R=r+1|\theta) = \Pr(R=r|\theta)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
+        \Pr(R=r+1|\theta) = \Pr(R=r|\theta)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1,2, \ldots, m-1
     \end{array}
     \right.
+
+which is equivalent to
+
+.. math::
+    \begin{array}{l}
+    \Pr(R=r|\theta) = \frac{ \dbinom{m+B-r-1}{m-r} }{ \dbinom{m+B-1}{m-1} },\; r= 1,2, \ldots, m
+    \\
+    \textrm{with } B = (m-1)\theta / (1 - \theta)
+    \end{array}
 
 In this example, we'll draw a sample from an IHG model
 and the estimate the parameter from the observed sample.
