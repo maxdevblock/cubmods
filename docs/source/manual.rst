@@ -653,7 +653,7 @@ Notice that:
 
 - since ``"cub"`` is default value of the *kwarg* ``model``, we do not need to specify it
 
-- we'll pass to ``estimate`` *kwargs* values taken from the object ``drawn``
+- we'll pass to ``estimate`` *kwarg* values taken from the object ``drawn``
 
 The method ``.plot()`` (of the ``fit`` object)
 shows, in the parameters space, the trivariate confidence ellipsoid too, which has not
