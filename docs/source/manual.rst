@@ -655,6 +655,16 @@ Notice that:
 
 - we'll pass to ``estimate`` *kwargs* values taken from the object ``drawn``
 
+The method ``.plot()`` (of the ``fit`` object)
+shows, in the parameters space, the trivariate confidence ellipsoid too, which has not
+been implemented yet in the ``CUB`` package in R.
+The plot includes the marginal bivariate confidence ellipses too. Notice that, as proven in
+:cite:t:`mythesis` pp 28-30, the confidence level of the marginal ellipses is greater
+than the ellipsoid's confidence level. Indeed, the radius :math:`r` of a sphere at confidence
+level :math:`(1-\alpha_3)` is equal to :math:`r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3) }`, thus
+the confidence level of the bivariate marginal ellipses (which is a section of a trivariate
+cylinder) is :math:`(1-\alpha_2) = F_{\chi^2_{(2)}(r^2)}`.
+
 .. code-block:: python
     :caption: Script
     :linenos:
@@ -835,7 +845,7 @@ similarly for :math:`\pi` and :math:`\delta`.
 
 To get the estimated values of :math:`\hat\xi` and :math:`\hat\delta`
 we can use the function ``expit`` because :math:`\hat\xi = \mathrm{expit}(\hat\gamma_0)`
-and similarly for :math:`\hat\delta`. Then, we can use the :math:`\Delta` method 
+and similarly for :math:`\hat\delta`. Then, we can use the delta-method 
 to compute the standard errors of both :math:`\hat\xi` and :math:`\hat\delta`, for instance
 :math:`\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi`.
 
