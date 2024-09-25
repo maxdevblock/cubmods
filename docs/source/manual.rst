@@ -1833,8 +1833,9 @@ ellipses for CUB models.
         ):
         drawn = draw(
             formula="ord ~ 0 | 0 | 0",
-            m = 9, model="cube", n=500,
-            pi=pi, xi=xi, phi=phi
+            m = 9, model="cube", n=1000,
+            pi=pi, xi=xi, phi=phi,
+            seed=1976
         )
         # add a shelter category at c=1
         df[f"ord{i+1}"] = np.concatenate((
@@ -1853,7 +1854,8 @@ ellipses for CUB models.
     plt.show()
     # MULTI-CUBSH
     multi(
-        ords=df, ms=9, model="cub", shs=1
+        ords=df, ms=9, model="cub", shs=1,
+        pos=[1, 6, 2]
     )
     plt.show()
 

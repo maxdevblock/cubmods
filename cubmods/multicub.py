@@ -182,11 +182,13 @@ def multi(ords, ms=None,
     
     if plot:
         if title is None:
-            title = f"MULTICUB. Model {model.upper()}"
+            title = f"MULTICUB. "
+            modname = model
             if shs is not None and model == "cub":
-                title += "SH"
+                modname += "SH"
+            title += f"{modname.upper()} models."
             if confell and model == "cub" and shs is None:
-                title += f"    CR {ci:.0%}"
+                title += f" {ci:.0%} confidence regions."
         if ax is None:
             fig, ax = plt.subplots(
                 figsize=figsize,
