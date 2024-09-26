@@ -212,8 +212,8 @@ standard error, Wald test statistics and p-value.
 
 Calling the method ``.save(fname)`` the object can be saved on a file called ``fname.cub.sample``
 (for ``draw``) or ``fname.cub.fit`` (for ``estimate``).
-
-Saved objects can then be loaded using the function ``general.load(fname)``.
+Saved objects can then be loaded using the function ``general.load_object(fname)``.
+See `this example <#save-load-example>`__.
 
 Attributes of ``estimate`` and ``draw``
 ---------------------------------------
@@ -385,6 +385,31 @@ parameters' estimated values and standard errors
          component parameter  estimate    stderr       wald        pvalue
     0  Uncertainty        pi   0.67476  0.033954  19.872485  7.042905e-88
     1      Feeling        xi   0.18817  0.009043  20.807551  3.697579e-96
+
+.. _save-load-example:
+
+As an example, we can now save the ``fit`` object to file. By default,
+it will be saved as a ``pickle`` file.
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    fit.save(fname="cub_mle_results")
+
+The previous code, will save a file ``cub_mle_results.cub.fit``.
+
+We can then load the saved file with the code
+
+.. code-block:: python
+    :caption: Script
+    :linenos:
+
+    from cubmods.general import load_object
+
+    myfit = load_object("cub_mle_results.cub.fit")
+
+and we can apply to ``myfit`` the same methods and attributes of the original ``fit`` object.
 
 .. _cub-with-covariates:
 
