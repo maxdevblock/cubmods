@@ -429,6 +429,8 @@ class CUBresCUSH(CUBres):
                 facecolor="None",
                 edgecolor="r", s=200, label="assumed")
         ax.set_yticks([])
+        ax.axhline(0, color="orange")
+        ax.set_ylim((-.1, +.1))
         if not magnified:
             ax.set_xlim((0,1))
             ticks = np.arange(0, 1.1, .1)
@@ -436,13 +438,28 @@ class CUBresCUSH(CUBres):
         if ci is not None:
             alpha = 1-ci
             z = abs(sps.norm().ppf(alpha/2))
-            ax.plot(
-                [delta-z*self.stderrs, delta+z*self.stderrs],
-                [0, 0],
-                "b", lw=1,
-                label=f"CI {ci:.0%}"
+            # ax.plot(
+            #     [delta-z*self.stderrs, delta+z*self.stderrs],
+            #     [0, 0],
+            #     "b", lw=2,
+            #     label=f"CI {ci:.0%}"
+            # )
+            ax.errorbar(
+                delta, 0,
+                xerr=z*self.stderrs,
+                ecolor="b",
+                elinewidth=2,
+                capsize=5,
+                label=f"{ci:.0%} CI"
             )
         ax.grid(True)
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        #ax.spines['bottom'].set_visible(False)
+        ax.spines['left'].set_visible(False)
+        plt.subplots_adjust(
+            hspace = 0.3
+        )
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
         
@@ -451,7 +468,7 @@ class CUBresCUSH(CUBres):
                 fig.savefig(saveas, bbox_inches='tight')
         return fig, ax
 
-    def plot(self, ci=.95, saveas=None, figsize=(7, 15)):
+    def plot(self, ci=.95, saveas=None, figsize=(7, 8)):
         r"""Main function to plot an object of the Class.
 
         :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
@@ -462,7 +479,8 @@ class CUBresCUSH(CUBres):
         :type saveas: str
         :return: ``ax`` or a tuple ``(fig, ax)``
         """
-        fig, ax = plt.subplots(3, 1, figsize=figsize)
+        fig, ax = plt.subplots(3, 1, figsize=figsize,
+                               height_ratios=[.8, .1, .1])
         self.plot_ordinal(ax=ax[0])
         self.plot_estim(ax=ax[1], ci=ci)
         self.plot_estim(ax=ax[2], ci=ci,
