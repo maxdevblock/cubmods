@@ -13,22 +13,10 @@ Description:
     It is based upon the works of Domenico
     Piccolo et Al. and the ``CUB`` package in R.
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#gem-manual>`__
 
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
-  
 List of TODOs:
 ==============
   - TODO: implement best shelter search

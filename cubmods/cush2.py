@@ -18,22 +18,9 @@ Description:
 
     :math:`\Pr(R=r|\pmb \theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1 - \delta_1 - \delta_2)/m,\; r=1,2,\ldots,m`
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#cush2-without-covariates>`__
-
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        mythesis
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
   
 List of TODOs:
 ==============

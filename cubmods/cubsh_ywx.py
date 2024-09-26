@@ -22,23 +22,9 @@ Description:
     :math:`\delta_i = \dfrac{1}{1+e^{-\pmb x_i \pmb\omega}}`
 
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#cubsh-with-covariates>`__
-
-
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        iannario2012modelling
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
   
 List of TODOs:
 ==============

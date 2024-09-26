@@ -17,25 +17,9 @@ Description:
 
     :math:`\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb\beta}}`
 
-Manual and Examples
-==========================
-    - `Models manual <manual.html#cub-models-with-covariates>`__
-
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        piccolo2003moments
-        d2005mixture
-        piccolo2006observed
-        iannario2010new
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
+Manual, Examples and References:
+===============================
+    - `Models manual <manual.html#cub-with-covariates>`__
   
 List of TODOs:
 ==============

@@ -21,23 +21,9 @@ Description:
         \end{array}
         \right.
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#ihg-without-covariates>`__
-
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        d2003modelling
-        d2005moment
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
   
 List of TODOs:
 ==============

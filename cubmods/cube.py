@@ -15,23 +15,9 @@ Description:
 
     :math:`\Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m},\; r=1,2,\ldots,m`
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#cube-without-covariates>`__
-
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        iannario2014modelling
-        iannario2015detecting
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
   
 List of TODOs:
 ==============

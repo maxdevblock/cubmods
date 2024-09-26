@@ -17,24 +17,9 @@ Description:
 
     :math:`\xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}`
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#cube-with-covariates>`__
-
-
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        iannario2014modelling
-        iannario2015detecting
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
   
 List of TODOs:
 ==============

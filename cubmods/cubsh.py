@@ -15,23 +15,10 @@ Description:
 
     :math:`\Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1 - \delta)[ \pi b_r(\xi) + (1-\pi)/m ],\; r=1,2,\ldots,m`
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#cubsh-without-covariates>`__
 
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        iannario2012modelling
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
-  
 List of TODOs:
 ==============
   - TODO: fix 3d plots legend

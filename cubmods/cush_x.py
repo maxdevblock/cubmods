@@ -17,23 +17,10 @@ Description:
 
     :math:`\delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb \omega \}}`
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#cush-with-covariates>`__
 
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        capecchi2017dealing
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
-  
 List of TODOs:
 ==============
     - ...

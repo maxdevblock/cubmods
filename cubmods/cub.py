@@ -15,9 +15,9 @@ Description
 
     :math:`\Pr(R=r|\pmb{\theta}) = \pi \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi}{m},\; r=1,2,\ldots,m`
 
-Manual, Examples and References
+Manual, Examples and References:
 ===============================
-    - See the `Models manual <manual.html#cub-models-without-covariates>`__
+    - See the `Models manual <manual.html#cub-without-covariates>`__
   
 List of TODOs:
 ==============

@@ -15,23 +15,10 @@ Description:
 
     :math:`\Pr(R=r|\pmb \theta) = \delta D_r^{(c)} + (1 - \delta)/m,\; r=1,2,\ldots,m`
 
-Manual and Examples
-==========================
+Manual, Examples and References:
+===============================
     - `Models manual <manual.html#cush-without-covariates>`__
 
-References:
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        capecchi2017dealing
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
-  
 List of TODOs:
 ==============
   - TODO: check and fix gini & laakso
