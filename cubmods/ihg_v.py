@@ -159,7 +159,7 @@ def draw(m, nu, V,
         ["constant"],
         V.columns
     ))
-    p_types = np.repeat(["Theta"], len(nu)),
+    p_types = np.repeat(["Theta"], len(nu))
     
     return CUBsample(
         model="IHG(V)",

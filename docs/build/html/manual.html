@@ -468,7 +468,7 @@ implemented using <code class="docutils literal notranslate"><span class="pre">m
 <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code>. CUSH2 models are automatically
 implemented using <code class="docutils literal notranslate"><span class="pre">model=&quot;cush&quot;</span></code> and passing a list of two categories to
 the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code> instead of an integer, for instance <code class="docutils literal notranslate"><span class="pre">sh=[2,</span> <span class="pre">7]</span></code>.</p>
-<p>To the <code class="docutils literal notranslate"><span class="pre">draw</span></code> function, the parameters’ values (with the <em>kwargs</em> of the corresponding
+<p>To the <code class="docutils literal notranslate"><span class="pre">draw</span></code> method, the parameters’ values (with the <em>kwargs</em> of the corresponding
 family) must be passed:
 for example, <code class="docutils literal notranslate"><span class="pre">pi</span></code> and <code class="docutils literal notranslate"><span class="pre">xi</span></code> for CUB models without covariates, <code class="docutils literal notranslate"><span class="pre">beta</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code>
 for CUB models with covariates for both feeling and uncertainty, etc. See the
@@ -605,8 +605,9 @@ and parameters <span class="math notranslate nohighlight">\((\pi=.7, \xi=.2)\)</
 m=10  Sample size=500  seed=1
 formula: ord~0|0
 -----------------------------------------------------------------------
-pi=0.700
-xi=0.200
+  component parameter  value
+Uncertainty        pi    0.7
+    Feeling        xi    0.2
 =======================================================================
 Sample metrics
 Mean     = 7.368000
@@ -622,9 +623,9 @@ Dissimilarity = 0.0650938
 <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code> we do not need to specify it.</p>
 <p>Calling <code class="docutils literal notranslate"><span class="pre">drawn.as_dataframe()</span></code> will return a DataFrame with
 the parameters</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  parameter  value
-0        pi    0.7
-1        xi    0.2
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     component parameter  value
+0  Uncertainty        pi    0.7
+1      Feeling        xi    0.2
 </pre></div>
 </div>
 <p>Using the previously drawn sample, in the next example the parameters <span class="math notranslate nohighlight">\((\hat\pi, \hat\xi)\)</span> will be estimated.</p>
@@ -757,12 +758,13 @@ to consider the constant term too.</p>
 =====&gt;&gt;&gt; CUB(0W) model &lt;&lt;&lt;===== Drawn random sample
 =======================================================================
 m=10  Sample size=1000  seed=None
-formula: response~0|W1+W2
+formula: res~0|W1+W2
 -----------------------------------------------------------------------
-pi=0.800
-constant=2.300
-W1=0.200
-W2=-5.000
+  component parameter  value
+Uncertainty        pi    0.8
+    Feeling  constant    2.3
+    Feeling        W1    0.2
+    Feeling        W2   -5.0
 =======================================================================
 Sample metrics
 Mean     = 4.566000
@@ -789,11 +791,11 @@ Dissimilarity = 0.0307673
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  parameter  value
-0        pi    0.8
-1  constant    2.3
-2        W1    0.2
-3        W2   -5.0
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     component parameter  value
+0  Uncertainty        pi    0.8
+1      Feeling  constant    2.3
+2      Feeling        W1    0.2
+3      Feeling        W2   -5.0
 </pre></div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id302">
@@ -914,12 +916,12 @@ and then estimate the parameters given the sample.</p>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  parameter  value
-0       pi1   0.68
-1       pi2   0.17
-2        xi   0.40
-3       *pi   0.80
-4    *delta   0.15
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     component parameter  value
+0      Uniform       pi1   0.68
+1     Binomial       pi2   0.17
+2      Feeling        xi   0.40
+3  Uncertainty       *pi   0.80
+4      Shelter    *delta   0.15
 </pre></div>
 </div>
 <p>Notice that:</p>

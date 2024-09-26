@@ -138,7 +138,7 @@ implemented using ``model="cub"`` and specifying a shelter choice with the
 implemented using ``model="cush"`` and passing a list of two categories to
 the *kwarg* ``sh`` instead of an integer, for instance ``sh=[2, 7]``.
 
-To the ``draw`` function, the parameters' values (with the *kwargs* of the corresponding
+To the ``draw`` method, the parameters' values (with the *kwargs* of the corresponding
 family) must be passed: 
 for example, ``pi`` and ``xi`` for CUB models without covariates, ``beta`` and ``gamma``
 for CUB models with covariates for both feeling and uncertainty, etc. See the
@@ -297,8 +297,9 @@ and parameters :math:`(\pi=.7, \xi=.2)`. A ``seed=1`` will be set to ensure repr
     m=10  Sample size=500  seed=1
     formula: ord~0|0
     -----------------------------------------------------------------------
-    pi=0.700
-    xi=0.200
+      component parameter  value
+    Uncertainty        pi    0.7
+        Feeling        xi    0.2
     =======================================================================
     Sample metrics
     Mean     = 7.368000
@@ -319,9 +320,9 @@ the parameters
 
 .. code-block:: none
 
-      parameter  value
-    0        pi    0.7
-    1        xi    0.2
+         component parameter  value
+    0  Uncertainty        pi    0.7
+    1      Feeling        xi    0.2
 
 Using the previously drawn sample, in the next example the parameters :math:`(\hat\pi, \hat\xi)` will be estimated.
 
@@ -474,12 +475,13 @@ to consider the constant term too.
     =====>>> CUB(0W) model <<<===== Drawn random sample
     =======================================================================
     m=10  Sample size=1000  seed=None
-    formula: response~0|W1+W2
+    formula: res~0|W1+W2
     -----------------------------------------------------------------------
-    pi=0.800
-    constant=2.300
-    W1=0.200
-    W2=-5.000
+      component parameter  value
+    Uncertainty        pi    0.8
+        Feeling  constant    2.3
+        Feeling        W1    0.2
+        Feeling        W2   -5.0
     =======================================================================
     Sample metrics
     Mean     = 4.566000
@@ -509,11 +511,11 @@ to consider the constant term too.
 
 .. code-block:: none
 
-      parameter  value
-    0        pi    0.8
-    1  constant    2.3
-    2        W1    0.2
-    3        W2   -5.0
+         component parameter  value
+    0  Uncertainty        pi    0.8
+    1      Feeling  constant    2.3
+    2      Feeling        W1    0.2
+    3      Feeling        W2   -5.0
 
 .. code-block:: python
     :caption: Script
@@ -647,12 +649,12 @@ and then estimate the parameters given the sample.
 
 .. code-block:: none
 
-      parameter  value
-    0       pi1   0.68
-    1       pi2   0.17
-    2        xi   0.40
-    3       *pi   0.80
-    4    *delta   0.15
+         component parameter  value
+    0      Uniform       pi1   0.68
+    1     Binomial       pi2   0.17
+    2      Feeling        xi   0.40
+    3  Uncertainty       *pi   0.80
+    4      Shelter    *delta   0.15
 
 Notice that:
 

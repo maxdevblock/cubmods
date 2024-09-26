@@ -244,7 +244,7 @@ def draw(m, sh, beta, gamma, omega,
         p_types=p_types,
         seed=seed, diss=diss,
         theoric=theoric, df=df,
-        formula=formula
+        formula=formula, sh=sh
     )
     return sample
 

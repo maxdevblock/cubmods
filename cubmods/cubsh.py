@@ -689,8 +689,8 @@ def draw2(m, sh, pi1, pi2, xi, n,
         "Uniform",
         "Binomial",
         "Feeling",
-        "* Uncertainty",
-        "* Shelter"
+        "Uncertainty",
+        "Shelter"
     ]
     f = freq(m=m, sample=rv)
     diss = dissimilarity(f/n, theoric)

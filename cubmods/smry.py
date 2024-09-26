@@ -450,7 +450,10 @@ class CUBsample(object):
         smry += f"=====>>> {self.model} model <<<===== Drawn random sample\n"
         smry += "=======================================================================\n"
         smry += f"m={self.m}  Sample size={self.n}  seed={self.seed}\n"
-        smry += f"formula: {self.formula.replace(' ','')}\n"
+        smry += f"formula: {self.formula.replace(' ','')}"
+        if self.sh is not None:
+            smry += f"  shelter={self.sh}"
+        smry += "\n"
         smry += "-----------------------------------------------------------------------\n"
         smry += self.as_dataframe().to_string(index=False)
         smry += "\n"
