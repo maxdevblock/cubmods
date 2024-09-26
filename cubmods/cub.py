@@ -402,6 +402,7 @@ def draw(m, pi, xi, n,
         p=pmf(m=m, pi=pi, xi=xi)
         )
     pars = np.array([pi, xi])
+    p_types = (["Uncertainty", "Feeling"])
     par_names = np.array(["pi", "xi"])
     theoric = pmf(m=m, xi=xi, pi=pi)
     f = freq(m=m, sample=rv)
@@ -410,6 +411,7 @@ def draw(m, pi, xi, n,
         model="CUB",
         rv=rv, m=m, pars=pars,
         par_names=par_names,
+        p_types=p_types,
         theoric=theoric, diss=diss,
         seed=seed, df=df,
         formula=formula

@@ -429,6 +429,11 @@ def draw(m, pi, xi, phi, n,
     par_names = np.array([
         'pi', 'xi', 'phi'
     ])
+    p_types = [
+        "Uncertainty",
+        "Feeling",
+        "Overdispersion"
+    ]
     f = freq(m=m, sample=rv)
     theoric = pmf(m=m, pi=pi, xi=xi, phi=phi)
     diss = dissimilarity(f/n, theoric)
@@ -437,6 +442,7 @@ def draw(m, pi, xi, phi, n,
         rv=rv, m=m,
         pars=pars,
         par_names=par_names,
+        p_types=p_types,
         theoric=theoric,
         diss=diss, df=df,
         formula=formula

@@ -216,10 +216,16 @@ def draw(m, pi, gamma, phi, W,
         W.columns,
         ["phi"]
     ))
+    p_types = np.concatenate((
+        ["Uncertainty"],
+        np.repeat(["Feeling"], len(gamma)),
+        ["Overdispesion"]
+    ))
     sample = CUBsample(
         model="CUBE(0W0)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
+        p_types=p_types,
         seed=seed, diss=diss,
         theoric=theoric, df=df,
         formula=formula

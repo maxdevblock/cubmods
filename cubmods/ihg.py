@@ -160,11 +160,13 @@ def draw(m, theta, n,
     diss = dissimilarity(f/n, theoric)
     pars = np.array([theta])
     par_names = np.array(["theta"])
+    p_types = np.array(["Theta"])
     sample = CUBsample(
         model="IHG",
         rv=rv, m=m,
         pars=pars,
         par_names=par_names,
+        p_types=p_types,
         seed=seed, theoric=theoric,
         diss=diss, df=df,
         formula=formula

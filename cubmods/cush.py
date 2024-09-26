@@ -220,11 +220,13 @@ def draw(m, sh, delta, n,
     diss = dissimilarity(f/n, theoric)
     pars = np.array([delta])
     par_names = np.array(["delta"])
+    p_types = np.array(["Shelter"])
     sample = CUBsample(
         model="CUSH",
         rv=rv, m=m,
         sh=sh, pars=pars,
         par_names=par_names,
+        p_types=p_types,
         seed=seed, theoric=theoric,
         diss=diss, df=df,
         formula=formula

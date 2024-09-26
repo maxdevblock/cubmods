@@ -184,12 +184,14 @@ def draw(m, sh, omega, X,
         ["constant"],
         X.columns
     ))
+    p_types = np.repeat(["Shelter"], len(omega)),
     
     return CUBsample(
         model="CUSH(X)",
         m=m, sh=sh,
         pars=omega,
         par_names=par_names,
+        p_types=p_types,
         theoric=theoric,
         diss=diss,
         df=df, formula=formula,

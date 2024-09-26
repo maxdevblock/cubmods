@@ -413,7 +413,7 @@ class CUBsample(object):
     """
     def __init__(self, rv, m, pars,
         model, df, formula, diss, theoric,
-        par_names, sh=None,
+        par_names, p_types, sh=None,
         seed=None):
         self.model = model
         self.df = df
@@ -427,6 +427,7 @@ class CUBsample(object):
         self.sh = sh
         self.pars = np.array(pars)
         self.par_names = np.array(par_names)
+        self.p_types = np.array(p_types)
         self.p = self.pars.size
         self.rv = rv
         self.n  = rv.size
@@ -451,8 +452,10 @@ class CUBsample(object):
         smry += f"m={self.m}  Sample size={self.n}  seed={self.seed}\n"
         smry += f"formula: {self.formula.replace(' ','')}\n"
         smry += "-----------------------------------------------------------------------\n"
-        par_rows = self.par_list.replace('; ','\n')
-        smry += f"{par_rows}\n"
+        smry += self.as_dataframe().to_string(index=False)
+        smry += "\n"
+        # par_rows = self.par_list.replace('; ','\n')
+        # smry += f"{par_rows}\n"
         smry += "=======================================================================\n"
         #smry += "Uncertainty\n"
         #smry += f"(1-pi) = {1-self.pi:.6f}\n"
@@ -523,9 +526,11 @@ class CUBsample(object):
         :rtype: DataFrame
         """
         df = pd.DataFrame({
+            "component": self.p_types,
             "parameter": self.par_names,
             "value": self.pars
         })
+        df.ffill(inplace=True)
         return df
 
     def save(self, fname):

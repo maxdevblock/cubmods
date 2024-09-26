@@ -685,12 +685,20 @@ def draw2(m, sh, pi1, pi2, xi, n,
         "pi1", "pi2", "xi",
         "*pi", "*delta"
     ])
+    p_types = [
+        "Uniform",
+        "Binomial",
+        "Feeling",
+        "* Uncertainty",
+        "* Shelter"
+    ]
     f = freq(m=m, sample=rv)
     diss = dissimilarity(f/n, theoric)
     sample = CUBsample(
         model="CUBSH",
         rv=rv, m=m, sh=sh,
         pars=pars, par_names=par_names,
+        p_types=p_types,
         theoric=theoric, diss=diss,
         df=df, formula=formula
     )

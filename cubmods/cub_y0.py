@@ -232,10 +232,15 @@ def draw(m, beta, xi, Y,
         Y.columns,
         ["xi"]
     ))
+    p_types = np.concatenate((
+        np.repeat(["Uncertainty"], len(beta)),
+        ["Feeling"]
+    ))
     sample = CUBsample(
         model="CUB(Y0)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
+        p_types=p_types,
         seed=seed, diss=diss, df=df,
         theoric=theoric, formula=formula
     )

@@ -138,6 +138,7 @@ def draw(m, sh1, sh2, df, formula,
     diss = dissimilarity(f/n, theoric)
     pars = np.array([delta1, delta2])
     par_names = np.array(["delta1", "delta2"])
+    p_types = np.array(["Shelter1", "Shelter2"])
     #sh=np.array([c1, c2])
     sample = CUBsample(
         model="CUSH2",
@@ -145,6 +146,7 @@ def draw(m, sh1, sh2, df, formula,
         sh=np.array([sh1, sh2]),
         pars=pars,
         par_names=par_names,
+        p_types=p_types,
         seed=seed, theoric=theoric,
         diss=diss, df=df,
         formula=formula

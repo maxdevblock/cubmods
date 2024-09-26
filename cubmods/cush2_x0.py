@@ -187,10 +187,15 @@ def draw(m, sh1, sh2, omega1, delta2, X1,
         ["constant"], X1.columns,
         ["delta2"]
     ))
+    p_types = np.concatenate((
+        np.repeat(["Shelter1"], len(omega1)),
+        ["Shelter2"]
+    ))
     return CUBsample(
         model="CUSH2(X1,0)",
         rv=rv.astype(int), m=m,
         pars=pars, par_names=par_names,
+        p_types=p_types,
         seed=seed, diss=diss,
         theoric=theoric, sh=[sh1, sh2],
         df=df, formula=formula
