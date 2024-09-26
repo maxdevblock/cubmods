@@ -98,7 +98,7 @@ def draw(m, sh1, sh2, df, formula,
     :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :return: an instance of ``CUBsample`` (see `here <cubmods.html#cubmods.smry.CUBsample>`__) containing ordinal responses drawn from the specified model
     """
     #if sh is None:
     #    raise NoShelterError(model="cush2")
@@ -308,7 +308,7 @@ def _effe(d, sample, m, c1, c2):
 
 class CUBresCUSH2(CUBres):
     """Object returned by ``.mle()`` function.
-    See the Base for details.
+    See `here <cubmods.html#cubmods.smry.CUBres>`__ the Base for details.
     """
     def plot_par_space(self,
         figsize=(7, 5),

@@ -201,12 +201,13 @@ Methods of ``estimate`` and ``draw``
 
 For both functions, the methods ``.summary()`` and ``.plot()`` are always available calling the
 main functions to print a summary and plot the results, respectively. For ``.plot()`` arguments
-and options, see the ``CUBsample`` Class (for object returned by ``draw``) 
+and options, see `here <cubmods.html#cubmods.smry.CUBsample>`__ the ``CUBsample`` Class 
+(for object returned by ``draw``)
 and the extended ``CUBres`` Classes of the corresponding
-family (for objects returned by ``estimate``).
+family (for objects returned by ``estimate``), defined in each family module.
 
 Calling ``.as_dataframe()`` will return a DataFrame of parameters' names and values for objects
-of the Class ``CUBsample`` returned by ``draw``. For objects of the Base Class ``CUBres`` returned
+of the Class ``CUBsample`` returned by ``draw``. For objects of the extended Base Class ``CUBres`` returned
 by ``estimate`` instead, will return a DataFrame with parameters' component, name, estimated value,
 standard error, Wald test statistics and p-value.
 
@@ -224,7 +225,7 @@ with an extra column of the drawn ordinal response called as specified in the fo
 
 Many other attributes can be called from objects of the Base Class ``CUBres`` returned by
 ``estimate``, such as the computed loglikelihood, the AIC and BIC, ectcetera. For details,
-see the Base Class ``CUBres`` reference guide.
+see `here <cubmods.html#cubmods.smry.CUBres>`__ the Base Class ``CUBres`` reference guide.
 
 CUB family
 ==========
@@ -610,7 +611,9 @@ CUBSH family
 
 Basic family of the class CUB with shelter effect. 
 
-See the references for details: :cite:alp:`iannario2012modelling`; :cite:alp:`piccolo2019class`.
+See the references for details: :cite:alp:`corduas2009class`;
+:cite:alp:`iannario2012modelling`; 
+:cite:alp:`piccolo2019class`.
 
 .. _cubsh-without-covariates:
 
@@ -628,6 +631,43 @@ for responses with :math:`m` ordinal categories, without covariates is specified
 
 where :math:`\pi` and :math:`\xi` are the parameters for respectively the *uncertainty* and the 
 *feeling* components, and :math:`\delta` is the weight of the shelter effect.
+
+Other parametrizations have been proposed, such as
+
+.. math::
+    \Pr(R=r|\boldsymbol{\theta}) = \lambda b_r(\xi) + (1-\lambda) \left[ \eta/m + (1-\eta) D_r^{(c)} \right]
+    ,\; r=1,2,\ldots,m
+
+where
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \lambda = \pi(1-\delta)
+        \\
+        \eta = \dfrac{(1-\pi)(1-\delta)}{1 - \pi(1-\delta)}
+    \end{array}
+    \right.
+
+See :cite:alp:`piccolo2019class` (pp 412-413) for the parameters' interpretation.
+
+Another parametrization, particularly useful for inferential issues is
+
+.. math::
+    \Pr(R=r|\boldsymbol{\theta}) = \pi_1 b_r{\xi} + \pi_2 /m  + (1-\pi_1-\pi_2) D_r^{(c)}
+
+where
+
+.. math::
+    \left\{
+    \begin{array}{l}
+        \pi_1 = (1-\delta)\pi
+        \\
+        \pi_2 = (1-\delta)(1-\pi)
+    \end{array}
+    \right.
+
+See the references for further details.
 
 In the next example, we'll draw an ordinal response
 and then estimate the parameters given the sample.

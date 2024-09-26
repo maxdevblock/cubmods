@@ -135,7 +135,7 @@ def draw(m, sh1, sh2, omega1, delta2, X1,
     :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :return: an instance of ``CUBsample`` (see `here <cubmods.html#cubmods.smry.CUBsample>`__) containing ordinal responses drawn from the specified model
     """
     n = X1.shape[0]
     if seed == 0:
@@ -365,7 +365,7 @@ def mle(sample, m, sh1, sh2,
 
 class CUBresCUSH2X0(CUBres):
     """Object returned by ``.mle()`` function.
-    See the Base for details.
+    See `here <cubmods.html#cubmods.smry.CUBres>`__ the Base for details.
     """
     def plot_ordinal(self,
         figsize=(7, 5),

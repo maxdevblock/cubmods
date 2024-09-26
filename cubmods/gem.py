@@ -286,7 +286,7 @@ def draw(formula, df=None,
     :type options: dict
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :return: an instance of ``CUBsample`` (see `here <cubmods.html#cubmods.smry.CUBsample>`__) containing ordinal responses drawn from the specified model
     :rtype: obj
     """
     modname = model

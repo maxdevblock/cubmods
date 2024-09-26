@@ -397,7 +397,7 @@ def draw(m, pi, xi, phi, n,
     :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :return: an instance of ``CUBsample`` (see `here <cubmods.html#cubmods.smry.CUBsample>`__) containing ordinal responses drawn from the specified model
     """
     np.random.seed(seed)
     rv = np.random.choice(
@@ -643,7 +643,7 @@ def mle(sample, m, df, formula,
 
 class CUBresCUBE(CUBres):
     r"""Object returned by ``.mle()`` function.
-    See the Base for details.
+    See `here <cubmods.html#cubmods.smry.CUBres>`__ the Base for details.
     """
 
     def plot_ordinal(self,

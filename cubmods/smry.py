@@ -386,13 +386,16 @@ class CUBsample(object):
 
     :ivar rv: array of drawn ordinal responses
     :ivar m: number of ordinal categories
+    :ivar n: number of drawn responses
+    :ivar p: number of model's parameters
     :ivar pars: parameters' values array
     :ivar model: the model family
     :ivar df: original DataFrame (if provided) with a column of the drawn sample
     :ivar formula: the formula used to draw the sample
     :ivar diss: dissimilarity index between drawn and theoretical distribution
     :ivar theoric: theoretical distribution
-    :ivar par_name: names of the parameters
+    :ivar par_names: names of the parameters
+    :ivar p_types: parameters’ component
     :ivar sh: shelter choice(s), if any
     :ivar seed: the ``seed`` used to ensure reproducibility
     """

@@ -427,7 +427,7 @@ for CUB model family.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">CUBresCUB00</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.CUBresCUB00" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -559,7 +559,7 @@ if provided, probability distribution of a known model.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -724,26 +724,27 @@ covariates for a given absolute frequency distribution.</p>
 <dl>
 <dt>References:</dt><dd><div class="docutils container" id="id1">
 <ol class="arabic simple" start="1">
-<li id="id10"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
-<li id="id27"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
-<li id="id17"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
+<li id="id11"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
+<li id="id28"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
+<li id="id10"><p>Marcella Corduas, Maria Iannario, and Domenico Piccolo. A class of statistical models for evaluating services and performances. In <em>Statistical methods for the evaluation of educational services and quality of products</em>, pages 99–117. Springer, 2009.</p></li>
+<li id="id18"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
 <li id="id5"><p>Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. <em>Computational Statistics &amp; Data Analysis</em>, 49(3):917–934, 2005.</p></li>
-<li id="id16"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
-<li id="id14"><p>Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. <em>Quaderni di statistica</em>, 14:137–140, 2012.</p></li>
+<li id="id17"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
+<li id="id15"><p>Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. <em>Quaderni di statistica</em>, 14:137–140, 2012.</p></li>
 <li id="id9"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
-<li id="id15"><p>Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. <em>Communications in Statistics-Theory and Methods</em>, 43(4):771–786, 2014.</p></li>
-<li id="id19"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id16"><p>Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. <em>Communications in Statistics-Theory and Methods</em>, 43(4):771–786, 2014.</p></li>
+<li id="id20"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
 <li id="id8"><p>Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. <em>Quality Technology &amp; Quantitative Management</em>, 7(2):149–168, 2010.</p></li>
-<li id="id20"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id21"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
+<li id="id21"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id22"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
 <li id="id4"><p>Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
 <li id="id7"><p>Domenico Piccolo. Observed information matrix for MUB models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
-<li id="id13"><p>Domenico Piccolo. Inferential issues on cube models with covariates. <em>Communications in Statistics-Theory and Methods</em>, 44(23):5023–5036, 2015.</p></li>
+<li id="id14"><p>Domenico Piccolo. Inferential issues on cube models with covariates. <em>Communications in Statistics-Theory and Methods</em>, 44(23):5023–5036, 2015.</p></li>
 <li id="id3"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-<li id="id40"><p>Massimo Pierini. Modelli della classe CUB in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 1–172, June 2024. (Bachelor's thesis L-41).</p></li>
-<li id="id26"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
-<li id="id11"><p>Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. <em>TEST</em>, 31(3):828–855, 2022.</p></li>
-<li id="id28"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
+<li id="id41"><p>Massimo Pierini. Modelli della classe CUB in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 1–172, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id27"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
+<li id="id12"><p>Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. <em>TEST</em>, 31(3):828–855, 2022.</p></li>
+<li id="id29"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
 </ol>
 </div>
 </dd>
@@ -881,31 +882,31 @@ estimates of a CUB model without covariates.</p>
 <p id="cub0w-module">CUB models in Python.
 Module for CUB (Combination of Uniform
 and Binomial) with covariates for the feeling component.</p>
-<section id="id41">
-<h3>Description:<a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
+<section id="id42">
+<h3>Description:<a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUB_0W model family.</p>
 </div></blockquote>
 </section>
-<section id="id42">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
+<section id="id43">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cub-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id43">
-<h3>List of TODOs:<a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
+<section id="id44">
+<h3>List of TODOs:<a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id44">
-<h3>Credits<a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
+<section id="id45">
+<h3>Credits<a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -923,14 +924,14 @@ for CUB_0W model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id45">
-<h3>Classes and Functions<a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
+<section id="id46">
+<h3>Classes and Functions<a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cub_0w.CUBresCUB0W">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cub_0w.</span></span><span class="sig-name descname"><span class="pre">CUBresCUB0W</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_0w.CUBresCUB0W" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -1018,7 +1019,7 @@ it must be <span class="math notranslate nohighlight">\(\neq 0\)</span></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1243,31 +1244,31 @@ with covariates for the feeling component.</p>
 <p id="cuby0-module">CUB models in Python.
 Module for CUB (Combination of Uniform
 and Binomial) with covariates for the uncertainty component.</p>
-<section id="id46">
-<h3>Description:<a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
+<section id="id47">
+<h3>Description:<a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUB_Y0 model family.</p>
 </div></blockquote>
 </section>
-<section id="id47">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
+<section id="id48">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cub-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id48">
-<h3>List of TODOs:<a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
+<section id="id49">
+<h3>List of TODOs:<a class="headerlink" href="#id49" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id49">
-<h3>Credits<a class="headerlink" href="#id49" title="Permalink to this heading">#</a></h3>
+<section id="id50">
+<h3>Credits<a class="headerlink" href="#id50" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -1285,14 +1286,14 @@ for CUB_Y0 model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id50">
-<h3>Classes and Functions<a class="headerlink" href="#id50" title="Permalink to this heading">#</a></h3>
+<section id="id51">
+<h3>Classes and Functions<a class="headerlink" href="#id51" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cub_y0.CUBresCUBY0">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cub_y0.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBY0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_y0.CUBresCUBY0" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -1380,7 +1381,7 @@ it must be <span class="math notranslate nohighlight">\(\neq 0\)</span></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1582,31 +1583,31 @@ covariates for the uncertainty component.</p>
 Module for CUB (Combination of Uniform
 and Binomial) with covariates
 for both feeling and uncertainty.</p>
-<section id="id51">
-<h3>Description:<a class="headerlink" href="#id51" title="Permalink to this heading">#</a></h3>
+<section id="id52">
+<h3>Description:<a class="headerlink" href="#id52" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUB_YW model family.</p>
 </div></blockquote>
 </section>
-<section id="id52">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id52" title="Permalink to this heading">#</a></h3>
+<section id="id53">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id53" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cub-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id53">
-<h3>List of TODOs:<a class="headerlink" href="#id53" title="Permalink to this heading">#</a></h3>
+<section id="id54">
+<h3>List of TODOs:<a class="headerlink" href="#id54" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id54">
-<h3>Credits<a class="headerlink" href="#id54" title="Permalink to this heading">#</a></h3>
+<section id="id55">
+<h3>Credits<a class="headerlink" href="#id55" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -1624,14 +1625,14 @@ for CUB_YW model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id55">
-<h3>Classes and Functions<a class="headerlink" href="#id55" title="Permalink to this heading">#</a></h3>
+<section id="id56">
+<h3>Classes and Functions<a class="headerlink" href="#id56" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cub_yw.CUBresCUBYW">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cub_yw.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBYW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub_yw.CUBresCUBYW" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>“Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -1719,7 +1720,7 @@ both feeling and uncertainty.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1900,31 +1901,31 @@ both the uncertainty and the feeling components.</p>
 <p id="cube000-module">CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial).</p>
-<section id="id56">
-<h3>Description:<a class="headerlink" href="#id56" title="Permalink to this heading">#</a></h3>
+<section id="id57">
+<h3>Description:<a class="headerlink" href="#id57" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBE model family.</p>
 </div></blockquote>
 </section>
-<section id="id57">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id57" title="Permalink to this heading">#</a></h3>
+<section id="id58">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id58" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cube-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id58">
-<h3>List of TODOs:<a class="headerlink" href="#id58" title="Permalink to this heading">#</a></h3>
+<section id="id59">
+<h3>List of TODOs:<a class="headerlink" href="#id59" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: adjust 3d plots legend</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id59">
-<h3>Credits<a class="headerlink" href="#id59" title="Permalink to this heading">#</a></h3>
+<section id="id60">
+<h3>Credits<a class="headerlink" href="#id60" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -1942,14 +1943,14 @@ for CUBE model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id60">
-<h3>Classes and Functions<a class="headerlink" href="#id60" title="Permalink to this heading">#</a></h3>
+<section id="id61">
+<h3>Classes and Functions<a class="headerlink" href="#id61" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cube.CUBresCUBE">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cube.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube.CUBresCUBE" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -2101,7 +2102,7 @@ if provided, probability distribution of a known model.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2326,23 +2327,23 @@ as the inverse of the observed information matrix.</p>
 <p id="cube0w0-module">CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial) with covariates for the feeling component.</p>
-<section id="id61">
-<h3>Description:<a class="headerlink" href="#id61" title="Permalink to this heading">#</a></h3>
+<section id="id62">
+<h3>Description:<a class="headerlink" href="#id62" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBE_0W0 model family.</p>
 </div></blockquote>
 </section>
-<section id="id62">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id62" title="Permalink to this heading">#</a></h3>
+<section id="id63">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id63" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cube-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id63">
-<h3>List of TODOs:<a class="headerlink" href="#id63" title="Permalink to this heading">#</a></h3>
+<section id="id64">
+<h3>List of TODOs:<a class="headerlink" href="#id64" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Manual and Examples</p></li>
@@ -2350,8 +2351,8 @@ for CUBE_0W0 model family.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id64">
-<h3>Credits<a class="headerlink" href="#id64" title="Permalink to this heading">#</a></h3>
+<section id="id65">
+<h3>Credits<a class="headerlink" href="#id65" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -2369,14 +2370,14 @@ for CUBE_0W0 model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id65">
-<h3>Classes and Functions<a class="headerlink" href="#id65" title="Permalink to this heading">#</a></h3>
+<section id="id66">
+<h3>Classes and Functions<a class="headerlink" href="#id66" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cube_0w0.CUBresCUBE0W0">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cube_0w0.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBE0W0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_0w0.CUBresCUBE0W0" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -2489,7 +2490,7 @@ for the corresponding feeling and overdispersion parameters.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2694,31 +2695,31 @@ and the uncertainty components. Auxiliary function of <code class="docutils lite
 <p id="cubeywz-module">CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial) with covariates.</p>
-<section id="id66">
-<h3>Description:<a class="headerlink" href="#id66" title="Permalink to this heading">#</a></h3>
+<section id="id67">
+<h3>Description:<a class="headerlink" href="#id67" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUB_YWZ model family.</p>
 </div></blockquote>
 </section>
-<section id="id67">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id67" title="Permalink to this heading">#</a></h3>
+<section id="id68">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id68" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cube-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id68">
-<h3>List of TODOs:<a class="headerlink" href="#id68" title="Permalink to this heading">#</a></h3>
+<section id="id69">
+<h3>List of TODOs:<a class="headerlink" href="#id69" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Manual and Examples</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id69">
-<h3>Credits<a class="headerlink" href="#id69" title="Permalink to this heading">#</a></h3>
+<section id="id70">
+<h3>Credits<a class="headerlink" href="#id70" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -2736,14 +2737,14 @@ for CUB_YWZ model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id70">
-<h3>Classes and Functions<a class="headerlink" href="#id70" title="Permalink to this heading">#</a></h3>
+<section id="id71">
+<h3>Classes and Functions<a class="headerlink" href="#id71" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.CUBresCUBEYWZ">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cube_ywz.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBEYWZ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cube_ywz.CUBresCUBEYWZ" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -2923,7 +2924,7 @@ for the corresponding feeling and overdispersion parameters.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -3116,23 +3117,23 @@ for all the three parameters.</p>
 <p id="cubsh000-module">CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect).</p>
-<section id="id71">
-<h3>Description:<a class="headerlink" href="#id71" title="Permalink to this heading">#</a></h3>
+<section id="id72">
+<h3>Description:<a class="headerlink" href="#id72" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH model family.</p>
 </div></blockquote>
 </section>
-<section id="id72">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id72" title="Permalink to this heading">#</a></h3>
+<section id="id73">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id73" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cubsh-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id73">
-<h3>List of TODOs:<a class="headerlink" href="#id73" title="Permalink to this heading">#</a></h3>
+<section id="id74">
+<h3>List of TODOs:<a class="headerlink" href="#id74" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: fix 3d plots legend</p></li>
@@ -3140,8 +3141,8 @@ for CUBSH model family.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id74">
-<h3>Credits<a class="headerlink" href="#id74" title="Permalink to this heading">#</a></h3>
+<section id="id75">
+<h3>Credits<a class="headerlink" href="#id75" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -3159,14 +3160,14 @@ for CUBSH model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id75">
-<h3>Classes and Functions<a class="headerlink" href="#id75" title="Permalink to this heading">#</a></h3>
+<section id="id76">
+<h3>Classes and Functions<a class="headerlink" href="#id76" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cubsh.CUBresCUBSH">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cubsh.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBSH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh.CUBresCUBSH" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -3326,7 +3327,7 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -3351,7 +3352,7 @@ using alternative parametrization <span class="math notranslate nohighlight">\((
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -3730,31 +3731,31 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 <p id="cubshywx-module">CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect) with covariates.</p>
-<section id="id76">
-<h3>Description:<a class="headerlink" href="#id76" title="Permalink to this heading">#</a></h3>
+<section id="id77">
+<h3>Description:<a class="headerlink" href="#id77" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH_YWX model family.</p>
 </div></blockquote>
 </section>
-<section id="id77">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id77" title="Permalink to this heading">#</a></h3>
+<section id="id78">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id78" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cubsh-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id78">
-<h3>List of TODOs:<a class="headerlink" href="#id78" title="Permalink to this heading">#</a></h3>
+<section id="id79">
+<h3>List of TODOs:<a class="headerlink" href="#id79" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id79">
-<h3>Credits<a class="headerlink" href="#id79" title="Permalink to this heading">#</a></h3>
+<section id="id80">
+<h3>Credits<a class="headerlink" href="#id80" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -3772,14 +3773,14 @@ for CUBSH_YWX model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id80">
-<h3>Classes and Functions<a class="headerlink" href="#id80" title="Permalink to this heading">#</a></h3>
+<section id="id81">
+<h3>Classes and Functions<a class="headerlink" href="#id81" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cubsh_ywx.CUBresCUBSHYWX">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cubsh_ywx.</span></span><span class="sig-name descname"><span class="pre">CUBresCUBSHYWX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cubsh_ywx.CUBresCUBSHYWX" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -3906,7 +3907,7 @@ for GeCUB models with covariates for feeling, uncertainty and shelter effect.</p
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -4135,31 +4136,31 @@ explaining all the components and the shelter effect.</p>
 <p id="cush0-module">CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect).</p>
-<section id="id81">
-<h3>Description:<a class="headerlink" href="#id81" title="Permalink to this heading">#</a></h3>
+<section id="id82">
+<h3>Description:<a class="headerlink" href="#id82" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH model family.</p>
 </div></blockquote>
 </section>
-<section id="id82">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id82" title="Permalink to this heading">#</a></h3>
+<section id="id83">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id83" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id83">
-<h3>List of TODOs:<a class="headerlink" href="#id83" title="Permalink to this heading">#</a></h3>
+<section id="id84">
+<h3>List of TODOs:<a class="headerlink" href="#id84" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: check and fix gini &amp; laakso</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id84">
-<h3>Credits<a class="headerlink" href="#id84" title="Permalink to this heading">#</a></h3>
+<section id="id85">
+<h3>Credits<a class="headerlink" href="#id85" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -4177,14 +4178,14 @@ for CUSH model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id85">
-<h3>Classes and Functions<a class="headerlink" href="#id85" title="Permalink to this heading">#</a></h3>
+<section id="id86">
+<h3>Classes and Functions<a class="headerlink" href="#id86" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush.CUBresCUSH">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush.CUBresCUSH" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -4315,7 +4316,7 @@ the null model.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -4479,31 +4480,31 @@ without covariate for the given ordinal responses.</p>
 <p id="cush200-module">CUB models in Python.
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices).</p>
-<section id="id86">
-<h3>Description:<a class="headerlink" href="#id86" title="Permalink to this heading">#</a></h3>
+<section id="id87">
+<h3>Description:<a class="headerlink" href="#id87" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family.</p>
 </div></blockquote>
 </section>
-<section id="id87">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id87" title="Permalink to this heading">#</a></h3>
+<section id="id88">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id88" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush2-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id88">
-<h3>List of TODOs:<a class="headerlink" href="#id88" title="Permalink to this heading">#</a></h3>
+<section id="id89">
+<h3>List of TODOs:<a class="headerlink" href="#id89" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id89">
-<h3>Credits<a class="headerlink" href="#id89" title="Permalink to this heading">#</a></h3>
+<section id="id90">
+<h3>Credits<a class="headerlink" href="#id90" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -4521,14 +4522,14 @@ for CUSH2 model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id90">
-<h3>Classes and Functions<a class="headerlink" href="#id90" title="Permalink to this heading">#</a></h3>
+<section id="id91">
+<h3>Classes and Functions<a class="headerlink" href="#id91" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2.CUBresCUSH2">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush2.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2.CUBresCUSH2" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -4638,7 +4639,7 @@ the asymptotic standard error.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -4752,31 +4753,31 @@ estimates of a CUSH2 model without covariates.</p>
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices) with covariates
 for the 1st shelter choice.</p>
-<section id="id91">
-<h3>Description:<a class="headerlink" href="#id91" title="Permalink to this heading">#</a></h3>
+<section id="id92">
+<h3>Description:<a class="headerlink" href="#id92" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family.</p>
 </div></blockquote>
 </section>
-<section id="id92">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id92" title="Permalink to this heading">#</a></h3>
+<section id="id93">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id93" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush2-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id93">
-<h3>List of TODOs:<a class="headerlink" href="#id93" title="Permalink to this heading">#</a></h3>
+<section id="id94">
+<h3>List of TODOs:<a class="headerlink" href="#id94" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id94">
-<h3>Credits<a class="headerlink" href="#id94" title="Permalink to this heading">#</a></h3>
+<section id="id95">
+<h3>Credits<a class="headerlink" href="#id95" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -4794,14 +4795,14 @@ for CUSH2 model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id95">
-<h3>Classes and Functions<a class="headerlink" href="#id95" title="Permalink to this heading">#</a></h3>
+<section id="id96">
+<h3>Classes and Functions<a class="headerlink" href="#id96" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2_x0.CUBresCUSH2X0">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush2_x0.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH2X0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2_x0.CUBresCUSH2X0" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -4889,7 +4890,7 @@ with covariates for the 1st shelter choice only.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5032,32 +5033,32 @@ for the first shelter choice only.</p>
 <p id="cush2xx-module">CUB models in Python.
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices) with covariates.</p>
-<section id="id96">
-<h3>Description:<a class="headerlink" href="#id96" title="Permalink to this heading">#</a></h3>
+<section id="id97">
+<h3>Description:<a class="headerlink" href="#id97" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family with covariates for
 both shelter choices.</p>
 </div></blockquote>
 </section>
-<section id="id97">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id97" title="Permalink to this heading">#</a></h3>
+<section id="id98">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id98" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush2-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id98">
-<h3>List of TODOs:<a class="headerlink" href="#id98" title="Permalink to this heading">#</a></h3>
+<section id="id99">
+<h3>List of TODOs:<a class="headerlink" href="#id99" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id99">
-<h3>Credits<a class="headerlink" href="#id99" title="Permalink to this heading">#</a></h3>
+<section id="id100">
+<h3>Credits<a class="headerlink" href="#id100" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -5075,14 +5076,14 @@ both shelter choices.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id100">
-<h3>Classes and Functions<a class="headerlink" href="#id100" title="Permalink to this heading">#</a></h3>
+<section id="id101">
+<h3>Classes and Functions<a class="headerlink" href="#id101" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2_xx.CUBresCUSH2XX">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush2_xx.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSH2XX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush2_xx.CUBresCUSH2XX" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -5172,7 +5173,7 @@ with covariates for both shelter choices.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5323,31 +5324,31 @@ for both shelter choices.</p>
 <p id="cushx-module">CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect) with covariates.</p>
-<section id="id101">
-<h3>Description:<a class="headerlink" href="#id101" title="Permalink to this heading">#</a></h3>
+<section id="id102">
+<h3>Description:<a class="headerlink" href="#id102" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH model family.</p>
 </div></blockquote>
 </section>
-<section id="id102">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id102" title="Permalink to this heading">#</a></h3>
+<section id="id103">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id103" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id103">
-<h3>List of TODOs:<a class="headerlink" href="#id103" title="Permalink to this heading">#</a></h3>
+<section id="id104">
+<h3>List of TODOs:<a class="headerlink" href="#id104" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id104">
-<h3>Credits<a class="headerlink" href="#id104" title="Permalink to this heading">#</a></h3>
+<section id="id105">
+<h3>Credits<a class="headerlink" href="#id105" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -5365,14 +5366,14 @@ for CUSH model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id105">
-<h3>Classes and Functions<a class="headerlink" href="#id105" title="Permalink to this heading">#</a></h3>
+<section id="id106">
+<h3>Classes and Functions<a class="headerlink" href="#id106" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush_x.CUBresCUSHX">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.cush_x.</span></span><span class="sig-name descname"><span class="pre">CUBresCUSHX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cush_x.CUBresCUSHX" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -5459,7 +5460,7 @@ if provided, average probability distribution of a known model.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5619,32 +5620,32 @@ to explain the shelter effect.</p>
 <span id="cubmods-gem-module"></span><h2>cubmods.gem module<a class="headerlink" href="#module-cubmods.gem" title="Permalink to this heading">#</a></h2>
 <p id="gem-module">CUB models in Python.
 Module for GEM (Generalized Mixtures).</p>
-<section id="id106">
-<h3>Description:<a class="headerlink" href="#id106" title="Permalink to this heading">#</a></h3>
+<section id="id107">
+<h3>Description:<a class="headerlink" href="#id107" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for GEM maximum likelihood estimation
 and sample drawing.</p>
 </div></blockquote>
 </section>
-<section id="id107">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id107" title="Permalink to this heading">#</a></h3>
+<section id="id108">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id108" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#gem-manual">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id108">
-<h3>List of TODOs:<a class="headerlink" href="#id108" title="Permalink to this heading">#</a></h3>
+<section id="id109">
+<h3>List of TODOs:<a class="headerlink" href="#id109" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: implement best shelter search</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id109">
-<h3>Credits<a class="headerlink" href="#id109" title="Permalink to this heading">#</a></h3>
+<section id="id110">
+<h3>Credits<a class="headerlink" href="#id110" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -5662,8 +5663,8 @@ and sample drawing.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id110">
-<h3>Classes and Functions<a class="headerlink" href="#id110" title="Permalink to this heading">#</a></h3>
+<section id="id111">
+<h3>Classes and Functions<a class="headerlink" href="#id111" title="Permalink to this heading">#</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.gem.draw">
 <span class="sig-prename descclassname"><span class="pre">cubmods.gem.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cub'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.gem.draw" title="Permalink to this definition">#</a></dt>
@@ -5686,7 +5687,7 @@ guide for details</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>obj</p>
@@ -5728,23 +5729,23 @@ see each module for details</p>
 <span id="cubmods-general-module"></span><h2>cubmods.general module<a class="headerlink" href="#module-cubmods.general" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for General functions.</p>
-<section id="id111">
-<h3>Description:<a class="headerlink" href="#id111" title="Permalink to this heading">#</a></h3>
+<section id="id112">
+<h3>Description:<a class="headerlink" href="#id112" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for general functions.</p>
 </div></blockquote>
 </section>
-<section id="id112">
-<h3>List of TODOs:<a class="headerlink" href="#id112" title="Permalink to this heading">#</a></h3>
+<section id="id113">
+<h3>List of TODOs:<a class="headerlink" href="#id113" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id113">
-<h3>Credits<a class="headerlink" href="#id113" title="Permalink to this heading">#</a></h3>
+<section id="id114">
+<h3>Credits<a class="headerlink" href="#id114" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -5762,8 +5763,8 @@ for general functions.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id114">
-<h3>Classes and Functions<a class="headerlink" href="#id114" title="Permalink to this heading">#</a></h3>
+<section id="id115">
+<h3>Classes and Functions<a class="headerlink" href="#id115" title="Permalink to this heading">#</a></h3>
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.InvalidCategoriesError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">InvalidCategoriesError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.InvalidCategoriesError" title="Permalink to this definition">#</a></dt>
@@ -6403,31 +6404,31 @@ model.</p>
 <span id="cubmods-ihg-module"></span><h2>cubmods.ihg module<a class="headerlink" href="#module-cubmods.ihg" title="Permalink to this heading">#</a></h2>
 <p id="ihg0-module">CUB models in Python.
 Module for IHG (Inverse HyperGeometric).</p>
-<section id="id115">
-<h3>Description:<a class="headerlink" href="#id115" title="Permalink to this heading">#</a></h3>
+<section id="id116">
+<h3>Description:<a class="headerlink" href="#id116" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for IHG model family without covariates.</p>
 </div></blockquote>
 </section>
-<section id="id116">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id116" title="Permalink to this heading">#</a></h3>
+<section id="id117">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id117" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#ihg-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id117">
-<h3>List of TODOs:<a class="headerlink" href="#id117" title="Permalink to this heading">#</a></h3>
+<section id="id118">
+<h3>List of TODOs:<a class="headerlink" href="#id118" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id118">
-<h3>Credits<a class="headerlink" href="#id118" title="Permalink to this heading">#</a></h3>
+<section id="id119">
+<h3>Credits<a class="headerlink" href="#id119" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -6445,14 +6446,14 @@ for IHG model family without covariates.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id119">
-<h3>Classes and Functions<a class="headerlink" href="#id119" title="Permalink to this heading">#</a></h3>
+<section id="id120">
+<h3>Classes and Functions<a class="headerlink" href="#id120" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.ihg.CUBresIHG">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">CUBresIHG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.CUBresIHG" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cubmods.smry.CUBres" title="cubmods.smry.CUBres"><code class="xref py py-class docutils literal notranslate"><span class="pre">CUBres</span></code></a></p>
 <p>Object returned by <code class="docutils literal notranslate"><span class="pre">.mle()</span></code> function.
-See the Base for details.</p>
+See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</a> the Base for details.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -6559,7 +6560,7 @@ if provided, probability distribution of a known model.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -6640,28 +6641,29 @@ responses. These preliminary estimators are used within the package code to star
 <dd><p>Probability distribution of a specified IHG model without covariates.</p>
 <p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta),\; r=1 \ldots m\)</span></p>
 <dl>
-<dt>References:</dt><dd><div class="docutils container" id="id120">
+<dt>References:</dt><dd><div class="docutils container" id="id121">
 <ol class="arabic simple" start="1">
-<li id="id129"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
-<li id="id146"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
-<li id="id136"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
-<li id="id124"><p>Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. <em>Computational Statistics &amp; Data Analysis</em>, 49(3):917–934, 2005.</p></li>
-<li id="id135"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
-<li id="id133"><p>Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. <em>Quaderni di statistica</em>, 14:137–140, 2012.</p></li>
-<li id="id128"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
-<li id="id134"><p>Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. <em>Communications in Statistics-Theory and Methods</em>, 43(4):771–786, 2014.</p></li>
-<li id="id138"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id127"><p>Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. <em>Quality Technology &amp; Quantitative Management</em>, 7(2):149–168, 2010.</p></li>
-<li id="id139"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id140"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
-<li id="id123"><p>Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
-<li id="id126"><p>Domenico Piccolo. Observed information matrix for MUB models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
-<li id="id132"><p>Domenico Piccolo. Inferential issues on cube models with covariates. <em>Communications in Statistics-Theory and Methods</em>, 44(23):5023–5036, 2015.</p></li>
-<li id="id122"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-<li id="id159"><p>Massimo Pierini. Modelli della classe CUB in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 1–172, June 2024. (Bachelor's thesis L-41).</p></li>
-<li id="id145"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
-<li id="id130"><p>Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. <em>TEST</em>, 31(3):828–855, 2022.</p></li>
-<li id="id147"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
+<li id="id131"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
+<li id="id148"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
+<li id="id130"><p>Marcella Corduas, Maria Iannario, and Domenico Piccolo. A class of statistical models for evaluating services and performances. In <em>Statistical methods for the evaluation of educational services and quality of products</em>, pages 99–117. Springer, 2009.</p></li>
+<li id="id138"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
+<li id="id125"><p>Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. <em>Computational Statistics &amp; Data Analysis</em>, 49(3):917–934, 2005.</p></li>
+<li id="id137"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
+<li id="id135"><p>Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. <em>Quaderni di statistica</em>, 14:137–140, 2012.</p></li>
+<li id="id129"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
+<li id="id136"><p>Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. <em>Communications in Statistics-Theory and Methods</em>, 43(4):771–786, 2014.</p></li>
+<li id="id140"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
+<li id="id128"><p>Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. <em>Quality Technology &amp; Quantitative Management</em>, 7(2):149–168, 2010.</p></li>
+<li id="id141"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
+<li id="id142"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
+<li id="id124"><p>Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
+<li id="id127"><p>Domenico Piccolo. Observed information matrix for MUB models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
+<li id="id134"><p>Domenico Piccolo. Inferential issues on cube models with covariates. <em>Communications in Statistics-Theory and Methods</em>, 44(23):5023–5036, 2015.</p></li>
+<li id="id123"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
+<li id="id161"><p>Massimo Pierini. Modelli della classe CUB in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 1–172, June 2024. (Bachelor's thesis L-41).</p></li>
+<li id="id147"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
+<li id="id132"><p>Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. <em>TEST</em>, 31(3):828–855, 2022.</p></li>
+<li id="id149"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
 </ol>
 </div>
 </dd>
@@ -6708,31 +6710,31 @@ responses. These preliminary estimators are used within the package code to star
 <span id="cubmods-ihg-v-module"></span><h2>cubmods.ihg_v module<a class="headerlink" href="#module-cubmods.ihg_v" title="Permalink to this heading">#</a></h2>
 <p id="ihgv-module">CUB models in Python.
 Module for IHG (Inverse HyperGeometric) with covariates.</p>
-<section id="id160">
-<h3>Description:<a class="headerlink" href="#id160" title="Permalink to this heading">#</a></h3>
+<section id="id162">
+<h3>Description:<a class="headerlink" href="#id162" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for IHG model family with covariates.</p>
 </div></blockquote>
 </section>
-<section id="id161">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id161" title="Permalink to this heading">#</a></h3>
+<section id="id163">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id163" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#ihg-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id162">
-<h3>List of TODOs:<a class="headerlink" href="#id162" title="Permalink to this heading">#</a></h3>
+<section id="id164">
+<h3>List of TODOs:<a class="headerlink" href="#id164" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id163">
-<h3>Credits<a class="headerlink" href="#id163" title="Permalink to this heading">#</a></h3>
+<section id="id165">
+<h3>Credits<a class="headerlink" href="#id165" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -6750,8 +6752,8 @@ for IHG model family with covariates.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id164">
-<h3>Classes and Functions<a class="headerlink" href="#id164" title="Permalink to this heading">#</a></h3>
+<section id="id166">
+<h3>Classes and Functions<a class="headerlink" href="#id166" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.ihg_v.CUBresIHGV">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.ihg_v.</span></span><span class="sig-name descname"><span class="pre">CUBresIHGV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg_v.CUBresIHGV" title="Permalink to this definition">#</a></dt>
@@ -6841,7 +6843,7 @@ if provided, average probability distribution of a known model.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> containing ordinal responses drawn from the specified model</p>
+<dd class="field-even"><p>an instance of <code class="docutils literal notranslate"><span class="pre">CUBsample</span></code> (see <a class="reference external" href="cubmods.html#cubmods.smry.CUBsample">here</a>) containing ordinal responses drawn from the specified model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -7014,31 +7016,31 @@ given an observed sample.</p>
 <span id="cubmods-multicub-module"></span><h2>cubmods.multicub module<a class="headerlink" href="#module-cubmods.multicub" title="Permalink to this heading">#</a></h2>
 <p id="multicub-module">CUB models in Python.
 Module for MULTICUB and MULTICUBE.</p>
-<section id="id165">
-<h3>Description:<a class="headerlink" href="#id165" title="Permalink to this heading">#</a></h3>
+<section id="id167">
+<h3>Description:<a class="headerlink" href="#id167" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for MULTICUB and MULTICUBE tool.</p>
 </div></blockquote>
 </section>
-<section id="id166">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id166" title="Permalink to this heading">#</a></h3>
+<section id="id168">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id168" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#multicub-manual">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id167">
-<h3>List of TODOs:<a class="headerlink" href="#id167" title="Permalink to this heading">#</a></h3>
+<section id="id169">
+<h3>List of TODOs:<a class="headerlink" href="#id169" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id168">
-<h3>Credits<a class="headerlink" href="#id168" title="Permalink to this heading">#</a></h3>
+<section id="id170">
+<h3>Credits<a class="headerlink" href="#id170" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -7056,8 +7058,8 @@ for MULTICUB and MULTICUBE tool.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id169">
-<h3>Classes and Functions<a class="headerlink" href="#id169" title="Permalink to this heading">#</a></h3>
+<section id="id171">
+<h3>Classes and Functions<a class="headerlink" href="#id171" title="Permalink to this heading">#</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.multicub.multi">
 <span class="sig-prename descclassname"><span class="pre">cubmods.multicub.</span></span><span class="sig-name descname"><span class="pre">multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cub'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(7,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.multicub.multi" title="Permalink to this definition">#</a></dt>
@@ -7122,15 +7124,15 @@ shelter choices</p></li>
 <span id="cubmods-smry-module"></span><h2>cubmods.smry module<a class="headerlink" href="#module-cubmods.smry" title="Permalink to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for summary tools.</p>
-<section id="id170">
-<h3>Description:<a class="headerlink" href="#id170" title="Permalink to this heading">#</a></h3>
+<section id="id172">
+<h3>Description:<a class="headerlink" href="#id172" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for summary tools.</p>
 </div></blockquote>
 </section>
-<section id="id171">
-<h3>List of TODOs:<a class="headerlink" href="#id171" title="Permalink to this heading">#</a></h3>
+<section id="id173">
+<h3>List of TODOs:<a class="headerlink" href="#id173" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi</p></li>
@@ -7141,8 +7143,8 @@ for summary tools.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id172">
-<h3>Credits<a class="headerlink" href="#id172" title="Permalink to this heading">#</a></h3>
+<section id="id174">
+<h3>Credits<a class="headerlink" href="#id174" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author</dt>
@@ -7160,8 +7162,8 @@ for summary tools.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id173">
-<h3>Classes and Functions<a class="headerlink" href="#id173" title="Permalink to this heading">#</a></h3>
+<section id="id175">
+<h3>Classes and Functions<a class="headerlink" href="#id175" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.smry.CUBres">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubmods.smry.</span></span><span class="sig-name descname"><span class="pre">CUBres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theoric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">est_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varmat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wald</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">muloglik</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglikuni</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BIC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logliksatcov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ass_pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.smry.CUBres" title="Permalink to this definition">#</a></dt>
@@ -7266,13 +7268,16 @@ See the corresponding model’s function for details.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rv</strong> – array of drawn ordinal responses</p></li>
 <li><p><strong>m</strong> – number of ordinal categories</p></li>
+<li><p><strong>n</strong> – number of drawn responses</p></li>
+<li><p><strong>p</strong> – number of model’s parameters</p></li>
 <li><p><strong>pars</strong> – parameters’ values array</p></li>
 <li><p><strong>model</strong> – the model family</p></li>
 <li><p><strong>df</strong> – original DataFrame (if provided) with a column of the drawn sample</p></li>
 <li><p><strong>formula</strong> – the formula used to draw the sample</p></li>
 <li><p><strong>diss</strong> – dissimilarity index between drawn and theoretical distribution</p></li>
 <li><p><strong>theoric</strong> – theoretical distribution</p></li>
-<li><p><strong>par_name</strong> – names of the parameters</p></li>
+<li><p><strong>par_names</strong> – names of the parameters</p></li>
+<li><p><strong>p_types</strong> – parameters’ component</p></li>
 <li><p><strong>sh</strong> – shelter choice(s), if any</p></li>
 <li><p><strong>seed</strong> – the <code class="docutils literal notranslate"><span class="pre">seed</span></code> used to ensure reproducibility</p></li>
 </ul>
@@ -7408,153 +7413,153 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cub_0w">cubmods.cub_0w module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cub_y0">cubmods.cub_y0 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cub_yw">cubmods.cub_yw module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cube">cubmods.cube module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id57">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id58">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id59">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id60">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id57">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id58">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id59">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id60">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cube_0w0">cubmods.cube_0w0 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cube_ywz">cubmods.cube_ywz module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh">cubmods.cubsh module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id73">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id74">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id75">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id73">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id74">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id75">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh_ywx">cubmods.cubsh_ywx module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id79">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id80">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id79">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id80">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id81">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush">cubmods.cush module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id81">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id82">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id83">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id84">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id85">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id82">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id83">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id84">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id85">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id86">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2">cubmods.cush2 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id86">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id87">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id88">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id89">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id90">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id87">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id88">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id89">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id90">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id91">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_x0">cubmods.cush2_x0 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id91">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id92">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id93">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id94">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id95">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id92">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id93">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id94">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id95">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id96">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_xx">cubmods.cush2_xx module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id96">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id97">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id98">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id99">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id100">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id97">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id98">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id99">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id100">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id101">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush_x">cubmods.cush_x module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id101">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id102">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id103">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id104">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id105">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id102">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id103">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id104">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id105">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id106">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.gem">cubmods.gem module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id106">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id107">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id108">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id109">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id110">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id107">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id108">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id109">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id110">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id111">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.general">cubmods.general module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id111">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id112">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id113">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id114">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id112">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id113">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id114">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id115">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg">cubmods.ihg module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id115">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id116">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id117">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id118">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id119">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id116">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id117">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id118">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id119">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id120">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg_v">cubmods.ihg_v module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id160">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id161">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id162">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id163">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id164">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id162">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id163">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id164">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id165">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id166">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.multicub">cubmods.multicub module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id165">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id166">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id167">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id168">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id169">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id167">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id168">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id169">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id170">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id171">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.smry">cubmods.smry module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id170">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id171">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id172">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id173">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id172">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id173">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id174">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id175">Classes and Functions</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods">Module contents</a></li>

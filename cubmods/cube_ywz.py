@@ -149,7 +149,7 @@ def draw(m, beta, gamma, alpha,
     :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :return: an instance of ``CUBsample`` (see `here <cubmods.html#cubmods.smry.CUBsample>`__) containing ordinal responses drawn from the specified model
     """
     #np.random.seed(seed)
     assert len(beta) == Y.shape[1]+1
@@ -770,7 +770,7 @@ def mle(m, sample, Y, W, Z, df, formula,
 
 class CUBresCUBEYWZ(CUBres):
     """Object returned by ``.mle()`` function.
-    See the Base for details.
+    See `here <cubmods.html#cubmods.smry.CUBres>`__ the Base for details.
     """
     def plot_ordinal(self,
         figsize=(7, 5),

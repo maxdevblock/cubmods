@@ -120,7 +120,7 @@ def draw(m, theta, n,
     :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :return: an instance of ``CUBsample`` (see `here <cubmods.html#cubmods.smry.CUBsample>`__) containing ordinal responses drawn from the specified model
     """
     theoric = pmf(m=m, theta=theta)
     np.random.seed(seed)
@@ -245,7 +245,7 @@ def mle(m, sample,
 
 class CUBresIHG(CUBres):
     r"""Object returned by ``.mle()`` function.
-    See the Base for details.
+    See `here <cubmods.html#cubmods.smry.CUBres>`__ the Base for details.
     """
     def plot_estim(self, ci=.95, ax=None,
         magnified=False):

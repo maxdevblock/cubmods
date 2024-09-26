@@ -646,7 +646,7 @@ def draw2(m, sh, pi1, pi2, xi, n,
     :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :return: an instance of ``CUBsample`` (see `here <cubmods.html#cubmods.smry.CUBsample>`__) containing ordinal responses drawn from the specified model
     """
     if m<= 4:
         print("ERR: Number of ordered categories should be at least 5")
@@ -708,7 +708,7 @@ def draw(m, sh, pi, xi, delta, n,
     :type formula: str
     :param seed: the `seed` to ensure reproducibility, defaults to None
     :type seed: int, optional
-    :return: an instance of ``CUBsample`` containing ordinal responses drawn from the specified model
+    :return: an instance of ``CUBsample`` (see `here <cubmods.html#cubmods.smry.CUBsample>`__) containing ordinal responses drawn from the specified model
     """
     pi1, pi2 = pidelta_to_pi1pi2(pi, delta)
     sample = draw2(m, sh, pi1, pi2, 
@@ -886,7 +886,7 @@ def mle(sample, m, sh,
 
 class CUBresCUBSH(CUBres):
     r"""Object returned by ``.mle()`` function.
-    See the Base for details.
+    See `here <cubmods.html#cubmods.smry.CUBres>`__ the Base for details.
     """
 
     def plot_ordinal(self,
