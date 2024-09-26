@@ -500,13 +500,13 @@ class CUBsample(object):
                 edgecolor="k", s=200, label="drawn")
         #p = pmf(self.m, self.pi, self.xi)
         ax.stem(R, self.theoric, linefmt="--r",
-            markerfmt="none", label="generator")
+            markerfmt="none", label="theoretical")
         ax.set_xticks(R)
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.set_xlabel("Ordinal")
         ax.set_ylabel("Probability")
         #TODO: title too long for models with covariates
-        ax.set_title(self)
+        ax.set_title(f"{self.model} drawn sample (n={self.n})")
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
         

@@ -307,7 +307,7 @@ class CUBresIHG(CUBres):
         if self.ass_pars is not None:
             ax.scatter(self.ass_pars['theta'], 0,
                 facecolor="None",
-                edgecolor="r", s=200, label="generator")
+                edgecolor="r", s=200, label="assumed")
         ax.legend(loc="upper left",
             bbox_to_anchor=(1,1))
         ax.set_yticks([])
@@ -349,11 +349,11 @@ class CUBresIHG(CUBres):
         title += f"    Dissim(est,obs)={self.diss:.4f}"
         if self.ass_pars is not None:
             title += "\n"
-            title += fr"Gener($\theta={self.ass_pars['theta']:.3f}$)"
+            title += fr"Assumed($\theta={self.ass_pars['theta']:.3f}$)"
             p_gen = pmf(m=self.m, theta=self.ass_pars['theta'])
             R = choices(m=self.m)
             ax.stem(R, p_gen, linefmt="--r",
-                markerfmt="none", label="generating")
+                markerfmt="none", label="assumed")
         ax.set_title(title)
 
         R = choices(self.m)

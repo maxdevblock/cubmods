@@ -694,11 +694,11 @@ class CUBresCUBE(CUBres):
         #TODO: add dissimilarity from generating model
         if self.ass_pars is not None:
             title += "\n"
-            title += fr"Gener($\pi={self.ass_pars['pi']:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$ , "
+            title += fr"Assumed($\pi={self.ass_pars['pi']:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$ , "
             title += fr"$\phi={self.ass_pars['phi']:.3f}$)"
         # if self.diss_gen is not None:
         #     title += "\n"
-        #     title += fr"Gener($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
+        #     title += fr"Assumed($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
         #     title += f"    Dissim(est,gen)={self.diss_gen:.6f}"
         ax.set_title(title)
 
@@ -727,7 +727,7 @@ class CUBresCUBE(CUBres):
             phi_gen = self.ass_pars["phi"]
             p_gen = pmf(m=self.m, pi=pi_gen, xi=xi_gen, phi=phi_gen)
             ax.stem(R, p_gen, linefmt="--r",
-            markerfmt="none", label="generating")
+            markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
@@ -788,7 +788,7 @@ class CUBresCUBE(CUBres):
             #phi_gen = self.ass_pars["phi"]
             ax.scatter(1-pi_gen, 1-xi_gen,
                 facecolor="None",
-                edgecolor="r", s=200, label="generating")
+                edgecolor="r", s=200, label="assumed")
         if confell:
             # Confidence Ellipse
             conf_ell(

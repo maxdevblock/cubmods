@@ -620,7 +620,7 @@ class CUBresCUB00(CUBres):
         title += f"    Dissim(est,obs)={self.diss:.4f}"
         if self.ass_pars is not None:
             title += "\n"
-            title += fr"Gener($\pi={self.ass_pars['pi']:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$)"
+            title += fr"Assumed($\pi={self.ass_pars['pi']:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$)"
             #title += f"    Dissim(est,gen)={self.diss_gen:.6f}"
         ax.set_title(title)
 
@@ -646,7 +646,7 @@ class CUBresCUB00(CUBres):
         if self.ass_pars is not None:
             p_gen = pmf(self.m, self.ass_pars['pi'], self.ass_pars['xi'])
             ax.stem(R, p_gen, linefmt="--r",
-            markerfmt="none", label="generating")
+            markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
@@ -701,7 +701,7 @@ class CUBresCUB00(CUBres):
         if self.ass_pars is not None:
             ax.scatter(1-self.ass_pars['pi'], 1-self.ass_pars['xi'],
                 facecolor="None",
-                edgecolor="r", s=200, label="generating")
+                edgecolor="r", s=200, label="assumed")
 
         # change all spines
         for axis in ['left','bottom']:

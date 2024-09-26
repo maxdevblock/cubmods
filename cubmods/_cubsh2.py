@@ -596,7 +596,7 @@ class CUBresCUBSH2(CUBres):
             genpi3 = self.ass_pars['pi3']
             genxi  = self.ass_pars['xi']
             title += "\n"
-            title += fr"Gener($\pi_1={genpi1:.3f}$ , "
+            title += fr"Assumed($\pi_1={genpi1:.3f}$ , "
             title += fr"$\pi_2={genpi2:.3f}$ , "
             title += fr"$\pi_3={genpi3:.3f}$ , "
             title += fr"$\xi={genxi:.3f}$ , "
@@ -604,7 +604,7 @@ class CUBresCUBSH2(CUBres):
         #TODO: add diss_gen
         # if self.diss_gen is not None:
         #     title += "\n"
-        #     title += fr"Gener($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
+        #     title += fr"Assumed($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
         #     title += f"    Dissim(est,gen)={self.diss_gen:.6f}"
         ax.set_title(title)
 
@@ -635,7 +635,7 @@ class CUBresCUBSH2(CUBres):
                 sh1=self.sh[0],
                 sh2=self.sh[1])
             ax.stem(R, p_gen, linefmt="--r",
-                markerfmt="none", label="generating")
+                markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
@@ -699,7 +699,7 @@ class CUBresCUBSH2(CUBres):
             ax.plot(1-gpi, 1-gxi, 
                 "*r",ms=9, alpha=.5,
                 mfc="none",
-                label="generating")
+                label="assumed")
 
         # Confidence Ellipse
         if confell:

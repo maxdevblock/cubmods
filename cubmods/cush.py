@@ -363,10 +363,10 @@ class CUBresCUSH(CUBres):
         if self.ass_pars is not None:
             delta_gen = self.ass_pars["delta"]
             title += "\n"
-            title += fr"Gener($\delta={delta_gen:.3f}$)"
+            title += fr"Assumed($\delta={delta_gen:.3f}$)"
             p_gen = pmf(m=self.m, sh=self.sh, delta=delta_gen)
             ax.stem(R, p_gen, linefmt="--r",
-                markerfmt="none", label="generator")
+                markerfmt="none", label="assumed")
         if kind == "bar":
             ax.bar(R, self.f/self.n,
                 facecolor="None",
@@ -427,7 +427,7 @@ class CUBresCUSH(CUBres):
             delta_gen = self.ass_pars["delta"]
             ax.scatter(delta_gen, 0,
                 facecolor="None",
-                edgecolor="r", s=200, label="generator")
+                edgecolor="r", s=200, label="assumed")
         ax.set_yticks([])
         if not magnified:
             ax.set_xlim((0,1))
@@ -535,13 +535,13 @@ class CUBresCUSH(CUBres):
             delta_gen = self.ass_pars["delta"]
             p_gen = pmf(m=self.m, sh=self.sh, delta=delta_gen)
             ax[0].stem(R, p_gen, linefmt="--r",
-            markerfmt="none", label="generator")
+            markerfmt="none", label="assumed")
             ax[1].scatter(delta_gen, 0,
             facecolor="None",
-            edgecolor="r", s=200, label="generator")
+            edgecolor="r", s=200, label="assumed")
             ax[2].scatter(delta_gen, 0,
             facecolor="None",
-            edgecolor="r", s=200, label="generator")
+            edgecolor="r", s=200, label="assumed")
 
             #X2 = chisquared(
             #    self.f,

@@ -360,7 +360,7 @@ class CUBresCUSH2(CUBres):
             d1 = self.ass_pars["delta1"]
             d2 = self.ass_pars["delta2"]
             ax.plot(d1, d2, "xr",
-                label="generating",
+                label="assumed",
                 zorder=np.inf)
 
         ax.plot(estd1, estd2, "o", label="estimated")
@@ -425,11 +425,11 @@ class CUBresCUSH2(CUBres):
         title += f"    Dissim(est,obs)={self.diss:.4f}"
         if self.ass_pars is not None:
             title += "\n"
-            title += fr"Gener($\delta_1={self.ass_pars['delta1']:.3f}$ , $\delta_2={self.ass_pars['delta2']:.3f}$)"
+            title += fr"Assumed($\delta_1={self.ass_pars['delta1']:.3f}$ , $\delta_2={self.ass_pars['delta2']:.3f}$)"
             p_gen = pmf(c1=self.sh[0], c2=self.sh[1], d1=estd1, d2=estd2, m=self.m)
             R = choices(m=self.m)
             ax.stem(R, p_gen, linefmt="--r",
-                markerfmt="none", label="generating")
+                markerfmt="none", label="assumed")
         ax.set_title(title)
 
         R = choices(self.m)

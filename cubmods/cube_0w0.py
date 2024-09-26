@@ -509,7 +509,7 @@ class CUBresCUBE0W0(CUBres):
         #TODO: add dissimilarity from generating model
         # if self.diss_gen is not None:
         #     title += "\n"
-        #     title += fr"Gener($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
+        #     title += fr"Assumed($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
         #     title += f"    Dissim(est,gen)={self.diss_gen:.6f}"
         ax.set_title(title)
 
@@ -541,7 +541,7 @@ class CUBresCUBE0W0(CUBres):
             #     gamma=gamma_gen, phi=phi_gen,
             #     W=self.W)
             # ax.stem(R, p_gen, linefmt="--r",
-            # markerfmt="none", label="generating")
+            # markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",

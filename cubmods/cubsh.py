@@ -939,12 +939,12 @@ class CUBresCUBSH(CUBres):
             genpi2 = self.ass_pars['pi2']
             genpi, gendelta = pi1pi2_to_pidelta(genpi1, genpi2)
             title += "\n"
-            title += fr"Gener($\pi={genpi:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$ , "
+            title += fr"Assumed($\pi={genpi:.3f}$ , $\xi={self.ass_pars['xi']:.3f}$ , "
             title += fr"$\delta={gendelta:.3f}$)"
         #TODO: add diss_gen
         # if self.diss_gen is not None:
         #     title += "\n"
-        #     title += fr"Gener($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
+        #     title += fr"Assumed($\pi={self.pi_gen:.3f}$ , $\xi={self.xi_gen:.3f}$)"
         #     title += f"    Dissim(est,gen)={self.diss_gen:.6f}"
         ax.set_title(title)
 
@@ -973,7 +973,7 @@ class CUBresCUBSH(CUBres):
             xi_gen = self.ass_pars['xi']
             p_gen = pmf(m=self.m, pi1=pi1_gen, pi2=pi2_gen, xi=xi_gen, sh=self.sh)
             ax.stem(R, p_gen, linefmt="--r",
-                markerfmt="none", label="generating")
+                markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
