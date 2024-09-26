@@ -162,8 +162,8 @@ feeling component or all the three components by  specifying covariates matrices
 overdispersion (Z). For different combinations of components with covariates, the symbol ``1`` can be used.
 Notice that :math:`\hat\phi=e^{\hat\alpha_0}`.
 
-If ``family="ihg"``, then an IHG model is fitted to the data. IHG models (Inverse Hypergeometric) are a peculiar case of
-CUBE models. The parameter :math:`\theta` gives the probability of observing 
+If ``family="ihg"``, then an IHG model is fitted to the data. IHG models (Inverse HyperGeometric) are a peculiar case of
+CUBE models, for :math:`\phi = 1 - \xi` :cite:p:`iannario2012cube`. The parameter :math:`\theta` gives the probability of observing 
 the first category and is therefore a direct measure of preference, attraction, pleasantness toward the 
 investigated item. This is the reason why :math:`\theta` is customarily referred to as the 
 preference parameter of the 
