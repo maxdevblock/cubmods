@@ -29,6 +29,11 @@ simplified and generalised procedure to draw a random sample.
 
 In this manual ``gem`` functions will be used for the examples.
 
+Notice that, the Dissimilarity index is computed for models with covariates also:
+it should be interpreted as the fraction of the sample to be changed to achive a
+perfect fit to the estimated average probability distribution (see 
+`Introduction <intro.html>`__ Notes).
+
 The last chapter, shows the basic usage for the tool ``multicub``.
 
 .. _gem-manual:
