@@ -10,25 +10,19 @@ Description:
 ============
     This module contains methods and classes
     for CUBSH model family.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
-
-    :math:`\Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1 - \delta)[ \pi b_r(\xi) + (1-\pi)/m ],\; r=1,2,\ldots,m`
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#cubsh-without-covariates>`__
 
 List of TODOs:
 ==============
   - TODO: fix 3d plots legend
-  - TODO: too long title in CUBsample.plot() ?
   - TODO: test all ``def _*():`` (optional functions)
 
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it

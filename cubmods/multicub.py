@@ -9,11 +9,9 @@ Description:
 ============
     This module contains methods and classes
     for MULTICUB and MULTICUBE tool.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#multicub-manual>`__
 
 List of TODOs:
@@ -23,7 +21,6 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it

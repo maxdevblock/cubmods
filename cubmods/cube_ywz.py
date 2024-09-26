@@ -10,19 +10,9 @@ Description:
 ============
     This module contains methods and classes
     for CUB_YWZ model family.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
-
-    :math:`\Pr(R_i=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m},\; r=1,2,\ldots,m`
-
-    :math:`\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb \beta}}`
-
-    :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb \gamma}}`
-
-    :math:`\phi_i = e^{\pmb z_i \pmb \alpha}`
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#cube-with-covariates>`__
 
 List of TODOs:
@@ -32,7 +22,6 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it

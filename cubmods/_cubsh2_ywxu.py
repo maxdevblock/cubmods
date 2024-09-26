@@ -8,8 +8,6 @@ Description:
 ============
     This module contains methods and classes
     for CUBSH2_YWXU model family.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
 
 Example:
     TODO: add example

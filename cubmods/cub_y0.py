@@ -10,15 +10,9 @@ Description:
 ============
     This module contains methods and classes
     for CUB_Y0 model family.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
-
-    :math:`\Pr(R_i=r|\pmb{\theta} ; \pmb y_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi_i}{m},\; r=1,2,\ldots,m`
-
-    :math:`\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb\beta}}`
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#cub-with-covariates>`__
   
 List of TODOs:
@@ -28,7 +22,6 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it

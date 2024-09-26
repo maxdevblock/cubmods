@@ -10,20 +10,9 @@ Description:
 ============
     This module contains methods and classes
     for CUBSH_YWX model family.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
-
-    :math:`\Pr(R_i=r|\pmb\theta;\pmb y_i; \pmb w_i; \pmb x_i) = \delta_i D_r^{(c)} + (1 - \delta_i)[ \pi_i b_r(\xi_i) + (1-\pi_i)/m ],\; r=1,2,\ldots,m`
-
-    :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
-
-    :math:`\pi_i = \dfrac{1}{1+e^{-\pmb y_i \pmb\beta}}`
-
-    :math:`\delta_i = \dfrac{1}{1+e^{-\pmb x_i \pmb\omega}}`
-
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#cubsh-with-covariates>`__
   
 List of TODOs:
@@ -33,7 +22,6 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it

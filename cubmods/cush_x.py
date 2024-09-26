@@ -10,15 +10,9 @@ Description:
 ============
     This module contains methods and classes
     for CUSH model family.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
-
-    :math:`\Pr(R_i=r|\pmb \theta; \pmb x_i) = \delta_i D_{r}^{(c)} + (1 - \delta_i)/m,\; r=1,2,\ldots,m`
-
-    :math:`\delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb \omega \}}`
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#cush-with-covariates>`__
 
 List of TODOs:
@@ -28,7 +22,6 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it

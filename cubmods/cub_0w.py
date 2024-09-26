@@ -10,15 +10,9 @@ Description:
 ============
     This module contains methods and classes
     for CUB_0W model family.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
-
-    :math:`\Pr(R_i=r|\pmb{\theta} ; \pmb w_i) = \pi \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi}{m},\; r=1,2,\ldots,m`
-
-    :math:`\xi_i = \dfrac{1}{1+e^{-\pmb w_i \pmb\gamma}}`
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#cub-with-covariates>`__
   
 List of TODOs:
@@ -28,7 +22,6 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it

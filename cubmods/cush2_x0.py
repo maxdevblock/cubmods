@@ -11,18 +11,9 @@ Description:
 ============
     This module contains methods and classes
     for CUSH2 model family.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
-    The CUSH2 family has been defined and implemented
-    by Massimo Pierini (2024) in the thesis
-    *Modelli della classe CUB in Python*.
-
-    :math:`\Pr(R_i=r|\pmb \theta;\pmb x_{1i}) = \delta_{1i} D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1 - \delta_{1i} - \delta_2)/m,\; r=1,2,\ldots,m`
-
-    :math:`\delta_{1i} = \dfrac{1}{1+\exp\{ - \pmb x_{1i} \pmb \omega_1 \}}`
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#cush2-with-covariates>`__
 
 List of TODOs:
@@ -32,7 +23,6 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it

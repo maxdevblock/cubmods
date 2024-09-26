@@ -9,20 +9,9 @@ Description:
 ============
     This module contains methods and classes
     for IHG model family without covariates.
-    It is based upon the works of Domenico
-    Piccolo et Al. and the ``CUB`` package in R.
-
-    .. math::
-        \left\{
-        \begin{array}{l}
-            \Pr(R=1|\theta) = \theta
-            \\
-            \Pr(R=r+1|\theta) = \Pr(R=r|\pmb\theta)(1-\theta)\dfrac{m-r}{m-1-r(1-\theta)},\; r= 1, \ldots, m-1
-        \end{array}
-        \right.
 
 Manual, Examples and References:
-===============================
+================================
     - `Models manual <manual.html#ihg-without-covariates>`__
   
 List of TODOs:
@@ -32,7 +21,6 @@ List of TODOs:
 Credits
 ==============
     :Author:      Massimo Pierini
-
     :Date:        2023-24
     :Credits:     Domenico Piccolo, Rosaria Simone
     :Contacts:    cub@maxpierini.it
