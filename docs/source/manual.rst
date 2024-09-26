@@ -224,7 +224,7 @@ CUB family
 ----------
 
 Basic family of the class CUB. See the references for details: 
-:cite:t:`piccolo2003moments`, :cite:t:`d2005mixture`, :cite:t:`piccolo2006observed`
+:cite:alp:`piccolo2003moments`, :cite:alp:`d2005mixture`, :cite:alp:`piccolo2006observed`
 
 References
 ^^^^^^^^^^
@@ -661,7 +661,7 @@ The method ``.plot()`` (of the ``fit`` object)
 shows, in the parameters space, the trivariate confidence ellipsoid too, which has not
 been implemented yet in the ``CUB`` package in R.
 The plot includes the marginal bivariate confidence ellipses too. Notice that, as proven in
-:cite:t:`mythesis` pp 28-30, the confidence level of the marginal ellipses is greater
+:cite:alp:`mythesis` pp 28-30, the confidence level of the marginal ellipses is greater
 than the ellipsoid's confidence level. Indeed, the radius :math:`r` of a 
 standardized sphere at confidence
 level :math:`(1-\alpha_3)` is equal to :math:`r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3) }`, thus
@@ -1060,6 +1060,9 @@ CUSH2 family
 
 Family of the class CUSH with two shelter effects (CUSH2). 
 See the references for details.
+
+This family has been introduced by :cite:alp:`mythesis` (pp 16-20) and first
+implemented in this Python package.
 
 These models are particularly useful whenever the shelter choices are not 
 *polarized*, i.e. they're not at the extremes of the ordinal variable support.

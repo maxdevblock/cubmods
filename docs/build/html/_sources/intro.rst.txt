@@ -4,8 +4,9 @@ Introduction
 Preface
 *******
 
-This package has been implemented by Massimo Pierini as a Bachelor's thesis :cite:p:`mythesis`, 
-it is the first implementation of CUB class models in Python and is mainly based upon 
+This package has been implemented by Massimo Pierini as a Bachelor's thesis :cite:p:`mythesis`.
+
+It is the first implementation of CUB class models in Python and is mainly based upon 
 the work of Domenico Piccolo and the ``CUB`` package in R :cite:p:`iannario2022package`, 
 mainteined by Rosaria Simone.
 
@@ -34,7 +35,7 @@ second which takes the form of the CUB family models, subsequently
 extended to consider further factors such as the overdispersion of
 Binomial component, the effect of shelter choice, and so on.
 
-The most updated paper by :cite:p:`piccolo2019class` will be used as a reference for
+The most updated paper by :cite:alp:`piccolo2019class` will be used as a reference for
 terminology, theory and inferential issues.
 
 Motivation
