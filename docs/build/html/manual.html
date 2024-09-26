@@ -424,8 +424,8 @@ to <code class="docutils literal notranslate"><span class="pre">1</span></code> 
 <code class="docutils literal notranslate"><span class="pre">constant</span></code> for <code class="docutils literal notranslate"><span class="pre">sex==&quot;F&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">C.sex_M</span></code> for <code class="docutils literal notranslate"><span class="pre">sex==&quot;M&quot;</span></code>. If you want a different order
 for the categorical variables, you must specify it in <em>DataFrame</em>, for instance with the
 <code class="docutils literal notranslate"><span class="pre">pandas</span></code> funtion <code class="docutils literal notranslate"><span class="pre">Categorical</span></code>. In the example:</p>
-<div class="literal-block-wrapper docutils container" id="id296">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id296" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id35">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id35" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span>
 <span class="linenos">2</span>    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">],</span>
 <span class="linenos">3</span>    <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
@@ -495,7 +495,7 @@ feeling component or all the three components by  specifying covariates matrices
 overdispersion (Z). For different combinations of components with covariates, the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> can be used.
 Notice that <span class="math notranslate nohighlight">\(\hat\phi=e^{\hat\alpha_0}\)</span>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">family=&quot;ihg&quot;</span></code>, then an IHG model is fitted to the data. IHG models (Inverse HyperGeometric) are a peculiar case of
-CUBE models, for <span class="math notranslate nohighlight">\(\phi = 1 - \xi\)</span> <span id="id1">(<a class="reference internal" href="references.html#id13" title="Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. Quaderni di statistica, 14:137–140, 2012.">Iannario, 2012</a>)</span>. The parameter <span class="math notranslate nohighlight">\(\theta\)</span> gives the probability of observing
+CUBE models, for <span class="math notranslate nohighlight">\(\phi = 1 - \xi\)</span> <span id="id1">(<a class="reference internal" href="references.html#id14" title="Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. Quaderni di statistica, 14:137–140, 2012.">Iannario, 2012</a>)</span>. The parameter <span class="math notranslate nohighlight">\(\theta\)</span> gives the probability of observing
 the first category and is therefore a direct measure of preference, attraction, pleasantness toward the
 investigated item. This is the reason why <span class="math notranslate nohighlight">\(\theta\)</span> is customarily referred to as the
 preference parameter of the
@@ -548,26 +548,11 @@ see the Base Class <code class="docutils literal notranslate"><span class="pre">
 <section id="cub-family">
 <h2>CUB family<a class="headerlink" href="#cub-family" title="Permalink to this heading">#</a></h2>
 <p>Basic family of the class CUB. See the references for details:
-<span id="id2"><a class="reference internal" href="references.html#id4" title="Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. Quaderni di Statistica, 5(1):85–104, 2003.">Piccolo, 2003</a></span>, <span id="id3"><a class="reference internal" href="references.html#id5" title="Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. Computational Statistics &amp; Data Analysis, 49(3):917–934, 2005.">D'Elia and Piccolo, 2005</a></span>, <span id="id4"><a class="reference internal" href="references.html#id7" title="Domenico Piccolo. Observed information matrix for MUB models. Quaderni di Statistica, 8(1):33–78, 2006.">Piccolo, 2006</a></span></p>
-<section id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h3>
-<blockquote>
-<div><div class="docutils container" id="id5">
-<ol class="arabic simple" start="1">
-<li id="id9"><p>Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. <em>Computational Statistics &amp; Data Analysis</em>, 49(3):917–934, 2005.</p></li>
-<li id="id22"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id12"><p>Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. <em>Quality Technology &amp; Quantitative Management</em>, 7(2):149–168, 2010.</p></li>
-<li id="id23"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id24"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
-<li id="id8"><p>Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
-<li id="id11"><p>Domenico Piccolo. Observed information matrix for MUB models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
-<li id="id7"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-</ol>
-</div>
-</div></blockquote>
-</section>
+<span id="id2"><a class="reference internal" href="references.html#id4" title="Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. Quaderni di Statistica, 5(1):85–104, 2003.">Piccolo, 2003</a></span>; <span id="id3"><a class="reference internal" href="references.html#id5" title="Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. Computational Statistics &amp; Data Analysis, 49(3):917–934, 2005.">D'Elia and Piccolo, 2005</a></span>; <span id="id4"><a class="reference internal" href="references.html#id7" title="Domenico Piccolo. Observed information matrix for MUB models. Quaderni di Statistica, 8(1):33–78, 2006.">Piccolo, 2006</a></span>;
+<span id="id5"><a class="reference internal" href="references.html#id8" title="Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. Quality Technology &amp; Quantitative Management, 7(2):149–168, 2010.">Iannario and Piccolo, 2010</a></span>; <span id="id6"><a class="reference internal" href="references.html#id19" title="Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version, 2009.">Iannario and Piccolo, 2009</a></span>; <span id="id7"><a class="reference internal" href="references.html#id20" title="Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. Statistica &amp; Applicazioni, 12(2):177–204, 2014.">Iannario <em>et al.</em>, 2014</a></span>;
+<span id="id8"><a class="reference internal" href="references.html#id21" title="Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. CRAN, 2022.">Iannario <em>et al.</em>, 2022</a></span>; <span id="id9"><a class="reference internal" href="references.html#id3" title="Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). Statistical Methods &amp; Applications, 28:389–493, 2019.">Piccolo and Simone, 2019</a></span>.</p>
 <section id="without-covariates">
-<span id="cub-models-without-covariates"></span><h3>Without covariates<a class="headerlink" href="#without-covariates" title="Permalink to this heading">#</a></h3>
+<span id="cub-without-covariates"></span><h3>Without covariates<a class="headerlink" href="#without-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cub00-module">Reference guide</a></p>
 <p>A model of the CUB family for responses with <span class="math notranslate nohighlight">\(m\)</span> ordinal categories, without covariates is specified as</p>
 <div class="math notranslate nohighlight">
@@ -580,8 +565,8 @@ see the Base Class <code class="docutils literal notranslate"><span class="pre">
 <p>In the following example, a sample will be drawn from a CUB model of <span class="math notranslate nohighlight">\(n=500\)</span> observations of an ordinal
 variable with <span class="math notranslate nohighlight">\(m=10\)</span> ordinal categories
 and parameters <span class="math notranslate nohighlight">\((\pi=.7, \xi=.2)\)</span>. A <code class="docutils literal notranslate"><span class="pre">seed=1</span></code> will be set to ensure reproducibility.</p>
-<div class="literal-block-wrapper docutils container" id="id297">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id297" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id36">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id36" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span>
@@ -636,8 +621,8 @@ the parameters</p>
 <li><p>if <code class="docutils literal notranslate"><span class="pre">m</span></code> is not provided, the maximum observed ordinal value will be assumed and a warning will be raised</p></li>
 <li><p>with <code class="docutils literal notranslate"><span class="pre">ass_pars</span></code> dictionary, the parameters of a known model (if any) can be specified; in this case, we’ll specify the known parameters used to draw the sample</p></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id298">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id298" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id37">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id37" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
@@ -655,20 +640,18 @@ the parameters</p>
 </pre></div>
 </div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>warnings.warn(&quot;No m given, max(ordinal) has been taken&quot;)
-
-=======================================================================
-=====&gt;&gt;&gt; CUB00 model &lt;&lt;&lt;===== ML-estimates
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>=======================================================================
+=====&gt;&gt;&gt; CUB model &lt;&lt;&lt;===== ML-estimates
 =======================================================================
 m=10  Size=500  Iterations=13  Maxiter=500  Tol=1E-04
 -----------------------------------------------------------------------
 Uncertainty
     Estimates  StdErr    Wald  p-value
-pi     +0.675   0.034  19.872   0.0000
+pi      0.675  0.0340  19.872   0.0000
 -----------------------------------------------------------------------
 Feeling
     Estimates  StdErr    Wald  p-value
-xi     +0.188   0.009  20.808   0.0000
+xi      0.188  0.0090  20.808   0.0000
 -----------------------------------------------------------------------
 Correlation   = 0.2105
 =======================================================================
@@ -682,11 +665,14 @@ Deviance      = 12.096
 AIC = 2004.22
 BIC = 2012.65
 =======================================================================
-Elapsed time=0.00187 seconds =====&gt;&gt;&gt; Wed Apr 24 11:27:35 2024
+Elapsed time=0.00202 seconds =====&gt;&gt;&gt; Thu Sep 26 18:00:53 2024
 =======================================================================
 </pre></div>
 </div>
 <img alt="CUB00 MLE" src="_images/cub00mle.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>Calling <code class="docutils literal notranslate"><span class="pre">fit.as_dataframe()</span></code> will return a DataFrame with
 parameters’ estimated values and standard errors</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     component parameter  estimate    stderr       wald        pvalue
@@ -696,7 +682,7 @@ parameters’ estimated values and standard errors</p>
 </div>
 </section>
 <section id="with-covariates">
-<span id="cub-models-with-covariates"></span><h3>With covariates<a class="headerlink" href="#with-covariates" title="Permalink to this heading">#</a></h3>
+<span id="cub-with-covariates"></span><h3>With covariates<a class="headerlink" href="#with-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cub0w-module">Reference guide (0|W)</a></p>
 <p><a class="reference external" href="cubmods.html#cuby0-module">Reference guide (Y|0)</a></p>
 <p><a class="reference external" href="cubmods.html#cubyw-module">Reference guide (Y|W)</a></p>
@@ -725,8 +711,8 @@ for <em>uncertainty</em> only, for <em>feeling</em> only, and for <em>both</em>.
 <p>First of all, we’ll draw a random sample with two covariates for the <em>feeling</em> component:
 <code class="docutils literal notranslate"><span class="pre">W1</span></code> and <code class="docutils literal notranslate"><span class="pre">W2</span></code>. Note that, having two covariates, we’ll need three <span class="math notranslate nohighlight">\(\gamma\)</span> parameters,
 to consider the constant term too.</p>
-<div class="literal-block-wrapper docutils container" id="id299">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id299" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id38">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id38" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -775,8 +761,8 @@ Dissimilarity = 0.0307673
 =======================================================================
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id300">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id300" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id39">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id39" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># plot the drawn sample</span>
 <span class="linenos">2</span><span class="n">drawn</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="linenos">3</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -784,8 +770,8 @@ Dissimilarity = 0.0307673
 </div>
 </div>
 <img alt="CUB0W drawn sample" src="_images/cub0wdraw.png" />
-<div class="literal-block-wrapper docutils container" id="id301">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id301" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id40">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id40" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># print the parameters&#39; values</span>
 <span class="linenos">2</span><span class="nb">print</span><span class="p">(</span><span class="n">drawn</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">())</span>
 </pre></div>
@@ -798,8 +784,8 @@ Dissimilarity = 0.0307673
 3      Feeling        W2   -5.0
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id302">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id302" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id41">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id41" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># print the updated DataFrame</span>
 <span class="linenos">2</span><span class="nb">print</span><span class="p">(</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
@@ -823,8 +809,8 @@ Dissimilarity = 0.0307673
 </div>
 <p>Finally, we’ll call <code class="docutils literal notranslate"><span class="pre">estimate</span></code> to estimate the parameters
 given the observed (actually, drawn) sample.</p>
-<div class="literal-block-wrapper docutils container" id="id303">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id303" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id42">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id42" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;response ~ 0 | W1+W2&quot;</span><span class="p">,</span>
@@ -871,24 +857,10 @@ Elapsed time=0.09656 seconds =====&gt;&gt;&gt; Thu Aug 15 18:31:21 2024
 </section>
 <section id="cubsh-family">
 <h2>CUBSH family<a class="headerlink" href="#cubsh-family" title="Permalink to this heading">#</a></h2>
-<p>Basic family of the class CUB with shelter effect.
-See the references for details.</p>
-<section id="id44">
-<h3>References<a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
-<blockquote>
-<div><div class="docutils container" id="id45">
-<ol class="arabic simple" start="1">
-<li id="id53"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
-<li id="id62"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id63"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id64"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
-<li id="id47"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-</ol>
-</div>
-</div></blockquote>
-</section>
+<p>Basic family of the class CUB with shelter effect.</p>
+<p>See the references for details: <span id="id10"><a class="reference internal" href="references.html#id9" title="Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. Statistical Methods &amp; Applications, 21:1–22, 2012.">Iannario, 2012</a></span>; <span id="id11"><a class="reference internal" href="references.html#id3" title="Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). Statistical Methods &amp; Applications, 28:389–493, 2019.">Piccolo and Simone, 2019</a></span>.</p>
 <section id="cubsh-without-covariates">
-<span id="id84"></span><h3>Without covariates<a class="headerlink" href="#cubsh-without-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id12"></span><h3>Without covariates<a class="headerlink" href="#cubsh-without-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cubsh000-module">Reference guide</a></p>
 <p>A model of the CUB family with shelter effect
 for responses with <span class="math notranslate nohighlight">\(m\)</span> ordinal categories, without covariates is specified as</p>
@@ -899,8 +871,8 @@ for responses with <span class="math notranslate nohighlight">\(m\)</span> ordin
 <em>feeling</em> components, and <span class="math notranslate nohighlight">\(\delta\)</span> is the weight of the shelter effect.</p>
 <p>In the next example, we’ll draw an ordinal response
 and then estimate the parameters given the sample.</p>
-<div class="literal-block-wrapper docutils container" id="id304">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id304" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id43">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id43" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -933,14 +905,14 @@ and then estimate the parameters given the sample.</p>
 shows, in the parameters space, the trivariate confidence ellipsoid too, which has not
 been implemented yet in the <code class="docutils literal notranslate"><span class="pre">CUB</span></code> package in R.
 The plot includes the marginal bivariate confidence ellipses too. Notice that, as proven in
-<span id="id85"><a class="reference internal" href="references.html#id39" title="Massimo Pierini. Modelli della classe CUB in python. Universitas Mercatorum, Rome, IT, pages 1–172, June 2024. (Bachelor's thesis L-41).">Pierini, 2024</a></span> pp 28-30, the confidence level of the marginal ellipses is greater
+<span id="id13"><a class="reference internal" href="references.html#id40" title="Massimo Pierini. Modelli della classe CUB in python. Universitas Mercatorum, Rome, IT, pages 1–172, June 2024. (Bachelor's thesis L-41).">Pierini, 2024</a></span> pp 28-30, the confidence level of the marginal ellipses is greater
 than the ellipsoid’s confidence level. Indeed, the radius <span class="math notranslate nohighlight">\(r\)</span> of a
 standardized sphere at confidence
 level <span class="math notranslate nohighlight">\((1-\alpha_3)\)</span> is equal to <span class="math notranslate nohighlight">\(r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3) }\)</span>, thus
 the confidence level of the bivariate marginal ellipses (which is a section of a trivariate
 cylinder) is <span class="math notranslate nohighlight">\((1-\alpha_2) = F_{\chi^2_{(2)}(r^2)}\)</span>.</p>
-<div class="literal-block-wrapper docutils container" id="id305">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id305" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id44">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id44" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># inferential method on drawn sample</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">sh</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">sh</span><span class="p">,</span>
@@ -998,7 +970,7 @@ BIC = 5490.81
 <img alt="CUBSH 00 MLE" src="_images/cubsh00mle.png" />
 </section>
 <section id="cubsh-with-covariates">
-<span id="id86"></span><h3>With covariates<a class="headerlink" href="#cubsh-with-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id14"></span><h3>With covariates<a class="headerlink" href="#cubsh-with-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cubshywx-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i, \pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)\left(\pi_i b_r(\xi_i) + \frac{1-\pi_i}{m} \right)
@@ -1033,8 +1005,8 @@ with covariates for uncertainty only. We’ll use the function
 <code class="docutils literal notranslate"><span class="pre">logit</span></code> to have better ‘control’ of the parameters values,
 because <span class="math notranslate nohighlight">\(\gamma_0 = \mathrm{logit}(\xi)\)</span> and
 similarly for <span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
-<div class="literal-block-wrapper docutils container" id="id306">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id306" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id45">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id45" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1108,8 +1080,8 @@ we can use the function <code class="docutils literal notranslate"><span class="
 and similarly for <span class="math notranslate nohighlight">\(\hat\delta\)</span>. Then, we can use the delta-method
 to compute the standard errors of both <span class="math notranslate nohighlight">\(\hat\xi\)</span> and <span class="math notranslate nohighlight">\(\hat\delta\)</span>, for instance
 <span class="math notranslate nohighlight">\(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\)</span>.</p>
-<div class="literal-block-wrapper docutils container" id="id307">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id307" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id46">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id46" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">est_xi</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="linenos"> 2</span><span class="n">est_de</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="linenos"> 3</span><span class="n">est_xi_se</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">fit</span><span class="o">.</span><span class="n">stderrs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="n">est_xi</span>
@@ -1133,24 +1105,10 @@ delta   0.1116  0.0131
 </section>
 <section id="cush-family">
 <h2>CUSH family<a class="headerlink" href="#cush-family" title="Permalink to this heading">#</a></h2>
-<p>Basic family of the class CUSH with a single shelter effect.
-See the references for details.</p>
-<section id="id87">
-<h3>References<a class="headerlink" href="#id87" title="Permalink to this heading">#</a></h3>
-<blockquote>
-<div><div class="docutils container" id="id88">
-<ol class="arabic simple" start="1">
-<li id="id97"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
-<li id="id105"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id106"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id107"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
-<li id="id90"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-</ol>
-</div>
-</div></blockquote>
-</section>
+<p>Basic family of the class CUSH with a single shelter effect.</p>
+<p>See the references for details: <span id="id15"><a class="reference internal" href="references.html#id10" title="Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. Quality &amp; Quantity, 51:2375–2393, 2017.">Capecchi and Piccolo, 2017</a></span>; <span id="id16"><a class="reference internal" href="references.html#id3" title="Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). Statistical Methods &amp; Applications, 28:389–493, 2019.">Piccolo and Simone, 2019</a></span>.</p>
 <section id="cush-without-covariates">
-<span id="id127"></span><h3>Without covariates<a class="headerlink" href="#cush-without-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id17"></span><h3>Without covariates<a class="headerlink" href="#cush-without-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cush0-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R=r|\pmb\theta) = \delta D_r^{(c)} + (1-\delta)/m
@@ -1158,8 +1116,8 @@ See the references for details.</p>
 <p>In the example, we’ll draw a sample from a CUSH model without covariates and
 then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id308">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id308" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id47">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id47" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -1217,7 +1175,7 @@ Elapsed time=0.00113 seconds =====&gt;&gt;&gt; Fri Aug 16 10:44:07 2024
 <img alt="CUSH 0 MLE" src="_images/cush0mle.png" />
 </section>
 <section id="cush-with-covariates">
-<span id="id128"></span><h3>With covariates<a class="headerlink" href="#cush-with-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id18"></span><h3>With covariates<a class="headerlink" href="#cush-with-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cushx-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R_i=r|\pmb\theta,\pmb x_i) = \delta_i D_r^{(c)} + (1-\delta_i)/m
@@ -1229,8 +1187,8 @@ Elapsed time=0.00113 seconds =====&gt;&gt;&gt; Fri Aug 16 10:44:07 2024
 <p>In the example, we’ll draw a sample from a CUSH model with covariates and
 then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id309">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id309" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id48">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id48" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1297,25 +1255,15 @@ Elapsed time=0.01704 seconds =====&gt;&gt;&gt; Fri Aug 16 10:54:11 2024
 <h2>CUSH2 family<a class="headerlink" href="#cush2-family" title="Permalink to this heading">#</a></h2>
 <p>Family of the class CUSH with two shelter effects (CUSH2).
 See the references for details.</p>
-<p>This family has been introduced by <span id="id129"><a class="reference internal" href="references.html#id39" title="Massimo Pierini. Modelli della classe CUB in python. Universitas Mercatorum, Rome, IT, pages 1–172, June 2024. (Bachelor's thesis L-41).">Pierini, 2024</a></span> (pp 16-20) and first
-implemented in this Python package.</p>
+<p>This family has been introduced by <span id="id19"><a class="reference internal" href="references.html#id40" title="Massimo Pierini. Modelli della classe CUB in python. Universitas Mercatorum, Rome, IT, pages 1–172, June 2024. (Bachelor's thesis L-41).">Pierini, 2024</a></span> (pp 16-20) and first
+implemented in this Python package. See <span id="id20"><a class="reference internal" href="references.html#id3" title="Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). Statistical Methods &amp; Applications, 28:389–493, 2019.">Piccolo and Simone, 2019</a></span> as a reference
+for the CUB class models.</p>
 <p>These models are particularly useful whenever the shelter choices are not
 <em>polarized</em>, i.e. they’re not at the extremes of the ordinal variable support.
 In these cases, finite mixtures of the Beta Discretized distribution can be
-used <span id="id130">(<a class="reference internal" href="references.html#id11" title="Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. TEST, 31(3):828–855, 2022.">Simone, 2022</a>)</span>.</p>
-<section id="id131">
-<h3>References<a class="headerlink" href="#id131" title="Permalink to this heading">#</a></h3>
-<blockquote>
-<div><div class="docutils container" id="id132">
-<ol class="arabic simple" start="1">
-<li id="id134"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-<li id="id170"><p>Massimo Pierini. Modelli della classe CUB in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 1–172, June 2024. (Bachelor's thesis L-41).</p></li>
-</ol>
-</div>
-</div></blockquote>
-</section>
+used <span id="id21">(<a class="reference internal" href="references.html#id11" title="Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. TEST, 31(3):828–855, 2022.">Simone, 2022</a>)</span>.</p>
 <section id="cush2-without-covariates">
-<span id="id171"></span><h3>Without covariates<a class="headerlink" href="#cush2-without-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id22"></span><h3>Without covariates<a class="headerlink" href="#cush2-without-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cush200-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R=r|\pmb\theta) = \delta_1 D_r^{(c_1)} + \delta_2 D_r^{(c_2)} + (1-\delta_1-\delta_2)/m
@@ -1325,8 +1273,8 @@ then estimate the parameter given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.
 Passing a list of two shelter categories with the <em>kwarg</em> <code class="docutils literal notranslate"><span class="pre">sh</span></code>, a CUSH2 model will be
 called.</p>
-<div class="literal-block-wrapper docutils container" id="id310">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id310" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id49">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id49" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -1387,7 +1335,7 @@ Elapsed time=0.00228 seconds =====&gt;&gt;&gt; Fri Aug 16 11:15:21 2024
 <img alt="CUSH2 00 MLE" src="_images/cush200mle.png" />
 </section>
 <section id="cush2-with-covariates">
-<span id="id172"></span><h3>With covariates<a class="headerlink" href="#cush2-with-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id23"></span><h3>With covariates<a class="headerlink" href="#cush2-with-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cush2x0-module">Reference guide (X1|0)</a></p>
 <p><a class="reference external" href="cubmods.html#cush2xx-module">Reference guide (X1|X2)</a></p>
 <div class="math notranslate nohighlight">
@@ -1419,8 +1367,8 @@ formula for the second shelter choice to estimate the
 constant parameter only. This is usually not needed, but
 we do it here to confirm that <span class="math notranslate nohighlight">\(\mathrm{expit}(\hat\omega_{20})=\hat\delta_2\)</span>.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
-<div class="literal-block-wrapper docutils container" id="id311">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id311" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id50">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id50" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1504,25 +1452,11 @@ delta2  0.0931  0.0145
 <p>Family of the class CUBE (Combination of Uniform and BEtaBinomial).
 CUB models are nested into CUBE models: in fact, a CUB model is equal to
 a CUBE model with the overdispersion parameter <span class="math notranslate nohighlight">\(\phi=0\)</span>.
-Notiche that <span class="math notranslate nohighlight">\(0\geq\phi\geq0.2\)</span> is the usual range of the overdispersion parameter.
-See the references for details.</p>
-<section id="id173">
-<h3>References<a class="headerlink" href="#id173" title="Permalink to this heading">#</a></h3>
-<blockquote>
-<div><div class="docutils container" id="id174">
-<ol class="arabic simple" start="1">
-<li id="id187"><p>Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. <em>Communications in Statistics-Theory and Methods</em>, 43(4):771–786, 2014.</p></li>
-<li id="id185"><p>Maria Iannario. Detecting latent components in ordinal data with overdispersion by means of a mixture distribution. <em>Quality &amp; Quantity</em>, 49:977–987, 2015.</p></li>
-<li id="id191"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id192"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id193"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
-<li id="id176"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-</ol>
-</div>
-</div></blockquote>
-</section>
+Notiche that <span class="math notranslate nohighlight">\(0\geq\phi\geq0.2\)</span> is the usual range of the overdispersion parameter.</p>
+<p>See the references for details: <span id="id24"><a class="reference internal" href="references.html#id15" title="Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. Communications in Statistics-Theory and Methods, 43(4):771–786, 2014.">Iannario, 2014</a></span>; <span id="id25"><a class="reference internal" href="references.html#id13" title="Domenico Piccolo. Inferential issues on cube models with covariates. Communications in Statistics-Theory and Methods, 44(23):5023–5036, 2015.">Piccolo, 2015</a></span>;
+<span id="id26"><a class="reference internal" href="references.html#id3" title="Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). Statistical Methods &amp; Applications, 28:389–493, 2019.">Piccolo and Simone, 2019</a></span>.</p>
 <section id="cube-without-covariates">
-<span id="id213"></span><h3>Without covariates<a class="headerlink" href="#cube-without-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id27"></span><h3>Without covariates<a class="headerlink" href="#cube-without-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cube000-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m},
@@ -1532,8 +1466,8 @@ will estimate the parameters given the observed sample.</p>
 <p>Notice that, since the <code class="docutils literal notranslate"><span class="pre">model</span></code> is not the default <code class="docutils literal notranslate"><span class="pre">&quot;cub&quot;</span></code>, we need to specify it.</p>
 <p>The <cite>.plot()</cite> method of the object <cite>fit</cite> will show trivariate and bivariate confidence
 regions too, as in CUBSH models. See <a class="reference external" href="#confidence-ellipsoid">here</a> for the values of confidence levels.</p>
-<div class="literal-block-wrapper docutils container" id="id312">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id312" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id51">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id51" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">cubmods.gem</span> <span class="kn">import</span> <span class="n">draw</span><span class="p">,</span> <span class="n">estimate</span>
@@ -1599,7 +1533,7 @@ Elapsed time=0.07919 seconds =====&gt;&gt;&gt; Fri Aug 16 12:18:49 2024
 <img alt="CUBE 000 MLE" src="_images/cube000mle.png" />
 </section>
 <section id="cube-with-covariates">
-<span id="id214"></span><h3>With covariates<a class="headerlink" href="#cube-with-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id28"></span><h3>With covariates<a class="headerlink" href="#cube-with-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#cube0w0-module">Reference guide (0|W|0)</a></p>
 <p><a class="reference external" href="cubmods.html#cubeywz-module">Reference guide (Y|W|Z)</a></p>
 <div class="math notranslate nohighlight">
@@ -1632,8 +1566,8 @@ formula for different combinations of covariates.</p>
 <p>In this example, we’ll draw a sample with covariates for
 <em>feeling</em> only and then will estimate the parameters given
 the observed sample.</p>
-<div class="literal-block-wrapper docutils container" id="id313">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id313" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id52">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id52" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1708,8 +1642,8 @@ Elapsed time=2.30903 seconds =====&gt;&gt;&gt; Fri Aug 16 12:31:10 2024
 model with covariates for all components and passing
 the symbol <code class="docutils literal notranslate"><span class="pre">1</span></code> to the <em>uncertainty</em> and <em>overdispersion</em>
 components.</p>
-<div class="literal-block-wrapper docutils container" id="id314">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id314" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id53">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id53" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;fee ~ 1 | W | 1&quot;</span><span class="p">,</span>
@@ -1757,8 +1691,8 @@ Elapsed time=50.02969 seconds =====&gt;&gt;&gt; Fri Aug 16 12:33:36 2024
 </div>
 <img alt="CUBE YWZ MLE" src="_images/cubeywzmle.png" />
 <p>In fact:</p>
-<div class="literal-block-wrapper docutils container" id="id315">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id315" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id54">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id54" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">est_pi</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="linenos"> 2</span><span class="n">est_ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="linenos"> 3</span><span class="n">est_pi_se</span> <span class="o">=</span> <span class="n">expit</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">fit</span><span class="o">.</span><span class="n">stderrs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">est_pi</span>
@@ -1781,25 +1715,11 @@ phi     0.1451  0.0279
 </section>
 <section id="ihg-family">
 <h2>IHG family<a class="headerlink" href="#ihg-family" title="Permalink to this heading">#</a></h2>
-<p>Family of the class IHG (Inverse HyperGeometric).
-See the references for details.</p>
-<section id="id215">
-<h3>References<a class="headerlink" href="#id215" title="Permalink to this heading">#</a></h3>
-<blockquote>
-<div><div class="docutils container" id="id216">
-<ol class="arabic simple" start="1">
-<li id="id231"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
-<li id="id230"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
-<li id="id233"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id234"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id235"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
-<li id="id218"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-</ol>
-</div>
-</div></blockquote>
-</section>
+<p>Family of the class IHG (Inverse HyperGeometric).</p>
+<p>See the references for details: <span id="id29"><a class="reference internal" href="references.html#id16" title="Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. Statistical modelling, 3(1):65–78, 2003.">D’Elia, 2003</a></span>; <span id="id30"><a class="reference internal" href="references.html#id17" title="A D'Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione, pages 245–250. CLEUP, 2005.">D'Elia <em>et al.</em>, 2005</a></span>;
+<span id="id31"><a class="reference internal" href="references.html#id3" title="Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). Statistical Methods &amp; Applications, 28:389–493, 2019.">Piccolo and Simone, 2019</a></span>.</p>
 <section id="ihg-without-covariates">
-<span id="id255"></span><h3>Without covariates<a class="headerlink" href="#ihg-without-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id32"></span><h3>Without covariates<a class="headerlink" href="#ihg-without-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#ihg0-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left\{
@@ -1872,7 +1792,7 @@ Elapsed time=0.00464 seconds =====&gt;&gt;&gt; Fri Aug 16 12:47:55 2024
 <img alt="IHG 0 MLE" src="_images/ihg0mle.png" />
 </section>
 <section id="ihg-with-covariates">
-<span id="id256"></span><h3>With covariates<a class="headerlink" href="#ihg-with-covariates" title="Permalink to this heading">#</a></h3>
+<span id="id33"></span><h3>With covariates<a class="headerlink" href="#ihg-with-covariates" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="cubmods.html#ihgv-module">Reference guide</a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left\{
@@ -1890,8 +1810,8 @@ Elapsed time=0.00464 seconds =====&gt;&gt;&gt; Fri Aug 16 12:47:55 2024
 and then will estimate the parameters given the observed sample.
 Notice that IHG models without covariates are unimodals but, however,
 IHG models with covariates can be bimodal, as the one in the following example.</p>
-<div class="literal-block-wrapper docutils container" id="id316">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id316" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id55">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id55" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># import libraries</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1964,13 +1884,7 @@ Elapsed time=1.10664 seconds =====&gt;&gt;&gt; Fri Aug 16 12:53:12 2024
 </section>
 <section id="multicub">
 <span id="multicub-manual"></span><h2>MULTICUB<a class="headerlink" href="#multicub" title="Permalink to this heading">#</a></h2>
-<blockquote>
-<div><div class="docutils container" id="id257">
-<ol class="arabic simple" start="1">
-<li id="id259"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-</ol>
-</div>
-</div></blockquote>
+<p>See the <span id="id34"><a class="reference internal" href="references.html#id3" title="Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). Statistical Methods &amp; Applications, 28:389–493, 2019.">Piccolo and Simone, 2019</a></span> as a reference.</p>
 <p><a class="reference external" href="cubmods.html#multicub-module">Reference guide</a></p>
 <p>With the <strong>multicub</strong> tool, parameters estimated from
 multiple observed samples can be shown in a single plot.</p>
@@ -1980,8 +1894,8 @@ use the <strong>multicub</strong> tool for CUB models, CUBE models and
 CUBSH models (that aren’t yet implemented in the R package <code class="docutils literal notranslate"><span class="pre">CUB</span></code>).</p>
 <p>The <strong>multicub</strong> tool in <code class="docutils literal notranslate"><span class="pre">cubmods</span></code> package can also show confidence
 ellipses for CUB models.</p>
-<div class="literal-block-wrapper docutils container" id="id317">
-<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id317" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id56">
+<div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id56" title="Permalink to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -2081,37 +1995,31 @@ ellipses for CUB models.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cub-family">CUB family</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#without-covariates">Without covariates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#with-covariates">With covariates</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cubsh-family">CUBSH family</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">References</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubsh-without-covariates">Without covariates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubsh-with-covariates">With covariates</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cush-family">CUSH family</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id87">References</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cush-without-covariates">Without covariates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cush-with-covariates">With covariates</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cush2-family">CUSH2 family</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id131">References</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cush2-without-covariates">Without covariates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cush2-with-covariates">With covariates</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cube-family">CUBE family</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id173">References</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cube-without-covariates">Without covariates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cube-with-covariates">With covariates</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ihg-family">IHG family</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id215">References</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ihg-without-covariates">Without covariates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ihg-with-covariates">With covariates</a></li>
 </ul>

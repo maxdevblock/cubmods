@@ -15,26 +15,9 @@ Description
 
     :math:`\Pr(R=r|\pmb{\theta}) = \pi \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi}{m},\; r=1,2,\ldots,m`
 
-Manual and Examples
-==========================
-    - `Models manual <manual.html#cub-models-without-covariates>`__
-    See the Manual for references.
-
-References
-===========
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        piccolo2003moments
-        d2005mixture
-        piccolo2006observed
-        iannario2010new
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
+Manual, Examples and References
+===============================
+    - See the `Models manual <manual.html#cub-models-without-covariates>`__
   
 List of TODOs:
 ==============
@@ -558,7 +541,7 @@ def mle(sample, m, df, formula,
     #    diss_gen = dissimilarity(p, p_gen)
     # results object
     res = CUBresCUB00(
-            model="CUB00",
+            model="CUB",
             m=m, n=n, niter=niter,
             maxiter=maxiter, tol=tol,
             theoric=theoric,

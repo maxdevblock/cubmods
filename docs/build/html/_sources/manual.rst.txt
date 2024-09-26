@@ -1,5 +1,6 @@
+******
 Manual
-======
+******
 
 The package ``cubmods`` can be used to build models within the CUB class 
 given an observed sample (and, eventually, the covariance matrix) 
@@ -39,7 +40,7 @@ The last chapter, shows the basic usage for the tool ``multicub``.
 .. _gem-manual:
 
 GeM usage
----------
+=========
 
 GeM (Generalized Mixture) is the main module of ``cubmods`` package, which provides simplified and
 generalized functions to both estimate a model from an observed sample and draw a random sample from a 
@@ -56,7 +57,7 @@ with or without covariates.
 `Reference guide <cubmods.html#gem-module>`__
 
 The *formula* syntax
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 Both functions need a ``formula`` that is a **string** specifying the name of the ordinal 
 variable (before the tilde ``~`` symbol)
@@ -109,7 +110,7 @@ needed: a formula ``"ord ~ X | Y1 + Y2 | Z"`` is the same as ``"ord~X|Y1+Y2|Z"``
     three for ``cube`` and ``cub`` with shelter effect, one for ``cush`` and ``ihg``.
 
 Arguments of ``estimate`` and ``draw``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------
 
 Within the function ``estimate`` the number of ordinal categories ``m`` is internally retrieved if not specified 
 (taking the maximum observed category)
@@ -196,7 +197,7 @@ the parameters used to draw the sample, theoretical parameters, or howsoever spe
 parameters we want to (graphically) compare with the estimates.
 
 Methods of ``estimate`` and ``draw``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------
 
 For both functions, the methods ``.summary()`` and ``.plot()`` are always available calling the
 main functions to print a summary and plot the results, respectively. For ``.plot()`` arguments
@@ -215,7 +216,7 @@ Calling the method ``.save(fname)`` the object can be saved on a file called ``f
 Saved objects can then be loaded using the function ``general.load(fname)``.
 
 Attributes of ``estimate`` and ``draw``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------
 
 For both objects returned by ``estimate`` and ``draw``, the attributes ``.formula`` and
 ``.df`` are always available. The function ``draw`` will return the original DataFrame (if provided)
@@ -226,31 +227,17 @@ Many other attributes can be called from objects of the Base Class ``CUBres`` re
 see the Base Class ``CUBres`` reference guide.
 
 CUB family
-----------
+==========
 
 Basic family of the class CUB. See the references for details: 
-:cite:alp:`piccolo2003moments`, :cite:alp:`d2005mixture`, :cite:alp:`piccolo2006observed`
+:cite:alp:`piccolo2003moments`; :cite:alp:`d2005mixture`; :cite:alp:`piccolo2006observed`;
+:cite:alp:`iannario2010new`; :cite:alp:`iannario2009program`; :cite:alp:`iannario2014inference`; 
+:cite:alp:`iannario2022package`; :cite:alp:`piccolo2019class`.
 
-References
-^^^^^^^^^^
-
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        piccolo2003moments
-        d2005mixture
-        piccolo2006observed
-        iannario2010new
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
-
-.. _cub-models-without-covariates:
+.. _cub-without-covariates:
 
 Without covariates
-^^^^^^^^^^^^^^^^^^
+------------------
 
 `Reference guide <cubmods.html#cub00-module>`__
 
@@ -357,20 +344,18 @@ Note that in the function ``gem.estimate``:
 
 .. code-block:: none
 
-    warnings.warn("No m given, max(ordinal) has been taken")
-
     =======================================================================
-    =====>>> CUB00 model <<<===== ML-estimates
+    =====>>> CUB model <<<===== ML-estimates
     =======================================================================
     m=10  Size=500  Iterations=13  Maxiter=500  Tol=1E-04
     -----------------------------------------------------------------------
     Uncertainty
         Estimates  StdErr    Wald  p-value
-    pi     +0.675   0.034  19.872   0.0000
+    pi      0.675  0.0340  19.872   0.0000
     -----------------------------------------------------------------------
     Feeling
         Estimates  StdErr    Wald  p-value
-    xi     +0.188   0.009  20.808   0.0000
+    xi      0.188  0.0090  20.808   0.0000
     -----------------------------------------------------------------------
     Correlation   = 0.2105
     =======================================================================
@@ -384,11 +369,13 @@ Note that in the function ``gem.estimate``:
     AIC = 2004.22
     BIC = 2012.65
     =======================================================================
-    Elapsed time=0.00187 seconds =====>>> Wed Apr 24 11:27:35 2024
+    Elapsed time=0.00202 seconds =====>>> Thu Sep 26 18:00:53 2024
     =======================================================================
 
 .. image:: /img/cub00mle.png
     :alt: CUB00 MLE
+
+|
 
 Calling ``fit.as_dataframe()`` will return a DataFrame with
 parameters' estimated values and standard errors
@@ -399,10 +386,10 @@ parameters' estimated values and standard errors
     0  Uncertainty        pi   0.67476  0.033954  19.872485  7.042905e-88
     1      Feeling        xi   0.18817  0.009043  20.807551  3.697579e-96
 
-.. _cub-models-with-covariates:
+.. _cub-with-covariates:
 
 With covariates
-^^^^^^^^^^^^^^^^^^
+---------------
 
 `Reference guide (0|W) <cubmods.html#cub0w-module>`__
 
@@ -592,28 +579,16 @@ given the observed (actually, drawn) sample.
     :alt: CUB0W MLE
 
 CUBSH family
-------------
+============
 
 Basic family of the class CUB with shelter effect. 
-See the references for details.
 
-References
-^^^^^^^^^^
-
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        iannario2012modelling
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
+See the references for details: :cite:alp:`iannario2012modelling`; :cite:alp:`piccolo2019class`.
 
 .. _cubsh-without-covariates:
 
 Without covariates
-^^^^^^^^^^^^^^^^^^
+------------------
 
 `Reference guide <cubmods.html#cubsh000-module>`__
 
@@ -738,7 +713,7 @@ cylinder) is :math:`(1-\alpha_2) = F_{\chi^2_{(2)}(r^2)}`.
 .. _cubsh-with-covariates:
 
 With covariates
-^^^^^^^^^^^^^^^
+---------------
 
 `Reference guide <cubmods.html#cubshywx-module>`__
 
@@ -883,28 +858,16 @@ to compute the standard errors of both :math:`\hat\xi` and :math:`\hat\delta`, f
 which, in fact, match the values used to draw the sample.
 
 CUSH family
------------
+===========
 
 Basic family of the class CUSH with a single shelter effect. 
-See the references for details.
 
-References
-^^^^^^^^^^
-
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        capecchi2017dealing
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
+See the references for details: :cite:alp:`capecchi2017dealing`; :cite:alp:`piccolo2019class`.
 
 .. _cush-without-covariates:
 
 Without covariates
-^^^^^^^^^^^^^^^^^^
+------------------
 
 `Reference guide <cubmods.html#cush0-module>`__
 
@@ -980,7 +943,7 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
 .. _cush-with-covariates:
 
 With covariates
-^^^^^^^^^^^^^^^
+---------------
 
 `Reference guide <cubmods.html#cushx-module>`__
 
@@ -1063,33 +1026,24 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
     :alt: CUSH X MLE
 
 CUSH2 family
--------------
+============
 
 Family of the class CUSH with two shelter effects (CUSH2). 
 See the references for details.
 
 This family has been introduced by :cite:alp:`mythesis` (pp 16-20) and first
-implemented in this Python package.
+implemented in this Python package. See :cite:alp:`piccolo2019class` as a reference
+for the CUB class models.
 
 These models are particularly useful whenever the shelter choices are not 
 *polarized*, i.e. they're not at the extremes of the ordinal variable support.
 In these cases, finite mixtures of the Beta Discretized distribution can be
 used :cite:p:`simone2022finite`.
 
-References
-^^^^^^^^^^
-
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        mythesis
-        piccolo2019class
-
 .. _cush2-without-covariates:
 
 Without covariates
-^^^^^^^^^^^^^^^^^^
+------------------
 
 `Reference guide <cubmods.html#cush200-module>`__
 
@@ -1170,7 +1124,7 @@ called.
 .. _cush2-with-covariates:
 
 With covariates
-^^^^^^^^^^^^^^^
+---------------
 
 `Reference guide (X1|0) <cubmods.html#cush2x0-module>`__
 
@@ -1293,32 +1247,20 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
     delta2  0.0931  0.0145
 
 CUBE family
------------
+===========
 
 Family of the class CUBE (Combination of Uniform and BEtaBinomial). 
 CUB models are nested into CUBE models: in fact, a CUB model is equal to
 a CUBE model with the overdispersion parameter :math:`\phi=0`.
 Notiche that :math:`0\geq\phi\geq0.2` is the usual range of the overdispersion parameter.
-See the references for details.
 
-References
-^^^^^^^^^^
-
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        iannario2014modelling
-        iannario2015detecting
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
+See the references for details: :cite:alp:`iannario2014modelling`; :cite:alp:`piccolo2015inferential`; 
+:cite:alp:`piccolo2019class`.
 
 .. _cube-without-covariates:
 
 Without covariates
-^^^^^^^^^^^^^^^^^^
+------------------
 
 `Reference guide <cubmods.html#cube000-module>`__
 
@@ -1405,7 +1347,7 @@ regions too, as in CUBSH models. See `here <#confidence-ellipsoid>`__ for the va
 .. _cube-with-covariates:
 
 With covariates
-^^^^^^^^^^^^^^^
+---------------
 
 `Reference guide (0|W|0) <cubmods.html#cube0w0-module>`__
 
@@ -1600,29 +1542,17 @@ In fact:
     phi     0.1451  0.0279
 
 IHG family
-----------
+==========
 
 Family of the class IHG (Inverse HyperGeometric). 
-See the references for details.
 
-References
-^^^^^^^^^^
-
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        d2003modelling
-        d2005moment
-        iannario2009program
-        iannario2014inference
-        iannario2022package
-        piccolo2019class
+See the references for details: :cite:alp:`d2003modelling`; :cite:alp:`d2005moment`;
+:cite:alp:`piccolo2019class`.
 
 .. _ihg-without-covariates:
 
 Without covariates
-^^^^^^^^^^^^^^^^^^
+------------------
 
 `Reference guide <cubmods.html#ihg0-module>`__
 
@@ -1706,7 +1636,7 @@ and the estimate the parameter from the observed sample.
 .. _ihg-with-covariates:
 
 With covariates
-^^^^^^^^^^^^^^^
+---------------
 
 `Reference guide <cubmods.html#ihgv-module>`__
 
@@ -1805,13 +1735,9 @@ IHG models with covariates can be bimodal, as the one in the following example.
 .. _multicub-manual:
 
 MULTICUB
---------
+========
 
-    .. bibliography:: cub.bib
-        :list: enumerated
-        :filter: False
-
-        piccolo2019class
+See the :cite:alp:`piccolo2019class` as a reference.
 
 `Reference guide <cubmods.html#multicub-module>`__
 
