@@ -245,6 +245,7 @@ Without covariates
 A model of the CUB family for responses with :math:`m` ordinal categories, without covariates is specified as
 
 .. math::
+
     \Pr(R=r|\boldsymbol{\theta}) = \pi \dbinom{m-1}{r-1}(1-\xi)^{r-1}\xi^{m-r}+\dfrac{1-\pi}{m},
     \; r = 1,2,\ldots,m
 
@@ -374,7 +375,7 @@ Note that in the function ``gem.estimate``:
     =======================================================================
 
 .. image:: /img/cub00mle.png
-    :alt: CUB00 MLE
+    :alt: CUB 00 MLE
 
 |
 
@@ -424,10 +425,12 @@ With covariates
 `Reference guide (Y|W) <cubmods.html#cubyw-module>`__
 
 .. math::
+
     \Pr(R_i=r|\pmb\theta, \pmb y_i, \pmb w_i) = \pi_i \dbinom{m-1}{r-1}(1-\xi_i)^{r-1}\xi_i^{m-r}+\dfrac{1-\pi_i}{m}
     ,\; r = 1,2,\ldots,m
 
 .. math::
+    
     \left\{
     \begin{array}{l}
         \pi_i = \dfrac{1}{1+\exp\{-\pmb y_i \pmb \beta\}}
