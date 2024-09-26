@@ -409,12 +409,14 @@ With covariates
         \xi_i = \dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}
     \end{array}
     \right.
-    \equiv
+    \quad \equiv \quad
     \left\{
     \begin{array}{l}
         \mathrm{logit}(1-\pi_i) = - \pmb y_i \pmb \beta
+        \vphantom{\dfrac{1}{1+\exp\{-\pmb y_i \pmb \beta\}}}
         \\
         \mathrm{logit}(1-\xi_i) = - \pmb w_i \pmb \gamma
+        \vphantom{\dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}}
     \end{array}
     \right.
 
@@ -731,14 +733,17 @@ With covariates
         \delta_i = \dfrac{1}{1+\exp\{-\pmb x_i \pmb \omega\}}
     \end{array}
     \right.
-    \equiv
+    \quad \equiv \quad
     \left\{
     \begin{array}{l}
         \mathrm{logit}(1-\pi_i) = -\pmb y_i \pmb \beta
+        \vphantom{\dfrac{1}{1+\exp\{-\pmb y_i \pmb \beta\}}}
         \\
         \mathrm{logit}(1-\xi_i) = -\pmb w_i \pmb \gamma
+        \vphantom{\dfrac{1}{1+\exp\{-\pmb w_i \pmb \gamma\}}}
         \\
         \mathrm{logit}(\delta_i) = \pmb x_i \pmb \omega
+        \vphantom{\dfrac{1}{1+\exp\{-\pmb x_i \pmb \omega\}}}
     \end{array}
     \right.
 
@@ -953,7 +958,7 @@ With covariates
 
 .. math::
     \delta_i = \dfrac{1}{1+\exp\{ - \pmb x_i \pmb\omega \}}
-    \equiv
+    \quad \equiv \quad
     \mathrm{logit}(\delta_i) = \pmb x_i \pmb\omega
 
 In the example, we'll draw a sample from a CUSH model with covariates and
@@ -1142,12 +1147,14 @@ With covariates
         \delta_{2i} = \dfrac{1}{1+\exp\{ - \pmb x_{2i} \pmb\omega_2 \}}
     \end{array}
     \right.
-    \equiv
+    \quad \equiv \quad
     \left\{
     \begin{array}{l}
         \mathrm{logit}(\delta_{1i}) = \pmb x_{1i} \pmb\omega_1
+        \vphantom{\dfrac{1}{1+\exp\{ - \pmb x_{1i} \pmb\omega_1 \}}}
         \\
         \mathrm{logit}(\delta_{2i}) = \pmb x_{2i} \pmb\omega_2
+        \vphantom{\dfrac{1}{1+\exp\{ - \pmb x_{2i} \pmb\omega_2 \}}}
     \end{array}
     \right.
 
@@ -1367,14 +1374,17 @@ With covariates
         \phi_i = \exp\{ \pmb z_i \pmb \alpha \}
     \end{array}
     \right.
-    \equiv
+    \quad \equiv \quad
     \left\{
     \begin{array}{l}
         \mathrm{logit}(1-\pi_i) = -\pmb y_i \pmb\beta
+        \vphantom{\dfrac{1}{1+\exp\{ -\pmb y_i \pmb\beta\}}}
         \\
         \mathrm{logit}(1-\xi_i) = -\pmb w_i \pmb\gamma
+        \vphantom{\dfrac{1}{1+\exp\{ -\pmb w_i \pmb\gamma\}}}
         \\
-        \log(\phi_i) = \pmb z_i \pmb \alpha
+        \log \phi_i = \pmb z_i \pmb \alpha
+        \vphantom{\exp\{ \pmb z_i \pmb \alpha \}}
     \end{array}
     \right.
 
@@ -1651,7 +1661,7 @@ With covariates
 
 .. math::
     \theta_i = \dfrac{1}{1 + \exp\{ - \pmb v_i \pmb \nu \}}
-    \equiv
+    \quad \equiv \quad
     \mathrm{logit}(\theta_i) = \pmb v_i \pmb \nu
 
 In this example we'll draw a sample from an IHG with two covariates
