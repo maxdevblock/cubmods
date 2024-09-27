@@ -1359,7 +1359,7 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
          estimates  stderr
     delta2  0.0931  0.0145
 
-Notice that, as proven by :cite:alp:`iannario2012modelling` (pp 7-8), CUSH models
+Notice that, as proven by :cite:alp:`iannario2012modelling` (pp 7-8), CUB models with shelter effect
 generate a perfect fit at :math:`R=c`. It can be easily proven that
 CUSH2 models too generate perfect fits at both :math:`R=c_1` and :math:`R=c_2`.
 Indeed, we can also graphically see that the estimated probability distribution is
