@@ -573,7 +573,10 @@ to consider the constant term too.
     [1000 rows x 3 columns]
 
 Finally, we'll call ``estimate`` to estimate the parameters
-given the observed (actually, drawn) sample.
+given the observed (actually, drawn) sample. We'll pass
+to the function the assumed parameters used to draw
+the sample in order to plot the assumed probability
+distribution too.
 
 .. code-block:: python
     :caption: Script
@@ -581,8 +584,12 @@ given the observed (actually, drawn) sample.
 
     # MLE estimation
     fit = estimate(
-        formula="response ~ 0 | W1+W2",
+        formula="res ~ 0 | W1+W2",
         df=drawn.df,
+        ass_pars={
+            "pi": drawn.pars[0],
+            "gamma": drawn.pars[1:]
+        }
     )
     # Print MLE summary
     print(fit.summary())

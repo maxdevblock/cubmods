@@ -846,19 +846,26 @@ Dissimilarity = 0.0307673
 </pre></div>
 </div>
 <p>Finally, we’ll call <code class="docutils literal notranslate"><span class="pre">estimate</span></code> to estimate the parameters
-given the observed (actually, drawn) sample.</p>
+given the observed (actually, drawn) sample. We’ll pass
+to the function the assumed parameters used to draw
+the sample in order to plot the assumed probability
+distribution too.</p>
 <div class="literal-block-wrapper docutils container" id="id47">
 <div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id47" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
-<span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;response ~ 0 | W1+W2&quot;</span><span class="p">,</span>
+<span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;res ~ 0 | W1+W2&quot;</span><span class="p">,</span>
 <span class="linenos"> 4</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
-<span class="linenos"> 5</span><span class="p">)</span>
-<span class="linenos"> 6</span><span class="c1"># Print MLE summary</span>
-<span class="linenos"> 7</span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-<span class="linenos"> 8</span><span class="c1"># plot the results</span>
-<span class="linenos"> 9</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="linenos">10</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos"> 5</span>    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="s2">&quot;pi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos"> 7</span>        <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="linenos"> 8</span>    <span class="p">}</span>
+<span class="linenos"> 9</span><span class="p">)</span>
+<span class="linenos">10</span><span class="c1"># Print MLE summary</span>
+<span class="linenos">11</span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="linenos">12</span><span class="c1"># plot the results</span>
+<span class="linenos">13</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="linenos">14</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

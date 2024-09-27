@@ -629,7 +629,7 @@ class CUBresCUB0W(CUBres):
         title = "AVERAGE ESTIMATED PROBABILITY\n"
         title += f"{self.model} model    "
         title += f"$n={self.n}$\n"
-        title += f"    Dissim(est,obs)={self.diss:.4f}"
+        title += f"Dissim(est,obs)={self.diss:.4f}"
         ax.set_title(title)
 
         R = choices(self.m)
@@ -651,6 +651,19 @@ class CUBresCUB0W(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
+        
+        if self.ass_pars is not None:
+            Wcols = self.est_names[
+                -(1-len(self.ass_pars["gamma"])):
+            ]
+            ass_p = pmf(
+                m=self.m,
+                pi=self.ass_pars["pi"],
+                gamma=self.ass_pars["gamma"],
+                W=self.df[Wcols]
+            )
+            ax.stem(R, ass_p, linefmt="--r",
+                markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",

@@ -40,6 +40,10 @@ print(drawn.df)
 fit = estimate(
     formula="res ~ 0 | W1+W2",
     df=drawn.df,
+    ass_pars={
+        "pi": drawn.pars[0],
+        "gamma": drawn.pars[1:]
+    }
 )
 # Print MLE summary
 print(fit.summary())
