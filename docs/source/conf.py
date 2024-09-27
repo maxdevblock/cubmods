@@ -1,3 +1,23 @@
+"""
+INSTRUCTIONS:
+
+> conda create -n sphinx python=3.11.4
+> conda activate sphinx
+> pip install sphinx==8.0.2 \
+            sphinxcontrib-bibtex==2.6.2 \
+            pydata-sphinx-theme==0.15.4 \
+            numpydoc==1.8.0 \
+            numpy==1.26.1 \
+            scipy==1.11.2 \
+            pandas==2.1.0 \
+            matplotlib==3.8.0 \
+            statsmodels==0.14.0
+> cd cubmods/docs
+> make clean && make html && make latex
+
+Zip the latex folder.
+Upload the zipped folder to OverLeaf.
+"""
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full
