@@ -47,12 +47,6 @@ def pmf(m, theta):
 
     :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
 
-    References:
-        .. bibliography:: cub.bib
-            :list: enumerated
-
-            piccolo2003moments
-
     :param m: number of ordinal categories
     :type m: int
     :param theta: parameter :math:`\theta` (probability of 1st shelter category)
@@ -68,13 +62,27 @@ def pmf(m, theta):
     return pr
 
 def loglik(m, theta, f):
+    """
+    Compute the log-likelihood function of a IHG model without 
+    covariates for a given absolute frequency distribution.
+
+    :param theta: parameter :math:`\theta` (probability of 1st shelter category)
+    :type theta: float
+    :param m: number of ordinal categories
+    :type m: int
+    :param f: array of absolute frequency distribution
+    :type f: array of int
+    :return: the log-likelihood value
+    :rtype: float
+    """
     p = pmf(m=m, theta=theta)
     l = (f*np.log(p)).sum()
     return l
 
 def effe(theta, m, f):
-    r"""Compute the log-likelihood function of a IHG model without 
+    r"""Compute the negative log-likelihood function of a IHG model without 
     covariates for a given absolute frequency distribution.
+    Auxiliary function of ``mle()`` for optimization algorithm.
 
     :param theta: parameter :math:`\theta` (probability of 1st shelter category)
     :type theta: float
@@ -380,7 +388,7 @@ class CUBresIHG(CUBres):
         ):
         r"""Main function to plot an object of the Class.
 
-        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :param figsize: tuple of ``(length, height)`` for the figure
         :type figsize: tuple of float
         :param ci: level :math:`(1-\alpha/2)` for the standard error
         :type ci: float

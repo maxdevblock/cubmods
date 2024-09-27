@@ -56,12 +56,6 @@ def pmf(m, pi, xi):
 
     :math:`\Pr(R = r | \pmb\theta),\; r=1 \ldots m`
 
-    References:
-        .. bibliography:: cub.bib
-            :list: enumerated
-
-            piccolo2003moments
-
     :param m: number of ordinal categories
     :type m: int
     :param pi: uncertainty parameter :math:`\pi`
@@ -754,7 +748,7 @@ class CUBresCUB00(CUBres):
         ):
         r"""Main function to plot an object of the Class.
 
-        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :param figsize: tuple of ``(length, height)`` for the figure
         :type figsize: tuple of float
         :param ci: level :math:`(1-\alpha/2)` for the confidence ellipse
         :type ci: float

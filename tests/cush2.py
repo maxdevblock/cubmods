@@ -9,7 +9,7 @@ from cubmods.gem import draw, estimate
 drawn = draw(
     formula="ord ~ 0 | 0",
     model="cush",
-    sh=[1,7],
+    sh=[1,4],
     m=7,
     delta1=.15, delta2=.1,
     n=1000, seed=42)
@@ -19,7 +19,7 @@ fit = estimate(
     df=drawn.df,
     model="cush",
     formula="ord~0|0",
-    sh=[1,7],
+    sh=drawn.sh,
     ass_pars={
         "delta1": drawn.pars[0],
         "delta2": drawn.pars[1],

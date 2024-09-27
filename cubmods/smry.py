@@ -247,7 +247,7 @@ class CUBres(object):
         return f"CUBres({self.model}; {pars})"
 
     def as_txt(self):
-        """Print the summary.
+        """Print the summary. Auxiliary function of ``summary()``.
         """
         par_names = np.asarray(self.est_names)
         par_types = np.asarray(self.e_types)

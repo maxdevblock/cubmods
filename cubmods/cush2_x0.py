@@ -434,7 +434,7 @@ class CUBresCUSH2X0(CUBres):
         ):
         """Main function to plot an object of the Class.
 
-        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :param figsize: tuple of ``(length, height)`` for the figure
         :type figsize: tuple of float
         :param saveas: if provided, name of the file to save the plot
         :type saveas: str

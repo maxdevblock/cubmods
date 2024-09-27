@@ -189,7 +189,7 @@ def luni(m, n):
 def lsat(f, n):
     r"""Log-likelihood of saturated model.
 
-    Ssaturated level,that is the theoretically maximum information
+    Saturated level ,that is the theoretically maximum information
     that can be obtained by a model using as many parameters as possible. 
     Then, the saturated log-likelihood is computed by assuming that the model 
     is specified by as many parameters as available observations. 

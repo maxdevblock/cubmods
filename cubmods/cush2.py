@@ -449,7 +449,7 @@ class CUBresCUSH2(CUBres):
         ):
         r"""Main function to plot an object of the Class.
 
-        :param figsize: tuple of ``(length, height)`` for the figure (useful only if ``ax`` is not None)
+        :param figsize: tuple of ``(length, height)`` for the figure
         :type figsize: tuple of float
         :param ci: level :math:`(1-\alpha/2)` for the standard error
         :type ci: float

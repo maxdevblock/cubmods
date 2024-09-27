@@ -18,7 +18,7 @@ Currently, six families have been defined and implemented:
 
 For each family, a model can be defined with or without covariates for one or more parameters.
 
-Details about each family and examples are provided in the following chapters.
+Details about each family and examples are provided in the following sections.
 
 Even if each family has got its own *Maximum Likelihood Estimation* function ``mle()`` that 
 could be called directly, for example ``cub.mle()``, the function ``gem.estimate()`` provides a 
@@ -35,7 +35,7 @@ it should be interpreted as the fraction of the sample to be changed to achive a
 perfect fit to the estimated average probability distribution (see 
 `Introduction <intro.html>`__ Notes).
 
-The last chapter, shows the basic usage for the tool ``multicub``.
+The last section, shows the basic usage for the tool ``multicub``.
 
 .. _gem-manual:
 
@@ -48,10 +48,10 @@ specified model.
 
 The function ``gem.estimate()`` is the main function for the estimation and 
 validation of a model from an observed sample, calling for the corresponding ``.mle()`` function of
-the specified family, with or without covariates.
+the specified family module, with or without covariates.
 
 The function ``gem.draw()`` is the main function for drawing a random sample from a specified model, 
-calling for the corresponding ``.draw()`` function of the corresponding family,
+calling for the corresponding ``.draw()`` function of the corresponding family module,
 with or without covariates.
 
 `Reference guide <cubmods.html#gem-module>`__
@@ -87,8 +87,8 @@ only, in a ``cub`` family model. The formula will be ``formula = "response ~ 0 |
     ``["F", "M"]`` thus the dummy variabile will be equal to ``0`` where ``sex=="F"`` and equal
     to ``1`` where otherwise ``sex=="M"``. Consequently, the estimated parameters will be the 
     ``constant`` for ``sex=="F"`` and ``C.sex_M`` for ``sex=="M"``. If you want a different order
-    for the categorical variables, you must specify it in *DataFrame*, for instance with the
-    ``pandas`` funtion ``Categorical``. In the example:
+    for the categorical variables, you must specify it in the *DataFrame*, for instance with the
+    ``pandas`` class ``Categorical``. In the example:
 
     .. code-block:: python
         :caption: Script
@@ -115,7 +115,8 @@ Arguments of ``estimate`` and ``draw``
 Within the function ``estimate`` the number of ordinal categories ``m`` is internally retrieved if not specified 
 (taking the maximum observed category)
 but it is advisable to pass it as an argument to the call if some category has zero frequency.
-Within the function ``draw`` instead, the number of ordinal categories ``m`` must always be specified.
+Within the function ``draw`` instead, the number of ordinal categories ``m`` 
+will default to ``7`` if not otherwise specified.
 
 A ``pandas`` DataFrame must always be passed to the function ``estimate``, with the *kwarg*
 (keyword argument) ``df``. 
@@ -123,7 +124,8 @@ It should contain, at least, a column of the observed sample and the columns of 
 If no ``df`` is passed to the function ``draw`` for a model without covariates
 instead, an empty DataFrame will be created.
 
-The number ``n`` of ordinal responses to be drawn should always be specified in the function ``draw``
+The number ``n`` of ordinal responses to be drawn will default to ``500`` if not otherwise specified
+ in the function ``draw``
 for models without covariates. For model with covariates instead, ``n`` is not effective because
 the number of drawn ordinal responses will be equal to the passed DataFrame rows.
 
@@ -140,7 +142,7 @@ implemented using ``model="cush"`` and passing a list of two categories to
 the *kwarg* ``sh`` instead of an integer, for instance ``sh=[2, 7]``.
 
 To the ``draw`` method, the parameters' values (with the *kwargs* of the corresponding
-family) must be passed: 
+family) must always be passed: 
 for example, ``pi`` and ``xi`` for CUB models without covariates, ``beta`` and ``gamma``
 for CUB models with covariates for both feeling and uncertainty, etc. See the
 ``.draw()`` function reference of the corresponding family module for details.
@@ -154,7 +156,7 @@ covariates for the shelter effect can be included only if specified for both fee
 because, as in the R package ``CUB``, only the models without covariates and with covariates for all components
 have been implemented. 
 Nevertheless, the symbol ``1`` could be used to specify a different combination of components with covariates.
-For example, if we want to specify a CUB model with covariate ``cov`` for uncertainty only, we could pass the
+For example, if we want to specify a CUB model with the covariate ``cov`` for uncertainty only, we could pass the
 formula ``ordinal ~ cov | 1 | 1``: in this case, for feeling and shelter effect, the constant terms only
 (:math:`\gamma_0` and :math:`\omega_0`) will be estimated and the values of the estimated :math:`\xi` and
 :math:`\delta` could be computed as :math:`\hat\xi=\mathrm{expit}(\hat\gamma_0)` and 
@@ -162,7 +164,7 @@ formula ``ordinal ~ cov | 1 | 1``: in this case, for feeling and shelter effect,
 See `this example <#cubsh-with-covariates>`__ for the GeCUB model.
 
 If ``family="cube"``, then a CUBE mixture model (Combination of Uniform and Beta-Binomial) is fitted to the data
-to explain uncertainty, feeling and overdispersion.   Subjects' covariates can be also included to explain the
+to explain uncertainty, feeling and overdispersion. Subjects' covariates can also be included to explain the
 feeling component or all the three components by  specifying covariates matrices in the Formula as 
 ``ordinal~Y|W|Z`` to explain uncertainty (Y), feeling (W) or 
 overdispersion (Z). For different combinations of components with covariates, the symbol ``1`` can be used.
@@ -224,7 +226,7 @@ For both objects returned by ``estimate`` and ``draw``, the attributes ``.formul
 with an extra column of the drawn ordinal response called as specified in the formula.
 
 Many other attributes can be called from objects of the Base Class ``CUBres`` returned by
-``estimate``, such as the computed loglikelihood, the AIC and BIC, ectcetera. For details,
+``estimate``, such as the computed loglikelihood, the AIC and BIC, etc. For details,
 see `here <cubmods.html#cubmods.smry.CUBres>`__ the Base Class ``CUBres`` reference guide.
 
 CUB family
@@ -258,6 +260,10 @@ Note that :math:`(1-\pi)` is the weight of the Uncertainty component and
 In the following example, a sample will be drawn from a CUB model of :math:`n=500` observations of an ordinal 
 variable with :math:`m=10` ordinal categories
 and parameters :math:`(\pi=.7, \xi=.2)`. A ``seed=1`` will be set to ensure reproducibility.
+
+Notice that a Dissimilarity index is computed: this should be interpreted as the fraction of the
+drawn sample to be changed to achieve a perfect fit to the theoretical specified model the sample
+has been drawn from.
 
 .. code-block:: python
     :caption: Script
@@ -305,7 +311,7 @@ Notice that, since the default value of the *kwarg* ``model`` is
 ``"cub"`` we do not need to specify it.
 
 Calling ``drawn.as_dataframe()`` will return a DataFrame with
-the parameters
+the specified parameters of the theoretical model
 
 .. code-block:: none
 
@@ -346,6 +352,7 @@ Note that in the function ``gem.estimate``:
 
 .. code-block:: none
 
+    warnings.warn("No m given, max(ordinal) has been taken")
     =======================================================================
     =====>>> CUB model <<<===== ML-estimates
     =======================================================================
@@ -376,6 +383,12 @@ Note that in the function ``gem.estimate``:
 
 .. image:: /img/cub00mle.png
     :alt: CUB 00 MLE
+
+See `here <cubmods.html#module-cubmods.general>`__ the reference guide 
+of ``general`` module and the reference paper
+:cite:alp:`piccolo2019class`
+for details about log-likelihoods,
+deviance and information criteria.
 
 |
 
@@ -717,8 +730,8 @@ The plot includes the marginal bivariate confidence ellipses too. Notice that, a
 than the ellipsoid's confidence level. Indeed, the radius :math:`r` of a 
 standardized sphere at confidence
 level :math:`(1-\alpha_3)` is equal to :math:`r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3) }`, thus
-the confidence level of the bivariate marginal ellipses (which is a section of a trivariate
-cylinder) is :math:`(1-\alpha_2) = F_{\chi^2_{(2)}(r^2)}`.
+the confidence level of the bivariate marginal ellipses (which are sections of trivariate
+cylinders) is :math:`(1-\alpha_2) = F_{\chi^2_{(2)}}(r^2)`.
 
 .. code-block:: python
     :caption: Script
@@ -815,7 +828,7 @@ With covariates
     \end{array}
     \right.
 
-Only the model with covariates for all components has been
+Only the model with covariates for all components (GeCUB) has been
 currently defined and implemented, as in the R package ``CUB``.
 
 Nevertheless, thanks to the symbol ``1`` provided by the
@@ -949,7 +962,7 @@ Without covariates
     ,\; r=1,2,\ldots,m
 
 In the example, we'll draw a sample from a CUSH model without covariates and
-then estimate the parameter given the observed sample.
+then estimate the parameter :math:`\delta` given the observed sample.
 
 Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
 
@@ -1102,7 +1115,6 @@ CUSH2 family
 ============
 
 Family of the class CUSH with two shelter effects (CUSH2). 
-See the references for details.
 
 This family has been introduced by :cite:alp:`mythesis` (pp 16-20) and first
 implemented in this Python package. See :cite:alp:`piccolo2019class` as a reference
@@ -1125,7 +1137,7 @@ Without covariates
     ,\; r=1,2,\ldots,m
 
 In the example, we'll draw a sample from a CUSH2 model without covariates and
-then estimate the parameter given the observed sample.
+then estimate the parameters given the observed sample.
 
 Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
 Passing a list of two shelter categories with the *kwarg* ``sh``, a CUSH2 model will be
@@ -1143,7 +1155,7 @@ called.
     drawn = draw(
         formula="ord ~ 0 | 0",
         model="cush",
-        sh=[1,7],
+        sh=[1,4],
         m=7,
         delta1=.15, delta2=.1,
         n=1000, seed=42)
@@ -1153,7 +1165,7 @@ called.
         df=drawn.df,
         model="cush",
         formula="ord~0|0",
-        sh=[1,7],
+        sh=drawn.sh,
         ass_pars={
             "delta1": drawn.pars[0],
             "delta2": drawn.pars[1],
@@ -1171,24 +1183,24 @@ called.
     =======================================================================
     =====>>> CUSH2 model <<<===== ML-estimates
     =======================================================================
-    m=7  Shelter=[1 7]  Size=1000  
+    m=7  Shelter=[1 4]  Size=1000  
     -----------------------------------------------------------------------
     Shelter effects
             Estimates  StdErr    Wald  p-value
-    delta1      0.171  0.0148  11.535   0.0000
-    delta2      0.107  0.0163   6.555   0.0000
+    delta1      0.172  0.0149  11.512   0.0000
+    delta2      0.113  0.0163   6.930   0.0000
     =======================================================================
-    Dissimilarity = 0.0184
-    Loglik(sat)   = -1852.818
-    Loglik(MOD)   = -1854.344
+    Dissimilarity = 0.0176
+    Loglik(sat)   = -1849.206
+    Loglik(MOD)   = -1850.709
     Loglik(uni)   = -1945.910
-    Mean-loglik   = -1.854
-    Deviance      = 3.053
+    Mean-loglik   = -1.851
+    Deviance      = 3.006
     -----------------------------------------------------------------------
-    AIC = 3712.69
-    BIC = 3722.50
+    AIC = 3705.42
+    BIC = 3715.23
     =======================================================================
-    Elapsed time=0.00228 seconds =====>>> Fri Aug 16 11:15:21 2024
+    Elapsed time=0.00247 seconds =====>>> Fri Sep 27 11:32:02 2024
     =======================================================================
 
 .. image:: /img/cush200mle.png
@@ -1348,7 +1360,7 @@ will estimate the parameters given the observed sample.
 
 Notice that, since the ``model`` is not the default ``"cub"``, we need to specify it.
 
-The `.plot()` method of the object `fit` will show trivariate and bivariate confidence
+The ``.plot()`` method of the object ``fit`` will show trivariate and bivariate confidence
 regions too, as in CUBSH models. See `here <#confidence-ellipsoid>`__ for the values of confidence levels.
 
 .. code-block:: python
@@ -1825,7 +1837,12 @@ multiple observed samples can be shown in a single plot.
 In this example, we'll draw three samples from CUBE
 models and *manually* add a shelter category. Then we'll
 use the **multicub** tool for CUB models, CUBE models and
-CUBSH models (that aren't yet implemented in the R package ``CUB``).
+CUBSH models (that aren't yet implemented in the R package ``CUB``
+for the **multicub** tool).
+
+Notice that, since the samples are drawn from a "CUBE model with shelter effect"
+(which has not been implemented yet), the estimated parameters' values will
+differ from the theoretical ones of the speficied CUBE model used to draw the sample.
 
 The **multicub** tool in ``cubmods`` package can also show confidence
 ellipses for CUB models.
