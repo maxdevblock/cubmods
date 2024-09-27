@@ -125,7 +125,7 @@ If no ``df`` is passed to the function ``draw`` for a model without covariates
 instead, an empty DataFrame will be created.
 
 The number ``n`` of ordinal responses to be drawn will default to ``500`` if not otherwise specified
- in the function ``draw``
+in the function ``draw``
 for models without covariates. For model with covariates instead, ``n`` is not effective because
 the number of drawn ordinal responses will be equal to the passed DataFrame rows.
 
@@ -197,6 +197,11 @@ the required error tolerance ``tol``, and a dictionary of parameters of a known 
 ``ass_pars`` (assumed parameters) to be compared with the estimates: these could be 
 the parameters used to draw the sample, theoretical parameters, or howsoever specified
 parameters we want to (graphically) compare with the estimates.
+
+.. note::
+
+    Currently, ``ass_pars`` argument is effective for models without covariates only.
+    It will be soon available for models with covariates also.
 
 Methods of ``estimate`` and ``draw``
 ------------------------------------
@@ -573,10 +578,7 @@ to consider the constant term too.
     [1000 rows x 3 columns]
 
 Finally, we'll call ``estimate`` to estimate the parameters
-given the observed (actually, drawn) sample. We'll pass
-to the function the assumed parameters used to draw
-the sample in order to plot the assumed probability
-distribution too.
+given the observed (actually, drawn) sample.
 
 .. code-block:: python
     :caption: Script
@@ -585,11 +587,7 @@ distribution too.
     # MLE estimation
     fit = estimate(
         formula="res ~ 0 | W1+W2",
-        df=drawn.df,
-        ass_pars={
-            "pi": drawn.pars[0],
-            "gamma": drawn.pars[1:]
-        }
+        df=drawn.df
     )
     # Print MLE summary
     print(fit.summary())

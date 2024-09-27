@@ -16,7 +16,7 @@ Manual, Examples and References:
   
 List of TODOs:
 ==============
-  - ...
+  - implement assumed average probability from ``ass_pars``
 
 Credits
 ==============

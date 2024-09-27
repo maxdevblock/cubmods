@@ -458,11 +458,9 @@ will default to <code class="docutils literal notranslate"><span class="pre">7</
 It should contain, at least, a column of the observed sample and the columns of the covariates (if any).
 If no <code class="docutils literal notranslate"><span class="pre">df</span></code> is passed to the function <code class="docutils literal notranslate"><span class="pre">draw</span></code> for a model without covariates
 instead, an empty DataFrame will be created.</p>
-<dl class="simple">
-<dt>The number <code class="docutils literal notranslate"><span class="pre">n</span></code> of ordinal responses to be drawn will default to <code class="docutils literal notranslate"><span class="pre">500</span></code> if not otherwise specified</dt><dd><p>in the function <code class="docutils literal notranslate"><span class="pre">draw</span></code></p>
-</dd>
-</dl>
-<p>for models without covariates. For model with covariates instead, <code class="docutils literal notranslate"><span class="pre">n</span></code> is not effective because
+<p>The number <code class="docutils literal notranslate"><span class="pre">n</span></code> of ordinal responses to be drawn will default to <code class="docutils literal notranslate"><span class="pre">500</span></code> if not otherwise specified
+in the function <code class="docutils literal notranslate"><span class="pre">draw</span></code>
+for models without covariates. For model with covariates instead, <code class="docutils literal notranslate"><span class="pre">n</span></code> is not effective because
 the number of drawn ordinal responses will be equal to the passed DataFrame rows.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">seed</span></code> could be specified for the function <code class="docutils literal notranslate"><span class="pre">draw</span></code> to ensure reproducibility.
 Notice that, for models with covariates, <code class="docutils literal notranslate"><span class="pre">seed</span></code> cannot be <code class="docutils literal notranslate"><span class="pre">0</span></code> (in case, it will be
@@ -525,6 +523,11 @@ the required error tolerance <code class="docutils literal notranslate"><span cl
 <code class="docutils literal notranslate"><span class="pre">ass_pars</span></code> (assumed parameters) to be compared with the estimates: these could be
 the parameters used to draw the sample, theoretical parameters, or howsoever specified
 parameters we want to (graphically) compare with the estimates.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, <code class="docutils literal notranslate"><span class="pre">ass_pars</span></code> argument is effective for models without covariates only.
+It will be soon available for models with covariates also.</p>
+</div>
 </section>
 <section id="methods-of-estimate-and-draw">
 <h3>Methods of <code class="docutils literal notranslate"><span class="pre">estimate</span></code> and <code class="docutils literal notranslate"><span class="pre">draw</span></code><a class="headerlink" href="#methods-of-estimate-and-draw" title="Link to this heading">#</a></h3>
@@ -846,26 +849,19 @@ Dissimilarity = 0.0307673
 </pre></div>
 </div>
 <p>Finally, we’ll call <code class="docutils literal notranslate"><span class="pre">estimate</span></code> to estimate the parameters
-given the observed (actually, drawn) sample. We’ll pass
-to the function the assumed parameters used to draw
-the sample in order to plot the assumed probability
-distribution too.</p>
+given the observed (actually, drawn) sample.</p>
 <div class="literal-block-wrapper docutils container" id="id47">
 <div class="code-block-caption"><span class="caption-text">Script</span><a class="headerlink" href="#id47" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># MLE estimation</span>
 <span class="linenos"> 2</span><span class="n">fit</span> <span class="o">=</span> <span class="n">estimate</span><span class="p">(</span>
 <span class="linenos"> 3</span>    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;res ~ 0 | W1+W2&quot;</span><span class="p">,</span>
-<span class="linenos"> 4</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
-<span class="linenos"> 5</span>    <span class="n">ass_pars</span><span class="o">=</span><span class="p">{</span>
-<span class="linenos"> 6</span>        <span class="s2">&quot;pi&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="linenos"> 7</span>        <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="n">drawn</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-<span class="linenos"> 8</span>    <span class="p">}</span>
-<span class="linenos"> 9</span><span class="p">)</span>
-<span class="linenos">10</span><span class="c1"># Print MLE summary</span>
-<span class="linenos">11</span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-<span class="linenos">12</span><span class="c1"># plot the results</span>
-<span class="linenos">13</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="linenos">14</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos"> 4</span>    <span class="n">df</span><span class="o">=</span><span class="n">drawn</span><span class="o">.</span><span class="n">df</span>
+<span class="linenos"> 5</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="c1"># Print MLE summary</span>
+<span class="linenos"> 7</span><span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="linenos"> 8</span><span class="c1"># plot the results</span>
+<span class="linenos"> 9</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="linenos">10</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

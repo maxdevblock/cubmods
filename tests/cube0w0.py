@@ -30,6 +30,11 @@ fit = estimate(
     formula="fee ~ 0 | W | 0",
     model="cube",
     df=drawn.df,
+    ass_pars={
+        "pi": drawn.pars[0],
+        "gamma": drawn.pars[1:-1],
+        "phi": drawn.pars[-1]
+    }
 )
 # Print MLE summary
 print(fit.summary())

@@ -380,14 +380,10 @@ A \sphinxcode{\sphinxupquote{pandas}} DataFrame must always be passed to the fun
 It should contain, at least, a column of the observed sample and the columns of the covariates (if any).
 If no \sphinxcode{\sphinxupquote{df}} is passed to the function \sphinxcode{\sphinxupquote{draw}} for a model without covariates
 instead, an empty DataFrame will be created.
-\begin{description}
-\sphinxlineitem{The number \sphinxcode{\sphinxupquote{n}} of ordinal responses to be drawn will default to \sphinxcode{\sphinxupquote{500}} if not otherwise specified}
+
 \sphinxAtStartPar
+The number \sphinxcode{\sphinxupquote{n}} of ordinal responses to be drawn will default to \sphinxcode{\sphinxupquote{500}} if not otherwise specified
 in the function \sphinxcode{\sphinxupquote{draw}}
-
-\end{description}
-
-\sphinxAtStartPar
 for models without covariates. For model with covariates instead, \sphinxcode{\sphinxupquote{n}} is not effective because
 the number of drawn ordinal responses will be equal to the passed DataFrame rows.
 
@@ -467,6 +463,12 @@ the required error tolerance \sphinxcode{\sphinxupquote{tol}}, and a dictionary 
 \sphinxcode{\sphinxupquote{ass\_pars}} (assumed parameters) to be compared with the estimates: these could be
 the parameters used to draw the sample, theoretical parameters, or howsoever specified
 parameters we want to (graphically) compare with the estimates.
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+Currently, \sphinxcode{\sphinxupquote{ass\_pars}} argument is effective for models without covariates only.
+It will be soon available for models with covariates also.
+\end{sphinxadmonition}
 
 
 \subsection{Methods of \sphinxstyleliteralintitle{\sphinxupquote{estimate}} and \sphinxstyleliteralintitle{\sphinxupquote{draw}}}
@@ -861,21 +863,14 @@ Dissimilarity = 0.0307673
 
 \sphinxAtStartPar
 Finally, we’ll call \sphinxcode{\sphinxupquote{estimate}} to estimate the parameters
-given the observed (actually, drawn) sample. We’ll pass
-to the function the assumed parameters used to draw
-the sample in order to plot the assumed probability
-distribution too.
+given the observed (actually, drawn) sample.
 \sphinxSetupCaptionForVerbatim{Script}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id47}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
     \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{res \PYGZti{} 0 | W1+W2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
-    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,}
-    \PYG{n}{ass\PYGZus{}pars}\PYG{o}{=}\PYG{p}{\PYGZob{}}
-        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{pi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
-        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{gamma}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{p}{]}
-    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}
 \PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} Print MLE summary}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
@@ -3090,7 +3085,7 @@ for CUB\_0W model family.
 \label{\detokenize{cubmods:id3}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-…
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -3747,7 +3742,7 @@ for CUB\_Y0 model family.
 \label{\detokenize{cubmods:id8}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-…
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -4360,7 +4355,7 @@ for CUB\_YW model family.
 \label{\detokenize{cubmods:id13}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-…
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -5743,11 +5738,7 @@ for CUBE\_0W0 model family.
 \label{\detokenize{cubmods:id23}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Manual and Examples
-
-\item {} 
-\sphinxAtStartPar
-Remove unused imports
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -6429,7 +6420,7 @@ for CUB\_YWZ model family.
 \label{\detokenize{cubmods:id28}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Manual and Examples
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -8417,7 +8408,7 @@ for CUBSH\_YWX model family.
 \label{\detokenize{cubmods:id40}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-…
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -10346,7 +10337,7 @@ for CUSH2 model family.
 \label{\detokenize{cubmods:id55}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-…
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -10877,7 +10868,7 @@ both shelter choices.
 \label{\detokenize{cubmods:id60}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-…
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -11435,7 +11426,7 @@ for CUSH model family.
 \label{\detokenize{cubmods:id65}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-…
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
@@ -13839,7 +13830,7 @@ for IHG model family with covariates.
 \label{\detokenize{cubmods:id84}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-…
+implement assumed average probability from \sphinxcode{\sphinxupquote{ass\_pars}}
 
 \end{itemize}
 
