@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>cubmods &#8212; CUBmods 0.0.1 documentation</title>
   
@@ -15,32 +14,30 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -55,28 +52,23 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -98,18 +90,25 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -130,42 +129,36 @@
     <div class="me-auto navbar-header-items__center">
       
         <div class="navbar-item">
-<nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="intro.html">
-                        Introduction
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="intro.html">
+    Introduction
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="manual.html">
-                        Manual
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        cubmods
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="manual.html">
+    Manual
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="references.html">
-                        References
-                      </a>
-                    </li>
-                
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    cubmods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -179,7 +172,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -193,10 +186,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script></div>
@@ -210,7 +203,7 @@ document.write(`
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -221,16 +214,19 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
-    </nav>
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -241,45 +237,42 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item">
-<nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="intro.html">
-                        Introduction
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="intro.html">
+    Introduction
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="manual.html">
-                        Manual
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        cubmods
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="manual.html">
+    Manual
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="references.html">
-                        References
-                      </a>
-                    </li>
-                
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    cubmods
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -291,10 +284,10 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script></div>
@@ -324,13 +317,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -339,7 +332,7 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -362,172 +355,34 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="cubmods">
-<h1>cubmods<a class="headerlink" href="#cubmods" title="Permalink to this heading">#</a></h1>
+<h1>cubmods<a class="headerlink" href="#cubmods" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cubmods.html">cubmods package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cubmods.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cub">cubmods.cub module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#manual-examples-and-references">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#list-of-todos">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#credits">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#classes-and-functions">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cub_0w">cubmods.cub_0w module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id42">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id43">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id44">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id45">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id46">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cub_y0">cubmods.cub_y0 module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id47">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id48">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id49">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id50">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id51">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cub_yw">cubmods.cub_yw module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id52">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id53">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id54">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id55">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id56">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cube">cubmods.cube module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id57">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id58">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id59">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id60">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id61">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cube_0w0">cubmods.cube_0w0 module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id62">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id63">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id64">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id65">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id66">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cube_ywz">cubmods.cube_ywz module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id67">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id68">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id69">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id70">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id71">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cubsh">cubmods.cubsh module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id72">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id73">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id74">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id75">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id76">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cubsh_ywx">cubmods.cubsh_ywx module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id77">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id78">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id79">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id80">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id81">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush">cubmods.cush module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id82">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id83">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id84">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id85">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id86">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush2">cubmods.cush2 module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id87">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id88">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id89">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id90">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id91">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush2_x0">cubmods.cush2_x0 module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id92">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id93">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id94">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id95">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id96">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush2_xx">cubmods.cush2_xx module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id97">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id98">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id99">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id100">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id101">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush_x">cubmods.cush_x module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id102">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id103">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id104">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id105">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id106">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.gem">cubmods.gem module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id107">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id108">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id109">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id110">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id111">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.general">cubmods.general module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id112">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id113">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id114">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id115">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.ihg">cubmods.ihg module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id116">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id117">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id118">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id119">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id120">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.ihg_v">cubmods.ihg_v module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id162">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id163">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id164">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id165">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id166">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.multicub">cubmods.multicub module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id167">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id168">Manual, Examples and References:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id169">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id170">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id171">Classes and Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.smry">cubmods.smry module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id172">Description:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id173">List of TODOs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id174">Credits</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id175">Classes and Functions</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cub-module">cubmods.cub module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cub-0w-module">cubmods.cub_0w module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cub-y0-module">cubmods.cub_y0 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cub-yw-module">cubmods.cub_yw module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cube-module">cubmods.cube module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cube-0w0-module">cubmods.cube_0w0 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cube-ywz-module">cubmods.cube_ywz module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cubsh-module">cubmods.cubsh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cubsh-ywx-module">cubmods.cubsh_ywx module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush-module">cubmods.cush module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush2-module">cubmods.cush2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush2-x0-module">cubmods.cush2_x0 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush2-xx-module">cubmods.cush2_xx module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush-x-module">cubmods.cush_x module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-gem-module">cubmods.gem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-general-module">cubmods.general module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-ihg-module">cubmods.ihg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-ihg-v-module">cubmods.ihg_v module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-multicub-module">cubmods.multicub module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-smry-module">cubmods.smry module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods">Module contents</a></li>
 </ul>
 </li>
@@ -542,7 +397,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -572,6 +427,7 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
@@ -594,8 +450,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -615,7 +471,7 @@ document.write(`
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>
@@ -628,7 +484,7 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

@@ -56,7 +56,6 @@ bibtex_bibfiles = [
 latex_elements = {
     'preamble': r'''
     \usepackage{upgreek}
-    \usepackage[backend=biber,style=apa]{biblatex}
     '''
 }
 
