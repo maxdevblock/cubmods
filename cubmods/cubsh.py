@@ -504,7 +504,7 @@ def init_theta(f, m, sh):
 def plot_simplex(pi1pi2list, ax=None, fname=None):
     r"""Plot simplex of parameters of a CUBSH model.
 
-    .. note:: see the reference DOI 10.1007/s10260-011-0176-x for details
+    .. note:: see the reference :cite:alp:`iannario2012modelling` for details
 
     .. warning:: this function still needs several fixes
 

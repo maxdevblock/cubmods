@@ -38,6 +38,7 @@
     <script src="_static/documentation_options.js?v=d45e8c67"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -363,26 +364,450 @@ document.write(`
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cubmods.html">cubmods package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cubmods.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cub-module">cubmods.cub module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cub-0w-module">cubmods.cub_0w module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cub-y0-module">cubmods.cub_y0 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cub-yw-module">cubmods.cub_yw module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cube-module">cubmods.cube module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cube-0w0-module">cubmods.cube_0w0 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cube-ywz-module">cubmods.cube_ywz module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cubsh-module">cubmods.cubsh module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cubsh-ywx-module">cubmods.cubsh_ywx module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush-module">cubmods.cush module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush2-module">cubmods.cush2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush2-x0-module">cubmods.cush2_x0 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush2-xx-module">cubmods.cush2_xx module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-cush-x-module">cubmods.cush_x module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-gem-module">cubmods.gem module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-general-module">cubmods.general module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-ihg-module">cubmods.ihg module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-ihg-v-module">cubmods.ihg_v module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-multicub-module">cubmods.multicub module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cubmods.html#cubmods-smry-module">cubmods.smry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cub">cubmods.cub module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#manual-examples-and-references">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#list-of-todos">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#credits">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#classes-and-functions">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.CUBresCUB00"><code class="docutils literal notranslate"><span class="pre">CUBresCUB00</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub.CUBresCUB00.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUB00.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub.CUBresCUB00.plot_confell"><code class="docutils literal notranslate"><span class="pre">CUBresCUB00.plot_confell()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub.CUBresCUB00.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUB00.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.cmf"><code class="docutils literal notranslate"><span class="pre">cmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.gini"><code class="docutils literal notranslate"><span class="pre">gini()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.init_theta"><code class="docutils literal notranslate"><span class="pre">init_theta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.laakso"><code class="docutils literal notranslate"><span class="pre">laakso()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.mean"><code class="docutils literal notranslate"><span class="pre">mean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.median"><code class="docutils literal notranslate"><span class="pre">median()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.skew"><code class="docutils literal notranslate"><span class="pre">skew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.std"><code class="docutils literal notranslate"><span class="pre">std()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.var"><code class="docutils literal notranslate"><span class="pre">var()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cub_0w">cubmods.cub_0w module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id42">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id43">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id44">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id45">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id46">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.CUBresCUB0W"><code class="docutils literal notranslate"><span class="pre">CUBresCUB0W</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.CUBresCUB0W.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUB0W.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.CUBresCUB0W.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUB0W.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.effe01"><code class="docutils literal notranslate"><span class="pre">effe01()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.init_gamma"><code class="docutils literal notranslate"><span class="pre">init_gamma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_0w.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cub_y0">cubmods.cub_y0 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id47">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id48">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id49">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id50">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id51">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.CUBresCUBY0"><code class="docutils literal notranslate"><span class="pre">CUBresCUBY0</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.CUBresCUBY0.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBY0.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.CUBresCUBY0.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBY0.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.effe10"><code class="docutils literal notranslate"><span class="pre">effe10()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_y0.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cub_yw">cubmods.cub_yw module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id52">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id53">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id54">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id55">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id56">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.CUBresCUBYW"><code class="docutils literal notranslate"><span class="pre">CUBresCUBYW</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.CUBresCUBYW.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBYW.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.CUBresCUBYW.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBYW.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cub_yw.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cube">cubmods.cube module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id57">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id58">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id59">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id60">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id61">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.CUBresCUBE"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cube.CUBresCUBE.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cube.CUBresCUBE.plot3d"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE.plot3d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cube.CUBresCUBE.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.betar"><code class="docutils literal notranslate"><span class="pre">betar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.cmf"><code class="docutils literal notranslate"><span class="pre">cmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.effecube"><code class="docutils literal notranslate"><span class="pre">effecube()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.init_theta"><code class="docutils literal notranslate"><span class="pre">init_theta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.mean"><code class="docutils literal notranslate"><span class="pre">mean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.var"><code class="docutils literal notranslate"><span class="pre">var()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cube_0w0">cubmods.cube_0w0 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id62">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id63">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id64">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id65">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id66">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.CUBresCUBE0W0"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE0W0</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.CUBresCUBE0W0.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE0W0.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.CUBresCUBE0W0.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE0W0.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.betabinomialxi"><code class="docutils literal notranslate"><span class="pre">betabinomialxi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.effe"><code class="docutils literal notranslate"><span class="pre">effe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.init_theta"><code class="docutils literal notranslate"><span class="pre">init_theta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_0w0.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cube_ywz">cubmods.cube_ywz module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id67">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id68">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id69">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id70">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id71">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.CUBresCUBEYWZ"><code class="docutils literal notranslate"><span class="pre">CUBresCUBEYWZ</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.CUBresCUBEYWZ.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBEYWZ.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.CUBresCUBEYWZ.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBEYWZ.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.Qdue"><code class="docutils literal notranslate"><span class="pre">Qdue()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.Quno"><code class="docutils literal notranslate"><span class="pre">Quno()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.auxmat"><code class="docutils literal notranslate"><span class="pre">auxmat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.betabinomial"><code class="docutils literal notranslate"><span class="pre">betabinomial()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.init_theta"><code class="docutils literal notranslate"><span class="pre">init_theta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cube_ywz.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cubsh">cubmods.cubsh module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id73">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id74">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id75">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id76">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id77">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.CUBresCUBSH"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSH</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cubsh.CUBresCUBSH.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSH.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cubsh.CUBresCUBSH.plot3d"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSH.plot3d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cubsh.CUBresCUBSH.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSH.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.cmf"><code class="docutils literal notranslate"><span class="pre">cmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.cmf_delta"><code class="docutils literal notranslate"><span class="pre">cmf_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.draw2"><code class="docutils literal notranslate"><span class="pre">draw2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.init_theta"><code class="docutils literal notranslate"><span class="pre">init_theta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.mean_delta"><code class="docutils literal notranslate"><span class="pre">mean_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.pi1pi2_to_pidelta"><code class="docutils literal notranslate"><span class="pre">pi1pi2_to_pidelta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.pidelta_to_pi1pi2"><code class="docutils literal notranslate"><span class="pre">pidelta_to_pi1pi2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.plot_simplex"><code class="docutils literal notranslate"><span class="pre">plot_simplex()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.pmf_delta"><code class="docutils literal notranslate"><span class="pre">pmf_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.proba_delta"><code class="docutils literal notranslate"><span class="pre">proba_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.std_delta"><code class="docutils literal notranslate"><span class="pre">std_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.var_delta"><code class="docutils literal notranslate"><span class="pre">var_delta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh.varcov_pxd"><code class="docutils literal notranslate"><span class="pre">varcov_pxd()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cubsh_ywx">cubmods.cubsh_ywx module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id79">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id80">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id81">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id82">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id83">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.CUBresCUBSHYWX"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSHYWX</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.CUBresCUBSHYWX.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSHYWX.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.CUBresCUBSHYWX.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSHYWX.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.Q1"><code class="docutils literal notranslate"><span class="pre">Q1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.Q2"><code class="docutils literal notranslate"><span class="pre">Q2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.init_theta"><code class="docutils literal notranslate"><span class="pre">init_theta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cubsh_ywx.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush">cubmods.cush module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id84">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id85">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id86">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id87">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id88">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.CUBresCUSH"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush.CUBresCUSH.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush.CUBresCUSH.plot_estim"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH.plot_estim()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush.CUBresCUSH.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.LRT"><code class="docutils literal notranslate"><span class="pre">LRT()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.gini"><code class="docutils literal notranslate"><span class="pre">gini()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.laakso"><code class="docutils literal notranslate"><span class="pre">laakso()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.mean"><code class="docutils literal notranslate"><span class="pre">mean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush.var"><code class="docutils literal notranslate"><span class="pre">var()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush2">cubmods.cush2 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id89">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id90">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id91">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id92">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id93">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2.CUBresCUSH2"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush2.CUBresCUSH2.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush2.CUBresCUSH2.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2.plot_ordinal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush2.CUBresCUSH2.plot_par_space"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2.plot_par_space()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2.varcov"><code class="docutils literal notranslate"><span class="pre">varcov()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush2_x0">cubmods.cush2_x0 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id94">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id95">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id96">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id97">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id98">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.CUBresCUSH2X0"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2X0</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.CUBresCUSH2X0.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2X0.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.CUBresCUSH2X0.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2X0.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.effe"><code class="docutils literal notranslate"><span class="pre">effe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_x0.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush2_xx">cubmods.cush2_xx module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id99">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id100">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id101">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id102">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id103">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.CUBresCUSH2XX"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2XX</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.CUBresCUSH2XX.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2XX.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.CUBresCUSH2XX.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2XX.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.effe"><code class="docutils literal notranslate"><span class="pre">effe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush2_xx.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.cush_x">cubmods.cush_x module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id104">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id105">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id106">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id107">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id108">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush_x.CUBresCUSHX"><code class="docutils literal notranslate"><span class="pre">CUBresCUSHX</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush_x.CUBresCUSHX.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSHX.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.cush_x.CUBresCUSHX.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSHX.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush_x.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush_x.effe"><code class="docutils literal notranslate"><span class="pre">effe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush_x.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush_x.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush_x.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush_x.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.cush_x.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.gem">cubmods.gem module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id109">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id110">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id111">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id112">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id113">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.gem.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.gem.estimate"><code class="docutils literal notranslate"><span class="pre">estimate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.general">cubmods.general module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id114">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id115">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id116">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id117">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.InvalidCategoriesError"><code class="docutils literal notranslate"><span class="pre">InvalidCategoriesError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.InvalidSampleSizeError"><code class="docutils literal notranslate"><span class="pre">InvalidSampleSizeError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.NoShelterError"><code class="docutils literal notranslate"><span class="pre">NoShelterError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.NotImplementedModelError"><code class="docutils literal notranslate"><span class="pre">NotImplementedModelError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.ParameterOutOfBoundsError"><code class="docutils literal notranslate"><span class="pre">ParameterOutOfBoundsError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.ShelterGreaterThanM"><code class="docutils literal notranslate"><span class="pre">ShelterGreaterThanM</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.UnknownModelError"><code class="docutils literal notranslate"><span class="pre">UnknownModelError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.addones"><code class="docutils literal notranslate"><span class="pre">addones()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.aic"><code class="docutils literal notranslate"><span class="pre">aic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.bic"><code class="docutils literal notranslate"><span class="pre">bic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.bitgamma"><code class="docutils literal notranslate"><span class="pre">bitgamma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.bitxi"><code class="docutils literal notranslate"><span class="pre">bitxi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.choices"><code class="docutils literal notranslate"><span class="pre">choices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.colsof"><code class="docutils literal notranslate"><span class="pre">colsof()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.conf_border"><code class="docutils literal notranslate"><span class="pre">conf_border()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.conf_ell"><code class="docutils literal notranslate"><span class="pre">conf_ell()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.dissimilarity"><code class="docutils literal notranslate"><span class="pre">dissimilarity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.dummies2"><code class="docutils literal notranslate"><span class="pre">dummies2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.equal3d"><code class="docutils literal notranslate"><span class="pre">equal3d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.expit"><code class="docutils literal notranslate"><span class="pre">expit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.formula_parser"><code class="docutils literal notranslate"><span class="pre">formula_parser()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.freq"><code class="docutils literal notranslate"><span class="pre">freq()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.get_cov_ellipsoid"><code class="docutils literal notranslate"><span class="pre">get_cov_ellipsoid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.get_minor"><code class="docutils literal notranslate"><span class="pre">get_minor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.hadprod"><code class="docutils literal notranslate"><span class="pre">hadprod()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.kkk"><code class="docutils literal notranslate"><span class="pre">kkk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.load_object"><code class="docutils literal notranslate"><span class="pre">load_object()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.logis"><code class="docutils literal notranslate"><span class="pre">logis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.logit"><code class="docutils literal notranslate"><span class="pre">logit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.lsat"><code class="docutils literal notranslate"><span class="pre">lsat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.luni"><code class="docutils literal notranslate"><span class="pre">luni()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.plot_ellipsoid"><code class="docutils literal notranslate"><span class="pre">plot_ellipsoid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.probbit"><code class="docutils literal notranslate"><span class="pre">probbit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.general.unique"><code class="docutils literal notranslate"><span class="pre">unique()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.ihg">cubmods.ihg module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id118">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id119">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id120">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id121">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id122">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg.CUBresIHG"><code class="docutils literal notranslate"><span class="pre">CUBresIHG</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.ihg.CUBresIHG.plot"><code class="docutils literal notranslate"><span class="pre">CUBresIHG.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.ihg.CUBresIHG.plot_estim"><code class="docutils literal notranslate"><span class="pre">CUBresIHG.plot_estim()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.ihg.CUBresIHG.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresIHG.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg.effe"><code class="docutils literal notranslate"><span class="pre">effe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg.init_theta"><code class="docutils literal notranslate"><span class="pre">init_theta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg.var"><code class="docutils literal notranslate"><span class="pre">var()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.ihg_v">cubmods.ihg_v module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id164">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id165">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id166">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id167">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id168">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.CUBresIHGV"><code class="docutils literal notranslate"><span class="pre">CUBresIHGV</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.CUBresIHGV.plot"><code class="docutils literal notranslate"><span class="pre">CUBresIHGV.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.CUBresIHGV.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresIHGV.plot_ordinal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.effe"><code class="docutils literal notranslate"><span class="pre">effe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.init_theta"><code class="docutils literal notranslate"><span class="pre">init_theta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.loglik"><code class="docutils literal notranslate"><span class="pre">loglik()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.mle"><code class="docutils literal notranslate"><span class="pre">mle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.pmf"><code class="docutils literal notranslate"><span class="pre">pmf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.pmfi"><code class="docutils literal notranslate"><span class="pre">pmfi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.ihg_v.prob"><code class="docutils literal notranslate"><span class="pre">prob()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.multicub">cubmods.multicub module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id169">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id170">Manual, Examples and References:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id171">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id172">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id173">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.multicub.multi"><code class="docutils literal notranslate"><span class="pre">multi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.multicub.pos_kwargs"><code class="docutils literal notranslate"><span class="pre">pos_kwargs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods.smry">cubmods.smry module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id174">Description:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id175">List of TODOs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id176">Credits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#id177">Classes and Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBres"><code class="docutils literal notranslate"><span class="pre">CUBres</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBres.as_dataframe"><code class="docutils literal notranslate"><span class="pre">CUBres.as_dataframe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBres.as_txt"><code class="docutils literal notranslate"><span class="pre">CUBres.as_txt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBres.save"><code class="docutils literal notranslate"><span class="pre">CUBres.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBres.summary"><code class="docutils literal notranslate"><span class="pre">CUBres.summary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBsample"><code class="docutils literal notranslate"><span class="pre">CUBsample</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBsample.as_dataframe"><code class="docutils literal notranslate"><span class="pre">CUBsample.as_dataframe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBsample.plot"><code class="docutils literal notranslate"><span class="pre">CUBsample.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBsample.save"><code class="docutils literal notranslate"><span class="pre">CUBsample.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cubmods.html#cubmods.smry.CUBsample.summary"><code class="docutils literal notranslate"><span class="pre">CUBsample.summary()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cubmods.html#module-cubmods">Module contents</a></li>
 </ul>
 </li>

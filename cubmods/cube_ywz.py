@@ -389,7 +389,7 @@ def auxmat(m, xi, phi, a,b,c,d,e):
     :type xi: array of float
     :param phi: overdispersion parameter :math:`\pmb\phi`
     :type phi: array of float
-    :param a,b,c,d,e: see the reference paper *DOI: 10.1080/03610926.2013.821487* for details
+    :param a,b,c,d,e: see the reference paper :cite:alp:`piccolo2015inferential` for details
     :type a,b,c,d,e: float
     """
     elemat = np.ndarray(shape=(m, xi.size))
