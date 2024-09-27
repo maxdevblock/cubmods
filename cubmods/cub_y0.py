@@ -501,6 +501,19 @@ class CUBresCUBY0(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
+            
+        if self.ass_pars is not None:
+            Ycols = self.est_names[
+                1:-1
+            ]
+            ass_p = pmf(
+                m=self.m,
+                beta=self.ass_pars["beta"],
+                xi=self.ass_pars["xi"],
+                Y=self.df[Ycols]
+            )
+            ax.stem(R, ass_p, linefmt="--r",
+                markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",
