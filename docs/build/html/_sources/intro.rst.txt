@@ -81,7 +81,8 @@ Generally speaking, for models with covariates three different probability funct
 
     which is a row vector :math:`1 \times m` of the average probability given the
     estimated parameters and the covariates. This is an auxiliary function
-    of ``.plot_ordinal()``. Notice that it sums to 1 because 
+    of ``.plot_ordinal()`` and used to compute the Dissimilarity index for models
+    with covariates. Notice that it always sums to 1 because 
 
     .. math::
         \begin{align*}

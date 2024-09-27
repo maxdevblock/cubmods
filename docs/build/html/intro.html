@@ -426,7 +426,8 @@ for <code class="docutils literal notranslate"><span class="pre">.draw()</span><
 \[\frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i),\; r=1,\ldots,m\]</div>
 <p>which is a row vector <span class="math notranslate nohighlight">\(1 \times m\)</span> of the average probability given the
 estimated parameters and the covariates. This is an auxiliary function
-of <code class="docutils literal notranslate"><span class="pre">.plot_ordinal()</span></code>. Notice that it sums to 1 because</p>
+of <code class="docutils literal notranslate"><span class="pre">.plot_ordinal()</span></code> and used to compute the Dissimilarity index for models
+with covariates. Notice that it always sums to 1 because</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
 \sum_{r=1}^m \frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i)

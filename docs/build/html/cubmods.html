@@ -456,7 +456,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the confidence ellipse</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
@@ -712,34 +712,6 @@ covariates for a given absolute frequency distribution.</p>
 <span class="sig-prename descclassname"><span class="pre">cubmods.cub.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.cub.pmf" title="Link to this definition">#</a></dt>
 <dd><p>Probability distribution of a specified CUB model.</p>
 <p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta),\; r=1 \ldots m\)</span></p>
-<dl>
-<dt>References:</dt><dd><div class="docutils container" id="id1">
-<ol class="arabic simple" start="1">
-<li id="id11"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
-<li id="id28"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
-<li id="id10"><p>Marcella Corduas, Maria Iannario, and Domenico Piccolo. A class of statistical models for evaluating services and performances. In <em>Statistical methods for the evaluation of educational services and quality of products</em>, pages 99–117. Springer, 2009.</p></li>
-<li id="id18"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
-<li id="id5"><p>Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. <em>Computational Statistics &amp; Data Analysis</em>, 49(3):917–934, 2005.</p></li>
-<li id="id17"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
-<li id="id15"><p>Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. <em>Quaderni di statistica</em>, 14:137–140, 2012.</p></li>
-<li id="id9"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
-<li id="id16"><p>Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. <em>Communications in Statistics-Theory and Methods</em>, 43(4):771–786, 2014.</p></li>
-<li id="id20"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id8"><p>Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. <em>Quality Technology &amp; Quantitative Management</em>, 7(2):149–168, 2010.</p></li>
-<li id="id21"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id22"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
-<li id="id4"><p>Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
-<li id="id7"><p>Domenico Piccolo. Observed information matrix for MUB models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
-<li id="id14"><p>Domenico Piccolo. Inferential issues on cube models with covariates. <em>Communications in Statistics-Theory and Methods</em>, 44(23):5023–5036, 2015.</p></li>
-<li id="id3"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-<li id="id41"><p>Massimo Pierini. Modelli della classe CUB in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 1–172, June 2024. (Bachelor's thesis L-41).</p></li>
-<li id="id27"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
-<li id="id12"><p>Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. <em>TEST</em>, 31(3):828–855, 2022.</p></li>
-<li id="id29"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
-</ol>
-</div>
-</dd>
-</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -872,31 +844,31 @@ estimates of a CUB model without covariates.</p>
 <p id="cub0w-module">CUB models in Python.
 Module for CUB (Combination of Uniform
 and Binomial) with covariates for the feeling component.</p>
-<section id="id42">
-<h3>Description:<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h3>Description:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUB_0W model family.</p>
 </div></blockquote>
 </section>
-<section id="id43">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cub-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id44">
-<h3>List of TODOs:<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>List of TODOs:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id45">
-<h3>Credits<a class="headerlink" href="#id45" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>Credits<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -914,8 +886,8 @@ for CUB_0W model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id46">
-<h3>Classes and Functions<a class="headerlink" href="#id46" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>Classes and Functions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cub_0w.CUBresCUB0W">
@@ -954,7 +926,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -1231,31 +1203,31 @@ with covariates for the feeling component.</p>
 <p id="cuby0-module">CUB models in Python.
 Module for CUB (Combination of Uniform
 and Binomial) with covariates for the uncertainty component.</p>
-<section id="id47">
-<h3>Description:<a class="headerlink" href="#id47" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3>Description:<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUB_Y0 model family.</p>
 </div></blockquote>
 </section>
-<section id="id48">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
+<section id="id7">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cub-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id49">
-<h3>List of TODOs:<a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h3>List of TODOs:<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id50">
-<h3>Credits<a class="headerlink" href="#id50" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3>Credits<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -1273,8 +1245,8 @@ for CUB_Y0 model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id51">
-<h3>Classes and Functions<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h3>Classes and Functions<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cub_y0.CUBresCUBY0">
@@ -1313,7 +1285,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -1567,31 +1539,31 @@ covariates for the uncertainty component.</p>
 Module for CUB (Combination of Uniform
 and Binomial) with covariates
 for both feeling and uncertainty.</p>
-<section id="id52">
-<h3>Description:<a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
+<section id="id11">
+<h3>Description:<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUB_YW model family.</p>
 </div></blockquote>
 </section>
-<section id="id53">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cub-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id54">
-<h3>List of TODOs:<a class="headerlink" href="#id54" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h3>List of TODOs:<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id55">
-<h3>Credits<a class="headerlink" href="#id55" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h3>Credits<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -1609,8 +1581,8 @@ for CUB_YW model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id56">
-<h3>Classes and Functions<a class="headerlink" href="#id56" title="Link to this heading">#</a></h3>
+<section id="id15">
+<h3>Classes and Functions<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cub_yw.CUBresCUBYW">
@@ -1649,7 +1621,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -1882,31 +1854,31 @@ both the uncertainty and the feeling components.</p>
 <p id="cube000-module">CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial).</p>
-<section id="id57">
-<h3>Description:<a class="headerlink" href="#id57" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h3>Description:<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBE model family.</p>
 </div></blockquote>
 </section>
-<section id="id58">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id58" title="Link to this heading">#</a></h3>
+<section id="id17">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cube-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id59">
-<h3>List of TODOs:<a class="headerlink" href="#id59" title="Link to this heading">#</a></h3>
+<section id="id18">
+<h3>List of TODOs:<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: adjust 3d plots legend</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id60">
-<h3>Credits<a class="headerlink" href="#id60" title="Link to this heading">#</a></h3>
+<section id="id19">
+<h3>Credits<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -1924,8 +1896,8 @@ for CUBE model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id61">
-<h3>Classes and Functions<a class="headerlink" href="#id61" title="Link to this heading">#</a></h3>
+<section id="id20">
+<h3>Classes and Functions<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cube.CUBresCUBE">
@@ -1967,7 +1939,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the confidence ellipsoid</p></li>
 <li><p><strong>confell</strong> (<em>bool</em>) – <strong>DEPRECATED</strong>, defaults to False</p></li>
 <li><p><strong>test3</strong> (<em>bool</em>) – <strong>DEPRECATED</strong>, defaults to True</p></li>
@@ -2305,23 +2277,23 @@ as the inverse of the observed information matrix.</p>
 <p id="cube0w0-module">CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial) with covariates for the feeling component.</p>
-<section id="id62">
-<h3>Description:<a class="headerlink" href="#id62" title="Link to this heading">#</a></h3>
+<section id="id21">
+<h3>Description:<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBE_0W0 model family.</p>
 </div></blockquote>
 </section>
-<section id="id63">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id63" title="Link to this heading">#</a></h3>
+<section id="id22">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cube-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id64">
-<h3>List of TODOs:<a class="headerlink" href="#id64" title="Link to this heading">#</a></h3>
+<section id="id23">
+<h3>List of TODOs:<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Manual and Examples</p></li>
@@ -2329,8 +2301,8 @@ for CUBE_0W0 model family.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id65">
-<h3>Credits<a class="headerlink" href="#id65" title="Link to this heading">#</a></h3>
+<section id="id24">
+<h3>Credits<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -2348,8 +2320,8 @@ for CUBE_0W0 model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id66">
-<h3>Classes and Functions<a class="headerlink" href="#id66" title="Link to this heading">#</a></h3>
+<section id="id25">
+<h3>Classes and Functions<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cube_0w0.CUBresCUBE0W0">
@@ -2388,7 +2360,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -2670,31 +2642,31 @@ and the uncertainty components. Auxiliary function of <code class="docutils lite
 <p id="cubeywz-module">CUB models in Python.
 Module for CUBE (Combination of Uniform
 and Beta-Binomial) with covariates.</p>
-<section id="id67">
-<h3>Description:<a class="headerlink" href="#id67" title="Link to this heading">#</a></h3>
+<section id="id26">
+<h3>Description:<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUB_YWZ model family.</p>
 </div></blockquote>
 </section>
-<section id="id68">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id68" title="Link to this heading">#</a></h3>
+<section id="id27">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cube-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id69">
-<h3>List of TODOs:<a class="headerlink" href="#id69" title="Link to this heading">#</a></h3>
+<section id="id28">
+<h3>List of TODOs:<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>Manual and Examples</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id70">
-<h3>Credits<a class="headerlink" href="#id70" title="Link to this heading">#</a></h3>
+<section id="id29">
+<h3>Credits<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -2712,8 +2684,8 @@ for CUB_YWZ model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id71">
-<h3>Classes and Functions<a class="headerlink" href="#id71" title="Link to this heading">#</a></h3>
+<section id="id30">
+<h3>Classes and Functions<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cube_ywz.CUBresCUBEYWZ">
@@ -2752,7 +2724,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -2838,7 +2810,7 @@ consider also an intercept term</p></li>
 <li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
 <li><p><strong>xi</strong> (<em>array</em><em> of </em><em>float</em>) – feeling parameters <span class="math notranslate nohighlight">\(\pmb\xi\)</span></p></li>
 <li><p><strong>phi</strong> (<em>array</em><em> of </em><em>float</em>) – overdispersion parameter <span class="math notranslate nohighlight">\(\pmb\phi\)</span></p></li>
-<li><p><strong>a</strong><strong>,</strong><strong>b</strong><strong>,</strong><strong>c</strong><strong>,</strong><strong>d</strong><strong>,</strong><strong>e</strong> (<em>float</em>) – see the reference paper <span id="id72"><a class="reference internal" href="references.html#id14" title="Domenico Piccolo. Inferential issues on cube models with covariates. Communications in Statistics-Theory and Methods, 44(23):5023–5036, 2015.">Piccolo, 2015</a></span> for details</p></li>
+<li><p><strong>a</strong><strong>,</strong><strong>b</strong><strong>,</strong><strong>c</strong><strong>,</strong><strong>d</strong><strong>,</strong><strong>e</strong> (<em>float</em>) – see the reference paper <span id="id31"><a class="reference internal" href="references.html#id14" title="Domenico Piccolo. Inferential issues on cube models with covariates. Communications in Statistics-Theory and Methods, 44(23):5023–5036, 2015.">Piccolo, 2015</a></span> for details</p></li>
 </ul>
 </dd>
 </dl>
@@ -3089,23 +3061,23 @@ for all the three parameters.</p>
 <p id="cubsh000-module">CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect).</p>
-<section id="id73">
-<h3>Description:<a class="headerlink" href="#id73" title="Link to this heading">#</a></h3>
+<section id="id32">
+<h3>Description:<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH model family.</p>
 </div></blockquote>
 </section>
-<section id="id74">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id74" title="Link to this heading">#</a></h3>
+<section id="id33">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cubsh-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id75">
-<h3>List of TODOs:<a class="headerlink" href="#id75" title="Link to this heading">#</a></h3>
+<section id="id34">
+<h3>List of TODOs:<a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: fix 3d plots legend</p></li>
@@ -3113,8 +3085,8 @@ for CUBSH model family.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id76">
-<h3>Credits<a class="headerlink" href="#id76" title="Link to this heading">#</a></h3>
+<section id="id35">
+<h3>Credits<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -3132,8 +3104,8 @@ for CUBSH model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id77">
-<h3>Classes and Functions<a class="headerlink" href="#id77" title="Link to this heading">#</a></h3>
+<section id="id36">
+<h3>Classes and Functions<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cubsh.CUBresCUBSH">
@@ -3175,7 +3147,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the confidence ellipsoid</p></li>
 <li><p><strong>confell</strong> (<em>bool</em>) – <strong>DEPRECATED</strong>, defaults to False</p></li>
 <li><p><strong>test3</strong> (<em>bool</em>) – <strong>DEPRECATED</strong>, defaults to True</p></li>
@@ -3479,7 +3451,7 @@ Binomial and the Uniform components, respectively</p>
 <dd><p>Plot simplex of parameters of a CUBSH model.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>see the reference <span id="id78"><a class="reference internal" href="references.html#id9" title="Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. Statistical Methods &amp; Applications, 21:1–22, 2012.">Iannario, 2012</a></span> for details</p>
+<p>see the reference <span id="id37"><a class="reference internal" href="references.html#id9" title="Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. Statistical Methods &amp; Applications, 21:1–22, 2012.">Iannario, 2012</a></span> for details</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -3700,31 +3672,31 @@ using canonic parametrization <span class="math notranslate nohighlight">\((\pi,
 <p id="cubshywx-module">CUB models in Python.
 Module for CUBSH (Combination of Uniform
 and Binomial with Shelter Effect) with covariates.</p>
-<section id="id79">
-<h3>Description:<a class="headerlink" href="#id79" title="Link to this heading">#</a></h3>
+<section id="id38">
+<h3>Description:<a class="headerlink" href="#id38" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUBSH_YWX model family.</p>
 </div></blockquote>
 </section>
-<section id="id80">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id80" title="Link to this heading">#</a></h3>
+<section id="id39">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id39" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cubsh-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id81">
-<h3>List of TODOs:<a class="headerlink" href="#id81" title="Link to this heading">#</a></h3>
+<section id="id40">
+<h3>List of TODOs:<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id82">
-<h3>Credits<a class="headerlink" href="#id82" title="Link to this heading">#</a></h3>
+<section id="id41">
+<h3>Credits<a class="headerlink" href="#id41" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -3742,8 +3714,8 @@ for CUBSH_YWX model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id83">
-<h3>Classes and Functions<a class="headerlink" href="#id83" title="Link to this heading">#</a></h3>
+<section id="id42">
+<h3>Classes and Functions<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cubsh_ywx.CUBresCUBSHYWX">
@@ -3782,7 +3754,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -4102,31 +4074,31 @@ explaining all the components and the shelter effect.</p>
 <p id="cush0-module">CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect).</p>
-<section id="id84">
-<h3>Description:<a class="headerlink" href="#id84" title="Link to this heading">#</a></h3>
+<section id="id43">
+<h3>Description:<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH model family.</p>
 </div></blockquote>
 </section>
-<section id="id85">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id85" title="Link to this heading">#</a></h3>
+<section id="id44">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id86">
-<h3>List of TODOs:<a class="headerlink" href="#id86" title="Link to this heading">#</a></h3>
+<section id="id45">
+<h3>List of TODOs:<a class="headerlink" href="#id45" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: check and fix gini &amp; laakso</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id87">
-<h3>Credits<a class="headerlink" href="#id87" title="Link to this heading">#</a></h3>
+<section id="id46">
+<h3>Credits<a class="headerlink" href="#id46" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -4144,8 +4116,8 @@ for CUSH model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id88">
-<h3>Classes and Functions<a class="headerlink" href="#id88" title="Link to this heading">#</a></h3>
+<section id="id47">
+<h3>Classes and Functions<a class="headerlink" href="#id47" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush.CUBresCUSH">
@@ -4187,7 +4159,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the standard error</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
@@ -4443,31 +4415,31 @@ without covariate for the given ordinal responses.</p>
 <p id="cush200-module">CUB models in Python.
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices).</p>
-<section id="id89">
-<h3>Description:<a class="headerlink" href="#id89" title="Link to this heading">#</a></h3>
+<section id="id48">
+<h3>Description:<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family.</p>
 </div></blockquote>
 </section>
-<section id="id90">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id90" title="Link to this heading">#</a></h3>
+<section id="id49">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush2-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id91">
-<h3>List of TODOs:<a class="headerlink" href="#id91" title="Link to this heading">#</a></h3>
+<section id="id50">
+<h3>List of TODOs:<a class="headerlink" href="#id50" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id92">
-<h3>Credits<a class="headerlink" href="#id92" title="Link to this heading">#</a></h3>
+<section id="id51">
+<h3>Credits<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -4485,8 +4457,8 @@ for CUSH2 model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id93">
-<h3>Classes and Functions<a class="headerlink" href="#id93" title="Link to this heading">#</a></h3>
+<section id="id52">
+<h3>Classes and Functions<a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2.CUBresCUSH2">
@@ -4528,7 +4500,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the standard error</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
@@ -4713,31 +4685,31 @@ estimates of a CUSH2 model without covariates.</p>
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices) with covariates
 for the 1st shelter choice.</p>
-<section id="id94">
-<h3>Description:<a class="headerlink" href="#id94" title="Link to this heading">#</a></h3>
+<section id="id53">
+<h3>Description:<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family.</p>
 </div></blockquote>
 </section>
-<section id="id95">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id95" title="Link to this heading">#</a></h3>
+<section id="id54">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id54" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush2-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id96">
-<h3>List of TODOs:<a class="headerlink" href="#id96" title="Link to this heading">#</a></h3>
+<section id="id55">
+<h3>List of TODOs:<a class="headerlink" href="#id55" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id97">
-<h3>Credits<a class="headerlink" href="#id97" title="Link to this heading">#</a></h3>
+<section id="id56">
+<h3>Credits<a class="headerlink" href="#id56" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -4755,8 +4727,8 @@ for CUSH2 model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id98">
-<h3>Classes and Functions<a class="headerlink" href="#id98" title="Link to this heading">#</a></h3>
+<section id="id57">
+<h3>Classes and Functions<a class="headerlink" href="#id57" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2_x0.CUBresCUSH2X0">
@@ -4795,7 +4767,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -4990,32 +4962,32 @@ for the first shelter choice only.</p>
 <p id="cush2xx-module">CUB models in Python.
 Module for CUSH2 (Combination of Uniform
 and 2 Shelter Choices) with covariates.</p>
-<section id="id99">
-<h3>Description:<a class="headerlink" href="#id99" title="Link to this heading">#</a></h3>
+<section id="id58">
+<h3>Description:<a class="headerlink" href="#id58" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH2 model family with covariates for
 both shelter choices.</p>
 </div></blockquote>
 </section>
-<section id="id100">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id100" title="Link to this heading">#</a></h3>
+<section id="id59">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id59" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush2-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id101">
-<h3>List of TODOs:<a class="headerlink" href="#id101" title="Link to this heading">#</a></h3>
+<section id="id60">
+<h3>List of TODOs:<a class="headerlink" href="#id60" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id102">
-<h3>Credits<a class="headerlink" href="#id102" title="Link to this heading">#</a></h3>
+<section id="id61">
+<h3>Credits<a class="headerlink" href="#id61" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -5033,8 +5005,8 @@ both shelter choices.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id103">
-<h3>Classes and Functions<a class="headerlink" href="#id103" title="Link to this heading">#</a></h3>
+<section id="id62">
+<h3>Classes and Functions<a class="headerlink" href="#id62" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush2_xx.CUBresCUSH2XX">
@@ -5073,7 +5045,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -5278,31 +5250,31 @@ for both shelter choices.</p>
 <p id="cushx-module">CUB models in Python.
 Module for CUSH (Combination of Uniform
 and Shelter effect) with covariates.</p>
-<section id="id104">
-<h3>Description:<a class="headerlink" href="#id104" title="Link to this heading">#</a></h3>
+<section id="id63">
+<h3>Description:<a class="headerlink" href="#id63" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for CUSH model family.</p>
 </div></blockquote>
 </section>
-<section id="id105">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id105" title="Link to this heading">#</a></h3>
+<section id="id64">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id64" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#cush-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id106">
-<h3>List of TODOs:<a class="headerlink" href="#id106" title="Link to this heading">#</a></h3>
+<section id="id65">
+<h3>List of TODOs:<a class="headerlink" href="#id65" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id107">
-<h3>Credits<a class="headerlink" href="#id107" title="Link to this heading">#</a></h3>
+<section id="id66">
+<h3>Credits<a class="headerlink" href="#id66" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -5320,8 +5292,8 @@ for CUSH model family.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id108">
-<h3>Classes and Functions<a class="headerlink" href="#id108" title="Link to this heading">#</a></h3>
+<section id="id67">
+<h3>Classes and Functions<a class="headerlink" href="#id67" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.cush_x.CUBresCUSHX">
@@ -5360,7 +5332,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -5571,32 +5543,32 @@ to explain the shelter effect.</p>
 <span id="cubmods-gem-module"></span><h2>cubmods.gem module<a class="headerlink" href="#module-cubmods.gem" title="Link to this heading">#</a></h2>
 <p id="gem-module">CUB models in Python.
 Module for GEM (Generalized Mixtures).</p>
-<section id="id109">
-<h3>Description:<a class="headerlink" href="#id109" title="Link to this heading">#</a></h3>
+<section id="id68">
+<h3>Description:<a class="headerlink" href="#id68" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for GEM maximum likelihood estimation
 and sample drawing.</p>
 </div></blockquote>
 </section>
-<section id="id110">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id110" title="Link to this heading">#</a></h3>
+<section id="id69">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id69" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#gem-manual">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id111">
-<h3>List of TODOs:<a class="headerlink" href="#id111" title="Link to this heading">#</a></h3>
+<section id="id70">
+<h3>List of TODOs:<a class="headerlink" href="#id70" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: implement best shelter search</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id112">
-<h3>Credits<a class="headerlink" href="#id112" title="Link to this heading">#</a></h3>
+<section id="id71">
+<h3>Credits<a class="headerlink" href="#id71" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -5614,8 +5586,8 @@ and sample drawing.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id113">
-<h3>Classes and Functions<a class="headerlink" href="#id113" title="Link to this heading">#</a></h3>
+<section id="id72">
+<h3>Classes and Functions<a class="headerlink" href="#id72" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.gem.draw">
@@ -5680,23 +5652,23 @@ see each module for details</p>
 <span id="cubmods-general-module"></span><h2>cubmods.general module<a class="headerlink" href="#module-cubmods.general" title="Link to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for General functions.</p>
-<section id="id114">
-<h3>Description:<a class="headerlink" href="#id114" title="Link to this heading">#</a></h3>
+<section id="id73">
+<h3>Description:<a class="headerlink" href="#id73" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for general functions.</p>
 </div></blockquote>
 </section>
-<section id="id115">
-<h3>List of TODOs:<a class="headerlink" href="#id115" title="Link to this heading">#</a></h3>
+<section id="id74">
+<h3>List of TODOs:<a class="headerlink" href="#id74" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id116">
-<h3>Credits<a class="headerlink" href="#id116" title="Link to this heading">#</a></h3>
+<section id="id75">
+<h3>Credits<a class="headerlink" href="#id75" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -5714,8 +5686,8 @@ for general functions.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id117">
-<h3>Classes and Functions<a class="headerlink" href="#id117" title="Link to this heading">#</a></h3>
+<section id="id76">
+<h3>Classes and Functions<a class="headerlink" href="#id76" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py exception">
 <dt class="sig sig-object py" id="cubmods.general.InvalidCategoriesError">
@@ -6243,7 +6215,7 @@ log-odds.</p>
 <dt class="sig sig-object py" id="cubmods.general.lsat">
 <span class="sig-prename descclassname"><span class="pre">cubmods.general.</span></span><span class="sig-name descname"><span class="pre">lsat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.general.lsat" title="Link to this definition">#</a></dt>
 <dd><p>Log-likelihood of saturated model.</p>
-<p>Ssaturated level,that is the theoretically maximum information
+<p>Saturated level ,that is the theoretically maximum information
 that can be obtained by a model using as many parameters as possible. 
 Then, the saturated log-likelihood is computed by assuming that the model 
 is specified by as many parameters as available observations. 
@@ -6355,31 +6327,31 @@ model.</p>
 <span id="cubmods-ihg-module"></span><h2>cubmods.ihg module<a class="headerlink" href="#module-cubmods.ihg" title="Link to this heading">#</a></h2>
 <p id="ihg0-module">CUB models in Python.
 Module for IHG (Inverse HyperGeometric).</p>
-<section id="id118">
-<h3>Description:<a class="headerlink" href="#id118" title="Link to this heading">#</a></h3>
+<section id="id77">
+<h3>Description:<a class="headerlink" href="#id77" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for IHG model family without covariates.</p>
 </div></blockquote>
 </section>
-<section id="id119">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id119" title="Link to this heading">#</a></h3>
+<section id="id78">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id78" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#ihg-without-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id120">
-<h3>List of TODOs:<a class="headerlink" href="#id120" title="Link to this heading">#</a></h3>
+<section id="id79">
+<h3>List of TODOs:<a class="headerlink" href="#id79" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id121">
-<h3>Credits<a class="headerlink" href="#id121" title="Link to this heading">#</a></h3>
+<section id="id80">
+<h3>Credits<a class="headerlink" href="#id80" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -6397,8 +6369,8 @@ for IHG model family without covariates.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id122">
-<h3>Classes and Functions<a class="headerlink" href="#id122" title="Link to this heading">#</a></h3>
+<section id="id81">
+<h3>Classes and Functions<a class="headerlink" href="#id81" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.ihg.CUBresIHG">
@@ -6440,7 +6412,7 @@ See <a class="reference external" href="cubmods.html#cubmods.smry.CUBres">here</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>ci</strong> (<em>float</em>) – level <span class="math notranslate nohighlight">\((1-\alpha/2)\)</span> for the standard error</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
@@ -6517,8 +6489,9 @@ if provided, probability distribution of a known model.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.effe">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">effe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.effe" title="Link to this definition">#</a></dt>
-<dd><p>Compute the log-likelihood function of a IHG model without 
-covariates for a given absolute frequency distribution.</p>
+<dd><p>Compute the negative log-likelihood function of a IHG model without 
+covariates for a given absolute frequency distribution.
+Auxiliary function of <code class="docutils literal notranslate"><span class="pre">mle()</span></code> for optimization algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -6558,7 +6531,24 @@ responses. These preliminary estimators are used within the package code to star
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.loglik">
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">loglik</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.loglik" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Compute the log-likelihood function of a IHG model without 
+covariates for a given absolute frequency distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theta</strong> (<em>float</em>) – parameter :math:`     heta` (probability of 1st shelter category)</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of ordinal categories</p></li>
+<li><p><strong>f</strong> (<em>array</em><em> of </em><em>int</em>) – array of absolute frequency distribution</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the log-likelihood value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.ihg.mle">
@@ -6589,34 +6579,6 @@ responses. These preliminary estimators are used within the package code to star
 <span class="sig-prename descclassname"><span class="pre">cubmods.ihg.</span></span><span class="sig-name descname"><span class="pre">pmf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.ihg.pmf" title="Link to this definition">#</a></dt>
 <dd><p>Probability distribution of a specified IHG model without covariates.</p>
 <p><span class="math notranslate nohighlight">\(\Pr(R = r | \pmb\theta),\; r=1 \ldots m\)</span></p>
-<dl>
-<dt>References:</dt><dd><div class="docutils container" id="id123">
-<ol class="arabic simple" start="1">
-<li id="id133"><p>Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. <em>Quality &amp; Quantity</em>, 51:2375–2393, 2017.</p></li>
-<li id="id150"><p>Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In <em>London Stata Conference 2021</em>, number 16. Stata Users Group, 2021.</p></li>
-<li id="id132"><p>Marcella Corduas, Maria Iannario, and Domenico Piccolo. A class of statistical models for evaluating services and performances. In <em>Statistical methods for the evaluation of educational services and quality of products</em>, pages 99–117. Springer, 2009.</p></li>
-<li id="id140"><p>A D'Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In <em>S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione</em>, pages 245–250. CLEUP, 2005.</p></li>
-<li id="id127"><p>Angela D'Elia and Domenico Piccolo. A mixture model for preferences data analysis. <em>Computational Statistics &amp; Data Analysis</em>, 49(3):917–934, 2005.</p></li>
-<li id="id139"><p>Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. <em>Statistical modelling</em>, 3(1):65–78, 2003.</p></li>
-<li id="id137"><p>Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. <em>Quaderni di statistica</em>, 14:137–140, 2012.</p></li>
-<li id="id131"><p>Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. <em>Statistical Methods &amp; Applications</em>, 21:1–22, 2012.</p></li>
-<li id="id138"><p>Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. <em>Communications in Statistics-Theory and Methods</em>, 43(4):771–786, 2014.</p></li>
-<li id="id142"><p>Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. <em>Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version</em>, 2009.</p></li>
-<li id="id130"><p>Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. <em>Quality Technology &amp; Quantitative Management</em>, 7(2):149–168, 2010.</p></li>
-<li id="id143"><p>Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. <em>Statistica &amp; Applicazioni</em>, 12(2):177–204, 2014.</p></li>
-<li id="id144"><p>Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. <em>CRAN</em>, 2022.</p></li>
-<li id="id126"><p>Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. <em>Quaderni di Statistica</em>, 5(1):85–104, 2003.</p></li>
-<li id="id129"><p>Domenico Piccolo. Observed information matrix for MUB models. <em>Quaderni di Statistica</em>, 8(1):33–78, 2006.</p></li>
-<li id="id136"><p>Domenico Piccolo. Inferential issues on cube models with covariates. <em>Communications in Statistics-Theory and Methods</em>, 44(23):5023–5036, 2015.</p></li>
-<li id="id125"><p>Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). <em>Statistical Methods &amp; Applications</em>, 28:389–493, 2019.</p></li>
-<li id="id163"><p>Massimo Pierini. Modelli della classe CUB in python. <em>Universitas Mercatorum, Rome, IT</em>, pages 1–172, June 2024. (Bachelor's thesis L-41).</p></li>
-<li id="id149"><p>W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. <em>Computational Methods and Data Analysis for Metabolomics</em>, pages 265–311, 2020.</p></li>
-<li id="id134"><p>Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. <em>TEST</em>, 31(3):828–855, 2022.</p></li>
-<li id="id151"><p>Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. <em>GNU Regression, Econometrics and Time Series Library</em>, pages 147, 2019.</p></li>
-</ol>
-</div>
-</dd>
-</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -6658,31 +6620,31 @@ responses. These preliminary estimators are used within the package code to star
 <span id="cubmods-ihg-v-module"></span><h2>cubmods.ihg_v module<a class="headerlink" href="#module-cubmods.ihg_v" title="Link to this heading">#</a></h2>
 <p id="ihgv-module">CUB models in Python.
 Module for IHG (Inverse HyperGeometric) with covariates.</p>
-<section id="id164">
-<h3>Description:<a class="headerlink" href="#id164" title="Link to this heading">#</a></h3>
+<section id="id82">
+<h3>Description:<a class="headerlink" href="#id82" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for IHG model family with covariates.</p>
 </div></blockquote>
 </section>
-<section id="id165">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id165" title="Link to this heading">#</a></h3>
+<section id="id83">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id83" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#ihg-with-covariates">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id166">
-<h3>List of TODOs:<a class="headerlink" href="#id166" title="Link to this heading">#</a></h3>
+<section id="id84">
+<h3>List of TODOs:<a class="headerlink" href="#id84" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id167">
-<h3>Credits<a class="headerlink" href="#id167" title="Link to this heading">#</a></h3>
+<section id="id85">
+<h3>Credits<a class="headerlink" href="#id85" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -6700,8 +6662,8 @@ for IHG model family with covariates.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id168">
-<h3>Classes and Functions<a class="headerlink" href="#id168" title="Link to this heading">#</a></h3>
+<section id="id86">
+<h3>Classes and Functions<a class="headerlink" href="#id86" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.ihg_v.CUBresIHGV">
@@ -6738,7 +6700,7 @@ for IHG model family with covariates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure (useful only if <code class="docutils literal notranslate"><span class="pre">ax</span></code> is not None)</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em> of </em><em>float</em>) – tuple of <code class="docutils literal notranslate"><span class="pre">(length,</span> <span class="pre">height)</span></code> for the figure</p></li>
 <li><p><strong>saveas</strong> (<em>str</em>) – if provided, name of the file to save the plot</p></li>
 </ul>
 </dd>
@@ -6961,31 +6923,31 @@ given an observed sample.</p>
 <span id="cubmods-multicub-module"></span><h2>cubmods.multicub module<a class="headerlink" href="#module-cubmods.multicub" title="Link to this heading">#</a></h2>
 <p id="multicub-module">CUB models in Python.
 Module for MULTICUB and MULTICUBE.</p>
-<section id="id169">
-<h3>Description:<a class="headerlink" href="#id169" title="Link to this heading">#</a></h3>
+<section id="id87">
+<h3>Description:<a class="headerlink" href="#id87" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for MULTICUB and MULTICUBE tool.</p>
 </div></blockquote>
 </section>
-<section id="id170">
-<h3>Manual, Examples and References:<a class="headerlink" href="#id170" title="Link to this heading">#</a></h3>
+<section id="id88">
+<h3>Manual, Examples and References:<a class="headerlink" href="#id88" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="manual.html#multicub-manual">Models manual</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id171">
-<h3>List of TODOs:<a class="headerlink" href="#id171" title="Link to this heading">#</a></h3>
+<section id="id89">
+<h3>List of TODOs:<a class="headerlink" href="#id89" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>…</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id172">
-<h3>Credits<a class="headerlink" href="#id172" title="Link to this heading">#</a></h3>
+<section id="id90">
+<h3>Credits<a class="headerlink" href="#id90" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -7003,8 +6965,8 @@ for MULTICUB and MULTICUBE tool.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id173">
-<h3>Classes and Functions<a class="headerlink" href="#id173" title="Link to this heading">#</a></h3>
+<section id="id91">
+<h3>Classes and Functions<a class="headerlink" href="#id91" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py function">
 <dt class="sig sig-object py" id="cubmods.multicub.multi">
@@ -7069,15 +7031,15 @@ shelter choices</p></li>
 <span id="cubmods-smry-module"></span><h2>cubmods.smry module<a class="headerlink" href="#module-cubmods.smry" title="Link to this heading">#</a></h2>
 <p>CUB models in Python.
 Module for summary tools.</p>
-<section id="id174">
-<h3>Description:<a class="headerlink" href="#id174" title="Link to this heading">#</a></h3>
+<section id="id92">
+<h3>Description:<a class="headerlink" href="#id92" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>This module contains methods and classes
 for summary tools.</p>
 </div></blockquote>
 </section>
-<section id="id175">
-<h3>List of TODOs:<a class="headerlink" href="#id175" title="Link to this heading">#</a></h3>
+<section id="id93">
+<h3>List of TODOs:<a class="headerlink" href="#id93" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi</p></li>
@@ -7088,8 +7050,8 @@ for summary tools.</p>
 </ul>
 </div></blockquote>
 </section>
-<section id="id176">
-<h3>Credits<a class="headerlink" href="#id176" title="Link to this heading">#</a></h3>
+<section id="id94">
+<h3>Credits<a class="headerlink" href="#id94" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">Author<span class="colon">:</span></dt>
@@ -7107,8 +7069,8 @@ for summary tools.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id177">
-<h3>Classes and Functions<a class="headerlink" href="#id177" title="Link to this heading">#</a></h3>
+<section id="id95">
+<h3>Classes and Functions<a class="headerlink" href="#id95" title="Link to this heading">#</a></h3>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cubmods.smry.CUBres">
@@ -7182,7 +7144,7 @@ functions of model modules.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cubmods.smry.CUBres.as_txt">
 <span class="sig-name descname"><span class="pre">as_txt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cubmods.smry.CUBres.as_txt" title="Link to this definition">#</a></dt>
-<dd><p>Print the summary.</p>
+<dd><p>Print the summary. Auxiliary function of <code class="docutils literal notranslate"><span class="pre">summary()</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -7375,11 +7337,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cub_0w">cubmods.cub_0w module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_0w.CUBresCUB0W"><code class="docutils literal notranslate"><span class="pre">CUBresCUB0W</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_0w.CUBresCUB0W.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUB0W.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_0w.CUBresCUB0W.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUB0W.plot_ordinal()</span></code></a></li>
@@ -7397,11 +7359,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cub_y0">cubmods.cub_y0 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_y0.CUBresCUBY0"><code class="docutils literal notranslate"><span class="pre">CUBresCUBY0</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_y0.CUBresCUBY0.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBY0.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_y0.CUBresCUBY0.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBY0.plot_ordinal()</span></code></a></li>
@@ -7418,11 +7380,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cub_yw">cubmods.cub_yw module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_yw.CUBresCUBYW"><code class="docutils literal notranslate"><span class="pre">CUBresCUBYW</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_yw.CUBresCUBYW.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBYW.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cub_yw.CUBresCUBYW.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBYW.plot_ordinal()</span></code></a></li>
@@ -7438,11 +7400,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cube">cubmods.cube module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id57">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id58">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id59">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id60">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube.CUBresCUBE"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube.CUBresCUBE.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube.CUBresCUBE.plot3d"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE.plot3d()</span></code></a></li>
@@ -7464,11 +7426,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cube_0w0">cubmods.cube_0w0 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube_0w0.CUBresCUBE0W0"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE0W0</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube_0w0.CUBresCUBE0W0.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE0W0.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube_0w0.CUBresCUBE0W0.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBE0W0.plot_ordinal()</span></code></a></li>
@@ -7486,11 +7448,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cube_ywz">cubmods.cube_ywz module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube_ywz.CUBresCUBEYWZ"><code class="docutils literal notranslate"><span class="pre">CUBresCUBEYWZ</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube_ywz.CUBresCUBEYWZ.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBEYWZ.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cube_ywz.CUBresCUBEYWZ.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBEYWZ.plot_ordinal()</span></code></a></li>
@@ -7510,11 +7472,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh">cubmods.cubsh module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id73">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id74">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id75">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cubsh.CUBresCUBSH"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSH</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cubsh.CUBresCUBSH.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSH.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cubsh.CUBresCUBSH.plot3d"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSH.plot3d()</span></code></a></li>
@@ -7543,11 +7505,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cubsh_ywx">cubmods.cubsh_ywx module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id79">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id80">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id81">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id82">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id83">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cubsh_ywx.CUBresCUBSHYWX"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSHYWX</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cubsh_ywx.CUBresCUBSHYWX.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSHYWX.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cubsh_ywx.CUBresCUBSHYWX.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUBSHYWX.plot_ordinal()</span></code></a></li>
@@ -7566,11 +7528,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush">cubmods.cush module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id84">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id85">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id86">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id87">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id88">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush.CUBresCUSH"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush.CUBresCUSH.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush.CUBresCUSH.plot_estim"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH.plot_estim()</span></code></a></li>
@@ -7589,11 +7551,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2">cubmods.cush2 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id89">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id90">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id91">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id92">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id93">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2.CUBresCUSH2"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2.CUBresCUSH2.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2.CUBresCUSH2.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2.plot_ordinal()</span></code></a></li>
@@ -7608,11 +7570,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_x0">cubmods.cush2_x0 module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id94">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id95">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id96">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id97">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id98">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id57">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2_x0.CUBresCUSH2X0"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2X0</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2_x0.CUBresCUSH2X0.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2X0.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2_x0.CUBresCUSH2X0.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2X0.plot_ordinal()</span></code></a></li>
@@ -7627,11 +7589,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush2_xx">cubmods.cush2_xx module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id99">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id100">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id101">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id102">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id103">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id58">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id59">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id60">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2_xx.CUBresCUSH2XX"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2XX</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2_xx.CUBresCUSH2XX.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2XX.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush2_xx.CUBresCUSH2XX.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSH2XX.plot_ordinal()</span></code></a></li>
@@ -7646,11 +7608,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.cush_x">cubmods.cush_x module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id104">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id105">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id106">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id107">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id108">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush_x.CUBresCUSHX"><code class="docutils literal notranslate"><span class="pre">CUBresCUSHX</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush_x.CUBresCUSHX.plot"><code class="docutils literal notranslate"><span class="pre">CUBresCUSHX.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.cush_x.CUBresCUSHX.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresCUSHX.plot_ordinal()</span></code></a></li>
@@ -7666,20 +7628,20 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.gem">cubmods.gem module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id109">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id110">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id111">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id112">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id113">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.gem.draw"><code class="docutils literal notranslate"><span class="pre">draw()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.gem.estimate"><code class="docutils literal notranslate"><span class="pre">estimate()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.general">cubmods.general module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id114">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id115">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id116">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id117">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id73">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id74">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id75">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.general.InvalidCategoriesError"><code class="docutils literal notranslate"><span class="pre">InvalidCategoriesError</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.general.InvalidSampleSizeError"><code class="docutils literal notranslate"><span class="pre">InvalidSampleSizeError</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.general.NoShelterError"><code class="docutils literal notranslate"><span class="pre">NoShelterError</span></code></a></li>
@@ -7717,11 +7679,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg">cubmods.ihg module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id118">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id119">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id120">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id121">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id122">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id79">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id80">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id81">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.ihg.CUBresIHG"><code class="docutils literal notranslate"><span class="pre">CUBresIHG</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.ihg.CUBresIHG.plot"><code class="docutils literal notranslate"><span class="pre">CUBresIHG.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.ihg.CUBresIHG.plot_estim"><code class="docutils literal notranslate"><span class="pre">CUBresIHG.plot_estim()</span></code></a></li>
@@ -7738,11 +7700,11 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.ihg_v">cubmods.ihg_v module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id164">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id165">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id166">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id167">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id168">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id82">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id83">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id84">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id85">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id86">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.ihg_v.CUBresIHGV"><code class="docutils literal notranslate"><span class="pre">CUBresIHGV</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.ihg_v.CUBresIHGV.plot"><code class="docutils literal notranslate"><span class="pre">CUBresIHGV.plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.ihg_v.CUBresIHGV.plot_ordinal"><code class="docutils literal notranslate"><span class="pre">CUBresIHGV.plot_ordinal()</span></code></a></li>
@@ -7759,20 +7721,20 @@ named <code class="docutils literal notranslate"><span class="pre">fname</span><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.multicub">cubmods.multicub module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id169">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id170">Manual, Examples and References:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id171">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id172">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id173">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id87">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id88">Manual, Examples and References:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id89">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id90">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id91">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.multicub.multi"><code class="docutils literal notranslate"><span class="pre">multi()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.multicub.pos_kwargs"><code class="docutils literal notranslate"><span class="pre">pos_kwargs()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-cubmods.smry">cubmods.smry module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id174">Description:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id175">List of TODOs:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id176">Credits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id177">Classes and Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id92">Description:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id93">List of TODOs:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id94">Credits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id95">Classes and Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.smry.CUBres"><code class="docutils literal notranslate"><span class="pre">CUBres</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.smry.CUBres.as_dataframe"><code class="docutils literal notranslate"><span class="pre">CUBres.as_dataframe()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cubmods.smry.CUBres.as_txt"><code class="docutils literal notranslate"><span class="pre">CUBres.as_txt()</span></code></a></li>

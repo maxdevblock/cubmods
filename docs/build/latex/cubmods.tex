@@ -186,7 +186,8 @@ for \sphinxcode{\sphinxupquote{.draw()}}. Notice that each row sums to 1, i.e.
 \sphinxAtStartPar
 which is a row vector \(1 \times m\) of the average probability given the
 estimated parameters and the covariates. This is an auxiliary function
-of \sphinxcode{\sphinxupquote{.plot\_ordinal()}}. Notice that it sums to 1 because
+of \sphinxcode{\sphinxupquote{.plot\_ordinal()}} and used to compute the Dissimilarity index for models
+with covariates. Notice that it always sums to 1 because
 \begin{equation*}
 \begin{split}\begin{align*}
 \sum_{r=1}^m \frac{1}{n} \sum_{i=1}^n \Pr(R_i=r|\pmb\theta; \pmb T_i)
@@ -260,7 +261,7 @@ IHG (Inverse HyperGeometric)
 For each family, a model can be defined with or without covariates for one or more parameters.
 
 \sphinxAtStartPar
-Details about each family and examples are provided in the following chapters.
+Details about each family and examples are provided in the following sections.
 
 \sphinxAtStartPar
 Even if each family has got its own \sphinxstyleemphasis{Maximum Likelihood Estimation} function \sphinxcode{\sphinxupquote{mle()}} that
@@ -282,7 +283,7 @@ perfect fit to the estimated average probability distribution (see
 \sphinxhref{intro.html}{Introduction} Notes).
 
 \sphinxAtStartPar
-The last chapter, shows the basic usage for the tool \sphinxcode{\sphinxupquote{multicub}}.
+The last section, shows the basic usage for the tool \sphinxcode{\sphinxupquote{multicub}}.
 
 
 \section{GeM usage}
@@ -295,11 +296,11 @@ specified model.
 \sphinxAtStartPar
 The function \sphinxcode{\sphinxupquote{gem.estimate()}} is the main function for the estimation and
 validation of a model from an observed sample, calling for the corresponding \sphinxcode{\sphinxupquote{.mle()}} function of
-the specified family, with or without covariates.
+the specified family module, with or without covariates.
 
 \sphinxAtStartPar
 The function \sphinxcode{\sphinxupquote{gem.draw()}} is the main function for drawing a random sample from a specified model,
-calling for the corresponding \sphinxcode{\sphinxupquote{.draw()}} function of the corresponding family,
+calling for the corresponding \sphinxcode{\sphinxupquote{.draw()}} function of the corresponding family module,
 with or without covariates.
 
 \sphinxAtStartPar
@@ -339,10 +340,10 @@ instance, a variable \sphinxcode{\sphinxupquote{sex}} with two categories \sphin
 \sphinxcode{\sphinxupquote{{[}"F", "M"{]}}} thus the dummy variabile will be equal to \sphinxcode{\sphinxupquote{0}} where \sphinxcode{\sphinxupquote{sex=="F"}} and equal
 to \sphinxcode{\sphinxupquote{1}} where otherwise \sphinxcode{\sphinxupquote{sex=="M"}}. Consequently, the estimated parameters will be the
 \sphinxcode{\sphinxupquote{constant}} for \sphinxcode{\sphinxupquote{sex=="F"}} and \sphinxcode{\sphinxupquote{C.sex\_M}} for \sphinxcode{\sphinxupquote{sex=="M"}}. If you want a different order
-for the categorical variables, you must specify it in \sphinxstyleemphasis{DataFrame}, for instance with the
-\sphinxcode{\sphinxupquote{pandas}} funtion \sphinxcode{\sphinxupquote{Categorical}}. In the example:
+for the categorical variables, you must specify it in the \sphinxstyleemphasis{DataFrame}, for instance with the
+\sphinxcode{\sphinxupquote{pandas}} class \sphinxcode{\sphinxupquote{Categorical}}. In the example:
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id37}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id38}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{sex}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{Categorical}\PYG{p}{(}
     \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{sex}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
@@ -370,7 +371,8 @@ three for \sphinxcode{\sphinxupquote{cube}} and \sphinxcode{\sphinxupquote{cub}}
 Within the function \sphinxcode{\sphinxupquote{estimate}} the number of ordinal categories \sphinxcode{\sphinxupquote{m}} is internally retrieved if not specified
 (taking the maximum observed category)
 but it is advisable to pass it as an argument to the call if some category has zero frequency.
-Within the function \sphinxcode{\sphinxupquote{draw}} instead, the number of ordinal categories \sphinxcode{\sphinxupquote{m}} must always be specified.
+Within the function \sphinxcode{\sphinxupquote{draw}} instead, the number of ordinal categories \sphinxcode{\sphinxupquote{m}}
+will default to \sphinxcode{\sphinxupquote{7}} if not otherwise specified.
 
 \sphinxAtStartPar
 A \sphinxcode{\sphinxupquote{pandas}} DataFrame must always be passed to the function \sphinxcode{\sphinxupquote{estimate}}, with the \sphinxstyleemphasis{kwarg}
@@ -378,9 +380,14 @@ A \sphinxcode{\sphinxupquote{pandas}} DataFrame must always be passed to the fun
 It should contain, at least, a column of the observed sample and the columns of the covariates (if any).
 If no \sphinxcode{\sphinxupquote{df}} is passed to the function \sphinxcode{\sphinxupquote{draw}} for a model without covariates
 instead, an empty DataFrame will be created.
+\begin{description}
+\sphinxlineitem{The number \sphinxcode{\sphinxupquote{n}} of ordinal responses to be drawn will default to \sphinxcode{\sphinxupquote{500}} if not otherwise specified}
+\sphinxAtStartPar
+in the function \sphinxcode{\sphinxupquote{draw}}
+
+\end{description}
 
 \sphinxAtStartPar
-The number \sphinxcode{\sphinxupquote{n}} of ordinal responses to be drawn should always be specified in the function \sphinxcode{\sphinxupquote{draw}}
 for models without covariates. For model with covariates instead, \sphinxcode{\sphinxupquote{n}} is not effective because
 the number of drawn ordinal responses will be equal to the passed DataFrame rows.
 
@@ -400,7 +407,7 @@ the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}} instead of an in
 
 \sphinxAtStartPar
 To the \sphinxcode{\sphinxupquote{draw}} method, the parameters’ values (with the \sphinxstyleemphasis{kwargs} of the corresponding
-family) must be passed:
+family) must always be passed:
 for example, \sphinxcode{\sphinxupquote{pi}} and \sphinxcode{\sphinxupquote{xi}} for CUB models without covariates, \sphinxcode{\sphinxupquote{beta}} and \sphinxcode{\sphinxupquote{gamma}}
 for CUB models with covariates for both feeling and uncertainty, etc. See the
 \sphinxcode{\sphinxupquote{.draw()}} function reference of the corresponding family module for details.
@@ -415,7 +422,7 @@ covariates for the shelter effect can be included only if specified for both fee
 because, as in the R package \sphinxcode{\sphinxupquote{CUB}}, only the models without covariates and with covariates for all components
 have been implemented.
 Nevertheless, the symbol \sphinxcode{\sphinxupquote{1}} could be used to specify a different combination of components with covariates.
-For example, if we want to specify a CUB model with covariate \sphinxcode{\sphinxupquote{cov}} for uncertainty only, we could pass the
+For example, if we want to specify a CUB model with the covariate \sphinxcode{\sphinxupquote{cov}} for uncertainty only, we could pass the
 formula \sphinxcode{\sphinxupquote{ordinal \textasciitilde{} cov | 1 | 1}}: in this case, for feeling and shelter effect, the constant terms only
 (\(\gamma_0\) and \(\omega_0\)) will be estimated and the values of the estimated \(\xi\) and
 \(\delta\) could be computed as \(\hat\xi=\mathrm{expit}(\hat\gamma_0)\) and
@@ -424,7 +431,7 @@ See {\hyperref[\detokenize{manual:cubsh-with-covariates}]{\sphinxsamedocref{this
 
 \sphinxAtStartPar
 If \sphinxcode{\sphinxupquote{family="cube"}}, then a CUBE mixture model (Combination of Uniform and Beta\sphinxhyphen{}Binomial) is fitted to the data
-to explain uncertainty, feeling and overdispersion.   Subjects’ covariates can be also included to explain the
+to explain uncertainty, feeling and overdispersion. Subjects’ covariates can also be included to explain the
 feeling component or all the three components by  specifying covariates matrices in the Formula as
 \sphinxcode{\sphinxupquote{ordinal\textasciitilde{}Y|W|Z}} to explain uncertainty (Y), feeling (W) or
 overdispersion (Z). For different combinations of components with covariates, the symbol \sphinxcode{\sphinxupquote{1}} can be used.
@@ -494,7 +501,7 @@ with an extra column of the drawn ordinal response called as specified in the fo
 
 \sphinxAtStartPar
 Many other attributes can be called from objects of the Base Class \sphinxcode{\sphinxupquote{CUBres}} returned by
-\sphinxcode{\sphinxupquote{estimate}}, such as the computed loglikelihood, the AIC and BIC, ectcetera. For details,
+\sphinxcode{\sphinxupquote{estimate}}, such as the computed loglikelihood, the AIC and BIC, etc. For details,
 see \sphinxhref{cubmods.html\#cubmods.smry.CUBres}{here} the Base Class \sphinxcode{\sphinxupquote{CUBres}} reference guide.
 
 
@@ -530,8 +537,13 @@ Note that \((1-\pi)\) is the weight of the Uncertainty component and
 In the following example, a sample will be drawn from a CUB model of \(n=500\) observations of an ordinal
 variable with \(m=10\) ordinal categories
 and parameters \((\pi=.7, \xi=.2)\). A \sphinxcode{\sphinxupquote{seed=1}} will be set to ensure reproducibility.
+
+\sphinxAtStartPar
+Notice that a Dissimilarity index is computed: this should be interpreted as the fraction of the
+drawn sample to be changed to achieve a perfect fit to the theoretical specified model the sample
+has been drawn from.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id38}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id39}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -577,7 +589,7 @@ Notice that, since the default value of the \sphinxstyleemphasis{kwarg} \sphinxc
 
 \sphinxAtStartPar
 Calling \sphinxcode{\sphinxupquote{drawn.as\_dataframe()}} will return a DataFrame with
-the parameters
+the specified parameters of the theoretical model
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
      component parameter  value
@@ -609,7 +621,7 @@ with \sphinxcode{\sphinxupquote{ass\_pars}} dictionary, the parameters of a know
 
 \end{itemize}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id39}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id40}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -628,6 +640,7 @@ with \sphinxcode{\sphinxupquote{ass\_pars}} dictionary, the parameters of a know
 \end{sphinxVerbatim}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
+warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
 =======================================================================
 =====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUB model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
 =======================================================================
@@ -659,6 +672,13 @@ Elapsed time=0.00202 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Thu Sep 26 18:00:5
 
 \noindent\sphinxincludegraphics{{cub00mle}.png}
 
+\sphinxAtStartPar
+See \sphinxhref{cubmods.html\#module-cubmods.general}{here} the reference guide
+of \sphinxcode{\sphinxupquote{general}} module and the reference paper
+\hyperlink{cite.references:id3}{Piccolo and Simone, 2019}
+for details about log\sphinxhyphen{}likelihoods,
+deviance and information criteria.
+
 \begin{DUlineblock}{0em}
 \item[] 
 \end{DUlineblock}
@@ -677,7 +697,7 @@ parameters’ estimated values and standard errors
 As an example, we can now save the \sphinxcode{\sphinxupquote{fit}} object to file. By default,
 it will be saved as a \sphinxcode{\sphinxupquote{pickle}} file.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id40}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id41}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{fit}\PYG{o}{.}\PYG{n}{save}\PYG{p}{(}\PYG{n}{fname}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cub\PYGZus{}mle\PYGZus{}results}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -688,7 +708,7 @@ The previous code, will save a file \sphinxcode{\sphinxupquote{cub\_mle\_results
 \sphinxAtStartPar
 We can then load the saved file with the code
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id41}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id42}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{general} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}object}
 
@@ -743,7 +763,7 @@ First of all, we’ll draw a random sample with two covariates for the \sphinxst
 \sphinxcode{\sphinxupquote{W1}} and \sphinxcode{\sphinxupquote{W2}}. Note that, having two covariates, we’ll need three \(\gamma\) parameters,
 to consider the constant term too.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id42}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id43}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -793,7 +813,7 @@ Dissimilarity = 0.0307673
 =======================================================================
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id43}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id44}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} plot the drawn sample}
 \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
@@ -802,7 +822,7 @@ Dissimilarity = 0.0307673
 
 \noindent\sphinxincludegraphics{{cub0wdraw}.png}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id44}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id45}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} print the parameters\PYGZsq{} values}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{as\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
@@ -816,7 +836,7 @@ Dissimilarity = 0.0307673
 3      Feeling        W2   \PYGZhy{}5.0
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id45}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id46}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} print the updated DataFrame}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{)}
@@ -843,7 +863,7 @@ Dissimilarity = 0.0307673
 Finally, we’ll call \sphinxcode{\sphinxupquote{estimate}} to estimate the parameters
 given the observed (actually, drawn) sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id46}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id47}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -901,7 +921,7 @@ See the references for details: \hyperlink{cite.references:id10}{Corduas \sphinx
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cubsh-without-covariates}}\label{\detokenize{manual:id13}}
+\label{\detokenize{manual:cubsh-without-covariates}}\label{\detokenize{manual:id14}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cubsh000-module}{Reference guide}
 
@@ -959,7 +979,7 @@ See the references for further details.
 In the next example, we’ll draw an ordinal response
 and then estimate the parameters given the sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id47}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id48}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1006,10 +1026,10 @@ The plot includes the marginal bivariate confidence ellipses too. Notice that, a
 than the ellipsoid’s confidence level. Indeed, the radius \(r\) of a
 standardized sphere at confidence
 level \((1-\alpha_3)\) is equal to \(r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3) }\), thus
-the confidence level of the bivariate marginal ellipses (which is a section of a trivariate
-cylinder) is \((1-\alpha_2) = F_{\chi^2_{(2)}(r^2)}\).
+the confidence level of the bivariate marginal ellipses (which are sections of trivariate
+cylinders) is \((1-\alpha_2) = F_{\chi^2_{(2)}}(r^2)\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id48}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id49}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -1069,7 +1089,7 @@ BIC = 5490.81
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cubsh-with-covariates}}\label{\detokenize{manual:id16}}
+\label{\detokenize{manual:cubsh-with-covariates}}\label{\detokenize{manual:id17}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cubshywx-module}{Reference guide}
 \begin{equation*}
@@ -1100,7 +1120,7 @@ BIC = 5490.81
 \right.\end{split}
 \end{equation*}
 \sphinxAtStartPar
-Only the model with covariates for all components has been
+Only the model with covariates for all components (GeCUB) has been
 currently defined and implemented, as in the R package \sphinxcode{\sphinxupquote{CUB}}.
 
 \sphinxAtStartPar
@@ -1115,7 +1135,7 @@ with covariates for uncertainty only. We’ll use the function
 because \(\gamma_0 = \mathrm{logit}(\xi)\) and
 similarly for \(\pi\) and \(\delta\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id49}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id50}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1193,7 +1213,7 @@ and similarly for \(\hat\delta\). Then, we can use the delta\sphinxhyphen{}metho
 to compute the standard errors of both \(\hat\xi\) and \(\hat\delta\), for instance
 \(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id50}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id51}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{est\PYGZus{}xi} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{est\PYGZus{}de} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
@@ -1227,7 +1247,7 @@ See the references for details: \hyperlink{cite.references:id11}{Capecchi and Pi
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cush-without-covariates}}\label{\detokenize{manual:id19}}
+\label{\detokenize{manual:cush-without-covariates}}\label{\detokenize{manual:id20}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cush0-module}{Reference guide}
 \begin{equation*}
@@ -1236,12 +1256,12 @@ See the references for details: \hyperlink{cite.references:id11}{Capecchi and Pi
 \end{equation*}
 \sphinxAtStartPar
 In the example, we’ll draw a sample from a CUSH model without covariates and
-then estimate the parameter given the observed sample.
+then estimate the parameter \(\delta\) given the observed sample.
 
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id51}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id52}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1301,7 +1321,7 @@ Elapsed time=0.00113 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 10:44:0
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cush-with-covariates}}\label{\detokenize{manual:id20}}
+\label{\detokenize{manual:cush-with-covariates}}\label{\detokenize{manual:id21}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cushx-module}{Reference guide}
 \begin{equation*}
@@ -1319,7 +1339,7 @@ then estimate the parameter given the observed sample.
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id52}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id53}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1387,7 +1407,6 @@ Elapsed time=0.01704 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 10:54:1
 \label{\detokenize{manual:cush2-family}}
 \sphinxAtStartPar
 Family of the class CUSH with two shelter effects (CUSH2).
-See the references for details.
 
 \sphinxAtStartPar
 This family has been introduced by \hyperlink{cite.references:id41}{Pierini, 2024} (pp 16\sphinxhyphen{}20) and first
@@ -1402,7 +1421,7 @@ used (\hyperlink{cite.references:id12}{Simone, 2022}).
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cush2-without-covariates}}\label{\detokenize{manual:id24}}
+\label{\detokenize{manual:cush2-without-covariates}}\label{\detokenize{manual:id25}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cush200-module}{Reference guide}
 \begin{equation*}
@@ -1411,14 +1430,14 @@ used (\hyperlink{cite.references:id12}{Simone, 2022}).
 \end{equation*}
 \sphinxAtStartPar
 In the example, we’ll draw a sample from a CUSH2 model without covariates and
-then estimate the parameter given the observed sample.
+then estimate the parameters given the observed sample.
 
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 Passing a list of two shelter categories with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}}, a CUSH2 model will be
 called.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id53}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id54}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1428,7 +1447,7 @@ called.
 \PYG{n}{drawn} \PYG{o}{=} \PYG{n}{draw}\PYG{p}{(}
     \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord \PYGZti{} 0 | 0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
     \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
-    \PYG{n}{sh}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{sh}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{,}
     \PYG{n}{m}\PYG{o}{=}\PYG{l+m+mi}{7}\PYG{p}{,}
     \PYG{n}{delta1}\PYG{o}{=}\PYG{l+m+mf}{.15}\PYG{p}{,} \PYG{n}{delta2}\PYG{o}{=}\PYG{l+m+mf}{.1}\PYG{p}{,}
     \PYG{n}{n}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{,} \PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}
@@ -1438,7 +1457,7 @@ called.
     \PYG{n}{df}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{,}
     \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cush}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
     \PYG{n}{formula}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ord\PYGZti{}0|0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
-    \PYG{n}{sh}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{]}\PYG{p}{,}
+    \PYG{n}{sh}\PYG{o}{=}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{sh}\PYG{p}{,}
     \PYG{n}{ass\PYGZus{}pars}\PYG{o}{=}\PYG{p}{\PYGZob{}}
         \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{delta1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}
         \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{delta2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{pars}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
@@ -1456,24 +1475,24 @@ warnings.warn(\PYGZdq{}No m given, max(ordinal) has been taken\PYGZdq{})
 =======================================================================
 =====\PYGZgt{}\PYGZgt{}\PYGZgt{} CUSH2 model \PYGZlt{}\PYGZlt{}\PYGZlt{}===== ML\PYGZhy{}estimates
 =======================================================================
-m=7  Shelter=[1 7]  Size=1000
+m=7  Shelter=[1 4]  Size=1000
 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
 Shelter effects
         Estimates  StdErr    Wald  p\PYGZhy{}value
-delta1      0.171  0.0148  11.535   0.0000
-delta2      0.107  0.0163   6.555   0.0000
+delta1      0.172  0.0149  11.512   0.0000
+delta2      0.113  0.0163   6.930   0.0000
 =======================================================================
-Dissimilarity = 0.0184
-Loglik(sat)   = \PYGZhy{}1852.818
-Loglik(MOD)   = \PYGZhy{}1854.344
+Dissimilarity = 0.0176
+Loglik(sat)   = \PYGZhy{}1849.206
+Loglik(MOD)   = \PYGZhy{}1850.709
 Loglik(uni)   = \PYGZhy{}1945.910
-Mean\PYGZhy{}loglik   = \PYGZhy{}1.854
-Deviance      = 3.053
+Mean\PYGZhy{}loglik   = \PYGZhy{}1.851
+Deviance      = 3.006
 \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
-AIC = 3712.69
-BIC = 3722.50
+AIC = 3705.42
+BIC = 3715.23
 =======================================================================
-Elapsed time=0.00228 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 11:15:21 2024
+Elapsed time=0.00247 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Sep 27 11:32:02 2024
 =======================================================================
 \end{sphinxVerbatim}
 
@@ -1481,7 +1500,7 @@ Elapsed time=0.00228 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 11:15:2
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cush2-with-covariates}}\label{\detokenize{manual:id25}}
+\label{\detokenize{manual:cush2-with-covariates}}\label{\detokenize{manual:id26}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cush2x0-module}{Reference guide (X1|0)}
 
@@ -1525,7 +1544,7 @@ we do it here to confirm that \(\mathrm{expit}(\hat\omega_{20})=\hat\delta_2\).
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id54}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id55}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1620,7 +1639,7 @@ See the references for details: \hyperlink{cite.references:id16}{Iannario, 2014}
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cube-without-covariates}}\label{\detokenize{manual:id29}}
+\label{\detokenize{manual:cube-without-covariates}}\label{\detokenize{manual:id30}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cube000-module}{Reference guide}
 \begin{equation*}
@@ -1635,10 +1654,10 @@ will estimate the parameters given the observed sample.
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 
 \sphinxAtStartPar
-The \sphinxtitleref{.plot()} method of the object \sphinxtitleref{fit} will show trivariate and bivariate confidence
+The \sphinxcode{\sphinxupquote{.plot()}} method of the object \sphinxcode{\sphinxupquote{fit}} will show trivariate and bivariate confidence
 regions too, as in CUBSH models. See {\hyperref[\detokenize{manual:confidence-ellipsoid}]{\sphinxsamedocref{here}}} for the values of confidence levels.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id55}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id56}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1706,7 +1725,7 @@ Elapsed time=0.07919 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:18:4
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cube-with-covariates}}\label{\detokenize{manual:id30}}
+\label{\detokenize{manual:cube-with-covariates}}\label{\detokenize{manual:id31}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cube0w0-module}{Reference guide (0|W|0)}
 
@@ -1750,7 +1769,7 @@ In this example, we’ll draw a sample with covariates for
 \sphinxstyleemphasis{feeling} only and then will estimate the parameters given
 the observed sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id56}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id57}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1829,7 +1848,7 @@ model with covariates for all components and passing
 the symbol \sphinxcode{\sphinxupquote{1}} to the \sphinxstyleemphasis{uncertainty} and \sphinxstyleemphasis{overdispersion}
 components.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id57}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id58}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -1881,7 +1900,7 @@ Elapsed time=50.02969 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:33:
 \sphinxAtStartPar
 In fact:
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id58}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id59}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{est\PYGZus{}pi} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{est\PYGZus{}ph} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
@@ -1913,7 +1932,7 @@ See the references for details: \hyperlink{cite.references:id17}{D’Elia, 2003}
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:ihg-without-covariates}}\label{\detokenize{manual:id34}}
+\label{\detokenize{manual:ihg-without-covariates}}\label{\detokenize{manual:id35}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#ihg0-module}{Reference guide}
 \begin{equation*}
@@ -1995,7 +2014,7 @@ Elapsed time=0.00464 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:47:5
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:ihg-with-covariates}}\label{\detokenize{manual:id35}}
+\label{\detokenize{manual:ihg-with-covariates}}\label{\detokenize{manual:id36}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#ihgv-module}{Reference guide}
 \begin{equation*}
@@ -2017,7 +2036,7 @@ and then will estimate the parameters given the observed sample.
 Notice that IHG models without covariates are unimodals but, however,
 IHG models with covariates can be bimodal, as the one in the following example.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id59}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id60}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -2105,13 +2124,19 @@ multiple observed samples can be shown in a single plot.
 In this example, we’ll draw three samples from CUBE
 models and \sphinxstyleemphasis{manually} add a shelter category. Then we’ll
 use the \sphinxstylestrong{multicub} tool for CUB models, CUBE models and
-CUBSH models (that aren’t yet implemented in the R package \sphinxcode{\sphinxupquote{CUB}}).
+CUBSH models (that aren’t yet implemented in the R package \sphinxcode{\sphinxupquote{CUB}}
+for the \sphinxstylestrong{multicub} tool).
+
+\sphinxAtStartPar
+Notice that, since the samples are drawn from a “CUBE model with shelter effect”
+(which has not been implemented yet), the estimated parameters’ values will
+differ from the theoretical ones of the speficied CUBE model used to draw the sample.
 
 \sphinxAtStartPar
 The \sphinxstylestrong{multicub} tool in \sphinxcode{\sphinxupquote{cubmods}} package can also show confidence
 ellipses for CUB models.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id60}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id61}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
@@ -2320,7 +2345,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -2807,97 +2832,6 @@ Probability distribution of a specified CUB model.
 
 \sphinxAtStartPar
 \(\Pr(R = r | \pmb\theta),\; r=1 \ldots m\)
-\begin{description}
-\sphinxlineitem{References:}\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\setcounter{enumi}{0}
-\item {} 
-\sphinxAtStartPar
-Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. \sphinxstyleemphasis{Quality \& Quantity}, 51:2375\textendash{}2393, 2017.
-
-\item {} 
-\sphinxAtStartPar
-Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In \sphinxstyleemphasis{London Stata Conference 2021}, number 16. Stata Users Group, 2021.
-
-\item {} 
-\sphinxAtStartPar
-Marcella Corduas, Maria Iannario, and Domenico Piccolo. A class of statistical models for evaluating services and performances. In \sphinxstyleemphasis{Statistical methods for the evaluation of educational services and quality of products}, pages 99\textendash{}117. Springer, 2009.
-
-\item {} 
-\sphinxAtStartPar
-A D\textquotesingle{}Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In \sphinxstyleemphasis{S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione}, pages 245\textendash{}250. CLEUP, 2005.
-
-\item {} 
-\sphinxAtStartPar
-Angela D\textquotesingle{}Elia and Domenico Piccolo. A mixture model for preferences data analysis. \sphinxstyleemphasis{Computational Statistics \& Data Analysis}, 49(3):917\textendash{}934, 2005.
-
-\item {} 
-\sphinxAtStartPar
-Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. \sphinxstyleemphasis{Statistical modelling}, 3(1):65\textendash{}78, 2003.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. \sphinxstyleemphasis{Quaderni di statistica}, 14:137\textendash{}140, 2012.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. \sphinxstyleemphasis{Statistical Methods \& Applications}, 21:1\textendash{}22, 2012.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. \sphinxstyleemphasis{Communications in Statistics\sphinxhyphen{}Theory and Methods}, 43(4):771\textendash{}786, 2014.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. \sphinxstyleemphasis{Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version}, 2009.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. \sphinxstyleemphasis{Quality Technology \& Quantitative Management}, 7(2):149\textendash{}168, 2010.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. \sphinxstyleemphasis{Statistica \& Applicazioni}, 12(2):177\textendash{}204, 2014.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. \sphinxstyleemphasis{CRAN}, 2022.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. \sphinxstyleemphasis{Quaderni di Statistica}, 5(1):85\textendash{}104, 2003.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo. Observed information matrix for MUB models. \sphinxstyleemphasis{Quaderni di Statistica}, 8(1):33\textendash{}78, 2006.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo. Inferential issues on cube models with covariates. \sphinxstyleemphasis{Communications in Statistics\sphinxhyphen{}Theory and Methods}, 44(23):5023\textendash{}5036, 2015.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). \sphinxstyleemphasis{Statistical Methods \& Applications}, 28:389\textendash{}493, 2019.
-
-\item {} 
-\sphinxAtStartPar
-Massimo Pierini. Modelli della classe CUB in python. \sphinxstyleemphasis{Universitas Mercatorum, Rome, IT}, pages 1\textendash{}172, June 2024. (Bachelor\textquotesingle{}s thesis L\sphinxhyphen{}41).
-
-\item {} 
-\sphinxAtStartPar
-W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. \sphinxstyleemphasis{Computational Methods and Data Analysis for Metabolomics}, pages 265\textendash{}311, 2020.
-
-\item {} 
-\sphinxAtStartPar
-Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. \sphinxstyleemphasis{TEST}, 31(3):828\textendash{}855, 2022.
-
-\item {} 
-\sphinxAtStartPar
-Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. \sphinxstyleemphasis{GNU Regression, Econometrics and Time Series Library}, pages 147, 2019.
-
-\end{enumerate}
-
-\end{description}
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
@@ -3128,7 +3062,7 @@ and Binomial) with covariates for the feeling component.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id42}}\begin{quote}
+\label{\detokenize{cubmods:id1}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -3137,7 +3071,7 @@ for CUB\_0W model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id43}}\begin{itemize}
+\label{\detokenize{cubmods:id2}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cub-with-covariates}{Models manual}
@@ -3146,7 +3080,7 @@ for CUB\_0W model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id44}}\begin{itemize}
+\label{\detokenize{cubmods:id3}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -3155,7 +3089,7 @@ for CUB\_0W model family.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id45}}\begin{quote}
+\label{\detokenize{cubmods:id4}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -3178,7 +3112,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id46}}\index{CUBresCUB0W (class in cubmods.cub\_0w)@\spxentry{CUBresCUB0W}\spxextra{class in cubmods.cub\_0w}}
+\label{\detokenize{cubmods:id5}}\index{CUBresCUB0W (class in cubmods.cub\_0w)@\spxentry{CUBresCUB0W}\spxextra{class in cubmods.cub\_0w}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_0w.CUBresCUB0W}}
@@ -3259,7 +3193,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -3785,7 +3719,7 @@ and Binomial) with covariates for the uncertainty component.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id47}}\begin{quote}
+\label{\detokenize{cubmods:id6}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -3794,7 +3728,7 @@ for CUB\_Y0 model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id48}}\begin{itemize}
+\label{\detokenize{cubmods:id7}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cub-with-covariates}{Models manual}
@@ -3803,7 +3737,7 @@ for CUB\_Y0 model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id49}}\begin{itemize}
+\label{\detokenize{cubmods:id8}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -3812,7 +3746,7 @@ for CUB\_Y0 model family.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id50}}\begin{quote}
+\label{\detokenize{cubmods:id9}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -3835,7 +3769,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id51}}\index{CUBresCUBY0 (class in cubmods.cub\_y0)@\spxentry{CUBresCUBY0}\spxextra{class in cubmods.cub\_y0}}
+\label{\detokenize{cubmods:id10}}\index{CUBresCUBY0 (class in cubmods.cub\_y0)@\spxentry{CUBresCUBY0}\spxextra{class in cubmods.cub\_y0}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_y0.CUBresCUBY0}}
@@ -3916,7 +3850,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -4398,7 +4332,7 @@ for both feeling and uncertainty.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id52}}\begin{quote}
+\label{\detokenize{cubmods:id11}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -4407,7 +4341,7 @@ for CUB\_YW model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id53}}\begin{itemize}
+\label{\detokenize{cubmods:id12}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cub-with-covariates}{Models manual}
@@ -4416,7 +4350,7 @@ for CUB\_YW model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id54}}\begin{itemize}
+\label{\detokenize{cubmods:id13}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -4425,7 +4359,7 @@ for CUB\_YW model family.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id55}}\begin{quote}
+\label{\detokenize{cubmods:id14}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -4448,7 +4382,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id56}}\index{CUBresCUBYW (class in cubmods.cub\_yw)@\spxentry{CUBresCUBYW}\spxextra{class in cubmods.cub\_yw}}
+\label{\detokenize{cubmods:id15}}\index{CUBresCUBYW (class in cubmods.cub\_yw)@\spxentry{CUBresCUBYW}\spxextra{class in cubmods.cub\_yw}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cub_yw.CUBresCUBYW}}
@@ -4529,7 +4463,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -4991,7 +4925,7 @@ and Beta\sphinxhyphen{}Binomial).
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id57}}\begin{quote}
+\label{\detokenize{cubmods:id16}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -5000,7 +4934,7 @@ for CUBE model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id58}}\begin{itemize}
+\label{\detokenize{cubmods:id17}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cube-without-covariates}{Models manual}
@@ -5009,7 +4943,7 @@ for CUBE model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id59}}\begin{itemize}
+\label{\detokenize{cubmods:id18}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 TODO: adjust 3d plots legend
@@ -5018,7 +4952,7 @@ TODO: adjust 3d plots legend
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id60}}\begin{quote}
+\label{\detokenize{cubmods:id19}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -5041,7 +4975,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id61}}\index{CUBresCUBE (class in cubmods.cube)@\spxentry{CUBresCUBE}\spxextra{class in cubmods.cube}}
+\label{\detokenize{cubmods:id20}}\index{CUBresCUBE (class in cubmods.cube)@\spxentry{CUBresCUBE}\spxextra{class in cubmods.cube}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube.CUBresCUBE}}
@@ -5129,7 +5063,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -5781,7 +5715,7 @@ and Beta\sphinxhyphen{}Binomial) with covariates for the feeling component.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id62}}\begin{quote}
+\label{\detokenize{cubmods:id21}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -5790,7 +5724,7 @@ for CUBE\_0W0 model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id63}}\begin{itemize}
+\label{\detokenize{cubmods:id22}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cube-with-covariates}{Models manual}
@@ -5799,7 +5733,7 @@ for CUBE\_0W0 model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id64}}\begin{itemize}
+\label{\detokenize{cubmods:id23}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Manual and Examples
@@ -5812,7 +5746,7 @@ Remove unused imports
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id65}}\begin{quote}
+\label{\detokenize{cubmods:id24}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -5835,7 +5769,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id66}}\index{CUBresCUBE0W0 (class in cubmods.cube\_0w0)@\spxentry{CUBresCUBE0W0}\spxextra{class in cubmods.cube\_0w0}}
+\label{\detokenize{cubmods:id25}}\index{CUBresCUBE0W0 (class in cubmods.cube\_0w0)@\spxentry{CUBresCUBE0W0}\spxextra{class in cubmods.cube\_0w0}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_0w0.CUBresCUBE0W0}}
@@ -5916,7 +5850,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -6467,7 +6401,7 @@ and Beta\sphinxhyphen{}Binomial) with covariates.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id67}}\begin{quote}
+\label{\detokenize{cubmods:id26}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -6476,7 +6410,7 @@ for CUB\_YWZ model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id68}}\begin{itemize}
+\label{\detokenize{cubmods:id27}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cube-with-covariates}{Models manual}
@@ -6485,7 +6419,7 @@ for CUB\_YWZ model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id69}}\begin{itemize}
+\label{\detokenize{cubmods:id28}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 Manual and Examples
@@ -6494,7 +6428,7 @@ Manual and Examples
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id70}}\begin{quote}
+\label{\detokenize{cubmods:id29}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -6517,7 +6451,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id71}}\index{CUBresCUBEYWZ (class in cubmods.cube\_ywz)@\spxentry{CUBresCUBEYWZ}\spxextra{class in cubmods.cube\_ywz}}
+\label{\detokenize{cubmods:id30}}\index{CUBresCUBEYWZ (class in cubmods.cube\_ywz)@\spxentry{CUBresCUBEYWZ}\spxextra{class in cubmods.cube\_ywz}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cube_ywz.CUBresCUBEYWZ}}
@@ -6598,7 +6532,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -7277,7 +7211,7 @@ and Binomial with Shelter Effect).
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id73}}\begin{quote}
+\label{\detokenize{cubmods:id32}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -7286,7 +7220,7 @@ for CUBSH model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id74}}\begin{itemize}
+\label{\detokenize{cubmods:id33}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cubsh-without-covariates}{Models manual}
@@ -7295,7 +7229,7 @@ for CUBSH model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id75}}\begin{itemize}
+\label{\detokenize{cubmods:id34}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 TODO: fix 3d plots legend
@@ -7308,7 +7242,7 @@ TODO: test all \sphinxcode{\sphinxupquote{def \_*():}} (optional functions)
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id76}}\begin{quote}
+\label{\detokenize{cubmods:id35}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -7331,7 +7265,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id77}}\index{CUBresCUBSH (class in cubmods.cubsh)@\spxentry{CUBresCUBSH}\spxextra{class in cubmods.cubsh}}
+\label{\detokenize{cubmods:id36}}\index{CUBresCUBSH (class in cubmods.cubsh)@\spxentry{CUBresCUBSH}\spxextra{class in cubmods.cubsh}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh.CUBresCUBSH}}
@@ -7419,7 +7353,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -8455,7 +8389,7 @@ and Binomial with Shelter Effect) with covariates.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id79}}\begin{quote}
+\label{\detokenize{cubmods:id38}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -8464,7 +8398,7 @@ for CUBSH\_YWX model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id80}}\begin{itemize}
+\label{\detokenize{cubmods:id39}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cubsh-with-covariates}{Models manual}
@@ -8473,7 +8407,7 @@ for CUBSH\_YWX model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id81}}\begin{itemize}
+\label{\detokenize{cubmods:id40}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -8482,7 +8416,7 @@ for CUBSH\_YWX model family.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id82}}\begin{quote}
+\label{\detokenize{cubmods:id41}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -8505,7 +8439,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id83}}\index{CUBresCUBSHYWX (class in cubmods.cubsh\_ywx)@\spxentry{CUBresCUBSHYWX}\spxextra{class in cubmods.cubsh\_ywx}}
+\label{\detokenize{cubmods:id42}}\index{CUBresCUBSHYWX (class in cubmods.cubsh\_ywx)@\spxentry{CUBresCUBSHYWX}\spxextra{class in cubmods.cubsh\_ywx}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cubsh_ywx.CUBresCUBSHYWX}}
@@ -8586,7 +8520,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -9254,7 +9188,7 @@ and Shelter effect).
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id84}}\begin{quote}
+\label{\detokenize{cubmods:id43}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -9263,7 +9197,7 @@ for CUSH model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id85}}\begin{itemize}
+\label{\detokenize{cubmods:id44}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cush-without-covariates}{Models manual}
@@ -9272,7 +9206,7 @@ for CUSH model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id86}}\begin{itemize}
+\label{\detokenize{cubmods:id45}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 TODO: check and fix gini \& laakso
@@ -9281,7 +9215,7 @@ TODO: check and fix gini \& laakso
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id87}}\begin{quote}
+\label{\detokenize{cubmods:id46}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -9304,7 +9238,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id88}}\index{CUBresCUSH (class in cubmods.cush)@\spxentry{CUBresCUSH}\spxextra{class in cubmods.cush}}
+\label{\detokenize{cubmods:id47}}\index{CUBresCUSH (class in cubmods.cush)@\spxentry{CUBresCUSH}\spxextra{class in cubmods.cush}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush.CUBresCUSH}}
@@ -9392,7 +9326,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -9871,7 +9805,7 @@ and 2 Shelter Choices).
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id89}}\begin{quote}
+\label{\detokenize{cubmods:id48}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -9880,7 +9814,7 @@ for CUSH2 model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id90}}\begin{itemize}
+\label{\detokenize{cubmods:id49}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cush2-without-covariates}{Models manual}
@@ -9889,7 +9823,7 @@ for CUSH2 model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id91}}\begin{itemize}
+\label{\detokenize{cubmods:id50}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -9898,7 +9832,7 @@ for CUSH2 model family.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id92}}\begin{quote}
+\label{\detokenize{cubmods:id51}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -9921,7 +9855,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id93}}\index{CUBresCUSH2 (class in cubmods.cush2)@\spxentry{CUBresCUSH2}\spxextra{class in cubmods.cush2}}
+\label{\detokenize{cubmods:id52}}\index{CUBresCUSH2 (class in cubmods.cush2)@\spxentry{CUBresCUSH2}\spxextra{class in cubmods.cush2}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2.CUBresCUSH2}}
@@ -10009,7 +9943,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -10384,7 +10318,7 @@ for the 1st shelter choice.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id94}}\begin{quote}
+\label{\detokenize{cubmods:id53}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -10393,7 +10327,7 @@ for CUSH2 model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id95}}\begin{itemize}
+\label{\detokenize{cubmods:id54}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cush2-with-covariates}{Models manual}
@@ -10402,7 +10336,7 @@ for CUSH2 model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id96}}\begin{itemize}
+\label{\detokenize{cubmods:id55}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -10411,7 +10345,7 @@ for CUSH2 model family.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id97}}\begin{quote}
+\label{\detokenize{cubmods:id56}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -10434,7 +10368,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id98}}\index{CUBresCUSH2X0 (class in cubmods.cush2\_x0)@\spxentry{CUBresCUSH2X0}\spxextra{class in cubmods.cush2\_x0}}
+\label{\detokenize{cubmods:id57}}\index{CUBresCUSH2X0 (class in cubmods.cush2\_x0)@\spxentry{CUBresCUSH2X0}\spxextra{class in cubmods.cush2\_x0}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_x0.CUBresCUSH2X0}}
@@ -10515,7 +10449,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -10914,7 +10848,7 @@ and 2 Shelter Choices) with covariates.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id99}}\begin{quote}
+\label{\detokenize{cubmods:id58}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -10924,7 +10858,7 @@ both shelter choices.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id100}}\begin{itemize}
+\label{\detokenize{cubmods:id59}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cush2-with-covariates}{Models manual}
@@ -10933,7 +10867,7 @@ both shelter choices.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id101}}\begin{itemize}
+\label{\detokenize{cubmods:id60}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -10942,7 +10876,7 @@ both shelter choices.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id102}}\begin{quote}
+\label{\detokenize{cubmods:id61}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -10965,7 +10899,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id103}}\index{CUBresCUSH2XX (class in cubmods.cush2\_xx)@\spxentry{CUBresCUSH2XX}\spxextra{class in cubmods.cush2\_xx}}
+\label{\detokenize{cubmods:id62}}\index{CUBresCUSH2XX (class in cubmods.cush2\_xx)@\spxentry{CUBresCUSH2XX}\spxextra{class in cubmods.cush2\_xx}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush2_xx.CUBresCUSH2XX}}
@@ -11046,7 +10980,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -11473,7 +11407,7 @@ and Shelter effect) with covariates.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id104}}\begin{quote}
+\label{\detokenize{cubmods:id63}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -11482,7 +11416,7 @@ for CUSH model family.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id105}}\begin{itemize}
+\label{\detokenize{cubmods:id64}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#cush-with-covariates}{Models manual}
@@ -11491,7 +11425,7 @@ for CUSH model family.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id106}}\begin{itemize}
+\label{\detokenize{cubmods:id65}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -11500,7 +11434,7 @@ for CUSH model family.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id107}}\begin{quote}
+\label{\detokenize{cubmods:id66}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -11523,7 +11457,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id108}}\index{CUBresCUSHX (class in cubmods.cush\_x)@\spxentry{CUBresCUSHX}\spxextra{class in cubmods.cush\_x}}
+\label{\detokenize{cubmods:id67}}\index{CUBresCUSHX (class in cubmods.cush\_x)@\spxentry{CUBresCUSHX}\spxextra{class in cubmods.cush\_x}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.cush_x.CUBresCUSHX}}
@@ -11604,7 +11538,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -12020,7 +11954,7 @@ Module for GEM (Generalized Mixtures).
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id109}}\begin{quote}
+\label{\detokenize{cubmods:id68}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -12030,7 +11964,7 @@ and sample drawing.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id110}}\begin{itemize}
+\label{\detokenize{cubmods:id69}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#gem-manual}{Models manual}
@@ -12039,7 +11973,7 @@ and sample drawing.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id111}}\begin{itemize}
+\label{\detokenize{cubmods:id70}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 TODO: implement best shelter search
@@ -12048,7 +11982,7 @@ TODO: implement best shelter search
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id112}}\begin{quote}
+\label{\detokenize{cubmods:id71}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -12071,7 +12005,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id113}}\index{draw() (in module cubmods.gem)@\spxentry{draw()}\spxextra{in module cubmods.gem}}
+\label{\detokenize{cubmods:id72}}\index{draw() (in module cubmods.gem)@\spxentry{draw()}\spxextra{in module cubmods.gem}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.gem.draw}}
@@ -12201,7 +12135,7 @@ Module for General functions.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id114}}\begin{quote}
+\label{\detokenize{cubmods:id73}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -12210,7 +12144,7 @@ for general functions.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id115}}\begin{itemize}
+\label{\detokenize{cubmods:id74}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -12219,7 +12153,7 @@ for general functions.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id116}}\begin{quote}
+\label{\detokenize{cubmods:id75}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -12242,7 +12176,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id117}}\index{InvalidCategoriesError@\spxentry{InvalidCategoriesError}}
+\label{\detokenize{cubmods:id76}}\index{InvalidCategoriesError@\spxentry{InvalidCategoriesError}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.general.InvalidCategoriesError}}
@@ -13171,7 +13105,7 @@ float
 Log\sphinxhyphen{}likelihood of saturated model.
 
 \sphinxAtStartPar
-Ssaturated level,that is the theoretically maximum information
+Saturated level ,that is the theoretically maximum information
 that can be obtained by a model using as many parameters as possible. 
 Then, the saturated log\sphinxhyphen{}likelihood is computed by assuming that the model 
 is specified by as many parameters as available observations. 
@@ -13358,7 +13292,7 @@ Module for IHG (Inverse HyperGeometric).
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id118}}\begin{quote}
+\label{\detokenize{cubmods:id77}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -13367,7 +13301,7 @@ for IHG model family without covariates.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id119}}\begin{itemize}
+\label{\detokenize{cubmods:id78}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#ihg-without-covariates}{Models manual}
@@ -13376,7 +13310,7 @@ for IHG model family without covariates.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id120}}\begin{itemize}
+\label{\detokenize{cubmods:id79}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -13385,7 +13319,7 @@ for IHG model family without covariates.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id121}}\begin{quote}
+\label{\detokenize{cubmods:id80}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -13408,7 +13342,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id122}}\index{CUBresIHG (class in cubmods.ihg)@\spxentry{CUBresIHG}\spxextra{class in cubmods.ihg}}
+\label{\detokenize{cubmods:id81}}\index{CUBresIHG (class in cubmods.ihg)@\spxentry{CUBresIHG}\spxextra{class in cubmods.ihg}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg.CUBresIHG}}
@@ -13496,7 +13430,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -13648,8 +13582,9 @@ an instance of \sphinxcode{\sphinxupquote{CUBsample}} (see \sphinxhref{cubmods.h
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{effe}}}{\sphinxparam{\DUrole{n}{theta}}\sphinxparamcomma \sphinxparam{\DUrole{n}{m}}\sphinxparamcomma \sphinxparam{\DUrole{n}{f}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-Compute the log\sphinxhyphen{}likelihood function of a IHG model without 
+Compute the negative log\sphinxhyphen{}likelihood function of a IHG model without 
 covariates for a given absolute frequency distribution.
+Auxiliary function of \sphinxcode{\sphinxupquote{mle()}} for optimization algorithm.
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
@@ -13718,6 +13653,35 @@ the value of \(\theta^{(0)}\)
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubmods.ihg.}}\sphinxbfcode{\sphinxupquote{loglik}}}{\sphinxparam{\DUrole{n}{m}}\sphinxparamcomma \sphinxparam{\DUrole{n}{theta}}\sphinxparamcomma \sphinxparam{\DUrole{n}{f}}}{}
 \pysigstopsignatures
+\sphinxAtStartPar
+Compute the log\sphinxhyphen{}likelihood function of a IHG model without 
+covariates for a given absolute frequency distribution.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{theta}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} parameter :math:\textasciigrave{}     heta\textasciigrave{} (probability of 1st shelter category)
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{m}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} number of ordinal categories
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{f}} (\sphinxstyleliteralemphasis{\sphinxupquote{array}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} array of absolute frequency distribution
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+the log\sphinxhyphen{}likelihood value
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+float
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{mle() (in module cubmods.ihg)@\spxentry{mle()}\spxextra{in module cubmods.ihg}}
@@ -13780,97 +13744,6 @@ Probability distribution of a specified IHG model without covariates.
 
 \sphinxAtStartPar
 \(\Pr(R = r | \pmb\theta),\; r=1 \ldots m\)
-\begin{description}
-\sphinxlineitem{References:}\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\setcounter{enumi}{0}
-\item {} 
-\sphinxAtStartPar
-Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. \sphinxstyleemphasis{Quality \& Quantity}, 51:2375\textendash{}2393, 2017.
-
-\item {} 
-\sphinxAtStartPar
-Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In \sphinxstyleemphasis{London Stata Conference 2021}, number 16. Stata Users Group, 2021.
-
-\item {} 
-\sphinxAtStartPar
-Marcella Corduas, Maria Iannario, and Domenico Piccolo. A class of statistical models for evaluating services and performances. In \sphinxstyleemphasis{Statistical methods for the evaluation of educational services and quality of products}, pages 99\textendash{}117. Springer, 2009.
-
-\item {} 
-\sphinxAtStartPar
-A D\textquotesingle{}Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In \sphinxstyleemphasis{S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione}, pages 245\textendash{}250. CLEUP, 2005.
-
-\item {} 
-\sphinxAtStartPar
-Angela D\textquotesingle{}Elia and Domenico Piccolo. A mixture model for preferences data analysis. \sphinxstyleemphasis{Computational Statistics \& Data Analysis}, 49(3):917\textendash{}934, 2005.
-
-\item {} 
-\sphinxAtStartPar
-Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. \sphinxstyleemphasis{Statistical modelling}, 3(1):65\textendash{}78, 2003.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. \sphinxstyleemphasis{Quaderni di statistica}, 14:137\textendash{}140, 2012.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. \sphinxstyleemphasis{Statistical Methods \& Applications}, 21:1\textendash{}22, 2012.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. \sphinxstyleemphasis{Communications in Statistics\sphinxhyphen{}Theory and Methods}, 43(4):771\textendash{}786, 2014.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. \sphinxstyleemphasis{Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version}, 2009.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. \sphinxstyleemphasis{Quality Technology \& Quantitative Management}, 7(2):149\textendash{}168, 2010.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. \sphinxstyleemphasis{Statistica \& Applicazioni}, 12(2):177\textendash{}204, 2014.
-
-\item {} 
-\sphinxAtStartPar
-Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. \sphinxstyleemphasis{CRAN}, 2022.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial random variables. \sphinxstyleemphasis{Quaderni di Statistica}, 5(1):85\textendash{}104, 2003.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo. Observed information matrix for MUB models. \sphinxstyleemphasis{Quaderni di Statistica}, 8(1):33\textendash{}78, 2006.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo. Inferential issues on cube models with covariates. \sphinxstyleemphasis{Communications in Statistics\sphinxhyphen{}Theory and Methods}, 44(23):5023\textendash{}5036, 2015.
-
-\item {} 
-\sphinxAtStartPar
-Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). \sphinxstyleemphasis{Statistical Methods \& Applications}, 28:389\textendash{}493, 2019.
-
-\item {} 
-\sphinxAtStartPar
-Massimo Pierini. Modelli della classe CUB in python. \sphinxstyleemphasis{Universitas Mercatorum, Rome, IT}, pages 1\textendash{}172, June 2024. (Bachelor\textquotesingle{}s thesis L\sphinxhyphen{}41).
-
-\item {} 
-\sphinxAtStartPar
-W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. \sphinxstyleemphasis{Computational Methods and Data Analysis for Metabolomics}, pages 265\textendash{}311, 2020.
-
-\item {} 
-\sphinxAtStartPar
-Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. \sphinxstyleemphasis{TEST}, 31(3):828\textendash{}855, 2022.
-
-\item {} 
-\sphinxAtStartPar
-Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. \sphinxstyleemphasis{GNU Regression, Econometrics and Time Series Library}, pages 147, 2019.
-
-\end{enumerate}
-
-\end{description}
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
@@ -13938,7 +13811,7 @@ Module for IHG (Inverse HyperGeometric) with covariates.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id164}}\begin{quote}
+\label{\detokenize{cubmods:id82}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -13947,7 +13820,7 @@ for IHG model family with covariates.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id165}}\begin{itemize}
+\label{\detokenize{cubmods:id83}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#ihg-with-covariates}{Models manual}
@@ -13956,7 +13829,7 @@ for IHG model family with covariates.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id166}}\begin{itemize}
+\label{\detokenize{cubmods:id84}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -13965,7 +13838,7 @@ for IHG model family with covariates.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id167}}\begin{quote}
+\label{\detokenize{cubmods:id85}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -13988,7 +13861,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id168}}\index{CUBresIHGV (class in cubmods.ihg\_v)@\spxentry{CUBresIHGV}\spxextra{class in cubmods.ihg\_v}}
+\label{\detokenize{cubmods:id86}}\index{CUBresIHGV (class in cubmods.ihg\_v)@\spxentry{CUBresIHGV}\spxextra{class in cubmods.ihg\_v}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.ihg_v.CUBresIHGV}}
@@ -14065,7 +13938,7 @@ Main function to plot an object of the Class.
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure (useful only if \sphinxcode{\sphinxupquote{ax}} is not None)
+\sphinxstyleliteralstrong{\sphinxupquote{figsize}} (\sphinxstyleliteralemphasis{\sphinxupquote{tuple}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} tuple of \sphinxcode{\sphinxupquote{(length, height)}} for the figure
 
 \item {} 
 \sphinxAtStartPar
@@ -14485,7 +14358,7 @@ Module for MULTICUB and MULTICUBE.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id169}}\begin{quote}
+\label{\detokenize{cubmods:id87}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -14494,7 +14367,7 @@ for MULTICUB and MULTICUBE tool.
 
 
 \subsubsection{Manual, Examples and References:}
-\label{\detokenize{cubmods:id170}}\begin{itemize}
+\label{\detokenize{cubmods:id88}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{manual.html\#multicub-manual}{Models manual}
@@ -14503,7 +14376,7 @@ for MULTICUB and MULTICUBE tool.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id171}}\begin{itemize}
+\label{\detokenize{cubmods:id89}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 …
@@ -14512,7 +14385,7 @@ for MULTICUB and MULTICUBE tool.
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id172}}\begin{quote}
+\label{\detokenize{cubmods:id90}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -14535,7 +14408,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id173}}\index{multi() (in module cubmods.multicub)@\spxentry{multi()}\spxextra{in module cubmods.multicub}}
+\label{\detokenize{cubmods:id91}}\index{multi() (in module cubmods.multicub)@\spxentry{multi()}\spxextra{in module cubmods.multicub}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.multicub.multi}}
@@ -14669,7 +14542,7 @@ Module for summary tools.
 
 
 \subsubsection{Description:}
-\label{\detokenize{cubmods:id174}}\begin{quote}
+\label{\detokenize{cubmods:id92}}\begin{quote}
 
 \sphinxAtStartPar
 This module contains methods and classes
@@ -14678,7 +14551,7 @@ for summary tools.
 
 
 \subsubsection{List of TODOs:}
-\label{\detokenize{cubmods:id175}}\begin{itemize}
+\label{\detokenize{cubmods:id93}}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 TODO: risultati inferenziali come DataFrame nel Manuale e negli esempi
@@ -14703,7 +14576,7 @@ TODO: grandezza punti phi in multicube
 
 
 \subsubsection{Credits}
-\label{\detokenize{cubmods:id176}}\begin{quote}
+\label{\detokenize{cubmods:id94}}\begin{quote}
 \begin{quote}\begin{description}
 \sphinxlineitem{Author}
 \sphinxAtStartPar
@@ -14726,7 +14599,7 @@ Domenico Piccolo, Rosaria Simone
 
 
 \subsubsection{Classes and Functions}
-\label{\detokenize{cubmods:id177}}\index{CUBres (class in cubmods.smry)@\spxentry{CUBres}\spxextra{class in cubmods.smry}}
+\label{\detokenize{cubmods:id95}}\index{CUBres (class in cubmods.smry)@\spxentry{CUBres}\spxextra{class in cubmods.smry}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{cubmods:cubmods.smry.CUBres}}
@@ -14934,7 +14807,7 @@ DataFrame of estimated parameters
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{as\_txt}}}{}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-Print the summary.
+Print the summary. Auxiliary function of \sphinxcode{\sphinxupquote{summary()}}.
 
 \end{fulllineitems}
 
