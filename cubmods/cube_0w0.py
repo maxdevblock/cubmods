@@ -17,7 +17,7 @@ Manual, Examples and References:
   
 List of TODOs:
 ==============
-  - implement assumed average probability from ``ass_pars``
+  - ...
 
 Credits
 ==============
@@ -516,19 +516,22 @@ class CUBresCUBE0W0(CUBres):
                 edgecolor="k", s=200,
                 label="observed")
             
-        # if self.ass_pars is not None:
-        #     Wcols = self.est_names[
-        #         2:-1
-        #     ]
-        #     ass_p = pmf(
-        #         m=self.m,
-        #         pi=self.ass_pars["pi"],
-        #         gamma=self.ass_pars["gamma"],
-        #         phi=self.ass_pars["phi"],
-        #         W=self.df[Wcols]
-        #     )
-        #     ax.stem(R, ass_p, linefmt="--r",
-        #         markerfmt="none", label="assumed")
+        if self.ass_pars is not None:
+            ddf = self.as_dataframe()
+            Wcols = ddf[
+                (ddf.component=="Feeling")
+                &
+                (ddf.parameter!="constant")
+            ].parameter.values
+            ass_p = pmf(
+                m=self.m,
+                pi=self.ass_pars["pi"],
+                gamma=self.ass_pars["gamma"],
+                phi=self.ass_pars["phi"],
+                W=self.df[Wcols]
+            )
+            ax.stem(R, ass_p, linefmt="--r",
+                markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",

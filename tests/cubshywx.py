@@ -28,6 +28,11 @@ drawn = draw(
 fit = estimate(
     formula="fee ~ W1 | 1 | 1",
     df=drawn.df, sh=2,
+    ass_pars={
+        "beta":[logit(.8), -.2],
+        "gamma":[logit(.3)],
+        "omega":[logit(.12)],
+    }
 )
 # Print MLE summary
 print(fit.summary())

@@ -16,7 +16,7 @@ Manual, Examples and References:
   
 List of TODOs:
 ==============
-  - implement assumed average probability from ``ass_pars``
+  - ...
 
 Credits
 ==============
@@ -388,6 +388,21 @@ class CUBresIHGV(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
+        
+        if self.ass_pars is not None:
+            ddf = self.as_dataframe()
+            Vcols = ddf[
+                (ddf.component=="Theta")
+                &
+                (ddf.parameter!="constant")
+            ].parameter.values
+            ass_p = pmf(
+                m=self.m,
+                nu=self.ass_pars["nu"],
+                V=self.df[Vcols]
+            )
+            ax.stem(R, ass_p, linefmt="--r",
+                markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",

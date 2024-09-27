@@ -18,7 +18,7 @@ Manual, Examples and References:
 
 List of TODOs:
 ==============
-  - implement assumed average probability from ``ass_pars``
+  - ...
 
 Credits
 ==============
@@ -432,6 +432,27 @@ class CUBresCUSH2XX(CUBres):
                 facecolor="None",
                 edgecolor="k", s=200,
                 label="observed")
+        
+        if self.ass_pars is not None:
+            ddf = self.as_dataframe()
+            X1cols = ddf[
+                (ddf.component=="Shelter effect 1")
+                &
+                (ddf.parameter!="constant")
+            ].parameter.values
+            X2cols = ddf[
+                (ddf.component=="Shelter effect 2")
+                &
+                (ddf.parameter!="constant")
+            ].parameter.values
+            ass_p = pmf(
+                m=self.m, sh1=self.sh[0], sh2=self.sh[1],
+                omega1=self.ass_pars["omega1"],
+                omega2=self.ass_pars["omega2"],
+                X1=self.df[X1cols], X2=self.df[X2cols]
+            )
+            ax.stem(R, ass_p, linefmt="--r",
+                markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",

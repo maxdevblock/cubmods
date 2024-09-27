@@ -5,7 +5,7 @@ sys.path.append("..")
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from cubmods.general import logit
+from cubmods.general import logit, expit
 from cubmods.gem import draw, estimate
 
 # Draw a random sample
@@ -16,20 +16,22 @@ df = pd.DataFrame({
     "X": X,
 })
 drawn = draw(
-    formula="fee ~ X",
+    formula="fee ~ X | 0",
     model="cush",
     df=df,
-    m=9, sh=5,
-    omega=[logit(.05), .2],
+    m=9, sh=[2, 8],
+    omega1=[logit(.05), .2],
+    delta2=.1
 )
 
 # MLE estimation
 fit = estimate(
-    formula="fee ~ X",
+    formula="fee ~ X | 0",
     model="cush",
-    df=drawn.df, sh=5,
+    df=drawn.df, sh=[2, 8],
     ass_pars={
-        "omega": drawn.pars
+        "omega1": drawn.pars[:2],
+        "delta2": drawn.pars[-1]
     }
 )
 # Print MLE summary

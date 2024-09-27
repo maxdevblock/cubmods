@@ -200,8 +200,9 @@ parameters we want to (graphically) compare with the estimates.
 
 .. note::
 
-    Currently, ``ass_pars`` argument is effective for models without covariates only.
-    It will be soon available for models with covariates also.
+    The ``ass_pars`` argument is effective for models with covariates too.
+    The ``.plot()`` method will show the average probability distribution of the model specified
+    with the assumed parameters.
 
 Methods of ``estimate`` and ``draw``
 ------------------------------------
@@ -389,13 +390,13 @@ Note that in the function ``gem.estimate``:
 .. image:: /img/cub00mle.png
     :alt: CUB 00 MLE
 
+|
+
 See `here <cubmods.html#module-cubmods.general>`__ the reference guide 
 of ``general`` module and the reference paper
 :cite:alp:`piccolo2019class`
 for details about log-likelihoods,
 deviance and information criteria.
-
-|
 
 Calling ``fit.as_dataframe()`` will return a DataFrame with
 parameters' estimated values and standard errors
@@ -579,6 +580,9 @@ to consider the constant term too.
 
 Finally, we'll call ``estimate`` to estimate the parameters
 given the observed (actually, drawn) sample.
+We'll pass the parameters used to drawn the sample with
+``ass_pars`` (as a dictionary) to graphically compare the
+assumed and the estimated average probability distribution.
 
 .. code-block:: python
     :caption: Script
@@ -587,7 +591,11 @@ given the observed (actually, drawn) sample.
     # MLE estimation
     fit = estimate(
         formula="res ~ 0 | W1+W2",
-        df=drawn.df
+        df=drawn.df,
+        ass_pars={
+            "pi": drawn.pars[0],
+            "gamma": drawn.pars[1:]
+        }
     )
     # Print MLE summary
     print(fit.summary())
@@ -877,6 +885,11 @@ similarly for :math:`\pi` and :math:`\delta`.
     fit = estimate(
         formula="fee ~ W1 | 1 | 1",
         df=drawn.df, sh=2,
+        ass_pars={
+            "beta":[logit(.8), -.2],
+            "gamma":[logit(.3)],
+            "omega":[logit(.12)],
+        }
     )
     # Print MLE summary
     print(fit.summary())
@@ -1082,6 +1095,9 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
         formula="fee ~ X",
         model="cush",
         df=drawn.df, sh=5,
+        ass_pars={
+            "omega": drawn.pars
+        }
     )
     # Print MLE summary
     print(fit.summary())
@@ -1289,6 +1305,10 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
         formula="fee ~ X | 1",
         model="cush",
         df=drawn.df, sh=[2, 8],
+        ass_pars={
+            "omega1": drawn.pars[:2],
+            "omega2": [logit(drawn.pars[-1])]
+        }
     )
     # Print MLE summary
     print(fit.summary())
@@ -1338,6 +1358,13 @@ Notice that, since the ``model`` is not the default ``"cub"``, we need to specif
 
          estimates  stderr
     delta2  0.0931  0.0145
+
+Notice that, as proven by :cite:alp:`iannario2012modelling` (pp 7-8), CUSH models
+generate a perfect fit at :math:`R=c`. It can be easily proven that
+CUSH2 models too generate perfect fits at both :math:`R=c_1` and :math:`R=c_2`.
+Indeed, we can also graphically see that the estimated probability distribution is
+closer to the observed sample than the assumed model used to draw the sample, because
+of the perfect fits generated at :math:`R=2` and :math:`R=8`.
 
 CUBE family
 ===========
@@ -1516,6 +1543,11 @@ the observed sample.
         formula="fee ~ 0 | W | 0",
         model="cube",
         df=drawn.df,
+        ass_pars={
+            "pi": drawn.pars[0],
+            "gamma": drawn.pars[1:-1],
+            "phi": drawn.pars[-1]
+        }
     )
     # Print MLE summary
     print(fit.summary())
@@ -1572,6 +1604,11 @@ components.
         formula="fee ~ 1 | W | 1",
         model="cube",
         df=drawn.df,
+        ass_pars={
+            "beta": [logit(drawn.pars[0])],
+            "gamma": drawn.pars[1:3],
+            "alpha": [np.log(drawn.pars[3])]
+        }
     )
     # Print MLE summary
     print(fit.summary())
@@ -1791,7 +1828,7 @@ IHG models with covariates can be bimodal, as the one in the following example.
         formula=drawn.formula,
         model="ihg",
         ass_pars={
-            "theta": drawn.pars[0],
+            "nu": drawn.pars,
         }
     )
     # print the summary of MLE

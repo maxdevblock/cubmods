@@ -29,6 +29,10 @@ fit = estimate(
     formula="fee ~ X | 1",
     model="cush",
     df=drawn.df, sh=[2, 8],
+    ass_pars={
+        "omega1": drawn.pars[:2],
+        "omega2": [logit(drawn.pars[-1])]
+    }
 )
 # Print MLE summary
 print(fit.summary())

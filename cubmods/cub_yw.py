@@ -18,7 +18,7 @@ Manual, Examples and References:
   
 List of TODOs:
 ==============
-  - implement assumed average probability from ``ass_pars``
+  - ...
 
 Credits
 ==============
@@ -529,26 +529,27 @@ class CUBresCUBYW(CUBres):
                 edgecolor="k", s=200,
                 label="observed")
         
-        # if self.ass_pars is not None:
-        #     Yn = len(self.ass_pars["beta"])
-        #     #Wn = 1-len(self.ass_pars["gamma"])
-        #     Ycols = self.est_names[
-        #         1:Yn
-        #     ]
-        #     #print(Ycols)
-        #     Wcols = self.est_names[
-        #         (1+Yn):
-        #     ]
-        #     #print(Wcols)
-        #     ass_p = pmf(
-        #         m=self.m,
-        #         beta=self.ass_pars["beta"],
-        #         gamma=self.ass_pars["gamma"],
-        #         W=self.df[Wcols],
-        #         Y=self.df[Ycols]
-        #     )
-        #     ax.stem(R, ass_p, linefmt="--r",
-        #         markerfmt="none", label="assumed")
+        if self.ass_pars is not None:
+            ddf = self.as_dataframe()
+            Ycols = ddf[
+                (ddf.component=="Uncertainty")
+                &
+                (ddf.parameter!="constant")
+            ].parameter.values
+            Wcols = ddf[
+                (ddf.component=="Feeling")
+                &
+                (ddf.parameter!="constant")
+            ].parameter.values
+            ass_p = pmf(
+                m=self.m,
+                beta=self.ass_pars["beta"],
+                gamma=self.ass_pars["gamma"],
+                W=self.df[Wcols],
+                Y=self.df[Ycols]
+            )
+            ax.stem(R, ass_p, linefmt="--r",
+                markerfmt="none", label="assumed")
 
         ax.set_ylim((0, ax.get_ylim()[1]))
         ax.legend(loc="upper left",

@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from cubmods.gem import draw, estimate
+from cubmods.general import logit
 
 # Draw a random sample
 n = 1000
@@ -17,10 +18,10 @@ df = pd.DataFrame({
     "W1": W1, "W2": W2
 })
 drawn = draw(
-    formula="res ~ 0 | W1 + W2",
+    formula="res ~ 1 | W1 + W2",
     df=df,
     m=10, n=n,
-    pi=0.8,
+    beta=[logit(.8)],
     gamma=[2.3, 0.2, -5],
 )
 # print the summary
@@ -38,10 +39,10 @@ print(drawn.df)
 
 # MLE estimation
 fit = estimate(
-    formula="res ~ 0 | W1+W2",
+    formula=drawn.formula,
     df=drawn.df,
     ass_pars={
-        "pi": drawn.pars[0],
+        "beta": drawn.pars[:1],
         "gamma": drawn.pars[1:]
     }
 )

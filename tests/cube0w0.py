@@ -47,6 +47,11 @@ fit = estimate(
     formula="fee ~ 1 | W | 1",
     model="cube",
     df=drawn.df,
+    ass_pars={
+        "beta": [logit(drawn.pars[0])],
+        "gamma": drawn.pars[1:3],
+        "alpha": [np.log(drawn.pars[3])]
+    }
 )
 # Print MLE summary
 print(fit.summary())

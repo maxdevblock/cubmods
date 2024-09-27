@@ -17,11 +17,11 @@ df = pd.DataFrame({
     "W1": W1, "W2": W2
 })
 drawn = draw(
-    formula="res ~ 0 | W1 + W2",
+    formula="res ~ 0 | 1",
     df=df,
     m=10, n=n,
     pi=0.8,
-    gamma=[2.3, 0.2, -5],
+    gamma=[2.3],
 )
 # print the summary
 print(drawn.summary())
@@ -38,7 +38,7 @@ print(drawn.df)
 
 # MLE estimation
 fit = estimate(
-    formula="res ~ 0 | W1+W2",
+    formula="res ~ 0 | 1",
     df=drawn.df,
     ass_pars={
         "pi": drawn.pars[0],

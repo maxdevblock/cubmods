@@ -5,31 +5,36 @@ sys.path.append("..")
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from cubmods.general import logit
+from cubmods.general import expit, logit
 from cubmods.gem import draw, estimate
 
 # Draw a random sample
 n = 1000
-np.random.seed(1)
-X = np.random.randint(1, 10, n)
+np.random.seed(76)
+W = np.random.randint(1, 10, n)
 df = pd.DataFrame({
-    "X": X,
+    "W": W,
 })
 drawn = draw(
-    formula="fee ~ X",
-    model="cush",
+    formula="fee ~ 0 | 0 | 0",
+    model="cube",
     df=df,
-    m=9, sh=5,
-    omega=[logit(.05), .2],
+    m=9,
+    pi=.8,
+    xi=.3,
+    phi=.12,
+    n=df.index.size
 )
 
 # MLE estimation
 fit = estimate(
-    formula="fee ~ X",
-    model="cush",
-    df=drawn.df, sh=5,
+    formula="fee ~ 0 | 1 | 0",
+    model="cube",
+    df=drawn.df,
     ass_pars={
-        "omega": drawn.pars
+        "pi": drawn.pars[0],
+        "gamma": logit(drawn.pars[1:-1]),
+        "phi": drawn.pars[-1]
     }
 )
 # Print MLE summary

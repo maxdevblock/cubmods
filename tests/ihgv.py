@@ -33,7 +33,7 @@ fit = estimate(
     formula=drawn.formula,
     model="ihg",
     ass_pars={
-        "theta": drawn.pars[0],
+        "nu": drawn.pars,
     }
 )
 # print the summary of MLE
