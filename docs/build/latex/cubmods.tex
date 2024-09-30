@@ -66,7 +66,7 @@
     
 
 \title{CUBmods}
-\date{Sep 27, 2024}
+\date{Sep 30, 2024}
 \release{0.0.1}
 \author{Massimo Pierini}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -343,7 +343,7 @@ to \sphinxcode{\sphinxupquote{1}} where otherwise \sphinxcode{\sphinxupquote{sex
 for the categorical variables, you must specify it in the \sphinxstyleemphasis{DataFrame}, for instance with the
 \sphinxcode{\sphinxupquote{pandas}} class \sphinxcode{\sphinxupquote{Categorical}}. In the example:
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id39}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id41}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{sex}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{Categorical}\PYG{p}{(}
     \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{sex}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
@@ -483,6 +483,58 @@ and the extended \sphinxcode{\sphinxupquote{CUBres}} Classes of the correspondin
 family (for objects returned by \sphinxcode{\sphinxupquote{estimate}}), defined in each family module.
 
 \sphinxAtStartPar
+The method \sphinxcode{\sphinxupquote{.summary()}} of objects returned by \sphinxcode{\sphinxupquote{estimate}} function, will print a summary
+of the inferential method applied to the observed sample. Along with estimated parameters,
+standard errors, Wald tests, and p\sphinxhyphen{}values, it will show some model metrics:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{Correlation}}: available for CUB family models without covariates only; it is the correlation between
+\(\hat{\pi}\) and \(\hat{\xi}\)
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{Dissimilarity}}: the dissimilarity index that can be interpreted as the fraction of sample to be
+change to achieve a perfect fit given the estimated parameters; available for all models with and
+without covariates; for models with covariates, the average estimated probability is used
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{Loglik(sat)}}: the log\sphinxhyphen{}likelihood of the \sphinxstyleemphasis{saturated} model; see \sphinxhref{cubmods.html\#cubmods.general.lsat}{here}
+and the reference paper
+\hyperlink{cite.references:id3}{Piccolo and Simone, 2019}; available for models without covariates only
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{Loglik(MOD)}}: the log\sphinxhyphen{}likelihood of the estimated model
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{Loglik(uni)}}: the log\sphinxhyphen{}likelihood of the \sphinxstyleemphasis{null} model; see \sphinxhref{cubmods.html\#cubmods.general.luni}{here}
+and the reference paper
+\hyperlink{cite.references:id3}{Piccolo and Simone, 2019}
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{Mean\sphinxhyphen{}loglik}}: mean log\sphinxhyphen{}likelihood, i.e. the log\sphinxhyphen{}likelihood of the estimated model divided
+by the number \(n\) of observed ordinal responses
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{Deviance}}: Likelihood Ratio Test (LRT) between the saturated and the estimated models; available
+for models without covariates only
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{AIC}}: Akaike Information Criterion
+
+\item {} 
+\sphinxAtStartPar
+\sphinxcode{\sphinxupquote{BIC}}: Bayesian Information Criterion.
+
+\end{itemize}
+
+\sphinxAtStartPar
 Calling \sphinxcode{\sphinxupquote{.as\_dataframe()}} will return a DataFrame of parameters’ names and values for objects
 of the Class \sphinxcode{\sphinxupquote{CUBsample}} returned by \sphinxcode{\sphinxupquote{draw}}. For objects of the extended Base Class \sphinxcode{\sphinxupquote{CUBres}} returned
 by \sphinxcode{\sphinxupquote{estimate}} instead, will return a DataFrame with parameters’ component, name, estimated value,
@@ -546,7 +598,7 @@ Notice that a Dissimilarity index is computed: this should be interpreted as the
 drawn sample to be changed to achieve a perfect fit to the theoretical specified model the sample
 has been drawn from.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id40}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id42}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -624,7 +676,7 @@ with \sphinxcode{\sphinxupquote{ass\_pars}} dictionary, the parameters of a know
 
 \end{itemize}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id41}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id43}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -700,7 +752,7 @@ parameters’ estimated values and standard errors
 As an example, we can now save the \sphinxcode{\sphinxupquote{fit}} object to file. By default,
 it will be saved as a \sphinxcode{\sphinxupquote{pickle}} file.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id42}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id44}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{fit}\PYG{o}{.}\PYG{n}{save}\PYG{p}{(}\PYG{n}{fname}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cub\PYGZus{}mle\PYGZus{}results}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -711,7 +763,7 @@ The previous code, will save a file \sphinxcode{\sphinxupquote{cub\_mle\_results
 \sphinxAtStartPar
 We can then load the saved file with the code
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id43}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id45}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{general} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}object}
 
@@ -766,7 +818,7 @@ First of all, we’ll draw a random sample with two covariates for the \sphinxst
 \sphinxcode{\sphinxupquote{W1}} and \sphinxcode{\sphinxupquote{W2}}. Note that, having two covariates, we’ll need three \(\gamma\) parameters,
 to consider the constant term too.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id44}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id46}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -816,7 +868,7 @@ Dissimilarity = 0.0307673
 =======================================================================
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id45}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id47}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} plot the drawn sample}
 \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
@@ -825,7 +877,7 @@ Dissimilarity = 0.0307673
 
 \noindent\sphinxincludegraphics{{cub0wdraw}.png}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id46}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id48}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} print the parameters\PYGZsq{} values}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{as\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
@@ -839,7 +891,7 @@ Dissimilarity = 0.0307673
 3      Feeling        W2   \PYGZhy{}5.0
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id47}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id49}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} print the updated DataFrame}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{)}
@@ -869,7 +921,7 @@ We’ll pass the parameters used to drawn the sample with
 \sphinxcode{\sphinxupquote{ass\_pars}} (as a dictionary) to graphically compare the
 assumed and the estimated average probability distribution.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id48}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id50}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -931,7 +983,7 @@ See the references for details: \hyperlink{cite.references:id10}{Corduas \sphinx
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cubsh-without-covariates}}\label{\detokenize{manual:id14}}
+\label{\detokenize{manual:cubsh-without-covariates}}\label{\detokenize{manual:id16}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cubsh000-module}{Reference guide}
 
@@ -989,7 +1041,7 @@ See the references for further details.
 In the next example, we’ll draw an ordinal response
 and then estimate the parameters given the sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id49}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id51}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1039,7 +1091,7 @@ level \((1-\alpha_3)\) is equal to \(r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3
 the confidence level of the bivariate marginal ellipses (which are sections of trivariate
 cylinders) is \((1-\alpha_2) = F_{\chi^2_{(2)}}(r^2)\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id50}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id52}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -1099,7 +1151,7 @@ BIC = 5490.81
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cubsh-with-covariates}}\label{\detokenize{manual:id17}}
+\label{\detokenize{manual:cubsh-with-covariates}}\label{\detokenize{manual:id19}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cubshywx-module}{Reference guide}
 \begin{equation*}
@@ -1145,7 +1197,7 @@ with covariates for uncertainty only. We’ll use the function
 because \(\gamma_0 = \mathrm{logit}(\xi)\) and
 similarly for \(\pi\) and \(\delta\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id51}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id53}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1228,7 +1280,7 @@ and similarly for \(\hat\delta\). Then, we can use the delta\sphinxhyphen{}metho
 to compute the standard errors of both \(\hat\xi\) and \(\hat\delta\), for instance
 \(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id52}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id54}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{est\PYGZus{}xi} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{est\PYGZus{}de} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
@@ -1262,7 +1314,7 @@ See the references for details: \hyperlink{cite.references:id11}{Capecchi and Pi
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cush-without-covariates}}\label{\detokenize{manual:id20}}
+\label{\detokenize{manual:cush-without-covariates}}\label{\detokenize{manual:id22}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cush0-module}{Reference guide}
 \begin{equation*}
@@ -1276,7 +1328,7 @@ then estimate the parameter \(\delta\) given the observed sample.
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id53}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id55}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1336,7 +1388,7 @@ Elapsed time=0.00113 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 10:44:0
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cush-with-covariates}}\label{\detokenize{manual:id21}}
+\label{\detokenize{manual:cush-with-covariates}}\label{\detokenize{manual:id23}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cushx-module}{Reference guide}
 \begin{equation*}
@@ -1354,7 +1406,7 @@ then estimate the parameter given the observed sample.
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id54}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id56}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1440,7 +1492,7 @@ used (\hyperlink{cite.references:id12}{Simone, 2022}), which have not been imple
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cush2-without-covariates}}\label{\detokenize{manual:id25}}
+\label{\detokenize{manual:cush2-without-covariates}}\label{\detokenize{manual:id27}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cush200-module}{Reference guide}
 \begin{equation*}
@@ -1456,7 +1508,7 @@ Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sp
 Passing a list of two shelter categories with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}}, a CUSH2 model will be
 called.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id55}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id57}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1519,7 +1571,7 @@ Elapsed time=0.00247 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Sep 27 11:32:0
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cush2-with-covariates}}\label{\detokenize{manual:id26}}
+\label{\detokenize{manual:cush2-with-covariates}}\label{\detokenize{manual:id28}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cush2x0-module}{Reference guide (X1|0)}
 
@@ -1563,7 +1615,7 @@ we do it here to confirm that \(\mathrm{expit}(\hat\omega_{20})=\hat\delta_2\).
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id56}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id58}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1670,7 +1722,7 @@ See the references for details: \hyperlink{cite.references:id16}{Iannario, 2014}
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cube-without-covariates}}\label{\detokenize{manual:id31}}
+\label{\detokenize{manual:cube-without-covariates}}\label{\detokenize{manual:id33}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cube000-module}{Reference guide}
 \begin{equation*}
@@ -1688,7 +1740,7 @@ Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sp
 The \sphinxcode{\sphinxupquote{.plot()}} method of the object \sphinxcode{\sphinxupquote{fit}} will show trivariate and bivariate confidence
 regions too, as in CUBSH models. See {\hyperref[\detokenize{manual:confidence-ellipsoid}]{\sphinxsamedocref{here}}} for the values of confidence levels.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id57}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id59}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1756,7 +1808,7 @@ Elapsed time=0.07919 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:18:4
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cube-with-covariates}}\label{\detokenize{manual:id32}}
+\label{\detokenize{manual:cube-with-covariates}}\label{\detokenize{manual:id34}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cube0w0-module}{Reference guide (0|W|0)}
 
@@ -1800,7 +1852,7 @@ In this example, we’ll draw a sample with covariates for
 \sphinxstyleemphasis{feeling} only and then will estimate the parameters given
 the observed sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id58}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id60}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1884,7 +1936,7 @@ model with covariates for all components and passing
 the symbol \sphinxcode{\sphinxupquote{1}} to the \sphinxstyleemphasis{uncertainty} and \sphinxstyleemphasis{overdispersion}
 components.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id59}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id61}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -1941,7 +1993,7 @@ Elapsed time=50.02969 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:33:
 \sphinxAtStartPar
 In fact:
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id60}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id62}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{est\PYGZus{}pi} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{est\PYGZus{}ph} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
@@ -1973,7 +2025,7 @@ See the references for details: \hyperlink{cite.references:id17}{D’Elia, 2003}
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:ihg-without-covariates}}\label{\detokenize{manual:id36}}
+\label{\detokenize{manual:ihg-without-covariates}}\label{\detokenize{manual:id38}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#ihg0-module}{Reference guide}
 \begin{equation*}
@@ -2055,7 +2107,7 @@ Elapsed time=0.00464 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:47:5
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:ihg-with-covariates}}\label{\detokenize{manual:id37}}
+\label{\detokenize{manual:ihg-with-covariates}}\label{\detokenize{manual:id39}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#ihgv-module}{Reference guide}
 \begin{equation*}
@@ -2077,7 +2129,7 @@ and then will estimate the parameters given the observed sample.
 Notice that IHG models without covariates are unimodals but, however,
 IHG models with covariates can be bimodal, as the one in the following example.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id61}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id63}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -2177,7 +2229,7 @@ differ from the theoretical ones of the speficied CUBE model used to draw the sa
 The \sphinxstylestrong{multicub} tool in \sphinxcode{\sphinxupquote{cubmods}} package can also show confidence
 ellipses for CUB models.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id62}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id64}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}

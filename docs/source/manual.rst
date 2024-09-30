@@ -214,6 +214,37 @@ and options, see `here <cubmods.html#cubmods.smry.CUBsample>`__ the ``CUBsample`
 and the extended ``CUBres`` Classes of the corresponding
 family (for objects returned by ``estimate``), defined in each family module.
 
+The method ``.summary()`` of objects returned by ``estimate`` function, will print a summary
+of the inferential method applied to the observed sample. Along with estimated parameters, 
+standard errors, Wald tests, and p-values, it will show some model metrics:
+
+- ``Correlation``: available for CUB family models without covariates only; it is the correlation between
+  :math:`\hat{\pi}` and :math:`\hat{\xi}`
+
+- ``Dissimilarity``: the dissimilarity index that can be interpreted as the fraction of sample to be
+  change to achieve a perfect fit given the estimated parameters; available for all models with and
+  without covariates; for models with covariates, the average estimated probability is used
+
+- ``Loglik(sat)``: the log-likelihood of the *saturated* model; see `here <cubmods.html#cubmods.general.lsat>`__ 
+  and the reference paper
+  :cite:alp:`piccolo2019class`; available for models without covariates only
+
+- ``Loglik(MOD)``: the log-likelihood of the estimated model
+
+- ``Loglik(uni)``: the log-likelihood of the *null* model; see `here <cubmods.html#cubmods.general.luni>`__ 
+  and the reference paper
+  :cite:alp:`piccolo2019class`
+
+- ``Mean-loglik``: mean log-likelihood, i.e. the log-likelihood of the estimated model divided 
+  by the number :math:`n` of observed ordinal responses
+
+- ``Deviance``: Likelihood Ratio Test (LRT) between the saturated and the estimated models; available
+  for models without covariates only
+
+- ``AIC``: Akaike Information Criterion
+
+- ``BIC``: Bayesian Information Criterion.
+
 Calling ``.as_dataframe()`` will return a DataFrame of parameters' names and values for objects
 of the Class ``CUBsample`` returned by ``draw``. For objects of the extended Base Class ``CUBres`` returned
 by ``estimate`` instead, will return a DataFrame with parameters' component, name, estimated value,
