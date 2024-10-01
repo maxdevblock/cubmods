@@ -269,6 +269,7 @@ def mle(sample, m, sh1, sh2,
     :rtype: object
     """
     start = dt.datetime.now()
+    X1 = X1.astype(float)
     w1 = colsof(X1)
     n = sample.size
     f = freq(m=m, sample=sample)

@@ -264,6 +264,7 @@ def mle(m, sample, X, sh,
     f = freq(sample=sample, m=m)
     fc = f[sh-1]/n
     delta = max([.01, (m*fc-1)/(m-1)])
+    X = X.astype(float)
     XX = addones(X)
     x = colsof(X)
     om0 = np.log(delta/(1-delta))

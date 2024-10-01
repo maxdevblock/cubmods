@@ -284,6 +284,8 @@ def mle(sample, m, sh1, sh2,
     :rtype: object
     """
     start = dt.datetime.now()
+    X1 = X1.astype(float)
+    X2 = X2.astype(float)
     w1 = colsof(X1)
     w2 = colsof(X2)
     n = sample.size

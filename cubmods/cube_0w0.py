@@ -354,6 +354,7 @@ def mle(sample, m, W, df, formula,
     :rtype: object
     """
     start = dt.datetime.now()
+    W = W.astype(float)
     n = sample.size
     pi, gamma, phi = init_theta(
         m=m, sample=sample, W=W,

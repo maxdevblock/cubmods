@@ -643,6 +643,9 @@ def mle(m, sample, Y, W, Z, df, formula,
     start = dt.datetime.now()
     f = freq(m=m, sample=sample)
     n = sample.size
+    Y = Y.astype(float)
+    W = W.astype(float)
+    Z = Z.astype(float)
     YY = addones(Y)
     # WW = addones(W)
     # ZZ = addones(Z)

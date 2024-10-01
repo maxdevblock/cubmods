@@ -503,6 +503,9 @@ def mle(m, sample, sh, Y, W, X,
     n = sample.size
     # rank = pd.Series(sample).rank(method="dense")
     # rank = rank.astype(int).values
+    Y = Y.astype(float)
+    W = W.astype(float)
+    X = X.astype(float)
     p = colsof(Y)
     q = colsof(W)
     s = colsof(X)

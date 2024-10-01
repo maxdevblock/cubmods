@@ -340,6 +340,7 @@ def mle(sample, m, Y, df, formula,
     n = sample.size
     #aver = np.mean(sample)
     # add a column of 1
+    Y = Y.astype(float)
     YY = np.c_[np.ones(Y.shape[0]), Y]
     # number of covariates
     p = colsof(Y)

@@ -348,7 +348,9 @@ def mle(sample, m, Y, W,
     n = sample.size
     #aver = np.mean(sample)
     # add a column of 1
+    Y = Y.astype(float)
     YY = addones(Y)
+    W = W.astype(float)
     WW = addones(W)
     # number of covariates
     q = colsof(W)

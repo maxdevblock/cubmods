@@ -259,6 +259,7 @@ def mle(m, sample, V,
     n = sample.size
     theta0 = init_theta(m, f)
     #VV = addones(V)
+    V = V.astype(float)
     v = colsof(V)
     nu0 = np.log(theta0/(1-theta0))
     nuini = np.concatenate((
