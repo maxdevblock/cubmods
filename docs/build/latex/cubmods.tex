@@ -66,7 +66,7 @@
     
 
 \title{CUBmods}
-\date{Sep 30, 2024}
+\date{Oct 02, 2024}
 \release{0.0.1}
 \author{Massimo Pierini}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -325,7 +325,11 @@ for example \sphinxcode{\sphinxupquote{C(varname)}}.
 \sphinxAtStartPar
 No columns in the DataFrame should be named \sphinxcode{\sphinxupquote{constant}}, \sphinxcode{\sphinxupquote{1}} or \sphinxcode{\sphinxupquote{0}}.
 In the column names, only letters, numbers, and underscores \sphinxcode{\sphinxupquote{\_}} are allowed.
-Spaces \sphinxstylestrong{SHOULD NOT BE} used in the column names, but replaced with \sphinxcode{\sphinxupquote{\_}}.
+Spaces \sphinxstylestrong{SHOULD NOT BE} used in the column names, but discarded (i.e. replaced di \sphinxcode{\sphinxupquote{""}})
+or replaced with \sphinxcode{\sphinxupquote{\_}}.
+Similarly, any other symbol
+or special character (for instance, \sphinxcode{\sphinxupquote{\sphinxhyphen{}}}, \sphinxcode{\sphinxupquote{!}}, \sphinxcode{\sphinxupquote{@}}, etc) \sphinxstylestrong{SHOULD BE} avoided and discarded
+or replaced with underscore \sphinxcode{\sphinxupquote{\_}}.
 \end{sphinxadmonition}
 
 \sphinxAtStartPar

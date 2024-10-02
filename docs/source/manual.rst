@@ -74,7 +74,11 @@ for example ``C(varname)``.
 
     No columns in the DataFrame should be named ``constant``, ``1`` or ``0``.
     In the column names, only letters, numbers, and underscores ``_`` are allowed.
-    Spaces **SHOULD NOT BE** used in the column names, but replaced with ``_``.
+    Spaces **SHOULD NOT BE** used in the column names, but discarded (i.e. replaced di ``""``)
+    or replaced with ``_``.
+    Similarly, any other symbol
+    or special character (for instance, ``-``, ``!``, ``@``, etc) **SHOULD BE** avoided and discarded
+    or replaced with underscore ``_``.
 
 For example, let's suppose we have a DataFrame where ``response`` is the ordinal variable, 
 ``age`` and ``sex`` are respectively a quantitative and a qualitative variable to explain the *feeling* component

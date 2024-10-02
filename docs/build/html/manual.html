@@ -412,7 +412,11 @@ for example <code class="docutils literal notranslate"><span class="pre">C(varna
 <p class="admonition-title">Warning</p>
 <p>No columns in the DataFrame should be named <code class="docutils literal notranslate"><span class="pre">constant</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>.
 In the column names, only letters, numbers, and underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> are allowed.
-Spaces <strong>SHOULD NOT BE</strong> used in the column names, but replaced with <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p>
+Spaces <strong>SHOULD NOT BE</strong> used in the column names, but discarded (i.e. replaced di <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)
+or replaced with <code class="docutils literal notranslate"><span class="pre">_</span></code>.
+Similarly, any other symbol
+or special character (for instance, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">!</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, etc) <strong>SHOULD BE</strong> avoided and discarded
+or replaced with underscore <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p>
 </div>
 <p>For example, let’s suppose we have a DataFrame where <code class="docutils literal notranslate"><span class="pre">response</span></code> is the ordinal variable,
 <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code> are respectively a quantitative and a qualitative variable to explain the <em>feeling</em> component
