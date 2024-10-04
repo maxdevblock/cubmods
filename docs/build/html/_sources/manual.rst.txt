@@ -1421,7 +1421,7 @@ Without covariates
 `Reference guide <cubmods.html#cube000-module>`__
 
 .. math::
-    \Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m},
+    \Pr(R=r|\pmb{\theta}) = \pi \beta e(\xi,\phi)+\dfrac{1-\pi}{m}
     ,\; r=1,2,\ldots,m
 
 In this example, we'll draw a sample from a CUBE model and then
