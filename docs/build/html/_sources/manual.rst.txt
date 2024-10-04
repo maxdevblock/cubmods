@@ -1408,7 +1408,7 @@ CUBE family
 Family of the class CUBE (Combination of Uniform and BEtaBinomial). 
 CUB models are nested into CUBE models: in fact, a CUB model is equal to
 a CUBE model with the overdispersion parameter :math:`\phi=0`.
-Notiche that :math:`0\geq\phi\geq0.2` is the usual range of the overdispersion parameter.
+Notiche that :math:`0\leq\phi\leq0.2` is the usual range of the overdispersion parameter.
 
 See the references for details: :cite:alp:`iannario2014modelling`; :cite:alp:`piccolo2015inferential`; 
 :cite:alp:`piccolo2019class`.
