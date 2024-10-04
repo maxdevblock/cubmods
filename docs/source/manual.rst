@@ -1179,8 +1179,9 @@ for the CUB class models.
 These models are particularly useful whenever the shelter choices are not 
 *polarized*, i.e. they're not at the extremes of the ordinal variable support.
 In case of *polarized* responses,
-finite mixtures based on the Discretized Beta distribution can be
-used :cite:p:`simone2022finite`, which have not been implemented in this package yet.
+finite mixtures based on the Discretized Beta distribution 
+(see :cite:alp:`simone2018modelling` and :cite:alp:`simone2022finite`)
+can be used, which have not been implemented in this package yet.
 
 .. _cush2-without-covariates:
 

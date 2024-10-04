@@ -66,7 +66,7 @@
     
 
 \title{CUBmods}
-\date{Oct 02, 2024}
+\date{Oct 04, 2024}
 \release{0.0.1}
 \author{Massimo Pierini}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -96,11 +96,11 @@
 \section{Preface}
 \label{\detokenize{intro:preface}}
 \sphinxAtStartPar
-This package has been implemented by Massimo Pierini as a Bachelor’s thesis (\hyperlink{cite.references:id41}{Pierini, 2024}).
+This package has been implemented by Massimo Pierini as a Bachelor’s thesis (\hyperlink{cite.references:id42}{Pierini, 2024}).
 
 \sphinxAtStartPar
 It is the first implementation of CUB class models in Python and is mainly based upon
-the work of Domenico Piccolo and the \sphinxcode{\sphinxupquote{CUB}} package in R (\hyperlink{cite.references:id22}{Iannario \sphinxstyleemphasis{et al.}, 2022}),
+the work of Domenico Piccolo and the \sphinxcode{\sphinxupquote{CUB}} package in R (\hyperlink{cite.references:id23}{Iannario \sphinxstyleemphasis{et al.}, 2022}),
 mainteined by Rosaria Simone.
 
 
@@ -141,10 +141,10 @@ terminology, theory and inferential issues.
 \label{\detokenize{intro:motivation}}
 \sphinxAtStartPar
 Currently the class of CUB models has been implemented in statistical and econometric programming languages
-such as R (\hyperlink{cite.references:id22}{Iannario \sphinxstyleemphasis{et al.}, 2022}), Stata (\hyperlink{cite.references:id28}{Cerulli \sphinxstyleemphasis{et al.}, 2021}),
-Gretl (\hyperlink{cite.references:id29}{Simone \sphinxstyleemphasis{et al.}, 2019})
+such as R (\hyperlink{cite.references:id23}{Iannario \sphinxstyleemphasis{et al.}, 2022}), Stata (\hyperlink{cite.references:id29}{Cerulli \sphinxstyleemphasis{et al.}, 2021}),
+Gretl (\hyperlink{cite.references:id30}{Simone \sphinxstyleemphasis{et al.}, 2019})
 and GAUSS (\hyperlink{cite.references:id7}{Piccolo, 2006}).  However, given the recent increase in the development
-of the Python programming language also in the statistical field (\hyperlink{cite.references:id27}{Pittard and Li, 2020}),
+of the Python programming language also in the statistical field (\hyperlink{cite.references:id28}{Pittard and Li, 2020}),
 their implementation in
 this environment could be useful to the scientific community.
 
@@ -347,7 +347,7 @@ to \sphinxcode{\sphinxupquote{1}} where otherwise \sphinxcode{\sphinxupquote{sex
 for the categorical variables, you must specify it in the \sphinxstyleemphasis{DataFrame}, for instance with the
 \sphinxcode{\sphinxupquote{pandas}} class \sphinxcode{\sphinxupquote{Categorical}}. In the example:
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id41}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id42}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{sex}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{Categorical}\PYG{p}{(}
     \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{sex}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
@@ -439,7 +439,7 @@ Notice that \(\hat\phi=e^{\hat\alpha_0}\).
 
 \sphinxAtStartPar
 If \sphinxcode{\sphinxupquote{family="ihg"}}, then an IHG model is fitted to the data. IHG models (Inverse HyperGeometric) are a peculiar case of
-CUBE models, for \(\phi = 1 - \xi\) (\hyperlink{cite.references:id15}{Iannario, 2012}). The parameter \(\theta\) gives the probability of observing
+CUBE models, for \(\phi = 1 - \xi\) (\hyperlink{cite.references:id16}{Iannario, 2012}). The parameter \(\theta\) gives the probability of observing
 the first category and is therefore a direct measure of preference, attraction, pleasantness toward the
 investigated item. This is the reason why \(\theta\) is customarily referred to as the
 preference parameter of the
@@ -569,8 +569,8 @@ see \sphinxhref{cubmods.html\#cubmods.smry.CUBres}{here} the Base Class \sphinxc
 \sphinxAtStartPar
 Basic family of the class CUB. See the references for details:
 \hyperlink{cite.references:id4}{Piccolo, 2003}; \hyperlink{cite.references:id5}{D\textquotesingle{}Elia and Piccolo, 2005}; \hyperlink{cite.references:id7}{Piccolo, 2006};
-\hyperlink{cite.references:id8}{Iannario and Piccolo, 2010}; \hyperlink{cite.references:id20}{Iannario and Piccolo, 2009}; \hyperlink{cite.references:id21}{Iannario \sphinxstyleemphasis{et al.}, 2014};
-\hyperlink{cite.references:id22}{Iannario \sphinxstyleemphasis{et al.}, 2022}; \hyperlink{cite.references:id3}{Piccolo and Simone, 2019}.
+\hyperlink{cite.references:id8}{Iannario and Piccolo, 2010}; \hyperlink{cite.references:id21}{Iannario and Piccolo, 2009}; \hyperlink{cite.references:id22}{Iannario \sphinxstyleemphasis{et al.}, 2014};
+\hyperlink{cite.references:id23}{Iannario \sphinxstyleemphasis{et al.}, 2022}; \hyperlink{cite.references:id3}{Piccolo and Simone, 2019}.
 
 
 \subsection{Without covariates}
@@ -602,7 +602,7 @@ Notice that a Dissimilarity index is computed: this should be interpreted as the
 drawn sample to be changed to achieve a perfect fit to the theoretical specified model the sample
 has been drawn from.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id42}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id43}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -680,7 +680,7 @@ with \sphinxcode{\sphinxupquote{ass\_pars}} dictionary, the parameters of a know
 
 \end{itemize}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id43}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id44}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -756,7 +756,7 @@ parameters’ estimated values and standard errors
 As an example, we can now save the \sphinxcode{\sphinxupquote{fit}} object to file. By default,
 it will be saved as a \sphinxcode{\sphinxupquote{pickle}} file.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id44}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id45}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{fit}\PYG{o}{.}\PYG{n}{save}\PYG{p}{(}\PYG{n}{fname}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cub\PYGZus{}mle\PYGZus{}results}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -767,7 +767,7 @@ The previous code, will save a file \sphinxcode{\sphinxupquote{cub\_mle\_results
 \sphinxAtStartPar
 We can then load the saved file with the code
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id45}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id46}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{k+kn}{from} \PYG{n+nn}{cubmods}\PYG{n+nn}{.}\PYG{n+nn}{general} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}object}
 
@@ -822,7 +822,7 @@ First of all, we’ll draw a random sample with two covariates for the \sphinxst
 \sphinxcode{\sphinxupquote{W1}} and \sphinxcode{\sphinxupquote{W2}}. Note that, having two covariates, we’ll need three \(\gamma\) parameters,
 to consider the constant term too.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id46}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id47}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -872,7 +872,7 @@ Dissimilarity = 0.0307673
 =======================================================================
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id47}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id48}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} plot the drawn sample}
 \PYG{n}{drawn}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{p}{)}
@@ -881,7 +881,7 @@ Dissimilarity = 0.0307673
 
 \noindent\sphinxincludegraphics{{cub0wdraw}.png}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id48}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id49}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} print the parameters\PYGZsq{} values}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{as\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
@@ -895,7 +895,7 @@ Dissimilarity = 0.0307673
 3      Feeling        W2   \PYGZhy{}5.0
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id49}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id50}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} print the updated DataFrame}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{drawn}\PYG{o}{.}\PYG{n}{df}\PYG{p}{)}
@@ -925,7 +925,7 @@ We’ll pass the parameters used to drawn the sample with
 \sphinxcode{\sphinxupquote{ass\_pars}} (as a dictionary) to graphically compare the
 assumed and the estimated average probability distribution.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id50}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id51}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -1045,7 +1045,7 @@ See the references for further details.
 In the next example, we’ll draw an ordinal response
 and then estimate the parameters given the sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id51}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id52}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1088,14 +1088,14 @@ The method \sphinxcode{\sphinxupquote{.plot()}} (of the \sphinxcode{\sphinxupquo
 shows, in the parameters space, the trivariate confidence ellipsoid too, which has not
 been implemented yet in the \sphinxcode{\sphinxupquote{CUB}} package in R.
 The plot includes the marginal bivariate confidence ellipses too. Notice that, as proven in
-\hyperlink{cite.references:id41}{Pierini, 2024} pp 28\sphinxhyphen{}30, the confidence level of the marginal ellipses is greater
+\hyperlink{cite.references:id42}{Pierini, 2024} pp 28\sphinxhyphen{}30, the confidence level of the marginal ellipses is greater
 than the ellipsoid’s confidence level. Indeed, the radius \(r\) of a
 standardized sphere at confidence
 level \((1-\alpha_3)\) is equal to \(r = \sqrt{ F^{-1}_{\chi^2_{(3)}}(1-\alpha_3) }\), thus
 the confidence level of the bivariate marginal ellipses (which are sections of trivariate
 cylinders) is \((1-\alpha_2) = F_{\chi^2_{(2)}}(r^2)\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id52}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id53}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} inferential method on drawn sample}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -1201,7 +1201,7 @@ with covariates for uncertainty only. We’ll use the function
 because \(\gamma_0 = \mathrm{logit}(\xi)\) and
 similarly for \(\pi\) and \(\delta\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id53}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id54}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1284,7 +1284,7 @@ and similarly for \(\hat\delta\). Then, we can use the delta\sphinxhyphen{}metho
 to compute the standard errors of both \(\hat\xi\) and \(\hat\delta\), for instance
 \(\widehat{es}(\xi) = \mathrm{expit}[\hat\gamma_0+\widehat{es}(\gamma_0)] - \hat\xi\).
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id54}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id55}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{est\PYGZus{}xi} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{est\PYGZus{}de} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
@@ -1332,7 +1332,7 @@ then estimate the parameter \(\delta\) given the observed sample.
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id55}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id56}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1410,7 +1410,7 @@ then estimate the parameter given the observed sample.
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id56}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id57}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1483,7 +1483,7 @@ Elapsed time=0.01704 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 10:54:1
 Family of the class CUSH with two shelter effects (CUSH2).
 
 \sphinxAtStartPar
-This family has been introduced by \hyperlink{cite.references:id41}{Pierini, 2024} (pp 16\sphinxhyphen{}20) and first
+This family has been introduced by \hyperlink{cite.references:id42}{Pierini, 2024} (pp 16\sphinxhyphen{}20) and first
 implemented in this Python package. See \hyperlink{cite.references:id3}{Piccolo and Simone, 2019} as a reference
 for the CUB class models.
 
@@ -1491,12 +1491,13 @@ for the CUB class models.
 These models are particularly useful whenever the shelter choices are not
 \sphinxstyleemphasis{polarized}, i.e. they’re not at the extremes of the ordinal variable support.
 In case of \sphinxstyleemphasis{polarized} responses,
-finite mixtures based on the Discretized Beta distribution can be
-used (\hyperlink{cite.references:id12}{Simone, 2022}), which have not been implemented in this package yet.
+finite mixtures based on the Discretized Beta distribution
+(see \hyperlink{cite.references:id13}{Simone and Tutz, 2018} and \hyperlink{cite.references:id12}{Simone, 2022})
+can be used, which have not been implemented in this package yet.
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cush2-without-covariates}}\label{\detokenize{manual:id27}}
+\label{\detokenize{manual:cush2-without-covariates}}\label{\detokenize{manual:id28}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cush200-module}{Reference guide}
 \begin{equation*}
@@ -1512,7 +1513,7 @@ Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sp
 Passing a list of two shelter categories with the \sphinxstyleemphasis{kwarg} \sphinxcode{\sphinxupquote{sh}}, a CUSH2 model will be
 called.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id57}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id58}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1575,7 +1576,7 @@ Elapsed time=0.00247 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Sep 27 11:32:0
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cush2-with-covariates}}\label{\detokenize{manual:id28}}
+\label{\detokenize{manual:cush2-with-covariates}}\label{\detokenize{manual:id29}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cush2x0-module}{Reference guide (X1|0)}
 
@@ -1619,7 +1620,7 @@ we do it here to confirm that \(\mathrm{expit}(\hat\omega_{20})=\hat\delta_2\).
 \sphinxAtStartPar
 Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sphinxcode{\sphinxupquote{"cub"}}, we need to specify it.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id58}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id59}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1721,12 +1722,12 @@ a CUBE model with the overdispersion parameter \(\phi=0\).
 Notiche that \(0\geq\phi\geq0.2\) is the usual range of the overdispersion parameter.
 
 \sphinxAtStartPar
-See the references for details: \hyperlink{cite.references:id16}{Iannario, 2014}; \hyperlink{cite.references:id14}{Piccolo, 2015};
+See the references for details: \hyperlink{cite.references:id17}{Iannario, 2014}; \hyperlink{cite.references:id15}{Piccolo, 2015};
 \hyperlink{cite.references:id3}{Piccolo and Simone, 2019}.
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:cube-without-covariates}}\label{\detokenize{manual:id33}}
+\label{\detokenize{manual:cube-without-covariates}}\label{\detokenize{manual:id34}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cube000-module}{Reference guide}
 \begin{equation*}
@@ -1744,7 +1745,7 @@ Notice that, since the \sphinxcode{\sphinxupquote{model}} is not the default \sp
 The \sphinxcode{\sphinxupquote{.plot()}} method of the object \sphinxcode{\sphinxupquote{fit}} will show trivariate and bivariate confidence
 regions too, as in CUBSH models. See {\hyperref[\detokenize{manual:confidence-ellipsoid}]{\sphinxsamedocref{here}}} for the values of confidence levels.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id59}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id60}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
@@ -1812,7 +1813,7 @@ Elapsed time=0.07919 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:18:4
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:cube-with-covariates}}\label{\detokenize{manual:id34}}
+\label{\detokenize{manual:cube-with-covariates}}\label{\detokenize{manual:id35}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#cube0w0-module}{Reference guide (0|W|0)}
 
@@ -1856,7 +1857,7 @@ In this example, we’ll draw a sample with covariates for
 \sphinxstyleemphasis{feeling} only and then will estimate the parameters given
 the observed sample.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id60}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id61}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -1940,7 +1941,7 @@ model with covariates for all components and passing
 the symbol \sphinxcode{\sphinxupquote{1}} to the \sphinxstyleemphasis{uncertainty} and \sphinxstyleemphasis{overdispersion}
 components.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id61}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id62}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} MLE estimation}
 \PYG{n}{fit} \PYG{o}{=} \PYG{n}{estimate}\PYG{p}{(}
@@ -1997,7 +1998,7 @@ Elapsed time=50.02969 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:33:
 \sphinxAtStartPar
 In fact:
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id62}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id63}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{n}{est\PYGZus{}pi} \PYG{o}{=} \PYG{n}{expit}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{est\PYGZus{}ph} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{n}{fit}\PYG{o}{.}\PYG{n}{estimates}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{p}{)}
@@ -2024,12 +2025,12 @@ phi     0.1451  0.0279
 Family of the class IHG (Inverse HyperGeometric).
 
 \sphinxAtStartPar
-See the references for details: \hyperlink{cite.references:id17}{D’Elia, 2003}; \hyperlink{cite.references:id18}{D\textquotesingle{}Elia \sphinxstyleemphasis{et al.}, 2005};
+See the references for details: \hyperlink{cite.references:id18}{D’Elia, 2003}; \hyperlink{cite.references:id19}{D\textquotesingle{}Elia \sphinxstyleemphasis{et al.}, 2005};
 \hyperlink{cite.references:id3}{Piccolo and Simone, 2019}.
 
 
 \subsection{Without covariates}
-\label{\detokenize{manual:ihg-without-covariates}}\label{\detokenize{manual:id38}}
+\label{\detokenize{manual:ihg-without-covariates}}\label{\detokenize{manual:id39}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#ihg0-module}{Reference guide}
 \begin{equation*}
@@ -2111,7 +2112,7 @@ Elapsed time=0.00464 seconds =====\PYGZgt{}\PYGZgt{}\PYGZgt{} Fri Aug 16 12:47:5
 
 
 \subsection{With covariates}
-\label{\detokenize{manual:ihg-with-covariates}}\label{\detokenize{manual:id39}}
+\label{\detokenize{manual:ihg-with-covariates}}\label{\detokenize{manual:id40}}
 \sphinxAtStartPar
 \sphinxhref{cubmods.html\#ihgv-module}{Reference guide}
 \begin{equation*}
@@ -2133,7 +2134,7 @@ and then will estimate the parameters given the observed sample.
 Notice that IHG models without covariates are unimodals but, however,
 IHG models with covariates can be bimodal, as the one in the following example.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id63}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id64}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{c+c1}{\PYGZsh{} import libraries}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -2233,7 +2234,7 @@ differ from the theoretical ones of the speficied CUBE model used to draw the sa
 The \sphinxstylestrong{multicub} tool in \sphinxcode{\sphinxupquote{cubmods}} package can also show confidence
 ellipses for CUB models.
 \sphinxSetupCaptionForVerbatim{Script}
-\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id64}}}
+\def\sphinxLiteralBlockLabel{\label{\detokenize{manual:id65}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
@@ -6793,7 +6794,7 @@ Returns an auxiliary matrix needed for computing the variance\sphinxhyphen{}cova
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{a}}\sphinxstyleliteralstrong{\sphinxupquote{,}}\sphinxstyleliteralstrong{\sphinxupquote{b}}\sphinxstyleliteralstrong{\sphinxupquote{,}}\sphinxstyleliteralstrong{\sphinxupquote{c}}\sphinxstyleliteralstrong{\sphinxupquote{,}}\sphinxstyleliteralstrong{\sphinxupquote{d}}\sphinxstyleliteralstrong{\sphinxupquote{,}}\sphinxstyleliteralstrong{\sphinxupquote{e}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} see the reference paper \hyperlink{cite.references:id14}{Piccolo, 2015} for details
+\sphinxstyleliteralstrong{\sphinxupquote{a}}\sphinxstyleliteralstrong{\sphinxupquote{,}}\sphinxstyleliteralstrong{\sphinxupquote{b}}\sphinxstyleliteralstrong{\sphinxupquote{,}}\sphinxstyleliteralstrong{\sphinxupquote{c}}\sphinxstyleliteralstrong{\sphinxupquote{,}}\sphinxstyleliteralstrong{\sphinxupquote{d}}\sphinxstyleliteralstrong{\sphinxupquote{,}}\sphinxstyleliteralstrong{\sphinxupquote{e}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} see the reference paper \hyperlink{cite.references:id15}{Piccolo, 2015} for details
 
 \end{itemize}
 
@@ -15164,40 +15165,40 @@ Print the summary of the drawn sample.
 \bibitem[CP17]{references:id11}
 \sphinxAtStartPar
 Stefania Capecchi and Domenico Piccolo. Dealing with heterogeneity in ordinal responses. \sphinxstyleemphasis{Quality \& Quantity}, 51:2375\textendash{}2393, 2017.
-\bibitem[CSDI+21]{references:id28}
+\bibitem[CSDI+21]{references:id29}
 \sphinxAtStartPar
 Giovanni Cerulli, R Simone, Francesca Di Iorio, D Piccolo, CF Baum, and others. The Stata module for CUB models for rating data analysis. In \sphinxstyleemphasis{London Stata Conference 2021}, number 16. Stata Users Group, 2021.
 \bibitem[CIP09]{references:id10}
 \sphinxAtStartPar
 Marcella Corduas, Maria Iannario, and Domenico Piccolo. A class of statistical models for evaluating services and performances. In \sphinxstyleemphasis{Statistical methods for the evaluation of educational services and quality of products}, pages 99\textendash{}117. Springer, 2009.
-\bibitem[DEliaP+05]{references:id18}
+\bibitem[DEliaP+05]{references:id19}
 \sphinxAtStartPar
 A D\textquotesingle{}Elia, Domenico Piccolo, and others. The moment estimator for the IHG distribution. In \sphinxstyleemphasis{S. Co. Modelli complessi e metodi computazionali intensivi per la stima e la previsione}, pages 245\textendash{}250. CLEUP, 2005.
 \bibitem[DEliaP05]{references:id5}
 \sphinxAtStartPar
 Angela D\textquotesingle{}Elia and Domenico Piccolo. A mixture model for preferences data analysis. \sphinxstyleemphasis{Computational Statistics \& Data Analysis}, 49(3):917\textendash{}934, 2005.
-\bibitem[DElia03]{references:id17}
+\bibitem[DElia03]{references:id18}
 \sphinxAtStartPar
 Angela D’Elia. Modelling ranks using the inverse hypergeometric distribution. \sphinxstyleemphasis{Statistical modelling}, 3(1):65\textendash{}78, 2003.
-\bibitem[Ian12a]{references:id15}
+\bibitem[Ian12a]{references:id16}
 \sphinxAtStartPar
 Maria Iannario. Cube models for interpreting ordered categorical data with overdispersion. \sphinxstyleemphasis{Quaderni di statistica}, 14:137\textendash{}140, 2012.
 \bibitem[Ian12b]{references:id9}
 \sphinxAtStartPar
 Maria Iannario. Modelling shelter choices in a class of mixture models for ordinal responses. \sphinxstyleemphasis{Statistical Methods \& Applications}, 21:1\textendash{}22, 2012.
-\bibitem[Ian14]{references:id16}
+\bibitem[Ian14]{references:id17}
 \sphinxAtStartPar
 Maria Iannario. Modelling uncertainty and overdispersion in ordinal data. \sphinxstyleemphasis{Communications in Statistics\sphinxhyphen{}Theory and Methods}, 43(4):771\textendash{}786, 2014.
-\bibitem[IP09]{references:id20}
+\bibitem[IP09]{references:id21}
 \sphinxAtStartPar
 Maria Iannario and Domenico Piccolo. A program in R for CUB models inference. \sphinxstyleemphasis{Available via Internet, URL http://www. dipstat. unina. it/CUBmodels/, Version}, 2009.
 \bibitem[IP10]{references:id8}
 \sphinxAtStartPar
 Maria Iannario and Domenico Piccolo. A new statistical model for the analysis of customer satisfaction. \sphinxstyleemphasis{Quality Technology \& Quantitative Management}, 7(2):149\textendash{}168, 2010.
-\bibitem[IP+14]{references:id21}
+\bibitem[IP+14]{references:id22}
 \sphinxAtStartPar
 Maria Iannario, Domenico Piccolo, and others. Inference for CUB models: a program in R. \sphinxstyleemphasis{Statistica \& Applicazioni}, 12(2):177\textendash{}204, 2014.
-\bibitem[IPSMaintainer22]{references:id22}
+\bibitem[IPSMaintainer22]{references:id23}
 \sphinxAtStartPar
 Maria Iannario, Domenico Piccolo, and Rosaria Simone (Maintainer). Package ‘CUB’. \sphinxstyleemphasis{CRAN}, 2022.
 \bibitem[Pic03]{references:id4}
@@ -15206,24 +15207,27 @@ Domenico Piccolo. On the moments of a mixture of uniform and shifted binomial ra
 \bibitem[Pic06]{references:id7}
 \sphinxAtStartPar
 Domenico Piccolo. Observed information matrix for MUB models. \sphinxstyleemphasis{Quaderni di Statistica}, 8(1):33\textendash{}78, 2006.
-\bibitem[Pic15]{references:id14}
+\bibitem[Pic15]{references:id15}
 \sphinxAtStartPar
 Domenico Piccolo. Inferential issues on cube models with covariates. \sphinxstyleemphasis{Communications in Statistics\sphinxhyphen{}Theory and Methods}, 44(23):5023\textendash{}5036, 2015.
 \bibitem[PS19]{references:id3}
 \sphinxAtStartPar
 Domenico Piccolo and Rosaria Simone. The class of CUB models: statistical foundations, inferential issues and empirical evidence (with discussion and rejoinder). \sphinxstyleemphasis{Statistical Methods \& Applications}, 28:389\textendash{}493, 2019.
-\bibitem[Pie24]{references:id41}
+\bibitem[Pie24]{references:id42}
 \sphinxAtStartPar
 Massimo Pierini. Modelli della classe CUB in python. \sphinxstyleemphasis{Universitas Mercatorum, Rome, IT}, pages 1\textendash{}172, June 2024. (Bachelor\textquotesingle{}s thesis L\sphinxhyphen{}41).
-\bibitem[PL20]{references:id27}
+\bibitem[PL20]{references:id28}
 \sphinxAtStartPar
 W Stephen Pittard and Shuzhao Li. The essential toolbox of data science: python, R, git, and docker. \sphinxstyleemphasis{Computational Methods and Data Analysis for Metabolomics}, pages 265\textendash{}311, 2020.
 \bibitem[Sim22]{references:id12}
 \sphinxAtStartPar
 Rosaria Simone. On finite mixtures of Discretized Beta model for ordered responses. \sphinxstyleemphasis{TEST}, 31(3):828\textendash{}855, 2022.
-\bibitem[SDIL19]{references:id29}
+\bibitem[SDIL19]{references:id30}
 \sphinxAtStartPar
 Rosaria Simone, Francesca Di Iorio, and Riccardo Lucchetti. CUB for gretl. \sphinxstyleemphasis{GNU Regression, Econometrics and Time Series Library}, pages 147, 2019.
+\bibitem[ST18]{references:id13}
+\sphinxAtStartPar
+Rosaria Simone and Gerhard Tutz. Modelling uncertainty and response styles in ordinal data. \sphinxstyleemphasis{Statistica Neerlandica}, 72(3):224\textendash{}245, 2018.
 \end{sphinxthebibliography}
 
 
