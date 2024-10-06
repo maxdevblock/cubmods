@@ -263,6 +263,8 @@ def varcov(m, sample, Y, beta, xi):
     for i in range(nparam-1):
         matinf[i,:] = np.concatenate((i11[i,:],[i12[i]])).T
     matinf[nparam-1,:] = np.concatenate((i12.T,[i22])).T
+    varmat = np.ndarray(shape=(nparam,nparam))
+    varmat[:] = np.nan
     if np.any(np.isnan(matinf)):
         print("WARNING: NAs produced in information matrix")
     elif np.linalg.det(matinf) <= 0:
