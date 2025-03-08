@@ -1,11 +1,11 @@
 # cubmods
 Statistical package: CUB models for ordinal responses.
 
-This package is the first implementation of statistical methods for the models of the class CUB (proposed by Professor Domenico Piccolo, 2003) in Python.
+This package is a _first Python implementation_ of statistical methods for the models of the class CUB, proposed by Professor Domenico Piccolo, 2003.
 
 It contains inferential methods for each family of the class CUB (with or without covariates), basic graphical tools, and methods to draw random samples from given models.
 
-It has been implemented by Massimo Pierini, graduand in _Statistics & Big Data_ (L41) at _Universitas Mercatorum_ 2024. It is mainly based upon the `CUB` package in `R`, implemented and maintened by Prof. Domenico Piccolo and Prof.ssa Rosaria Simone.
+It has been implemented by Massimo Pierini in 2024. It is mainly based upon the `CUB` package in `R`, implemented and maintened by Prof. Domenico Piccolo and Prof.ssa Rosaria Simone.
 
 ***
 
@@ -21,7 +21,7 @@ Currently, the package must be downloaded from GitHub, unzipped, and placed in t
 pip install -U git+https://github.com/maxdevblock/cubmods.git@main
 ```
 
-When the version `0.0.1` will be complete, it will be uploaded on `PyPI`.
+When the next version will be complete, it will be uploaded on `PyPI`.
 
 ## Basic usage
 ```Python
@@ -66,10 +66,6 @@ Work in progress.
 
 ## Credits
 @Author:      Massimo Pierini
-
-@Institution: Universitas Mercatorum
-
-@Affiliation: Graduand in Statistics & Big Data (L41)
 
 @Date:        2023-24
 
