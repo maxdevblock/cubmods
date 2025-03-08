@@ -69,6 +69,6 @@ Work in progress.
 
 @Date:        2023-24
 
-@Credit:      Domenico Piccolo, Rosaria Simone
+@ThanksTo:    Domenico Piccolo, Rosaria Simone
 
 @Contacts:    cub@maxpierini.it
