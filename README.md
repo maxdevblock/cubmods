@@ -15,11 +15,17 @@ It has been implemented by Massimo Pierini in 2024. It is mainly based upon the 
 pip install -U numpy pandas scipy statsmodels
 ```
 
-Currently, the package must be downloaded from GitHub, unzipped, and placed in the same directory of the scripts that import it or you can install/update directly from GitHub using
+## Installation
+
+Currently, the package must be downloaded from GitHub, unzipped, and placed in the same directory of the scripts that import it. 
+
+Alternatively, you can install/update directly from GitHub. First, you need to have `git` installed (see [Install Git](https://github.com/git-guides/install-git) for detailed instructions for Windows, macOS and Linux). After installing `git` you'll need to restart your computer (to update the PATHs) and then you can install `cubmods` from GitHub with
 
 ```
 pip install -U git+https://github.com/maxdevblock/cubmods.git@main
 ```
+
+All these `pip` commands, can be run in `Spyder 6.x` IPython console.
 
 When the next version will be complete, it will be uploaded on `PyPI`.
 
