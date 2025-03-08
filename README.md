@@ -61,14 +61,15 @@ The following is a preliminary Manual and Reference Sheet.
 - [CUBmods’s documentation](https://cubmods.readthedocs.io/en/latest/) on ReadTheDocs
 
 ## References
-  - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
-  - D'Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis, Computational Statistics & Data Analysis},  \bold{49, 917--937
+  - Piccolo D. (2003). On the moments of a mixture of uniform and shifted binomial random variables. Quaderni di Statistica, 5(1):85–104
+  - D'Elia A. and Piccolo D. (2005). A mixture model for preferences data analysis. Computational Statistics & Data Analysis, 49(3):917–934
   - Capecchi S. and Piccolo D. (2017). Dealing with heterogeneity in ordinal responses, Quality and Quantity, 51(5), 2375--2393
-  - Iannario M. (2014). Modelling Uncertainty and Overdispersion in Ordinal Data, Communications in Statistics - Theory and Methods, 43, 771--786
-  - Piccolo D. (2015). Inferential issues for CUBE models with covariates, Communications in Statistics. Theory and Methods, 44(23), 771--786.
-  - Iannario M. (2015). Detecting latent components in ordinal data with overdispersion by means of a mixture distribution, Quality & Quantity, 49, 977--987
-  - Iannario M. and Piccolo D. (2016a). A comprehensive framework for regression models of ordinal data. Metron, 74(2), 233--252.
-  - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189.
+  - Iannario M. and Piccolo D. (2016a). A comprehensive framework for regression models of ordinal data. Metron, 74(2), 233--252
+  - Iannario M. and Piccolo D. (2016b). A generalized framework for modelling ordinal data. Statistical Methods and Applications, 25, 163--189
+  - Manisera M, Zuccolotto P (2014a). Modeling “don’t know” responses in rating scales. Pattern Recognit Lett, 45:226–234
+  - Piccolo D., Simone R. and Iannario M. (2019). Cumulative and CUB models for rating data: a comparative analysis. International Statistical Review, 87(2), 207-236
+  - Piccolo D. and Simone R. (2019). The class of CUB models: statistical foundations, inferential issues and empirical evidence. Statistical Methods & Applications, 28, 389-435
+  - Pierini M. (2024). Modelli della classe CUB in python. Bachelor's thesis L-41. Universitas Mercatorum, Rome, IT, 1–-172
 
 ## Credits
 @Author:      Massimo Pierini
