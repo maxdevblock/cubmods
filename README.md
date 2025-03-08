@@ -56,9 +56,9 @@ plt.show()
 ```
 
 ## Manual
-Work in progress.
+The following is a preliminary Manual and Reference Sheet.
 
-- [Manual](./Manual) for models' specifications and working examples
+- [Manual](https://cubmods.readthedocs.io/en/latest/) for models' specifications and working examples
 
 ## References
   - D'Elia A. (2003). Modelling ranks using the inverse hypergeometric distribution, Statistical Modelling: an International Journal, 3, 65--78
