@@ -36,3 +36,15 @@ Source = "https://github.com/maxdevblock/cubmods"
 
 #[tool.hatch.version]
 #path = "src/pyospackage/__about__.py"
+
+[tool.bumpver]
+current_version = "0.0.1"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message  = "Bump version {old_version} -> {new_version}"
+commit          = true
+tag             = true
+push            = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+"cubmods/__init__.py" = ["{version}"]
