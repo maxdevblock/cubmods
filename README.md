@@ -69,7 +69,7 @@ The following is a preliminary Manual and Reference Sheet.
   - Manisera M, Zuccolotto P (2014a). Modeling “don’t know” responses in rating scales. Pattern Recognit Lett, 45:226–234
   - Piccolo D., Simone R. and Iannario M. (2019). Cumulative and CUB models for rating data: a comparative analysis. International Statistical Review, 87(2), 207-236
   - Piccolo D. and Simone R. (2019). The class of CUB models: statistical foundations, inferential issues and empirical evidence. Statistical Methods & Applications, 28, 389-435
-  - Pierini M. (2024). Modelli della classe CUB in python. Bachelor's thesis L-41. Universitas Mercatorum, Rome, IT, 1–-172
+  - Pierini M. (2024). Modelli della classe CUB in python. Bachelor's thesis L-41. Universitas Mercatorum, Rome, IT, 1–-79
 
 ## Credits
 @Author:      Massimo Pierini
