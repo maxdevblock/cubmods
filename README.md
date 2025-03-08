@@ -5,7 +5,7 @@ This package is a _first Python implementation_ of statistical methods for the m
 
 It contains inferential methods for each family of the class CUB (with or without covariates), basic graphical tools, and methods to draw random samples from given models.
 
-It has been implemented by Massimo Pierini in 2024. It is mainly based upon the `CUB` package in `R`, implemented and maintened by Prof. Domenico Piccolo and Prof.ssa Rosaria Simone.
+It has been implemented by Massimo Pierini in 2024. It is mainly based upon the `CUB` package in `R`, maintened by Prof.ssa Rosaria Simone.
 
 ***
 
