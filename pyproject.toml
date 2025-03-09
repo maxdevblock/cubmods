@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "cubmods"
 #dynamic = ["version"]
-version = "0.0.1"
+version = "0.0.3"
 description = 'CUB models for ordinal responses.'
 readme = "README.md"
 requires-python = ">=3.8"
