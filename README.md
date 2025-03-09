@@ -11,23 +11,25 @@ It has been implemented by Massimo Pierini in 2024. It is mainly based upon the 
 
 ## Requirements
 
-```
-pip install -U numpy pandas scipy statsmodels
-```
+The package requires `numpy`, `pandas`, `scipy` and  `statsmodels`.
+
+Notice that these requirements are automatically installed using `pip` (read __Installation__ section).
 
 ## Installation
 
-Currently, the package must be downloaded from GitHub, unzipped, and placed in the same directory of the scripts that import it. 
+The latest stable version of the package can be installed via `pip` with
 
-Alternatively, you can install/update directly from GitHub. First, you need to have `git` installed (see [Install Git](https://github.com/git-guides/install-git) for detailed instructions for Windows, macOS and Linux). After installing `git` you'll need to restart your computer (to update the PATHs) and then you can install `cubmods` from GitHub with
+```
+pip install cubmods
+```
+
+Alternatively, you can install/update to the latest build directly from GitHub `main` branch, but this could be unnstable. First, you need to have `git` installed (see [Install Git](https://github.com/git-guides/install-git) for detailed instructions for Windows, macOS and Linux). After installing `git` you'll need to restart your computer (to update the PATHs) and then you can install `cubmods` from GitHub with
 
 ```
 pip install -U git+https://github.com/maxdevblock/cubmods.git@main
 ```
 
-All these `pip` commands, can be run in `Spyder 6.x` IPython console.
-
-When the next version will be complete, it will be uploaded on `PyPI`.
+All these `pip` commands, can also be run in a `Spyder 6.x` IPython console. A `conda` environment is strongly suggested.
 
 ## Basic usage
 ```Python
@@ -55,8 +57,10 @@ mod.plot()
 plt.show()
 ```
 
-## Manual
-The following is a preliminary Manual and Reference Sheet.
+Read the __Documentation__ for further details.
+
+## Documentation
+The following is a preliminary _Manual and Reference Sheet_.
 
 - [CUBmods’s documentation](https://cubmods.readthedocs.io/en/latest/) on ReadTheDocs
 
