@@ -15,6 +15,16 @@ The package requires `numpy`, `pandas`, `scipy` and  `statsmodels`.
 
 Notice that these requirements are automatically installed using `pip` (read __Installation__ section).
 
+The package has been currently tested up to `python=3.13.2` with required packages up to
+
+```
+numpy=2.2.3
+pandas=2.2.3
+scipy=1.15.2
+statsmodels=0.14.4
+matplotlib=3.10.1
+```
+
 ## Installation
 
 The latest stable version of the package can be installed via `pip` with
